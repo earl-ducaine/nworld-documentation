@@ -1,0 +1,745 @@
+<html><head><title>MIME: Using Displacements</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2-VectorEditor.html">[Prev]</a> <a href="4-MIMETut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="21168">
+<h1>MIME: Using Displacements</h1>
+</a>
+<hr><p><a name="21439">
+The PlayStation's ability to use MIME objects and displacement animation opens up new worlds for animators. This chapter contains a brief tutorial which illustrates how you can use these capabilities in your own animations.<p>
+</a><P><a name="18636">
+<h2><HR> Creating and Animating MIME Objects</h2>
+</a><a name="21981">
+This tutorial shows how to create a MIME object in which each displacement is associated with a button on the Sony PlayStation. You can only send single terminal objects to the PlayStation using this method, but the you can associate multiple displacements with the object. Only the first four vectors of a MIME object can be associated with control buttons on the PlayStation, but you can use any number of displacements to create a single vector. Objects can be attributed with any SonyPSX domain material.<p>
+</a><P><a name="19994">
+This type of animation is good for objects that "squash" or "stretch," that should change shape when a button on the game controller is pressed. <p>
+</a><P><a name="20036">
+For example, if you were animating a driving game, and wanted the car to "flatten" out when you pressed a button, you'd probably want to use a MIME object for the car, since you'd likely use displacements to animate the change in the car's shape.<p>
+</a><P><a name="21294">
+<h2><HR> Creating the Animation</h2>
+</a><a name="21441">
+<a href="3-ActionEditor.html#21428">Figure 3.1</a> shows the overall workflow pattern for creating a MIME animation.<p>
+</a><P><a name="21427">
+ <P><img src="3-MIMETut.anc.gif"><p>
+</a><a name="21428">
+<em>Figure 3.1  &#32; &#32;Creating a MIME object animation
+</em></a><P><a name="18627">
+<h3> Create your Object</h3>
+</a>
+<a name="18058">
+<STRONG>	 1.	 In N-Geometry, create a simple object.
+</STRONG>
+</a><P><dl><a name="18060">
+<dt>For this tutorial, create a cube and call it "cube".</dt>
+</a><P><a name="18489">
+ <P><img src="3-MIMETut.anc1.gif"><p>
+</a></dl>
+<a name="18498">
+<em>Figure 3.2  &#32; &#32;Cube object in N-Geometry
+</em></a><P><a name="20714">
+<h3> Define any Displacements</h3>
+</a>
+<a name="18062">
+<STRONG>	2.	 Choose Bodies in the Element sensitivity menu.
+</STRONG>
+</a><P><a name="18501">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube to select it.
+</STRONG>
+</a><P><a name="18502">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="18500">
+<STRONG>	5.	 Make an Absolute displacement for the object.
+</STRONG>
+</a><P><dl><a name="18064">
+<dt>Since this will be the base displacement for our cube, let's name the displacement <strong>base</strong>.</dt>
+</a><P><a name="18540">
+ <P><img src="3-MIMETut.anc2.gif"><p>
+</a></dl>
+<a name="18541">
+<em>Figure 3.3  &#32; &#32;Saving an absolute displacement
+</em></a><P>
+<a name="18554">
+<STRONG>	6.	 After you've specified a name, <strong>(CLICK-L)</strong> on Save Displacement State.
+</STRONG>
+</a><P><a name="18066">
+<STRONG>	7.	 Displace the object to a pose you want to associate with one of the buttons on the game controller.
+</STRONG>
+</a><P><dl><a name="18547">
+<dt>For example, we can scale the object along an axis, simulating a "squashed" appearance.</dt>
+</a><P></dl><a name="18553">
+<STRONG>	8.	 Select Bodies from the Element sensitivity menu.
+</STRONG>
+</a><P><a name="19877">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the Cube to select it.
+</STRONG>
+</a><P><a name="18555">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Axis Scale.
+</STRONG>
+</a><P><a name="18556">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Y to scale along that axis.
+</STRONG>
+</a><P><a name="18557">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Object Midpoint.
+</STRONG>
+</a><P><dl><a name="18558">
+<dt>Move the mouse left and right until the cube is squashed:</dt>
+</a><P><a name="18532">
+ <P><img src="3-MIMETut.anc3.gif"><p>
+</a></dl>
+<a name="18533">
+<em>Figure 3.4  &#32; &#32;Squashed cube
+</em></a><P>
+<a name="18068">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the cube again.
+</STRONG>
+</a><P><a name="18567">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="18573">
+<STRONG>	15.	 Make a Relative displacement for the object.
+</STRONG>
+</a><P><dl><a name="18599">
+<dt>Give the displacement a recognizable name-we'll use <strong>squash </strong>for this tutorial. Leave <strong>Source</strong> set to <strong>Previous state</strong> and <strong>State</strong> set to <strong>base</strong>. (This means that the current displacement is measured from a previous state named base-the base displacement we defined in step <a href="3-ActionEditor.html#18500">5</a>.)</dt>
+</a><P><a name="18611">
+ <P><img src="3-MIMETut.anc4.gif"><p>
+</a></dl>
+<a name="18612">
+<em>Figure 3.5  &#32; &#32;Saving a relative displacement
+</em></a><P>
+<a name="18639">
+<STRONG>	16.	 After you've specified a name, <strong>(CLICK-L)</strong> on Save Displacement State.
+</STRONG>
+</a><P><dl><a name="21493">
+<dt>You've now set up the basic elements needed to create a MIME object. Displacements are described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="21494">
+<h4> Create a Script to Animate the Object</h4>
+</a>
+<a name="21495">
+<STRONG>	17.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="21715">
+ <P><img src="3-MIMETut.anc5.gif"><p>
+</a>
+<a name="21716">
+<em>Figure 3.6  &#32; &#32;The N-Dynamics script editor
+</em></a><P>
+<a name="18646">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on the Script button.
+</STRONG>
+</a><P><dl><a name="18653">
+<dt>If there's a script already in the script editor, choose<strong> Create New Script</strong>. Either way, the Create New Script dialog box appears:</dt>
+</a><P><a name="21721">
+ <P><img src="3-MIMETut.anc6.gif"><p>
+</a></dl>
+<a name="21722">
+<em>Figure 3.7  &#32; &#32;Creating a new script in N-Dynamics
+</em></a><P>
+<a name="21739">
+<STRONG>	19.	 Name the script, and specify 2 channels.
+</STRONG>
+</a><P><dl><a name="22183">
+<dt>Give script a name that embodies it's function, e.g. PSX-test. </dt>
+</a><P></dl><a name="21744">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="21745">
+<dt>Your new script appears in the Script Editor. </dt>
+</a><P><a name="21747">
+ <P><img src="3-MIMETut.anc7.gif"><p>
+</a></dl>
+<a name="21748">
+<em>Figure 3.8  &#32; &#32;The Script Editor with the new script
+</em></a><P><dl><dl><a name="21746">
+<dt>The two blue bars spanning the Script Editor window are script channels. Channels contain parameter data which controls the behavior of objects over time in an N-Dynamics animation.</dt>
+</a><P></dl></dl><a name="18699">
+<h4> Define the Channels</h4>
+</a>
+<a name="18078">
+<STRONG>	21.	 <strong>(CLICK-M)</strong> on the first subchannel in the script.
+</STRONG>
+</a><P><dl><a name="21804">
+<dt>The <strong>Edit Action Properties</strong> menu appears. Use this menu to define the behavior of each channel in the script.</dt>
+</a><P><a name="21805">
+ <P><img src="3-MIMETut.anc12.gif"><p>
+</a></dl>
+<a name="21806">
+<em>Figure 3.9  &#32; &#32;The Edit Action Properties submenu
+</em></a><P>
+<a name="18710">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> in the Operation text box.
+</STRONG>
+</a><P><dl><a name="21818">
+<dt>The Dynamic Operations menu appears. This menu is divided into several sections, Each section contains a number of classes, which in turn contain individual dynamic operations.</dt>
+</a><P><a name="21819">
+ <P><img src="3-MIMETut.anc13.gif"><p>
+</a></dl>
+<a name="21820">
+<em>Figure 3.10 
+</em></a><P>
+<a name="18711">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on Shape in the Geometry section of the menu.
+</STRONG>
+</a><P><dl><a name="21833">
+<dt>Another menu appears, listing Shape operations:</dt>
+</a><P><a name="21834">
+ <P><img src="3-MIMETut.anc14.gif"><p>
+</a></dl>
+<a name="21835">
+<em>Figure 3.11  &#32; &#32;The Shape Operations submenu
+</em></a><P>
+<a name="18717">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the Displace Shape [Template] operation.
+</STRONG>
+</a><P><a name="18719">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on Cube when the list of objects in N-Geometry is displayed.
+</STRONG>
+</a><P><a name="18727">
+ <P><img src="3-MIMETut.anc15.gif"><p>
+</a>
+<a name="18728">
+<em>Figure 3.12  &#32; &#32;Selecting an object
+</em></a><P>
+<a name="18722">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on "squash" when the list of relative displacements is displayed.
+</STRONG>
+</a><P><a name="18742">
+ <P><img src="3-MIMETut.anc16.gif"><p>
+</a>
+<a name="18743">
+<em>Figure 3.13  &#32; &#32;Selecting a displacement
+</em></a><P>
+<a name="18707">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on Do It to select "squash."
+</STRONG>
+</a><P><a name="18754">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on "base" when the list of initial states is displayed, then <strong>(CLICK-L)</strong> on Do It.<strong></strong>
+</STRONG>
+</a><P><a name="18758">
+ <P><img src="3-MIMETut.anc17.gif"><p>
+</a>
+<a name="18759">
+<em>Figure 3.14  &#32; &#32;Selecting the initial state
+</em></a><P>
+<a name="18760">
+<STRONG>	29.	 In the Edit Action Properties menu, <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<a name="18771">
+The Displace Shape channel in your script now contains two subchannels:<p>
+</a><P><ul><a name="18791">
+<li>Set Shape: base
+</a></li><P><a name="18792">
+<li>Multiple Displace Shape Cube
+</a></li><P><a name="18775">
+ <P><img src="3-MIMETut.anc18.gif"><p>
+</a></ul><P><a name="18776">
+<em>Figure 3.15  &#32; &#32;The Displace Shape template creates the channels needed to animate displacements
+</em></a><P>
+<a name="18769">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on the triangle in the upper right corner of the Multiple Displace Shape Cube channel.
+</STRONG>
+</a><P><dl><a name="22212">
+<dt>This exposes the curve channel for the Multiple Displace operation.</dt>
+</a><P><a name="22216">
+ <P><img src="3-MIMETut.ancA15.gif"><p>
+</a></dl>
+<a name="22217">
+<em>Figure 3.16  &#32; &#32;Exposing curve data for the multiple displace channel
+</em></a><P>
+<a name="18803">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on the black triangle in the [SQUASH] (LINEAR) curve channel.
+</STRONG>
+</a><P><dl><a name="18806">
+<dt>This exposes the data inside the curve channel (including the location of any cues in the curve). Right now, the curve is linear, because we haven't defined any action yet.</dt>
+</a><P><a name="21873">
+ <P><img src="3-MIMETut.anc20.gif"><p>
+</a></dl>
+<a name="21874">
+<em>Figure 3.17  &#32; &#32;The curve for the multiple displacement operation
+</em></a><P>
+<a name="18807">
+<STRONG>	32.	 Move the cursor over the middle of the channel and press "s" on the keyboard to insert or "set" a new cue.
+</STRONG>
+</a><P><dl><a name="18837">
+<dt>There are <em>always</em> cues at the start and end of a channel. By default, these are associated with the base displacement defined for the object.</dt>
+</a><P><a name="18816">
+ <P><img src="3-MIMETut.anc21.gif"><p>
+</a></dl>
+<a name="18817">
+<em>Figure 3.18  &#32; &#32;Inserting a cue
+</em></a><P><dl><dl><a name="18838">
+<dt>Because you've only defined one relative displacement for this object, only one curve channel is created; if you add more displacements (described below in the section <a href="3-ActionEditor.html#21002">"Adding Displacements," on page &#32;3-20</a>, additional curve channels are created for each selected displacement).</dt>
+</a><P></dl></dl>
+<a name="18810">
+<STRONG>	33.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><dl><a name="21881">
+<dt>A Dynamics slider appears. You'll use sliders to control parameter values.</dt>
+</a><P><a name="21882">
+ <P><img src="3-MIMETut.anc22.gif"><p>
+</a></dl>
+<a name="21883">
+<em>Figure 3.19  &#32; &#32;The N-Dynamics slider
+</em></a><P>
+<a name="18831">
+<STRONG>	34.	 Move the slider back and forth until the value is approximately 1.0.
+</STRONG>
+</a><P><dl><a name="18832">
+<dt>This parameter essentially tells Dynamics how far to move between the base displacement and the relative displacement. A value of 1.0 means "go all the way". Note that the cube is displaced in the Geometry window. You can use the Geometry display to interactively select a value for this parameter, if you chose.</dt>
+</a><P></dl><a name="18833">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="18834">
+<dt>The curve changes shape to show that the cue now has a value associated with it:</dt>
+</a><P><a name="18848">
+ <P><img src="3-MIMETut.anc23.gif"><p>
+</a></dl>
+<a name="18849">
+<em>Figure 3.20  &#32; &#32;Modified cue
+</em></a><P><a name="18865">
+You're ready to animate your script.<p>
+</a><P><a name="18866">
+<h4> Animate the Script</h4>
+</a>
+<a name="18867">
+<STRONG>	36.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="18868">
+<dt>The cube starts in its base state, then squashes as it approaches the middle of the script, then returns to its base state as it approaches the cue at the end of the animation.</dt>
+</a><P></dl><a name="18891">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on Playback to test your animation.
+</STRONG>
+</a><P><dl><a name="18894">
+<dt>Your animation is played back in real time in the playback window.</dt>
+</a><P></dl>
+<a name="18895">
+<h4> Setting up for PlayStation Express</h4>
+</a>
+<a name="18897">
+<STRONG>	38.	 <strong>(CLICK-M)</strong> in the second channel (at the bottom of the script).
+</STRONG>
+</a><P><a name="18902">
+<STRONG>	39.	 <strong>(CLICK-L)</strong> in the Operations&gt;Sony MIME Animation in the Dynamics section of the menu.
+</STRONG>
+</a><P><dl><a name="21904">
+<dt>The Edit Action Properties menu for Sony MIME Animation appears:</dt>
+</a><P><a name="21899">
+ <P><img src="3-MIMETut.anc24.gif"><p>
+</a></dl>
+<a name="21900">
+<em>Figure 3.21  &#32; &#32;Sony MIME Animation operation Edit Action Properties menu
+</em></a><P>
+<a name="18898">
+<STRONG>	40.	 <strong>(CLICK-L)</strong> on Do It in the Edit Action Properties dialog box.
+</STRONG>
+</a><P><dl><a name="18913">
+<dt>Note in the script editor that there is now an Action Editor channel and a curve channel called <strong>[NUMBER1] (LINEAR)</strong>:</dt>
+</a><P><a name="21910">
+ <P><img src="3-MIMETut.anc25.gif"><p>
+</a></dl>
+<a name="21911">
+<em>Figure 3.22  &#32; &#32;Our script with the Sony MIME Animation channel inserted
+</em></a><P>
+<a name="18920">
+<STRONG>	41.	 Insert a cue in the MIME Animation channel at the same frame as the cue in the Multiple Displace Shape Cube channel.
+</STRONG>
+</a><P><dl><a name="18931">
+<dt>Your script should look something like this:</dt>
+</a><P><a name="18940">
+ <P><img src="3-MIMETut.anc26.gif"><p>
+</a></dl>
+<a name="18941">
+<em>Figure 3.23  &#32; &#32;Script with Action Editor channel
+</em></a><P><dl><dl><a name="18932">
+<dt>Note that the cues in both channels are aligned with each other.</dt>
+</a><P></dl></dl><a name="18950">
+You're now ready to send the animated data over to the Action Editor.<p>
+</a><P><a name="18951">
+<h4> Create a new MIME Object in the Vector Editor</h4>
+</a>
+<a name="18115">
+<STRONG>	42.	 <strong>(CLICK-L)</strong> on the Vector Editor icon to open it.
+</STRONG>
+</a><P><a name="18966">
+ <P><img src="3-MIMETut.anc27.gif"><p>
+</a>
+<a name="18967">
+<em>Figure 3.24  &#32; &#32;The Vector Editor
+</em></a><P>
+<a name="18972">
+<STRONG>	43.	 <strong>(CLICK-L)</strong> on Create&gt;Create New MIME Object
+</STRONG>
+</a><P><a name="18987">
+<STRONG>	44.	 <strong>(CLICK-L)</strong> on the cube in the object list which appears.
+</STRONG>
+</a><P><dl><a name="18992">
+<dt>The name of the newly created object appears next to the Current MIME Object: field:</dt>
+</a><P></dl><a name="18996">
+<code><pre>#&lt;MIME-object Cube &gt;<p>
+</code></pre></a><a name="18997">
+<STRONG>	45.	 Minimize the Vector Editor window.
+</STRONG>
+</a><P>
+<a name="20734">
+<h4> Create a New Action in the Action Editor</h4>
+</a>
+<a name="19000">
+<STRONG>	46.	 <strong>(CLICK-L)</strong> on the Action Editor icon to open it.
+</STRONG>
+</a><P><a name="18133">
+<STRONG>	47.	 <strong>(CLICK-L)</strong> on Dyna&gt;Action Generate.
+</STRONG>
+</a><P><dl><a name="19045">
+<dt>If you're sure you want to convert the script, <strong>(CLICK-L)</strong> on OK. (Your N-Dynamics script is not affected.)</dt>
+</a><P><a name="19031">
+ <P><img src="3-MIMETut.anc28.gif"><p>
+</a></dl>
+<a name="19032">
+<em>Figure 3.25  &#32; &#32;Prompt asking whether to convert script
+</em></a><P><dl><dl><a name="19050">
+<dt>The script animates at each cue specified in the Action Editor.</dt>
+</a><P><a name="19041">
+<dt>For each cue in the Action Editor curve channel, a vector and wave are generated. Each of these vector/wave combinations is referred to as a <em>subaction</em>:</dt>
+</a><P><a name="19086">
+ <P><img src="3-MIMETut.anc29.gif"><p>
+</a></dl></dl><a name="19087">
+<em>Figure 3.26  &#32;Action Editor with three newly generated subactions for script MIME-sample
+</em></a><P>
+<a name="18138">
+<STRONG>	48.	 Turn off the subactions that correspond to the cues at the beginning and end of the channel, since they are the same as the base vector (displayed at the top of the Action Editor window.
+</STRONG>
+</a><P><dl><a name="19887">
+<dt>To toggle a subaction on or off, <strong>(CLICK-L)</strong> on the check box next to it. A red check mark indicates that the subaction is <em>active</em>. Only the middle subaction should be active.</dt>
+</a><P></dl><a name="19100">
+<STRONG>	49.	 <strong>(SHIFT-L)</strong> on the cube in the N-Geometry window.
+</STRONG>
+</a><P><a name="19103">
+<STRONG>	50.	 <strong>(CLICK-L)</strong> on Triangulate.
+</STRONG>
+</a><P><a name="19109">
+ <P><img src="3-MIMETut.anc30.gif"><p>
+</a>
+<a name="19110">
+<em>Figure 3.27  &#32; &#32;Cube with triangulated faces
+</em></a><P><a name="19099">
+<h4> Animate using Vector and Wave Data</h4>
+</a>
+<a name="20735">
+<STRONG>	51.	 <strong>(CLICK-L)</strong> on Animate&gt;Animate Action.
+</STRONG>
+</a><P><dl><a name="18144">
+<dt>The cube is animated in the N-Geometry window using the vector and wave data in the Action Editor.</dt>
+</a><P></dl><a name="18146">
+<STRONG>	52.	 Under Animate, <strong>(CLICK-L)</strong> on Playback.
+</STRONG>
+</a><P><dl><a name="20999">
+<dt>The animation is played back in the MIMED Playback window.</dt>
+</a><P></dl>
+<a name="21002">
+<h4> Adding Displacements</h4>
+</a><a name="20741">
+You can associate as many as four displacements with buttons on the PSX game controller. The script we just created (MIME-sample) has only one displacement, squash. When you press one of the buttons on the game controller, the object being controlled will jump to that shape. The speed and degree to which the shape "jumps" is determined by the wave data for that subaction.<p>
+</a><P><a name="19362">
+If you want to add additional displacements to the object:<p>
+</a><P>
+<a name="19365">
+<STRONG>	53.	 Open N-Geometry.
+</STRONG>
+</a><P><a name="19937">
+<STRONG>	54.	 Choose Points in the Element sensitivity menu.
+</STRONG>
+</a><P><a name="19366">
+<STRONG>	55.	 <strong>(SHIFT-L)</strong> on a vertex in the cube.
+</STRONG>
+</a><P><dl><a name="19369">
+<dt>We'll move the vertex, creating a different shape.</dt>
+</a><P></dl><a name="19370">
+<STRONG>	56.	 <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><a name="19371">
+<STRONG>	57.	 Move the vertex until you've achieved a distinct look.
+</STRONG>
+</a><P><a name="21959">
+ <P><img src="3-MIMETut.anc31.gif"><p>
+</a>
+<a name="21960">
+<em>Figure 3.28  &#32; &#32;Our new displacement
+</em></a><P>
+<a name="19372">
+<STRONG>	58.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="19373">
+<STRONG>	59.	 <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><dl><a name="19374">
+<dt>Make another relative displacement, like you did in steps <a href="3-ActionEditor.html#18567">14</a> through <a href="3-ActionEditor.html#18639">16</a>. Call the displacement <strong>pointy</strong>. Make sure you base the displacement on a previous state, called <strong>base</strong>.</dt>
+</a><P></dl>
+<a name="20744">
+<h4> Adding Vectors</h4>
+</a>
+<a name="19541">
+<STRONG>	60.	 Open the Vector Editor.
+</STRONG>
+</a><P><a name="19542">
+<STRONG>	61.	 (CLICK-L) on Create&gt;Create New Vector.
+</STRONG>
+</a><P><a name="19547">
+<STRONG>	62.	 In the dialog box that appears, name the vector.
+</STRONG>
+</a><P><dl><a name="19612">
+<dt>It's usually a good idea to name the vector some variation of the displacement on which it's based. Let's use <strong>pointy</strong>:</dt>
+</a><P><a name="19621">
+ <P><img src="3-MIMETut.anc32.gif"><p>
+</a></dl>
+<a name="19622">
+<em>Figure 3.29  &#32; &#32;Naming a new vector
+</em></a><P>
+<a name="19613">
+<STRONG>	63.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="19628">
+<STRONG>	64.	 <strong>(CLICK-L)</strong> on the base displacement that this relative displacement is based upon:
+</STRONG>
+</a><P><a name="19649">
+ <P><img src="3-MIMETut.anc33.gif"><p>
+</a>
+<a name="19650">
+<em>Figure 3.30  &#32; &#32;Choosing an initial displacement state
+</em></a><P><dl><dl><a name="19636">
+<dt>Choose <strong>base</strong> since that's the name of the absolute displacement we defined earlier in N-Geometry.</dt>
+</a><P></dl></dl>
+<a name="19665">
+<STRONG>	65.	 Choose the displacement you want to make a vector out of.
+</STRONG>
+</a><P><dl><a name="19668">
+<dt>Choose <strong>pointy</strong>. You can create a vector that is based on multiple displacements; for now, let's work with just a single displacement.</dt>
+</a><P></dl><a name="19669">
+<STRONG>	66.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="19688">
+<STRONG>	67.	 Make sure the N-Geometry window is open.
+</STRONG>
+</a><P><a name="19689">
+<STRONG>	68.	 Adjust the vector by moving the slider in the Vector Editor window left and right.
+</STRONG>
+</a><P><dl><a name="20981">
+<dt>The object is update each time you let up on the slider.</dt>
+</a><P><a name="19696">
+ <P><img src="3-MIMETut.anc34.gif"><p>
+</a></dl>
+<a name="19697">
+<em>Figure 3.31  &#32; &#32;Modifying a vector
+</em></a><P>
+<a name="19690">
+<STRONG>	69.	 Slide the value to 1.00.
+</STRONG>
+</a><P><a name="19706">
+<STRONG>	70.	 Under Save, <strong>(CLICK-L)</strong> on Save Current Vector.
+</STRONG>
+</a><P><dl><a name="19951">
+<dt>This saves the new vector.</dt>
+</a><P></dl><a name="19949">
+<STRONG>	71.	 Open the Action Editor.
+</STRONG>
+</a><P><a name="19712">
+<STRONG>	72.	 Under Subaction, <strong>(CLICK-L)</strong> on Create Subaction.
+</STRONG>
+</a><P><dl><a name="19714">
+<dt>A list of vectors that the vector editor knows about appears.</dt>
+</a><P></dl><a name="19713">
+<STRONG>	73.	 <strong>(CLICK-L)</strong> on the vector you just created.
+</STRONG>
+</a><P><dl><a name="19720">
+<dt>Choose <strong>pointy</strong>.</dt>
+</a><P></dl><a name="19732">
+<STRONG>	74.	 <strong>(CLICK-L)</strong> on the wave you want to use for this subaction.
+</STRONG>
+</a><P><dl><a name="19733">
+<dt>A list of waves for other subactions in the action is displayed. Choose <br><strong>MIME-Sample: 01</strong> for this example; you can edit the value of the wave later.</dt>
+</a><P><a name="19734">
+<dt>The new subaction appears below all the other current subactions in the action editor.</dt>
+</a><P></dl><a name="19724">
+<STRONG>	75.	 Under Animate, choose Animate Action.
+</STRONG>
+</a><P><dl><a name="19725">
+<dt>The cube animates again, using the vector and wave data in the Action Editor; note now that <em>both</em> displacements are active.</dt>
+</a><P></dl><a name="19756">
+<STRONG>	76.	 Under Animate, <strong>(CLICK-L)</strong> on Playback to review your animation.
+</STRONG>
+</a><P>
+<a name="19771">
+You have now created a MIME object that can be downloaded to the Sony PlayStation and manipulate using the game controller.<p>
+</a><P><a name="19975">
+Remember that only the first four subactions can be associated with buttons on the game controller; make sure that those four subactions are at the top of the list in the Action Editor. You can use the Reorder Subaction command under the Subaction menu to change the order of the subactions in the Action Editor.<p>
+</a><P><a name="19976">
+<h4> Setting up the PC to Receive the Animation Data</h4>
+</a><a name="20824">
+You'll need to start the Sony software on the PC containing the PSX board set<p>
+</a><P>
+<a name="22099">
+<STRONG>	77.	 On the PC, execute the following commands to start the PSX software.
+</STRONG>
+</a><P><a name="20843">
+<code><pre>cd c:\psx<p>
+</code></pre></a><a name="22102">
+<code><pre>psx<p>
+</code></pre></a><dl><a name="20844">
+<dt>When the software starts, a list of datasets that can be animated is displayed.</dt>
+</a><P></dl><a name="20846">
+<STRONG>	78.	 Type "n" to create a new dataset.
+</STRONG>
+</a><P><a name="20847">
+<STRONG>	79.	 Enter the name for the new dataset at the prompt.
+</STRONG>
+</a><P><a name="20851">
+<code><pre>DATASET: cube-test<p>
+</code></pre></a><a name="20845">
+<STRONG>	80.	 Press <strong>RETURN</strong>.
+</STRONG>
+</a><P><dl><a name="22103">
+<dt>The dataset is added to the list of MIME objects.</dt>
+</a><P></dl><a name="20854">
+<STRONG>	81.	 Locate the MIME object's number in the list, then enter it at the prompt, and press <strong>RETURN</strong>.
+</STRONG>
+</a><P><dl><a name="20858">
+<dt>The following commands are displayed:</dt>
+</a><P></dl><a name="20862">
+<code><pre>Current DATASET: cube-test<p>
+</code></pre></a><a name="20865">
+<code><pre>1) Execute MIME-DATASET<p>
+</code></pre></a><a name="20866">
+<code><pre>2) Execute 		MIME-DATASET with WAVE-file<p>
+</code></pre></a><a name="20867">
+<code><pre>3) Playback TOD file<p>
+</code></pre></a><a name="20868">
+<code><pre>4) link/filt<p>
+</code></pre></a><a name="20869">
+<code><pre>5) Recv. files<p>
+</code></pre></a><a name="20870">
+<code><pre>6) QUIT<p>
+</code></pre></a><a name="20871">
+<code><pre>Please Input Number:<p>
+</code></pre></a><a name="20896">
+<STRONG>	82.	 Press "5" to Receive the Files.
+</STRONG>
+</a><P><dl><a name="20897">
+<dt>This command starts the PC telnet application, and places the PC in FTP Server mode, where it can receive data sent over from the SGI.</dt>
+</a><P></dl>
+<a name="20910">
+<h4> Sending Data to the PlayStation</h4>
+</a><a name="20911">
+We're ready to send the animation and MIME object data to the PC from the SGI.<p>
+</a><P>
+<a name="20912">
+<STRONG>	83.	 In The Action Editor, <strong>(CLICK-L)</strong> on Convert&gt;Convert and Send Action.
+</STRONG>
+</a><P><dl><a name="20917">
+<dt><strong>(CLICK-L) </strong>on the action you want to convert from the pop-up menu which appears:</dt>
+</a><P><a name="22114">
+ <P><img src="3-MIMETut.ancA31.gif"><p>
+</a></dl>
+<a name="22115">
+<em>Figure 3.32  &#32; &#32;Select an action to convert and send to the PC
+</em></a><P>
+<a name="22113">
+<STRONG>	84.	 In the dialog which appears, enter a directory for the Action Editor to write temporary files.
+</STRONG>
+</a><P><dl><a name="22134">
+<dt>During the conversion process, the Action Editor writes several temporary files to the specified directory. It's a good idea to specify the /tmp directory, or a subdirectory of /tmp, so that these temporary files will be deleted the next time you reboot your SGI.</dt>
+</a><P><a name="22135">
+ <P><img src="3-MIMETut.ancA32.gif"><p>
+</a></dl>
+<a name="22136">
+<em>Figure 3.33  &#32; &#32;Choose a directory for temporary files
+</em></a><P>
+<a name="22126">
+<STRONG>	85.	 When you <strong>(CLICK-L)</strong> on Done, the data are sent to the PC.
+</STRONG>
+</a><P><dl><a name="22142">
+<dt>Files are sent to the Action Editor Host specified in the N-Dynamics Options menu. When all the files have been sent the following prompt is displayed on the PC:</dt>
+</a><P></dl><a name="20937">
+<code><pre>Finished sending data.<p>
+</code></pre></a><dl><a name="20957">
+<dt>(For more information about what files are written with the <strong>Convert and Send Action</strong> command, see <a href="6-TOD+TextTut.html#18735">"Convert and Send Action," on page &#32;6-8</a>. Other convert options are also described in the section<a href="6-TOD+TextTut.html#16406">"Convert," on page &#32;6-8</a>.)</dt>
+</a><P></dl><a name="20904">
+<STRONG>	86.	 Press ESC on the PC to exit from "receive" mode.
+</STRONG>
+</a><P><dl><a name="22143">
+<dt>The PSX menu appears again on the PC.</dt>
+</a><P></dl>
+<a name="20918">
+<h4> Animating the MIME Object </h4>
+</a>
+<a name="20905">
+<STRONG>	87.	 Press "4" to convert the .rsd file into a .tmd file.
+</STRONG>
+</a><P><dl><a name="20924">
+<dt>This is the format required for the PSX development kit.</dt>
+</a><P></dl><a name="20919">
+<STRONG>	88.	 Press "1" to animate the MIME object.
+</STRONG>
+</a><P><dl><a name="20906">
+<dt>Each of the first four vectors sent is associated with one of the buttons on the front of the game controller.</dt>
+</a><P><a name="22147">
+<dt>You can use the PlayStation game controller to animate your object in real time across the range of it's MIME displacements.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Option 2 in the PSX menu, Execute MIME dataset with WAV file, plays your animation in a static loop. Use this option when you want to see your animation played back repeatedly. You cannot interact with these types of animations.</font></dd></dt></dl><P>
+<a name="20880">
+<h4> Exiting the PSX Program</h4>
+</a>
+<a name="20948">
+<STRONG>	89.	 <strong>Press "6" to exit from the current animation.</strong>
+</STRONG>
+</a><P><a name="20949">
+<STRONG>	90.	 <strong>Press "Q" to exit completely from the PSX software.</strong>
+</STRONG>
+</a><P>
+<a name="20825">
+<h4> Saving your Work</h4>
+</a><a name="19854">
+Make sure to save both the N-Dynamics script and the Action Editor data:<p>
+</a><P><a name="19858">
+<h4> Saving your N-Dynamics Script</h4>
+</a>
+<a name="19859">
+<STRONG>	91.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="19861">
+<STRONG>	92.	 <strong>(CLICK-L)</strong> on File&gt;Save Script.
+</STRONG>
+</a><P><dl><a name="19862">
+<dt>Specify the directory in which you want to save your script and any objects it may reference. For more on saving scripts, see the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="19789">
+<h4> Saving the Action Editor Data</h4>
+</a>
+<a name="19790">
+<STRONG>	93.	 In the Vector Editor, <strong>(CLICK-L)</strong> on Group&gt;Save Group.
+</STRONG>
+</a><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2-VectorEditor.html">[Prev]</a> <a href="4-MIMETut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 12:55:47 -->
+
+</body>
+</html>

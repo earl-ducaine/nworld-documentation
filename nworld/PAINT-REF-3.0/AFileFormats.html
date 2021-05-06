@@ -1,0 +1,161 @@
+<html><head><title>File Formats</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="93DPaintMode.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="6319">
+<p>
+</a><a name="6435">
+<h1>File Formats</h1>
+</a>
+<hr><p><a name="6436">
+N-Paint supports a variety of popular image formats, including TIF, JPG, and SGI's native SGI (RGB) format. You can specify the number of components and bits for most of these formats, ranging from 8-bit to 64 bit. <p>
+</a><P><a name="6320">
+<h2><HR> Supported File Formats</h2>
+</a><a name="6321">
+In N-Paint<em>,</em> when you save an image or matte, you can specify the file format to use when saving the image. The supported file formats are described in <a href="AFileFormats.html#5941">Table A.1</a>: 
+<P><Table Border="1">
+<dl>
+<a name="6331">
+<em>Table A.1 <strong></strong><em> &#32; &#32;File formats and descriptions</em>
+</em></a></dl>
+<tr><th align="left"><a name="6335">
+File Format
+</a><th align="left"><a name="6337">
+Description
+</a>
+<tr><td valign="top"><a name="6339">
+ RGB<p>
+</a><td valign="top"><a name="6341">
+ SGI RGB<p>
+</a>
+<tr><td valign="top"><a name="6343">
+ TIFF<p>
+</a><td valign="top"><a name="6345">
+ Tagged image file format.<p>
+</a>
+<tr><td valign="top"><a name="6347">
+ TPX<p>
+</a><td valign="top"><a name="6349">
+ Format used with N-Render rendering package.<p>
+</a>
+<tr><td valign="top"><a name="6531">
+ RGBA<p>
+</a><td valign="top"><a name="6533">
+ Four component SGI format.<p>
+</a>
+<tr><td valign="top"><a name="6527">
+ SGI<p>
+</a><td valign="top"><a name="6529">
+ Three component SGI format<p>
+</a>
+<tr><td valign="top"><a name="6523">
+ TIM<p>
+</a><td valign="top"><a name="6525">
+ Native Sony Playstation image format.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="5721">
+N-Paint<em> </em>can also read all of the above formats.<p>
+</a><P><a name="5778">
+<h2><HR> Mapping Components</h2>
+</a><a name="5780">
+N-Paint lets you specify the number of components to be used when saving either a canvas, a matte, or both. Because the number of components specified for the destination may not match the number in the source, N-Paint must decide how information in images is to be mapped when saved.<p>
+</a><P><a name="5941">
+<a href="AFileFormats.html#5941">Table A.1</a> describes the various mappings that occur when using the <strong>Save Canvas Only</strong>, <strong>Save Matte Only</strong>, and <strong>Save Both</strong> operations in the <strong>Library</strong> and <strong>Script/Canvas Operations</strong> sections of N-Paint. 
+<P><Table Border="1">
+<dl>
+<a name="6088">
+<em>Table A.2  &#32; &#32;Mapping components
+</em></a></dl>
+<tr><th align="left"><a name="6096">
+Element <br>being saved
+</a><th align="left"><a name="6098">
+To 4 channels
+</a><a name="6099">
+
+</a><th align="left"><a name="6101">
+To 3 channels
+</a><a name="6102">
+
+</a><th align="left"><a name="6104">
+To 1 channel
+</a><a name="6105">
+
+</a>
+<tr><td valign="top"><a name="6107">
+ Canvas only<p>
+</a><td valign="top"><a name="6109">
+ RGB channels saved to RGB.<p>
+</a><a name="6110">
+ Matte written out as black.<p>
+</a><td valign="top"><a name="6112">
+ RGB channels<br>saved to RGB.<br><br>Matte ignored.<p>
+</a><td valign="top"><a name="6114">
+ RGB channels <br>written out as one channel grayscale (based on luminance).<p>
+</a><a name="6115">
+ Matte ignored.<p>
+</a>
+<tr><td valign="top"><a name="6117">
+ Matte only<p>
+</a><td valign="top"><a name="6119">
+ RGB channels<br>written out as black.<p>
+</a><a name="6120">
+ Matte saved to alpha channel.<p>
+</a><td valign="top"><a name="6122">
+ RGB channels ignored.<p>
+</a><a name="6123">
+ Matte written out as three channel grayscale.<br><p>
+</a><td valign="top"><a name="6125">
+ RGB channels ignored.<br><br>Matte saved to alpha channel.<p>
+</a>
+<tr><td valign="top"><a name="6127">
+ Canvas &amp; Matte<p>
+</a><td valign="top"><a name="6129">
+ RGB channels<br>saved to RGB.<br><br>Matte saved to alpha channel.<p>
+</a><td valign="top"><a name="6131">
+ RGB channels saved to RGB.<p>
+</a><a name="6132">
+ Matte ignored.<p>
+</a><td valign="top"><a name="6134">
+ RGB channels ignored.<p>
+</a><a name="6135">
+ Matte saved to alpha channel.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>The Components value you specify when saving a file remain in effect until changed. So if you save the first in a series of images to a 3 component image, </em>N-Paint saves all subsequent images with 3 components until you change that setting.</font></dd></dt></dl><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="93DPaintMode.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/27/96 11:47:43 -->
+
+</body>
+</html>

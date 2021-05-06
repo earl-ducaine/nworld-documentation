@@ -1,0 +1,415 @@
+<html><head><title>Animating Skeletons</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Displacements.html">[Prev]</a> <a href="8PaintOps.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Animating Skeletons</h1>
+</a>
+<hr><p><a name="5780">
+<h4> This chapter gives a brief overview of animating skeletons using N-Dynamics and the Skeletal Animation System. Using skeletons and motion capture data is described in detail in the Skeletal Animation System Reference Guide and the Skeletal Animation System Tutorial.</h4>
+</a><a name="10201">
+ <P><img src="7Skeletons.anc.gif"><p>
+</a><a name="9581">
+<h2><HR> In this Chapter</h2>
+</a><a name="9898">
+You'll learn how to:<p>
+</a><P><ul><a name="9901">
+<li>read in a skeleton from a motion capture file
+</a></li><P><a name="9903">
+<li>animate a skeleton
+</a></li><P><a name="9916">
+<li>use the <strong>Make Attached Objects</strong> command to add skin to a skeleton
+</a></li><P><a name="10232">
+<li>modify attached objects
+</a></li><P><a name="10233">
+<li>reanimate the skeleton with the attached skins
+</a></li><P></ul><P><a name="9893">
+<h2><HR> Animating a Simple Skeleton</h2>
+</a><a name="9582">
+While there are a number of ways to generate a skeleton in N&#183;World, let's start by reading one from one of the supplied sample motion capture files.<p>
+</a><P><ul><a name="9583">
+<li>Some motion capture formats (like Acclaim) save the skeleton and motion capture data in separate files; you must specify both the skeleton and motion capture file when animating the skeleton in N-Dynamics.
+</a></li><P><a name="9584">
+<li>For other formats (like BioVision), a skeleton description is included in the header of the motion capture file, which includes the skeleton's hierarchy and bone names. N&#183;World can parse that header and generate a skeleton object. 
+</a></li><P></ul><P><a name="9585">
+<h2><HR> Loading a Skeleton</h2>
+</a><a name="10402">
+Try this:<p>
+</a><P>
+<a name="9586">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Open.
+</STRONG>
+</a><P><a name="9593">
+ <P><img src="7Skeletons.anc1.gif"><p>
+</a>
+<a name="9594">
+<em>Figure 7.1  &#32; &#32;Opening a new object
+</em></a><P><dl><dl><a name="9605">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="9609">
+ <P><img src="7Skeletons.anc2.gif"><p>
+</a></dl></dl><a name="9610">
+<em>Figure 7.2  &#32; &#32;Reading in an object
+</em></a><P>
+<a name="9613">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the "<strong>bvh</strong>" button.
+</STRONG>
+</a><P><dl><a name="9962">
+<dt>This tells N-Geometry we want to read in a BioVision object (in this case a skeleton).</dt>
+</a><P></dl><a name="9614">
+<STRONG>	3.	 Specify the directory that contains the motion capture file whose skeleton you want to read in. 
+</STRONG>
+</a><P><dl><a name="9615">
+<dt>Specify the following directory:</dt>
+</a><P><a name="9616">
+<dt><code>/usr/local/ngc/demo/biovision/</code></dt>
+</a><P><a name="9621">
+ <P><img src="7Skeletons.anc3.gif"><p>
+</a></dl>
+<a name="9623">
+<em>Figure 7.3  &#32; &#32;Reading in an object
+</em></a><P>
+<a name="9624">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Select One</strong>.
+</STRONG>
+</a><P><dl><a name="9625">
+<dt>A list of motion capture files in the current directory is displayed in a list like the one shown below:</dt>
+</a><P><a name="9629">
+ <P><img src="7Skeletons.anc4.gif"><p>
+</a></dl>
+<a name="9630">
+<em>Figure 7.4  &#32; &#32;Choosing a skeleton object
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>N&#183;World includes several sample motion capture files. Other motion capture files in the </em><strong>Acclaim</strong><em> file format can be found in the following directory:<br></em><br><code>/usr/local/ngc/demo/acclaim<br></code><br><em>If you want to read in a skeleton from an Acclaim format motion capture file, select the </em><strong>asf</strong><em> button in the dialog box shown in <a href="7Skeletons.html#9623">Figure 7.3</a>.</em></font></dd></dt></dl><P>
+
+<a name="9635">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on WalkGoofy.bvh.
+</STRONG>
+</a><P><a name="9967">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Read in Object.
+</STRONG>
+</a><P><dl><a name="9968">
+<dt>The skeleton appears as a blue-wireframe object in the Nichimen Geometry window.</dt>
+</a><P><a name="10415">
+ <P><img src="7Skeletons.anc5.gif"><p>
+</a></dl>
+<a name="10416">
+<em>Figure 7.5  &#32; &#32;A skeleton object
+</em></a><P><a name="9969">
+This skeleton can now be modified just like any skeleton in the SAS. The next section shows how to specify which motion capture file should be used to animate the skeleton you just loaded.<p>
+</a><P><a name="9639">
+<h3> Animating with Motion Capture Data</h3>
+</a><a name="9640">
+The skeleton in the Nichimen Geometry window was automatically generated by reading the header portion of the selected BioVision file. The data describing the skeletal motion refers to the actual bone names on the skeleton, and is calibrated to match that skeleton. (You can scale motion capture data from one skeleton to fit another using Nichimen's <strong>Motion Transform</strong> command, as described in the <em>Skeletal Animation System Tutorial</em>.)<p>
+</a><P><a name="9644">
+So you can get a quick idea of how motion capture "looks" in N&#183;World, let's animate this skeleton in N-Dynamics.<p>
+</a><P>
+<a name="9645">
+<STRONG>	7.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="9653">
+<STRONG>	8.	 Create a new script and give it 2 subchannels.
+</STRONG>
+</a><P><dl><a name="9654">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="9658">
+ <P><img src="7Skeletons.anc6.gif"><p>
+</a></dl>
+<a name="9659">
+<em>Figure 7.6  &#32; &#32;Creating a basic script
+</em></a><P><a name="9660">
+<h4> Selecting a Skeleton and Motion Capture File</h4>
+</a><a name="9661">
+To animate a skeleton using motion capture data you need to specify which skeleton you want to animate and which motion capture file should be used to animate it:<p>
+</a><P>
+<a name="9662">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the first channel.
+</STRONG>
+</a><P><a name="9663">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the Operation text box.
+</STRONG>
+</a><P><a name="9665">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Geometry&gt;Skeleton Animation&gt;Read Biovision Data.
+</STRONG>
+</a><P><dl><a name="9668">
+<dt>The <strong>Edit Action Properties</strong> dialog appears for the Read Biovision Data operation:</dt>
+</a><P><a name="9672">
+ <P><img src="7Skeletons.anc7.gif"><p>
+</a></dl>
+<a name="9674">
+<em>Figure 7.7  &#32; &#32;Reading Biovision data (shown with modified values)
+</em></a><P>
+<a name="9675">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the Skeleton text box.
+</STRONG>
+</a><P><dl><a name="9676">
+<dt>A list of objects currently loaded into N-Geometry is displayed. Note that the object "WalkGoofy" appears on the list. </dt>
+</a><P><a name="10443">
+<dt>Remember that our skeleton was generated from a motion capture file called "WalkGoofy.bvh"-when loading a BioVision skeleton from a motion capture file, the skeleton object is given a name that matches the motion capture file name.</dt>
+</a><P></dl><a name="9677">
+<STRONG>	13.	 From the list that appears, <strong>(CLICK-L)</strong> on WalkGoofy.
+</STRONG>
+</a><P><a name="9678">
+<STRONG>	14.	 <strong>(CLICK-M)</strong> on the Motion Dir. text field.
+</STRONG>
+</a><P><dl><a name="9679">
+<dt>Specify the directory that contains the motion capture file that you'll use to animate the skeleton. For this example, enter the following directory:</dt>
+</a><P><a name="9680">
+<dt><code>/usr/local/ngc/demo/biovision</code></dt>
+</a><P></dl><a name="9681">
+<STRONG>	15.	 <strong>(CLICK-R)</strong> on the .bvh file name text box.
+</STRONG>
+</a><P><dl><a name="9682">
+<dt>A list of all the files ending in .bvh for the directory specified above are displayed.</dt>
+</a><P></dl><a name="9683">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on WalkGoofy.bvh.
+</STRONG>
+</a><P><dl><a name="9684">
+<dt>If the saved motion capture file is of a different length than the current script (which defaults to 30 frames), you're asked if you want to modify the script's length to match the motion:</dt>
+</a><P><a name="9688">
+ <P><img src="7Skeletons.anc8.gif"><p>
+</a></dl>
+<a name="9689">
+<em>Figure 7.8  &#32; &#32;Change script length dialog
+</em></a><P>
+<a name="9690">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="9691">
+<dt>This automatically adjusts the length of the script. The new script length appears in the bottom right corner of the script editor window. </dt>
+</a><P><a name="10446">
+<dt>The dialog box should now have the same values as shown in <a href="7Skeletons.html#9674">Figure 7.7</a>.</dt>
+</a><P></dl><a name="9695">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Do It at the bottom of the Edit Action Properties dialog box.
+</STRONG>
+</a><P><dl><a name="9696">
+<dt>Note that the channel name has been changed to "Read Biovision Data."</dt>
+</a><P></dl>
+<a name="9697">
+<h4> Update the Skeleton</h4>
+</a><a name="9698">
+After selecting the skeleton and the motion capture file we want to use, we need to include an operation that tells N-Dynamics to apply the read-in motion capture data to the skeleton. We'll use the <strong>Update Skeleton</strong> operation to actually animate the skeleton.<p>
+</a><P>
+<a name="9699">
+<STRONG>	19.	 <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><a name="9700">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the Operations text box.
+</STRONG>
+</a><P><a name="9701">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Geometry&gt;Skeleton Animation&gt;Update Skeleton.
+</STRONG>
+</a><P><dl><a name="9703">
+<dt>The <strong>Edit Action Properties</strong> dialog for the <strong>Update Skeleton</strong> operation appears:</dt>
+</a><P><a name="9707">
+ <P><img src="7Skeletons.anc9.gif"><p>
+</a></dl>
+<a name="9708">
+<em>Figure 7.9  &#32; &#32;Updating a skeleton (shown with modified values)
+</em></a><P>
+<a name="9709">
+<STRONG>	22.	 In the Skeleton section, <strong>(CLICK-L)</strong> on the Name text box.
+</STRONG>
+</a><P><dl><a name="9711">
+<dt>From the object list displayed, <strong>(CLICK-L)</strong> on the skeleton you want to update in this channel. In this case, choose "WalkGoofy" again.</dt>
+</a><P></dl><a name="9713">
+<STRONG>	23.	 For Visible? <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="9714">
+<dt>This makes the skeleton visible.</dt>
+</a><P></dl><a name="9715">
+<STRONG>	24.	 In the Skins section, set Update? and Displace? to No.
+</STRONG>
+</a><P><dl><a name="9716">
+<dt>If you set this to Yes, any skins attached to the object are animated too. Right now, however, the skeleton has no attached skins.</dt>
+</a><P></dl><a name="9717">
+<STRONG>	25.	 In the Root Transformations section, set Translate? and Rotate? to Yes, but Scale? to No.
+</STRONG>
+</a><P><dl><a name="9718">
+<dt>These parameters specify whether any translation, rotation, or scaling data in the motion capture file are applied to the skeleton when updating it. The use of these parameters is discussed in more detail in the <em>Skeletal Animation System Reference Guide</em>.</dt>
+</a><P></dl><a name="9719">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on Do It at the bottom of the Edit Action Properties dialog box.
+</STRONG>
+</a><P><dl><a name="9720">
+<dt>Note that the channel name changes to "WalkGoofy Update Skeleton:"</dt>
+</a><P></dl>
+<a name="9721">
+Your basic script should now look like this:<p>
+</a><P><a name="9725">
+ <P><img src="7Skeletons.anc10.gif"><p>
+</a><a name="9726">
+<em>Figure 7.10  &#32; &#32;Modified basic script
+</em></a><P><a name="9727">
+<h4> Doing a Test Animation</h4>
+</a><a name="9728">
+Next, let's see what the motion looks like.<p>
+</a><P>
+<a name="9729">
+<STRONG>	27.	 Animate and playback the script.
+</STRONG>
+</a><P><a name="9735">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on the Playback button.
+</STRONG>
+</a><P><dl><a name="9736">
+<dt>If your camera is using the initial camera view, you probably saw the bottom portion of your skeleton moving through the N-Geometry window, (as shown in <a href="7Skeletons.html#9745">Figure 7.11</a>).</dt>
+</a><P><a name="9743">
+ <P><img src="7Skeletons.anc11.gif"><p>
+</a></dl>
+<a name="9745">
+<em>Figure 7.11  &#32; &#32;A test animation
+</em></a><P><dl><dl><a name="9746">
+<dt>To make sure you see the entire captured motion, let's adjust the camera.</dt>
+</a><P></dl></dl>
+<a name="9747">
+<STRONG>	29.	 <strong>(CLICK-M)</strong> on the Nichimen Geometry window, adjusting the camera's angle and its distance from the skeleton.
+</STRONG>
+</a><P><a name="9751">
+ <P><img src="7Skeletons.anc12.gif"><p>
+</a>
+<a name="9752">
+<em>Figure 7.12  &#32; &#32;Improving the view angle
+</em></a><P>
+<a name="9753">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on Animate again.
+</STRONG>
+</a><P><dl><a name="9754">
+<dt>This time, you should be able to see the skeleton's entire motion sequence.</dt>
+</a><P></dl><a name="9755">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on Playback again.
+</STRONG>
+</a><P><dl><a name="9756">
+<dt>A new black-and-white preview of your animation plays back in real time. If you like the camera angle, you can save it as part of your script by adding a new channel to control the camera position.</dt>
+</a><P></dl><a name="9757">
+<STRONG>	32.	 <strong>(CLICK-R)</strong> on the black title bar of the script editor window.
+</STRONG>
+</a><P><a name="9758">
+<STRONG>	33.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><a name="9759">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on Add One.
+</STRONG>
+</a><P><a name="9760">
+<STRONG>	35.	 <strong>(CLICK-M)</strong> on the New Subchannel.
+</STRONG>
+</a><P><a name="9761">
+<STRONG>	36.	 <strong>(CLICK-L)</strong> on the Operation text box.
+</STRONG>
+</a><P><a name="9762">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on Camera.
+</STRONG>
+</a><P><a name="9763">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> on Set View.
+</STRONG>
+</a><P><a name="9764">
+<STRONG>	39.	 Next to the Viewer parameter, <strong>(CLICK-L)</strong> on Source and choose Local from the list that appears.
+</STRONG>
+</a><P><dl><a name="9765">
+<dt>The camera's current position appears in the Viewer text edit box.</dt>
+</a><P></dl><a name="9766">
+<STRONG>	40.	 <strong>(CLICK-L)</strong> on the text box next to Viewer.
+</STRONG>
+</a><P><dl><a name="9767">
+<dt>From the list that appears, choose <strong>Select Current Geo View</strong>.</dt>
+</a><P></dl><a name="9768">
+<STRONG>	41.	 <strong>(CLICK-L)</strong> on Do It to save the camera's position.
+</STRONG>
+</a><P>
+<a name="9769">
+<h4> Reorder the Channels in the Script</h4>
+</a><a name="9770">
+The last thing we need to do is rearrange the channels so that the camera is adjusted at the <em>beginning </em>of each frame. To reorder the subchannels:<p>
+</a><P>
+<a name="9771">
+<STRONG>	42.	 <strong>(CLICK-R)</strong> on the black title bar for the script.
+</STRONG>
+</a><P><a name="9772">
+<STRONG>	43.	 <strong>(CLICK-L)</strong> on Reorder Subchannels.
+</STRONG>
+</a><P><dl><a name="9773">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="9777">
+ <P><img src="7Skeletons.anc13.gif"><p>
+</a></dl>
+<a name="9778">
+<em>Figure 7.13  &#32; &#32;Reordering subchannels
+</em></a><P>
+<a name="9779">
+<STRONG>	44.	 <strong>(DRAG-L)</strong> the Set View operation to the top of the list.
+</STRONG>
+</a><P>
+<a name="9780">
+Now, you can execute the script even if the camera has been moved.<p>
+</a><P>
+<a name="10067">
+<STRONG>	45.	 Animate and playback the script again.
+</STRONG>
+</a><P>
+<a name="9116">
+<h2><HR> Adding Some Skin Objects</h2>
+</a><a name="10068">
+This section shows you how the skeleton can be used to drive an object (or objects). Try the following:<p>
+</a><P>
+<a name="10069">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on bodies in the N-Geometry menu.
+</STRONG>
+</a><P><a name="10072">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton, then <strong>(CLICK-L)</strong> on <strong>Make Attached Objects</strong>.
+</STRONG>
+</a><P><dl><a name="10082">
+<dt>Select <strong>Yes</strong> when prompted, and individual objects are created around and attached to each bone on the skeleton:</dt>
+</a><P><a name="10087">
+ <P><img src="7Skeletons.anc14.gif"><p>
+</a></dl>
+<a name="10088">
+<em>Figure 7.14  &#32; &#32;Left, original skeleton; right, with attached objects
+</em></a><P>
+<a name="10107">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the <strong>Update Skeleton</strong> channel and set <strong>Skins&gt;Update</strong> to <strong>Yes</strong>.
+</STRONG>
+</a><P><dl><a name="10114">
+<dt>This animates any attached skins or objects as the skeleton is animated.</dt>
+</a><P></dl><a name="10079">
+<STRONG>	4.	 Animate and playback the animation again.
+</STRONG>
+</a><P><a name="10101">
+ <P><img src="7Skeletons.anc15.gif"><p>
+</a>
+<a name="10102">
+<em>Figure 7.15  &#32; &#32;Animating with attached skins
+</em></a><P><a name="10132">
+You can modify the shapes of the attached objects using any of the tools in N-Geometry. This is a handy technique for quickly building a character that would translate well onto any game platform.<p>
+</a><P><a name="10144">
+For example, you could scale the ends of the attached objects, then use N-Geometry's Smooth command to create a much more life-like character in only a few seconds:<p>
+</a><P><a name="10138">
+ <P><img src="7Skeletons.anc16.gif"><p>
+</a><a name="10139">
+<em>Figure 7.16  &#32; &#32;Modified attached objects
+</em></a><P><a name="10143">
+<h2><HR> Congratulations!</h2>
+</a><a name="10173">
+You've now gone through a very basic lesson in loading a skeleton and animating it using motion capture data. You've used the <strong>Make Attached Objects</strong> command to quickly add some skins to your object, and animated the entire sequence.<p>
+</a><P><a name="10184">
+Attaching single skin models to a skeleton is discussed in more detail in the <em>Skeletal Animation System Tutorial</em>; however, once a skin is attached the process for animating is essentially the same.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Displacements.html">[Prev]</a> <a href="8PaintOps.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 15:38:43 -->
+
+</body>
+</html>

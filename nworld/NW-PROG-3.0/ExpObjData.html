@@ -1,0 +1,1232 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="CreatingBodsAndObjs.html">[Prev]</a> <a href="RenderingOperations.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="5257">
+You'll often want to extract the data stored in the N&#183;World database for use in other applications. In this chapter, you'll learn how to:<p>
+</a><P><ul><a name="10575">
+<li>export the geometry of a body
+</a></li><P><a name="10576">
+<li>obtain and export the UV coordinates of an object
+</a></li><P><a name="10579">
+<li>obtain and export the transformation matrices, and their components, from objects
+</a></li><P></ul><P><a name="10574">
+<h2><HR> Exporting Geometry</h2>
+</a><a name="10256">
+Geometry is the data which defines the locations of an objects vertices, faces, and edges with respect to its local coordinate system. <p>
+</a><P><a name="10257">
+<h3> Determining Element Order</h3>
+</a><a name="6224">
+In many cases, you'll want to list geometry data in one of two orders<p>
+</a><P><ul><a name="6225">
+<li>Last-added-first - The last element added to a body is listed first, followed by the next-to-last, etc.
+</a></li><P><a name="6229">
+<li>First-added-first - The first element added to a body is listed first, followed by the second, etc.
+</a></li><P></ul><P><a name="10272">
+Each element in a body is assigned a sequential serial number when it is instantiated. Unfortunately, there is no easy way to compress these serial numbers. However, you can use <code><a 3D:WITH-COMPRESSED-VERTEX-INDICES>3D:WITH-COMPRESSED-VERTEX-INDICES</code> within your loop forms to assign each element a temporary index, which can then be used to sort the output of your loops. For example:<p>
+</a><P><a name="10273">
+<code><pre>(with-compressed-vertex-indices (body) ;; set the indices <p>
+</code></pre></a><a name="6235">
+<code><pre>		(loop for vertex being the vertex-reverse-elements<br>			of-body body<p>
+</code></pre></a><a name="6236">
+<code><pre>				for i from 0 <p>
+</code></pre></a><a name="6237">
+<code><pre>				do (setf (vidx vertex) i))<p>
+</code></pre></a><a name="6238">
+<code><pre>      ;;<p>
+</code></pre></a><a name="6239">
+<code><pre>      ;; your code here<p>
+</code></pre></a><a name="6240">
+<code><pre>      ;;<p>
+</code></pre></a><a name="6241">
+<code><pre>      )<p>
+</code></pre></a><a name="6297">
+The <code>3D:VIDX</code> function assigns a temporary index number of value i to each vertex. Because the <code>vertex-reverse-elements</code> form was used instead of the <code>vertex-ring-elements</code> form, the vertices will be printed in first-added-first order.<p>
+</a><P><a name="6551">
+<h2><HR> Avoiding Printed Representations</h2>
+</a><a name="6552">
+The functions and loop macro forms we've used up until now return printed representations of object, bodies, and elements, e.g.<p>
+</a><P><a name="6553">
+<code><pre>#&lt;POLYHEDRON 8&gt;<p>
+</code></pre></a><a name="6554">
+These printed representations serve only as labels for geometry items. In fact, there is no way to write a file using printed representations, and then read that file back into N&#183;World. Therefore, we have to find a way of binding the coordinate information we're after to the indices of the elements we extract without using printed representations. This can be accomplished by binding the coordinates of each vertex to an ftriplet. To learn more about ftriplets, see <a href="OptimizingCode.html#27926">"Ftriplets," on page &#32;12-7</a><p>
+</a><P><a name="6105">
+<h2><HR> Formatting Output to a File</h2>
+</a><a name="5471">
+Now that we know how to obtain the geometry of a body (and its individual elements), we'll need to output that information to some useful device, such as the screen, the printer, or a file. The <code>with-open-file </code>macro offers a flexible way of writing formatted output to a file.<p>
+</a><P><a name="5489">
+<code><pre>(</a>with-open-file var-for-stream<p>
+</code></pre></a><a name="5492">
+<code><pre>                      :direction :output<p>
+</code></pre></a><a name="5493">
+<code><pre>                      :if-does-not-exist :create<p>
+</code></pre></a><a name="5494">
+<code><pre>                      :if-exists :new-version)<p>
+</code></pre></a><a name="5498">
+This function opens and closes the file, performing all necessary housekeeping functions automatically. All you need to do is direct your output to the file, usually with the <code>format</code> function.<p>
+</a><P><a name="6562">
+Given an element of a polyhedron, coordinates are obtained with <code>3D:LO<a 3D:LOCUS-COORDINATES>CUS-COORDINATES</code>. In the following examples, we'll extract coordinates and bind them to a variable. Then, we'll print these values with the index for each vertex assigned by <code>vidx</code>. The resulting file will not contain printed representations or sharp characters, and will be much easier to read should we choose to do at some point in the future.<p>
+</a><P><a name="6564">
+Given that ? is bound to a body, the following example writes the results of two do-element-loops to a file.<p>
+</a><P><a name="5201">
+<code><pre>(let ((count 0))<p>
+</code></pre></a><a name="6576">
+<code><pre>  (3d:with-compressed-vertex-indices (?)<p>
+</code></pre></a><a name="6577">
+<code><pre>  (with-open-file (vs "~/junk/format-test.h" :direction :output<p>
+</code></pre></a><a name="6578">
+<code><pre>					   :if-does-not-exist :create<p>
+</code></pre></a><a name="6579">
+<code><pre>					   :if-exists :new-version)<p>
+</code></pre></a><a name="6580">
+<code><pre>    (loop for f being the face-reverse-elements of-body ? do<p>
+</code></pre></a><a name="6581">
+<code><pre>       (format vs "face ~A~%" (incf count))<p>
+</code></pre></a><a name="6582">
+<code><pre>       (loop for v being the component-vertices of-face f do<p>
+</code></pre></a><a name="6583">
+<code><pre>         (ftriplet-values-bind (x y z) (locus-coordinates v)<p>
+</code></pre></a><a name="6584">
+<code><pre>           (format vs "vertex ~S ~S ~S ~S~%" (vidx v) x y z)))))))<p>
+</code></pre></a><ul><a name="10599">
+<li>The variable <code>count</code> is initialized at 0 in the first line of this form. <code>I</a>NCF</code> increments count for each face, providing a numerical label for each face.
+</a></li><P><a name="10601">
+<li><code>ftri</a>plet-values-bind</code> binds the x, y, and z coordinates of each vertex to a variable. These coordinates are themselves obtained with the <code>locus-coordinates</code> function.
+</a></li><P></ul><P><a name="5942">
+<h4> A Sample Exporter</h4>
+</a><a name="5943">
+Now, we'll define a sample exporter function which combines all of the aspects of exporting geometry we've introduced in this section, including:<p>
+</a><P><ul><a name="5578">
+<li>Choosing an object
+</a></li><P><a name="5579">
+<li>Getting the terminal objects of the chosen object
+</a></li><P><a name="5580">
+<li>Getting the body of each terminal object
+</a></li><P><a name="5581">
+<li>Extracting the geometry of these bodies
+</a></li><P><a name="5582">
+<li>Writing that geometry in a readable format to a file
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This function is an example only! It is a simple </em>example<em> of how to export geometry data, and is likely to require additional modification to suit your particular needs.</em></font></dd></dt></dl><P>
+<a name="5974">
+This function accepts an argument which specifies a pathname for the file it will generate:<p>
+</a><P><a name="5626">
+<code><pre>(in-package "3d")<p>
+</code></pre></a><a name="10608">
+<code><pre>(defun sample-exporter (outpath &amp;optional (object (choose-object t)))<p>
+</code></pre></a><a name="6606">
+<code><pre><p>
+</code></pre></a><a name="6607">
+<code><pre>  (with-open-file (stream outpath<p>
+</code></pre></a><a name="6608">
+<code><pre>                   :direction :output<p>
+</code></pre></a><a name="6609">
+<code><pre>                   :if-does-not-exist :create<p>
+</code></pre></a><a name="6610">
+<code><pre>                   :if-exists :new-version)<p>
+</code></pre></a><a name="6611">
+<code><pre>  <p>
+</code></pre></a><a name="6612">
+<code><pre>    (loop for tobj being the terminal-objects of-object object<p>
+</code></pre></a><a name="6613">
+<code><pre>              as body = (obod tobj)<p>
+</code></pre></a><a name="6614">
+<code><pre>              when (polyhedron-p body)<p>
+</code></pre></a><a name="6615">
+<code><pre>              do (format stream "~&amp;Object: ~S~2%" (sp:get-name tobj))<p>
+</code></pre></a><a name="6616">
+<code><pre>              (with-compressed-vertex-indices (body)<p>
+</code></pre></a><a name="6617">
+<code><pre>                ;; Creating the compressed-vertex-indices<p>
+</code></pre></a><a name="6618">
+<code><pre>                ;; We have to loop through a ll vertices,<p>
+</code></pre></a><a name="6619">
+<code><pre>                ;; and setf vidx once per vertex<p>
+</code></pre></a><a name="6620">
+<code><pre>                (loop for v being the vertex-reverse-elements of-polyhedron body<p>
+</code></pre></a><a name="6621">
+<code><pre>                          for v-count from 1<p>
+</code></pre></a><a name="6622">
+<code><pre>                          do (setf (vidx v) v-count))<p>
+</code></pre></a><a name="6623">
+<code><pre>                ;; Now we can loop through faces and write out vertices<p>
+</code></pre></a><a name="6624">
+<code><pre>                ;; through the compressed-vertex-indices table<p>
+</code></pre></a><a name="6625">
+<code><pre>                (loop for f being the face-reverse-elements of-polyhedron body<p>
+</code></pre></a><a name="6626">
+<code><pre>                          for face-idx from 1<p>
+</code></pre></a><a name="6627">
+<code><pre>                          do<p>
+</code></pre></a><a name="6628">
+<code><pre>                          (format stream "face ~D~%" face-idx)<p>
+</code></pre></a><a name="6629">
+<code><pre>                          (loop for v being the component-vertices of-face f<p>
+</code></pre></a><a name="6630">
+<code><pre>                                    do <p>
+</code></pre></a><a name="6631">
+<code><pre>                                    (ftriplet-values-bind (x y z) (locus-coordinates v)<p>
+</code></pre></a><a name="6632">
+<code><pre>                                      (format stream "vertex ~3D ~10F ~10F ~10F~%"<p>
+</code></pre></a><a name="6633">
+<code><pre>                                              (vidx v) x y z)))<p>
+</code></pre></a><a name="6634">
+<code><pre>                          (format stream "~%"))<p>
+</code></pre></a><a name="6635">
+<code><pre>                ))<p>
+</code></pre></a><a name="6636">
+<code><pre>    )<p>
+</code></pre></a><a name="6637">
+<code><pre>  )<p>
+</code></pre></a><a name="6604">
+The function<code> sample-exporter</code> requires one argument, <code>outpath</code>. This is the path to which it writes the geometry of an object or objects. The object argument is optional. You can either specify an object, or by default the function will call <code>choose-objects</code> so that the user can select an object.<p>
+</a><P><a name="6660">
+In the first <code>loop</code> macro, <code>body</code> is bound to the body of each terminal object. After the first loop,<code> with-compressed-vertex-indices </code>compresses the vertex indices of <code>body</code>.<p>
+</a><P><a name="6643">
+In the second loop, a counter, <code>face-idx</code>, is initialized at 1. This counter serves as a label for each face. <p>
+</a><P><a name="6648">
+In the third loop, the <code>ftriplet-values-bind</code> command binds the x, y, and z coordinates of each vertex to the variables <code>x</code>, <code>y</code>, and <code>z</code>, respectively. <p>
+</a><P><a name="6649">
+Finally, these values are written to the file. After you've compiled this function, you can evaluate it. Don't forget to provide an output path as an argument!<p>
+</a><P><a name="5633">
+<code><pre>USER(2): (sample-exporter "~/objects/thisobject.file")<p>
+</code></pre></a><a name="5634">
+This function will print the geometry of any object you can select to a file, no matter how many inferior objects that object may contain. <p>
+</a><P><a name="6720">
+Obviously, there are many shortcomings in this sample function. You may choose to improve it in one of the following ways:<p>
+</a><P><ul><a name="5643">
+<li>Improve the file format to which this function writes its data.
+</a></li><P><a name="5644">
+<li>Include a menu interface for the user to build the path and filename for the resulting data.
+</a></li><P><a name="5645">
+<li>Include the names of the superior objects.
+</a></li><P><a name="5646">
+<li>Parse the printed representations to make the output file more readable.
+</a></li><P></ul><P><a name="10915">
+<h2><HR> Exporting UV Coordinates</h2>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This chapter discusses <em>only</em> polyhedra and <em>shading</em> attribute domains, such as GL and Render. These are the only combinations for which UV coordinates are defined.</font></dd></dt></dl><P>
+<a name="6789">
+This section describes how to retrieve UV coordinates for vertices given a domain, a bdi, a mapper type, and an attributed element. Attributed elements can be either polyhedra, face parts, or faces. The N&#183;World interface for obtaining UV coordinates includes three macros:<p>
+</a><P><a name="10397">
+<code><pre>Macros				with-surface-context<p>
+</code></pre></a><a name="10399">
+<code><pre>				with-mapping-setup<p>
+</code></pre></a><a name="10401">
+<code><pre>				ensuring-face-display-cache-for-mapping<p>
+</code></pre></a><a name="6798">
+You can find source code for these macros and the methods which follow in <code>/usr/local/ngc/demo/src/uv-example.lisp</code><p>
+</a><P><a name="10984">
+The <code>with-surface-context</code> macro binds a variable to a surface context, given a bdi and an attribute domain. This relies on the unique relationship between a bdi-domain pair and a surface context. In other words, given a surface context, you can find the unique bdi-domain pair which defines that context.<p>
+</a><P><a name="6800">
+The <code>with-mapping-setup</code> macro binds a variable to a mapper, given a mapper type, an attributed element and a surface context. The attributed element may be, in the case of a polyhedron, the body, a face part, or a face. This macro uses the transformations of the object and a mapper object to compute the UV projection. Therefore, any transformation of either the object or the mapper object inside of the body of this macro will invalidate the setup.<p>
+</a><P><a name="6802">
+The <code>ensuring-face-display-cache-for-mapping</code> macro binds a variable to the <code>face-display-cache</code> for a given face with respect to a given mapper. The <code>with-mapping-setup</code> macro, by computing the UV projection, prepares the <code>face-display-cache</code> to hold the updated UV coordinates for the face. We extract UV coordinates from the display cache.<p>
+</a><P><a name="6803">
+Following is the source code for these macros. You must compile and load these macros before you can use the example methods we'll present later in this section, because they are not currently included in N&#183;World 3.0. They can be found in /usr/local/ngc/demo/src/uv-example.lisp<p>
+</a><P><a name="6804">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="6805">
+<code><pre><p>
+</code></pre></a><a name="6806">
+<code><pre>(defmacro WITH-SURFACE-CONTEXT ((context-var bdi domain) &amp;body body)<p>
+</code></pre></a><a name="6807">
+<code><pre>  \Q(let ((,context-var (get-surface-context ,bdi (attr:find-domain ,domain))))<p>
+</code></pre></a><a name="6808">
+<code><pre>     ,@body)<p>
+</code></pre></a><a name="6809">
+<code><pre>  )<p>
+</code></pre></a><a name="11387">
+<code><pre><p>
+</code></pre></a><a name="11388">
+<code><pre>(defmacro WITH-MAPPING-SETUP ((mapper-var attributed-element context<p>
+</code></pre></a><a name="11389">
+<code><pre>		&amp;optional (mapper-type :texture-map-mapper) errorp) &amp;body body)<p>
+</code></pre></a><a name="11393">
+<code><pre>	(let		((matrix (gensym))<p>
+</code></pre></a><a name="11394">
+<code><pre>			(tmm    (gensym))<p>
+</code></pre></a><a name="11395">
+<code><pre>        			(bdi    (gensym)))<p>
+</code></pre></a><a name="11396">
+<code><pre>    <p>
+</code></pre></a><a name="11397">
+<code><pre>(let* ( (,bdi        (get-context-bdi ,context))<p>
+</code></pre></a><a name="11398">
+<code><pre>		 (,matrix     (get-current-transformation ,bdi))<p>
+</code></pre></a><a name="11399">
+<code><pre>		 (,tmm        (and ,context<p>
+</code></pre></a><a name="11400">
+<code><pre>		 				(attr:derived-attribute-value ,attributed-element ,mapper-type <br>							,context)))<p>
+</code></pre></a><a name="11401">
+<code><pre>		(,mapper-var (ra:setup-mapper-cache ,tmm ,bdi ,matrix))<p>
+</code></pre></a><a name="11402">
+<code><pre>		)<p>
+</code></pre></a><a name="11403">
+<code><pre>       (cond (,mapper-var<p>
+</code></pre></a><a name="11404">
+<code><pre>              (setup-gl-texture-wrap ,attributed-element ,context ,mapper-var)<p>
+</code></pre></a><a name="11405">
+<code><pre>              ,@body)<p>
+</code></pre></a><a name="11406">
+<code><pre>             				(,errorp<p>
+</code></pre></a><a name="11407">
+<code><pre>				(error "No ~S mapper for element ~S in context ~S" ,mapper-type<p>
+</code></pre></a><a name="11408">
+<code><pre>                      ,attributed-element ,context)))<p>
+</code></pre></a><a name="11409">
+<code><pre>       ))<p>
+</code></pre></a><a name="11410">
+<code><pre>  )<p>
+</code></pre></a><a name="11411">
+<code><pre><p>
+</code></pre></a><a name="11412">
+<code><pre><p>
+</code></pre></a><a name="11413">
+<code><pre>(defmacro ENSURING-FACE-DISPLAY-CACHE-FOR-MAPPING ((display-cache-var face mapper)<p>
+</code></pre></a><a name="6842">
+<code><pre>                                                   &amp;body body)<p>
+</code></pre></a><a name="6843">
+<code><pre>  \Q(when ,mapper<p>
+</code></pre></a><a name="6844">
+<code><pre>     (let ((,display-cache-var (ensure-face-display-cache ,face ,mapper nil)))<p>
+</code></pre></a><a name="6845">
+<code><pre>       (if ,display-cache-var<p>
+</code></pre></a><a name="6846">
+<code><pre>           (progn ,@body)<p>
+</code></pre></a><a name="6847">
+<code><pre>         (error "No Face-display-cache for face ~S." ,face)))) <p>
+</code></pre></a><a name="6848">
+<code><pre>  )<p>
+</code></pre></a><a name="6850">
+<h3> Getting the UVs of a Vertex</h3>
+</a><a name="6852">
+The method <code>GET-UV-COORDS</code> returns UV coordinates for any vertex, given the vertex and a neighboring face, a bdi, a mapper type, and an attribute domain. <p>
+</a><P><ul><a name="6854">
+<li>The attribute domain and the bdi identify a unique surface context, as described above.
+</a></li><P><a name="6856">
+<li>The context, the face, and the mapper type retrieves a specific mapper from the attributes defined for that face in the specific context.
+</a></li><P><a name="6857">
+<li>Given the mapper, the UV coordinates can be computed from the projection of the mapper onto the face vertices.
+</a></li><P></ul><P><a name="6858">
+Some of the steps taken by these macros do not need to be recomputed for each vertex in a given face. For example, the surface context need only be identified once per body. The mapper setup must be executed once per body and once for each attributed face part. The display cache must be recomputed for every face. <p>
+</a><P><a name="6859">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="6860">
+<code><pre><p>
+</code></pre></a><a name="6861">
+<code><pre>(defmethod GET-UV-COORDS ((self vertex) (face face) bdi<p>
+</code></pre></a><a name="6862">
+<code><pre>                          &amp;key<p>
+</code></pre></a><a name="6863">
+<code><pre>                          (mapper-type :texture-map-mapper)<p>
+</code></pre></a><a name="6864">
+<code><pre>                          domain        ; :GL :SEGA :PSX :ARKRENDER or NIL<p>
+</code></pre></a><a name="6865">
+<code><pre>                                        ; (the current domain)<p>
+</code></pre></a><a name="6866">
+<code><pre>                          )<p>
+</code></pre></a><a name="6867">
+<code><pre>  <p>
+</code></pre></a><a name="6868">
+<code><pre>  (</a>with-surface-context (context bdi domain)<p>
+</code></pre></a><a name="6869">
+<code><pre>    (with-mapping-setup (mapper face context mapper-type)<p>
+</code></pre></a><a name="6870">
+<code><pre>      (ensuring-face-display-cache-for-mapping (display-cache face mapper)<p>
+</code></pre></a><a name="6871">
+<code><pre>        (let ((uvcoords (getf (sf-texcoords display-cache) mapper)))<p>
+</code></pre></a><a name="6872">
+<code><pre>          (declare (type (simple-vector *) uvcoords))<p>
+</code></pre></a><a name="6873">
+<code><pre>          (loop for i from 0 below (length uvcoords) <p>
+</code></pre></a><a name="6874">
+<code><pre>                    for v being the ccw-component-vertices of-face face<p>
+</code></pre></a><a name="6875">
+<code><pre>                    when (eq v self)<p>
+</code></pre></a><a name="6876">
+<code><pre>                    do (return (svref uvcoords i)))<p>
+</code></pre></a><a name="6877">
+<code><pre>          ))))<p>
+</code></pre></a><a name="6878">
+<code><pre>  )<p>
+</code></pre></a><a name="6879">
+The interface which is documented here provides the UV coordinates for a single vertex with respect to a single face. Therefore, each of these macros is executed for <br>each vertex in the <code>GET-UV-COORDS</code> method. In the next section, we'll present some examples which show how to access UV coordinates more efficiently in specific contexts.<p>
+</a><P><a name="6881">
+<h4> Examples and Templates</h4>
+</a><a name="11416">
+The following three methods are designed to return UV coordinates for a face, face part, and a polyhedron. <p>
+</a><P><a name="6882">
+Becuase UV coordinates are only availabe for face parts and polyhedra, the method specialized on a face must find either an attributed part which the face is a member of, or the polyhedron of which the face is a component. Then the appropriate face part or polyhedra method is called.<p>
+</a><P><a name="6883">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="11421">
+<code><pre>(defmethod MY-WRITE-UV-COORDS-TO-STREAM ((self face) <p>
+</code></pre></a><a name="11423">
+<code><pre>                                         bdi <p>
+</code></pre></a><a name="11424">
+<code><pre>                                         stream <p>
+</code></pre></a><a name="11425">
+<code><pre>                                         &amp;key<p>
+</code></pre></a><a name="11426">
+<code><pre>                                         (mapper-type :texture-map-mapper)<p>
+</code></pre></a><a name="11427">
+<code><pre>                                         domain<p>
+</code></pre></a><a name="11428">
+<code><pre>                                         )<p>
+</code></pre></a><a name="11429">
+<code><pre>;;Given a face, we have to find either the last-attributed-face-part of which the face is a member, or failing that, the polyhedron of the face<p>
+</code></pre></a><a name="11431">
+<code><pre>  (let ((parts (or (find-parts-with-me self)<p>
+</code></pre></a><a name="11432">
+<code><pre>                   (find-body self))))<p>
+</code></pre></a><a name="11433">
+<code><pre>    (format t "~% Parts: ~a" parts)<p>
+</code></pre></a><a name="11434">
+<code><pre>    (if (consp parts)<p>
+</code></pre></a><a name="11435">
+<code><pre>        (loop for part in parts<p>
+</code></pre></a><a name="11436">
+<code><pre>            do<p>
+</code></pre></a><a name="11437">
+<code><pre>              (format t "~%Part: ~a" part)<p>
+</code></pre></a><a name="11438">
+<code><pre>              (my-write-uv-coords-to-stream part bdi stream :mapper-type mapper-type<br>					:domain domain))<p>
+</code></pre></a><a name="11439">
+<code><pre>        (my-write-uv-coords-to-stream parts bdi stream :mapper-type mapper-type <br>			:domain domain)<p>
+</code></pre></a><a name="11440">
+<code><pre>            )))<p>
+</code></pre></a><a name="6907">
+The second example method returns UV coordinates for a face-part:<p>
+</a><P><a name="6908">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="6909">
+<code><pre><p>
+</code></pre></a><a name="6934">
+<code><pre>(defmethod MY-WRITE-UV-COORDS-TO-STREAM ((self part)<p>
+</code></pre></a><a name="11454">
+<code><pre>						bdi<br>						stream<p>
+</code></pre></a><a name="11456">
+<code><pre>						&amp;key<p>
+</code></pre></a><a name="11652">
+<code><pre>						(mapper-type :texture-map-mapper)<p>
+</code></pre></a><a name="11458">
+<code><pre>						domain <p>
+</code></pre></a><a name="11459">
+<code><pre>						)<p>
+</code></pre></a><a name="11460">
+<code><pre>(with-surface-context (context bdi domain)<p>
+</code></pre></a><a name="11461">
+<code><pre>    (with-mapping-setup (mapper self context mapper-type nil)<p>
+</code></pre></a><a name="11462">
+<code><pre>      ;; Check that the last attributed part for every face<p>
+</code></pre></a><a name="11463">
+<code><pre>      ;; is the part we are writing out.<p>
+</code></pre></a><a name="11464">
+<code><pre>      (loop for face in (group-components self)<p>
+</code></pre></a><a name="11465">
+<code><pre>          when (eq self (last-attributed-part face context))<p>
+</code></pre></a><a name="11466">
+<code><pre>          do <p>
+</code></pre></a><a name="11467">
+<code><pre>            (ensuring-face-display-cache-for-mapping (display-cache face mapper)<p>
+</code></pre></a><a name="11468">
+<code><pre>              (let ((uvcoords (getf (sf-texcoords display-cache) mapper)))<p>
+</code></pre></a><a name="11469">
+<code><pre>                (declare (type (simple-vector *) uvcoords))<p>
+</code></pre></a><a name="11470">
+<code><pre>                (loop for i from 0 below (length uvcoords) <p>
+</code></pre></a><a name="11471">
+<code><pre>                          for v being the ccw-component-vertices of-face face<p>
+</code></pre></a><a name="11472">
+<code><pre>                          as uv = (svref uvcoords i)<p>
+</code></pre></a><a name="11473">
+<code><pre>                          do<p>
+</code></pre></a><a name="11474">
+<code><pre>                      (format stream "~%Face: ~a" face)<p>
+</code></pre></a><a name="11475">
+<code><pre>                      (format stream "~%Vert: ~a UV: ~a" v uv)<p>
+</code></pre></a><a name="11476">
+<code><pre>;;                      [.....YOUR WRITE CODE HERE....]<p>
+</code></pre></a><a name="11477">
+<code><pre>                          )<p>
+</code></pre></a><a name="11478">
+<code><pre>                )))<p>
+</code></pre></a><a name="11479">
+<code><pre>      ))<p>
+</code></pre></a><a name="11480">
+<code><pre>  )<p>
+</code></pre></a><a name="11481">
+<code><pre><p>
+</code></pre></a><a name="6936">
+This method is for accessing the UV coordinates for all the vertices of all the faces of a given face part.<p>
+</a><P><a name="6937">
+The following method demonstrates how to use the first template in order to return a list of UV coordinates for all the vertices of a face. It's up to you to manage the resulting list.<p>
+</a><P><a name="11741">
+You must write code which supplies these methods with the appropriate arguments. For example, you will have to derive the bdi from a terminal object using <code>get-terminal-object</code> and <code>obdi</code>. <p>
+</a><P><a name="11743">
+The following example illustrates how to use these macros to extract the UV coordinates for an entire polyhedron, and write these coordinates to a stream.<p>
+</a><P><a name="6961">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="6962">
+<code><pre><p>
+</code></pre></a><a name="7010">
+<code><pre>(defmethod MY-WRITE-UV-COORDS-TO-STREAM ((self polyhedron)<p>
+</code></pre></a><a name="11749">
+<code><pre>                                     bdi<p>
+</code></pre></a><a name="11750">
+<code><pre>                                     stream <p>
+</code></pre></a><a name="11751">
+<code><pre>                                     &amp;key<p>
+</code></pre></a><a name="11752">
+<code><pre>                                     (mapper-type :texture-map-mapper)<p>
+</code></pre></a><a name="11753">
+<code><pre>                                     domain<p>
+</code></pre></a><a name="11754">
+<code><pre>                                     )<p>
+</code></pre></a><a name="11755">
+<code><pre>  (with-surface-context (body-context bdi domain)<p>
+</code></pre></a><a name="11756">
+<code><pre>    (with-mapping-setup (body-mapper self body-context mapper-type nil)<p>
+</code></pre></a><a name="11757">
+<code><pre>      ;; Dump UVs for faces not in parts<p>
+</code></pre></a><a name="11758">
+<code><pre>      (loop for face being the face-reverse-elements of-polyhedron self<p>
+</code></pre></a><a name="11759">
+<code><pre>          as parts = (find-parts-with-me face)<p>
+</code></pre></a><a name="11760">
+<code><pre>          unless parts<p>
+</code></pre></a><a name="11761">
+<code><pre>          do<p>
+</code></pre></a><a name="11762">
+<code><pre>            (format stream "~%Face: ~a" face)<p>
+</code></pre></a><a name="11763">
+<code><pre>            (ensuring-face-display-cache-for-mapping (display-cache face body-mapper)<p>
+</code></pre></a><a name="11764">
+<code><pre>                 (let ((uvcoords (getf (sf-texcoords display-cache) body-mapper)))<p>
+</code></pre></a><a name="11765">
+<code><pre>                   (declare (type (simple-vector *) uvcoords))<p>
+</code></pre></a><a name="11766">
+<code><pre>                   (loop for i from 0 below (length uvcoords) <p>
+</code></pre></a><a name="11767">
+<code><pre>                       for v being the ccw-component-vertices of-face face<p>
+</code></pre></a><a name="11768">
+<code><pre>                       as uv = (svref uvcoords i)<p>
+</code></pre></a><a name="11769">
+<code><pre>                       do<p>
+</code></pre></a><a name="11770">
+<code><pre>                         (format stream "~%    Vert: ~a UV: ~a" v uv )<p>
+</code></pre></a><a name="11771">
+<code><pre>                         ;;  [...YOUR WRITE CODE HERE...]<p>
+</code></pre></a><a name="11772">
+<code><pre>                         ))))<p>
+</code></pre></a><a name="11773">
+<code><pre><p>
+</code></pre></a><a name="11776">
+<code><pre><p>
+</code></pre></a><a name="11777">
+<code><pre>      ;; Dump UVs for parts not attributed<p>
+</code></pre></a><a name="11778">
+<code><pre>      (loop for part in (parts-of-type \Qface (get-parts self))<p>
+</code></pre></a><a name="11779">
+<code><pre>          unless (attr:local-attributes part body-context T)<p>
+</code></pre></a><a name="11780">
+<code><pre>          do <p>
+</code></pre></a><a name="11781">
+<code><pre>            (format stream "~%UA-Part: ~a" part)<p>
+</code></pre></a><a name="11782">
+<code><pre>            (loop for face in (group-components part)<p>
+</code></pre></a><a name="11783">
+<code><pre>                as parts = (find-parts-with-me face)<p>
+</code></pre></a><a name="11784">
+<code><pre>                as winning = (car parts)<p>
+</code></pre></a><a name="11785">
+<code><pre>                unless (or (last-attributed-part face body-context)<p>
+</code></pre></a><a name="11786">
+<code><pre>                           (not (eq winning part)))<p>
+</code></pre></a><a name="11787">
+<code><pre>                do <p>
+</code></pre></a><a name="11788">
+<code><pre>                  (format stream "~%   Face: ~a" face)<p>
+</code></pre></a><a name="11789">
+<code><pre>                  (ensuring-face-display-cache-for-mapping<p>
+</code></pre></a><a name="11790">
+<code><pre>                   (display-cache face body-mapper)<p>
+</code></pre></a><a name="11791">
+<code><pre>                   (let ((uvcoords (getf (sf-texcoords display-cache) body-mapper)))<p>
+</code></pre></a><a name="11792">
+<code><pre>                     (declare (type (simple-vector *) uvcoords))<p>
+</code></pre></a><a name="11793">
+<code><pre>                     (loop for i from 0 below (length uvcoords) <p>
+</code></pre></a><a name="11794">
+<code><pre>                         for v being the ccw-component-vertices of-face face<p>
+</code></pre></a><a name="11795">
+<code><pre>                         as uv = (svref uvcoords i)<p>
+</code></pre></a><a name="11796">
+<code><pre>                         do<p>
+</code></pre></a><a name="11797">
+<code><pre>                           (format stream "~%    Vert: ~a UV: ~a" v uv )<p>
+</code></pre></a><a name="11798">
+<code><pre>;;                      [ ...YOUR WRITE CODE HERE... ]<p>
+</code></pre></a><a name="11799">
+<code><pre>                           )))<p>
+</code></pre></a><a name="11800">
+<code><pre>                  (format t "~%   End Part: ~a " winning))<p>
+</code></pre></a><a name="11801">
+<code><pre>      )<p>
+</code></pre></a><a name="11802">
+<code><pre>    <p>
+</code></pre></a><a name="11803">
+<code><pre>    ;; Dump UVs for attributed parts, using last-attributed-part priority<p>
+</code></pre></a><a name="11804">
+<code><pre>      (loop for part in (parts-of-type \Qface (get-parts self))<p>
+</code></pre></a><a name="11805">
+<code><pre>          do <p>
+</code></pre></a><a name="11806">
+<code><pre>            (format stream "~%  LA-Part: ~a " part)                  <p>
+</code></pre></a><a name="11807">
+<code><pre>            (with-mapping-setup (part-mapper part body-context mapper-type nil)<p>
+</code></pre></a><a name="11808">
+<code><pre>              (loop for face in (group-components part)<p>
+</code></pre></a><a name="11809">
+<code><pre>                  as pla = (last-attributed-part face body-context)<p>
+</code></pre></a><a name="11810">
+<code><pre>                  when (eq part pla)<p>
+</code></pre></a><a name="11811">
+<code><pre>                  do<p>
+</code></pre></a><a name="11812">
+<code><pre>                    (format stream "~%Face: ~a" face)<p>
+</code></pre></a><a name="11813">
+<code><pre>                    (ensuring-face-display-cache-for-mapping<p>
+</code></pre></a><a name="11814">
+<code><pre>                     (display-cache face part-mapper)<p>
+</code></pre></a><a name="11815">
+<code><pre>                     (let ((uvcoords (getf (sf-texcoords display-cache) body-mapper)))<p>
+</code></pre></a><a name="11816">
+<code><pre>                       (declare (type (simple-vector *) uvcoords))<p>
+</code></pre></a><a name="11817">
+<code><pre>                       (loop for i from 0 below (length uvcoords) <p>
+</code></pre></a><a name="11818">
+<code><pre>                           for v being the ccw-component-vertices of-face face<p>
+</code></pre></a><a name="11819">
+<code><pre>                           as uv = (svref uvcoords i)<p>
+</code></pre></a><a name="11820">
+<code><pre>                           do<p>
+</code></pre></a><a name="11821">
+<code><pre>                           <p>
+</code></pre></a><a name="11822">
+<code><pre>                           (format stream "~%    Vert: ~a UV: ~a" v uv )<p>
+</code></pre></a><a name="11823">
+<code><pre>                   <p>
+</code></pre></a><a name="11824">
+<code><pre>;;                     [ ...YOUR WRITE CODE HERE... ]<p>
+</code></pre></a><a name="11825">
+<code><pre>                     ))))<p>
+</code></pre></a><a name="11826">
+<code><pre>    ))<p>
+</code></pre></a><a name="11827">
+<code><pre>    ))<p>
+</code></pre></a><a name="11828">
+  )<p>
+</a><P><a name="11747">
+The structure of the method will necessarily reflect the output format used. As a result, the methods you write may have a different structure than these examples depending upon your needs.<p>
+</a><P><a name="7013">
+<h4> Seams and Edges</h4>
+</a><a name="7015">
+Typically, UV coordinate values lie between 0.0 and 1.0 (exclusive). However, a special case arises when a map wraps around, as when the right side of the map butts up against the left side. Unless the vertices of the object happen to fall exactly on the boundaries of the map, i.e., the U or V values are 0.0 or 1.0, the map seam will fall on the interior of a face, which means the U values of those vertices falling on the right side of the map will be less than 1.0, and for those falling on the left side of the map, more than 0.0.<p>
+</a><P><a name="7044">
+ <P><img src="ExpObjData.anc.gif"><p>
+</a><a name="7045">
+<em>Figure 8.1  &#32; &#32;Mapper seam falls across the highlighted face
+</em></a><P><a name="7046">
+Normally the U or V values are interpolated across the face. However, if our face spans a seam, we cannot interpolate naively from, say, .9 to .1, because that will take us "the long way" across the map and instead of seeing the seam, we will see the whole map compressed across the face. In these cases, our UV values must exceed the 0.0 to 1.0 range. Depending on where the face is situated with respect to the seam, our UV values might range either from -0.1 to 0.1 or from 0.9 to 1.1.<p>
+</a><P><a name="7047">
+Note that one vertex can have different UV values that represent the same place on the texture map. For example, with respect to one face within a wrapping texture map, it may have a U value of 1.1, while with respect to another face using the same texture map, it may have a U value of 0.1.<p>
+</a><P><a name="6784">
+<h2><HR> Transformations</h2>
+</a><a name="7814">
+The basic geometry of an object is defined with respect to it's local axes. A cube, for example, consists of eight vertices which occupy definite locations with respect to these local axes. Modifying the geometry of this object (for example, moving one of these vertices) changes the relationship between these vertices and the local axes of the cube. <p>
+</a><P><a name="7817">
+Transformations do not alter the relationship between the elements of an object and its local axes. Instead, transformations change the relationship between the objects local axes and another frame of reference, such as the global axes. For example, a rotation transformation results in a change in the appearance of the object with respect to the global coordinate system. However, no change occurs in the relationship of its vertices with its local axes. <a href="ExpObjData.html#7845">Figure 8.2</a> shows two rotated cubes:<p>
+</a><P><a name="7842">
+ <P><img src="ExpObjData.anc1.gif"><p>
+</a><a name="7845">
+<em>Figure 8.2  &#32; &#32;Transformations vs. modifications.
+</em></a><P><a name="7826">
+Superficially, these cubes are similar in appearance. However, an examination of the local axes of each reveals that the cube on the left has been transformed. Each axis is still perpendicular to the faces of the cube. The cube on the right, on the other hand, has been modified. It's local axes are no longer perpendicular to the faces of the cube.<p>
+</a><P><a name="7848">
+<h3> Transformation Matrices</h3>
+</a><a name="7862">
+A transformation matrix (TM) is a 4 x 4 array of numbers. These numbers refer to the orientations and relative scalings of the local axes of an object with respect to some frame of reference. Changes to these values result in the three types of rigid-body transformations; scaling, rotating, and shearing, and displacement. <p>
+</a><P><a name="7859">
+<a href="ExpObjData.html#7941">Figure 8.3</a> shows a special type of transformation matrix, called an identity-matrix. An identity matrix is the matrix which is exactly parallel to that matrices frame of reference. When an object is first created, its transformation is by default an identity-matrix with respect to the global coordinate system.<p>
+</a><P><a name="7713">
+ <P><img src="ExpObjData.anc2.gif"><p>
+</a><a name="7941">
+<em>Figure 8.3  &#32; &#32;Anatomy of a transformation matrix
+</em></a><P><a name="7948">
+The TM of the cube on the right is an identity-matrix. The rotation applied to it changed the relationship of its constituent points to its local axes, but did not change the relationship between the cubes local axes and the global frame of reference.<p>
+</a><P><a name="8180">
+Now, consider the TM of the cube on the left in <a href="ExpObjData.html#7845">Figure 8.2</a>:<p>
+</a><P><a name="7967">
+<code><pre>		.8862 &#32; &#32; &#32;-.4633 &#32; &#32; &#32; &#32; &#32;.0000 &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="7969">
+<code><pre>		.4633 &#32; &#32; &#32; &#32;.8862 &#32; &#32; &#32; &#32; &#32;.0000 &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="7970">
+<code><pre>		.0000 &#32; &#32; &#32; &#32;.0000 &#32; &#32; &#32; &#32;1.0000 &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="7971">
+<code><pre>		.0000 &#32; &#32; &#32; &#32;.0000 &#32; &#32; &#32; &#32; &#32;.0000 &#32; &#32; &#32;1.0000<p>
+</code></pre></a><a name="8018">
+The values in this matrix represent vectors which describe the new orientation of each axis. For simplicities sake, the z axis has not been rotated, which means that the vectors in this matrix are two dimensional.<p>
+</a><P><a name="8023">
+<h3> Unit Direction Vectors</h3>
+</a><a name="8024">
+The difference between a frame of reference orientation and the orientation of an objects local axes are described in a TM by a <em>unit-direction vector</em>. Essentially, vectors describe how to get from one point to another. Vectors have a direction and a magnitude. In three-dimensional space, a vector can be defined by three displacements, delta-x, delta-y, and delta-z. <a href="ExpObjData.html#8149">Figure 8.4</a>. shows how delta-x and delta-y are derived.<p>
+</a><P><a name="8094">
+ <P><img src="ExpObjData.anc3.gif"><p>
+</a><a name="8149">
+<em>Figure 8.4  &#32; &#32;2D Axis displacement vectors
+</em></a><P><a name="9539">
+<h4> Normalizing Vectors</h4>
+</a><a name="9567">
+The magnitude of the vector is defined as the square root of the sum of the squares of the displacements:<P><img src="ExpObjData.anc4.gif"><p>
+</a><P><a name="9571">
+Unit-direction vectors are vectors normalized to 1. The magnitude of a transformation unit-direction vector is always equal to 1. For the X-axis unit-direction vectors in the example above<P><img src="ExpObjData.anc5.gif"><p>
+</a><P><a name="9562">
+Unit direction vectors are expressed as ftriplets in N&#183;World. To normalize an ftriplet to a given magnitude, use the 3D:NORMALIZE-FTRIPLET! macro.<p>
+</a><P><a name="9583">
+<code><pre>(<a 3D:NORMALIZE-FTRIPLET!>3D:NORMALIZE-FTRIPLET! triplet &amp;OPTIONAL<em> new-magnitude</em>)<p>
+</code></pre></a><a name="9579">
+You can specify a new magnitude for the resulting unit-direction vector, or accept the default value of 1.<p>
+</a><P><a name="9561">
+<h3> Transformation Notation</h3>
+</a><a name="8219">
+Transformation notation includes information about the direction of a transformation and the frame of reference within which the transformation is defined. Thus, a transformation like this one:<p>
+</a><P><a name="8244">
+ <P><img src="ExpObjData.anc6.gif"><p>
+</a><a name="8251">
+can be notated like this:<P><img src="ExpObjData.anc7.gif">, and the inverse of this transformation like :<P><img src="ExpObjData.anc8.gif">. We can say:<p>
+</a><P><ul><a name="10296">
+<li>The transformation of B with respect to A is <P><img src="ExpObjData.anc9.gif">
+</a></li><P><a name="10304">
+<li>The transformation of A with respect to B is <P><img src="ExpObjData.anc10.gif">
+</a></li><P></ul><P><a name="8218">
+<h3> Creating Scratch Matrices</h3>
+</a><a name="8610">
+Many operations which create or modify matrices require that a matrix already exist to hold their output. You can create a scratch matrix with the 3D:WITH-TEMP-TRANSFORM-MATRIX macro:<p>
+</a><P><a name="8613">
+<code><pre>(<a 3d:WITH-TEMP-TRANSFORM-MATRIX>3d:WITH-TEMP-TRANSFORM-MATRIX (matrix-name)<p>
+</code></pre></a><a name="8614">
+<code><pre>				(....Your code here....))<p>
+</code></pre></a><a name="8609">
+<h3> Transformations and Object Hierarchies</h3>
+</a><a name="8214">
+The local, or base-transformation of an object, is the transformation of that object with respect to its superior object. An objects <em>current transformation</em> is its transformation with respect to the global frame of reference. For any given object in a hierarchy, the current transformation can be obtained by recursively multiplying, or concatenating, the local transformations of all its superior objects.<p>
+</a><P><a name="8269">
+ <P><img src="ExpObjData.anc11.gif"><p>
+</a><a name="8272">
+If A is a top level object, B is A's inferior, and C is B's inferior, then:<p>
+</a><P><ul><a name="8326">
+<li><P><img src="ExpObjData.anc12.gif"> is the local transformation of C.
+</a></li><P><a name="10339">
+<li><P><img src="ExpObjData.anc13.gif"> is the current transformation of C.
+</a></li><P><a name="10343">
+<li><P><img src="ExpObjData.anc14.gif"> is the local transformation of B.
+</a></li><P><a name="10347">
+<li><P><img src="ExpObjData.anc15.gif"> is the local transformation <em>and</em> the current transformation of C.
+</a></li><P></ul><P><a name="8340">
+<h4> Obtaining the Local Transformation</h4>
+</a><a name="8372">
+The local transformation of an object, which is that objects transformation with respect to its superior object, can be obtained with 3D:WITH-LOCAL-TRANSFORM-MATRIX<p>
+</a><P><a name="8378">
+<code><pre>					(<a 3d:WITH-LOCAL-TRANSFORM-MATRIX>3d:WITH-LOCAL-TRANSFORM-MATRIX (var-for-matrix of-object)<p>
+</code></pre></a><a name="8818">
+<code><pre>						(...your code here))<p>
+</code></pre></a><a name="8371">
+<h4> Calculating the Current Transformation</h4>
+</a><a name="8341">
+The current transformation matrix for C is obtained by multiplying the local matrices of each of its superiors, according to the following equation:<p>
+</a><P><a name="8342">
+ <P><img src="ExpObjData.anc16.gif"><p>
+</a><a name="10352">
+The order in which the matrices are multiplied is significant. The commutative property does not apply to matrix multiplication.<p>
+</a><P><a name="8362">
+In N&#183;World, current transformations for any object can be obtained using the 3D:WITH-CURRENT-TRANSFORM-MATRIX macro:<p>
+</a><P><a name="8760">
+<code><pre>	(<a 3d:WITH-CURRENT-TRANSFORM-MATRIX>3d:WITH-CURRENT-TRANSFORM-MATRIX ((matrix-name of-object &amp;OPTIONAL wrt-thing))<p>
+</code></pre></a><a name="8370">
+<code><pre>			(....your code here....)))<p>
+</code></pre></a><a name="8377">
+<h3> Calculating Current Transformations With Respect to Other Objects</h3>
+</a><a name="8398">
+The current transformation describes the relationship between an objects local axes and the global origin. However, you'll often need to calculate the transformation of an object with respect to another object, which may itself be transformed with respect to the global origin. <a href="ExpObjData.html#8403">Figure 8.5</a> illustrates this scenario.<p>
+</a><P><a name="8402">
+ <P><img src="ExpObjData.anc17.gif"><p>
+</a><a name="8403">
+<em>Figure 8.5  &#32; &#32;Transformation of an object with respect to another object.
+</em></a><P><a name="8481">
+In <a href="ExpObjData.html#8403">Figure 8.5</a>, the transformation of E with respect to Cis equivalent to <P><img src="ExpObjData.anc18.gif"><p>
+</a><P><a name="8400">
+To calculate this transformation:<p>
+</a><P>
+<a name="8498">
+<STRONG>	 1.	 Construct a vector diagram, which connects the two objects through the global origin.
+</STRONG>
+</a><P><a name="8500">
+ <P><img src="ExpObjData.anc19.gif"><p>
+</a><a name="8499">
+ <p>
+</a>
+<a name="8401">
+The diagram reveals the path of matrix multiplication. The vector path <br>and <P><img src="ExpObjData.anc20.gif"> are oriented in exactly opposite directions, but the path and <P><img src="ExpObjData.anc21.gif"> are paralell. Thus, you must use the inverse-matrix of <P><img src="ExpObjData.anc22.gif"> when calculating the transformation. The correct equation for derving the transformation of C with respect to Eis revealed by the diagram to be:<p>
+</a><P><a name="8590">
+ <P><img src="ExpObjData.anc23.gif"><p>
+</a><a name="8569">
+The macro 3D:WITH-INVERSETRANSFORM-MATRIX returns the inverse of any matrix:<p>
+</a><P><a name="8627">
+<code><pre>	(<a 3D:WITH-INVERSE-TRANSFORM-MATRIX>3D:WITH-INVERSE-TRANSFORM-MATRIX ((var-for-matrix of-object &amp;OPTIONAL wrt-thing))<p>
+</code></pre></a><a name="8853">
+<code><pre>							(....Your code here...))<p>
+</code></pre></a><a name="8643">
+To obtain <P><img src="ExpObjData.anc24.gif"> you'd have to calculate current matrices for each object in the hierarchy, then evaluate the equation for the transformation. Fortunately, there's a shorthand for this calculation. You can calculate a current-matrix for an object with regard to another object by including the with-regard-to object as an argument to 3D:WITH-CURRENT-TRANSFORMATION-MATRIX. <p>
+</a><P><a name="8860">
+<code><pre>(3d:WITH-CURRENT-TRANSFORM-MATRIX ((var-for-matrix of-object &amp;OPTIONAL with-respect-to- object))<p>
+</code></pre></a><a name="8862">
+<code><pre>			(.....your code here....))<p>
+</code></pre></a><a name="8861">
+For example, to solve the above equation:<p>
+</a><P><a name="8671">
+<code><pre>	(3d:WITH-CURRENT-TRANSFORM-MATRIX (matrix)(obj-C)(obj-E)<p>
+</code></pre></a><a name="8667">
+<code><pre>								(...your code here...)))<p>
+</code></pre></a><dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	All of these macros which return transform matrices can be calculated with respect to another object. Each optionally accepts a with-respect-to-object argument.</font></dd></dt></dl><P>
+<a name="8873">
+<h2><HR> Additional Transformation Matrices</h2>
+</a><a name="8936">
+<h4> Body-Matrix</h4>
+</a><a name="8972">
+The body-matrix is a cache for the current transformation of an object.  It is updated only at display time, so it can be out of date during the interval between the application of transformations and object redraw. The body-matrix incorporates all the transformations of its object's superiors.  If its object has no superior, this slot is shared with the base-matrix. <code><a 3D:GET-BODY-MATRIX>3D:GET-BODY-MATRIX</code> returns the body matrix, given an object:<p>
+</a><P><a name="8969">
+<code><pre>(3D:GET-BODY-MATRIX of-object)<p>
+</code></pre></a><a name="8973">
+<h4> Init-matrix</h4>
+</a><a name="8979">
+When an object is frozen, its current transformation matrix is copied into the objects init-matrix slot. Initializing an objects transformation matrix returns the object to the transformation stored in the init-matrix slot. The slot-accessor function<a 3D:GET-INIT-MATRIX> <code>3D:GET-INIT-MATRIX</code><strong> </strong>returns the init-matrix, given an object:<p>
+</a><P><a name="9153">
+<code><pre>(3D:GET-INIT-MATRIX object)<p>
+</code></pre></a><a name="9154">
+This function will return NIL if an object has never been frozen.<p>
+</a><P><a name="8929">
+<h2><HR> Manipulating Transformations</h2>
+</a><a name="8882">
+The preceding sections described how to obtain any transformation matrix for any object with respect to any frame of reference. Having obtained your matrices, you'll probably want to do things to them. The following section includes brief descriptions of some of the more useful functions and macros which manipulate matrices.<p>
+</a><P><a name="9293">
+<h3> Transforming Objects</h3>
+</a><a name="10058">
+To alter a transformation matrix:<p>
+</a><P>
+<a name="10059">
+<STRONG>	 1.	 Create a scratch matrix with 3D:WITH-TEMP-TRANSFORM-MATRIX:
+</STRONG>
+</a><P><a name="10060">
+<code><pre>(3D:WITH-TEMP-TRANSFORM-MATRIX var-for-matrix<p>
+</code></pre></a><dl><a name="10061">
+<dt>You'll alter this temporary matrix, then concatenate it with the matrix you want to transform.</dt>
+</a><P></dl><a name="10062">
+<STRONG>	2.	 Alter the matrix
+</STRONG>
+</a><P><dl><a name="9303">
+<dt>Modify the matrix with <code>3D:ALTER-3D-MATRIX</code>:</dt>
+</a><P></dl><a name="9295">
+<code><pre>					(<a 3D:ALTER-3D-MATRIX>3D:ALTER-3D-MATRIX matrix-to-alter &amp;REST alteration-action-keywords)<p>
+</code></pre></a><dl><a name="10073">
+<dt><a href="ExpObjData.html#10095">Table 8.1</a> lists the keyword arguments which define the effect of <code>3D:ALTER-3D-MATRIX </code>on the target matrix.</dt>
+</a><P></dl><a name="10066">
+<STRONG>	3.	 Apply the temporary matrix to the matrix of the object you want to transform with <code>3D:TRANSFORM</code>.
+</STRONG>
+</a><P><a name="10076">
+<code><pre>	(3D:TRANSFORM object matrix)<p>
+</code></pre></a><dl><a name="10145">
+<dt><code><a 3D:TRANSFORM>3D:TRANSFORM</code> operates on the current transformation of an object</dt>
+</a><P></dl>
+<a name="10115">
+<h3> Altering Matrices</h3>
+</a><a name="10095">
+Matrices are altered with <code>3D:ALTER-3D-MATRIX</code>. This useful function accepts a wide variety of keyword arguments which are used to manipulate the values in a matrix. These arguments, summarized in <a href="ExpObjData.html#10095">Table 8.1</a>, can be cumulative. In other words, you can specify rotation keywords, followed by translation keyword arguments. All of the modifications made by 3D:ALTER-3D-MATRIX are in relation to the superior matrix of the matrix being modified.  
+<P><Table Border="1">
+<dl>
+<a name="9328">
+<em>Table 8.1 <strong> &#32; &#32;Keyword arguments to 3D:ALTER-3D-MATRIX</strong>
+</em></a></dl>
+<tr><th align="left"><a name="9332">
+Keyword
+</a><th align="left"><a name="9334">
+Options
+</a><th align="left"><a name="9480">
+Type
+</a><th align="left"><a name="9430">
+Description 
+</a>
+<tr><td valign="top"><a name="9336">
+ :INITIALIZE<p>
+</a><td valign="top"><a name="9338">
+ boolean or matrix<p>
+</a><td valign="top"><a name="9482">
+ <p>
+</a><td valign="top"><a name="9432">
+ If t, Initialize transformation matrix before altering.<p>
+</a>
+<tr><td valign="top"><a name="9340">
+ :INVERT<p>
+</a><td valign="top"><a name="9342">
+ boolean<p>
+</a><td valign="top"><a name="9484">
+ <p>
+</a><td valign="top"><a name="9434">
+ If t, invert transformation matrix.<p>
+</a>
+<tr><td valign="top"><a name="9344">
+ :COPY<p>
+</a><td valign="top"><a name="9346">
+ matrix<p>
+</a><td valign="top"><a name="9486">
+ <p>
+</a><td valign="top"><a name="9436">
+ Copy specified matrix to matrix<p>
+</a>
+<tr><td valign="top"><a name="9348">
+ :COPY-INVERSE<p>
+</a><td valign="top"><a name="9350">
+ matrix<p>
+</a><td valign="top"><a name="9488">
+ <p>
+</a><td valign="top"><a name="9438">
+ Copy inverse of specified matrix to matrix<p>
+</a>
+<tr><td valign="top"><a name="9364">
+ :MOVE<p>
+</a><td valign="top"><a name="9366">
+ direction-vector<p>
+</a><td valign="top"><a name="9496">
+ ftriplet<p>
+</a><td valign="top"><a name="9446">
+ Modifies displacement values in matrix by values in ftriplet.<p>
+</a>
+<tr><td valign="top"><a name="9368">
+ :UNMOVE<p>
+</a><td valign="top"><a name="9370">
+ direction-vector<p>
+</a><td valign="top"><a name="9498">
+ ftriplet<p>
+</a><td valign="top"><a name="9448">
+ Apply displacement values in matrix by inverse of values in ftriplet<p>
+</a>
+<tr><td valign="top"><a name="9372">
+ :MOVE-TO<p>
+</a><td valign="top"><a name="9374">
+ position<p>
+</a><td valign="top"><a name="9500">
+ ftriplet<p>
+</a><td valign="top"><a name="9450">
+ Translate to a specifed position<p>
+</a>
+<tr><td valign="top"><a name="9376">
+ :X-MOVE<p>
+</a><td valign="top"><a name="9378">
+ float<p>
+</a><td valign="top"><a name="9502">
+ <p>
+</a><td valign="top"><a name="9452">
+ Modify x-axis translation by specified amount.<p>
+</a>
+<tr><td valign="top"><a name="9380">
+ :Y-MOVE<p>
+</a><td valign="top"><a name="9382">
+ float<p>
+</a><td valign="top"><a name="9504">
+ <p>
+</a><td valign="top"><a name="9454">
+ Modify y-axis translation by specified amount<p>
+</a>
+<tr><td valign="top"><a name="9384">
+ :Z-MOVE<p>
+</a><td valign="top"><a name="9386">
+ float<p>
+</a><td valign="top"><a name="9841">
+ ces<p>
+</a><td valign="top"><a name="9456">
+ Modify z-axis translation by specified amount.<p>
+</a>
+<tr><td valign="top"><a name="9388">
+ :X-SHEAR<p>
+</a><td valign="top"><a name="9390">
+ float<p>
+</a><td valign="top"><a name="9508">
+ <p>
+</a><td valign="top"><a name="9458">
+ Produces a shear along x-axis of specified amount<p>
+</a>
+<tr><td valign="top"><a name="9392">
+ :Y-SHEAR<p>
+</a><td valign="top"><a name="9394">
+ float<p>
+</a><td valign="top"><a name="9510">
+ <p>
+</a><td valign="top"><a name="9460">
+ Produces a shear along y-axis of specified amount<p>
+</a>
+<tr><td valign="top"><a name="9396">
+ :Z-SHEAR<p>
+</a><td valign="top"><a name="9398">
+ float<p>
+</a><td valign="top"><a name="9512">
+ <p>
+</a><td valign="top"><a name="9462">
+ Produces a shear along z-axis of specified amount.<p>
+</a>
+<tr><td valign="top"><a name="9400">
+ :ALIGN<p>
+</a><td valign="top"><a name="9402">
+ vector<p>
+</a><td valign="top"><a name="9514">
+ ftriplet<p>
+</a><td valign="top"><a name="9464">
+ Align z-axis with specified direction<p>
+</a>
+<tr><td valign="top"><a name="9404">
+ :UNALIGN<p>
+</a><td valign="top"><a name="9406">
+ vector<p>
+</a><td valign="top"><a name="9516">
+ ftriplet<p>
+</a><td valign="top"><a name="9466">
+ Align specified direction with z-axis<p>
+</a>
+<tr><td valign="top"><a name="9670">
+ :ROTATE<p>
+</a><td valign="top"><a name="9672">
+ rotation<p>
+</a><td valign="top"><a name="9674">
+ ftriplet<p>
+</a><td valign="top"><a name="9676">
+ Apply rotations to matrix in yxz order<p>
+</a>
+<tr><td valign="top"><a name="9662">
+ :X-ROT<p>
+</a><td valign="top"><a name="9664">
+ float<p>
+</a><td valign="top"><a name="9666">
+ degrees<p>
+</a><td valign="top"><a name="9668">
+ Rotate around x-axis specified number of degrees.<p>
+</a>
+<tr><td valign="top"><a name="9654">
+ :Y-ROT<p>
+</a><td valign="top"><a name="9656">
+ float<p>
+</a><td valign="top"><a name="9658">
+ degrees<p>
+</a><td valign="top"><a name="9660">
+ Rotate around y-axis specified number of degrees<p>
+</a>
+<tr><td valign="top"><a name="9646">
+ :Z-ROT<p>
+</a><td valign="top"><a name="9648">
+ float<p>
+</a><td valign="top"><a name="9650">
+ degrees<p>
+</a><td valign="top"><a name="9652">
+ Rotate around z-axis specified number of degrees<p>
+</a>
+<tr><td valign="top"><a name="9638">
+ :X-ROTR<p>
+</a><td valign="top"><a name="9640">
+ float<p>
+</a><td valign="top"><a name="9642">
+ radians<p>
+</a><td valign="top"><a name="9644">
+ Rotate around x-axis specified number of radians<p>
+</a>
+<tr><td valign="top"><a name="9630">
+ :Y-ROTR<p>
+</a><td valign="top"><a name="9632">
+ float<p>
+</a><td valign="top"><a name="9634">
+ radians<p>
+</a><td valign="top"><a name="9636">
+ Rotate around y-axis specified number of radians<p>
+</a>
+<tr><td valign="top"><a name="9622">
+ :Z-ROTR<p>
+</a><td valign="top"><a name="9624">
+ float<p>
+</a><td valign="top"><a name="9626">
+ radians<p>
+</a><td valign="top"><a name="9628">
+ Rotate around z-axis specified number of radians.<p>
+</a>
+<tr><td valign="top"><a name="9614">
+ :SHOW<p>
+</a><td valign="top"><a name="9616">
+ boolean<p>
+</a><td valign="top"><a name="9618">
+ <p>
+</a><td valign="top"><a name="9620">
+ If t, print out resulting transformation matrix<p>
+</a>
+<tr><td colspan=4 rowspan=1><a name="9606">
+ All displacements are with respect to the matrix frame of reference<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9935">
+<h3> Altering Matrices: Examples</h3>
+</a><a name="9940">
+Arguments to <code>3D:ALTER-3D-MATRIX</code> are cumulative. You can rotate, then scale, then invert a matrix in a single operation.<p>
+</a><P><a name="9992">
+<h4> Rotating</h4>
+</a><a name="10000">
+To apply rotations of 20, 30, and 40 degrees to the x, y, and z axes of an object,bound to obj:<p>
+</a><P><a name="10130">
+<code><pre>(<a 3D:USING-TRANSFORM-MATRIX>3D:USING-TRANSFORM-MATRIX (scratch)<p>
+</code></pre></a><a name="10118">
+<code><pre>		(3D:ALTER-3D-MATRIX scratch<p>
+</code></pre></a><a name="10001">
+<code><pre>				:x-rot 20.0<p>
+</code></pre></a><a name="10122">
+<code><pre>				:y-rot 30.0<p>
+</code></pre></a><a name="10133">
+<code><pre>				:z-rot 40.0)<p>
+</code></pre></a><a name="10127">
+<code><pre>(3D:TRANSFORM object scratch))<p>
+</code></pre></a><a name="9934">
+<h3> Decomposing Matrices</h3>
+</a><a name="8913">
+Transformation matrices describe the position, rotation, and scale of an objects local axes. You can extract the components for use in various applications. <p>
+</a><P><a name="8998">
+<h4> Rotations</h4>
+</a><a name="8999">
+The orientation of an object can be expressed as a series of rotations around its local axes. There are three formats for expressing rotational data in N&#183;World.<p>
+</a><P><ul><a name="9050">
+<li>Vector rotations are represented by the Y (direction) and Z (up) vectors (the x vector can be derived given these values). Vector rotations cannot be interpolated easily.
+</a></li><P><a name="10192">
+<li>XYZ rotations are expressed as rotations around the local axis of an object XYZ rotations are axis-order dependant, meaning that the order in which rotations are applied with affect the result of the transformation. XYZ rotations occur in one of two frames of reference:
+</a></li><P><ul>
+<BR><a name="10193">
+<li>Fixed - The orientation of the axes remains constant during the rotation.
+</a><P><BR><a name="9009">
+<li>Euler - The local axes are rotated during each rotation.
+</a><P></ul>
+<dl><a name="9097">
+<dt>Generally speaking, XYZ rotations can interpolated in most cases for keyframe driven animations.</dt>
+</a><P></dl><a name="9004">
+<li>Quaternion rotations are defined in a space which allows for smooth and relatively easy interpolation between keyframes. They are notated with an x, y, and z component, and a fourth component, labelled w.
+</a></li><P></ul><P><a name="9071">
+<h4> Obtaining Rotations</h4>
+</a><a name="9072">
+To decompose an objects transformation matrix into its constituent rotations you must supply a transformation matrix, a rotation order, and an ftriplet to store the result. <p>
+</a><P><a name="10536">
+For bones, rotation orders can be obtained with <code><a 3D:GET-ROTATION-ORDER>3D:GET-ROTATION-ORDER</code>:<p>
+</a><P><a name="10539">
+<code><pre>(3D:GET-ROTATION-ORDER bone)<p>
+</code></pre></a><a name="10540">
+Bone rotation orders can be returned as keywords with <code>3D:GET-ROTATION-ORDER-KEYWORD</code>:<p>
+</a><P><a name="9136">
+<code><pre>(<a 3D:GET-ROTATION-ORDER-KEYWORD>3D:GET-ROTATION-ORDER-KEYWORD bone)<p>
+</code></pre></a><a name="9137">
+This function returns a keyword expressing the bones rotation order, such as :xyz, :zyx, etc. <p>
+</a><P><a name="10628">
+<code>3D:DECOMPOSE-3D-MATRIX-TO-ROTATIONS</code> returns the rotations of an object with respect to a given rotation order. <p>
+</a><P><a name="9073">
+<code><pre>			(<a 3D:DECOMPOSE-3D-MATRIX-TO-ROTATIONS>3D:DECOMPOSE-3D-MATRIX-TO-ROTATIONS matrix target-ftriplet rot-order)<p>
+</code></pre></a><a name="10630">
+For example, to obtain the rotations of an object bound to ? with respect to the global origin:<p>
+</a><P><a name="10631">
+<code><pre>			(3D:WITH-CURRENT-TRANSFORM-MATRIX (cur-tm ?)<p>
+</code></pre></a><a name="10632">
+<code><pre>			(3D:DECOMPOSE-3D-MATRIX-TO-ROTATIONS ctm (setf rots (make-ftriplet!)) :xyz))<p>
+</code></pre></a><a name="9080">
+returns an ftriplet containing the rotation values around the x, y, and z axes respectively:<p>
+</a><P><a name="9081">
+<code><pre>#(-42.48432 14.224002 3.8966184)<p>
+</code></pre></a><a name="9083">
+Specifying a different rotation order, e.g. :zyx, results in a different result:<p>
+</a><P><a name="9089">
+<code><pre>#(-43.825947 7.7521873 12.572399)<p>
+</code></pre></a><a name="9092">
+<h4> Obtaining Scalings, Shearings, and Translations</h4>
+</a><a name="9093">
+Scaling, shearing, and translation factors can be obtained with a single function, <code>3D:DECOMPOSE-3D-MATRIX</code>:<p>
+</a><P><a name="9094">
+<code><pre>(<a 3D:DECOMPOSE-3D-MATRIX>3D:DECOMPOSE-3D-MATRIX matrix scale-triplet shear-triplet rotation-triplet <br>	translation-triplet &amp;OPTIONAL perspective-quadruplet rotation-order)<p>
+</code></pre></a><a name="9151">
+<h4> Obtaining Positions</h4>
+</a><a name="9152">
+A position is defined as a location in space relative to [the global origin? Any frame of reference?]. Positions are stored in ftriplets. You can obtain positions from any matrix with <code>3D:FILL-POSITION-FROM-MATRIX</code>:<p>
+</a><P><a name="9169">
+<code><pre>(<a 3D:FILL-POSITION-FROM-MATRIX>3D:FILL-POSITION-FROM-MATRIX matrix var-for-position)<p>
+</code></pre></a><a name="9170">
+For example, given an object, bound to obj1, which has been transformed along the global x-axis:<p>
+</a><P><a name="9171">
+<code><pre>				(WITH-CURRENT-TRANSFORM-MATRIX (ctm obj1)<p>
+</code></pre></a><a name="9172">
+<code><pre>					(3D:FILL-POSITION-FROM-MATRIX ctm (setf position (make-ftriplet!))))<p>
+</code></pre></a><a name="9195">
+<h4> Obtaining Up, Direction, and Position from Matrices</h4>
+</a><a name="9196">
+Several directions are defined by convention with respect to a matrices frame of reference:<p>
+</a><P><ul><a name="10222">
+<li>Position - describes the position of the matrix with respect to the frame of reference of that matrix. For example, evaluating this value for an objects current matrix reveals the position of an object with respect to the global origin.
+</a></li><P><a name="10223">
+<li>Up - describes the orientation of the matrix Y-axis with repsect to the matrix frame of reference. 
+</a></li><P><a name="10224">
+<li>Direction - The orientation of the z-axis with respect to the matrix frame of reference.
+</a></li><P></ul><P><a name="10214">
+Given any transformation matrix, you can obtain vector values in the form of ftriplets for up, and direction with <code>3D:FILL-VECTORS-FROM-MATRIX</code>:<p>
+</a><P><a name="9200">
+<code><pre>				(<a 3D:FILL-VECTORS-FROM-MATRIX>3D:FILL-VECTORS-FROM-MATRIX matrix up-ftriplet direction-ftriplet)<p>
+</code></pre></a><a name="9204">
+Positions are expressed in terms of offsets along the x, y, and z axes from some know point. <code><a 3D:FILL-POSITION-AND-VECTORS-FROM-MATRIX>3D:FILL-POSITION-AND-VECTORS-FROM-MATRIX</code> returns a position and vectors for up and direction, with respect to the matrix frame of reference:<p>
+</a><P><a name="9205">
+<code><pre>(3D:FILL-POSITION-AND-VECTORS-FROM-MATRIX matrix <p>
+</code></pre></a><a name="9206">
+<code><pre>		position-ftriplet up-ftriplet direction-ftriplet)<p>
+</code></pre></a><a name="7326">
+<h4> Converting Matrices to Quaternions</h4>
+</a><a name="7334">
+You can create a quaternion from any transformation matrix with 3D:FILL-QUATERNION-FROM-MATRIX:<p>
+</a><P><a name="9229">
+<code><pre>	(<a 3D:FILL-QUATERNION-FROM-MATRIX>3D:FILL-QUATERNION-FROM-MATRIX matrix quaternion &amp;OPTIONAL<br>		fixed-rotation-order)<p>
+</code></pre></a><a name="9230">
+This function decomposes a 3D matrix to rotations, then fills a quaternion with the rotational data.<p>
+</a><P><a name="7067">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="CreatingBodsAndObjs.html">[Prev]</a> <a href="RenderingOperations.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:16:17 -->
+
+</body>
+</html>

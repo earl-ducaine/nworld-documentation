@@ -1,0 +1,847 @@
+<html><head><title>Basics: Part 2</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Basics.html">[Prev]</a> <a href="3Objects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Basics: Part 2</h1>
+</a>
+<hr><p><a name="5780">
+<h4> In this chapter you'll learn some additional script editing skills: moving cues, adding cues, changing curve types, and working with channels.</h4>
+</a><a name="10209">
+<h2><HR> In this Chapter</h2>
+</a><a name="10210">
+You'll learn some additional editing methods for working in N-Dynamics, including:<p>
+</a><P><ul><a name="10211">
+<li>deleting scripts from memory
+</a></li><P><a name="10589">
+<li>loading a saved script
+</a></li><P><a name="10319">
+<li>copying a script
+</a></li><P><a name="10318">
+<li>moving cues
+</a></li><P><a name="10212">
+<li>adding cues
+</a></li><P><a name="11253">
+<li>changing curve types
+</a></li><P><a name="10213">
+<li>adding channels
+</a></li><P><a name="10214">
+<li>reordering channels
+</a></li><P><a name="10215">
+<li>turning channels on and off
+</a></li><P><a name="11597">
+<li>using channel hierarchies to create more complex scripts
+</a></li><P><a name="11595">
+<li>moving, copying, and renaming channels
+</a></li><P></ul><P><a name="10246">
+Along the way, you'll learn a little more about how N-Dynamics works with objects.<p>
+</a><P><a name="10587">
+<h2><HR> Deleting a Script (from Memory)</h2>
+</a><a name="10588">
+Scripts must be loaded into memory before they can be animated. Unless you <em>delete</em> them from memory (or restart N&#183;World), they'll always be there. Now that you've saved the script "move-tetrahedron" to disk, let's delete it from memory.<p>
+</a><P><a name="10645">
+To delete a script:<p>
+</a><P>
+<a name="10646">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Delete Scripts</strong>.
+</STRONG>
+</a><P><dl><a name="10647">
+<dt>A menu of scripts currently loaded into memory is displayed.</dt>
+</a><P></dl><a name="10602">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the scripts you want to delete.
+</STRONG>
+</a><P><dl><a name="10605">
+<dt>Since we only have one script loaded right now, <strong>(CLICK-L)</strong> on "move-tetrahedron". Selected scripts are highlighted in blue.</dt>
+</a><P><a name="10639">
+ <P><img src="2Basics-2.anc.gif"><p>
+</a></dl>
+<a name="10640">
+<em>Figure 2.1  &#32; &#32;Selecting a script to delete
+</em></a><P>
+<a name="10612">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Do it</strong>.
+</STRONG>
+</a><P><dl><a name="10615">
+<dt>The script is deleted from memory.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Deleting a script from memory does not delete referenced objects from N-Geometry, nor does it delete any saved version of the script from disk.</font></dd></dt></dl><P>
+<a name="10583">
+<h2><HR> Loading a Saved Script</h2>
+</a><a name="10323">
+Of course, once you've saved a script to disk, you need to be able to read it back in.<p>
+</a><P><a name="10338">
+When you read a script from disk, any N-Dynamics also tries to load any objects referenced by that script into N-Geometry.<p>
+</a><P><a name="10337">
+To load a script you've previously saved:<p>
+</a><P>
+<a name="10343">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Load Scripts</strong>.
+</STRONG>
+</a><P><dl><a name="10394">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="10395">
+ <P><img src="2Basics-2.anc1.gif"><p>
+</a></dl>
+<a name="10531">
+<em>Figure 2.2  &#32; &#32;Selecting a directory for a script
+</em></a><P>
+<a name="10344">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the directory in which the script resides from the list at the top of the menu.
+</STRONG>
+</a><P><dl><a name="10383">
+<dt>If the directory you want to load from is not in the list, <strong>(CLICK-L)</strong> on the <strong>Specify a New Directory</strong> command. Enter the directory name, and N-Dynamics displays a list of scripts in that directory.</dt>
+</a><P><a name="10556">
+ <P><img src="2Basics-2.anc2.gif"><p>
+</a></dl>
+<a name="10557">
+<em>Figure 2.3  &#32; &#32;Selecting a script to load
+</em></a><P><dl><dl><a name="10384">
+<dt>Any directory you specify is also added to the default directory list at the top of this menu.</dt>
+</a><P></dl></dl>
+<a name="10562">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Do it</strong> to load the selected script.
+</STRONG>
+</a><P><dl><a name="10563">
+<dt>N-Dynamics loads the script and any referenced objects.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If N-Dynamics cannot find an object referenced in a script, it displays "%" signs around the object's name in the script.<br><br>This typically happens if you move or delete the object from a UNIX shell. To reload the object, simply <strong>(CLICK-L)</strong> on the object field and reload the object.<strong></strong></font></dd></dt></dl><P>
+<a name="10345">
+You can choose a different <em>project</em> (a set of directories) with the <strong>Set Current Project</strong> command. Creating and editing projects is described in more detail in <em>Getting Started</em>.<p>
+</a><P><a name="10322">
+<h2><HR> Making a Copy of a Script</h2>
+</a><a name="10324">
+Sometimes you may want to have several working versions of a script in memory, or create a new script based on a script that you have previously saved to disk.<p>
+</a><P><a name="10661">
+Let's make a copy of the "move-tetrahedron" script, then work with the copy:<p>
+</a><P>
+<a name="10668">
+<STRONG>	 1.	 Make sure the "move-tetrahedron" script is loaded and is the current script.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you have more than one script loaded into memory, <strong>(CLICK-L)</strong> on <strong>File</strong>, then select the script you want to work with from the list of loaded scripts at the bottom of the menu that appears.</font></dd></dt></dl><P>
+
+<a name="10676">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Copy this Script</strong>.
+</STRONG>
+</a><P><dl><a name="10686">
+<dt>Enter a name for the copy of the script. Let's use "move-tetrahedron-2":</dt>
+</a><P><a name="10696">
+ <P><img src="2Basics-2.anc3.gif"><p>
+</a></dl>
+<a name="10697">
+<em>Figure 2.4  &#32; &#32;Copying a script
+</em></a><P>
+<a name="10691">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="10705">
+<dt>The copy is made the current script, and now appears in the script editor window:</dt>
+</a><P><a name="10711">
+ <P><img src="2Basics-2.anc4.gif"><p>
+</a></dl>
+<a name="10712">
+<em>Figure 2.5  &#32; &#32;Copy of script
+</em></a><P><dl><dl><a name="10706">
+<dt>The name of the copy appears in the black title bar, and any channels come in closed. </dt>
+</a><P></dl></dl><a name="10722">
+<h2><HR> Moving Cues</h2>
+</a><a name="10219">
+Now that we have a working copy of our "move-tetrahedron" script, we can experiment with the animation we started in the last chapter.<p>
+</a><P>
+<a name="10748">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the <strong>X Move Tetrahedron</strong> channel to open it.
+</STRONG>
+</a><P><a name="10753">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the <strong>[X Offset] </strong>curve channel to open it.
+</STRONG>
+</a><P><dl><a name="10774">
+<dt>You should now see a curve channel with a single cue somewhere near the center of the script:</dt>
+</a><P><a name="10781">
+ <P><img src="2Basics-2.anc5.gif"><p>
+</a></dl>
+<a name="10782">
+<em>Figure 2.6  &#32; &#32;A curve channel containing a cue
+</em></a><P>
+<a name="10775">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the <strong>Animate </strong>button.
+</STRONG>
+</a><P><dl><a name="10776">
+<dt>The tetrahedron moves out along the X axis at a steady rate, then back to the global center.</dt>
+</a><P></dl><a name="10787">
+<STRONG>	4.	 <strong>(DRAG-L)</strong> on the cue to move it to the left.
+</STRONG>
+</a><P><dl><a name="10800">
+<dt>When you move the mouse over the cue, a white box appears around the cue; (CLICK-L) and hold the mouse button down as you move the cue to the left:</dt>
+</a><P><a name="10795">
+ <P><img src="2Basics-2.anc6.gif"><p>
+</a></dl>
+<a name="10796">
+<em>Figure 2.7  &#32; &#32;The same cue, moved to the left
+</em></a><P>
+<a name="10811">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the <strong>Animate </strong>button again.
+</STRONG>
+</a><P><a name="10814">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Playback </strong>button.
+</STRONG>
+</a><P><dl><a name="10812">
+<dt>The tetrahedron moves out very quickly along the X axis, but then moves back very slowly.</dt>
+</a><P><a name="10831">
+<dt>Try moving the cue again, then animate and playback again. Each time you move the cue, your animation is different. By moving the cue in time, you specify the time in the script at which the cue's value is passed to the parent operation.</dt>
+</a><P></dl>
+<a name="10821">
+A cue has two properties: a position and a value. <p>
+</a><P><ul><a name="12305">
+<li>Changing a cue's value determines what is passed to a parent operation. A value may be a number, a color, or even a pose for a skeleton. 
+</a></li><P><a name="12306">
+<li>Changing a cue's position determines when that value is passed to the operation.
+</a></li><P></ul><P><a name="10751">
+<h2><HR> Adding Cues</h2>
+</a><a name="10769">
+Now let's suppose that we know where we want the tetrahedron to be at several different points in the script. We can simply add more cues at each point and specify a value for each cue.<p>
+</a><P>
+<a name="10874">
+<STRONG>	 1.	 Move the cursor so it's over frame 13 of the curve channel.
+</STRONG>
+</a><P><a name="10877">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the curve channel.
+</STRONG>
+</a><P><dl><a name="10886">
+<dt>A channel of curve operations appears:</dt>
+</a><P><a name="10909">
+ <P><img src="2Basics-2.anc7.gif"><p>
+</a></dl>
+<a name="10910">
+<em>Figure 2.8  &#32; &#32;Curve operations menu
+</em></a><P><dl><dl><a name="10975">
+<dt>The commands on this menu are described in more detail in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl></dl>
+<a name="10887">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Cues&gt;Add Cue</strong>.
+</STRONG>
+</a><P><dl><a name="10888">
+<dt>A new cue appears at frame 13.</dt>
+</a><P><a name="10917">
+ <P><img src="2Basics-2.anc8.gif"><p>
+</a></dl>
+<a name="10918">
+<em>Figure 2.9  &#32; &#32;A new cue is added to the curve channel
+</em></a><P>
+<a name="10893">
+<STRONG>	4.	 Move the cursor so it's over the curve channel again.
+</STRONG>
+</a><P><dl><a name="10981">
+<dt>Any point along the curve is fine for now.</dt>
+</a><P></dl><a name="10894">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on the curve channel.
+</STRONG>
+</a><P><a name="10896">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Cues&gt;Add Multiple Cues</strong>.
+</STRONG>
+</a><P><dl><a name="10897">
+<dt>A slider appears, asking how many new cues you want to add. Select 2 and <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P></dl>
+<a name="10902">
+Two new cues appear in the channel.<p>
+</a><P><a name="10942">
+ <P><img src="2Basics-2.anc9.gif"><p>
+</a><a name="10943">
+<em>Figure 2.10  &#32; &#32;Adding multiple cues
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	When you add multiple cues, they are evenly spaces across the entire length of the channel, so the new cues appear in our 30 frame script at frames 10 and 20. You'll typically use this command when you want to stick several cues in a channel that you know you're going to reposition.</font></dd></dt><dl><a name="10946">
+<dt>You now have four cues, but they're randomly distributed over the channel. Let's clean things up a bit:</dt>
+</a><P></dl></dl><P>
+
+<a name="10955">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on the curve channel.
+</STRONG>
+</a><P><a name="10956">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on <strong>Time&gt;Respace Cues</strong>.
+</STRONG>
+</a><P><dl><a name="10957">
+<dt>The cues are now evenly spaced in the channel:</dt>
+</a><P><a name="10962">
+ <P><img src="2Basics-2.anc10.gif"><p>
+</a></dl>
+<a name="10963">
+<em>Figure 2.11  &#32; &#32;Respacing cues in a channel
+</em></a><P>
+<a name="10889">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the other channels, changing their values.
+</STRONG>
+</a><P><dl><a name="10998">
+<dt>Editing cue values is described in the section <a href="1Basics.html#10219">"Editing a Cue's Value," on page &#32;1-13</a>-try making some of the values positive and others negative.</dt>
+</a><P><a name="11033">
+ <P><img src="2Basics-2.anc11.gif"><p>
+</a></dl>
+<a name="11034">
+<em>Figure 2.12  &#32; &#32;Additional cues with modified values
+</em></a><P>
+<a name="11007">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the <strong>Animate </strong>button again.
+</STRONG>
+</a><P><a name="11008">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the <strong>Playback </strong>button.
+</STRONG>
+</a><P><dl><a name="12318">
+<dt>This time, the tetrahedron moves back and forth along the X axis several times.</dt>
+</a><P></dl>
+<a name="10270">
+<h2><HR> Changing Curve Types</h2>
+</a><a name="10313">
+Right now, the ramp between cues is a straight line; we say this curve's type is <em>linear</em>, because the curve's value changes at a linear rate between cues. Changing a curve's <em>type</em> can affect the "look and feel" of an animation.<p>
+</a><P><a name="11044">
+Let's change the curve type for our script "move-tetrahedron-2". But first, let's delete some of the cues so the effect will be more apparent:<p>
+</a><P>
+<a name="11045">
+<STRONG>	 1.	 Move the cursor over a cue and press the <strong>SHIFT+D</strong> hot key combination.
+</STRONG>
+</a><P><dl><a name="11046">
+<dt>When prompted whether you want to delete the cue, <strong>(CLICK-L)</strong> on <strong>Yes</strong>.</dt>
+</a><P></dl><a name="11051">
+<STRONG>	2.	 Delete all but one of the remaining cues.
+</STRONG>
+</a><P><a name="11052">
+<STRONG>	3.	 Drag the remaining cue to the center of the curve channel.
+</STRONG>
+</a><P><dl><a name="11055">
+<dt>Your channel should now look like it did when we first loaded the script:</dt>
+</a><P><a name="11061">
+ <P><img src="2Basics-2.anc12.gif"><p>
+</a></dl>
+<a name="11062">
+<em>Figure 2.13  &#32; &#32;A curve channel with a single cue
+</em></a><P>
+<a name="11056">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on the curve channel.
+</STRONG>
+</a><P><dl><a name="11069">
+<dt>The <strong>Edit Curve Properties</strong> dialog box appears.</dt>
+</a><P></dl><a name="11089">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the <strong>Curve Type</strong> text edit box.
+</STRONG>
+</a><P><dl><a name="11096">
+<dt>A list of curve types supported by N-Dynamics is displayed:</dt>
+</a><P><a name="11075">
+ <P><img src="2Basics-2.anc13.gif"><p>
+</a></dl>
+<a name="11076">
+<em>Figure 2.14  &#32; &#32;Editing curve properties-supported curve types
+</em></a><P><dl><dl><a name="11107">
+<dt>A curve type basically determines how a curve values change between cues. These curve types are described in more detail in the <em>N-Dynamics Reference Guide</em>. </dt>
+</a><P></dl></dl>
+<a name="11070">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Slow In/Out</strong>, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="11101">
+<dt>The shape of the curve changes to reflect its new type:</dt>
+</a><P><a name="11116">
+ <P><img src="2Basics-2.anc14.gif"><p>
+</a></dl>
+<a name="11117">
+<em>Figure 2.15  &#32; &#32;A Slow In/Out curve type
+</em></a><P><dl><dl><a name="11122">
+<dt>Rather than a linear grade between the cues at the beginning and end of the channel and the cue in the middle, the curve has a smoother appearance.</dt>
+</a><P></dl></dl>
+<a name="11127">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the <strong>Animate </strong>button again.
+</STRONG>
+</a><P><a name="11128">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the <strong>Playback </strong>button.
+</STRONG>
+</a><P><dl><a name="11125">
+<dt>Note that changing the curve type from <strong>Linear</strong> to <strong>Slow In/Out</strong> has a "softening" effect on the animation. The tetrahedron moves out along the X axis quickly, but slows down as it approaches the frame with the cue, then heads back slowly, picking up speed as it goes.</dt>
+</a><P></dl>
+<a name="11142">
+<h3> The Curve Editor</h3>
+</a><a name="11143">
+Actually, you can work directly with curve values, setting them interactively.<p>
+</a><P>
+<a name="11144">
+<STRONG>	9.	 (CLICK-M) on the curve channel.
+</STRONG>
+</a><P><dl><a name="11145">
+<dt><strong>(CLICK-L)</strong> on the <strong>Edit Curve</strong> button.</dt>
+</a><P><a name="11151">
+<dt>The curve expands to fill the entire view:</dt>
+</a><P><a name="11158">
+ <P><img src="2Basics-2.anc15.gif"><p>
+</a></dl>
+<a name="11159">
+<em>Figure 2.16  &#32; &#32;The Curve Editor
+</em></a><P><dl><dl><a name="11152">
+<dt>Various commands are displayed at the bottom of the curve editor depending on the curve type that you select.</dt>
+</a><P></dl><ul>
+<BR><a name="11178">
+<li>Cues are represented by small white boxes and can be moved both vertically (changing value) or horizontally (time).
+</a><P></ul>
+</dl><a name="11177">
+The curve editor is described in more detail in the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P>
+<a name="11209">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Exit</strong> to return to the script editor.
+</STRONG>
+</a><P>
+<a name="11153">
+<h2><HR> Adding Channels</h2>
+</a><a name="10314">
+By now, you're probably getting a little tired of moving your tetrahedron back and forth. Let's add another operation.<p>
+</a><P>
+<a name="11212">
+<STRONG>	 1.	 Move the cursor over the black title bar.
+</STRONG>
+</a><P><a name="11213">
+<STRONG>	2.	 Press the "s" hot key.
+</STRONG>
+</a><P><dl><a name="11214">
+<dt>This inserts a new channel at the bottom of the script.</dt>
+</a><P></dl><a name="11215">
+<STRONG>	3.	 Press the "s" hot key again to insert one more channel.
+</STRONG>
+</a><P><dl><a name="11216">
+<dt>Your script editor window should now contain three channels:</dt>
+</a><P><a name="11225">
+ <P><img src="2Basics-2.anc16.gif"><p>
+</a></dl>
+<a name="11226">
+<em>Figure 2.17  &#32; &#32;Adding channels to a script
+</em></a><P><dl><dl><a name="11220">
+<dt>By default, an operation type of <strong>Make Visible</strong> is assigned to newly added channels.</dt>
+</a><P></dl></dl>
+<a name="11268">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on the second channel in the script.
+</STRONG>
+</a><P><a name="11269">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Scaling&gt;Axis Scale Compensated</strong>.
+</STRONG>
+</a><P><dl><a name="11272">
+<dt>In the action properties dialog box, <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit box and <strong>(CLICK-L)</strong> on the tetrahedron in the object list, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>Axis Scale Compensated</strong> action is also referred to as the "squash and stretch" operation.</font></dd></dt><dl><a name="11314">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="11280">
+ <P><img src="2Basics-2.anc17.gif"><p>
+</a></dl></dl><P>
+<a name="11281">
+<em>Figure 2.18  &#32; &#32;Assigning a new operation to a channel
+</em></a><P>
+<a name="11275">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the curve channel to open it.
+</STRONG>
+</a><P><dl><a name="11306">
+<dt>Add a cue at the same frame as in the first channel.</dt>
+</a><P></dl><a name="11307">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the new cue and give it a value of 3.
+</STRONG>
+</a><P><a name="11311">
+ <P><img src="2Basics-2.anc18.gif"><p>
+</a>
+<a name="11299">
+<em>Figure 2.19  &#32; &#32;Adding a new cue
+</em></a><P>
+<a name="11293">
+<STRONG>	8.	 Animate and playback the script.
+</STRONG>
+</a><P><dl><a name="11313">
+<dt>Now, in addition to moving back and forth along the X axis, the tetrahedron squashes and stretches as the script animates.</dt>
+</a><P></dl><a name="11321">
+<STRONG>	9.	 Move the cue for the Axis Scale Compensated and animate script again.
+</STRONG>
+</a><P><dl><a name="11324">
+<dt>Note that although you'll often use cues to emulate "keyframes", cues are not necessarily tied to each other, nor are they restricted to occurring right at a frame.</dt>
+</a><P></dl>
+<a name="10272">
+<h2><HR> Reordering Channels</h2>
+</a><a name="11327">
+When you animate a script, this is what happens:<p>
+</a><P><ul><a name="11336">
+<li>N-Dynamics goes to the first frame and performs the operation in the first channel. In our sample script, it performs an <strong>X Move</strong> on the tetrahedron, using the data value in the curve channel at frame 1.
+</a></li><P><a name="11337">
+<li>N-Dynamics then drops down to the next channel, in this case, an <strong>Axis Scale Compensated</strong> operation on the tetrahedron. It performs the action in that channel, again, using the data value in that action's curve channel at frame 1.
+</a></li><P><a name="11342">
+<li>When N-Dynamics has executed each action to be found under frame 1 in the script, it writes out a black-and-white preview of the frame.
+</a></li><P><a name="11363">
+<li>Finally, N-Dynamics goes to the next frame and repeats the process from left to right.
+</a></li><P></ul><P><a name="11364">
+We say that N-Dynamics executes from left to right and from top to bottom, as described above. This means that the order in which operations occur in a script can be significant.<p>
+</a><P><a name="11371">
+For example, if you are working with a series of images, you'd probably want to set up a script that was ordered like this:<p>
+</a><P><ul><a name="11377">
+<li>Load an image
+</a></li><P><a name="11378">
+<li>Modify the image
+</a></li><P><a name="11379">
+<li>Save the image
+</a></li><P></ul><P><a name="11380">
+You can't modify an image before you load it! Order is important in a number of situations, including:<p>
+</a><P><ul><a name="11392">
+<li><strong>skeletal animation</strong> (described in more detail in the Skeletal Animation System Reference Guide and Skeletal Animation System Tutorial)
+</a></li><P><a name="11393">
+<li><strong>paint</strong> operations (as described above)
+</a></li><P><a name="11394">
+<li><strong>rendering</strong> (should be one of the bottom channels in a script, after you've animated your object)
+</a></li><P><a name="11395">
+<li><strong>geometry</strong> (particularly when rotating an object)
+</a></li><P></ul><P><a name="11381">
+Let's try reordering the channels in our "move-tetrahedron-2" script:<p>
+</a><P>
+<a name="11429">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the black title bar at the top of the script.
+</STRONG>
+</a><P><dl><a name="11436">
+<dt>The script operations menu appears:</dt>
+</a><P><a name="11443">
+ <P><img src="2Basics-2.anc19.gif"><p>
+</a></dl>
+<a name="11444">
+<em>Figure 2.20  &#32; &#32;The Script Operations menu
+</em></a><P>
+<a name="11438">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Hierarchy&gt;Reorder</strong>.
+</STRONG>
+</a><P><dl><a name="11431">
+<dt>A dialog box is displayed, showing the name of each channel in the script:</dt>
+</a><P><a name="11458">
+ <P><img src="2Basics-2.anc20.gif"><p>
+</a></dl>
+<a name="11459">
+<em>Figure 2.21  &#32; &#32;A list of channels in a script
+</em></a><P>
+<a name="11424">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> and hold down the mouse on the <strong>Axis Scale Compensated</strong> channel.
+</STRONG>
+</a><P><dl><a name="11467">
+<dt>The text turns red.</dt>
+</a><P></dl><a name="11468">
+<STRONG>	4.	 Drag the channel up and down.
+</STRONG>
+</a><P><dl><a name="11469">
+<dt>Note that channels are automatically reordered as you move the selected channel around.</dt>
+</a><P></dl><a name="11480">
+<STRONG>	5.	 When the selected channel is at the top, <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><a name="11491">
+ <P><img src="2Basics-2.anc21.gif"><p>
+</a>
+<a name="11492">
+<em>Figure 2.22  &#32; &#32;Reordering channels in a script
+</em></a><P><dl><dl><a name="11484">
+<dt>The channels are reordered in the script editor window:</dt>
+</a><P><a name="11501">
+ <P><img src="2Basics-2.anc22.gif"><p>
+</a></dl></dl><a name="11502">
+<em>Figure 2.23  &#32; &#32;Reordered script
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also use the "r" hot key to reorder subchannels in a script. Press "r" anywhere on the script editor to display the <strong>Reorder Channels</strong> dialog box.</font></dd></dt></dl><P>
+<a name="10273">
+<h2><HR> Turning Channels On and Off</h2>
+</a><a name="10316">
+What if you want to execute some channels in a script, but not others? You need to make any channels you don't want to execute <em>inactive</em>.<p>
+</a><P><a name="11534">
+Let's make a channel inactive in our "move-tetrahedron-2" script:<p>
+</a><P>
+<a name="11535">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the <strong>X Move Tetrahedron</strong> channel.
+</STRONG>
+</a><P><a name="11536">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Other&gt;Deactivate</strong>.
+</STRONG>
+</a><P><dl><a name="11537">
+<dt>The text in the channel turns black, indicating that it won't be executed when the script is animated:</dt>
+</a><P><a name="11558">
+ <P><img src="2Basics-2.anc23.gif"><p>
+</a></dl>
+<a name="11559">
+<em>Figure 2.24  &#32; &#32;Script with deactivated channel
+</em></a><P>
+<a name="11553">
+<STRONG>	3.	 Animate and playback the script.
+</STRONG>
+</a><P><dl><a name="11563">
+<dt>The tetrahedron scales, but doesn't move.</dt>
+</a><P></dl><a name="11568">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on the <strong>X Move Tetrahedron</strong> channel again.
+</STRONG>
+</a><P><a name="11569">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Other&gt;Activate</strong>.
+</STRONG>
+</a><P><dl><a name="11572">
+<dt>This turns the channel back on.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can move the cursor over a channel and press the "a" hot key to toggle the a channel's active status.</font></dd></dt></dl><P>
+<a name="11246">
+<h2><HR> Creating More Complex Scripts</h2>
+</a><a name="11620">
+So far, the channels in our scripts have all been at the same level. In N-Dynamics you can build <em>channel hierarchies</em>. In a channel hierarchy, some channels are contained inside other channels. The containing channel is called a <em>parent</em> channel; the channels inside are called <em>child</em> channel. A child channel is also commonly referred to as a <em>subchannel</em>.<p>
+</a><P><a name="11621">
+You create hierarchies for two reasons:<p>
+</a><P><ul><a name="11627">
+<li>to organize your work into an easily manageable layout
+</a></li><P><a name="11632">
+<li>to control the flow of a script
+</a></li><P></ul><P><a name="11633">
+<h3> Organizing a Script</h3>
+</a><a name="11642">
+Let's consider our "move-tetrahedron" script. It's a fairly simple script right now, because we have only one object loaded into N-Geometry and we're only performing some basic operations on it.<p>
+</a><P><a name="11645">
+Suppose, however, that you were to add another object in N-Geometry; it might be nice to group all the channels that affect a given object into different <em>parent</em> channels.<p>
+</a><P><a name="11663">
+Let's try adding an object and rearranging our script:<p>
+</a><P>
+<a name="11664">
+<STRONG>	 1.	 In N-Geometry, (CLICK-L) on GeoMenus&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><dl><a name="11665">
+<dt>Now there are two objects in the scene:</dt>
+</a><P><a name="11672">
+ <P><img src="2Basics-2.anc24.gif"><p>
+</a></dl>
+<a name="11673">
+<em>Figure 2.25  &#32; &#32;Adding a second object
+</em></a><P><a name="11677">
+<h3> Inserting a Parent Channel</h3>
+</a><a name="11690">
+For this exercise, we want to create two distinct channels. One will contain operations that pertain to the tetrahedron, the other will contain all the operations that pertain to the cube.<p>
+</a><P>
+<a name="11693">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the X-Move Tetrahedron channel.
+</STRONG>
+</a><P><a name="11694">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Hierarchy&gt;Insert Parent</strong>.
+</STRONG>
+</a><P><dl><a name="11695">
+<dt>A new channel appears around the <strong>X-Move Tetrahedron</strong> channel, and is given a default operation type of <strong>Make Visible</strong>.</dt>
+</a><P><a name="11703">
+ <P><img src="2Basics-2.anc25.gif"><p>
+</a></dl>
+<a name="11704">
+<em>Figure 2.26  &#32; &#32;Parent channel inserted around X Move Tetrahedron
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	A parent channel does not look different from any other channel; "parent" implies <strong>only</strong> that the channel contains other channels, called subchannels or "children" channels.</font></dd></dt></dl><P>
+<a name="11733">
+<h3> Moving Channels</h3>
+</a><a name="11708">
+Now, let's move the <strong>Axis Scale Compensated Tetrahedron </strong>channel inside the new parent channel.<p>
+</a><P>
+<a name="11719">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on the <strong>Axis Scale Compensated</strong> channel.
+</STRONG>
+</a><P><a name="11720">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Other&gt;Remember</strong>.
+</STRONG>
+</a><P><a name="11740">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on the new parent channel.
+</STRONG>
+</a><P><a name="11748">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on <strong>Hierarchy&gt;Move Here</strong>.
+</STRONG>
+</a><P><dl><a name="11757">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11764">
+ <P><img src="2Basics-2.anc26.gif"><p>
+</a></dl>
+<a name="11765">
+<em>Figure 2.27  &#32; &#32;Dialog box displayed when moving channels
+</em></a><P>
+<a name="11758">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on <strong>Yes</strong>.
+</STRONG>
+</a><P><dl><a name="11769">
+<dt>The channel is moved into the target channel:</dt>
+</a><P><a name="11788">
+ <P><img src="2Basics-2.anc27.gif"><p>
+</a></dl>
+<a name="11789">
+<em>Figure 2.28  &#32; &#32;After moving the channel
+</em></a><P><dl><dl><a name="11806">
+<dt>Now, since the parent channel doesn't really do anything, let's change it's operation type to None then rename it.</dt>
+</a><P></dl></dl>
+<a name="11809">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the parent channel.
+</STRONG>
+</a><P><a name="11812">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit box.
+</STRONG>
+</a><P><a name="11815">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on <strong>None</strong>.
+</STRONG>
+</a><P><dl><a name="11816">
+<dt>This is at the very top of the operation class menu. The following prompt appears:</dt>
+</a><P><a name="11830">
+ <P><img src="2Basics-2.anc28.gif"><p>
+</a></dl>
+<a name="11836">
+<em>Figure 2.29  &#32; &#32;Prompt displayed when changing operation type for a channel
+</em></a><P>
+<a name="11837">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on No!
+</STRONG>
+</a><P><dl><a name="12426">
+<dt>The subchannels are the <strong>X-Move</strong> and <strong>Axis Scale Compensated</strong> channels inside this channel.</dt>
+</a><P></dl>
+<a name="12452">
+<h4> Renaming a Channel</h4>
+</a>
+<a name="11848">
+<STRONG>	13.	 <strong>(CLICK-M)</strong> on the <strong>Name</strong> text edit box.
+</STRONG>
+</a><P><dl><a name="11868">
+<dt>Give the channel a descriptive name like <strong>Tetrahedron Parent</strong>. Your action properties dialog box should look something like this when you're done:</dt>
+</a><P><a name="11863">
+ <P><img src="2Basics-2.anc29.gif"><p>
+</a></dl>
+<a name="11864">
+<em>Figure 2.30  &#32; &#32;Renaming a channel
+</em></a><P><dl><dl><a name="11852">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="11881">
+ <P><img src="2Basics-2.anc30.gif"><p>
+</a></dl></dl><a name="11882">
+<em>Figure 2.31  &#32; &#32;Reorganized script
+</em></a><P><a name="11772">
+<h3> Reordering Channels in a Parent Channel</h3>
+</a><a name="11898">
+If you want to reorder the channels in a parent channel, move the cursor over the channel and press the "r" hot key. Only the subchannels in the parent channel are displayed on the list of channels, but the concept is the same as described in the section <a href="2Basics-2.html#10272">"Reordering Channels," on page &#32;2-17</a>.<p>
+</a><P><a name="11778">
+<h3> Using Hot Keys to Copy and Move</h3>
+</a><a name="11777">
+	There are two hot keys for copying and pasting elements in N-Dynamics. Use the period "." key to remember the currently highlighted element, and the "c" key to paste the remembered element into a new location.<p>
+</a><P><a name="11909">
+We still want to add a parent channel for the cube object in the scene, so let's try another approach.<p>
+</a><P>
+<a name="11916">
+<STRONG>	14.	 Make the <strong>Make Visible</strong> channel active.
+</STRONG>
+</a><P><a name="11917">
+<STRONG>	15.	 Give the <strong>Make Visible</strong> channel a new operation type of <strong>None</strong>.
+</STRONG>
+</a><P><dl><a name="11931">
+<dt>Be sure to give it a descriptive name; use <strong>Cube Parent</strong> for now.</dt>
+</a><P><a name="11941">
+ <P><img src="2Basics-2.anc31.gif"><p>
+</a></dl>
+<a name="11942">
+<em>Figure 2.32  &#32; &#32;After creating the new Cube Parent channel
+</em></a><P>
+<a name="11936">
+<STRONG>	16.	 Now, move the cursor over the <strong>Cube Parent</strong> channel and press the "s" hot key twice.
+</STRONG>
+</a><P><dl><a name="11974">
+<dt>This inserts two subchannels into the <strong>Cube Parent</strong> channel:</dt>
+</a><P><a name="11981">
+ <P><img src="2Basics-2.anc32.gif"><p>
+</a></dl>
+<a name="11982">
+<em>Figure 2.33  &#32; &#32;Inserting subchannels into a parent
+</em></a><P>
+<a name="11971">
+<STRONG>	17.	 Move the cursor over the <strong>X Move Tetrahedron</strong> channel and press the "." hot key.
+</STRONG>
+</a><P><a name="11967">
+<STRONG>	18.	 Move the cursor over the first <strong>Make VIsible</strong> subchannel in the <strong>Cube Parent</strong> and press the "c" hot key.
+</STRONG>
+</a><P><a name="12000">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on <strong>Yes</strong> when the following prompt appears:
+</STRONG>
+</a><P><a name="12008">
+ <P><img src="2Basics-2.anc33.gif"><p>
+</a>
+<a name="12009">
+<em>Figure 2.34  &#32; &#32;Prompt displayed when copying one channel into another
+</em></a><P><dl><dl><a name="11968">
+<dt>This copies the operation into the new channel.</dt>
+</a><P><a name="11990">
+<dt>Copy the <strong>Axis Scale Compensated Tetrahedron</strong> channel into the second <strong>Make Visible</strong> channel using the same steps outlined above.</dt>
+</a><P><a name="11999">
+<dt>Your script should look like <a href="2Basics-2.html#12029">Figure 2.35</a>:</dt>
+</a><P><a name="12028">
+ <P><img src="2Basics-2.anc34.gif"><p>
+</a></dl></dl><a name="12029">
+<em>Figure 2.35  &#32; &#32;After copying channels
+</em></a><P><dl><dl><a name="12045">
+<dt>The last thing to do is change the object upon which the operations are being performed. When you copy a channel, everything is copied, including references to objects.</dt>
+</a><P></dl></dl>
+<a name="12046">
+<STRONG>	20.	 <strong>(CLICK-M)</strong> on the <strong>Cube Parent&gt;X Move Tetrahedron</strong> channel.
+</STRONG>
+</a><P><a name="12047">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit box.
+</STRONG>
+</a><P><a name="12055">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the <strong>Cube</strong> from the object list, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="12061">
+<dt>Repeat steps <a href="2Basics-2.html#12046">20</a> through <a href="2Basics-2.html#12055">22</a> for the the <strong>Cube Parent&gt;Axis Scale Compensated Tetrahedron</strong> channel, to select a different object. Your script should now look like this:</dt>
+</a><P><a name="12081">
+ <P><img src="2Basics-2.anc35.gif"><p>
+</a></dl>
+<a name="12082">
+<em>Figure 2.36  &#32; &#32;After selecting the proper object for the copied operations
+</em></a><P>
+<a name="12076">
+<STRONG>	23.	 Animate and playback the script.
+</STRONG>
+</a><P><dl><a name="12090">
+<dt>Both the tetrahedron and the cube move and stretch the same amount as the script animates.</dt>
+</a><P></dl><a name="12093">
+<STRONG>	24.	 Modify the cue values for one or more of the curve channels, then reanimate your script.
+</STRONG>
+</a><P>
+<a name="12096">
+Now that your script does more than just move a tetrahedron, why don't you rename it?<p>
+</a><P>
+<a name="12100">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Rename this Script</strong>.
+</STRONG>
+</a><P><dl><a name="12101">
+<dt>Give it a new name; something like "cube-and-tet".</dt>
+</a><P></dl><a name="12102">
+<STRONG>	26.	 Save your script and objects with the <strong>File&gt;Save Script</strong> command.
+</STRONG>
+</a><P>
+<a name="12103">
+<h2><HR> Congratulations!</h2>
+</a><a name="12097">
+You've now learned to:<p>
+</a><P><ul><a name="12127">
+<li>delete, load, and copy scripts
+</a></li><P><a name="12130">
+<li>move and add cues
+</a></li><P><a name="12132">
+<li>change curve types
+</a></li><P><a name="12133">
+<li>add, reorder, and activate/deactivate channels
+</a></li><P><a name="12136">
+<li>use channel hierarchies to create more complex scripts
+</a></li><P><a name="12137">
+<li>move, copy, and rename channels
+</a></li><P></ul><P><a name="12125">
+All of these skills will be required as you work with the scripts in the following chapters; however, now you've got the basic building blocks for building almost any kind of script you can think of.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Basics.html">[Prev]</a> <a href="3Objects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 11:05:52 -->
+
+</body>
+</html>

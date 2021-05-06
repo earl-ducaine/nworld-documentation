@@ -1,0 +1,1271 @@
+<html><head><title>Posing a Skeleton</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="5SkinningEnhancements.html">[Prev]</a> <a href="7WalkCycle.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Posing a Skeleton</h1>
+</a>
+<hr><p><a name="15388">
+<h4> Posing skeletons can be done using either kinematic or inverse kinematic (IK) techniques. You can then use these poses to create pose to pose animations or layer individual poses over motion capture data.</h4>
+</a><a name="15391">
+ <P><img src="6Posing.anc.gif"><p>
+</a><a name="15383">
+<h2><HR> In this Chapter</h2>
+</a><a name="11456">
+You'll learn how to:<p>
+</a><P><ul><a name="12610">
+<li>pose skeletons using kinematic and inverse kinematic techniques (a review of methods described in the <em>Skeletal Animation System Reference Guide</em>).
+</a></li><P><a name="14217">
+<li>use the DOF Editor to define degrees of freedom for a skeleton (the range of motion for each bone on the skeleton)
+</a></li><P><a name="11464">
+<li>understand the difference between fixed and rotating bone axes and their relationship to rotation order
+</a></li><P><a name="11457">
+<li>work with the root of a skeleton
+</a></li><P></ul><P><a name="11455">
+<h2><HR> Posing Skeletons in N-Geometry</h2>
+</a><a name="10781">
+Skeletons can be posed using both kinematic and inverse kinematic operations. This section describes how to pose a skeleton kinematically. (Inverse kinematics are described in more detail in <a href="6Posing.html#16106">"Inverse Kinematics," on page &#32;6-5</a>)<p>
+</a><P><a name="12101">
+If you want to pose a skeleton kinematically, you select individual bones, rotate, twist, or scale them, then repeat the process for different bones until the skeleton is in the correct pose.<p>
+</a><P><a name="12102">
+When you animate the skeleton, you specify a starting or "base" pose, a number of intermediate poses, and an ending pose. For frames between poses, the position of the skeleton is averaged.<p>
+</a><P><a name="12103">
+Pose to pose animation can be used by traditional animators who are used to keyframing techniques; the same concept applies here as it does there. You generate positions for the skeleton at different points in the script; the smoothness between the transitions depend on the amount of space between the two poses and the difference in position for the skeleton in the two delimiting poses.<p>
+</a><P><a name="12107">
+<h3> Kinematic vs. Inverse Kinematic Posing</h3>
+</a><a name="12108">
+There are two ways of repositioning a skeleton:<p>
+</a><P><ul><a name="12109">
+<li>Rotate, twist, or lengthen one or more bones explicitly. This is called a <em>kinematic</em> pose.
+</a></li><P><a name="12110">
+<li>Select an end effector on the skeleton, move it in 3D space, and change the orientation of one or more bones to accommodate the change in location for the end effector. This is called an <em>inverse kinematic</em> pose.
+</a></li><P></ul><P><a name="12111">
+Kinematic poses are simple to execute; you twist or rotate a bone by selecting the bone directly.<p>
+</a><P><a name="12112">
+Inverse kinematic poses, however, are inherently more complex, since there are nearly an infinite number of ways that a skeleton could move to accommodate the change in position of any single joint. You limit the possible solutions by creating an IK set to restrict the motion of bones into realistic paths.<p>
+</a><P><a name="10789">
+<h2><HR> Posing Kinematically</h2>
+</a><a name="12204">
+Kinematic commands manipulate a skeleton in much the same way that you might animate a primitive robot. <p>
+</a><P><a name="12215">
+If you wanted to pose the wire figure so that he was reaching toward the ground, you might bend him at the waist, then bring the upper arm forward, and finally, bring the forearm and hand into their correct positions.<p>
+</a><P><a name="12129">
+ <P><img src="6Posing.anc1.gif"><p>
+</a><a name="12131">
+<em>Figure 6.1  &#32; &#32;Posing a skeleton using kinematic commands (see <a href="6Posing.html#11615">Figure 6.2</a>)
+</em></a><P><a name="10790">
+To pose a skeleton kinematically, you use the following N-Geometry commands:<p>
+</a><P><ul><a name="10791">
+<li><strong>Rotate/Twist</strong>
+</a></li><P><a name="10792">
+<li><strong>XYZ Rotate</strong>
+</a></li><P><a name="12622">
+<li><strong>Rotate</strong>
+</a></li><P><a name="16102">
+<li><strong>Scale Bone</strong>
+</a></li><P></ul><P><a name="16103">
+These commands are described in the <em>Skeletal Animation System Reference Guide</em>.<p>
+</a><P><a name="16106">
+<h2><HR> Inverse Kinematics</h2>
+</a><a name="11604">
+There are two ways of repositioning a skeleton:<p>
+</a><P><ul><a name="11605">
+<li>Rotate, twist, or lengthen one or more bones and update the position of any affected joints on the skeleton. This method is called a <em>kinematic</em> move.
+</a></li><P><a name="11606">
+<li>Move a joint on the skeleton in 3D space and move one or more bones to accommodate that change in location. This method is called an <em>inverse kinematic</em> move.
+</a></li><P></ul><P><a name="11607">
+Kinematic moves are simple to execute; you modify the position of a bone explicitly,rotating or twisting it, and simply update the position of any joints that need to move to reflect the change in that bone.<p>
+</a><P><a name="11608">
+Inverse kinematic moves, however, are inherently more complex. There are nearly an infinite number of ways to change the position of a skeleton to accommodate the change in position of any single joint.<p>
+</a><P><a name="11609">
+Consider the example of a skeleton reaching out for an object: <p>
+</a><P><a name="11613">
+ <P><img src="6Posing.anc2.gif"><p>
+</a><a name="11615">
+<em>Figure 6.2  &#32; &#32;IK move of a wrist joint using different IK sets
+</em></a><P><a name="11616">
+This is a typical gesture for which you'd want to use an inverse kinematic move to pose the skeleton; you're moving the skeleton's hand and want the rest of the skeleton to follow "naturally."<p>
+</a><P><a name="11617">
+But how much of the skeleton? There are any number of ways you can reach out for an object (or kick a ball, or punch into the air). Look at the skeletons in <a href="6Posing.html#11615">Figure 6.2</a>: <p>
+</a><P><ul><a name="11621">
+<li>The figure on the left is reaching for an object moving only its forearm
+</a></li><P><a name="11622">
+<li>The figure in the middle is reaching for the same object moving the forearm, upper arm, and collar bone.
+</a></li><P><a name="11623">
+<li>The figure on the right has the most freedom of all; in addition to the bones listed above, it can move its chest bone.
+</a></li><P></ul><P><a name="11624">
+Since all of these are valid moves, you must specify which bones should be "movable" (and around which axes) to perform the IK move. These constraints are defined and stored in an IK set. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you try to do an IK operation on a joint that has no IK set, the IK set dialog box appears.</font></dd></dt></dl><P>
+<a name="11625">
+The minimum and maximum angles a bone can rotate, as well as the maximum length for each bone, are controlled by the DOF limits you defined for the skeleton (as described in <a href="6Posing.html#13980">"Using the DOF Editor," on page &#32;6-19</a>.<p>
+</a><P><a name="11629">
+This chapter describes the relationship between DOF Limits, IK sets, and IK moves. <p>
+</a><P><a name="12625">
+You can pose a skeleton using the following IK commands:<p>
+</a><P><ul><a name="12626">
+<li><strong>IK Move</strong> and <strong>IK Move 2D</strong>
+</a></li><P><a name="12631">
+<li><strong>IK Move Root</strong>
+</a></li><P><a name="12632">
+<li><strong>IK Move Single</strong>
+</a></li><P><a name="12633">
+<li><strong>IK Move thru Root</strong>
+</a></li><P><a name="12634">
+<li><strong>IK Rotate Root</strong>
+</a></li><P><a name="12635">
+<li><strong>XYZ IK Rotate Root</strong>
+</a></li><P></ul><P><a name="16109">
+These commands are described in the <em>Skeletal Animation System Reference Guide</em>. <p>
+</a><P><a name="12779">
+<h3> Using IK Operations</h3>
+</a><a name="12780">
+The <strong>various IK Move</strong> operation lets you pose a skeleton by selecting one or more end effectors, and moving that joint around in 3D space. One or more bones above the joint are affected in a natural manner to accommodate the new position of the end effector as you change the position of the end effector.<p>
+</a><P><a name="12995">
+You specify which bones can move and the axes each of those bones can rotate around by creating an <em>IK set</em>.<p>
+</a><P><a name="12786">
+In <a href="6Posing.html#12793">Figure 6.3</a>, you can see the difference between an <strong>IK Move </strong>operation on a wrist joint using two bones (the forearm and upper arm) and the same <strong>IK Move</strong> operation performed with an IK set that goes all the way to the root:<p>
+</a><P><a name="12791">
+ <P><img src="6Posing.anc3.gif"><p>
+</a><a name="12793">
+<em>Figure 6.3  &#32; &#32;Left, IK Move using two bones; right, IK Move using several bones
+</em></a><P><a name="13024">
+To perform an IK operation, you must specify which bones can move in which direction by creating an IK set. In the figure on the right in <a href="6Posing.html#12793">Figure 6.3</a>, for example, the IK move used an IK set that allowed the chest bone to rotate around the Z axis. <p>
+</a><P><a name="12798">
+Without a meaningful IK set, IK operations<strong> </strong>are not very useful. IK sets take a little time to set up, but are purposely left "open" to give you complete control over the behavior of the skeleton.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>It's a good idea to save skeletons for which you've defined appropriate DOF limits and IK sets. That way, you can use the same skeleton over and over in different animations without having to define new DOF limits and IK sets each time.</em></font></dd></dt></dl><P>
+<a name="12801">
+<h4> Defining an IK Set</h4>
+</a><a name="12802">
+To perform an IK operation, you must define an IK set. An IK set is nothing more than a list of which bones can be rotated around which axes to complete an IK move.<p>
+</a><P><a name="12806">
+As shown in <a href="6Posing.html#11615">Figure 6.2</a>, there are different ways to pose a skeleton; when you drag a wrist joint, should the skeleton move only his forearm? Forearm and upperarm? Or can he move the torso as well? Around which axes? These questions are answered by setting up one or more IK sets to govern the possible solutions for an IK operation. <p>
+</a><P><a name="12807">
+IK sets are very powerful; they control how a skeleton can be posed or animated using IK operations.<p>
+</a><P><a name="12808">
+Try this:<p>
+</a><P>
+<a name="12809">
+<STRONG>	 1.	 Load the skeleton primitive.
+</STRONG>
+</a><P><a name="12810">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="12811">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the wrist joint of the skeleton.
+</STRONG>
+</a><P><a name="12812">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on IK Move.
+</STRONG>
+</a><P><dl><a name="12813">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="12823">
+ <P><img src="6Posing.anc4.gif"><p>
+</a></dl>
+<a name="12824">
+<em>Figure 6.4  &#32; &#32;The IK set dialog box
+</em></a><P><a name="12825">
+There are three sections in the IK set dialog box:<p>
+</a><P><ul><a name="12826">
+<li>On the left is a list of bones between the selected joint and the root.
+</a></li><P><a name="12827">
+<li>In the middle is a grid showing which axes the named bone can rotate in to perform the IK operation.
+</a></li><P><a name="12828">
+<li>The right section shows the order in which the axes are rotated to execute the IK operation. (This is most significant when animating a skeleton using a dynamic IK operation.)
+</a></li><P></ul><P>
+<a name="12829">
+<STRONG>	5.	 In the middle section, <strong>(DRAG-L)</strong> the mouse over the X, Y, and Z box next to the TopHip bone and the X and Z box next to the Chest bone:
+</STRONG>
+</a><P><dl><a name="12830">
+<dt>You can <strong>(CLICK-L)</strong> and drag the mouse to toggle the state of individual boxes on the dialog box, or <strong>(CLICK-L)</strong> on them individually. The boxes named above should be grayed out:</dt>
+</a><P><a name="12835">
+ <P><img src="6Posing.anc5.gif"><p>
+</a></dl>
+<a name="12837">
+<em>Figure 6.5  &#32; &#32;Changing the degrees of freedom for the IK set
+</em></a><P>
+<a name="12839">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="12840">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="12845">
+ <P><img src="6Posing.anc6.gif"><p>
+</a></dl>
+<a name="12846">
+<em>Figure 6.6  &#32; &#32;Saving the IK set
+</em></a><P><dl><dl><a name="12847">
+<dt>The SAS generates a default name for the IK set, which includes the joint for which it was defined.</dt>
+</a><P><a name="12856">
+<dt>How far the bone can rotate around each of those axes is determined by the <em>DOF limits</em> defined for each of those bones. You can view the DOF limits using the DOF Editor.</dt>
+</a><P></dl></dl>
+<a name="12857">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Done to save the IK set.
+</STRONG>
+</a><P><a name="12858">
+<STRONG>	8.	 Move the mouse around.
+</STRONG>
+</a><P><dl><a name="12859">
+<dt>You may find the skeleton a little "jumpy" or hard to control. That's OK for now; notice, however, that only the bones included in the IK set move. This is most obvious if you look at the chest bone, which only rotates around its own Y axis, regardless of where you move the mouse.</dt>
+</a><P><a name="12864">
+ <P><img src="6Posing.anc7.gif"><p>
+</a></dl>
+<a name="12865">
+<em>Figure 6.7  &#32; &#32;An IK Move using a "loose" IK set makes it hard to pose the skeleton
+</em></a><P><dl><dl><a name="12866">
+<dt>The IK set is too "loose;" that is, it contains too many degrees of freedom to pose the skeleton with any level of control.</dt>
+</a><P></dl></dl><a name="12867">
+<h4> Improving the IK Set</h4>
+</a><a name="12868">
+To make the IK Move operation work better, you need to define a better IK set: <p>
+</a><P>
+<a name="12869">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="12870">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="12871">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="12872">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="12877">
+ <P><img src="6Posing.anc8.gif"><p>
+</a></dl>
+<a name="12878">
+<em>Figure 6.8  &#32; &#32;Return the skeleton to its base position
+</em></a><P>
+<a name="12879">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="12880">
+<dt>This returns the skeleton to its base position.</dt>
+</a><P></dl><a name="12881">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="12882">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on the wrist joint again.
+</STRONG>
+</a><P><a name="12883">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="12884">
+<dt>A menu listing any IK sets defined for the left wrist appears:</dt>
+</a><P><a name="12889">
+ <P><img src="6Posing.anc9.gif"><p>
+</a></dl>
+<a name="12890">
+<em>Figure 6.9  &#32; &#32;Selecting a IK set to edit
+</em></a><P><dl><dl><a name="12891">
+<dt>This lets you select an IK set to edit.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can have more than one IK set associated with any given joint; however, you must specify which set is to be used to perform an IK operation, either in N-Geometry or N-Dynamics.</em></font></dd></dt></dl><P>
+
+<a name="12896">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the IK set you saved in step <a href="6Posing.html#12839">6</a> above.
+</STRONG>
+</a><P><dl><a name="12897">
+<dt>The IK set dialog box opens, showing the selected IK set:</dt>
+</a><P><a name="12902">
+ <P><img src="6Posing.anc10.gif"><p>
+</a></dl>
+<a name="12903">
+<em>Figure 6.10  &#32; &#32;Editing an existing IK set
+</em></a><P><dl><dl><a name="12904">
+<dt>Let's remove some additional degrees of freedom to make the skeleton behave better.</dt>
+</a><P></dl><ul>
+<BR><a name="12906">
+<li>Turn off the Y rotation for the LeftUpperArm.
+</a><P><BR><a name="12907">
+<li>Turn off all rotations for the LeftCollar bone.
+</a><P></ul>
+<dl><a name="13130">
+<dt>Your IK set should look like <a href="6Posing.html#12914">Figure 6.11</a> after you've made these changes:</dt>
+</a><P><a name="12913">
+ <P><img src="6Posing.anc11.gif"><p>
+</a></dl></dl><a name="12914">
+<em>Figure 6.11  &#32; &#32;An improved IK set
+</em></a><P>
+<a name="12916">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Done to save the modified IK set.
+</STRONG>
+</a><P><a name="12917">
+<STRONG>	18.	 <strong>(SHIFT-L)</strong> on the wrist joint again.
+</STRONG>
+</a><P><a name="12918">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on IK Move and pose the skeleton again.
+</STRONG>
+</a><P><dl><a name="13150">
+<dt>The modified IK set now controls the wrist joint: the chest rotates around its own Y axis, the collar bone doesn't rotate at all, and the upper arm and forearm rotate in a much more manageable manner:</dt>
+</a><P><a name="12924">
+ <P><img src="6Posing.anc12.gif"><p>
+</a></dl>
+<a name="12925">
+<em>Figure 6.12  &#32; &#32;Posing a skeleton with a "tighter" IK set
+</em></a><P><a name="12926">
+<h4> Renaming IK Sets</h4>
+</a><a name="12927">
+<em>Modifying</em> an IK set doesn't change the <em>name</em> of the IK set. <p>
+</a><P><a name="12928">
+While it may seem desirable for a IK set name to update automatically if you modify it, doing so could cause a different set of headaches later on: IK sets are specified <em>by name</em> when animating skeletons using dynamic IK operations, so if we changed the name of an existing IK set automatically, an animation script wouldn't be able to find the IK set it was looking for.<p>
+</a><P><a name="12929">
+This means you have three options:<p>
+</a><P><ul><a name="12930">
+<li>Give the IK set a generic name.
+</a></li><P><dl><a name="12931">
+<dt>For example, you might name the IK set after the joint, such as "left-wrist." This means the name doesn't reflect the degrees of freedom, but is more <em>editable</em>.</dt>
+</a><P></dl><a name="13167">
+<li>Leave the IK set name alone, even if it doesn't accurately reflect the existing degrees of freedom for the IK set.
+</a></li><P><a name="12933">
+<li>Edit the IK set's name manually and make sure that you update any existing scripts referencing the old IK set name.
+</a></li><P></ul><P><a name="12934">
+We recommend the first option; it's simple enough to pop open the IK set dialog box to see what degrees of freedom are in effect for the selected IK set, and causes less headache in the long run.<p>
+</a><P>
+<a name="12935">
+<STRONG>	20.	 <strong>(SHIFT-L)</strong> on the wrist joint.
+</STRONG>
+</a><P><a name="12936">
+<STRONG>	21.	 <strong>(CLICK-R)</strong> on IK Set.
+</STRONG>
+</a><P><a name="12937">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on Rename.
+</STRONG>
+</a><P><a name="12941">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on the IK Set we saved in step <a href="6Posing.html#12916">17</a>.
+</STRONG>
+</a><P><a name="12942">
+<STRONG>	24.	 Enter a new name for the IK set:
+</STRONG>
+</a><P><a name="12947">
+ <P><img src="6Posing.anc13.gif"><p>
+</a>
+<a name="12948">
+<em>Figure 6.13  &#32; &#32;Renaming the IK set
+</em></a><P>
+<a name="12949">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on the Done to rename the IK set.
+</STRONG>
+</a><P>
+<a name="12950">
+<h3> DOF Limits vs. IK Set</h3>
+</a><a name="12951">
+DOF limits are closely related to IK sets, but both control different aspects of a skeleton.<p>
+</a><P><a name="13907">
+To summarize:<p>
+</a><P><ul><a name="12952">
+<li><strong>DOF limits</strong> define the <em>range of motion</em> for individual bones on the skeleton- how far each bone can rotate around each axis.
+</a></li><P><a name="12953">
+<li><strong>IK sets </strong>determine <em>which bones</em> are used to solve an IK operation.
+</a></li><P></ul><P><a name="12954">
+Suppose that you created an IK set for a wrist joint which specified that only the forearm and chest could rotate, and only around their X axes.<p>
+</a><P><a name="12955">
+If you did an IK operation on the wrist joint, <em>only</em> those two bones would rotate, and <em>only</em> around their X axes to "solve" the IK move. The DOF limits determine how far those two bones could rotate.<p>
+</a><P><ul><a name="12956">
+<li>If you want to change <em>how far</em> a particular bone can rotate, modify the DOF limits.
+</a></li><P><a name="12957">
+<li>If you want to change <em>which bones</em> can be rotated to solve an IK operation, modify the IK set.
+</a></li><P></ul><P><a name="11757">
+<h3> Joint Identification-A Quick Way to Define DOF Limits for a Skeleton</h3>
+</a><a name="11758">
+Assigning a joint identification to the different joints on a skeleton is an easy way to set up appropriate DOF limits for a skeleton.<p>
+</a><P><a name="11759">
+While the default skeleton has DOF limits when you create it, some skeletons do not have DOF limits-for example, a skeleton that you create from <em>scratch</em> has no meaningful DOF limits.<p>
+</a><P><a name="11760">
+To identify a joint:<p>
+</a><P>
+<a name="11761">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points in the element sensitivity window.
+</STRONG>
+</a><P><a name="11762">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the joint you want to identify.
+</STRONG>
+</a><P><a name="11763">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Joint Identification.
+</STRONG>
+</a><P><dl><a name="11764">
+<dt>A menu of default joint types is displayed:</dt>
+</a><P><a name="11769">
+ <P><img src="6Posing.anc14.gif"><p>
+</a></dl>
+<a name="11770">
+<em>Figure 6.14  &#32; &#32;Assigning a joint type for an end effector
+</em></a><P><dl><dl><a name="11771">
+<dt>This menu contains a list of pre-defined joint types. Each of these joint identifications has a set of default DOF limits associated with it; these DOF limits apply to the bone below the joint (further from the root).</dt>
+</a><P></dl></dl><a name="11772">
+The table below shows the default DOF limits assigned to a bone when you make a joint identification: 
+<P><Table Border="1">
+<dl>
+<a name="11775">
+<em>Table 6.1  &#32; &#32;DOF limits associated with default joint IDs
+</em></a></dl>
+<tr><th align="left"><a name="11785">
+Joint Type
+</a><th align="left"><a name="11787">
+Usually Controls
+</a><th align="left"><a name="11789">
+X DOF Limits
+</a><th align="left"><a name="11791">
+Y DOF Limits
+</a><th align="left"><a name="11793">
+Z DOF Limits
+</a>
+<tr><td valign="top"><a name="11795">
+ None*<p>
+</a><td valign="top"><a name="11797">
+ No default<p>
+</a><td valign="top"><a name="11799">
+ 	0	0<p>
+</a><td valign="top"><a name="11801">
+ 	0	0<p>
+</a><td valign="top"><a name="11803">
+ 	0	0<p>
+</a>
+<tr><td valign="top"><a name="13242">
+ Spine Joint<p>
+</a><td valign="top"><a name="13244">
+ Spine<p>
+</a><td valign="top"><a name="13246">
+ 	-10	10<p>
+</a><td valign="top"><a name="13414">
+ 	-7	7<p>
+</a><td valign="top"><a name="13424">
+ 	-7	7<p>
+</a>
+<tr><td valign="top"><a name="13232">
+ Neck Joint<p>
+</a><td valign="top"><a name="13234">
+ Head<p>
+</a><td valign="top"><a name="13430">
+ 	-15	37<p>
+</a><td valign="top"><a name="13432">
+ 	-80	80<p>
+</a><td valign="top"><a name="13434">
+ 	-15	15<p>
+</a>
+<tr><td valign="top"><a name="13222">
+ Jaw<p>
+</a><td valign="top"><a name="13224">
+ Jaw<p>
+</a><td valign="top"><a name="13448">
+ 	-5	40<p>
+</a><td valign="top"><a name="13458">
+ 	0	0<p>
+</a><td valign="top"><a name="13460">
+ 	0	0<p>
+</a>
+<tr><td valign="top"><a name="13311">
+ Shoulder<p>
+</a><td valign="top"><a name="13313">
+ Upper Arm<p>
+</a><td valign="top"><a name="13315">
+ 	-170	40<p>
+</a><td valign="top"><a name="13317">
+ 	-90	15<p>
+</a><td valign="top"><a name="13319">
+ 	-5	120<p>
+</a>
+<tr><td valign="top"><a name="13321">
+ Elbow<p>
+</a><td valign="top"><a name="13323">
+ Forearm<p>
+</a><td valign="top"><a name="13325">
+ 	-150	0<p>
+</a><td valign="top"><a name="13327">
+ 	0	0<p>
+</a><td valign="top"><a name="13329">
+ 	0	0<p>
+</a>
+<tr><td valign="top"><a name="11805">
+ Wrist<p>
+</a><td valign="top"><a name="11807">
+ Hand<p>
+</a><td valign="top"><a name="11809">
+ 	-20	20<p>
+</a><td valign="top"><a name="11811">
+ 	-90	10<p>
+</a><td valign="top"><a name="11813">
+ 	-50	50<p>
+</a>
+<tr><td valign="top"><a name="11815">
+ Knuckle<p>
+</a><td valign="top"><a name="11817">
+ Finger<p>
+</a><td valign="top"><a name="13462">
+ 	-10	10<p>
+</a><td valign="top"><a name="13464">
+ 	0	0<p>
+</a><td valign="top"><a name="13466">
+ 	-10	90<p>
+</a>
+<tr><td valign="top"><a name="11825">
+ Finger Joint<p>
+</a><td valign="top"><a name="11827">
+ Finger part<p>
+</a><td valign="top"><a name="13480">
+ 	0	0<p>
+</a><td valign="top"><a name="13482">
+ 	0	0<p>
+</a><td valign="top"><a name="13484">
+ 	0	60<p>
+</a>
+<tr><td valign="top"><a name="13374">
+ Hip Joint<p>
+</a><td valign="top"><a name="13376">
+ Femur<p>
+</a><td valign="top"><a name="13378">
+ 	-120	10<p>
+</a><td valign="top"><a name="13380">
+ 	-10	75<p>
+</a><td valign="top"><a name="13382">
+ 	-5	45<p>
+</a>
+<tr><td valign="top"><a name="13384">
+ Knee<p>
+</a><td valign="top"><a name="13386">
+ Tibia<p>
+</a><td valign="top"><a name="13388">
+ 	0	150<p>
+</a><td valign="top"><a name="13390">
+ 	0	0<p>
+</a><td valign="top"><a name="13392">
+ 	0	0<p>
+</a>
+<tr><td valign="top"><a name="13364">
+ Ankle<p>
+</a><td valign="top"><a name="13366">
+ Foot<p>
+</a><td valign="top"><a name="13368">
+ 	-30	60<p>
+</a><td valign="top"><a name="13370">
+ 	-20	20<p>
+</a><td valign="top"><a name="13372">
+ 	-10	10<p>
+</a>
+<tr><td valign="top"><a name="13334">
+ Heel<p>
+</a><td valign="top"><a name="13336">
+ Heel<p>
+</a><td valign="top"><a name="13488">
+ 	0	0<p>
+</a><td valign="top"><a name="13490">
+ 	0	0<p>
+</a><td valign="top"><a name="13492">
+ 	0	60<p>
+</a>
+<tr><td valign="top"><a name="11855">
+ Ball of Foot<p>
+</a><td valign="top"><a name="11857">
+ Toes<p>
+</a><td valign="top"><a name="13494">
+ 	-10	80<p>
+</a><td valign="top"><a name="13496">
+ 	0	0<p>
+</a><td valign="top"><a name="13498">
+ 	0	0<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+ <p>
+</a><P><a name="11864">
+ * The joint type of <strong>None</strong> lets you remove a joint identification and the saved DOF limits for the selected bone.<p>
+</a><a name="13980">
+<h2><HR> Using the DOF Editor</h2>
+</a><a name="13981">
+In all the examples of kinematic poses above, we were able to move the individual bones without limitation. However, in order to get the maximum value out of a skeleton, one needs to be able to define certain constraints, or limits for how bones can move. <p>
+</a><P><a name="13982">
+By properly defining DOF limits for a skeleton, you can better limit how a skeleton can behave during IK moves. Let's take a look at the skeleton primitive, which already has some DOF limits defined:<p>
+</a><P>
+<a name="13984">
+<STRONG>	 1.	 Load the skeleton primitive.
+</STRONG>
+</a><P><a name="13985">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="13986">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="13987">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on DOF Editor.
+</STRONG>
+</a><P><dl><a name="13988">
+<dt>The DOF Editor appears:</dt>
+</a><P><a name="13992">
+ <P><img src="6Posing.anc15.gif"><p>
+</a></dl>
+<a name="13993">
+<em>Figure 6.15  &#32; &#32;The DOF Editor
+</em></a><P><dl><dl><a name="13994">
+<dt>The DOF editor lets you define the limits for any bone on the skeleton. For each bone you can define:</dt>
+</a><P></dl><ul>
+<BR><a name="13995">
+<li>rotation order (used when animating)
+</a><P><BR><a name="13996">
+<li>the minimum and maximum x, y, and z rotations
+</a><P><BR><a name="13997">
+<li>the minimum and maximum bone scale
+</a><P></ul>
+</dl><a name="13998">
+(Meaningful limits may or may not be included with a skeleton read in as part of a motion capture data file.)<p>
+</a><P><a name="13999">
+If you're building your <em>own</em> skeleton, you should define the constraints for each bone before setting up any poses or trying to perform any IK operations. There are two steps to defining limits for a bone: <p>
+</a><P><ul><a name="14000">
+<li>defining the <em>axes </em>around which a bone can rotate
+</a></li><P><a name="14001">
+<li>defining how many <em>degrees</em> a bone can rotate around those axes
+</a></li><P></ul><P><a name="14002">
+<h4> Selecting Rotation Axes</h4>
+</a><a name="14004">
+Try this:<p>
+</a><P>
+<a name="14005">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="14006">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton's left wrist joint.
+</STRONG>
+</a><P><a name="14007">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on IK Move 2D.
+</STRONG>
+</a><P><a name="14008">
+<STRONG>	4.	 Move the mouse left and right.
+</STRONG>
+</a><P><dl><a name="14009">
+<dt>This normally tries to perform an IK move by rotating the two bones above the wrist joint around their X axes , as shown below:</dt>
+</a><P><a name="14013">
+ <P><img src="6Posing.anc16.gif"><p>
+</a></dl>
+<a name="14015">
+<em>Figure 6.16  &#32; &#32;Performing the same IK Move 2D with limits for the upper arm turned on
+</em></a><P><dl><dl><a name="14016">
+<dt>Suppose, however, that you want to pose the skeleton without moving the upper arm bone at all? How do you lock it into position?</dt>
+</a><P></dl></dl>
+<a name="14017">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the selected skeleton or a single bone.
+</STRONG>
+</a><P><dl><a name="14018">
+<dt>If you select the entire skeleton, you can modify the limits for one or all bones at the same time.</dt>
+</a><P></dl><a name="14019">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on DOF editor.
+</STRONG>
+</a><P><a name="14020">
+<STRONG>	7.	 Locate the bone whose limits you want to set.
+</STRONG>
+</a><P><dl><a name="14021">
+<dt>For this example, lets use the bone "LeftUpperArm."</dt>
+</a><P></dl><a name="14022">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the text box under RotOrder next to the bone.
+</STRONG>
+</a><P><dl><a name="14023">
+<dt>This shows the planes in which movement is allowed; if you loaded the default skeleton, the axes "Z X Y" should appear in this box. In the dialog box that appears, you can <strong>(CLICK-L)</strong> to highlight which planes a skeleton should be able to move in:</dt>
+</a><P><a name="14027">
+ <P><img src="6Posing.anc17.gif"><p>
+</a></dl>
+<a name="14028">
+<em>Figure 6.17  &#32; &#32;Selecting rotation axes
+</em></a><P>
+<a name="14030">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the X plane.
+</STRONG>
+</a><P><a name="14031">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="14032">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Save Changes.
+</STRONG>
+</a><P><dl><a name="14033">
+<dt>This saves the changes with the skeleton.</dt>
+</a><P></dl><a name="14034">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Yes when prompted to save changes:
+</STRONG>
+</a><P><a name="14038">
+ <P><img src="6Posing.anc18.gif"><p>
+</a>
+<a name="14040">
+<em>Figure 6.18  &#32; &#32;Saving limit changes
+</em></a><P>
+<a name="14041">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the skeleton's left wrist joint.
+</STRONG>
+</a><P><a name="14042">
+<STRONG>	14.	 <strong>(CLICK-M)</strong> on IK Move 2D.
+</STRONG>
+</a><P><a name="14043">
+<STRONG>	15.	 Move the mouse left and right.
+</STRONG>
+</a><P><dl><a name="14044">
+<dt>Now, when you perform the IK move, only the forearm moves, because the upper arm has been restricted from rotating around its own X axis:</dt>
+</a><P><a name="14048">
+ <P><img src="6Posing.anc19.gif"><p>
+</a></dl>
+<a name="14050">
+<em>Figure 6.19  &#32; &#32;Setting limits for a bone; note that the left upper arm bone does not move, compared to <a href="6Posing.html#14015">Figure 6.16</a>
+</em></a><P><a name="14054">
+<h4> Limiting Range of Motion for a Selected Bone</h4>
+</a><a name="14055">
+In the previous section, we learned how to completely restrict the rotation of a bone in one plane. What if we want to partially limit rotation of the bone in one plane? Using the DOF Editor again, we can specify an appropriate range of motion for any bone in any axis.<p>
+</a><P><a name="14056">
+We can use the skeleton from the previous exercise to try this out:<p>
+</a><P>
+<a name="14057">
+<STRONG>	 1.	 Open the DOF Editor again.
+</STRONG>
+</a><P><a name="14058">
+<STRONG>	2.	 Locate the bone whose rotations you want to limit.
+</STRONG>
+</a><P><dl><a name="14059">
+<dt>Let's use the bone "LeftUpperArm" again. If you're using the skeleton from the previous exercise (the skeleton primitive), the values <strong>-170.0</strong> and <strong>40.0</strong> should appear under the X Min/Max label.</dt>
+</a><P></dl><a name="14060">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the text box to clear the values.
+</STRONG>
+</a><P><a name="14061">
+<STRONG>	4.	 Enter the following text in the box:
+</STRONG>
+</a><P><dl><dl><a name="14062">
+<dt><code>-20 20</code><p>
+</a><P></dl></dl><dl><a name="14063">
+<dt>This specifies the the upper arm can move only twenty degrees in either direction.</dt>
+</a><P></dl><a name="14064">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the skeleton's left wrist joint.
+</STRONG>
+</a><P><a name="14065">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on IK Move 2D.
+</STRONG>
+</a><P><a name="14066">
+<STRONG>	7.	 Move the mouse left and right.
+</STRONG>
+</a><P><dl><a name="14067">
+<dt>Now, when you perform the IK move, both the upper arm and forearm bones move; however, note that the upper arm is severely restricted:</dt>
+</a><P><a name="14071">
+ <P><img src="6Posing.anc20.gif"><p>
+</a></dl>
+<a name="14072">
+<em>Figure 6.20  &#32; &#32;Limiting range of motion
+</em></a><P><a name="14073">
+You can specify a maximum range of motion for any bone; in this case, the upper arm is limited to a range of -20 to 20 degrees; no matter how you move the wrist joint, the upper arm does not move beyond 20 degrees<p>
+</a><P><a name="10896">
+<h2><HR> Locking Bones</h2>
+</a><a name="10897">
+When posing complicated parts of a skeleton (such as a hand) where you want to rotate or pose several bones at once in the same manner, you can "lock" a bone to one of its <em>siblings</em>.<p>
+</a><P><a name="10898">
+Sibling bones come from the same joint, giving them the same relationship to each other with respect to the root.<p>
+</a><P><a name="10899">
+We'll show you what we mean using a sample object:<p>
+</a><P>
+<a name="10900">
+<STRONG>	 1.	 Load the following object:
+</STRONG>
+</a><P><dl><dl><a name="10901">
+<dt><code>/usr/local/ngc/demo/objects/hand.geo</code><p>
+</a><P></dl></dl><dl><a name="10902">
+<dt>The hand looks like this:</dt>
+</a><P><a name="10906">
+ <P><img src="6Posing.anc21.gif"><p>
+</a><a name="10907">
+ <p>
+</a></dl>
+<a name="10908">
+<em>Figure 6.21  &#32; &#32;Sample hand bone (with sibling bones)
+</em></a><P>
+<a name="10909">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on segments in the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="10910">
+<dt>Move the cursor over the various bones; note that we've named all the bones attached to the wrist joint index_1, middle_1, and so on. These are all sibling bones-they are attached to the same joint, and have the same orientation and distance from the root.</dt>
+</a><P></dl><a name="10911">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the index_1 bone.
+</STRONG>
+</a><P><a name="10912">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Lock Bone.
+</STRONG>
+</a><P><dl><a name="10913">
+<dt>A list of sibling bones for the selected bone is displayed.</dt>
+</a><P></dl><a name="10914">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on middle_1.
+</STRONG>
+</a><P><a name="10915">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><dl><a name="10916">
+<dt>Move the mouse left and righ. The bones move in unison, as if they were <em>locked</em> together:</dt>
+</a><P><a name="10923">
+ <P><img src="6Posing.anc22.gif"><p>
+</a><a name="10924">
+ <p>
+</a></dl>
+<a name="10925">
+<em>Figure 6.22  &#32; &#32;Locked bones move in unison
+</em></a><P><a name="10926">
+You can use the Lock Bone command to move several bones the same amount without having to line up each bone over and over. It's possible to lock a bone to more than one other bone; however, in an example like the hand above, it's probably easier to pick one bone you want to attach the other sibling bones to rather than locking them in a chain (each to the bone next to it).<p>
+</a><P><a name="10927">
+The lock bone feature is particularly powerful when used with the Pose Editor, described below.<p>
+</a><P><a name="10928">
+<h4> Unlocking a Bone</h4>
+</a><a name="10929">
+To unlock a bone that has been locked:<p>
+</a><P>
+<a name="10930">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone.
+</STRONG>
+</a><P><a name="10931">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Lock Bone.
+</STRONG>
+</a><P><a name="10932">
+<STRONG>	3.	 Select the bone(s) you want to unlock this bone from.
+</STRONG>
+</a><P>
+<a name="10933">
+<h2><HR> Saving Poses</h2>
+</a><a name="10934">
+Once skeletons are in the position you want, you can save the skeleton as a <em>pose</em>. By creating a number of poses, you can generate an animation.<p>
+</a><P><a name="10935">
+Let's create and save several poses for a skeleton:<p>
+</a><P>
+<a name="10936">
+<STRONG>	 1.	 Load the skeleton primitive.
+</STRONG>
+</a><P><a name="10937">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the left upper arm.
+</STRONG>
+</a><P><a name="10938">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><dl><a name="10939">
+<dt>Raise the skeleton's arm above its head, then repeat the process with the right arm, so that it looks like this:</dt>
+</a><P><a name="10943">
+ <P><img src="6Posing.anc23.gif"><p>
+</a></dl>
+<a name="10944">
+<em>Figure 6.23  &#32; &#32;Pose the skeleton
+</em></a><P>
+<a name="10945">
+<STRONG>	4.	 Select bodies from the element sensitivity menu.
+</STRONG>
+</a><P><a name="10946">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="10947">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="10948">
+<dt>You want to save the current position as a pose. The following dialog box appears:</dt>
+</a><P><a name="10952">
+ <P><img src="6Posing.anc24.gif"><p>
+</a></dl>
+<a name="10953">
+<em>Figure 6.24  &#32; &#32;Saving a pose
+</em></a><P>
+<a name="10954">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the text edit box next to Pose name and enter a more descriptive name for the pose.
+</STRONG>
+</a><P><a name="10958">
+ <P><img src="6Posing.anc25.gif"><p>
+</a>
+<a name="10959">
+<em>Figure 6.25  &#32; &#32;Naming a pose
+</em></a><P>
+<a name="10960">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Done after you've named the pose.
+</STRONG>
+</a><P><a name="10961">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="10962">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="10963">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="10967">
+ <P><img src="6Posing.anc26.gif"><p>
+</a></dl>
+<a name="10968">
+<em>Figure 6.26  &#32; &#32;Saving a pose
+</em></a><P>
+<a name="10969">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="10970">
+<dt>The skeleton returns to its original pose.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>A skeleton generated from the N-Geometry menu (or by reading in a motion capture file) has a "base state" associated with it.</em></font></dd></dt></dl><P>
+
+<a name="10975">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the skeleton again.
+</STRONG>
+</a><P><a name="10976">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="10977">
+<dt>A menu appears, listing any poses that have been saved with the currently selected skeleton.</dt>
+</a><P><a name="10981">
+ <P><img src="6Posing.anc27.gif"><p>
+</a></dl>
+<a name="10982">
+<em>Figure 6.27  &#32; &#32;Selecting a pose
+</em></a><P>
+<a name="10983">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on arms-up.
+</STRONG>
+</a><P><a name="10984">
+<STRONG>	15.	 Drag the mouse slowly from left to right.
+</STRONG>
+</a><P><dl><a name="10985">
+<dt>The skeleton goes from its current position toward the named pose; if you continue to move the mouse, the skeleton continues to move beyond the saved pose (extrapolating as you continue to move the mouse).</dt>
+</a><P></dl><a name="10986">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> to move the skeleton to its new position, or <strong>(CLICK-R)</strong> to abort the changes.
+</STRONG>
+</a><P>
+<a name="10987">
+This process can be repeated over and over to save multiple poses, which can be used later when animating the skeleton.<p>
+</a><P><a name="10988">
+The various pose operations are described in more detail in the <em>SAS Reference Manual</em>.<p>
+</a><P><a name="10989">
+<h4> Viewing Saved Poses</h4>
+</a><a name="10991">
+<h4> Moving the Skeleton to a Saved Pose</h4>
+</a><a name="10992">
+To move the skeleton to a saved pose:<p>
+</a><P>
+<a name="10993">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="10994">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="10995">
+<dt>A menu with any saved poses for the skeleton is displayed:</dt>
+</a><P><a name="10999">
+ <P><img src="6Posing.anc28.gif"><p>
+</a></dl>
+<a name="11000">
+<em>Figure 6.28  &#32; &#32;Moving the skeleton to a selected pose
+</em></a><P>
+<a name="11001">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the pose you want to move the skeleton toward.
+</STRONG>
+</a><P><a name="11002">
+<STRONG>	4.	 Move the mouse left to right to animate the skeleton toward the selected pose.
+</STRONG>
+</a><P>
+<a name="11003">
+<strong>(SHIFT-L)</strong> animates the skeleton to the selected pose but does not update the attached skins.<p>
+</a><P><a name="11004">
+<strong>(CTRL-L)</strong> on Pose to go directly to a pose. Specify a value of 1.0 in the dialog box that appears to view the actual saved pose; a value between 0 and 1 specifies a point between the base state and the pose.<p>
+</a><P><a name="11192">
+<h3> A Sample Skeleton with Saved Poses</h3>
+</a><a name="11193">
+	A skeleton with three poses has been saved in the following location:<p>
+</a><P><a name="11194">
+<code><pre>/usr/local/ngc/demo/objects/skeleton-3-poses.geo<p>
+</code></pre></a><a name="11195">
+If you'd like, load this skeleton and try some of the variations on the <strong>Pose</strong> command.<p>
+</a><P><a name="11196">
+<h2><HR> Aligning Bone Axes</h2>
+</a><a name="11197">
+Each bone has a local axis associated with it, and that each axis is color coded: 
+<P><Table Border="1">
+<dl>
+<a name="11200">
+<em>Table 6.2 <strong> &#32; &#32;Axis colors for bones</strong>
+</em></a></dl>
+<tr><th align="left"><a name="11204">
+Axis
+</a><th align="left"><a name="11206">
+Color
+</a>
+<tr><td valign="top"><a name="11208">
+ x<p>
+</a><td valign="top"><a name="11210">
+ red<p>
+</a>
+<tr><td valign="top"><a name="11212">
+ y<p>
+</a><td valign="top"><a name="11214">
+ green<p>
+</a>
+<tr><td valign="top"><a name="11216">
+ z<p>
+</a><td valign="top"><a name="11218">
+ yellow<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="11219">
+When animating, it's typically desirable that all the axes on the same limb have the same local axes from the root to the end of the limb. However, it's possible to build a skeleton in such a way that some limbs have local axes aligned differently.<p>
+</a><P><a name="11220">
+If you build your skeletons correctly, or if you import premade skeletons, you probably won't need to modify the rotation axes of any bones.<p>
+</a><P><a name="11221">
+<h4> "Mirroring" Bones</h4>
+</a><a name="11222">
+Realigning the axes is also useful if you want to pose corresponding bones on both sides of a skeleton at the same time (for example, if you wanted to define poses for a bird where you moved the wings in unison).<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Changing the rotation axes for bones on skeletons that have been read in as part of a motion capture data file can cause the motion data to be applied "incorrectly" when animated.</em></font></dd></dt></dl><P>
+<a name="11224">
+Try this:<p>
+</a><P>
+<a name="11225">
+<STRONG>	 1.	 Load the skeleton primitive.
+</STRONG>
+</a><P><dl><a name="11226">
+<dt>Take a close look at the local bone axes at the base of each bone frame; note that they all have the same orientation.</dt>
+</a><P><a name="11230">
+ <P><img src="6Posing.anc29.gif"><p>
+</a></dl>
+<a name="11231">
+<em>Figure 6.29  &#32; &#32;All the axes on the skeleton are oriented the same way
+</em></a><P>
+<a name="11232">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on segments in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11233">
+<STRONG>	3.	 (<strong>CLICK-L)</strong> on the two collar bones, then <strong>(CLICK-R)</strong> to finish the collection.
+</STRONG>
+</a><P><a name="11234">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> then <strong>(CLICK-M)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><dl><a name="11235">
+<dt>The two collar bones move in the same direction around their local axes; however, you want them to move in a "mirrored" fashion.</dt>
+</a><P><a name="11241">
+ <P><img src="6Posing.anc30.gif"><p>
+</a></dl>
+<a name="11242">
+<em>Figure 6.30  &#32; &#32;Rotating corresponding bones without modifying the bone axes
+</em></a><P>
+<a name="11243">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the left collar bone.
+</STRONG>
+</a><P><a name="11244">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Align/Rotate Axes.
+</STRONG>
+</a><P><dl><a name="11245">
+<dt>This lets you define the local axes orientation for the selected bone. The following dialog box appears:</dt>
+</a><P><a name="11249">
+ <P><img src="6Posing.anc31.gif"><p>
+</a></dl>
+<a name="11250">
+<em>Figure 6.31  &#32; &#32;Choosing an alignment axis for a bone
+</em></a><P>
+<a name="11251">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on -X.
+</STRONG>
+</a><P><dl><a name="11252">
+<dt>Notice that the local axes for the bone changes.</dt>
+</a><P></dl><a name="11253">
+<STRONG>	8.	 Collect the two collar bones again.
+</STRONG>
+</a><P><a name="11254">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> then <strong>(CLICK-M)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><a name="11260">
+ <P><img src="6Posing.anc32.gif"><p>
+</a>
+<a name="11261">
+<em>Figure 6.32  &#32; &#32;After modifying the orientation of the local bone axes, you can pose both sides of a skeleton in the same way
+</em></a><P><a name="11262">
+<h2><HR> Rotating vs. Fixed Bone Axes</h2>
+</a><a name="11263">
+You may have noticed that in all the example so far, that the bone axes have followed the motion of the bone. If you rotate the bone, the axes at the base of the bone rotates likewise. If you want, you can specify that the bone axes remain fixed (usually oriented in the same manner as the global axes) so that any bone rotations take place around an X, Y, or Z axis that corresponds to the global one.)<p>
+</a><P><a name="11264">
+The question of whether bone axes should rotate or remain fixed varies depending on which motion capture standard you employ. The skeletal animation system supports both rotating and fixed axes.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You cannot mix and match rotating and fixed bone axes on a skeleton.</em></font></dd></dt></dl><P>
+<a name="11266">
+To change the state of a skeleton's bone axes:<p>
+</a><P>
+<a name="11267">
+<STRONG>	 1.	 Load the following skeleton:
+</STRONG>
+</a><P><dl><a name="11268">
+<dt>/usr/local/ngc/demo/biovision/WalkGoofy.bvh</dt>
+</a><P></dl><a name="11269">
+<STRONG>	2.	 Look at the bone axes at the base of each bone.
+</STRONG>
+</a><P><dl><a name="11270">
+<dt>Note that at this point they are aligned with the global axes; the red axis is the positive X, green positive Y, and yellow positive Z.</dt>
+</a><P><a name="11278">
+ <P><img src="6Posing.anc33.gif"><p>
+</a><a name="11279">
+ <p>
+</a></dl>
+<a name="11280">
+<em>Figure 6.33  &#32; &#32;Typically, bone axes are aligned with the global axes in the skeleton's base position
+</em></a><P>
+<a name="11281">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the left upper arm and <strong>(CLICK-L)</strong> on Rotate/Twist.
+</STRONG>
+</a><P><dl><a name="11282">
+<dt>Pay special attention to the bone axes for that bone:</dt>
+</a><P><a name="11286">
+ <P><img src="6Posing.anc34.gif"><p>
+</a><a name="11287">
+ <p>
+</a></dl>
+<a name="11288">
+<em>Figure 6.34  &#32; &#32;With rotating axes, bone axes follow the rotations of the bone
+</em></a><P><dl><dl><a name="11289">
+<dt>Note that the bones (and the bone axes) below the bone being modified are also updated.</dt>
+</a><P></dl></dl>
+<a name="11290">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the Upper Arm bone.
+</STRONG>
+</a><P><dl><a name="11291">
+<dt>Look at the description that appears in the upper left corner of the Nichimen Geometry window:</dt>
+</a><P><a name="11298">
+ <P><img src="6Posing.anc35.gif"><p>
+</a><a name="11299">
+ <p>
+</a></dl>
+<a name="11300">
+<em>Figure 6.35  &#32; &#32;Bone description
+</em></a><P><dl><dl><a name="11301">
+<dt>The description shows the following information:</dt>
+</a><P></dl><ul>
+<BR><a name="11302">
+<li>The name of the bone and the skeleton to which it belongs
+</a><P><BR><a name="11303">
+<li>The X, Y, and Z rotations of the bone (measured from the skeleton's current base state)
+</a><P><BR><a name="11304">
+<li>The rotation order for the selected bone (in parentheses)
+</a><P><BR><a name="11305">
+<li>The actual length/scale of the bone. Actual length is the length in global units, while scale is the ratio of the bone's current length to its base length
+</a><P><BR><a name="11306">
+<li>A note indicating if the bone is fixedor not (fixed bones cannot be scaled)
+</a><P></ul>
+</dl>
+<a name="11307">
+<STRONG>	5.	 Look at the description again.
+</STRONG>
+</a><P><dl><a name="11308">
+<dt>Note that the rotation order is (Z X Y). This means that when you rotate this bone (e.g. in an N-Dynamics script), the Z rotation is applied first, the X rotation second, and finally the Y rotation (which is the "twist" axis that follows the bone.</dt>
+</a><P><a name="11309">
+<dt>With rotating axes, the bone should be rotated around the twist axis <em>last</em>.</dt>
+</a><P></dl><a name="11310">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu and <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="11311">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on Bone Display/Axes.
+</STRONG>
+</a><P><dl><a name="11312">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="11316">
+ <P><img src="6Posing.anc36.gif"><p>
+</a><a name="11317">
+ <p>
+</a></dl>
+<a name="11318">
+<em>Figure 6.36  &#32; &#32;Fixing axes dialog box
+</em></a><P>
+<a name="11319">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><a name="11320">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the left upper arm again.
+</STRONG>
+</a><P><a name="11321">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Rotate/Twist.
+</STRONG>
+</a><P><dl><a name="11322">
+<dt>Now when you rotate or twist the bone, the rotation axes remain fixed:</dt>
+</a><P><a name="11329">
+ <P><img src="6Posing.anc37.gif"><p>
+</a><a name="11330">
+ <p>
+</a></dl>
+<a name="11331">
+<em>Figure 6.37  &#32; &#32;Rotating a bone with fixed axes
+</em></a><P><a name="16433">
+Changing from fixed to rotating axes requires a change in rotation order to generate the same motion; the SAS reorders the axes <em>automatically</em>.<p>
+</a><P><a name="11340">
+ <P><img src="6Posing.anc38.gif"><p>
+</a><a name="11341">
+ <p>
+</a><a name="11342">
+<em>Figure 6.38  &#32; &#32;Rotating a bone with fixed axes
+</em></a><P><a name="11344">
+With fixed axes, rotations along the bone axis should be done first instead of last; note that the new rotation order is (Y X Z); the Y rotation for this bone will now be applied first when animating it in an N-Dynamics script.<p>
+</a><P><a name="11345">
+Some animators prefer to work with fixed bone axes, other with rotating axes; the Skeletal Animation System lets you work equally with either.<p>
+</a><P><a name="11346">
+<h4> Motion Capture Supplier Preferences</h4>
+</a><a name="11347">
+Different motion capture vendors have different preferred methods of setting up a skeleton.<p>
+</a><P><ul><a name="11348">
+<li><strong>Acclaim</strong> skeletons have fixed axes and a default (Y X Z) rotation order
+</a></li><P><a name="11349">
+<li><strong>BioVision</strong> skeletons have rotating axes and a default (Z X Y) rotation order
+</a></li><P><a name="11350">
+<li><strong>Geo</strong> skeletons have rotating axes and a default (Z X Y) rotation order
+</a></li><P></ul><P><a name="11351">
+The Skeletal Animation System lets you switch from fixed to rotating bone axes (or back) freely, modifying the rotation order for bones appropriately and automatically.<p>
+</a><P><a name="10767">
+<h2><HR> Animating the Root Node in N-Dynamics</h2>
+</a><a name="15109">
+In addition to using IK to pose the skeleton interactively, there are several operations in N-Dynamics that let you rotate, transform, or translate the skeleton from within an N-Dynamics script:<p>
+</a><P><a name="10768">
+<h4> Rotate Root</h4>
+</a><a name="15142">
+For the root of the skeleton, lets you specify:<p>
+</a><P><ul><a name="15143">
+<li>an X, Y, and Z rotation
+</a></li><P></ul><P><a name="15160">
+<h4> Translate Root</h4>
+</a><a name="15161">
+For the root of the skeleton, lets you specify:<p>
+</a><P><ul><a name="15162">
+<li>an X, Y, and Z offset
+</a></li><P></ul><P><a name="10769">
+<h4> Transform Root</h4>
+</a><a name="15129">
+For the root of the skeleton, lets you specify:<p>
+</a><P><ul><a name="15132">
+<li>an X, Y, and Z rotation
+</a></li><P><a name="15119">
+<li>an X, Y, and Z offset
+</a></li><P></ul><P><a name="10778">
+<h3> When to Use These Operations</h3>
+</a><a name="15173">
+These operations are useful under a number of conditions:<p>
+</a><P><ul><a name="15182">
+<li>you pose a skeleton in the base position and want to animate its transformation in a standalone channel
+</a></li><P><a name="15185">
+<li>you want to layer additional rotations or translations on top of existing animation channels
+</a></li><P></ul><P><a name="15186">
+These operations are described in more detail in the <em>Skeletal Animation System Reference Guide</em>.<p>
+</a><P><a name="15933">
+<h2><HR> Congratulations!</h2>
+</a><a name="15934">
+You've now learned to use most of the posing commands in the Skeletal Animation System, use the DOF Editor to define degrees of freedom (range of motion) for a skeleton, lock bones to one another, and modify bone axes between fixed and rotating.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="5SkinningEnhancements.html">[Prev]</a> <a href="7WalkCycle.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 19:53:18 -->
+
+</body>
+</html>

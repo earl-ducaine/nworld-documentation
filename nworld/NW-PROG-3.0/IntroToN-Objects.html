@@ -1,0 +1,111 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="CreatingMenus.html">[Prev]</a> <a href="CreatingBodsAndObjs.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="27758">
+Objects are the foundation of N&#183;World. In this chapter, you'll learn:<p>
+</a><P><ul><a name="27909">
+<li>basic object structure
+</a></li><P><a name="27910">
+<li>what object hierarchies are and how they are structured
+</a></li><P><a name="27911">
+<li>what coordinates systems are
+</a></li><P><a name="27912">
+<li>what transformation matrices are
+</a></li><P></ul><P><a name="27908">
+<h2><HR> N&#183;World Object Structure</h2>
+</a><a name="27140">
+N&#183;World creates, manipulates, and displays <em>objects.</em> An object is the viewable representation of a body and a <em>transformation matrix</em>.<p>
+</a><P><a name="27443">
+  	<P><img src="IntroToN-Objects.anc.gif"><p>
+</a><a name="25885">
+<em>Figure 6.1  &#32; &#32;Components of an object
+</em></a><P><a name="26846">
+The body of an object contains the geometric information which defines that object. Bodies consists of either a <em>geobody</em> or a list of objects. A geobody is a geometry entity that is self-contained and not an element of another geometry entity. Geobodies known to the 3D editor include isolated points and line segments, wires, wireframes, polyhedra, and skeletons. <p>
+</a><P><a name="26851">
+Objects whose bodies are geobodies are called simple objects.<p>
+</a><P><a name="26832">
+ <P><img src="IntroToN-Objects.anc1.gif"><p>
+</a><a name="26834">
+<em>Figure 6.2  &#32; &#32;Simple object
+</em></a><P><a name="26019">
+An object whose body is a list of objects is called a <em>compound</em> or <em>multiple object</em>. A compound object can contain several levels of objects and compound objects.<p>
+</a><P><a name="26067">
+ <P><img src="IntroToN-Objects.anc2.gif"><p>
+</a><a name="26069">
+<em>Figure 6.3  &#32; &#32;Compound object
+</em></a><P><a name="26023">
+An object that forms part of a list that makes up another object is referred to as an <em>inferior object</em>. Objects which have inferior objects are called <em>superior objects</em>. Superior objects contain inferior objects. A <em>top-level objec</em>t is an object that is at the top of a hierarchy and has no superior. A <em>terminal object</em> sits at the bottom of the object hierarchy, and has no objects as its inferiors.<p>
+</a><P><a name="26111">
+The transformation matrix contains information such as location, rotation, and scaling. Along with the <em>body-display-item</em> (bdi), which contains information for displaying the object on the screen, the transformation matrix determines the appearance of the object in the editor window.<p>
+</a><P><a name="26079">
+Different objects can share a single body by <em>instancing. </em>Objects which share bodies are said to be <em>reinstanced</em>. Reinstanced objects each have their own unique transformation matrix that is not shared with other objects. As a result, reinstanced objects can have completely appearances, even though they share the same geometry.<p>
+</a><P><a name="26283">
+ <P><img src="IntroToN-Objects.anc3.gif"><p>
+</a><a name="26369">
+<em>Figure 6.4  &#32; &#32;Reinstanced objects
+</em></a><P><a name="26481">
+  <P><img src="IntroToN-Objects.anc4.gif"><p>
+</a><a name="26576">
+<em>Figure 6.5  &#32; &#32;Hierarchy of a top-level, compound object
+</em></a><P><a name="26871">
+The top-level object in this hierarchy contains four inferior objects. The inferior object on the left is a simple object and contains only a body and a bdi. Two reinstanced objects which share the same body occupy the center of the hierarchy. The object on the right is itself a compound object composed of two inferior, simple objects.<p>
+</a><P><a name="26922">
+<h4> Coordinate Systems</h4>
+</a><a name="27310">
+The world in N-Geometry is a Cartesian coordinate space. Such a space is defined in terms of a starting point, known as the <em>global origin</em>, and a set of three mutually perpendicular directions, known as the major axes.<p>
+</a><P><a name="27312">
+Any point in space can be uniquely defined by three numbers, the x, y, and z coordinates, which represent its distance from the three planes perpendicular to the major axes passing through the global origin. The three directions, together with the global origin, are called the <em>global coordinate system</em>, as shown in <a href="IntroToN-Objects.html#27331">Figure 6.6</a>. <p>
+</a><P><a name="27317">
+In N-Geometry this coordinate system is "right-handed;" positive y represents "up," positive x is "right," and positive z is "forward."<p>
+</a><P><a name="27329">
+  <P><img src="IntroToN-Objects.anc5.gif"><p>
+</a><a name="27331">
+<em>Figure 6.6  &#32; &#32;The global coordinate system
+</em></a><P><a name="27307">
+Objects are defined in terms of their own local coordinate system. Typically, when an object is created, the origin of its local coordinate system is located at the center of the object. The local coordinate system is, in turn, defined by its relationship with the global coordinate system. When an object is first instanced its local origin is the same as the global origin. Coordinate systems which share origins, and whose axes are parallel, are said to be coincident.<p>
+</a><P><a name="27356">
+<h1> Modifying and Transforming Objects</h1>
+</a><a name="27037">
+You can use the 3D editor or extensions you program in Lisp to change objects by manipulating its body or its transformation matrix:<p>
+</a><P><ul><a name="27038">
+<li><em>Rigid-body transformations</em> can be made to the body itself, or to the transformation matrix of an object. Examples include translating, scaling, rotating and shearing.
+</a></li><P><a name="27040">
+<li><em>Body modifications</em> affect the basic geometry of a body. There are two basic types of body modifications:
+</a></li><P><ul>
+<BR><a name="27028">
+<li><em>Topological</em> changes, which affect the relationships between elements of a body.
+</a><P><BR><a name="27029">
+<li><em>Local deformations</em>, which affect some points of the body but not others.
+</a><P></ul>
+</ul><P><a name="26425">
+Modifications to the body change the data in each primitive element of the body, while changes to the transformation matrix affect only the <em>appearance</em> of the object.<p>
+</a><P><a name="26426">
+<h3> Changing Transformation Matrices</h3>
+</a><a name="26773">
+The transformation matrix itself is an array of sixteen numbers that is used to define the drawn position of an object with respect to some coordinate space. A transformation matrix which is coincident with the global coordinate system is called an <em>identity matrix</em>. Objects with identity matrices are said to be in their home position.<p>
+</a><P><a name="26954">
+When you modify an objects transformation matrix, you are effectively modifying the coordinate system in which the object is embedded. Transforming does not affect the body of the object, only its <em>appearance</em> in the world. For example, a polyhedron might have all its vertices centered around the origin. Applying a translation transformation to the polyhedron's object displaces the space in which the polyhedron is defined. The polyhedron's vertices are still centered around the local origin, but the object now appears displaced from the global origin because the local space has moved relative to the global coordinate system. When the object is in its home position it is impossible to visually distinguish a transformation from an equivalent body modification. Transformations can be undone by <em>reinitializing</em> the objects transformation matrix. Reinitializing returns the object to its identity matrix and its home position.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="CreatingMenus.html">[Prev]</a> <a href="CreatingBodsAndObjs.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:10:25 -->
+
+</body>
+</html>

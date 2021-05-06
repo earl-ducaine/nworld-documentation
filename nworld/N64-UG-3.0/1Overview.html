@@ -1,0 +1,666 @@
+<html><head><title>Using N64 Express</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0-AboutThisDoc.html">[Prev]</a> <a href="2Attributes.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9747">
+<h1>Using N64 Express</h1>
+</a>
+<hr><p><a name="9748">
+<h4> This chapter outlines briefly the procedure for exporting objects, textures, and animation to the Nintendo 64 platform</h4>
+</a><a name="11997">
+ <P><img src="1Overview.anc.gif"><p>
+</a><a name="9939">
+<h2><HR> Using N64 Express</h2>
+</a><a name="10146">
+<h3> Hardware Requirements</h3>
+</a><a name="10138">
+In addition to a Nintendo 64, the N64 Express requires a Nintendo 64 development board set, Rev. 2.0.<p>
+</a><P><a name="10140">
+<h3> Software Requirements</h3>
+</a><a name="10141">
+In addition to the files supplied by Nichimen Graphics, you need the Nintendo 64 Development Environment, Rev. 2.0e, which is distributed by Nintendo.<p>
+</a><P><a name="10150">
+<h3> Capabilities</h3>
+</a><a name="10151">
+N64 Express supports conversion of game content data for real-time display on the Nintendo 64. This includes:<p>
+</a><P><ul><a name="10152">
+<li>Object geometry data
+</a></li><P><a name="10153">
+<li>Materials data
+</a></li><P><a name="10154">
+<li>Animation data
+</a></li><P></ul><P><a name="10644">
+<h3> Nintendo 64 Express Parameters</h3>
+</a><a name="10645">
+<h4> Geometry</h4>
+</a><ul><a name="10646">
+<li>Binary
+</a></li><P><ul>
+<BR><a name="10647">
+<li>~2000 polygons per object
+</a><P><BR><a name="10648">
+<li>20 object maximum
+</a><P></ul>
+<a name="10649">
+<li>ASCII
+</a></li><P><ul>
+<BR><a name="10650">
+<li>Depends on amount of RAM in the Nintendo 64
+</a><P></ul>
+</ul><P><a name="10651">
+<h4> Texture</h4>
+</a><ul><a name="10652">
+<li>Binary
+</a></li><P><ul>
+<BR><a name="10653">
+<li>512k of combined textures
+</a><P></ul>
+<a name="10654">
+<li>ASCII
+</a></li><P><ul>
+<BR><a name="10655">
+<li>Depends on amount of RAM in the Nintendo 64
+</a><P></ul>
+</ul><P><a name="10656">
+<h4> Animation</h4>
+</a><ul><a name="10657">
+<li>Binary
+</a></li><P><ul>
+<BR><a name="10658">
+<li>99 frames
+</a><P></ul>
+<a name="10659">
+<li>ASCII
+</a></li><P><ul>
+<BR><a name="10660">
+<li>Depends on amount of RAM in the Nintendo 64
+</a><P></ul>
+</ul><P><a name="9855">
+<h2><HR> The N64 Express Process</h2>
+</a><a name="10147">
+N64 Express is designed to provide real-time feedback to you, the artist, about how your objects will look on the Nintendo 64. The speed with which objects can be ported from N&#183;World to the Nintendo 64 allows for real-time, interactive design of objects and materials. You can export object geometry, materials, and animation data to the Nintendo 64.<p>
+</a><P><a name="9898">
+Here's how the process works:<p>
+</a><P>
+<a name="9856">
+<STRONG>	 1.	 Model your objects in N-Geometry.
+</STRONG>
+</a><P><a name="9857">
+<STRONG>	2.	 Create materials in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="9858">
+<dt>Materials you wish to use in the <strong>Nintendo 64</strong> should be defined using the N64 render domain, whose attributes and parameters are described in the next section.</dt>
+</a><P></dl><a name="9859">
+<STRONG>	3.	 Use the Browser to associate materials and mappers with your objects.
+</STRONG>
+</a><P><a name="9860">
+<STRONG>	4.	 Redisplay your 3D object in N&#183;World in real time, using the SGI GL Shade hardware renderer.
+</STRONG>
+</a><P><dl><a name="9861">
+<dt>Redisplay allows you to get your objects looking the way you want on the SGI, before you export anything.</dt>
+</a><P></dl><a name="9862">
+<STRONG>	5.	 Export and display the objects on the Nintendo 64.
+</STRONG>
+</a><P><dl><a name="9863">
+<dt>With a simple click of a button, send your object to the Nintendo 64. You can fine tune it's appearance on the game platform itself by adjusting attributes and sending it over again.</dt>
+</a><P></dl><a name="9902">
+<STRONG>	6.	 When everything looks right, you can write the object and it's associated materials to file with a simple command.
+</STRONG>
+</a><P><dl><a name="10230">
+<dt>When you export an object to N64 format, N64 Express automatically creates .c and .h object description files for your object.</dt>
+</a><P></dl><a name="10231">
+<STRONG>	7.	 If you wish to animate these objects, create the animation in N-Dynamics, adding a Record Animation channel at the end of the script.
+</STRONG>
+</a><P><dl><a name="9897">
+<dt>The Nintendo animation data are generated and stored in memory on the SGI until you write them to file.</dt>
+</a><P></dl><a name="9896">
+<STRONG>	8.	 After running the script, <strong>(CLICK-L)</strong> on Export in the Dynamics menu. 
+</STRONG>
+</a><P><dl><a name="12060">
+<dt>You can either preview the animation directly on the N64, or create the ASCII .c and .h files and write them to disk for compilation and display later.</dt>
+</a><P></dl>
+<a name="10617">
+<h3> Things to Remember about N64 Express</h3>
+</a><a name="11699">
+<h4> Preview vs. Export</h4>
+</a><a name="10752">
+When you <em>preview</em> an object or an animation, the data are compiled and sent to the Nintendo directly. When you export an object, the data are written to ASCII files, which can then be compiled and displayed on the Nintendo 64.<p>
+</a><P><a name="11691">
+<h4> Faces Larger than 4K</h4>
+</a><a name="11692">
+If your object contains faces that use more than 4K of texture map memory, an error message appears, telling you that such faces exist on your object. The object is not sent over, and the faces are collected in N-Geometry for you.<p>
+</a><P><a name="11693">
+With the faces still selected, <strong>(Shift-L)</strong> on the collection and use the <strong>Cut</strong> command to cut the individual faces to a smaller size (select pairs of vertices to cut the face). See the <em>N-Geometry Reference Guide</em> for more information about using the cut commands.<p>
+</a><P><a name="10749">
+<h2><HR> Previewing</h2>
+</a><a name="12103">
+The following section assumes that your hardware (the SGI, a monitor, and the N64 development board are correctly installed and configured. If you choose, you can direct output to an SGI Capture window. To do so:<p>
+</a><P>
+<a name="12109">
+<STRONG>	 1.	 Open a UNIX shell and type in the following command.
+</STRONG>
+</a><P><dl><a name="12110">
+<dt><code>unix%capture &amp;</code></dt>
+</a><P></dl><a name="12111">
+<STRONG>	2.	 When the Capture window appears, <strong>(CLICK-L)</strong> on Tools&gt;Video Panel.
+</STRONG>
+</a><P><dl><a name="12112">
+<dt>The Video control panel appears:</dt>
+</a><P><a name="12116">
+ <P><img src="1Overview.anc1.gif"><p>
+</a></dl>
+<a name="12117">
+<em>Figure 1.1  &#32; &#32;Configuring the Capture screen
+</em></a><P>
+<a name="12118">
+<STRONG>	3.	 Change the Default In: parameter to Analog Source.
+</STRONG>
+</a><P><dl><a name="12119">
+<dt>Now, objects you're previewing on the Sega Saturn will appear in this capture window.</dt>
+</a><P></dl>
+<a name="10666">
+<h3> Previewing an Object on the Nintendo 64</h3>
+</a><a name="10667">
+The following section is a brief tutorial describing exactly how to create an object, assign materials to it, and then view it on the Nintendo 64. <p>
+</a><P><a name="11329">
+Before we begin, however, you'll need to copy the source texture map files to a directory for which you have write permissions. <p>
+</a><P>
+<a name="11328">
+<STRONG>	 1.	 Copy the following files a directory for which you have write permission.
+</STRONG>
+</a><P><dl><a name="11336">
+<dt><strong>/usr/local/ngc/presets/maps/Green_Snake_B.tpx</strong></dt>
+</a><P><a name="12086">
+<dt>During this tutorial we'll refer to this file as Green_Snake_B.tpx.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	Often your home directory, or a directory you use to store your own work is a good choice. If you have any questions, ask your system administrator for help.</font></dd></dt></dl><P>
+
+<a name="10668">
+<STRONG>	2.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;sphere.
+</STRONG>
+</a><P><a name="10670">
+<STRONG>	3.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;mapper.
+</STRONG>
+</a><P><dl><a name="10671">
+<dt>Create a spherical mapper, and set the bounds source for the mapper to your new sphere. Your mapper parameters should look like this:</dt>
+</a><P><a name="10675">
+ <P><img src="1Overview.anc2.gif"><p>
+</a></dl>
+<a name="10676">
+<em>Figure 1.2  &#32; &#32;Spherical mapper parameters
+</em></a><P>
+<a name="10677">
+<STRONG>	4.	 In the GeoMenus, <strong>(CLICK-L)</strong> on Shading, then select your object from the menu which appears.
+</STRONG>
+</a><P><a name="10790">
+ <P><img src="1Overview.anc3.gif"><p>
+</a>
+<a name="10791">
+<em>Figure 1.3  &#32; &#32;Toggling shading for Geometry objects
+</em></a><P>
+<a name="10789">
+<STRONG>	5.	 Open the Browser, then <strong>(CLICK-L)</strong> on the Geo button.
+</STRONG>
+</a><P><dl><a name="10801">
+<dt>The Browser shows all the objects currently loaded into Geometry, and also provides a visual representation of object hierarchy:</dt>
+</a><P><a name="10802">
+ <P><img src="1Overview.anc4.gif"><p>
+</a></dl>
+<a name="10803">
+<em>Figure 1.4  &#32; &#32;The Browser display
+</em></a><P>
+<a name="10798">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> over your object in the Browser display.
+</STRONG>
+</a><P><dl><a name="10678">
+<dt>The Operations menu for your sphere appears. </dt>
+</a><P><a name="10682">
+ <P><img src="1Overview.anc5.gif"><p>
+</a></dl>
+<a name="10683">
+<em>Figure 1.5  &#32; &#32;The Browser Operations menu for sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If your Browser doesn't show all the objects in the Geometry window, <strong>(CLICK-L)</strong> on Recompute to refresh the Browser display.</font></dd></dt></dl><P>
+
+<a name="10810">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Assign Mapper.
+</STRONG>
+</a><P><dl><a name="10685">
+<dt>A pop-up menu appears listing the mappers you've created. <strong>(CLICK-L)</strong> on the spherical mapper you created in step <a href="1Overview.html#10670">3</a>.</dt>
+</a><P><a name="10766">
+ <P><img src="1Overview.anc6.gif"><p>
+</a></dl>
+<a name="10767">
+<em>Figure 1.6  &#32; &#32;Assigning a mapper using the Browser
+</em></a><P><dl><dl><a name="10689">
+<dt>The browser display changes to reflect the mappers new association with your sphere.</dt>
+</a><P><a name="10693">
+ <P><img src="1Overview.anc7.gif"><p>
+</a></dl></dl><a name="10694">
+<em>Figure 1.7  &#32;Mapper associated with an object in the Browser
+</em></a><P>
+<a name="10695">
+<STRONG>	8.	 Open the Attributes Editor.
+</STRONG>
+</a><P><a name="10776">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on New.
+</STRONG>
+</a><P><dl><a name="10777">
+<dt>Enter a directory and filename for you new material in the dialog box which appears:</dt>
+</a><P><a name="10778">
+ <P><img src="1Overview.anc8.gif"><p>
+</a></dl>
+<a name="10779">
+<em>Figure 1.8  &#32; &#32;Creating a new material
+</em></a><P><dl><dl><a name="10819">
+<dt>Icons for your new material appear in the Attributes Editor (<a href="1Overview.html#10701">Figure 1.9</a>)</dt>
+</a><P><a name="10700">
+ <P><img src="1Overview.anc9.gif"><p>
+</a></dl></dl><a name="10701">
+<em>Figure 1.9  &#32; &#32;N64 Render domain attributes editor menu
+</em></a><P>
+<a name="10815">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the N64 button.
+</STRONG>
+</a><P><dl><a name="11277">
+<dt>This selects the N64 domain as the current render domain, and reveals the N64 domain attribute menus (<a href="1Overview.html#10701">Figure 1.9</a>).</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	The N64 domain is specially designed for attributing objects for display on the N64. You should read <a href="2Attributes.html#9745">Chapter &#32;2</a> and become familiar with N64 attributes and defaults.</font></dd></dt></dl><P>
+
+<a name="11278">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Texture.
+</STRONG>
+</a><P><dl><a name="10703">
+<dt>The Attributes menu will change to reflect N64 texture map attributes.</dt>
+</a><P></dl><a name="10704">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the Texture Map field, and select the following texture map file:
+</STRONG>
+</a><P><dl><a name="10705">
+<dt><code>Green_snake_B.tpx</code></dt>
+</a><P><a name="12089">
+<dt>Remember we copied this file to another location at the beginning of this section.</dt>
+</a><P></dl><a name="10707">
+<STRONG>	13.	 In the Browser, <strong>(CLICK-R)</strong> on your sphere.
+</STRONG>
+</a><P><dl><a name="10708">
+<dt>The Operations menu appears again.</dt>
+</a><P></dl><a name="10709">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="10710">
+<dt>A menu appears listing all materials loaded into memory. <strong>(CLICK-L)</strong> on the material you just created.</dt>
+</a><P><a name="10756">
+ <P><img src="1Overview.anc10.gif"><p>
+</a></dl>
+<a name="10772">
+<em>Figure 1.10  &#32; &#32;Assigning a material
+</em></a><P><dl><dl><a name="10711">
+<dt>The browser will prompt you to select a mapper for any texture maps associated with the material.</dt>
+</a><P><a name="10836">
+ <P><img src="1Overview.anc11.gif"><p>
+</a></dl></dl><a name="10837">
+<em>Figure 1.11  &#32; &#32;Assigning a texture map to a mapper in the Browser
+</em></a><P>
+<a name="10831">
+<STRONG>	15.	 <strong>(CLICK-R)</strong> on the Mapper field, then <strong>(CLICK-L) </strong>on the Spherical mapper you created in step<strong> </strong><a href="1Overview.html#10670">3</a>.
+</STRONG>
+</a><P><dl><a name="10830">
+<dt>The browser window should now show the sphere and its mapper, as well as the material you just assigned it.</dt>
+</a><P><a name="10715">
+ <P><img src="1Overview.anc12.gif"><p>
+</a></dl>
+<a name="10716">
+<em>Figure 1.12  &#32; &#32;The Browser with mapper and material assigned to Sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If you don't see icons for your materials, <strong>(CLICK-L)</strong> on the Options button at the bottom of the browser, then <strong>(CLICK-L)</strong> on the Icons toggle.</font></dd></dt></dl><P>
+
+<a name="10719">
+<STRONG>	16.	 In the Attributes Editor, <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="10720">
+<dt>Your sphere should appear in the Geometry window with the green snake scales applied to it. N64 materials are displayed in the Geometry window using GL Shade.</dt>
+</a><P></dl><a name="10721">
+<STRONG>	17.	 Now, <strong>(CLICK-L)</strong> on Preview in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="10722">
+<dt>The object should appear on the Nintendo 64 monitor.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	The Preview function exports all objects visible in the Geometry window to the Nintendo 64. </font></dd></dt></dl><P>
+<a name="10724">
+That's all there is to it! Essentially, previewing objects on the Nintendo 64 is no different from ordinary render operations.<p>
+</a><P><a name="12015">
+<h4> Manipulating Objects on the N64</h4>
+</a><a name="12016">
+You can use the N64 joystick controller to manipulate the objects you're previewing on the Nintendo 64.<p>
+</a><P><a name="10625">
+<h3> Troubleshooting</h3>
+</a><a name="10855">
+If your object doesn't appear on the N64 display:<p>
+</a><P>
+<a name="10856">
+<STRONG>	 1.	 Make sure your object has the correct mapper and material assigned to it.
+</STRONG>
+</a><P><a name="10857">
+<STRONG>	2.	 Make sure the material assigned to the object is defined in N64 render domain.
+</STRONG>
+</a><P><a name="10858">
+<STRONG>	3.	 Make sure that the N64 board is installed correctly.
+</STRONG>
+</a><P><a name="10859">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Reset in the Attributes Editor to reset the N64 development board.<strong></strong>
+</STRONG>
+</a><P>
+<a name="10854">
+<h2><HR> Exporting and Previewing an Object</h2>
+</a><a name="11317">
+You can export objects to Nintendo display list files from the N-Geometry interface. You can then compile these ASCII files and send them to the Nintendo 64. To export an object:<p>
+</a><P>
+<a name="10898">
+<STRONG>	 1.	 <strong>(Click-L)</strong> on the Export command under the File section of the GeoMenus.
+</STRONG>
+</a><P><a name="10899">
+<STRONG>	2.	 Choose the object you want to export from the object list that appears.
+</STRONG>
+</a><P><dl><a name="10900">
+<dt>The Choose Export Format pop-up menu appears:</dt>
+</a><P><a name="10904">
+ <P><img src="1Overview.anc13.gif"><p>
+</a></dl>
+<a name="10905">
+<em>Figure 1.1  &#32; &#32;The Choose Export Format pop-up menu
+</em></a><P>
+<a name="10906">
+<STRONG>	3.	 <strong>(Click-L)</strong> on Nintendo 64.
+</STRONG>
+</a><P><dl><a name="10907">
+<dt>A dialog appears for you to specify a directory and filename for the object file (Nintendo 64 filenames are automatically appended with the extensions ".c" and ".h")</dt>
+</a><P><a name="10911">
+ <P><img src="1Overview.anc14.gif"><p>
+</a></dl>
+<a name="10912">
+<em>Figure 1.2  &#32; &#32;Choose filename for Nintendo 64 files
+</em></a><P>
+<a name="10913">
+<STRONG>	4.	 If you choose, you can select additional objects to write out at this time.
+</STRONG>
+</a><P><dl><a name="10914">
+<dt><strong>(CLICK-L)</strong> on the Objects field, and select objects from the object list.</dt>
+</a><P></dl><a name="10916">
+<STRONG>	5.	 <strong>(Click-L)</strong> on Export.
+</STRONG>
+</a><P><dl><a name="11318">
+<dt>Three files are created for each object. If <code>&lt;object&gt;</code> represents the object being exported, and <code>&lt;map&gt; </code>represents any texture map associated with the object, then:</dt>
+</a><P><a name="11322">
+<dt><code>&lt;object&gt;.c</code> - The display list file.</dt>
+</a><P><a name="11323">
+<dt><code>&lt;object&gt;.h</code> - The vertex data for the object</dt>
+</a><P><a name="11324">
+<dt><code>&lt;map&gt;.h</code> - The texture map information for the object.</dt>
+</a><P></dl>
+<a name="9865">
+<h2><HR> Previewing and Exporting Animations</h2>
+</a><a name="10921">
+You can use N-Dynamics to generate Nintendo Animation data, which you can then preview on the Nintendo 64. This example will show what our N-Dynamics script would look like if we use the same object we created in the preceding section. Of course, you can use your own objects if you want to.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	N64 Express does not support the export of soft skins or displacements! See the Skeletal Animation System Tutorial and the N-Geometry Tutorial for more information about skins and displacements.</font></dd></dt></dl><P>
+<a name="10923">
+To send over an animation to the Nintendo 64:<p>
+</a><P>
+<a name="10924">
+<STRONG>	 1.	 Model and assign materials to your objects.
+</STRONG>
+</a><P><dl><a name="10925">
+<dt>If you like, you can use the models and materials we created in the last section. For this example, however, we created an octahedron and it's corresponding mapper, then restructured both objects into a single, top-level object called "Octahedron Group". It's easier in many cases to animate objects and mappers when they are restructured in this way.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	You must restructure your objects and their mappers into top-level objects in order for this animation example to perform predictably.</font></dd></dt></dl><P>
+
+<a name="10926">
+<STRONG>	2.	 Open N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10927">
+<dt>The N-Dynamics Script Editor appears:</dt>
+</a><P><a name="10940">
+ <P><img src="1Overview.anc15.gif"><p>
+</a></dl>
+<a name="10941">
+<em>Figure 1.1  &#32; &#32;The script editor
+</em></a><P>
+<a name="10942">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on File.
+</STRONG>
+</a><P><dl><a name="10943">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="10947">
+ <P><img src="1Overview.anc16.gif"><p>
+</a></dl>
+<a name="10948">
+<em>Figure 1.2  &#32; &#32;The script editor
+</em></a><P>
+<a name="10949">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Create New Script.
+</STRONG>
+</a><P><dl><a name="10950">
+<dt>A dialog box appears, where you may specify a new name for the script:</dt>
+</a><P><a name="10962">
+ <P><img src="1Overview.anc17.gif"><p>
+</a></dl>
+<a name="10963">
+<em>Figure 1.3  &#32; &#32;Naming a script
+</em></a><P><dl><dl><a name="10964">
+<dt>You use the slider to specify the initial number of channels for the script. Moving the slider back and forth changes the number of channels. You can also <strong>(CLICK-R)</strong> on the slider, and use the resulting numeric keypad to specify the number of channels:</dt>
+</a><P><a name="11364">
+ <P><img src="1Overview.anc18.gif"><p>
+</a></dl></dl><a name="11357">
+<em>Figure 1.4  &#32; &#32;Using the keypad
+</em></a><P>
+<a name="10965">
+<STRONG>	5.	 Specify 2 channels, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="10977">
+<dt>Your script editor should look like this:</dt>
+</a><P><a name="10981">
+ <P><img src="1Overview.anc19.gif"><p>
+</a></dl>
+<a name="10982">
+<em>Figure 1.5  &#32; &#32;The script editor with two channels
+</em></a><P><dl><dl><a name="10983">
+<dt>Two blue rectangles, or <em>channels</em>, appear in the script editor window.</dt>
+</a><P><a name="10984">
+<dt>The operation performed by a channel appears in the <em>center</em> of the channel; when you specify an object on which the operation is to be performed, the name of the object is added too.</dt>
+</a><P></dl></dl>
+<a name="10985">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on the first Make Visible channel in the script.
+</STRONG>
+</a><P><dl><a name="10986">
+<dt>The following dialog appears:</dt>
+</a><P><a name="11810">
+ <P><img src="1Overview.anc20.gif"><p>
+</a></dl>
+<a name="10991">
+<em>Figure 1.6  &#32; &#32;Specifying an N-Dynamics operation
+</em></a><P>
+<a name="10992">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Operation text edit box, which currently contains a Make Visible operation.
+</STRONG>
+</a><P><dl><a name="10993">
+<dt>A menu, listing the various operation classes appears:</dt>
+</a><P><a name="11021">
+ <P><img src="1Overview.anc21.gif"><p>
+</a></dl>
+<a name="11022">
+<em>Figure 1.7  &#32; &#32;Dynamics Operations
+</em></a><P>
+<a name="11023">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Translation in the Geometry section of the menu.
+</STRONG>
+</a><P><dl><a name="11024">
+<dt>A list of available translation operations appears:</dt>
+</a><P><a name="11028">
+ <P><img src="1Overview.anc22.gif"><p>
+</a></dl>
+<a name="11029">
+<em>Figure 1.8  &#32; &#32;Translation operations
+</em></a><P><dl><dl><a name="11030">
+<dt>A translation operation moves an object along an axis without rotating it. To start, we just want to move our object in a straight line.</dt>
+</a><P></dl></dl>
+<a name="11031">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on X Move.
+</STRONG>
+</a><P><dl><a name="11032">
+<dt>The parameters for the channel are updated:</dt>
+</a><P><a name="11036">
+ <P><img src="1Overview.anc23.gif"><p>
+</a></dl>
+<a name="11037">
+<em>Figure 1.9  &#32; &#32;X Move operation parameters
+</em></a><P>
+<a name="11038">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the Object text edit field, which currently displays "None".
+</STRONG>
+</a><P><dl><a name="11039">
+<dt>A list of objects currently loaded into N-Geometry is displayed:</dt>
+</a><P><a name="11043">
+ <P><img src="1Overview.anc24.gif"><p>
+</a></dl>
+<a name="11044">
+<em>Figure 1.10  &#32; &#32;Object list
+</em></a><P>
+<a name="11045">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Octahedron Group, then <strong>(CLICK-L) </strong>on Do It.
+</STRONG>
+</a><P><dl><a name="11046">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="11050">
+ <P><img src="1Overview.anc25.gif"><p>
+</a></dl>
+<a name="12128">
+<em>Figure 1.11  &#32; &#32;The script with the X Move operation channel
+</em></a><P>
+<a name="11051">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the small, filled black arrow in the upper right corner of the X-offset channel.
+</STRONG>
+</a><P><dl><a name="11626">
+<dt>Doing so reveals the curve associated with the translation operation:</dt>
+</a><P><a name="11627">
+ <P><img src="1Overview.anc26.gif"><p>
+</a></dl>
+<a name="11628">
+<em>Figure 1.12  &#32; &#32;The curve for the translation operation
+</em></a><P><dl><dl><a name="11633">
+<dt>If the operation tells N-Dynamics <em>what</em> to do with an object, the curve tells N-Dynamics <em>how</em> to it. For now, the curve is flat, so nothing will happen when we animate the script. We must provide beginning and ending points for N-Dynamics to animate between.</dt>
+</a><P></dl></dl>
+<a name="11636">
+<STRONG>	13.	 <strong>(CLICK-M)</strong> over the curve.
+</STRONG>
+</a><P><dl><a name="11637">
+<dt>The Curve Properties menu appears:</dt>
+</a><P><a name="11642">
+ <P><img src="1Overview.anc27.gif"><p>
+</a></dl>
+<a name="11643">
+<em>Figure 1.13  &#32; &#32;Edit Curve Properties 
+</em></a><P>
+<a name="11662">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on End value, enter a value of 15, then <strong>(CLICK-L)</strong> on Do It.<strong></strong>
+</STRONG>
+</a><P><a name="11622">
+<STRONG>	15.	 <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><dl><a name="11053">
+<dt>The N-Dynamics Operations menu appears.</dt>
+</a><P></dl><a name="11054">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Record Animation.
+</STRONG>
+</a><P><dl><a name="11606">
+<dt>The Record Animation properties menu appears:</dt>
+</a><P><a name="11607">
+ <P><img src="1Overview.anc28.gif"><p>
+</a></dl>
+<a name="11608">
+<em>Figure 1.14  &#32; &#32;Record Animation properties menu
+</em></a><P><dl><dl><a name="11055">
+<dt>The Record Animation operation records the animation to a data structure in memory. After you've animated the script, you can export the data in this structure to a file on disk in one of several formats</dt>
+</a><P><a name="11900">
+<dt>You can specify the objects to include in the recording in one of two ways:</dt>
+</a><P></dl><ul>
+<BR><a name="11903">
+<li><strong>Visible</strong> - For each frame, the objects which are currently visible are written to the Record Animation data structure.
+</a><P><BR><a name="11904">
+<li><strong>Choose</strong> - <strong>(CLICK-L)</strong> on Choose to select objects from among all the objects loaded into N-Geometry. Objects chosen in this fashion are recorded regardless of their visibility status from frame to frame.
+</a><P></ul>
+</dl>
+<a name="11909">
+<STRONG>	17.	 Specify the following parameters for your Record Animation channel.
+</STRONG>
+</a><P><dl><a name="11616">
+<dt><strong>HIerarchy Type</strong> - Select <strong>geo</strong>, which is the normal, N-Geometry hierarchy. </dt>
+</a><P><a name="11617">
+<dt><strong>Which Objects?</strong> - <strong>(CLICK-L)</strong> on this field, and select the same object you specified for the translation operation in step <a href="1Overview.html#11045">11</a>. You can also <strong>(CLICK-L)</strong> on <strong>Visible</strong> to record all objects visible in the scene.</dt>
+</a><P></dl><a name="11056">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Animate.
+</STRONG>
+</a><P><dl><a name="11943">
+<dt>N-Dynamics will animate the script.</dt>
+</a><P></dl>
+<a name="11944">
+<h4> Previewing Animations</h4>
+</a><a name="11959">
+Now that you've created the data structure which contains the animation data for your objects, you can choose between two options for exporting the data to the Nintendo 64.<p>
+</a><P>
+<a name="11958">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the Export button at the bottom of the N-Dynamics window.
+</STRONG>
+</a><P><a name="11948">
+ <P><img src="1Overview.anc29.gif"><p>
+</a>
+<a name="11935">
+<em>Figure 1.15  &#32; &#32;Exporting Nintendo data from N-Dynamics.
+</em></a><P><ul><a name="11065">
+<li><strong>Preview </strong>provides a fast preview of your animation on the Nintendo 64 board set. The binary data are sent directly to the Nintendo development board.
+</a></li><P><a name="11066">
+<li><strong>Export</strong> generates the actual c files for the animation. Use the Export Dir field to specify a directory in which to store the files.
+</a></li><P></ul><P><a name="11974">
+If you export the animation we just created, the following files will be generated:<p>
+</a><P><ul><a name="11975">
+<li><code>Octahedron_group.c</code> - The object geometry data.
+</a></li><P><a name="11976">
+<li><code>Octahedron_group.h</code> - The texture vertex data.
+</a></li><P><a name="11977">
+<li><code>Green_Snake_B.h</code> - The texture map data for any texture maps in the scene.
+</a></li><P><a name="12007">
+<li><code>anim_data.h</code> - The animation data for the objects in the scene.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	There can be only one anim_data.h file in a given directory. Be sure to save different animations to different directories! However, if you do accidentally overwrite an anim_data.h file, the older file will be copied to a versioned file, e.g., anim_data.h~2~. You can move or rename this file.</font></dd></dt></dl><P>
+<a name="11069">
+<h3> Playing back the Animation</h3>
+</a><a name="11070">
+If you press the Start button on the Nintendo controller you can move the camera with the joystick and step forward or backward through your script with the shoulder buttons. Press Start <em>again</em> to restart your animation from the beginning.<p>
+</a><P><a name="10919">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0-AboutThisDoc.html">[Prev]</a> <a href="2Attributes.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 16:08:46 -->
+
+</body>
+</html>

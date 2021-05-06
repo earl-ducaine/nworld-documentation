@@ -1,0 +1,719 @@
+<html><head><title>Using Saturn Express</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1A-Installation.html">[Prev]</a> <a href="2ExportAndCompile.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9749">
+<h1>Using Saturn Express</h1>
+</a>
+<hr><p><a name="9750">
+<h4> This section describes the procedures for exporting object data from N-World to Sega Saturn SGL files. It also includes a brief section describing how to compile and view these files.</h4>
+</a><a name="10464">
+ <P><img src="1ExportAndCompile.anc.gif"><p>
+</a><a name="10581">
+<h2><HR> Using Saturn Express</h2>
+</a><a name="10583">
+<h3> Hardware Requirements</h3>
+</a><a name="10584">
+In addition to a Sega Saturn, the Saturn Express requires a Sega CartDev, Rev. B.<p>
+</a><P><a name="10300">
+<h3> Capabilities</h3>
+</a><a name="10301">
+Saturn Express supports conversion of game content data for real-time display on the Sega Saturn. This includes:<p>
+</a><P><ul><a name="10701">
+<li>Polygon previewer and Gouraud shading tables
+</a></li><P><a name="10702">
+<li>Vertex, face, face attribute, and polygon definitions
+</a></li><P><a name="10699">
+<li>Object geometry data
+</a></li><P><a name="10303">
+<li>Materials data
+</a></li><P></ul><P><a name="10306">
+<h3> Saturn Express Parameters</h3>
+</a><a name="10674">
+Saturn Express has the following parameters for object and texture map data:<p>
+</a><P><ul><ul>
+<BR><a name="10309">
+<li>Maximum 1799 polygons per object
+</a><P><BR><a name="10310">
+<li>Maximum 2500 vertices per object
+</a><P><BR><a name="10677">
+<li>Maximum 440512 bytes total texture map data
+</a><P></ul>
+</ul><a name="10331">
+<h2><HR> The Saturn Express Process</h2>
+</a><a name="10332">
+Saturn express is designed to provide real-time feedback to you, the artist, about how your objects will look on the Sega Saturn. The speed with which objects can be ported from N&#183;World to the Sega Saturn allows for real-time, interactive design of objects and materials. You can export object geometry, and materials data to SGL files, which can in turn be compiled and viewed on the Sega Saturn.<p>
+</a><P><a name="10333">
+Here's how the process works:<p>
+</a><P>
+<a name="10334">
+<STRONG>	 1.	 Model your objects in N-Geometry.
+</STRONG>
+</a><P><a name="10335">
+<STRONG>	2.	 Create materials in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="10336">
+<dt>Materials you wish to use in the Sega Saturn should be defined using the <strong>Sega</strong> render domain, whose attributes and parameters are described elsewhere in this book.</dt>
+</a><P></dl><a name="10337">
+<STRONG>	3.	 Use the Browser to associate materials and mappers with your objects.
+</STRONG>
+</a><P><a name="10338">
+<STRONG>	4.	 Redisplay your 3D object in N&#183;World in real time, using the SGI GL Shade hardware renderer.
+</STRONG>
+</a><P><dl><a name="10339">
+<dt>Redisplay allows you to get your objects looking the way you want on the SGI, before you export anything.</dt>
+</a><P></dl><a name="10340">
+<STRONG>	5.	 Export and display the objects on the Sega Saturn.
+</STRONG>
+</a><P><dl><a name="10341">
+<dt>With a simple click of a button, send your object to the Sega Saturn. You can fine tune it's appearance on the game platform itself by adjusting attributes and sending it over again.</dt>
+</a><P></dl><a name="10342">
+<STRONG>	6.	 When everything looks right, you can write the object and it's associated materials to file with a simple command.
+</STRONG>
+</a><P>
+<a name="10347">
+<h4> Preview vs. Export</h4>
+</a><a name="10348">
+When you <em>preview</em> an object or an animation, the data are compiled and sent to the Nintendo directly When you export an object, the data are written to ASCII text files, which can then be compiled and sent to the Sega Saturn.<p>
+</a><P><a name="10291">
+<h2><HR> Previewing an Object on the Sega Saturn</h2>
+</a><a name="10802">
+<h4> A Note about Tutorial Files</h4>
+</a><a name="10803">
+We'll be loading files from N&#183;World demo directories during the course of this tutorial. When N&#183;World is distributed, these directories are generally write-protected. This means that you might not be able to save your materials or other files to these directories. When you are saving objects, materials, or other items, make sure to specify a directory for which you have adequate write permissions (your home directory, symbolized with a tilde (~) is often a good choice). If you have any questions about the configuration of your particular site, consult your System Administrator.<p>
+</a><P><a name="10059">
+<h3> Setting up the Viewer</h3>
+</a><a name="10807">
+Output from the Sega Saturn can be channelled to an SGI Capture window. Of course, you can also send output to a TV monitor.<p>
+</a><P>
+<a name="10808">
+<STRONG>	 1.	 Open a UNIX shell and type in the following command.
+</STRONG>
+</a><P><dl><a name="10813">
+<dt><code>unix%capture &amp;</code></dt>
+</a><P></dl><a name="10814">
+<STRONG>	2.	 When the Capture window appears, <strong>(CLICK-L)</strong> on Tools&gt;Video Panel.
+</STRONG>
+</a><P><dl><a name="10815">
+<dt>The Video control panel appears:</dt>
+</a><P><a name="10816">
+ <P><img src="1ExportAndCompile.anc1.gif"><p>
+</a></dl>
+<a name="10817">
+<em>Figure 2.1  &#32; &#32;Configuring the Capture screen
+</em></a><P>
+<a name="10822">
+<STRONG>	3.	 Change the Default In: parameter to Analog Source.
+</STRONG>
+</a><P><dl><a name="10823">
+<dt>Now, objects you're previewing on the Sega Saturn will appear in this capture window.</dt>
+</a><P></dl>
+<a name="10806">
+<h3> Creating and Preparing Objects and Materials</h3>
+</a>
+<a name="10463">
+<STRONG>	 1.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;sphere.
+</STRONG>
+</a><P><a name="10061">
+<STRONG>	2.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;mapper.
+</STRONG>
+</a><P><dl><a name="10062">
+<dt>Create a spherical mapper, and set the bounds source for the mapper to your new sphere. Your mapper parameters should look like this:</dt>
+</a><P><a name="10066">
+ <P><img src="1ExportAndCompile.anc2.gif"><p>
+</a></dl>
+<a name="10067">
+<em>Figure 2.2  &#32; &#32;Spherical mapper parameters
+</em></a><P>
+<a name="10392">
+<STRONG>	3.	 In the GeoMenus, <strong>(CLICK-L)</strong> on Shading, then select your object from the menu which appears.
+</STRONG>
+</a><P><a name="10396">
+ <P><img src="1ExportAndCompile.anc3.gif"><p>
+</a>
+<a name="10397">
+<em>Figure 2.3  &#32; &#32;Toggling shading for Geometry objects
+</em></a><P>
+<a name="10405">
+<STRONG>	4.	 Open the Browser, then <strong>(CLICK-L)</strong> on the Geo button.<strong></strong>
+</STRONG>
+</a><P><dl><a name="10406">
+<dt>The Browser shows all the objects currently loaded into Geometry, and also provides a visual representation of object hierarchy:</dt>
+</a><P><a name="10410">
+ <P><img src="1ExportAndCompile.anc4.gif"><p>
+</a></dl>
+<a name="10411">
+<em>Figure 2.4  &#32; &#32;The Browser display
+</em></a><P>
+<a name="10403">
+<STRONG>	5.	 In the Browser, <strong>(CLICK-R)</strong> over your object.
+</STRONG>
+</a><P><dl><a name="10228">
+<dt>The Operations menu for your sphere appears. </dt>
+</a><P><a name="10232">
+ <P><img src="1ExportAndCompile.anc5.gif"><p>
+</a></dl>
+<a name="10233">
+<em>Figure 2.5  &#32; &#32;The Browser Operations menu for sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If your Browser doesn't show all the objects in the Geometry window, <strong>(CLICK-L)</strong> on Recompute to refresh the Browser display.</font></dd></dt></dl><P>
+
+<a name="10415">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Assign Mapper.
+</STRONG>
+</a><P><dl><a name="10076">
+<dt>A pop-up menu appears listing the mappers you've created. <strong>(CLICK-L)</strong> on the spherical mapper you created in step <a href="1ExportAndCompile.html#10061">2</a>.</dt>
+</a><P><a name="10427">
+ <P><img src="1ExportAndCompile.anc6.gif"><p>
+</a></dl>
+<a name="10428">
+<em>Figure 2.6  &#32; &#32;Assigning a mapper using the Browser
+</em></a><P><dl><dl><a name="10422">
+<dt></dt>
+</a><P><a name="10080">
+<dt>The browser display changes to reflect the mappers new association with your sphere.</dt>
+</a><P><a name="10084">
+ <P><img src="1ExportAndCompile.anc7.gif"><p>
+</a></dl></dl><a name="10085">
+<em>Figure 2.7  &#32;Mapper associated with an object in the Browser
+</em></a><P>
+<a name="10086">
+<STRONG>	7.	 Open the Attributes Editor.
+</STRONG>
+</a><P><a name="10482">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on <strong>New</strong> to create a new material.
+</STRONG>
+</a><P><dl><a name="10483">
+<dt>Enter a directory and filename for your new material in the dialog box which appears:</dt>
+</a><P><a name="10487">
+ <P><img src="1ExportAndCompile.anc8.gif"><p>
+</a></dl>
+<a name="10488">
+<em>Figure 2.8  &#32; &#32;Creating a new material
+</em></a><P><dl><dl><a name="10492">
+<dt>Icons for your new material appear in the Attributes Editor (<a href="1ExportAndCompile.html#10498">Figure 2.9</a>)</dt>
+</a><P><a name="10496">
+ <P><img src="1ExportAndCompile.anc9.gif"><p>
+</a></dl></dl><a name="10498">
+<em>Figure 2.9  &#32; &#32;Sega render domain attributes editor menu
+</em></a><P>
+<a name="10499">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the Sega button.
+</STRONG>
+</a><P><dl><a name="10500">
+<dt>This selects the Sega domain as the current render domain, and reveals the Sega domain attribute menus (<a href="1ExportAndCompile.html#10498">Figure 2.9</a>).</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	The Sega domain is specially designed for attributing objects for display on the Sega Saturn. You should read <a href="2ExportAndCompile.html#9744">Chapter &#32;3</a> and become familiar with Sega attributes and defaults.<strong></strong></font></dd></dt></dl><P>
+
+<a name="10480">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Texture.
+</STRONG>
+</a><P><dl><a name="10094">
+<dt>The Attributes menu will change to reflect Sega texture map attributes.</dt>
+</a><P><a name="10621">
+ <P><img src="1ExportAndCompile.anc10.gif"><p>
+</a></dl>
+<a name="10622">
+<em>Figure 2.10  &#32; &#32;Sega domain Texture map attributes
+</em></a><P>
+<a name="10095">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the Texture Map field, and select the following texture map file:
+</STRONG>
+</a><P><dl><a name="10096">
+<dt><code>/usr/local/ngc/presets/maps/Green_snake_B.tpx</code></dt>
+</a><P></dl><a name="10098">
+<STRONG>	12.	 In the Browser, <strong>(CLICK-R)</strong> on your sphere.
+</STRONG>
+</a><P><dl><a name="10099">
+<dt>The Operations menu appears again.</dt>
+</a><P></dl><a name="10100">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="10101">
+<dt>A menu appears listing all materials loaded into memory. <strong>(CLICK-L)</strong> on the material you just created. </dt>
+</a><P><a name="10473">
+ <strong><P><img src="1ExportAndCompile.anc11.gif"></strong><p>
+</a></dl>
+<a name="10475">
+<em>Figure 2.11  &#32; &#32;Selecting and assigning a material 
+</em></a><P><dl><dl><a name="10549">
+<dt>The browser will prompt you to select a mapper for any texture maps associated with the material.</dt>
+</a><P><a name="10554">
+ <P><img src="1ExportAndCompile.anc12.gif"><p>
+</a></dl></dl><a name="10555">
+<em>Figure 2.12  &#32; &#32;Assigning a texture map to a mapper in the Browser
+</em></a><P>
+<a name="10542">
+<STRONG>	14.	 <strong>(CLICK-R)</strong> on the Mapper field, then <strong>(CLICK-L)</strong> on the Spherical mapper you created in step <a href="1ExportAndCompile.html#10061">2</a>.
+</STRONG>
+</a><P><dl><a name="10543">
+<dt>The browser window should now show the sphere and its mapper, as well as the material you just assigned it.</dt>
+</a><P><a name="10106">
+ <P><img src="1ExportAndCompile.anc13.gif"><p>
+</a></dl>
+<a name="10107">
+<em>Figure 2.13  &#32; &#32;The Browser with mapper and material assigned to Sphere
+</em></a><P>
+<a name="10110">
+<STRONG>	15.	 In the Attributes Editor, <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="10111">
+<dt>Your sphere should appear in the Geometry window with the green snake scales applied to it.</dt>
+</a><P></dl><a name="10112">
+<STRONG>	16.	 Now, <strong>(CLICK-L)</strong> on Preview in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="10113">
+<dt>The object should appear on the Capture window we set up earlier, or on the video monitor attached to your SGI.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	The Preview function exports all objects visible in the Geometry window to the Sega Saturn. </font></dd></dt></dl><P>
+<a name="10028">
+That's all there is to it! Essentially, previewing objects on the Sega Saturn is no different from ordinary render operations.<p>
+</a><P><a name="10023">
+<h2><HR> Exporting an Object</h2>
+</a><a name="9752">
+When you export an object from N-Geometry to Sega SGL format, all materials you associated with that object in the Browser are exported as well. Be sure that you've assigned materials to your objects before exporting them. To learn how to assign materials to objects and face parts, see the <em>Attributes Editor User's Guide</em>.<p>
+</a><P><a name="9753">
+To export an object:<p>
+</a><P>
+<a name="9754">
+<STRONG>	 1.	 <strong>(Click-L)</strong> on Export in the GeoMenu.
+</STRONG>
+</a><P><a name="9755">
+<STRONG>	2.	 Choose the object you want to export from the object list that appears.
+</STRONG>
+</a><P><a name="9757">
+<STRONG>	3.	 Choose Sega SGL from the Choose Export Format pop-up menu.
+</STRONG>
+</a><P><a name="9761">
+ <P><img src="1ExportAndCompile.anc14.gif"><p>
+</a>
+<a name="9762">
+<em>Figure 2.14  &#32; &#32;The Choose Export format pop-up menu
+</em></a><P>
+<a name="9763">
+<STRONG>	4.	 Specify a directory and filename for your SGL file. Approriate extensions are automatically appended to each filename.
+</STRONG>
+</a><P><a name="9767">
+ <P><img src="1ExportAndCompile.anc15.gif"><p>
+</a>
+<a name="9768">
+<em>Figure 2.15  &#32; &#32;Choose filename
+</em></a><P><dl><dl><a name="9769">
+<dt>Global? controls how the Saturn treats object hierarchies:</dt>
+</a><P></dl></dl><ul><a name="9770">
+<li><strong>Yes</strong> means that all object transformations are calculated with respect to global space, and all objects are written to file as top level objects.
+</a></li><P><a name="9771">
+<li><strong>No</strong> means that objects are written hierarchically to file. Sub-objects transformations are expressed with respect to their superior objects rather than with respect to global space. The hierarchy itself is represented visually by indenting in the actual file.
+</a></li><P></ul><P>
+<a name="9773">
+<STRONG>	5.	 <strong>(Click-L)</strong> on Write Object File.
+</STRONG>
+</a><P><dl><a name="9774">
+<dt>When you write the object, several files are created; for example, if you were writing out an object named "octahedron" you'd get the following files:</dt>
+</a><P></dl><ul>
+<BR><a name="9775">
+<li><code>Sphere.c</code>
+</a><P><dl><a name="9776">
+<dt>The polygon previewer and Gouraud shading tables.<p>
+</a><P></dl><BR><a name="9777">
+<li><code>Sphere.h</code>
+</a><P><dl><a name="9778">
+<dt>The vertex, face, face attribute, and polygon definitions file.<p>
+</a><P></dl><BR><a name="9779">
+<li><code>octahedron_texture.c</code>
+</a><P><dl><a name="9780">
+<dt>Any texture map definitions.<p>
+</a><P></dl></ul>
+
+<a name="9781">
+<h3> Compiling a File</h3>
+</a><a name="9782">
+If you installed the compiler as described in the accompanying installation instructions, you can now compile the generated c files into a stand-alone COFF file (which can be loaded and viewed using any COFF viewer).<p>
+</a><P><a name="9783">
+To compile a file:<p>
+</a><P>
+<a name="9784">
+<STRONG>	 1.	 Copy the following files into the directory where you want to compile the files:
+</STRONG>
+</a><P><dl><a name="9785">
+<dt><code>/usr/local/ngc/plugin/sega/Makefile </code></dt>
+</a><P><a name="9786">
+<dt>Originally installed in the Sega plugin directory.</dt>
+</a><P><a name="9787">
+<dt><code>/usr/local/ngc/plugin/sega/nichimen.lnk</code></dt>
+</a><P><a name="9788">
+<dt>Information for the linker.</dt>
+</a><P></dl><a name="9789">
+<STRONG>	2.	 Make sure you have the following links:
+</STRONG>
+</a><P><dl><a name="9790">
+<dt><code>ln -s /usr/local/bin/sh-hms-ld ld</code></dt>
+</a><P><a name="9791">
+<dt><code>ln -s /usr/local/bin/sh-hms-ar ar</code></dt>
+</a><P><a name="9792">
+<dt><code>ln -s /usr/local/bin/sh-hms-as as</code></dt>
+</a><P></dl><a name="9793">
+<STRONG>	3.	 Edit the Makefile.
+</STRONG>
+</a><P><dl><a name="9797">
+<dt>Change the following line so that it contains the .c files you generated in step <a href="1ExportAndCompile.html#9773">5</a> above:</dt>
+</a><P><a name="9798">
+<dt><code>SRCS = octahedron-main.c octahedron-polygon.c octahedron-texture.c</code></dt>
+</a><P></dl><a name="9799">
+<STRONG>	4.	 Make sure your .cshrc includes the following path variable:
+</STRONG>
+</a><P><dl><a name="9800">
+<dt><code>set path=($path /usr/local/bin)</code></dt>
+</a><P></dl><a name="9801">
+<STRONG>	5.	 Make the file:
+</STRONG>
+</a><P><dl><a name="9802">
+<dt><code>make</code></dt>
+</a><P></dl><a name="9803">
+<STRONG>	6.	 This creates the following COFF file:
+</STRONG>
+</a><P><dl><a name="9804">
+<dt><code>nichimen.cof</code></dt>
+</a><P></dl>
+<a name="9805">
+<h3> Viewing the COFF File</h3>
+</a><a name="9806">
+<h4> On a PC</h4>
+</a><a name="9807">
+Use the standard Sega development tools on the PC supplied by Snasm.<p>
+</a><P><a name="9808">
+<h4> On the SGI</h4>
+</a>
+<a name="9809">
+<STRONG>	 1.	 Evaluate the following LISP forms <em>after</em> you have evaluated (sega:start-sega) or have evaluated (sega:Segafy) at least once during the current session.
+</STRONG>
+</a><P><dl><a name="9810">
+<dt><code>(sega:load-coff "/directory/nichimen.cof" t)</code></dt>
+</a><P><a name="9811">
+<dt><code>(sega:go-sega)</code></dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Make sure you're in debug mode, as described in <a href="3Functions.html#9755">"Starting in Debug Mode," on page &#32;4-2</a>.</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	<em>When sending COFF files, the Sega may "hang." If it does, simply send another (sega:start-sega command to reset the box.</em></font></dd></dt></dl><P>
+<a name="9817">
+<h3> Sample Files</h3>
+</a><a name="9818">
+<h4> POLYGON.C File</h4>
+</a><a name="9819">
+Write xyz coordinates for all vertices:<p>
+</a><P><a name="9820">
+<code><pre>POINT point_cube[] = {<p>
+</code></pre></a><a name="9821">
+<code><pre>POStoFIXED(-15.0,-15.0,-15.0),<p>
+</code></pre></a><a name="9822">
+<code><pre>POStoFIXED(-15.0,-15.0, 15.0),<p>
+</code></pre></a><a name="9823">
+<code><pre>POStoFIXED(-15.0, 15.0,-15.0),<p>
+</code></pre></a><a name="9824">
+<code><pre>POStoFIXED(-15.0, 15.0, 15.0),<p>
+</code></pre></a><a name="9825">
+<code><pre>POStoFIXED( 15.0,-15.0,-15.0),<p>
+</code></pre></a><a name="9826">
+<code><pre>POStoFIXED( 15.0,-15.0, 15.0),<p>
+</code></pre></a><a name="9827">
+<code><pre>POStoFIXED( 15.0, 15.0,-15.0),<p>
+</code></pre></a><a name="9828">
+<code><pre>POStoFIXED( 15.0, 15.0, 15.0),<p>
+</code></pre></a><a name="9829">
+<code><pre>};<p>
+</code></pre></a><a name="9830">
+Write face normal in xyz coordinates and face definition list in vertex numbers:<p>
+</a><P><a name="9831">
+<code><pre>POLYGON polygon_cube[] = {<p>
+</code></pre></a><a name="9832">
+<code><pre>NORMAL(-1.0, 0.0, 0.0), VERTICES(0,1,3,2),<p>
+</code></pre></a><a name="9833">
+<code><pre>NORMAL( 0.0, 0.0, 1.0), VERTICES(1,5,7,3),<p>
+</code></pre></a><a name="9834">
+<code><pre>NORMAL( 1.0, 0.0, 0.0), VERTICES(5,4,6,7),<p>
+</code></pre></a><a name="9835">
+<code><pre>NORMAL( 0.0, 0.0,-1.0), VERTICES(4,0,2,6),<p>
+</code></pre></a><a name="9836">
+<code><pre>NORMAL( 0.0,-1.0, 0.0), VERTICES(4,5,1,0),<p>
+</code></pre></a><a name="9837">
+<code><pre>NORMAL( 0.0, 1.0, 0.0), VERTICES(2,3,7,6),<p>
+</code></pre></a><a name="9838">
+<code><pre>};<p>
+</code></pre></a><a name="9839">
+Write out face attribute list.<p>
+</a><P><a name="9840">
+<code><pre>ATTR attribute_cube[] = {<p>
+</code></pre></a><a name="9841">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(31,31,00),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9842">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(31,00,00),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9843">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(00,31,00),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9844">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(00,00,31),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9845">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(31,00,31),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9846">
+<code><pre>ATTRIBUTE(Single_Plane,SORT_MIN,No_Texture,C_RGB(00,31,31),<br>No_Gouraud,MESHoff,sprPolygon,UseLight),<p>
+</code></pre></a><a name="9847">
+<code><pre>};<p>
+</code></pre></a><a name="9848">
+Write out object structure. Include the point list, face list, and attribute list:<p>
+</a><P><a name="9849">
+<code><pre>PDATA PD_cube = {<p>
+</code></pre></a><a name="9850">
+<code><pre>point_cube,sizeof(point_cube)/sizeof(POINT),<p>
+</code></pre></a><a name="9851">
+<code><pre>polygon_cube,sizeof(polygon_cube)/sizeof(POLYGON),<p>
+</code></pre></a><a name="9852">
+<code><pre>attribute_cube<p>
+</code></pre></a><a name="9853">
+<code><pre>};<p>
+</code></pre></a><a name="9854">
+<h4> Texture Example (POLYGON.C)</h4>
+</a><a name="9855">
+<code><pre>#include	"sgl.h"<p>
+</code></pre></a><a name="9856">
+<code><pre><p>
+</code></pre></a><a name="9857">
+<code><pre>#define		PN_SONIC		0<p>
+</code></pre></a><a name="9858">
+<code><pre><p>
+</code></pre></a><a name="9859">
+<code><pre>#define		PN_AM2			1<p>
+</code></pre></a><a name="9860">
+<code><pre><p>
+</code></pre></a><a name="9861">
+<code><pre>POINT point_plane[] = {<p>
+</code></pre></a><a name="9862">
+<code><pre>        POStoFIXED(-40.0 , -40.0 , 0.0) ,<p>
+</code></pre></a><a name="9863">
+<code><pre>        POStoFIXED( 40.0 , -40.0 , 0.0) ,<p>
+</code></pre></a><a name="9864">
+<code><pre>        POStoFIXED( 40.0 ,  40.0 , 0.0) ,<p>
+</code></pre></a><a name="9865">
+<code><pre>        POStoFIXED(-40.0 ,  40.0 , 0.0)<p>
+</code></pre></a><a name="9866">
+<code><pre>};<p>
+</code></pre></a><a name="9867">
+<code><pre><p>
+</code></pre></a><a name="9868">
+<code><pre>POLYGON polygon_plane[] = {<p>
+</code></pre></a><a name="9869">
+<code><pre>        NORMAL(0.0,0.0,1.0), VERTICES(0 , 1 , 2 , 3)<p>
+</code></pre></a><a name="9870">
+<code><pre>};<p>
+</code></pre></a><a name="9871">
+<code><pre><p>
+</code></pre></a><a name="9872">
+<code><pre>ATTR attribute_plane[] = {<p>
+</code></pre></a><a name="9873">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_CEN, PN_SONIC, No_Palet, No_Gouraud, CL32KRGB|MESHoff, sprNoflip, No_Option),<p>
+</code></pre></a><a name="9874">
+<code><pre>};<p>
+</code></pre></a><a name="9875">
+<code><pre><p>
+</code></pre></a><a name="9876">
+<code><pre><p>
+</code></pre></a><a name="9877">
+<code><pre>PDATA PD_PLANE = {<p>
+</code></pre></a><a name="9878">
+<code><pre>        point_plane , sizeof(point_plane)/sizeof(POINT),<p>
+</code></pre></a><a name="9879">
+<code><pre>        polygon_plane, sizeof(polygon_plane)/sizeof(POLYGON),<p>
+</code></pre></a><a name="9880">
+<code><pre>        attribute_plane<p>
+</code></pre></a><a name="9881">
+<code><pre>};<p>
+</code></pre></a><a name="9882">
+<code><pre><p>
+</code></pre></a><a name="9883">
+<h4> Texture Example (TEXTURE.C)</h4>
+</a><a name="9884">
+<code><pre>#include	"sgl.h"<p>
+</code></pre></a><a name="9885">
+<code><pre><p>
+</code></pre></a><a name="9886">
+<code><pre>TEXDAT sonic_64x64[]={<p>
+</code></pre></a><a name="9887">
+<code><pre><p>
+</code></pre></a><a name="9888">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9889">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9890">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9891">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9892">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9893">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9894">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9895">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9896">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9897">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9898">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9899">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffdd, 0xfb7b,<p>
+</code></pre></a><a name="9900">
+<code><pre>0xe292, 0xcd8c, 0xcd8c, 0xd569, 0xd569, 0xd569, 0xd569, 0xddee,<p>
+</code></pre></a><a name="9901">
+<code><pre>.<p>
+</code></pre></a><a name="9902">
+<code><pre>.<p>
+</code></pre></a><a name="9903">
+<code><pre>.<p>
+</code></pre></a><a name="9904">
+<code><pre><p>
+</code></pre></a><a name="9905">
+<code><pre>TEXDAT    am2_64x32[]={<p>
+</code></pre></a><a name="9906">
+<code><pre><p>
+</code></pre></a><a name="9907">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9908">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9909">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9910">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9911">
+<code><pre>0xffff, 0xffff, 0xffff, 0xffff, 0x8000, 0x8000, 0x8000, 0x8000,<p>
+</code></pre></a><a name="9912">
+<code><pre>0x8000, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,<p>
+</code></pre></a><a name="9913">
+<code><pre>.<p>
+</code></pre></a><a name="9914">
+<code><pre>.<p>
+</code></pre></a><a name="9915">
+<code><pre>.<p>
+</code></pre></a><a name="9916">
+<code><pre><p>
+</code></pre></a><a name="9917">
+<code><pre>TEXTURE tex_sample[]={<p>
+</code></pre></a><a name="9918">
+<code><pre>	TEXDEF(64,64,0),<p>
+</code></pre></a><a name="9919">
+<code><pre>	TEXDEF(64,32,64*64*1),<p>
+</code></pre></a><a name="9920">
+<code><pre>};<p>
+</code></pre></a><a name="9921">
+<code><pre><p>
+</code></pre></a><a name="9922">
+<code><pre>PICTURE	pic_sample[]={<p>
+</code></pre></a><a name="9923">
+<code><pre>	PICDEF(0,COL_32K,sonic_64x64),<p>
+</code></pre></a><a name="9924">
+<code><pre>	PICDEF(1,COL_32K,am2_64x32),<p>
+</code></pre></a><a name="9925">
+<code><pre>};<p>
+</code></pre></a><a name="9926">
+<h4> Gouraud Example (POLYGON.C)</h4>
+</a><a name="9927">
+<code><pre>#include	"sgl.h"<p>
+</code></pre></a><a name="9928">
+<code><pre><p>
+</code></pre></a><a name="9929">
+<code><pre>#define		GRaddr		0xe000<p>
+</code></pre></a><a name="9930">
+<code><pre><p>
+</code></pre></a><a name="9931">
+<code><pre>static POINT point_cube[] = {<p>
+</code></pre></a><a name="9932">
+<code><pre>	POStoFIXED(-20.0 , -20.0 ,  20.0) ,<p>
+</code></pre></a><a name="9933">
+<code><pre>	POStoFIXED( 20.0 , -20.0 ,  20.0) ,<p>
+</code></pre></a><a name="9934">
+<code><pre>	POStoFIXED( 20.0 ,  20.0 ,  20.0) ,<p>
+</code></pre></a><a name="9935">
+<code><pre>	POStoFIXED(-20.0 ,  20.0 ,  20.0) ,<p>
+</code></pre></a><a name="9936">
+<code><pre>	POStoFIXED(-20.0 , -20.0 , -20.0) ,<p>
+</code></pre></a><a name="9937">
+<code><pre>	POStoFIXED( 20.0 , -20.0 , -20.0) ,<p>
+</code></pre></a><a name="9938">
+<code><pre>	POStoFIXED( 20.0 ,  20.0 , -20.0) ,<p>
+</code></pre></a><a name="9939">
+<code><pre>	POStoFIXED(-20.0 ,  20.0 , -20.0)<p>
+</code></pre></a><a name="9940">
+<code><pre>};<p>
+</code></pre></a><a name="9941">
+<code><pre><p>
+</code></pre></a><a name="9942">
+<code><pre>static POLYGON polygon_cube[] = {<p>
+</code></pre></a><a name="9943">
+<code><pre>	NORMAL( 0.0 , 0.0 , 1.0), VERTICES(0 , 1 , 2 , 3),<p>
+</code></pre></a><a name="9944">
+<code><pre>	NORMAL(-1.0 , 0.0 , 0.0), VERTICES(4 , 0 , 3 , 7),<p>
+</code></pre></a><a name="9945">
+<code><pre>	NORMAL( 0.0 , 0.0 ,-1.0), VERTICES(5 , 4 , 7 , 6),<p>
+</code></pre></a><a name="9946">
+<code><pre>	NORMAL( 1.0 , 0.0 , 0.0), VERTICES(1 , 5 , 6 , 2),<p>
+</code></pre></a><a name="9947">
+<code><pre>	NORMAL( 0.0 ,-1.0 , 0.0), VERTICES(4 , 5 , 1 , 0),<p>
+</code></pre></a><a name="9948">
+<code><pre>	NORMAL( 0.0 , 1.0 , 0.0), VERTICES(3 , 2 , 6 , 7)<p>
+</code></pre></a><a name="9949">
+<code><pre>};<p>
+</code></pre></a><a name="9950">
+<code><pre><p>
+</code></pre></a><a name="9951">
+<code><pre>static ATTR attribute_cube[] = {<p>
+</code></pre></a><a name="9952">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr,   MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9953">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr+1, MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9954">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr+2, MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9955">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr+3, MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9956">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr+4, MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9957">
+<code><pre>	ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(31,16,31), GRaddr+5, MESHoff|CL_Gouraud, sprPolygon,No_Option),<p>
+</code></pre></a><a name="9958">
+<code><pre>};<p>
+</code></pre></a><a name="9959">
+<code><pre><p>
+</code></pre></a><a name="9960">
+<code><pre>PDATA PD_cube = {<p>
+</code></pre></a><a name="9961">
+<code><pre>	point_cube , sizeof(point_cube)/sizeof(POINT),<p>
+</code></pre></a><a name="9962">
+<code><pre>	polygon_cube , sizeof(polygon_cube)/sizeof(POLYGON) ,<p>
+</code></pre></a><a name="9963">
+<code><pre>	attribute_cube<p>
+</code></pre></a><a name="9964">
+<code><pre>};<p>
+</code></pre></a><a name="7249">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1A-Installation.html">[Prev]</a> <a href="2ExportAndCompile.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 11:42:02 -->
+
+</body>
+</html>

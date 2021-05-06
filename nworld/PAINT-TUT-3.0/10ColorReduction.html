@@ -1,0 +1,739 @@
+<html><head><title>Using Color Reduction</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="92DAnimation.html">[Prev]</a> <a href="11VRAMEditor.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6600">
+<h1>Using Color Reduction</h1>
+</a>
+<hr><p><a name="6601">
+<h4> N-Paint's Color Reduction System generates color mapped images from full color images. You can color reduce a single image, or a whole group of images, and images can have their own palettes or share a single palette.</h4>
+</a><a name="463721">
+ <P><img src="10ColorReduction.anc.gif"><p>
+</a><a name="463722">
+<h2><HR> In this Chapter</h2>
+</a><a name="463723">
+In this chapter, you'll learn how to:<p>
+</a><P><ul><a name="462783">
+<li>Load images into the Color Reduction Canvas
+</a></li><P><a name="462784">
+<li>Create a new empty palette
+</a></li><P><a name="462788">
+<li>Fill the color-reduction histogram with colors from several images
+</a></li><P><a name="462789">
+<li>Create a color reduction palette from the histogram.
+</a></li><P><a name="462790">
+<li>Use the palette to create color-reduced versions of your source images
+</a></li><P><a name="462791">
+<li>Save your reduced images, as well as your reduced palette
+</a></li><P><a name="463606">
+<li>Use the matte to create transparency colors for your LBM and BMP images
+</a></li><P><a name="463607">
+<li>Manipulate reduced-palette slot values
+</a></li><P></ul><P><a name="462781">
+<h2><HR> Reducing a Series of Images</h2>
+</a><a name="6606">
+In this example, we'll reduce a series of three small images which were built from a larger source image. First, we'll build a palette from the images, then reduce them using the new palette.<p>
+</a><P>
+<a name="6843">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Color Reduction in the N-Paint Modes Menu.
+</STRONG>
+</a><P><dl><a name="6844">
+<dt>The Color Reduction menu appears:</dt>
+</a><P><a name="6867">
+ <P><img src="10ColorReduction.anc1.gif"><p>
+</a></dl>
+<a name="6870">
+<em>Figure 10.1  &#32; &#32;The Color Reduction menu
+</em></a><P><a name="6795">
+<h3> Creating the Color Reduction Histogram</h3>
+</a><a name="6796">
+The Color Reduction histogram is an abstract structure which stores information about the relative frequency of RGB colors in an image. The histogram is used to generate the reduced palette of colors to which colors in the source image will be mapped. You can create the histogram with a single image, or create a cumulative histogram which contains information about several images. In this case, we'll need to build a cumulative histogram which stores color information for all three of our images.<p>
+</a><P><a name="6793">
+<h4> Clearing the Histogram</h4>
+</a><a name="6829">
+First, we'll clear the current histogram to ensure that unwanted color data isn't left behind from another color reduction session.<p>
+</a><P>
+<a name="6830">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Oper field in the Color Reduction Operations section of the Color Reduction menu.
+</STRONG>
+</a><P><dl><a name="6831">
+<dt>The Select Color Reduction Operation pop-up menu appears:</dt>
+</a><P><a name="6832">
+ <P><img src="10ColorReduction.anc2.gif"><p>
+</a></dl>
+<a name="6833">
+<em>Figure 10.2  &#32; &#32;The Select Color Reduction pop-up menu
+</em></a><P>
+<a name="6828">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Clear Histogram.
+</STRONG>
+</a><P><a name="463000">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<a name="6838">
+<h4> Loading the First Source Image</h4>
+</a>
+<a name="6649">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Image&gt;Open Image.
+</STRONG>
+</a><P><dl><a name="463884">
+<dt>A Choose Directory and Name dialog box appears:</dt>
+</a><P><a name="463865">
+ <P><img src="10ColorReduction.anc3.gif"><p>
+</a></dl>
+<a name="463904">
+<em>Figure 10.3  &#32; &#32;Choose Directory dialog box
+</em></a><P><dl><dl><a name="463903">
+<dt><strong>(CLICK-M)</strong> on the Directory field to clear it, then type in the following directory</dt>
+</a><P><dl><a name="463874">
+<dt><code>/usr/local/ngc/demo/images/</code><p>
+</a><P></dl></dl></dl>
+<a name="462893">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on the Name field.
+</STRONG>
+</a><P><dl><a name="463928">
+<dt>A list of images in the current directory appears. <strong>(CLICK-L)</strong> on the following image:<strong></strong></dt>
+</a><P><dl><a name="462939">
+<dt><code><a f-chest.rgb>f-chest.rgb</code><p>
+</a><P></dl></dl>
+<a name="6677">
+The f-chest.rgb image appears on the canvas. This is the chest section taken from a larger image.<p>
+</a><P><a name="6678">
+ <P><img src="10ColorReduction.anc4.gif"><p>
+</a><a name="464269">
+<em>Figure 10.4  &#32; &#32;The f-chest.rgb image
+</em></a><P>
+<a name="464270">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on <strong>Full</strong> to toggle the display to full color mode.
+</STRONG>
+</a><P><dl><a name="464271">
+<dt>By default, N-Paint automatically remaps images to the current palette when you load them in Color Reduction mode. Thus, you'll see the reduced version of the image on the canvas after this operation. Just toggle N-Paint to full color display mode to see the image in full color.</dt>
+</a><P><a name="464275">
+<dt>You can prevent N-Paint from automatically remapping images when they are loaded by turning off Auto Remap in the N-Paint Setup Menu.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	If the current palette is left over from another session, the colors may not match those in a newly loaded source image at all, resulting in unpredictable color mapping. </font></dd></dt></dl><P>
+
+<a name="464265">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Oper&gt;Add Colors to Histogram.
+</STRONG>
+</a><P><a name="6876">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Canvas&gt;Full.
+</STRONG>
+</a><P><a name="463001">
+<STRONG>	10.	 Make sure that the Use matte toggle is OFF.
+</STRONG>
+</a><P><dl><a name="463002">
+<dt>The Matte toggle is located below and to the right of the Oper field. If it is highlighted in a shade of blue, (CLICK-L) on in to toggle it. </dt>
+</a><P></dl><a name="6880">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<a name="6881">
+The colors from the chest image are added to the histogram. At this point there's no way for you to see the result of this operation. Its effects won't be apparent until we use the histogram to build a palette.<p>
+</a><P><a name="462958">
+Now we need to add the colors from our remaining two images to the histogram.<p>
+</a><P>
+<a name="6883">
+<STRONG>	12.	 Repeat steps <a href="10ColorReduction.html#6649">5</a> through <a href="10ColorReduction.html#6880">11</a> for the remaining two image files.
+</STRONG>
+</a><P><dl><a name="6891">
+<dt>Load the following images:</dt>
+</a><P><dl><a name="6892">
+<dt><code>/usr/local/ngc/demo/images/<a f-helmet.rgb>f-helmet.rgb</code><p>
+</a><P><a name="6896">
+<dt><code>/usr/local/ngc/demo/images/<a f-skirt.rgb>f-skirt.rgb</code><p>
+</a><P></dl></dl>
+<a name="6823">
+<h3> Creating the Combined Palette</h3>
+</a><a name="6720">
+Although N-Paint creates a blank palette when you load an image, let's create a new, blank palette. This is the palette we'll use to reduce our images later.<p>
+</a><P>
+<a name="6730">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Palette in the Palette operations section of the Color Reduction menu.
+</STRONG>
+</a><P><a name="462973">
+ <P><img src="10ColorReduction.anc5.gif"><p>
+</a>
+<a name="462978">
+<em>Figure 10.5  &#32; &#32;The Palette section of the Color Reduction menu
+</em></a><P><dl><dl><a name="6731">
+<dt>The Palette Operations pop-up menu appears:</dt>
+</a><P><a name="6732">
+ <P><img src="10ColorReduction.anc6.gif"><p>
+</a></dl></dl><a name="6733">
+<em>Figure 10.6  &#32; &#32;The Palette Operations pop-up menu
+</em></a><P>
+<a name="6753">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Create New.
+</STRONG>
+</a><P><dl><a name="6756">
+<dt>Enter the directory and name for the palette in the dialog box that appears:</dt>
+</a><P><a name="6757">
+ <P><img src="10ColorReduction.anc7.gif"><p>
+</a></dl>
+<a name="6758">
+<em>Figure 10.7  &#32; &#32;The Enter New palette name dialog box
+</em></a><P>
+<a name="6766">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Size in the Palette section of the menu.
+</STRONG>
+</a><P><dl><a name="6767">
+<dt>The Choose Palette Size pop-up menu appears:</dt>
+</a><P><a name="6768">
+ <P><img src="10ColorReduction.anc8.gif"><p>
+</a></dl>
+<a name="6769">
+<em>Figure 10.8  &#32; &#32;The Choose Palette Size pop-up menu
+</em></a><P>
+<a name="6778">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on 4-bits.
+</STRONG>
+</a><P><dl><a name="6779">
+<dt>This limits our palette to 16 colors. The new, empty palette appears in the center of the palette operations section of the color reduction menu.</dt>
+</a><P><a name="6908">
+ <P><img src="10ColorReduction.anc9.gif"><p>
+</a></dl>
+<a name="6909">
+<em>Figure 10.9  &#32; &#32;The empty reduced-palette
+</em></a><P><a name="6917">
+<h3> Filling Palette Slots from the Histogram</h3>
+</a><a name="6918">
+We're ready to use the histogram we generated earlier to fill the slots in our empty palette. Because the histogram contains color information from all three images, the resulting palette will reflect the "best guess" colors for all three images.<p>
+</a><P>
+<a name="6919">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Oper&gt;Set Palette Slots from Histogram.
+</STRONG>
+</a><P><a name="6920">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Slots&gt;All.
+</STRONG>
+</a><P><a name="6927">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="6928">
+<dt>N-Paint fills the palette slots with the 16 colors which best match the colors in the original three images.</dt>
+</a><P><a name="6929">
+ <P><img src="10ColorReduction.anc10.gif"><p>
+</a></dl>
+<a name="6930">
+<em>Figure 10.10  &#32; &#32;The Reduced palette
+</em></a><P><a name="6941">
+<h3> Generating the Reduced Images</h3>
+</a><a name="6942">
+Now we're ready to use the new palette to create color reduced versions of our source images.<p>
+</a><P>
+<a name="6943">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Image.
+</STRONG>
+</a><P><dl><a name="6944">
+<dt>The Image Operations pop-up menu appears:</dt>
+</a><P><a name="6945">
+ <P><img src="10ColorReduction.anc11.gif"><p>
+</a></dl>
+<a name="6946">
+<em>Figure 10.11  &#32; &#32;The Select Image pop-up menu
+</em></a><P>
+<a name="6952">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Select Image Only.
+</STRONG>
+</a><P><dl><a name="6953">
+<dt>A pop-up menu appears listing images loaded into memory. Select the <strong>f-chest</strong> image from the list.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If Auto Remap is ON in the Paint Setup menus, then the image will automatically be reduced and remapped to the current palette.<br><br>If Auto Remap is OFF, then you will have to remap the images manually. To do so, <strong>(CLICK-L)</strong> on Oper&gt;Remap Canvas, then <strong>(CLICK-L)</strong> on Do It.</font></dd></dt></dl><P>
+
+<a name="463023">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the Full and Reduced buttons near the bottom of the menu to see the difference between the full color and reduced versions of the image.
+</STRONG>
+</a><P><a name="6968">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on Image&gt;Save Reduced Image as.
+</STRONG>
+</a><P><dl><a name="463037">
+<dt>Use the Save Image As dialog to specify a directory, filename, and format for your reduced image.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	Remember, you cannot save images to the <code>/usr/local/ngc/demo/images</code> directory. Save your reduced images to directories for which you have adequate write permissions! If you have any questions, see your system administrator.</font></dd></dt></dl><P>
+
+<a name="463033">
+<STRONG>	24.	 Repeat <a href="10ColorReduction.html#6943">20</a> through <a href="10ColorReduction.html#6968">23</a> for the following images:
+</STRONG>
+</a><P><dl><dl><a name="463052">
+<dt><code>f-helmet.rgb</code><p>
+</a><P><a name="463053">
+<dt><code>f-skirt.rgb</code><p>
+</a><P></dl></dl></dl><a name="463957">
+While in memory, N-Paint keeps both a full-color version and a reduced color version of the same image. This is what makes it easy to flip back and forth between the two versions of the image. This is why you have both <strong>Save</strong> and <strong>Save Reduced Image</strong> commands-you need to tell N-Paint which version you want to save.<p>
+</a><P><a name="464125">
+Note also that if you read a reduced palette image <em>into</em> N-Paint, it is automatically converted into an image with full palette depth; if you use Save to save such an image, it will be saved as a full-depth image.<p>
+</a><P><a name="462720">
+<h3> Saving the Palette</h3>
+</a><a name="462721">
+The palette we just created is an integral part of the color-reduction process. We may need it again in the future, so let's save it.<p>
+</a><P>
+<a name="462725">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on Palette&gt;Save in the Palette section of the menu.
+</STRONG>
+</a><P><dl><a name="463061">
+<dt>The palette is saved to the location you specified when you created it. </dt>
+</a><P><a name="463062">
+<dt>If you want to save the palette to a different location, <strong>(CLICK-L)</strong> on Save As, and enter a new directory and filename in the dialog which appears.</dt>
+</a><P><a name="462750">
+<dt>Palette files have the extension .palette.</dt>
+</a><P></dl>
+<a name="462757">
+<h2><HR> Manipulating Slot Values</h2>
+</a><a name="463068">
+Now that you have created a reduced palette, you can fine tune it to ensure that the color-reduced image is as faithful a representation of the original as it can be.<p>
+</a><P>
+<a name="463074">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Image&gt;Select Image Only.
+</STRONG>
+</a><P><dl><a name="463075">
+<dt>Select the f-helmet image from the pop-up list which appears.</dt>
+</a><P></dl><a name="463134">
+<STRONG>	2.	 Beginning at the leftmost slot on the palette, <strong>(CLICK-L)</strong> on each color.
+</STRONG>
+</a><P><dl><a name="463153">
+<dt>As you <strong>(CLICK-L)</strong> on each slot, the areas of the canvas which use that slot are highlighted. You can use this feature to get a feel for how much of the canvas uses a particular color. You may find several slots to be redundant, which means you can combine them and use the extra space in the palette for more important colors. </dt>
+</a><P></dl>
+<a name="463138">
+<h3> Optimizing the Palette</h3>
+</a><dl><dl><a name="463159">
+<dt>We can optimize the colors in the palette slots so that more are devoted to the areas we want to focus on and less to the background. First, though, it might be easier to visualize which colors are redundant by sorting the Palette slots in color order.</dt>
+</a><P></dl></dl>
+<a name="463106">
+<STRONG>	3.	 <strong>(DRAG-L)</strong> across the slots in the palette and select them all.
+</STRONG>
+</a><P><a name="463109">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> over the highlighted slots.
+</STRONG>
+</a><P><dl><a name="463110">
+<dt>The Slot Operations pop-up menu appears:</dt>
+</a><P><a name="463111">
+ <P><img src="10ColorReduction.anc12.gif"><p>
+</a></dl>
+<a name="463116">
+<em>Figure 10.12  &#32; &#32;Slot Operations pop-up menu
+</em></a><P>
+<a name="463121">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Sort.
+</STRONG>
+</a><P><dl><a name="463122">
+<dt>The Sort By pop-up menu appears:</dt>
+</a><P><a name="463123">
+ <P><img src="10ColorReduction.anc13.gif"><p>
+</a></dl>
+<a name="463124">
+<em>Figure 10.13  &#32; &#32;Sort Slots pop-up menu
+</em></a><P>
+<a name="463129">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Red, set <strong>Direction</strong> to <strong>Up</strong>, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="463139">
+<dt>The slots in the palette are sorted from least amount of red on the left to greatest amount of red on the right.</dt>
+</a><P><a name="463140">
+<dt>To confirm this, <strong>(CLICK-L)</strong> on a slot on the left side of the palette and compare its RGB value with a slot further to the right (RGB values are displayed for each slot in the <strong>Slot</strong> field near the bottom of the Palette section of the menu).</dt>
+</a><P><a name="463144">
+<dt>Our sorted palette row looks like this:</dt>
+</a><P><a name="463081">
+ <P><img src="10ColorReduction.anc14.gif"><p>
+</a></dl>
+<a name="463082">
+<em>Figure 10.14  &#32; &#32;Our reduced, sorted palette row
+</em></a><P>
+<a name="463163">
+<STRONG>	7.	 Examine the colors in the palette.
+</STRONG>
+</a><P><dl><a name="463164">
+<dt>Note how there are several slots allocated to some of the darker areas of the image, and comparatively few for the flesh tones and metallic colors of the face and helmet.</dt>
+</a><P><a name="463171">
+<dt>We'll reset some of the palette slots using a larger number of the palette slots on the right of the palette.</dt>
+</a><P></dl><a name="463177">
+<STRONG>	8.	 <strong>(DRAG-L)</strong> on the eight slots on the right half of the palette.
+</STRONG>
+</a><P><dl><a name="463178">
+<dt>These slots are highlighted. Unfortunately, the highlighting on the canvas obscures the area we want to work with, so let's turn highlighting off.</dt>
+</a><P></dl><a name="463217">
+<STRONG>	9.	 To toggle canvas highlighting, <strong>(CLICK-r)</strong> over the selected slots, then <strong>(CLICK-L)</strong> on Unhighlight Canvas.
+</STRONG>
+</a><P><a name="463218">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Full.
+</STRONG>
+</a><P><dl><a name="463219">
+<dt>We'll need to see the full color image to get a true idea of which colors we want to include.</dt>
+</a><P></dl><a name="463183">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Oper&gt;Set Palette Slots &amp; Remap Canvas.
+</STRONG>
+</a><P><a name="463184">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Slots&gt;Selected.
+</STRONG>
+</a><P><dl><a name="463185">
+<dt>This constrains the Set Palette slots operation to the selected slots.</dt>
+</a><P></dl><a name="463188">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Canvas&gt;Poly
+</STRONG>
+</a><P><dl><a name="463189">
+<dt>This lets you use a polygon to define an irregular part of the canvas to use for the Set Palette Slots and Remap Canvas operation. The Color Reduction Operations menu changes slightly to provide a means for you to define the polygon.</dt>
+</a><P><a name="463204">
+ <P><img src="10ColorReduction.anc15.gif"><p>
+</a></dl>
+<a name="463205">
+<em>Figure 10.15  &#32; &#32;Color Reduction Operations menu with Poly selected
+</em></a><P>
+<a name="463210">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="463211">
+<STRONG>	15.	 Using the mouse, draw a polygon which encompasses as much of the fighters face and neck as possible.
+</STRONG>
+</a><P><dl><a name="463212">
+<dt>The polygon tool works in exactly the same manner as it does in Tools mode.</dt>
+</a><P></dl>
+<ul><a name="463213">
+<li><strong>(CLICK-L)</strong> to define a point in the polygon.
+</a></li><P><a name="463214">
+<li><strong>(CLICK-M)</strong> to complete the polygon.
+</a></li><P><a name="463215">
+<li><strong>(CLICK-R)</strong> to abort the operation.
+</a></li><P><dl><a name="463226">
+<dt>The palette slots are reset and the canvas remapped when you <strong>(CLICK-M)</strong> to complete the polygon.</dt>
+</a><P></dl></ul><P>
+<a name="463227">
+<STRONG>	16.	 If you aren't happy with the results, you can <strong>(CLICK-L)</strong> on UnDo to undo your action.
+</STRONG>
+</a><P><dl><a name="463228">
+<dt>Undo works the same way in Color Reduction mode as it does for Paint Tools mode. Depending on how you've configured N-Paint, you can Undo as many as 30 operations.</dt>
+</a><P></dl>
+<a name="463169">
+<h3> Picking Colors for Slots from Full-Color Images</h3>
+</a><a name="463244">
+Examine the areas around the horns and the band of the fighters helmet. One of the results of the color reduction process is a general reduction in intensity and contrast in this area. We'll select two palette slots, and then reset them to colors we'll pick from the metallic areas of the original full-color image.<p>
+</a><P>
+<a name="463241">
+<STRONG>	17.	 Find a palette slot near the left (darkest) end of the palette row. 
+</STRONG>
+</a><P><dl><a name="463248">
+<dt>Use Canvas Highlighting to ensure that the slots you pick are underutilized. In our palette, slots 3 and 4 worked well.</dt>
+</a><P></dl><a name="463167">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on the slot to select it.
+</STRONG>
+</a><P><a name="463253">
+<STRONG>	19.	 <strong>(CLICK-R)</strong> on the slot, then <strong>(CLICK-L)</strong> on Pick Color from the Slot Operations pop-up menu.
+</STRONG>
+</a><P><dl><a name="463323">
+<dt>Use the Color Picker to select a bright color from the metallic areas of the helmet. </dt>
+</a><P><a name="463324">
+<dt>If you need to zoom in to see what you're doing more clearly, use the "z" hot key. You can zoom back out with the <strong>(CTRL-Z)</strong> hotkey.</dt>
+</a><P></dl><a name="463266">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Oper&gt;Remap Canvas, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="463267">
+<dt>The image is remapped, hopefully increasing the highlight and metallic quality of the horns and helmetband.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	If you modify the palette, you will have to repeat the remap process for each of the images you want to use that palette. </font></dd></dt></dl><P>
+<a name="463268">
+<h3> Using Dithering</h3>
+</a><a name="463271">
+You can also change the visual quality of the image by manipulating the dithering level.<p>
+</a><P>
+<a name="463269">
+<STRONG>	 1.	 If it is not already on, toggle Dithering with a <strong>(CLICK-L)</strong> on the Dither toggle to the right of the color reduction operations section of the menu.
+</STRONG>
+</a><P><a name="463285">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the number field to the right of the dither toggle.
+</STRONG>
+</a><P><dl><a name="463289">
+<dt>A numeric keypad appears. Use it to enter a value between 0 and 1 for the level of dithering to use.</dt>
+</a><P></dl><a name="464232">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Oper&gt;Remap Canvas.
+</STRONG>
+</a><P><dl><a name="464233">
+<dt>You must remap the canvas to see the effect of using dithering.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Unlike the gamma and gain corrections made when you select a target platform (which merely simulate different hardware parameters), dithering actually affects the color value of the pixels in the reduced image.</font></dd></dt></dl><P>
+<a name="463290">
+<h3> Adjusting Gamma</h3>
+</a><a name="463291">
+Different game platforms have different gamma values, which directly affect the way your images will look on them. <p>
+</a><P>
+<a name="463294">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Target field in the lower right corner of the menu.
+</STRONG>
+</a><P><dl><a name="463295">
+<dt>The Select Target Platform pop-up menu appears:</dt>
+</a><P><a name="463296">
+ <P><img src="10ColorReduction.anc16.gif"><p>
+</a></dl>
+<a name="463297">
+<em>Figure 10.16  &#32; &#32;Select Target Platform pop-up menu
+</em></a><P>
+<a name="463302">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on a platform to select it.
+</STRONG>
+</a><P><dl><a name="463307">
+<dt>Remember that changing the gamma value in this manner in no way changes the image, only the manner in which it is displayed on the SGI monitor.</dt>
+</a><P></dl>
+<a name="463308">
+<h2><HR> Transparency</h2>
+</a><a name="463309">
+Full-color, four-component images have a matte channel, which you can use to control transparency in various situations. For example, when you use the matte to composite an image, only the portion of the image under the matte is composited onto the background image. <p>
+</a><P><a name="463314">
+LBM and BMP files do not provide for a matte channel. Instead, they use a single color to serve as a transparency color (usually color 0, or RGB 0.0 0.0 0.0). Usually, you'll want this color to be the background color of your sprite or other two dimensional image. <p>
+</a><P><a name="463315">
+The problem is that the LBM transparency color, RGB 0.0 0.0 0.0, is, of course, black. How do you make your black backgrounds transparent without making those portions of your images which contains black transparent as well? You can solve this problem by using the matte to control how your images are reduced. <p>
+</a><P>
+<a name="463336">
+<STRONG>	 1.	 Load the following image:
+</STRONG>
+</a><P><dl><a name="463337">
+<dt><code>/usr/local/ngc/demo/images/f-helmet.rgb</code></dt>
+</a><P><a name="463341">
+<dt>This image has a matte already defined for it. Of course, if your images don't, you'll have to create the necessary mattes.</dt>
+</a><P></dl><a name="463342">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Size field, and select 4 bits.
+</STRONG>
+</a><P><a name="464147">
+<STRONG>	3.	 <strong>(DRAG-L)</strong> on all but the leftmost slot in the palette.
+</STRONG>
+</a><P><dl><a name="463392">
+<dt>Before we define the background color, we'll set the palette slots and remap the canvas for the rest of the image.</dt>
+</a><P></dl><a name="463393">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Slots&gt;Selected.
+</STRONG>
+</a><P><dl><a name="464155">
+<dt>The <strong>Selected</strong> button will be highlighted in a shade of blue when it is selected.</dt>
+</a><P></dl><a name="464154">
+<STRONG>	5.	 Set the Matte to Use and View modes.
+</STRONG>
+</a><P><dl><a name="464160">
+<dt>Make sure the <strong>Use</strong> and <strong>View</strong> buttons are highlighted. If they are not, <strong>(CLICK-L)</strong> on each button to toggle it.</dt>
+</a><P></dl><a name="464157">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Oper&gt;Set Palette Slots &amp; Remap Canvas.
+</STRONG>
+</a><P><a name="464156">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="464173">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the <strong>Rev</strong> button to reverse the matte.
+</STRONG>
+</a><P><dl><a name="464217">
+<dt>Reversing the matte results in a matte which covers the background of the image.</dt>
+</a><P><a name="464222">
+ <P><img src="10ColorReduction.anc17.gif"><p>
+</a></dl>
+<a name="464223">
+<em>Figure 10.17  &#32; &#32;Left, normal matte; right, reversed matte (white indicates area covered by matte)
+</em></a><P><dl><dl><a name="464215">
+<dt>Now, the matte covers the background of the image, which are the pixels we want to map to our new transparency color.</dt>
+</a><P></dl></dl>
+<a name="464167">
+<STRONG>	9.	 Select the leftmost slot in the palette<strong>.</strong>
+</STRONG>
+</a><P><dl><a name="464172">
+<dt>The choice of the leftmost palette slot for the transparency color is strictly arbitrary. However, it's usually a good idea to select an out of the way slot, or to maintain some sort of consistent procedure to avoid confusion in the future.</dt>
+</a><P></dl><a name="464171">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Slots&gt;Selected.
+</STRONG>
+</a><P><a name="464176">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Oper&gt;Set Palette Slots &amp; Remap Canvas.
+</STRONG>
+</a><P><a name="464181">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<a name="464182">
+At this point, you may notice that some of the pixels in the non-background areas of the image are mapped to the new background color. The next few steps will ensure that these pixels are mapped to appropriate slots.<p>
+</a><P>
+<a name="464175">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on your background color slot.
+</STRONG>
+</a><P><dl><a name="464188">
+<dt>In this example, we've been using the leftmost slot of the palette.</dt>
+</a><P></dl><a name="464187">
+<STRONG>	14.	 Make sure the matte covers the background of the image.
+</STRONG>
+</a><P><dl><a name="464192">
+<dt>If necessary, <strong>(CLICK-L)</strong> on <strong>Rev</strong> to reverse it.</dt>
+</a><P></dl><a name="464193">
+<STRONG>	15.	 Make sure the matte is in <strong>Use</strong> mode.
+</STRONG>
+</a><P><a name="464194">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Oper&gt;Remap Canvas.
+</STRONG>
+</a><P><a name="464203">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Slots&gt;Selected.
+</STRONG>
+</a><P><a name="464204">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="464205">
+<STRONG>	19.	 <strong>(DRAG-L)</strong> on the remaining slots.
+</STRONG>
+</a><P><dl><a name="464206">
+<dt>Make sure that the leftmost (or your transparency slot) is <strong>not </strong>selected.</dt>
+</a><P></dl><a name="464207">
+<STRONG>	20.	 Reverse the matte so that it covers the foreground portion of the image.
+</STRONG>
+</a><P><a name="464208">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Slots&gt;Selected.
+</STRONG>
+</a><P><a name="464209">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<a name="464210">
+Now, all the palette slots except the leftmost slot map to pixels in the foreground of the image. Only a single palette slot is used to represent the background of the image.<p>
+</a><P><a name="463446">
+The LBM 0 color is equivalent to RGB 0.0 0.0 0.0, so we'll need to make sure that our transparency color matches this specification.<p>
+</a><P>
+<a name="464317">
+<STRONG>	23.	 <strong>(CLICK-M)</strong> in the Slot field near the bottom of the Palette section of the menu.
+</STRONG>
+</a><P><a name="464318">
+ <P><img src="10ColorReduction.anc18.gif"><p>
+</a>
+<a name="464323">
+<em>Figure 10.18 
+</em></a><P><dl>
+<dt><dd><font color=dd000>Note:	This field contains the RGB triplet for the selected slot. It displays the RGB value as a triplet of absolute values (0-255), or as a relative percentage (0-1). <strong>(CLICK-R)</strong> To toggle the RGB value display mode.</font></dd></dt></dl><P>
+
+<a name="463462">
+<STRONG>	24.	 Enter a value of 0 0 0 in the Slot field.
+</STRONG>
+</a><P><dl><a name="463463">
+<dt>This sets the value of the slot to RGB 0.0 0.0 0.0, which is the desired LBM transparency color.</dt>
+</a><P></dl>
+<a name="463464">
+Your image now has a transparent background!<p>
+</a><P><a name="463465">
+<h2><HR> Manipulating Slots</h2>
+</a><a name="463476">
+The following section shows you how to manipulate palette slots in several useful ways. <p>
+</a><P><a name="463477">
+<h3> Deleting Slots</h3>
+</a><a name="463483">
+You may want to delete slots in your palette to make room for new colors. To delete a slot, <p>
+</a><P>
+<a name="463489">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the slot you want to delete.
+</STRONG>
+</a><P><dl><a name="463490">
+<dt>Remember:</dt>
+</a><P></dl>
+<ul><a name="463491">
+<li><strong>(DRAG-L)</strong> to select multiple adjacent slots.
+</a></li><P><a name="463492">
+<li><strong>(SHIFT-L)</strong> to select multiple slots which are not adjacent.
+</a></li><P></ul><P>
+<a name="463496">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> over the slot, then <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="463497">
+<dt>The slots are deleted from the palette, which now has empty slots.</dt>
+</a><P><a name="463498">
+ <P><img src="10ColorReduction.anc19.gif"><p>
+</a></dl>
+<a name="463499">
+<em>Figure 10.19  &#32; &#32;Empty slots
+</em></a><P><a name="463482">
+<h3> Moving Colors</h3>
+</a><a name="463481">
+You may want to move a color from one slot to another.<p>
+</a><P><a name="463515">
+To move a color:<p>
+</a><P>
+<a name="463516">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the color you want to move.
+</STRONG>
+</a><P><a name="463517">
+<STRONG>	2.	 Move the cursor over the slot you wish to move it to, and <strong>(SHIFT-M)</strong>.
+</STRONG>
+</a><P><dl><a name="463544">
+<dt>The color will be inserted into the slot under the cursor. If that slot is occupied, the color in the slot is bumped to the side to make room.</dt>
+</a><P></dl>
+<a name="463545">
+<h3> Copying Colors</h3>
+</a><a name="463549">
+You can cut, copy and paste colors with ease. Cutting a color copies it to memory and deletes it from the palette, while copying does not delete the color from the palette.<p>
+</a><P><a name="463550">
+To cut or copy a color:<p>
+</a><P>
+<a name="463551">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the slot you want to cut.
+</STRONG>
+</a><P><a name="463552">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the slot (or slots) you select, and <strong>(CLICK-L)</strong> on Cut or Copy.
+</STRONG>
+</a><P>
+<a name="463553">
+To paste a color you've cut or copied:<p>
+</a><P>
+<a name="463554">
+<STRONG>	 1.	 Position the cursor over the slot you want to paste the color into.
+</STRONG>
+</a><P><a name="463558">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the slot, then <strong>(CLICK-L)</strong> on Paste.
+</STRONG>
+</a><P><dl><a name="463559">
+<dt>Remember that you must select the same number of target slots as colors you wish to paste. In other words, if you copy three colors, you must highlight three slots before you paste the colors into the palettes.</dt>
+</a><P></dl>
+<a name="464333">
+<h4> Using the Scratch Palette</h4>
+</a><a name="464334">
+You can use the scratch palette to save colors to use between palettes, or to preserve colors you want to delete from the current palette but use later. The scratch palette, located to the left of the current palette, functions in exactly the same way. <p>
+</a><P><a name="464337">
+ <P><img src="10ColorReduction.anc20.gif"><p>
+</a><a name="464338">
+<em>Figure 10.20  &#32; &#32;The scratch palette
+</em></a><P><a name="463472">
+<h3> Compacting the Palette</h3>
+</a><a name="463568">
+If you find yourself with a palette that has several gaps in it, you can easily compact it so that all the empty slots are located at the end of the palette.<p>
+</a><P><a name="463569">
+To compact the palette:<p>
+</a><P>
+<a name="463570">
+<STRONG>	 1.	 Select the range of slots you want to compact.
+</STRONG>
+</a><P><dl><a name="463581">
+<dt><strong>(CLICK-L)</strong> or <strong>(DRAG-L)</strong> to select the slots. If you want to compact the entire palette, select all the slots.</dt>
+</a><P></dl><a name="463580">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> over the palette, then <strong>(CLICK-L)</strong> on Compact.
+</STRONG>
+</a><P><dl><a name="463582">
+<dt>The slots are compacted to the beginning of the palette.</dt>
+</a><P><a name="463571">
+ <P><img src="10ColorReduction.anc21.gif"><p>
+</a></dl>
+<a name="463572">
+<em>Figure 10.21  &#32; &#32;Top, palette before compaction; Bottom, palette after compaction
+</em></a><P><a name="463449">
+<h2><HR> Congratulations!</h2>
+</a><a name="462767">
+You are now qualified to use N-Paint to color reduce images! <p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="92DAnimation.html">[Prev]</a> <a href="11VRAMEditor.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 23:01:54 -->
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<html><head><title>N-Paint 3D: Map Mode</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6SeamlessMap.html">[Prev]</a> <a href="83dPaintMode.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6327">
+<h1>N-Paint 3D: Map Mode</h1>
+</a>
+<hr><p><a name="6350">
+<h4> Using 3D paints map mode, you can paint on a texture map on the canvas and watch your changes applied immediately to objects in the geometry window.</h4>
+</a><a name="6353">
+ <P><img src="73dMapMode.anc.gif"><p>
+</a><a name="1221">
+<h2><HR> In this Chapter</h2>
+</a><a name="1809">
+You'll learn how to:<p>
+</a><P><ul><a name="5637">
+<li>Set up an object for painting in Map mode
+</a></li><P><a name="5036">
+<li>How to paint on an object in Map mode
+</a></li><P><a name="5037">
+<li>How to save your object and maps when you're done
+</a></li><P></ul><P><a name="6349">
+<h2><HR> Map Mode</h2>
+</a><a name="5038">
+There are two modes for N-Paint 3D, <em>map mode</em> and <em>3D mode</em>. This chapter describes how to paint on an object using map mode.<p>
+</a><P><a name="5041">
+We called this technique "map mode" because you actually paint on a map and see that image directly applied to a 3D object after each operation. This means that you can work on very complex areas (even areas with obscured faces) in an easy to use environment.<p>
+</a><P><a name="5405">
+In this chapter, we'll create a simple geometry object, attach a mapper to it, create a map, apply the map through the mapper, then paint on the object.<p>
+</a><P><a name="4971">
+<h3> Preparing the Object</h3>
+</a>
+<a name="5069">
+<STRONG>	 1.	 In the GeoMenus menu, <strong>(CLICK-L)</strong> on New Object&gt;Sphere.
+</STRONG>
+</a><P><dl><a name="5071">
+<dt>A new sphere appears in the geometry window:</dt>
+</a><P><a name="5076">
+ <P><img src="73dMapMode.anc1.gif"><p>
+</a></dl>
+<a name="5060">
+<em>Figure 7.1  &#32; &#32;Simple sphere
+</em></a><P>
+<a name="5083">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Shading in the GeoMenus.
+</STRONG>
+</a><P><a name="5096">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Sphere from the object list that appears.
+</STRONG>
+</a><P><dl><a name="5097">
+<dt>The sphere is now rendered in the geometry window using GL shade:</dt>
+</a><P><a name="5105">
+ <P><img src="73dMapMode.anc2.gif"><p>
+</a></dl>
+<a name="5106">
+<em>Figure 7.2  &#32; &#32;Shaded sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You must have shading turned on for any object that you want to paint on with N-Paint 3D.</em></font></dd></dt></dl><P>
+
+<a name="5100">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on New Object&gt;Mapper on the GeoMenus menu.
+</STRONG>
+</a><P><dl><a name="6437">
+<dt>The new mapper parameters menu appears:</dt>
+</a><P><a name="6438">
+ <P><img src="73dMapMode.anc3.gif"><p>
+</a></dl>
+<a name="6439">
+<em>Figure 7.3  &#32; &#32;New mapper parameters menu
+</em></a><P>
+<a name="5121">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Spherical.
+</STRONG>
+</a><P><a name="5140">
+<STRONG>	6.	 <strong>(CLICK-L</strong>) on the Bounds Source field, and select your new sphere from the object list that appears.
+</STRONG>
+</a><P><a name="6456">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Make Mapper button.
+</STRONG>
+</a><P><a name="5147">
+<STRONG>	8.	 (<strong>SHIFT-L) </strong>on the sphere, then <strong>(CLICK-L) </strong>on Apply Mapper.
+</STRONG>
+</a><P><dl><a name="6454">
+<dt>Select the spherical mapper you just created. The mapper is now associated with the sphere.<P><img src="73dMapMode.anc4.gif"></dt>
+</a><P></dl>
+<a name="5154">
+<em>Figure 7.4  &#32; &#32;Shaded sphere with mapper attached
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	In previous sections, we've applied mappers using the browser. You can use the browser or the GeoMenus to assign mappers; the two methods are equivalent.</font></dd></dt></dl><P>
+
+<a name="5158">
+<STRONG>	9.	 In the commands section of the Paint tools menu, <strong>(CLICK-L)</strong> on the File&gt;Create New.
+</STRONG>
+</a><P><a name="5167">
+ <P><img src="73dMapMode.anc5.gif"><p>
+</a>
+<a name="5168">
+<em>Figure 7.5  &#32; &#32;N-Paint commands
+</em></a><P>
+<a name="5184">
+<STRONG>	10.	 Use the default canvas size (512 x 512), specify a path and filename, and <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="6432">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on File&gt;Save to save the new map file to disk.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you've already created a basic map, you can specify that map instead of this one as indicated below.</em></font></dd></dt></dl><P>
+<a name="6710">
+<h3> Create a Material</h3>
+</a><a name="6526">
+We need to create a material which uses the texture map we created in step <a href="73dMapMode.html#6432">11</a>.<p>
+</a><P>
+<a name="6527">
+<STRONG>	12.	 Open the Attributes Editor
+</STRONG>
+</a><P><a name="6566">
+ <P><img src="73dMapMode.anc6.gif"><p>
+</a>
+<a name="6567">
+<em>Figure 7.6  &#32; &#32;The Attributes Editor
+</em></a><P>
+<a name="6529">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Materials.
+</STRONG>
+</a><P><a name="6530">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on New.
+</STRONG>
+</a><P><dl><a name="6582">
+<dt>The Create New Material dialog appears:</dt>
+</a><P><a name="6577">
+ <P><img src="73dMapMode.anc7.gif"><p>
+</a></dl>
+<a name="6578">
+<em>Figure 7.7  &#32; &#32;Create New Material dialog
+</em></a><P><dl><dl><a name="6531">
+<dt>Call this material "3D-Paint-example"</dt>
+</a><P></dl></dl>
+<a name="6532">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Domain&gt;GL Shade.
+</STRONG>
+</a><P><a name="6535">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Texture in the Material Parameters section of the menu.
+</STRONG>
+</a><P><a name="6988">
+ <P><img src="73dMapMode.anc8.gif"><p>
+</a>
+<a name="6989">
+<em>Figure 7.8  &#32; &#32;The Texture button in the Attributes Editor
+</em></a><P>
+<a name="6536">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Map.
+</STRONG>
+</a><P><dl><a name="6537">
+<dt>A Choose File dialog box appears. Use this dialog to choose the map you created in step <a href="73dMapMode.html#6432">11</a></dt>
+</a><P></dl>
+<a name="6541">
+<h3> Apply the New Material to the Object</h3>
+</a>
+<a name="6543">
+<STRONG>	18.	 In the Browser, <strong>(CLICK-R)</strong> on the Sphere object.
+</STRONG>
+</a><P><dl><a name="6544">
+<dt>The operations menu appears.</dt>
+</a><P></dl><a name="6545">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="6546">
+<dt>A menu appears listing all materials currently loaded into memory.</dt>
+</a><P></dl><a name="6554">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the material you created in steps <a href="73dMapMode.html#6529">13</a> through <a href="73dMapMode.html#6536">17</a>.
+</STRONG>
+</a><P><dl><a name="6555">
+<dt>The Assign Mappers dialog box appears:</dt>
+</a><P><a name="6559">
+ <P><img src="73dMapMode.anc9.gif"><p>
+</a></dl>
+<a name="6560">
+<em>Figure 7.9  &#32; &#32;The Assign Mappers dialog
+</em></a><P><dl><dl><a name="6561">
+<dt>An icon for your texture map appears in this dialog above a field which specifies the mapper for that texture. This field should show the name of the mapper you assigned to the sphere in step <a href="73dMapMode.html#5147">8</a>. If it does not, <strong>(CLICK-L)</strong> on the field and select the appropriate mapper from the pop-up menu which appears.</dt>
+</a><P><a name="6565">
+<dt>The appearance of the sphere node in the browser changes to reflect the new material attached to it. </dt>
+</a><P></dl></dl>
+<a name="6482">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on the Redisplay button to apply the changes to your object and update the view in the N-Geometry window.
+</STRONG>
+</a><P><dl><a name="5341">
+<dt>If the map you created in step <a href="73dMapMode.html#6432">11</a> was a plain black image, your sphere should now look something like this:</dt>
+</a><P><a name="5391">
+ <P><img src="73dMapMode.anc10.gif"><p>
+</a></dl>
+<a name="5392">
+<em>Figure 7.10  &#32; &#32;Object with map applied
+</em></a><P><dl><dl><a name="5340">
+<dt>You're now ready to paint on the object.</dt>
+</a><P></dl></dl><a name="5398">
+<h3> Painting on the Object</h3>
+</a><a name="5410">
+At this point, you should have a sphere in the N-Geometry window with a mapper attached to it. You should have assigned a map to the object through that mapper. This procedure is similar to what you have probably done in the past, applying mappers to objects with maps, resizing and modifying those maps, and so forth. Now, N-Paint 3D lets you paint on those maps and see the results on your object <em>interactively</em>.<p>
+</a><P>
+<a name="5419">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the GeoPaint button on the menu bar again, to make sure that the appropriate windows are open.
+</STRONG>
+</a><P><dl><a name="5452">
+<dt>This just makes it easy to arrange the windows on your desktop so that what you need is available.</dt>
+</a><P></dl><a name="5451">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu in the geometry window.
+</STRONG>
+</a><P><a name="5433">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the sphere to select it.
+</STRONG>
+</a><P><a name="5434">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on Map in the Modes area of the Paint menu:
+</STRONG>
+</a><P><a name="5442">
+ <P><img src="73dMapMode.anc11.gif"><p>
+</a>
+<a name="5443">
+<em>Figure 7.11  &#32; &#32;Selecting a paint mode
+</em></a><P><dl><dl><a name="5435">
+<dt>The geometry of the sphere is "unfolded" on the paint canvas. The vertices and edges in your model become nodes and lines in the N-Paint grid, forming an overlay of your objects geometry on the texture map your painting.</dt>
+</a><P><a name="5477">
+ <P><img src="73dMapMode.anc12.gif"><p>
+</a></dl></dl><a name="5478">
+<em>Figure 7.12  &#32; &#32;The selected object's geometry is "unfolded" onto the paint canvas
+</em></a><P>
+<a name="5432">
+<STRONG>	26.	 Choose a paint tool, such as the round brush with a color ink.
+</STRONG>
+</a><P><a name="5496">
+<STRONG>	27.	 Paint several strokes on the canvas.
+</STRONG>
+</a><P><dl><a name="5499">
+<dt>Note that after each stroke, the object is updated:</dt>
+</a><P><a name="5515">
+ <P><img src="73dMapMode.anc13.gif"><p>
+</a></dl>
+<a name="5516">
+<em>Figure 7.13  &#32; &#32;Changes made to the map are shown on the object immediately
+</em></a><P><a name="5532">
+<h4> Delaying Updates on the Object</h4>
+</a><a name="5535">
+	Hold the <strong>ALT</strong> key down to paint on a map without updating the object immediately. (This is useful if you're working on a very large object and don't want to redraw the object after each paint operation.)<p>
+</a><P><a name="5504">
+When you let up on the <strong>ALT </strong>key, the modified map is reapplied to the object.<p>
+</a><P><a name="5034">
+<h3> Saving Your Work</h3>
+</a><a name="5547">
+When you are finished painting on an object, you need to save your object <em>and</em> save your modified maps. You need only save your object if:<p>
+</a><P><ul><a name="5892">
+<li>You created the object in the current session and haven't yet saved it.
+</a></li><P><a name="5894">
+<li>You've made changes to the attributes for the object (e.g., changed which map was assigned through a mapper).
+</a></li><P></ul><P><a name="5891">
+To save the object:<p>
+</a><P>
+<a name="5552">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on Save in the GeoMenus.
+</STRONG>
+</a><P><dl><a name="6722">
+<dt>Specify a directory and name for your sphere and mapper objects, then <strong>(CLICK-L)</strong> on Do It.</dt>
+</a><P></dl>
+<a name="5581">
+<h4> Saving the Maps</h4>
+</a>
+<a name="5587">
+<STRONG>	29.	 In the N-Paint menus, <strong>(CLICK-L)</strong> on File&gt;Save As .
+</STRONG>
+</a><P><dl><a name="5611">
+<dt>Enter the pathname for where the modified map should be saved:</dt>
+</a><P><a name="5617">
+ <P><img src="73dMapMode.anc14.gif"><p>
+</a></dl>
+<a name="5618">
+<em>Figure 7.14  &#32; &#32;Saving the map
+</em></a><P><dl><dl><a name="5612">
+<dt>That's it! You've now saved your object with an attached mapper and a custom map created just for that object.</dt>
+</a><P></dl></dl><a name="5578">
+<h3> Painting on Parts of an Object</h3>
+</a><a name="5632">
+There are several different ways to select parts of an object you want to paint on:<p>
+</a><P><ul><a name="5650">
+<li>selecting a single face or making a collection of faces in the N-Geometry window
+</a></li><P><a name="5662">
+<li>choosing a pre-defined face part from the object
+</a></li><P></ul><P><a name="5663">
+<h4> Painting on a Selected Face or Faces</h4>
+</a><a name="5649">
+To paint on part of an object:<p>
+</a><P>
+<a name="5633">
+<STRONG>	 1.	 Select the face (or collection of faces) on the object you want to paint on.
+</STRONG>
+</a><P><dl><a name="5686">
+<dt>For example, you might want to paint on one section of the sphere we created earlier:</dt>
+</a><P><a name="5696">
+ <P><img src="73dMapMode.anc15.gif"><p>
+</a></dl>
+<a name="5697">
+<em>Figure 7.15  &#32; &#32;Select the faces you want to paint on
+</em></a><P>
+<a name="5691">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Map button in the 3D portion of the menu.
+</STRONG>
+</a><P><dl><a name="5705">
+<dt>The highlighted faces are outlined on the paint canvas:</dt>
+</a><P><a name="5711">
+ <P><img src="73dMapMode.anc16.gif"><p>
+</a></dl>
+<a name="5712">
+<em>Figure 7.16  &#32; &#32;Painting on selected faces
+</em></a><P><dl><dl><a name="5706">
+<dt>This is handy if you want to see what portion of the map you're painting on corresponds to a selected part of the object:</dt>
+</a><P><a name="5731">
+ <P><img src="73dMapMode.anc17.gif"><p>
+</a></dl></dl><a name="5732">
+<em>Figure 7.17  &#32; &#32;Selected faces on the object give you a point of reference
+</em></a><P><a name="5750">
+Note that even though you've gathered a collection of faces you want to paint on, painting on the map is <em>not limited</em> to those faces. If you want to paint only on certain faces of the object but protect others, you need to use the matte feature described below.<p>
+</a><P><a name="5665">
+<h4> Using the Matte</h4>
+</a><a name="5666">
+When you want to protect part of the canvas (i.e., paint only on the part of the map that corresponds to selected faces), you need to create a matte. N-Paint 3D can build a matte channel for you <em>automatically</em>:<p>
+</a><P>
+<a name="5488">
+<STRONG>	 1.	 Select the face, collection of faces, or body that you want to protect.
+</STRONG>
+</a><P><a name="5484">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the Map button.
+</STRONG>
+</a><P><dl><a name="5791">
+<dt>A matte channel is created on the paint canvas; to see it, <strong>(CLICK-L)</strong> on the <strong>View</strong> button in the <strong>Matte modes </strong>section of the menu.</dt>
+</a><P><a name="5802">
+ <P><img src="73dMapMode.anc18.gif"><p>
+</a></dl>
+<a name="5803">
+<em>Figure 7.18  &#32; &#32;Protect selected faces using the matte channel
+</em></a><P>
+<a name="5811">
+<STRONG>	3.	 To use the matte, <strong>(CLICK-L)</strong> on the Use button in the Matte modes section of the menu.
+</STRONG>
+</a><P><a name="5797">
+<STRONG>	4.	 If you want to paint on (rather than protect) the selected faces, you can reverse the matte.
+</STRONG>
+</a><P><dl><a name="5815">
+<dt><strong>(CLICK-L)</strong> on the <strong>Rev</strong> button in the <strong>Matte modes </strong>section of the menu. The matte is reversed:</dt>
+</a><P><a name="5821">
+ <P><img src="73dMapMode.anc19.gif"><p>
+</a></dl>
+<a name="5822">
+<em>Figure 7.19  &#32; &#32;Reversing the matte
+</em></a><P>
+<a name="5816">
+<STRONG>	5.	 Paint on the unprotected part of the canvas as you normally would:
+</STRONG>
+</a><P><a name="5836">
+ <P><img src="73dMapMode.anc20.gif"><p>
+</a>
+<a name="5837">
+<em>Figure 7.20  &#32; &#32;Painting on the object using the matte
+</em></a><P>
+<a name="5831">
+<STRONG>	6.	 Save your work as described in the section <a href="73dMapMode.html#5034">"Saving Your Work," on page &#32;7-11</a>.
+</STRONG>
+</a><P>
+<a name="5767">
+<h4> Part Select</h4>
+</a><a name="5768">
+A "face part" is a face or group of faces on an object that you want to be able to select over and over. To build a face part, you collect the faces in N-Geometry and give those parts a name.<p>
+</a><P><a name="5878">
+You might collect the eyes on a robot, or the fins on a rocket so that you could easily select that group of faces with one command. Creating face parts is described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="5852">
+It's also likely that you'll want to use N-Paint 3D to paint on a pre-defined face part; to choose a face part you want to paint on.<p>
+</a><P><a name="5950">
+<h4> Selecting a Face Part on the Object</h4>
+</a><a name="5951">
+Once you've entered Map mode:<p>
+</a><P>
+<a name="5770">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Part Select button in the 3D Paint portion of the menu.
+</STRONG>
+</a><P><dl><a name="5954">
+<dt>A list of face parts on the object is displayed:</dt>
+</a><P><a name="5968">
+ <P><img src="73dMapMode.anc21.gif"><p>
+</a></dl>
+<a name="5969">
+<em>Figure 7.21  &#32; &#32;Selecting a face part
+</em></a><P>
+<a name="5957">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the face part you want to highlight and <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="5977">
+<dt>If "top" was a collection of faces on top of the sphere, it might look something like this:</dt>
+</a><P><a name="5983">
+ <P><img src="73dMapMode.anc22.gif"><p>
+</a></dl>
+<a name="5984">
+<em>Figure 7.22  &#32; &#32;Selected part highlighted on an object
+</em></a><P>
+<a name="5978">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> (if you want to create a matte channel) on the Map button.
+</STRONG>
+</a><P><dl><a name="5994">
+<dt>The geometry for the selected part of the object is unfolded as an overlay on the canvas.</dt>
+</a><P></dl>
+<a name="6017">
+<h4> Displaying Selected Parts of an Object</h4>
+</a><a name="6033">
+If you are working on a object with several parts, you may find it useful to temporarily "hide" one or more parts. To toggle the visibility of parts:<p>
+</a><P>
+<a name="6045">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Part Select button in the 3D Paint portin of the menu.
+</STRONG>
+</a><P><dl><a name="6046">
+<dt>A list of face parts on the object is displayed:</dt>
+</a><P><a name="6050">
+ <P><img src="73dMapMode.anc23.gif"><p>
+</a></dl>
+<a name="6051">
+<em>Figure 7.23  &#32; &#32;Selecting a face part
+</em></a><P>
+<a name="6052">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the face part you want to highlight and <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="6053">
+<dt>If "top" was a collection of faces on top of the sphere, it might look something like this:</dt>
+</a><P><a name="6057">
+ <P><img src="73dMapMode.anc24.gif"><p>
+</a></dl>
+<a name="6058">
+<em>Figure 7.24  &#32; &#32;Highlighting selected face parts
+</em></a><P>
+<a name="6059">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> (if you want to create a matte channel) on the Map button.
+</STRONG>
+</a><P><dl><a name="6060">
+<dt>The geometry for the selected part is unfolded as an overlay on the canvas.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Even though only a selected part of the object is visible, if you paint beyond the unfolded overlay for that part, non-visible parts of the object will be updated! The Part Select command only controls selection and visibility of face parts; you must specify a matte channel if you want one (as described in <a href="73dMapMode.html#5665">"Using the Matte," on page &#32;7-14</a>.</em></font></dd></dt></dl><P>
+<a name="6004">
+<h4> Making the Entire Object Visible</h4>
+</a><a name="6069">
+To make the entire object visible, <strong>(CLICK-R)</strong> on the Part Select button.<p>
+</a><P><a name="5772">
+<h4> The 3DPaint-selected Face Part</h4>
+</a><a name="6073">
+When you select a face or group of faces that does not belong to a part, then <strong>(CLICK-L)</strong> on the <strong>Map</strong> button in the 3D Paint portion of the menu, a face part is created automatically; this part is called <strong>3DPaint-selected</strong>. <p>
+</a><P><a name="6121">
+ <P><img src="73dMapMode.anc25.gif"><p>
+</a><a name="6122">
+<em>Figure 7.25  &#32; &#32;Selecting a face part
+</em></a><P><a name="6090">
+The 3DPaint-selected part is redefined each time you <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> on the Map button in the 3D Paint portion of the menu.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The 3DPaint-selected face part is not redefined if you copy the geometry of a previously defined face part to the paint canvas.</em></font></dd></dt></dl><P>
+<a name="4992">
+<h3> Using the Overlay as a Grid</h3>
+</a><a name="6136">
+The displayed overlay can be used as a grid to constrain movement of tools over the paint canvas. The display of the grid can also be toggled on and off.<p>
+</a><P><a name="6141">
+<h4> Using the Grid</h4>
+</a>
+<a name="6142">
+<STRONG>	 1.	 Press the "g" hot key to constrain movement of any paint tool along the grid overlay.
+</STRONG>
+</a><P><dl><a name="6152">
+<dt>This is useful if you want to perform any operation along the edges of the selected object. You may, for example, want to paint along the edges to highlight it, or create a matte along the edges and paint only the interior of the faces.</dt>
+</a><P></dl>
+<a name="6159">
+<h4> Toggling Display of the Grid</h4>
+</a>
+<a name="6162">
+<STRONG>	 1.	 Press the <strong>(SHIFT-G)</strong> hot key combination to toggle the <em>display</em> of the grid.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Toggling the display of the grid does not turn it off.</em></font></dd></dt></dl><P>
+<a name="6135">
+<h3> Hot Key Summary 
+<P><Table Border="1">
+<dl>
+<a name="4998">
+<em>Table 7.1 <strong></strong><em> &#32; &#32;N-Paint 3D Hot Keys (Map Mode)</em>
+</em></a></dl>
+<tr><th align="left"><a name="5002">
+Keystroke
+</a><th align="left"><a name="5004">
+Description
+</a>
+<tr><td valign="top"><a name="5014">
+ <strong>(SHIFT-G)</strong><p>
+</a><td valign="top"><a name="5016">
+ Draw and undraw grid<p>
+</a>
+<tr><td valign="top"><a name="5006">
+ <strong>g</strong><p>
+</a><td valign="top"><a name="5008">
+ Constrain to grid<p>
+</a>
+<tr><td valign="top"><a name="5010">
+ <strong>s</strong> <p>
+</a><td valign="top"><a name="6215">
+ Highlights the faces of the last face part whose geometry was copied to the canvas (including 3DPaint-selected).<p>
+</a><a name="6216">
+ This hotkey is useful because after you select the faces in geometry and send them over to paint (by clicking on <strong>Map</strong>), the faces are automatically deselected in the geometry window (so you can see what you're painting). If you need to reselect those faces in geometry (to modify the collection) you can use the [s] hot key.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h3>
+</a><a name="4995">
+<h2><HR> Congratulations!</h2>
+</a><a name="6987">
+You've unlocked the power of N-Paint 3D. Now, you can use the geometry of an object as a guide when you create or modify texture maps for that object.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6SeamlessMap.html">[Prev]</a> <a href="83dPaintMode.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 22:16:55 -->
+
+</body>
+</html>

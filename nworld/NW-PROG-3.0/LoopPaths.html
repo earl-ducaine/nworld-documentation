@@ -1,0 +1,461 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="ExtendingDynamics.html">[Prev]</a> <a href="OptimizingCode.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="25244">
+This chapter describes how to use the predefined iteration paths with the loop macro to traverse elements of N-Geometry bodies and objects.<p>
+</a><P><a name="24822">
+<h2><HR> Loop Iteration Paths vs. Short Forms</h2>
+</a><a name="25285">
+Traversing is a means of accessing elements of a data structure (such as a body or object) in an ordered way. In order to simplify this access, predefined iteration paths have been defined in the N&#183;World development environment.<p>
+</a><P><a name="25359">
+Consider the following predefined iteration path, which can be used to traverse the vertices of a polyhedron:<p>
+</a><P><a name="25303">
+<code><pre><a vertex-ring-elements LIP>vertex-ring-elements<p>
+</code></pre></a><a name="25371">
+This iteration path could be used to traverse all the vertices of a polyhedron, regardless of its topological structure. For example:<p>
+</a><P><a name="25372">
+<code><pre>(loop for v being the vertex-ring-elements of-polyhedron my-polyhedron<p>
+</code></pre></a><a name="25376">
+<code><pre>			do (do-something v))<p>
+</code></pre></a><a name="25298">
+A short form of the <code>vertex-ring-elements</code> iteration path has also been defined in the N&#183;World development environment:<p>
+</a><P><a name="25314">
+<code><pre><a do-vertices iteration LIP>do-vertices <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25391">
+This short form can also be used to traverse all the vertices of the same polyhedron:<p>
+</a><P><a name="25407">
+<code><pre>(do-vertices (v my-polyhedron)<p>
+</code></pre></a><a name="25408">
+<code><pre>	(do-something v))<p>
+</code></pre></a><a name="25422">
+These two forms are functionally equivalent. The sections below show when to use one form over the other.<p>
+</a><P><a name="25429">
+<h4> When to Use loop</h4>
+</a><a name="25437">
+Use the loop iteration paths:<p>
+</a><P><ul><a name="25440">
+<li>For improved readability.
+</a></li><P><a name="25444">
+<li>For improved flexibility.
+</a></li><P><a name="25449">
+<li>When the loop macro can perform other tasks at the same time the traversing is being performed.
+</a></li><P></ul><P><a name="25450">
+For example:<p>
+</a><P><a name="25459">
+<code><pre>(loop for v being the vertex-ring-elements of-polyhedron my-polyhedron<p>
+</code></pre></a><a name="25460">
+<code><pre>			for index from 0<p>
+</code></pre></a><a name="25464">
+<code><pre>			collect (list index (get-serial-number v))<p>
+</code></pre></a><a name="25441">
+This form returns a list that is generated while the element is traversed.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The </em><code>loop</code><em> macro will be integrated into the </em><code>loop</code><em> macro in version 3.0 of N&#183;World.</em></font></dd></dt></dl><P>
+<a name="25427">
+<h4> When to use Do-Element Short Forms</h4>
+</a><a name="25481">
+Use the short form:<p>
+</a><P><ul><a name="25328">
+<li>For more compact code
+</a></li><P><a name="25490">
+<li>To perform simple specific tasks
+</a></li><P></ul><P><a name="25498">
+For example, to achieve the same results in the <code>loop</code> example above with <code><a do-vertices LIP>do-vertices</code>, we'd need something like this:<p>
+</a><P><a name="25489">
+<code><pre>(let ((index 0)<p>
+</code></pre></a><a name="25506">
+<code><pre>		(return-list nil))<p>
+</code></pre></a><a name="25507">
+<code><pre>	(do-vertices (v my-polyhedron)<p>
+</code></pre></a><a name="25508">
+<code><pre>		(push (list index (get-serial-number v)) return-list)<p>
+</code></pre></a><a name="25509">
+<code><pre>		(incf index))<p>
+</code></pre></a><a name="25510">
+<code><pre>	(reverse return-list))<p>
+</code></pre></a><a name="25309">
+As you can see, using short forms can actually increase the complexity of your code very quickly. They should be used selectively.<p>
+</a><P><a name="25341">
+<h2><HR> Traversing Elements of a Polyhedron through <br>Element Rings</h2>
+</a><a name="25534">
+The components of a polyhedron are:<p>
+</a><P><ul><a name="25535">
+<li>vertices
+</a></li><P><a name="25537">
+<li>edges
+</a></li><P><a name="25538">
+<li>faces
+</a></li><P></ul><P><a name="25539">
+For instance, all the <em>vertices</em> belonging to a polyhedron are connected in a circular, double-pointed list. This list is called the vertex "ring." <p>
+</a><P><a name="25557">
+From any vertex, we can access the next and previous element of the ring. The elements do not have any specific ordering inside the ring. <p>
+</a><P><a name="25570">
+In a like manner, both edge and face rings exist for any given polyhedron.<p>
+</a><P><a name="25571">
+Predefined iteration paths are:<p>
+</a><P><a name="26047">
+<code>	vertex-ring-elements	</code><p>
+</a><P><a name="25346">
+<code>	<a edge-ring-elements LIP>edge-ring-elements</code><p>
+</a><P><a name="25288">
+<code>	<a face-ring-elements LIP>face-ring-elements</code><p>
+</a><P><a name="25289">
+These are used with the special preposition <code>of-polyhedron</code>, and "walk over" the vertices, edges, or faces of a polyhedron in the opposite order from which they were inserted (last inserted comes first).<p>
+</a><P><a name="26048">
+<code>	<a vertex-reverse-elements LIP>vertex-reverse-elements</code><p>
+</a><P><a name="25584">
+<code>	<a edge-reverse-elements LIP>edge-reverse-elements</code><p>
+</a><P><a name="25585">
+<code>	<a face-reverse-elements LIP>face-reverse-elements</code><p>
+</a><P><a name="25593">
+These are used with the special preposition <code>of-polyhedron</code>, and "walk over" the vertices, edges, or faces of a polyhedron in insertion order. <p>
+</a><P><a name="25647">
+For example:<p>
+</a><P><a name="25612">
+<code><pre>(loop for v being the vertex-reverse-elements of-polyhedron my-tetrahedron<p>
+</code></pre></a><a name="25632">
+<code><pre>          do (print v))<p>
+</code></pre></a><a name="25634">
+Returns:<p>
+</a><P><a name="25646">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="25635">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="25636">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25637">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25638">
+<code><pre>NIL<p>
+</code></pre></a><a name="25613">
+<h4> Equivalent Short Forms</h4>
+</a><a name="25655">
+The equivalent short forms for the loop iteration paths described in the previous section are:<p>
+</a><P><a name="25614">
+<code><pre><strong>do-vertices</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="24824">
+<code><pre><strong><a do-edges LIP>do-edges</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="24825">
+<code><pre><strong>d<a do-faces LIP>o-faces </strong><em>iteration-list</em><strong> &amp;body </strong><em>body</em><p>
+</code></pre></a><a name="24838">
+<code><pre><strong></strong><p>
+</code></pre></a><a name="26613">
+<code><pre><strong><a do-vertices-backward LIP>do-vertices-backward</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="26612">
+<code><pre><strong>d<a do-edges-backward LIP>o-edges-backward</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="24840">
+<code><pre><strong>d<a do-faces-backward LIP>o-faces-backward</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25675">
+For example:<p>
+</a><P><a name="24841">
+<code><pre>(do-vertices-backward (v my-tetrahedron)<p>
+</code></pre></a><a name="25667">
+<code><pre>  (print v))<p>
+</code></pre></a><a name="25668">
+Returns:<p>
+</a><P><a name="25669">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="25670">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="25671">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25672">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25673">
+<code><pre>NIL<p>
+</code></pre></a><a name="25683">
+<h2><HR> Traversing Elements of a Face</h2>
+</a><a name="25693">
+You can use faces to traverse vertices and edges in an ordered manner. Iteration paths to traverse a face are:<p>
+</a><P><a name="26269">
+<code><pre><strong>c<a component-vertices LIP>omponent-vertices</strong><p>
+</code></pre></a><a name="24842">
+<code><pre><strong>c<a component-edges LIP>omponent-edges</strong><p>
+</code></pre></a><a name="25746">
+These are used with the special prepositions <code>of-face</code>, <code>from</code>, <code>to</code>, <code>from-edge</code>, and <code>to-edge</code> and "walk over" the vertices or edges of a face in clockwise order. <p>
+</a><P><a name="24843">
+If a <code>from-edge</code> preposition is provided the looping will start on that edge and continue around; if a <code>from</code> preposition is provided it must be of the same type as the loop variable and will cause the loop to start on the edge related to the <code>from</code> element; otherwise it will start on the face's <code>segment-ptr</code>.<p>
+</a><P><a name="26270">
+<code><pre><strong><a ccw-component-vertices LIP>ccw-component-vertices</strong><p>
+</code></pre></a><a name="25794">
+<code><pre><strong><a ccw-component-edges LIP>ccw-component-edges</strong><p>
+</code></pre></a><a name="25789">
+These iteration paths are identical to the two described above, except they traverse the face in a counterclockwise direction.<p>
+</a><P><a name="25798">
+For example:<p>
+</a><P><a name="25808">
+<code><pre>(loop for f being the face-reverse-elements of-polyhedron my-tetrahedron<p>
+</code></pre></a><a name="25810">
+<code><pre>          do (print f)<p>
+</code></pre></a><a name="25811">
+<code><pre>          (loop for v being the component-vertices of-face f<p>
+</code></pre></a><a name="25812">
+<code><pre>                    do (print v))<p>
+</code></pre></a><a name="25813">
+<code><pre>          )<p>
+</code></pre></a><a name="25815">
+Returns:<p>
+</a><P><a name="25833">
+<code><pre>#&lt;FACE 1&gt; <p>
+</code></pre></a><a name="25816">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="25817">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25818">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="25819">
+<code><pre>#&lt;FACE 2&gt; <p>
+</code></pre></a><a name="25820">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="25821">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="25822">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25823">
+<code><pre>#&lt;FACE 3&gt; <p>
+</code></pre></a><a name="25824">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="25825">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25826">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25827">
+<code><pre>#&lt;FACE 4&gt; <p>
+</code></pre></a><a name="25828">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="25829">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25830">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="25831">
+<code><pre>NIL<p>
+</code></pre></a><a name="25797">
+<h4> Equivalent Short Forms</h4>
+</a><a name="25854">
+The equivalent short forms for the loop iteration paths described in the previous section are:<p>
+</a><P><a name="24845">
+<code><pre><strong>d<a do-face-vertices LIP>o-face-vertices</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="24846">
+<code><pre><strong>d<a do-face-edges LIP>o-face-edges</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="26622">
+<code><pre><p>
+</code></pre></a><a name="25861">
+<code><pre><strong>d<a do-face-vertices-backward LIP>o-face-vertices-backward</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25862">
+<code><pre><strong>do-face-edges-backward</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25871">
+<h2><HR> Traversing Neighboring Elements of a Vertex</h2>
+</a><a name="25872">
+You can traverse a vertex's neighboring vertices, edges, or faces in an ordered manner using iteration paths:<p>
+</a><P><a name="26046">
+<code><pre><strong>vertex-neighbors</strong><p>
+</code></pre></a><a name="25934">
+<code><pre><strong>edge-neighbors</strong><p>
+</code></pre></a><a name="25935">
+<code><pre><strong>face-neighbors</strong><p>
+</code></pre></a><a name="25997">
+These are used with the special prepositions <code>of-vertex</code> and <code>from-edge</code>, and "walk over" the neighboring vertices, edges, or faces in counterclockwise order. <p>
+</a><P><a name="25957">
+If a <code>from-edge</code> preposition is provided the looping will start on that edge and continue around.<p>
+</a><P><a name="26271">
+<code><pre><strong>cw-vertex-neighbors</strong><p>
+</code></pre></a><a name="25958">
+<code><pre><strong>cw-edge-neighbors</strong><p>
+</code></pre></a><a name="25959">
+<code><pre><strong>cw-face-neighbors</strong><p>
+</code></pre></a><a name="25963">
+Like the iteration paths above, except traverses in a clockwise order.<p>
+</a><P><a name="25988">
+For example:<p>
+</a><P><a name="25955">
+<code><pre>(loop for v being the vertex-ring-elements of-polyhedron my-tetrahedron<p>
+</code></pre></a><a name="25977">
+<code><pre>          collect<br>			(list v (loop for e being the cw-edge-neighbors of-vertex v collect e))<br>	)<p>
+</code></pre></a><a name="25978">
+Returns:<p>
+</a><P><a name="25980">
+<code><pre>((#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; (#&lt;EDGE 4&gt; #&lt;EDGE 6&gt; #&lt;EDGE 5&gt;))<p>
+</code></pre></a><a name="25981">
+<code><pre> (#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; (#&lt;EDGE 1&gt; #&lt;EDGE 6&gt; #&lt;EDGE 2&gt;))<p>
+</code></pre></a><a name="25982">
+<code><pre> (#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; (#&lt;EDGE 2&gt; #&lt;EDGE 4&gt; #&lt;EDGE 3&gt;))<p>
+</code></pre></a><a name="25983">
+<code><pre> (#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; (#&lt;EDGE 1&gt; #&lt;EDGE 3&gt; #&lt;EDGE 5&gt;)))<p>
+</code></pre></a><a name="26026">
+<h4> Equivalent Short Forms</h4>
+</a><a name="26027">
+The equivalent short forms for the loop iteration paths described in the previous section are:<p>
+</a><P><a name="25938">
+<code><pre><strong>do-vertex-vertices</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25939">
+<code><pre><strong>do-vertex-edges</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="25940">
+<code><pre><strong>do-vertex-faces</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="26275">
+For example:<p>
+</a><P><a name="26276">
+<code><pre>(do-vertices (v my-tetrahedron)<p>
+</code></pre></a><a name="26289">
+<code><pre>  (print v)<p>
+</code></pre></a><a name="26290">
+<code><pre>  (do-vertex-edges (e v)<p>
+</code></pre></a><a name="26291">
+<code><pre>    (print e))<p>
+</code></pre></a><a name="26292">
+<code><pre>  )<p>
+</code></pre></a><a name="26277">
+Returns:<p>
+</a><P><a name="26317">
+<code><pre>#&lt;VERTEX 4 ( -16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="26318">
+<code><pre>#&lt;EDGE 4&gt; <p>
+</code></pre></a><a name="26319">
+<code><pre>#&lt;EDGE 5&gt; <p>
+</code></pre></a><a name="26320">
+<code><pre>#&lt;EDGE 6&gt; <p>
+</code></pre></a><a name="26321">
+<code><pre>#&lt;VERTEX 3 (  16.33   -6.67   -9.43)&gt; <p>
+</code></pre></a><a name="26322">
+<code><pre>#&lt;EDGE 1&gt; <p>
+</code></pre></a><a name="26323">
+<code><pre>#&lt;EDGE 2&gt; <p>
+</code></pre></a><a name="26324">
+<code><pre>#&lt;EDGE 6&gt; <p>
+</code></pre></a><a name="26325">
+<code><pre>#&lt;VERTEX 2 (   0.00   -6.67   18.86)&gt; <p>
+</code></pre></a><a name="26326">
+<code><pre>#&lt;EDGE 2&gt; <p>
+</code></pre></a><a name="26327">
+<code><pre>#&lt;EDGE 3&gt; <p>
+</code></pre></a><a name="26328">
+<code><pre>#&lt;EDGE 4&gt; <p>
+</code></pre></a><a name="26329">
+<code><pre>#&lt;VERTEX 1 (   0.00   20.00    0.00)&gt; <p>
+</code></pre></a><a name="26330">
+<code><pre>#&lt;EDGE 1&gt; <p>
+</code></pre></a><a name="26331">
+<code><pre>#&lt;EDGE 5&gt; <p>
+</code></pre></a><a name="26332">
+<code><pre>#&lt;EDGE 3&gt; <p>
+</code></pre></a><a name="26278">
+<code><pre>NIL<p>
+</code></pre></a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>There are currently no macros defined to traverse neighboring elements in a clockwise direction.</em></font></dd></dt></dl><P>
+<a name="25952">
+<h2><HR> Traversing Elements of a Wire</h2>
+</a><a name="26107">
+Wires have a much simpler structure than polyhedra. Because the elements in a wire have, by definition, a linear order, we need define only a single set of iteration paths.<p>
+</a><P><a name="26139">
+<code><pre><strong>node-elements</strong><p>
+</code></pre></a><a name="26097">
+<code><pre><strong>segment-elements</strong><p>
+</code></pre></a><a name="26098">
+Used with the special preposition <code>of-wire</code>.<p>
+</a><P><a name="26099">
+Walks over the elements of a wire.<p>
+</a><P><a name="26104">
+For example:<p>
+</a><P><a name="26059">
+<code><pre>(loop for n being the node-elements of-wire my-wire<p>
+</code></pre></a><a name="26061">
+<code><pre>          do (print n))<p>
+</code></pre></a><a name="26105">
+Returns:<p>
+</a><P><a name="26063">
+<code><pre>#&lt;WIRE-NODE 1 (   0.00    0.00    0.00)&gt; <p>
+</code></pre></a><a name="26064">
+<code><pre>#&lt;WIRE-NODE 2 (   0.00    1.00    0.00)&gt; <p>
+</code></pre></a><a name="26065">
+<code><pre>#&lt;WIRE-NODE 3 (   0.00    2.00    0.00)&gt; <p>
+</code></pre></a><a name="26066">
+<code><pre>#&lt;WIRE-NODE 4 (   0.00    3.00    0.00)&gt; <p>
+</code></pre></a><a name="26067">
+<code><pre>NIL<p>
+</code></pre></a><a name="26153">
+<h4> Equivalent Short Forms</h4>
+</a><a name="26154">
+The equivalent short forms for the loop iteration paths described in the previous section are:<p>
+</a><P><a name="26148">
+<code><pre><strong><a do-wire-nodes LIP>do-wire-nodes</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="26149">
+<code><pre><strong>d<a do-wire-segments LIP>o-wire-segments</strong> <em>iteration-list</em> &amp;body <em>body</em><p>
+</code></pre></a><a name="26163">
+For example:<p>
+</a><P><a name="26173">
+<code><pre>(do-wire-segments (s my-wire)<p>
+</code></pre></a><a name="26164">
+<code><pre>  (print s))<p>
+</code></pre></a><a name="26174">
+Returns:<p>
+</a><P><a name="26166">
+<code><pre>#&lt;WIRE-SEGMENT 1&gt; <p>
+</code></pre></a><a name="26167">
+<code><pre>#&lt;WIRE-SEGMENT 2&gt; <p>
+</code></pre></a><a name="26168">
+<code><pre>#&lt;WIRE-SEGMENT 3&gt; <p>
+</code></pre></a><a name="26169">
+<code><pre>NIL<p>
+</code></pre></a><a name="26170">
+<h2><HR> Traversing Object Hierarchy</h2>
+</a><a name="25911">
+To traverse an object hierarchy, use the following loop iteration paths:<p>
+</a><P><a name="26253">
+<code><pre><strong>o<a objects LIP>bjects</strong><p>
+</code></pre></a><a name="26074">
+<code><pre><strong><a all-objects LIP>all-objects</strong><p>
+</code></pre></a><a name="26075">
+<code><pre><strong><a terminal-objects LIP>terminal-objects</strong><p>
+</code></pre></a><a name="26076">
+<code><pre><strong><a bdis LIP>bdis</strong><p>
+</code></pre></a><a name="26077">
+<code><pre><strong><a bodies LIP>bodies</strong><p>
+</code></pre></a><a name="26078">
+Used with the special prepositions <code>of-objects</code>, <code>of-list</code>, or <code>in</code>.<p>
+</a><P><a name="26079">
+Loops over a set of objects or bodies. <p>
+</a><P><ul><a name="26080">
+<li><code>objects</code> and <code>all-objects</code> traverse every object in the target hierarchy. 
+</a></li><P><a name="26200">
+<li><code>terminal-objects</code> traverses only those objects in a hierarchy with a body-display-item as an inferior. 
+</a></li><P><a name="26201">
+<li><code>bdis</code> traverse all the body-display-items (the immediate inferiors of terminal objects) in a hierarchy. 
+</a></li><P><a name="26083">
+<li><code>bodies</code> traverses all the geometric bodies in a hierarchy. 
+</a></li><P></ul><P><a name="26084">
+Of the possible targets:<p>
+</a><P><ul><a name="26210">
+<li><code>of-object</code> indicates the target item is an object
+</a></li><P><a name="26214">
+<li><code>of-list</code> or <code>in</code> mean the target item is a <em>list</em> of objects.
+</a></li><P></ul><P><a name="26227">
+For example, to loop through all the geometric bodies in the environment:<p>
+</a><P><a name="26231">
+<code><pre>(loop for b being the bodies in *global-object-list*<p>
+</code></pre></a><a name="26244">
+<code><pre>          do (do-something b))<p>
+</code></pre></a><a name="26242">
+There are no short forms for this special form.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="ExtendingDynamics.html">[Prev]</a> <a href="OptimizingCode.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:32:31 -->
+
+</body>
+</html>

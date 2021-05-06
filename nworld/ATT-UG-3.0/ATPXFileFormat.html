@@ -1,0 +1,133 @@
+<html><head><title>TPX File Format</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Lights.html">[Prev]</a> <a href="BFileTypes.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6517">
+<h1>TPX File Format</h1>
+</a>
+<hr><p><a name="5799">
+The section below describes Nichmen's TPX image file format.<p>
+</a><P><a name="5984">
+<h2><HR> Header</h2>
+</a><a name="5623">
+To view an octal dump of a TPX image, enter the following command at a UNIX shell prompt:<p>
+</a><P><a name="6219">
+<code><pre>od <em>filename</em><p>
+</code></pre></a><a name="6220">
+<code><pre><p>
+</code></pre></a><a name="6256">
+The result displays an octal listing of the information for the specified file. The <em>header</em> for a TPX file looks like this:<p>
+</a><P><a name="6257">
+<code><pre>000000 32 42 70 78 31 36 20 20 20 20 20 20 20 20 33 32 2bpx16........32<p>
+</code></pre></a><a name="6258">
+<code><pre>000016 20 20 20 20 20 20 20 30 20 20 20 20 20 20 20 30 .......0.......0<p>
+</code></pre></a><a name="5960">
+<code><pre>000032 20 20 20 20 20 31 35 30 20 20 20 20 20 31 35 30 .....150.....150<p>
+</code></pre></a><a name="6265">
+<code><pre>000048 20 20 31 30 30 30 30 30 20 20 31 30 30 30 30 30 ..100000..100000<p>
+</code></pre></a><a name="6266">
+<code><pre>000064 20 42 20 30 78 20 36 00 20 20 20 20 20 20 20 20 .b.0x.6.........<p>
+</code></pre></a><a name="6267">
+<code><pre>000080 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 ................<p>
+</code></pre></a><a name="5631">
+<code><pre>000096 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 ................<p>
+</code></pre></a><a name="5632">
+<code><pre>000112 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 ................<p>
+</code></pre></a><a name="5633">
+ <p>
+</a><a name="6026">
+The header file can be interpreted as follows:<p>
+</a><P><a name="6281">
+<h4> 1st Line</h4>
+</a><a name="6027">
+2	two-dimensional<br>b	binary<br>px	picture pixel<br>1	version<br>6	machine type (3=Sun, 6=SGI)<br>32	pixel depth<p>
+</a><P><a name="6033">
+<h4> 2nd Line</h4>
+</a><a name="5639">
+0		x-offset<br>0		y-offset<p>
+</a><P><a name="5864">
+<h4> 3rd Line</h4>
+</a><a name="5643">
+150		image width<br>150		image height<p>
+</a><P><a name="5879">
+<h4> 4th Line</h4>
+</a><a name="5645">
+100000			always 100000<br>100000	always 100000<p>
+</a><P><a name="6197">
+<h4> 5th Line</h4>
+</a><a name="5647">
+b	b=both fields, e=even fields only, o=odd fields only<p>
+</a><P><a name="5649">
+6	A bit status word, which is a combination of the following components: M=1, Alpha=2 RGB=4, Z=8<p>
+</a><P><a name="6139">
+	If the value of the bit status word in line five is six, the assumed byte order is ABGR.<p>
+</a><P><a name="6317">
+	If the value of the bit status word in line five is four, the assumed byte order is BGR. 
+<P><Table Border="1">
+<dl>
+<a name="6320">
+<em>Table A.1 <strong></strong><em> &#32; &#32;Bit order in TPX file format</em>
+</em></a></dl>
+<tr><th align="left"><a name="6324">
+Bits
+</a><th align="left"><a name="6326">
+Channel
+</a>
+<tr><td valign="top"><a name="6328">
+ 0-7<p>
+</a><td valign="top"><a name="6330">
+ Alpha<p>
+</a>
+<tr><td valign="top"><a name="6332">
+ 8-15<p>
+</a><td valign="top"><a name="6334">
+ Blue<p>
+</a>
+<tr><td valign="top"><a name="6336">
+ 16-23<p>
+</a><td valign="top"><a name="6338">
+ Green<p>
+</a>
+<tr><td valign="top"><a name="6340">
+ 24-31<p>
+</a><td valign="top"><a name="6342">
+ Red<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="6343">
+<h4> 6th, 7th, &amp; 8th Line</h4>
+</a><a name="6300">
+Filler.<p>
+</a><P><a name="6310">
+<h4> Following Lines</h4>
+</a><a name="6301">
+The rest of the file is packed with image data.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Lights.html">[Prev]</a> <a href="BFileTypes.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:30 -->
+
+</body>
+</html>

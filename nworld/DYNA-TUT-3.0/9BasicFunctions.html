@@ -1,0 +1,443 @@
+<html><head><title>Controlling Script Flow</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8PaintOps.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Controlling Script Flow</h1>
+</a>
+<hr><p><a name="5780">
+<h4> In this chapter you'll learn how to use some of the "Basic" N-Dynamics functions. These operations can be used to perform mathematic functions, manipulate values in curves, control flow of a script, evaluate external LISP code, or alter the flow of time in a script to make it speed up, slow down, or even flow in reverse!</h4>
+</a><a name="9116">
+<h2><HR> In this Chapter</h2>
+</a><a name="10894">
+You'll learn how to use some of the operations in the Basic Functions operation class.<p>
+</a><P><a name="11048">
+These operations don't operate specifically on objects, materials, or images like most of the other N-Dynamics operations. Rather, they deal with the script itself, letting you perform mathematic operations on curve channels, insert decision points in a script, work with values in a channel, and more. <p>
+</a><P><a name="11065">
+These operations can be divided into five different groups:<p>
+</a><P><ul><a name="10862">
+<li><strong>Mathematic</strong>
+</a></li><P><dl><a name="10873">
+<dt>Add, Subtract, Multiply, Divide, Mix</dt>
+</a><P></dl><a name="10867">
+<li><strong>Values</strong>
+</a></li><P><dl><a name="10872">
+<dt>Get Variable Value, Print Value, Renormalize, Return Value</dt>
+</a><P></dl><a name="10998">
+<li><strong>Flow</strong>
+</a></li><P><dl><a name="10999">
+<dt>Do if then else, Do when, In Range?, Less than?, Pause, Call Script</dt>
+</a><P></dl><a name="10871">
+<li><strong>Evaluate LISP Form</strong>
+</a></li><P><dl><a name="11026">
+<dt>Evaluate a LISP form for direct programmatic access to N&#183;World</dt>
+</a><P></dl><a name="10879">
+<li><strong>Timewarp</strong>
+</a></li><P><dl><a name="11031">
+<dt>Use the <strong>Time Warp</strong> operation to make action in a script slow down, speed up, or even flow in reverse.</dt>
+</a><P></dl></ul><P><a name="10891">
+In addition to the examples given in this chapter, these functions are described in more detail in the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P><a name="10920">
+<h2><HR> Mathematical Functions</h2>
+</a><a name="11107">
+You can use N-Dynamics mathematical functions to add, subtract, multiply, divide, or mix values in different channels.<p>
+</a><P><a name="11075">
+<h3> Add</h3>
+</a><a name="11264">
+The <strong>Add</strong> operation has two dynamic values. An Add operation <em>could</em> be inserted in place of a dynamic value for another action; for example, if you wanted an object to rotate a number of degrees equal to two dynamic values, you could set up an action that looked like this:<p>
+</a><P><a name="11268">
+ <P><img src="9BasicFunctions.anc.gif"><p>
+</a><a name="11269">
+<em>Figure 9.1  &#32; &#32;Using an Add action as a dynamic value
+</em></a><P><a name="11270">
+The value in the first curve would be added to the value of the second curve (at each frame), and the object would be rotated that number of degrees.<p>
+</a><P><a name="11271">
+The value returned by the <strong>Add</strong> operation can also be referenced using the <strong>Channel Variable</strong> assigned to the <strong>Add</strong> channel.<p>
+</a><P><a name="11588">
+You could also <strong>(CLICK-R) </strong>on either of the Number channels and use the Replace with Variable command to add the value in one curve to the value in another curve specified with the variable. See the section <a href="9BasicFunctions.html#11083">"Get Variable Value," on page &#32;9-6</a> for more information.<p>
+</a><P><a name="11078">
+<h3> Subtract</h3>
+</a><a name="11194">
+This operation is similar to the <strong>Add</strong> operation described in the add section, except that the two dynamic values are subtracted rather than added. Subtracts the value in Number 1 from the value in Number 2.<p>
+</a><P><a name="11079">
+<h3> Multiply</h3>
+</a><a name="11195">
+This operation is similar to the <strong>Add</strong> operation, except that the two dynamic values are multiplied rather than added. This operation multiplies the value in the Number 1 channel by the value in the Number 2 channel.<p>
+</a><P><a name="11080">
+<h3> Divide</h3>
+</a><a name="11863">
+This operation is similar to the <strong>Add</strong> operation, except that the two dynamic values are divided rather than added. This operation divides the value in the Number 1 channel by the value in the Number 2 channel.<p>
+</a><P><a name="11081">
+<h3> Mix</h3>
+</a><a name="11294">
+Mixes the two values specified in <strong>Number 1</strong> and <strong>Number 2</strong>, using the mix factor specified in <strong>Mix Amount</strong>: 
+<P><Table Border="1">
+<dl>
+<a name="11298">
+<em>Table 9.1 <strong> &#32; &#32;Mix parameters</strong>
+</em></a></dl>
+<tr><th align="left"><a name="11304">
+Parameter
+</a><th align="left"><a name="11306">
+Dynamic?
+</a><th align="left"><a name="11308">
+Description
+</a>
+<tr><td valign="top"><a name="11310">
+ Number 1<p>
+</a><td valign="top"><a name="11312">
+ Yes<p>
+</a><td valign="top"><a name="11314">
+ The first value being mixed.<p>
+</a>
+<tr><td valign="top"><a name="11316">
+ Number 2<p>
+</a><td valign="top"><a name="11318">
+ Yes<p>
+</a><td valign="top"><a name="11320">
+ The second value being mixed.<p>
+</a>
+<tr><td valign="top"><a name="11322">
+ Mix Amount<p>
+</a><td valign="top"><a name="11324">
+ Yes<p>
+</a><td valign="top"><a name="11326">
+ The mix amount; a higher value uses more of Number 2.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="11327">
+To see a sample of the effect, add a derived curve to the channel, then create a <strong>Mix Amount</strong> that ramps from 0 to 1 over the length of the channel. Create a sketched sine wave curve in the first channel, and a sketched sawtooth curve in the second channel. Finally, insert a derived curve and recompute it to show how the two are mixed:<p>
+</a><P><a name="11348">
+ <P><img src="9BasicFunctions.anc1.gif"><p>
+</a><a name="11349">
+<em>Figure 9.2  &#32; &#32;Mixing two curves and showing the result in a derived curve
+</em></a><P><a name="11350">
+Note that in the derived curve channel, more of the data from the first channel is used initially, but as the mix amount increases, data from the second channel weighs more heavily.<p>
+</a><P><a name="10924">
+<h2><HR> Working with Values</h2>
+</a><a name="11141">
+As described at the beginning of this book, a curve channel holds data. You can assign a variable to a channel in one operation and use the data in that curve to drive another operation.<p>
+</a><P><a name="11083">
+<h3> Get Variable Value</h3>
+</a><a name="11398">
+The <strong>Get Variable Value</strong> retrieves the specified variable's value and uses it to drive the current operation. You'll use the Get Variable Value in place of a simple dynamic curve channel, as described below:<p>
+</a><P>
+<a name="11142">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="11404">
+<STRONG>	2.	 Create a script with two channels.
+</STRONG>
+</a><P><a name="11145">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the first channel.
+</STRONG>
+</a><P><a name="11406">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Operation&gt;Geometry&gt;Translation&gt;X Move.
+</STRONG>
+</a><P><a name="11421">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Object and select the cube.
+</STRONG>
+</a><P><a name="11424">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><a name="11422">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the curve channel for the operation.
+</STRONG>
+</a><P><a name="11478">
+<STRONG>	8.	 Enter a Channel Variable name.
+</STRONG>
+</a><P><dl><a name="11582">
+<dt>Use something that tells you where it came from, such as <strong>x-move</strong>.</dt>
+</a><P></dl><a name="11431">
+<STRONG>	9.	 Insert a cue at frame 15 of the script and give it a value of 50.
+</STRONG>
+</a><P><a name="11438">
+<STRONG>	10.	 <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><a name="11439">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Operation&gt;Geometry&gt;Rotation&gt;Z Rotate.
+</STRONG>
+</a><P><a name="11440">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Object and select the cube.
+</STRONG>
+</a><P><a name="11441">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><a name="11149">
+<STRONG>	14.	 <strong>(CLICK-R)</strong> on the curve channel.
+</STRONG>
+</a><P><a name="11150">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on <strong>Replace&gt;Replace with Action</strong>.
+</STRONG>
+</a><P><dl><a name="11456">
+<dt>An action of type <strong>No Name</strong> is inserted.</dt>
+</a><P></dl><a name="11457">
+<STRONG>	16.	 <strong>(CLICK-M)</strong> on the channel, then <strong>(CLICK-L)</strong> on <strong>Operation&gt;Basic Functions&gt;Get Variable Value.</strong>
+</STRONG>
+</a><P><a name="11455">
+<STRONG>	17.	 In the <strong>Variable</strong> field, enter x-move (or whatever name you used for the variable above).
+</STRONG>
+</a><P><a name="11154">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="11520">
+<dt>Your script should look something like this:</dt>
+</a><P><a name="11524">
+ <P><img src="9BasicFunctions.anc2.gif"><p>
+</a></dl>
+<a name="11525">
+<em>Figure 9.3  &#32; &#32;Using a Get Variable Value operation
+</em></a><P>
+<a name="11472">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the Animate button.
+</STRONG>
+</a><P><dl><a name="11481">
+<dt>As the cube moves along the X axis, it rotates <em>the same number</em> of degrees. This is because it is using the same value in the curve you gave a variable name above.</dt>
+</a><P><a name="11531">
+ <P><img src="9BasicFunctions.anc3.gif"><p>
+</a></dl>
+<a name="11532">
+<em>Figure 9.4  &#32; &#32;Cube animated using Get Variable Value
+</em></a><P><a name="11492">
+If you wanted the rotation of the cube to still be tied to the translation of the cube (e.g., it spins more the further away it gets), you could use the <strong>Get Variable Value</strong> operation in conjunction with one of the other mathematic operations such as <strong>Add, Subtract, Multiply,</strong> or <strong>Divide</strong>.<p>
+</a><P><a name="11108">
+<h3> Print Value</h3>
+</a><a name="11162">
+Prints the value of the specified value to the Nichimen Message window. This is useful if you just want a convenient way of tracing the value of a variable.<p>
+</a><P><a name="11378">
+To use this operation:<p>
+</a><P>
+<a name="11379">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the channel whose value you want to print.
+</STRONG>
+</a><P><a name="11380">
+<STRONG>	2.	 Assign the channel a variable.
+</STRONG>
+</a><P><a name="11381">
+<STRONG>	3.	 Add a <strong>Print Value</strong> operation.
+</STRONG>
+</a><P><a name="11385">
+<STRONG>	4.	 <strong>(CLICK-M) </strong>on the <strong>Print Value</strong> operation.
+</STRONG>
+</a><P><a name="11388">
+<STRONG>	5.	 Specify the name of the variable whose value you want to print.
+</STRONG>
+</a><P>
+<a name="11112">
+<h3> Return Value</h3>
+</a><a name="11163">
+This operation does nothing more than return a value based on the content of its subchannels. This channel is normally inserted as a parent channel around a series of sequential curves (since they must be contained in a channel, and by default they do nothing more than return a value).<p>
+</a><P><a name="11634">
+For example, you could also use this operation if you wanted all your operations to use the same curve data. You'd add a <strong>Return Value</strong> channel (or several), assign them variable names, then in operations requiring a curve, you could replace the curve with a <strong>Get Variable Value</strong> operation and specify the variable name assigned to the curve in the <strong>Return Value</strong> operation.<p>
+</a><P><a name="10938">
+<h3> Renormalize</h3>
+</a><a name="10939">
+The <strong>Renormalize</strong> function converts values between one range (say 0 to 1) and into values between another range (say 0 to 20).<p>
+</a><P>
+<a name="10940">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><dl><dl><a name="10941">
+<dt><code>/usr/local/ngc/demo/scripts/renormalize</code><p>
+</a><P></dl></dl><dl><a name="10943">
+<dt>The <strong>Set View</strong> channel positions the camera.</dt>
+</a><P><a name="10944">
+<dt>The second channel contains raw data between the ranges of 0-1. If you are creating a script like this, give the channel a variable name-<strong>(CLICK-M)</strong> on the curve channel and specify a Channel Variable (e.g., "grow").</dt>
+</a><P><a name="10946">
+<dt>The third channel is a Scale Cube operation. When you create this channel, by default, a dynamic curve channel is inserted. <strong>(CLICK-R)</strong> on this curve channel and select the <strong>Replace with Variable</strong> command. This converts the curve into a <strong>Get Variable Value</strong> channel. When prompted, enter the name of the variable specified for the curve channel in step 2 above. You must also <strong>(CLICK-L)</strong> on the <strong>Subchannel ID</strong> field for this channel, and select <strong>INPUT</strong> from the pop-up.</dt>
+</a><P></dl><a name="10948">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the Get Variable Value channel and choose Insert Parent.
+</STRONG>
+</a><P><a name="10949">
+<STRONG>	3.	 Choose an operation type of Renormalize.
+</STRONG>
+</a><P><a name="10950">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on the Renormalize channel. 
+</STRONG>
+</a><P><dl><a name="10951">
+<dt><strong>Input Min</strong> and <strong>Input Max</strong> specify the lowest and highest values for that will be normalized. <strong>Output Min</strong> and <strong>Output Max</strong> specify the new range for values between Input Min and Input Max. </dt>
+</a><P><a name="10952">
+<dt>For example, if you specify input values of 0 and 1 for min and max, and output values of 0 and 20 for min and max, 0=0, .5=10, and 1=20. Also, values less than 0 are clipped to 0, and values greater than 20 are clipped to 20.</dt>
+</a><P></dl><a name="10953">
+<STRONG>	5.	 The fourth channel is a make visible for the default cube.
+</STRONG>
+</a><P><dl><a name="10954">
+<dt>The "renormalize-2" script is similar to the "renormalize" script, except that the curve data is a subchannel of the operation it is being used for.</dt>
+</a><P><a name="10955">
+<dt>This is similar to the "renormalize" script, except you do not need to specify a variable for the curve channel. You do have to specify a Subchannel ID of INPUT so that the data gets passed to the Renormalize operation properly.</dt>
+</a><P></dl>
+<a name="11003">
+<h2><HR> Directing the Flow of a Script</h2>
+</a><a name="11004">
+There are several operations that let you control the sequence in which channels are executed.<p>
+</a><P><a name="11181">
+<h3> Call Script</h3>
+</a><a name="11201">
+Calls the specified dynamics script from within the current script. If you are coordinating a large number of complex motions in your script, you may find it useful to animate the motions in individual scripts, then create a "main" script which calls those other scripts as appropriate.<p>
+</a><P><a name="11202">
+For example, if you created a main script to do the bulk of your animation, then created a second script to animate the walk cycle for a character, you could simply call the walk cycle script whenever you wanted to use it.<p>
+</a><P><a name="11203">
+Modularizing the script this way can make debugging your animation easier.<p>
+</a><P><a name="11199">
+For example, if you found an error in the walk cycle script, you could simply make a change to it, then reanimate the main script, and the motion would be corrected every place the walk cycle script was called.<p>
+</a><P><a name="11198">
+<h3> In Range?</h3>
+</a><a name="11206">
+This is a conditional operation, typically used as a test case with the operations <strong>Do if then else</strong> and <strong>Do when</strong>. <p>
+</a><P><a name="11182">
+<strong>In Range?</strong> checks to see if a variable or result is within a certain range. If <strong>Value</strong> is between <strong>Min</strong> and <strong>Max</strong>, the operation returns a true result, if not, it returns a false result.<p>
+</a><P><a name="11183">
+<h3> Less than?</h3>
+</a><a name="11209">
+This is a conditional operation, typically used as a test case with the operations <strong>Do if then else</strong> and <strong>Do when</strong>.<p>
+</a><P><a name="11184">
+<strong>Less than?</strong> tests the value in <strong>Number 1</strong> against the value in <strong>Number 2</strong>; if <strong>Number 1</strong> is less, the operation returns a true result, if not, it returns a false result.<p>
+</a><P><a name="11931">
+<h3> Do if then else</h3>
+</a><a name="11932">
+This is used if you want things to happen only under certain conditions.  For example,  if you want an object to rotate as it gets <em>within</em> a certain distance of an object and want it to scale it when it gets a certain distance <em>away</em> from an object, you can set it up with a <strong>Do if then else</strong> operation. Here's an example:<p>
+</a><P>
+<a name="11933">
+<STRONG>	 1.	 Create a Cube.
+</STRONG>
+</a><P><a name="11934">
+<STRONG>	2.	 Create a script with two subchannels.
+</STRONG>
+</a><P><a name="11935">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the first subchannel and choose X-Move for the operation and Cube for the object.  
+</STRONG>
+</a><P><dl><a name="11936">
+<dt>Set up the values so that it moves from -30 to 30 and set the <strong>Channel Variable</strong> for the channel to be called "x-pos"</dt>
+</a><P></dl><a name="11937">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on the second subchannel.
+</STRONG>
+</a><P><a name="11938">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Basic Operations&gt;Do if then else</strong>.
+</STRONG>
+</a><P><a name="11939">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on the <strong>Do if then else</strong> channel, then <strong>(CLICK-L)</strong> on Add Parallel Subactions. 
+</STRONG>
+</a><P><dl><a name="11940">
+<dt>Add 3 subactions.  (The first channel will be the <strong>If</strong> condition, the second will be the <strong>Then</strong> result and the third channel will be the <strong>Else</strong> result.)</dt>
+</a><P></dl><a name="11941">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the first <strong>Do if then else</strong> subchannel.
+</STRONG>
+</a><P><a name="11942">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on <strong>Basic Operations&gt;Less-Than?</strong>
+</STRONG>
+</a><P><dl><a name="11943">
+<dt>Set <strong>Number2</strong> to be 0.0, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P></dl><a name="11944">
+<STRONG>	9.	 (CLICK-L) on the Less-Than? channel, then <strong>(CLICK-R)</strong> on the curve.
+</STRONG>
+</a><P><dl><a name="11945">
+<dt><strong>(CLICK-L)</strong> on <strong>Replace with Variable</strong>, then type in <strong>x-pos</strong> for the variable.</dt>
+</a><P></dl><a name="11946">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="11947">
+<dt>This operation will get the value from the X-Move of the Cube for each frame and see if it is less than 0).</dt>
+</a><P></dl><a name="11948">
+<STRONG>	11.	 <strong>(CLICK-M)</strong> on the second <strong>Do if then else</strong> channel and set it up to do a Y-Rotate on the Cube, then set start and end values for the rotate. 
+</STRONG>
+</a><P><dl><a name="11949">
+<dt>This is the <strong>then</strong> clause.  If the cube's position is less than 0.0 then it will Y-Rotate the Cube.</dt>
+</a><P></dl><a name="11950">
+<STRONG>	12.	 <strong>(CLICK-M)</strong> on the third <strong>Do if then else</strong> channel and set it up to do a Y-Scale on the Cube, then set start and end values for the scale operation.
+</STRONG>
+</a><P><dl><a name="11951">
+<dt>This is the <strong>else</strong> clause.  If the cube's position is not less than 0.0, it will Y-Scale the Cube.</dt>
+</a><P></dl>
+<a name="11005">
+<h3> Do when</h3>
+</a><a name="11218">
+This is similar to the <strong>Do if then else</strong> operation above, except that actions are only performed only if the result of the test channel is true.<p>
+</a><P><a name="11222">
+ <P><img src="9BasicFunctions.anc4.gif"><p>
+</a><a name="11223">
+<em>Figure 9.5  &#32; &#32;A typical Do when operation
+</em></a><P><ul><a name="11224">
+<li>The first subchannel is the <em>test</em> channel. It is typically one of the basic functions such as <strong>In Range?</strong> or <strong>Less Than?</strong>, but in any case, should return a true or false value.
+</a></li><P><a name="11225">
+<li>The second channel (and any other channels at the same level but below it) are executed only if the value returned by the test channel is true.
+</a></li><P></ul><P><a name="11226">
+You can add multiple actions to be performed either by grouping them in the first subaction immediately after the test channel, or adding them at the same level.<p>
+</a><P><a name="11131">
+<h3> Pause</h3>
+</a><a name="11236">
+Temporarily pauses the execution of a script. When a <strong>Pause</strong> operation is encountered the following dialog box is displayed:<p>
+</a><P><a name="11240">
+ <P><img src="9BasicFunctions.anc5.gif"><p>
+</a><a name="11241">
+<em>Figure 9.6  &#32; &#32;Pausing a script
+</em></a><P><a name="11242">
+Pause is useful if you want to perform some manual operation at the same point for each frame in a script, then resume execution of the script.<p>
+</a><P><ul><a name="11243">
+<li>Choose <strong>Yes</strong> to resume execution of the script.
+</a></li><P><a name="11244">
+<li>Choose <strong>No</strong> to halt execution of the script at the current frame (shown in the dialog box).
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	All other N&#183;World products are still active when the script is paused.</font></dd></dt></dl><P>
+<a name="10925">
+<h2><HR> Evaluating a LISP Form</h2>
+</a><a name="10958">
+The <strong>Evaluate LISP Form</strong> operation is your programmatic interface into N-Dynamics. You can evaluate any LISP form "on the fly," giving you interactive access to the Wide Open World API. See the <em>N&#183;World Programmer's Reference Guide</em> for more information.<p>
+</a><P><a name="10926">
+<h2><HR> Applying a Timewarp to a Script</h2>
+</a><a name="10931">
+<h3> Make Time Flow Backward</h3>
+</a><a name="11652">
+<strong>Timewarp</strong> sets a curve that affects the apparent flow of time in a script. For example, if you have a script that manipulates a number of objects, and wanted to slow down the entire animation at the beginning, you could apply a Slow-In curve <em>to the entire script</em> by using <strong>Timewarp</strong>.<p>
+</a><P><a name="11653">
+In order to do this, add a channel to hold the Timewarp operation at the top of the script. The script affects <em>all channels below it in the same parent channel</em>:<p>
+</a><P><a name="11684">
+ <P><img src="9BasicFunctions.anc6.gif"><p>
+</a><a name="11685">
+<em>Figure 9.7  &#32; &#32;Placing a Time Warp operation
+</em></a><P><a name="11686">
+Consider the two "extremes:"<p>
+</a><P><ul><a name="11687">
+<li>A curve starting at 0 and ending at 1 would cause time to flow normally (see the first example below).
+</a></li><P><a name="11688">
+<li>A curve starting at 1 and ending at 0 would cause time to flow "backward" (see the second example below).
+</a></li><P></ul><P><a name="11689">
+As each frame executes, N-Dynamics passes a value to each channel from top to bottom, telling it the current frame. When it encounters a Time Warp channel, that value is temporarily replaced by the value in the time warp curve. The value of the curve at that frame tells N-Dynamics what frame to execute for any affected channels (as described above).<p>
+</a><P><a name="11690">
+So in the second example below, at frame 1, the value in the curve is 1. This means that N-Dynamics now thinks it should execute the frame at 100% of the length of the channel. The next frame is a slightly lower value (say 95%), so the frame corresponding to that percentage of the length of the time warp channel would be executed.<p>
+</a><P><a name="11734">
+ <P><img src="9BasicFunctions.anc7.gif"><p>
+</a><a name="11735">
+<em>Figure 9.8  &#32; &#32;Sample Time Warp 
+</em></a><P><a name="11919">
+<h2><HR> Congratulations!</h2>
+</a><a name="11920">
+You've now learned about some of N-Dynamics "basic" operations. These operations let you directly control things like script flow, copying values between operations, and even changing the time warp for an entire script.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8PaintOps.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 15:58:54 -->
+
+</body>
+</html>

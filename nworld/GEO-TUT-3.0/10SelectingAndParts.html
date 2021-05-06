@@ -1,0 +1,627 @@
+<html><head><title>Elements and Parts</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="9Cathedral.html">[Prev]</a> <a href="11AddingGeometry.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Elements and Parts</h1>
+</a>
+<hr><p><a name="13691">
+<h4> In this chapter we'll review some basic techniques for collecting elements on an object and for working with parts.</h4>
+</a><a name="9046">
+ <P><img src="10SelectingAndParts.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="13698">
+You'll learn about:<p>
+</a><P><a name="11924">
+<h3> Selecting Elements</h3>
+</a><ul><a name="11983">
+<li>Select Elements
+</a></li><P><a name="13005">
+<li>Select Edge Loop
+</a></li><P></ul><P><a name="13008">
+<h3> Defining Parts</h3>
+</a><ul><a name="13017">
+<li>Add to Part
+</a></li><P><a name="11980">
+<li>Parts
+</a></li><P></ul><P><a name="11904">
+<h2><HR> Selecting Elements</h2>
+</a><a name="11964">
+Up until now, whenever you've needed to select elements on which you wanted to perform an operation, you needed to select each element individually while in collect mode. While this is often the mode you'll want to work in, there are some other options.<p>
+</a><P><a name="11988">
+N-Geometry has a number of shortcuts for collecting topologically related elements on the surface of the object. We'll discuss some of those options in this section.<p>
+</a><P><a name="11995">
+<h3> Select Elements</h3>
+</a><a name="11996">
+The <strong>Select Elements</strong> command is context sensitive-it works differently depending on whether you have a body, face, segment, or point selected.<p>
+</a><P><a name="12016">
+<h4> Bodies</h4>
+</a><a name="12023">
+With a body selected, the Select Elements command lets you select the points, segments, or faces on that object, depending on whether you <strong>(CLICK-L)</strong>, <strong>(CLICK-M)</strong> or <strong>(CLICK-R)</strong>.<p>
+</a><P>
+<a name="12017">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="12026">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12030">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="12033">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12034">
+<li>points are selected on the element sensitivity menu
+</a><P><BR><a name="12032">
+<li>all points on the selected body are highlighted
+</a><P><a name="11957">
+ <P><img src="10SelectingAndParts.anc1.gif"><p>
+</a></ul>
+
+<a name="11958">
+<em>Figure 10.1  &#32; &#32; Selecting the vertices on a body
+</em></a><P>
+<a name="13578">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu again.
+</STRONG>
+</a><P><a name="12050">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="12051">
+<STRONG>	6.	 This time, <strong>(CLICK-M)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="12052">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12053">
+<li><em>segments</em> are selected on the element sensitivity menu
+</a><P><BR><a name="12054">
+<li>all <em>segments</em> on the selected body are highlighted
+</a><P><a name="12066">
+ <P><img src="10SelectingAndParts.anc2.gif"><p>
+</a></ul>
+
+<a name="12083">
+<em>Figure 10.2  &#32; &#32; Selecting the segments on a body
+</em></a><P>
+<a name="13580">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu again.
+</STRONG>
+</a><P><a name="12091">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="12092">
+<STRONG>	9.	 This time, <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="12093">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12094">
+<li><em>faces </em>are selected on the element sensitivity menu
+</a><P><BR><a name="12095">
+<li>all <em>faces </em>on the selected body are highlighted
+</a><P><a name="12099">
+ <P><img src="10SelectingAndParts.anc3.gif"><p>
+</a></ul>
+
+<a name="12100">
+<em>Figure 10.3  &#32; &#32; Selecting the faces on a body
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Visually, selecting all faces on a body is no different than selecting the body itself. However, operations performed are applied to each face when faces of the body are selected in this way.<br><br>Remember, always refer to the element sensitivity menu to see what type of element is currently selected!</font></dd></dt></dl><P>
+<a name="12073">
+<h4> Faces</h4>
+</a><a name="12145">
+With a face selected, <strong>Select Elements</strong> works like this:<p>
+</a><P>
+<a name="12150">
+<STRONG>	10.	 Select a single face on the cube.
+</STRONG>
+</a><P><a name="12151">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the face.
+</STRONG>
+</a><P><a name="12152">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on select elements.
+</STRONG>
+</a><P><dl><a name="12153">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12154">
+<li><em>points </em>are selected on the element sensitivity menu
+</a><P><BR><a name="12155">
+<li>all <em>points </em>on the selected face are highlighted
+</a><P><a name="12159">
+ <P><img src="10SelectingAndParts.anc4.gif"><p>
+</a></ul>
+
+<a name="12160">
+<em>Figure 10.4  &#32; &#32; Selecting the points on a face
+</em></a><P>
+<a name="12188">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on a single face on the cube again.
+</STRONG>
+</a><P><a name="12190">
+<STRONG>	14.	 <strong>(CLICK-M)</strong> on select elements.
+</STRONG>
+</a><P><dl><a name="12191">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12192">
+<li><em>segments </em>are selected on the element sensitivity menu
+</a><P><BR><a name="12193">
+<li>all <em>segments </em>on the selected face are highlighted
+</a><P><a name="12197">
+ <P><img src="10SelectingAndParts.anc5.gif"><p>
+</a></ul>
+
+<a name="12198">
+<em>Figure 10.5  &#32; &#32; Selecting the segments on a face
+</em></a><P>
+<a name="12301">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on a single face on the cube again.
+</STRONG>
+</a><P><a name="12302">
+<STRONG>	16.	 <strong>(CLICK-R)</strong> on select elements.
+</STRONG>
+</a><P><dl><a name="12217">
+<dt>This makes two things happen:</dt>
+</a><P></dl><ul>
+<BR><a name="12218">
+<li><em>collect</em> and <em>faces </em>are selected on the element sensitivity menu
+</a><P><BR><a name="12219">
+<li>the selected face, plus any faces <em>adjacent</em> to the selected face are highlighted. Any face that shares a vertex or edge with the selected face is adjacent.
+</a><P><a name="12223">
+ <P><img src="10SelectingAndParts.anc6.gif"><p>
+</a></ul>
+
+<a name="12224">
+<em>Figure 10.6  &#32; &#32; Left, result with front face selected; right, back face (not selected)
+</em></a><P><a name="12251">
+<h4> Selecting Neighbors</h4>
+</a><a name="12265">
+Selecting neighboring elements lets you gather elements of the specified type that are adjacent to the currently selected element. To see this example clearly, let's use a different object.<p>
+</a><P>
+<a name="12266">
+<STRONG>	17.	 Create an icosahedron (GeoMenus&gt;File&gt;New Object&gt;Icosahedron).
+</STRONG>
+</a><P><a name="12270">
+<STRONG>	18.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on Smooth.
+</STRONG>
+</a><P><a name="12308">
+<STRONG>	19.	 <strong>(SHIFT-L)</strong> on a single face on the icosahedron.
+</STRONG>
+</a><P><a name="12309">
+<STRONG>	20.	 <strong>(SHIFT-L)</strong> on select elements.
+</STRONG>
+</a><P><ul>
+<BR><a name="12325">
+<li><em>collect</em> and <em>points </em>are selected on the element sensitivity menu
+</a><P><BR><a name="12326">
+<li>points on the selected face, plus any faces <em>one segment away </em>from the selected face are highlighted.
+</a><P><a name="12260">
+ <P><img src="10SelectingAndParts.anc7.gif"><p>
+</a></ul>
+
+<a name="12261">
+<em>Figure 10.7  &#32; &#32; Selecting neighboring points to a face (circled in diagram)
+</em></a><P><a name="12183">
+The same process can be used to select neighboring elements or segments (using <strong>(SHIFT-M)</strong> or <strong>(SHIFT-R)</strong> respectively):<p>
+</a><P><a name="12352">
+ <P><img src="10SelectingAndParts.anc8.gif"><p>
+</a><a name="12353">
+<em>Figure 10.8  &#32; &#32; Left, selected face; middle, neighboring segments; right, neighboring faces
+</em></a><P><a name="12344">
+<h4> Segments and Points</h4>
+</a><a name="12366">
+With segments and points, you can use the same techniques described above for faces to collect other element types. Here's a summary of what get's selected with the <strong>Select Element</strong> command.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you start with a collection of elements, the collection method is applied to each element in the collection. This makes it easy to collect on different areas of a model.</font></dd></dt><a name="13760">
+ : 
+<P><Table Border="1">
+<dl>
+<a name="12378">
+<em>Table 10.1 <strong></strong><em> &#32; &#32;Selecting Elements</em>
+</em></a></dl>
+<tr><th align="left"><a name="12386">
+Select Elements
+</a><th align="left"><a name="12388">
+With a<br>Body<br>selected
+</a><th align="left"><a name="12546">
+With a<br>Face<br>selected
+</a><th align="left"><a name="12550">
+With a<br>Segment<br>selected
+</a><th align="left"><a name="12554">
+With a<br>Point<br>selected
+</a>
+<tr><td valign="top"><a name="12394">
+ <strong>(CLICK-L)</strong><p>
+</a><td valign="top"><a name="12396">
+ Points on the body.<p>
+</a><td valign="top"><a name="12398">
+ Points on the face.<p>
+</a><td valign="top"><a name="12524">
+ Points on the <br>segment.c<p>
+</a><td valign="top"><a name="12473">
+ Original and neighboring points.<p>
+</a>
+<tr><td valign="top"><a name="12402">
+ <strong>(CLICK-M)</strong><p>
+</a><td valign="top"><a name="12404">
+ Segments on the body.<p>
+</a><td valign="top"><a name="12406">
+ Segments on the face.<p>
+</a><td valign="top"><a name="12408">
+ Original and segments connected to ends of original.<p>
+</a><td valign="top"><a name="12475">
+ Segments leading away from the point.<p>
+</a>
+<tr><td valign="top"><a name="12410">
+ <strong>(CLICK-R)</strong><p>
+</a><td valign="top"><a name="12583">
+ Faces on the body.<p>
+</a><td valign="top"><a name="12585">
+ Original and neighboring faces.<p>
+</a><td valign="top"><a name="12587">
+ Faces on both sides of the segment.<p>
+</a><td valign="top"><a name="12589">
+ Original and neighboring segments.<p>
+</a>
+<tr><td valign="top"><a name="12448">
+ <strong>(SHIFT-L)</strong><p>
+</a><td valign="top"><a name="12608">
+ Points on the body.<p>
+</a><td valign="top"><a name="12610">
+ Points on the original and neighboring faces.<p>
+</a><td valign="top"><a name="12612">
+ Points on the original and neighboring segments.<p>
+</a><td valign="top"><a name="12624">
+ Original and neighboring points.<p>
+</a><a name="12614">
+ <p>
+</a>
+<tr><td valign="top"><a name="12456">
+ <strong>(SHIFT-M)</strong><p>
+</a><td valign="top"><a name="12458">
+ Segments on the body.<p>
+</a><td valign="top"><a name="12460">
+ Segments on the original face and leading from points on the face.<p>
+</a><td valign="top"><a name="12462">
+ Original and neighboring segments.<p>
+</a><td valign="top"><a name="12483">
+ Any segment leading from the point.<p>
+</a>
+<tr><td valign="top"><a name="12426">
+ <strong>(SHIFT-R)</strong><p>
+</a><td valign="top"><a name="12428">
+ Faces on the body.<p>
+</a><td valign="top"><a name="12430">
+ Original and neighboring faces.<p>
+</a><td valign="top"><a name="12432">
+ Any face sharing a point with the segment.<p>
+</a><td valign="top"><a name="12485">
+ Any face sharing the point.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a></dl><P>
+<a name="12124">
+<h3> Select Edge Loop</h3>
+</a><a name="12669">
+The Select Edge Loop command tries to collect a loop of segments around the surface of an object. Try this:<p>
+</a><P>
+<a name="12675">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cylinder.
+</STRONG>
+</a><P><dl><a name="12676">
+<dt>A cylinder appears in the N-Geometry window:</dt>
+</a><P><a name="12687">
+ <P><img src="10SelectingAndParts.anc9.gif"><p>
+</a></dl>
+<a name="12688">
+<em>Figure 10.9  &#32; &#32; A cylinder
+</em></a><P>
+<a name="12682">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12699">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the face on top of the cylinder, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><a name="12705">
+ <P><img src="10SelectingAndParts.anc10.gif"><p>
+</a>
+<a name="12706">
+<em>Figure 10.10  &#32; &#32; An extruded cylinder
+</em></a><P>
+<a name="12714">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12720">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on one of the segments around the middle of the cylinder.
+</STRONG>
+</a><P><a name="12700">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Select Edge Loop.
+</STRONG>
+</a><P><dl><a name="12729">
+<dt>N-Geometry tries to select all the edges in a loop around the object, using the segment as a directional indicator. Collect mode is automatically turned on, and the segments all the way back to the original are selected:</dt>
+</a><P><a name="12737">
+ <P><img src="10SelectingAndParts.anc11.gif"><p>
+</a></dl>
+<a name="12738">
+<em>Figure 10.11  &#32; &#32; Edge loop selected
+</em></a><P><a name="13024">
+Instead of having to select all the segments around the cylinder individually, you can do it in one step.<p>
+</a><P>
+<a name="13025">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="13026">
+<STRONG>	8.	 <strong>(CLICK-R)</strong> on Scale and <strong>(CLICK-L)</strong> on Object Midpoint for the scaling center.
+</STRONG>
+</a><P><dl><a name="12753">
+<dt>Move the mouse back and forth to see how you can manipulate an entire collection at once.</dt>
+</a><P><a name="12765">
+ <P><img src="10SelectingAndParts.anc12.gif"><p>
+</a></dl>
+<a name="12766">
+<em>Figure 10.12  &#32; &#32; Working with a collection
+</em></a><P><a name="12754">
+<h4> When Select Edge Loop Stops</h4>
+</a><a name="12772">
+The <strong>Select Edge Loop</strong> command stops when the loop meets a "Y" in the path:<p>
+</a><P><a name="12778">
+ <P><img src="10SelectingAndParts.anc13.gif"><p>
+</a><a name="12779">
+<em>Figure 10.13  &#32; &#32; The Select Edge Loop operation stops when it encounters a "Y"
+</em></a><P><a name="12011">
+<h2><HR> Defining Parts</h2>
+</a><a name="12823">
+Why else would you want to gather elements? In some cases, it makes sense to group elements into "parts." Once elements are grouped into parts, you can choose that part and perform various operations on it.<p>
+</a><P><a name="12837">
+<h3> Face Parts</h3>
+</a><a name="12838">
+Face parts group <em>faces</em> into logical units. <p>
+</a><P><a name="12850">
+Face parts are used primarily when applying render parameters to an object. You might, for example, want to make all the faces on a dragon's teeth one part so that you could assign them the same color. <p>
+</a><P><a name="12852">
+Fface parts can also be manipulated just like any other collection of faces (e.g., with extrude or other modifications).<p>
+</a><P><a name="12839">
+<h3> Vertex Parts</h3>
+</a><a name="12840">
+Vertex parts group points into logical units.<p>
+</a><P><a name="12851">
+Vertex parts are used extensively with the Nichimen Graphics Skeletal Animation System, but they can also be used to good effect when defining displacements (described in a later chapter).<p>
+</a><P><a name="12824">
+<h4> Creating a Part</h4>
+</a>
+<a name="12855">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="12856">
+<STRONG>	2.	 Collect the faces around the edge of the cube.
+</STRONG>
+</a><P><a name="12862">
+ <P><img src="10SelectingAndParts.anc14.gif"><p>
+</a>
+<a name="12863">
+<em>Figure 10.14  &#32; &#32; Select the faces around the edge of the cube
+</em></a><P>
+<a name="12857">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Add to Part.
+</STRONG>
+</a><P><a name="12883">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Make New Part.
+</STRONG>
+</a><P><a name="12884">
+<STRONG>	5.	 Give the part a name in the dialog box that appears or simply use the default:
+</STRONG>
+</a><P><a name="12891">
+ <P><img src="10SelectingAndParts.anc15.gif"><p>
+</a>
+<a name="12892">
+<em>Figure 10.15  &#32; &#32; Give the part a name
+</em></a><P>
+<a name="12896">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the Make Part button.
+</STRONG>
+</a><P>
+<a name="12900">
+<h4> Selecting the Part</h4>
+</a><a name="12905">
+To select the part you just made:<p>
+</a><P>
+<a name="12901">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12908">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Parts.
+</STRONG>
+</a><P><dl><a name="12910">
+<dt>A list of parts associated with the object is displayed:</dt>
+</a><P><a name="12916">
+ <P><img src="10SelectingAndParts.anc16.gif"><p>
+</a></dl>
+<a name="12917">
+<em>Figure 10.16  &#32; &#32; Seeing parts associated with an object
+</em></a><P>
+<a name="12911">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the part you defined in step <a href="10SelectingAndParts.html#12884">5</a>.
+</STRONG>
+</a><P><a name="12938">
+ <P><img src="10SelectingAndParts.anc17.gif"><p>
+</a>
+<a name="12939">
+<em>Figure 10.17  &#32; &#32; The faces in the part are selected
+</em></a><P><a name="12826">
+<h4> Adding Elements to a Part</h4>
+</a><a name="12967">
+You can add elements to a previously defined part; however, the elements you add must be of the same type (e.g., faces to face parts and vertices to vertex parts).<p>
+</a><P><a name="12982">
+Let's add a face to the part you defined in step <a href="10SelectingAndParts.html#12884">5</a>:<p>
+</a><P>
+<a name="12968">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on the face on top of the cube, then <strong>(CLICK-L)</strong> on Add to Part.
+</STRONG>
+</a><P><dl><a name="13041">
+<dt>A list of parts associated with the object is displayed:</dt>
+</a><P><a name="13034">
+ <P><img src="10SelectingAndParts.anc18.gif"><p>
+</a></dl>
+<a name="13035">
+<em>Figure 10.18  &#32; &#32; Adding an element to a part
+</em></a><P>
+<a name="13029">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the part you defined in step <a href="10SelectingAndParts.html#12884">5</a>.
+</STRONG>
+</a><P><a name="13062">
+<STRONG>	12.	 Select the part as you did in steps <a href="10SelectingAndParts.html#12901">7</a> through <a href="10SelectingAndParts.html#12911">9</a>.
+</STRONG>
+</a><P><dl><a name="13071">
+<dt>The top face is now included when you select the part.</dt>
+</a><P><a name="13076">
+ <P><img src="10SelectingAndParts.anc19.gif"><p>
+</a></dl>
+<a name="13077">
+<em>Figure 10.19  &#32; &#32; Selecting the modified part
+</em></a><P><a name="12958">
+<h4> Renaming a Part</h4>
+</a><a name="13091">
+If you used the default name (e.g., "4 faces" or "4 points"), you'll find that you may want to rename the part.<p>
+</a><P><a name="13092">
+Parts can be renamed as follows:<p>
+</a><P>
+<a name="13096">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the body that contains the part, then <strong>(CLICK-M)</strong> on Parts to display the Part Operations menu:
+</STRONG>
+</a><P><a name="13102">
+ <P><img src="10SelectingAndParts.anc20.gif"><p>
+</a>
+<a name="13103">
+<em>Figure 10.20  &#32; &#32; Selecting the modified part
+</em></a><P>
+<a name="13097">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Rename.
+</STRONG>
+</a><P><dl><a name="13111">
+<dt>A list of parts associated with the body is displayed:</dt>
+</a><P><a name="13117">
+ <P><img src="10SelectingAndParts.anc21.gif"><p>
+</a></dl>
+<a name="13118">
+<em>Figure 10.21  &#32; &#32; List of parts associated with the object
+</em></a><P>
+<a name="13129">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on the part you defined in step <a href="10SelectingAndParts.html#12884">5</a>.
+</STRONG>
+</a><P><dl><a name="13145">
+<dt>Give the part a name in the text edit box that appears:</dt>
+</a><P><a name="13138">
+ <P><img src="10SelectingAndParts.anc22.gif"><p>
+</a></dl>
+<a name="13139">
+<em>Figure 10.22  &#32; &#32; Give the part a name
+</em></a><P>
+<a name="13110">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Rename Part button.
+</STRONG>
+</a><P>
+<a name="13088">
+<h4> Removing Elements from a Part</h4>
+</a><a name="13155">
+Suppose you change your mind now, deciding that you don't want the top face to be in the face part you defined. How do you remove an element (or elements) from a part?<p>
+</a><P>
+<a name="13156">
+<STRONG>	17.	 Collect the elements you want to remove from a part.
+</STRONG>
+</a><P><a name="13163">
+<STRONG>	18.	 <strong>(CLICK-M)</strong> on Add to Part.
+</STRONG>
+</a><P><dl><a name="13170">
+<dt>A list of parts to which the element belongs is displayed:</dt>
+</a><P><a name="13175">
+ <P><img src="10SelectingAndParts.anc23.gif"><p>
+</a></dl>
+<a name="13176">
+<em>Figure 10.23  &#32; &#32; Removing an element from a part
+</em></a><P>
+<a name="13184">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the part you want to remove the element from.
+</STRONG>
+</a><P><a name="13200">
+<STRONG>	20.	 Select the part as you did in steps <a href="10SelectingAndParts.html#12901">7</a> through <a href="10SelectingAndParts.html#12911">9</a> to verify that the element has been removed.
+</STRONG>
+</a><P>
+<a name="12963">
+<h4> Deleting a Part</h4>
+</a><a name="12964">
+Deleting a part does not destroy the elements in the part; rather it deletes the logical connection between the elements.<p>
+</a><P><a name="13209">
+To delete a part:<p>
+</a><P>
+<a name="13212">
+<STRONG>	21.	 <strong>(SHIFT-L)</strong> on the body that contains the part, then <strong>(CLICK-M)</strong> on Parts to display the Part Operations menu:
+</STRONG>
+</a><P><a name="13217">
+ <P><img src="10SelectingAndParts.anc24.gif"><p>
+</a>
+<a name="13218">
+<em>Figure 10.24  &#32; &#32; Selecting the modified part
+</em></a><P>
+<a name="13219">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on Delete.
+</STRONG>
+</a><P><dl><a name="13220">
+<dt>A list of parts associated with the body is displayed:</dt>
+</a><P><a name="13224">
+ <P><img src="10SelectingAndParts.anc25.gif"><p>
+</a></dl>
+<a name="13225">
+<em>Figure 10.25  &#32; &#32; A list of face and vertex parts associated with the object
+</em></a><P>
+<a name="13229">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on the part you want to delete.
+</STRONG>
+</a><P><dl><a name="13210">
+<dt>The part is deleted.</dt>
+</a><P></dl><a name="13262">
+<STRONG>	24.	 Verify that the part has been deleted by trying to select the part as you did in steps <a href="10SelectingAndParts.html#12901">7</a> through <a href="10SelectingAndParts.html#12911">9</a>.
+</STRONG>
+</a><P><dl><a name="13285">
+<dt>If no parts are available, the following dialog box is displayed:</dt>
+</a><P><a name="13279">
+ <P><img src="10SelectingAndParts.anc26.gif"><p>
+</a></dl>
+<a name="13280">
+<em>Figure 10.26  &#32; &#32; If no parts are available
+</em></a><P><a name="13289">
+<h3> More about Parts</h3>
+</a><a name="13290">
+The previous discussion gives you a good working knowledge of how to create, modify, and remove parts from an object. As you may have noticed, there were additional options on some of the menus that were not explained in this section. For a detailed description of those options, refer to the <em>N-Geometry Reference Guide</em>.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="9Cathedral.html">[Prev]</a> <a href="11AddingGeometry.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 12:27:27 -->
+
+</body>
+</html>

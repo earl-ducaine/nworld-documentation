@@ -1,0 +1,369 @@
+<html><head><title>Using The VRAM Editor</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="10ColorReduction.html">[Prev]</a> <a href="Book IX.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="463618">
+<h1>Using The VRAM Editor</h1>
+</a>
+<hr><p><a name="463619">
+<h4> With N-Paint's VRAM Editor you can create TIM files for export to the Sony Playstation quickly and easily. You can also manage the distribution of these TIM files within Playstation VRAM to ensure that it is used as efficiently as possible.</h4>
+</a><a name="464405">
+ <P><img src="11VRAMEditor.anc.gif"><p>
+</a><a name="463620">
+<h2><HR> In this Chapter</h2>
+</a><a name="463621">
+You'll learn how to:<p>
+</a><P><ul><a name="463622">
+<li>Load images into the VRAM Editor
+</a></li><P><a name="463623">
+<li>Create TIM files
+</a></li><P><a name="463624">
+<li>Save TIM files
+</a></li><P><a name="463625">
+<li>Place your images in Sony Playstation VRAM as Image Tiles
+</a></li><P><a name="463626">
+<li>Manipulate VRAM tiles to ensure the optimal use of Playstation VRAM
+</a></li><P></ul><P><a name="463627">
+<h2><HR> The VRAM Editor</h2>
+</a><a name="463628">
+To use the VRAM Editor:<p>
+</a><P>
+<a name="463629">
+<STRONG>	 1.	 <strong>(CLICK-r)</strong> on the Paint button in the N-World Config bar.
+</STRONG>
+</a><P><dl><a name="463630">
+<dt>The VRAM Editor menu appears:</dt>
+</a><P><a name="463631">
+ <P><img src="11VRAMEditor.anc1.gif"><p>
+</a></dl>
+<a name="463632">
+<em>Figure 11.1  &#32; &#32;The VRAM Editor Menu
+</em></a><P>
+<a name="463636">
+<STRONG>	2.	 Open the VRAM Editor Canvas.
+</STRONG>
+</a><P><dl><a name="463637">
+<dt>If it is not already open, <strong>(CLICK-L)</strong> on its icon.</dt>
+</a><P><a name="463641">
+ <P><img src="11VRAMEditor.anc2.gif"><p>
+</a></dl>
+<a name="463642">
+<em>Figure 11.2  &#32; &#32;The VRAM Editor Canvas
+</em></a><P><a name="463648">
+<h3> Understanding the VRAM Canvas</h3>
+</a><a name="463649">
+The VRAM canvas is a visual representation of the Sony Playstation's VRAM. Elements which use or are stored in VRAM are represented by polygons. The size and proportions of these polygons indicate the amount of VRAM they occupy.<p>
+</a><P><a name="463650">
+For example, the pinkish rectangle on the left side of the VRAM editor represents the area of VRAM occupied by the Playstation's display buffers. The vertical lines divide the VRAM canvas into 32 cells, called <em>texture pages</em>. Each texture page is 256k x 64k. <p>
+</a><P><a name="463655">
+<h3> How Images are Represented in VRAM</h3>
+</a><a name="463659">
+We've already pointed out that the amount of memory an image consumes is represented by the area it occupies in the VRAM canvas. <a href="11VRAMEditor.html#464342">Figure 11.3</a> shows two different images. The one on the left is 105 x 110 pixels, while the one on the right is 86 x 68 pixels. Each are 8-bit images.<p>
+</a><P><a name="464347">
+ <P><img src="11VRAMEditor.anc3.gif"><p>
+</a><a name="464342">
+<em>Figure 11.3  &#32; &#32; &#32; &#32;Image tiles in the VRAM canvas
+</em></a><P><a name="463669">
+Each address in Playstation VRAM can accommodate 16 bits of information. If an image has eight-bit color, then its pixels can be "stacked" in two rows. As a result, a square, 64 x 64 bit image with 8-bit color will be represented as a rectangle in the VRAM editor, because the image is stored in two "rows" in VRAM. Only the top "row" is visible.<p>
+</a><P><a name="464332">
+So, if a 64 x 64, 8-bit image is color reduced to 4 bits, it will occupy half the amount of VRAM (because 4-bit pixels can be stacked four deep). <a href="11VRAMEditor.html#464368">Figure 11.4</a> shows the same image loaded into VRAM, but with different bit depths (the image tile on the right is a full-color, 16-bit image, while the one on the left is a 4-bit image). However, the images both have the same <em>dimensions</em> (or number of pixels). It is important to understand that changes in the size of an image tile can represent changes in its actual dimensions, <em>and</em> changes in color depth.<p>
+</a><P><a name="464367">
+ <P><img src="11VRAMEditor.anc4.gif"><p>
+</a><a name="464368">
+<em>Figure 11.4  &#32; &#32;The same image with different bit-depths. Left, 4-bit; Right, 16-bit
+</em></a><P><a name="464339">
+<h3> Understanding TIM Files</h3>
+</a><a name="463679">
+The TIM format is the native image format for the Sony Playstation. You must convert your images to TIM format before you can use them on the playstation. TIM files are limited to 256 x 256 pixels in size. If you attempt to load a larger image than this, N-Paint will ask whether you wish to reduce it in size to 256x256. In addition, TIM files cannot be more than 16 bits in color depth.<p>
+</a><P><a name="463977">
+TIM file names must also obey DOS file naming conventions: an eight character name with a three character extension (.TIM).<p>
+</a><P><a name="463680">
+<h3> Understanding Image Tiles</h3>
+</a><a name="463681">
+Image tiles must be placed in VRAM according to two rules. <p>
+</a><P><ul><a name="463682">
+<li>Image tiles cannot overlap
+</a></li><P><a name="463762">
+<li>Image tiles cannot occupy parts of more than four texture map pages (<a href="11VRAMEditor.html#463753">Figure 11.5</a>).
+</a></li><P><a name="464520">
+<li>Image tiles cannot extend over the horizontal line in the middle of the VRAM editor display.
+</a></li><P><a name="463704">
+ <P><img src="11VRAMEditor.anc5.gif"><p>
+</a></ul><P><a name="463753">
+<em>Figure 11.5  &#32; &#32;256x256, 16-bit map. Left, legal VRAM placement; right, illegal placement
+</em></a><P><a name="463770">
+<h3> Understanding CLUTs</h3>
+</a><a name="463771">
+TIM files are color-mapped images (except for 16-bit TIMs, which are full color). These color lookup tables are analogous to the palettes you create when you color-reduce an image. CLUTs must be stored in VRAM along with the images which use them.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	16-bit TIM files are full color images. Color values greater than 16-bits are truncated to their 16-bit equivalent when a larger (e.g. 32 or 64-bit) full color image is converted to TIM format.</font></dd></dt></dl><P>
+<a name="463774">
+<h2><HR> Placing Image Tiles in VRAM</h2>
+</a><a name="463775">
+We're ready to place a few image tiles into the VRAM Canvas. Generally, you'll want to use color-reduced versions of images in the VRAM Editor, since TIM files are limited to 16 bits of color information per pixel. Full color images like RGB images contain 64 bits of color information. You can create color reduced versions of any full color image using N-Paint's Color Reduction tools.<p>
+</a><P><a name="464018">
+We created the color reduced images in the last chapter, which we'll use in this tutorial. If you haven't created these images, you can use ones we created.<p>
+</a><P>
+<a name="464021">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Open.
+</STRONG>
+</a><P><dl><a name="464022">
+<dt>Load the files you created in the last chapter, or load our files:</dt>
+</a><P><a name="464023">
+<dt><code>/usr/local/ngc/demo/images/f-chest.lbm</code></dt>
+</a><P><a name="464027">
+<dt><code>/usr/local/ngc/demo/images/f-skirt.lbm</code></dt>
+</a><P><a name="464031">
+<dt><code>/usr/local/ngc/demo/images/f-helmet.lbm</code></dt>
+</a><P></dl>
+<a name="464041">
+Four things happen when you load images into the VRAM Editor:<p>
+</a><P><ul><a name="464065">
+<li>The full color version of the image is loaded to the Paint canvas.
+</a></li><P><a name="464519">
+<li>The image parameters appear in the VRAM Editor menu.
+</a></li><P><a name="464046">
+ <P><img src="11VRAMEditor.anc6.gif"><p>
+</a></ul><P><a name="464047">
+<em>Figure 11.6  &#32; &#32;VRAM Tile parameters
+</em></a><P><ul><a name="464072">
+<li>The image tiles appear on the canvas:
+</a></li><P><a name="464051">
+ <P><img src="11VRAMEditor.anc7.gif"><p>
+</a></ul><P><a name="464052">
+<em>Figure 11.7  &#32; &#32;The three tiles loaded onto the VRAM Editor Canvas
+</em></a><P><ul><a name="464080">
+<li>The associated palettes (CLUTs) appear in the CLUT area under the Display Buffer:
+</a></li><P><a name="464081">
+ <P><img src="11VRAMEditor.anc8.gif"><p>
+</a></ul><P><a name="464082">
+<em>Figure 11.8  &#32; &#32;Palettes (CLUTs) are stored in the VRAM area beneath the display buffers.
+</em></a><P><a name="464077">
+That's all there is to it! Assuming that your layout consists of only these three images, you're ready to save your layout and move on to the next one.<p>
+</a><P>
+<a name="464107">
+<STRONG>	2.	 (CLICK-L) on the TIM Directory field.
+</STRONG>
+</a><P><a name="464113">
+ <P><img src="11VRAMEditor.anc9.gif"><p>
+</a>
+<a name="464122">
+<em>Figure 11.9  &#32; &#32;The TIM Directory field
+</em></a><P><dl><dl><a name="464121">
+<dt>The layout directory is where the layout file and any generated TIM files are stored. Layout files are named like this:</dt>
+</a><P><dl><a name="464479">
+<dt>	<code>vram.layout</code><p>
+</a><P></dl><a name="464120">
+<dt>Specify a directory to be the TIM directory. Remember that a given directory can accommodate only a single layout!</dt>
+</a><P></dl></dl>
+<a name="464131">
+<STRONG>	3.	 Once you've specified a TIM directory, <strong>(CLICK-L)</strong> on File&gt;Export All.
+</STRONG>
+</a><P><dl><a name="464132">
+<dt>A TIM file is created from each source file and saved to the TIM directory.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Because the location of a given image tile is embedded in the TIM file, there is rarely a reason to save an image to TIM format outside of the layout context.</font></dd></dt></dl><P>
+
+<a name="464133">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on FIle&gt;Save Layout.
+</STRONG>
+</a><P><dl><a name="464134">
+<dt>This saves the layout file to the TIM directory. Assuming your TIM directory was empty to begin with, the <code>ls </code>command should reveal the following files:</dt>
+</a><P></dl><a name="464448">
+<code><pre>	./<p>
+</code></pre></a><a name="464450">
+<code><pre>	../<p>
+</code></pre></a><a name="464451">
+<code><pre>	f-chest.tim<p>
+</code></pre></a><a name="464452">
+<code><pre>	f-helmet.tim<p>
+</code></pre></a><a name="464453">
+<code><pre>	f-skirt.tim<p>
+</code></pre></a><a name="464454">
+<code><pre>	vram.layout<p>
+</code></pre></a>
+<a name="464103">
+<h2><HR> Using the Best Fit Tools</h2>
+</a><a name="464159">
+In the last example we loaded only three small image tiles, so we were never threatened with running out of VRAM. Usually, though, you'll be trying to pack the maximum quantity of texture maps and imagery into VRAM. Obviously, optimizing the layout of a large number of tiles when VRAM is in short supply can be a frustrating and even futile puzzle. <p>
+</a><P><a name="464166">
+Fortunately, N-Paint will do the placement for you, and also guarantee the largest number of tiles in a given layout are placed in VRAM. <p>
+</a><P><a name="464171">
+For this example, we'll use a layout we created:<p>
+</a><P>
+<a name="464172">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the TIM dir field, and select the following directory.
+</STRONG>
+</a><P><dl><a name="464545">
+<dt><code>/usr/local/ngc/demo/vram/</code></dt>
+</a><P></dl><a name="464183">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;Load Layout.
+</STRONG>
+</a><P><dl><a name="464547">
+<dt>This layout contains several tiles, purposely placed inefficiently in VRAM.</dt>
+</a><P><a name="464548">
+ <P><img src="11VRAMEditor.anc10.gif"><p>
+</a></dl>
+<a name="464549">
+<em>Figure 11.10  &#32; &#32;An inefficient VRAM layout
+</em></a><P>
+<a name="464546">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Unplace.
+</STRONG>
+</a><P><dl><a name="464186">
+<dt>All the tiles are removed from VRAM.</dt>
+</a><P><a name="464556">
+<dt>Unplacing the tiles allows you to start from scratch using the best fit tools.</dt>
+</a><P></dl><a name="464187">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Place.
+</STRONG>
+</a><P><dl><a name="464188">
+<dt>All of the image tiles will be placed on the canvas. The best-fit algorithm will determine the ideal location for each tile.</dt>
+</a><P><a name="464557">
+<dt>The result is a much more compact layout.</dt>
+</a><P><a name="464568">
+ <P><img src="11VRAMEditor.anc11.gif"><p>
+</a></dl>
+<a name="464569">
+<em>Figure 11.11  &#32; &#32;A more efficient VRAM layout
+</em></a><P><a name="464189">
+<h3> Saving a Layout</h3>
+</a><a name="464190">
+You may occasionally want to save a layout you've generated temporarily to memory before attempting to fine tune it. Saving a layout gives you the freedom to experiment without jeopardizing the work you've already done.<p>
+</a><P><a name="464191">
+To save a VRAM layout to memory:<p>
+</a><P>
+<a name="464196">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Layout&gt;Save.
+</STRONG>
+</a><P><dl><a name="464197">
+<dt>This saves the layout to <em>memory</em> only! No TIM files are written.</dt>
+</a><P></dl>
+<a name="464198">
+To restore a saved layout:<p>
+</a><P>
+<a name="464199">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Layout&gt;Restore.
+</STRONG>
+</a><P><dl><a name="464200">
+<dt>The Restore button resets the VRAM Editor to its last saved configuration.</dt>
+</a><P></dl>
+<a name="464205">
+<h3> Sorting Images</h3>
+</a><a name="464206">
+By default, images appear in the VRAM Editor in the order in which they were loaded. You may occasionally wish to sort them in a different order. <p>
+</a><P><a name="464213">
+To sort images in the VRAM menus:<p>
+</a><P>
+<a name="464214">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Sort Images By field.
+</STRONG>
+</a><P><dl><a name="464215">
+<dt>The Sort Method pop-up menu appears:</dt>
+</a><P><a name="464216">
+ <P><img src="11VRAMEditor.anc12.gif"><p>
+</a></dl>
+<a name="464217">
+<em>Figure 11.12  &#32; &#32;The Sort Method pop-up menu
+</em></a><P><dl><dl><a name="464222">
+<dt><strong>(CLICK-L)</strong> on a Sort Method to select it. The Sort Method options are described in detail in the <em>N-Paint Reference Guide</em>.</dt>
+</a><P></dl></dl><a name="464223">
+<h3> Changing Source Image Parameters</h3>
+</a><a name="464228">
+If space in VRAM is tight, and you're having trouble fitting the images you want to store in VRAM, you can change some of the image parameters to reduce their size and consequent VRAM requirements. You can also send source images to the Paint canvas, where you can modify them.<p>
+</a><P><a name="464227">
+One technique is to use N-Paint's Color Reduction tool to reduce the bit-depth of an images palette. <p>
+</a><P><a name="464245">
+To send an image to Color Reduction:<p>
+</a><P>
+<a name="464236">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the image in the VRAM Editor menu.
+</STRONG>
+</a><P><dl><a name="464246">
+<dt>The image operations pop-up menu appears:</dt>
+</a><P><a name="464247">
+ <P><img src="11VRAMEditor.anc13.gif"><p>
+</a></dl>
+<a name="464248">
+<em>Figure 11.13  &#32; &#32;Image Operations pop-up menu
+</em></a><P>
+<a name="464226">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Color Reduction.<strong></strong>
+</STRONG>
+</a><P><dl><a name="464253">
+<dt>N-Paint enters color reduction mode, with the image you sent over selected as the current image.</dt>
+</a><P><a name="464260">
+<dt>If the image has a palette associated with it, that palette becomes the current palette in Color Reduction.</dt>
+</a><P></dl><a name="464254">
+<STRONG>	3.	 (CLICK-L) on the Size field in the Color Reduction menus.
+</STRONG>
+</a><P><dl><a name="464255">
+<dt>A pop-up menu appears, listing your options for palette size (bit depth).</dt>
+</a><P></dl><a name="464256">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on a new value for bit depth.
+</STRONG>
+</a><P><dl><a name="464261">
+<dt>A smaller value will reduce the size of the palette, and consequently reduce the amount of VRAM consumed by the image.</dt>
+</a><P></dl><a name="464262">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> Oper&gt;Set Palette &amp; Remap.
+</STRONG>
+</a><P><a name="464269">
+ <P><img src="11VRAMEditor.anc14.gif"><p>
+</a>
+<a name="464270">
+<em>Figure 11.14  &#32; &#32;Selecting a Color Reduction operation
+</em></a><P>
+<a name="464284">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="464286">
+<dt>This sets the slots in the now smaller palette to the color in the image, and remaps the image.</dt>
+</a><P></dl><a name="464285">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Palette&gt;Save.
+</STRONG>
+</a><P><dl><a name="464289">
+<dt>It's a good idea to save the palette.</dt>
+</a><P></dl><a name="464263">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the VRam button in the N-Paint modes.
+</STRONG>
+</a><P><dl><a name="464290">
+<dt>You're back in VRAM mode. The image tile parameters should reflect the new, lower value for bit depth. <a href="11VRAMEditor.html#464292">Figure 11.15</a> shows the difference we achieved reducing a full color RGB image to a 16 bit palette.</dt>
+</a><P></dl><ul>
+<BR><a name="464302">
+<li>Image Size was reduced by 75%.
+</a><P><BR><a name="464303">
+<li>Adding a palette activates the Palette Location fields, which now show the location of the palette.
+</a><P><a name="464291">
+ <P><img src="11VRAMEditor.anc15.gif"><p>
+</a></ul>
+
+<a name="464292">
+<em>Figure 11.15  &#32; &#32;Reduction in image size attained by color-reduction. Top, full-color image; Bottom, reduced, palettized image
+</em></a><P><a name="464317">
+<h2><HR> Congratulations!</h2>
+</a><a name="464318">
+You're now qualified to load images into Sony Playstation VRAM! N-Paint's VRAM Editor transforms this complex task into a simple, intuitive process which you'll quickly master.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="10ColorReduction.html">[Prev]</a> <a href="Book IX.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 23:18:08 -->
+
+</body>
+</html>

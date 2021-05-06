@@ -1,0 +1,776 @@
+<html><head><title>Working with Bodies</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies.html">[Prev]</a> <a href="4ModifyingBodies2.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+<h1>Working With Bodies (cont.)</h1> 
+<a name="6649">
+<h3> Dehole</h3>
+</a><a name="6650">
+<em>Faces with holes</em><p>
+</a><P><a name="6651">
+Removes holes from faces. Because N-Geometry is based on a winged-edge database design, any segment must know about its immediate neighbors. Some operations, however, can temporarily create holes in faces that must be eliminated before some renderers can render the object.<p>
+</a><P><a name="6655">
+See the section <a href="4ModifyingBodies1.html#10052">"Inset," on page &#32;4-42</a> for a description of how the <strong>Dehole</strong> command is typically used.<p>
+</a><P><a name="6657">
+<h3> Derez</h3>
+</a><a name="6658">
+<em>Bodies, collections of faces</em><p>
+</a><P><a name="6659">
+Simplifies the topology of the object or group of faces by dissolving edges (while retaining the object's original shape). The resolution can be reduced by various methods, all under the user's control.<p>
+</a><P><a name="6660">
+To <strong>Derez</strong> an object:<p>
+</a><P>
+<a name="6661">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object or group of faces.
+</STRONG>
+</a><P><dl><a name="6662">
+<dt>The following menu appears:</dt>
+</a><P><a name="6666">
+ <P><img src="4ModifyingBodies.anc34.gif"><p>
+</a></dl>
+<a name="6667">
+<em>Figure 4.35  &#32; &#32;Derez menu
+</em></a><P><a name="6668">
+Each of the options attempts to derez the object using different methods:<p>
+</a><P><ul><a name="6669">
+<li><strong>Hardness</strong> removes faces by blending adjacent faces whose normals are within the specified angle threshold. For example, two faces on a grid have normals that are parallel, and would be selected using this method.
+</a></li><P><ul>
+<BR><a name="6670">
+<li><strong>Angle Threshold</strong> specifies is the cutoff angle used for the Hardness test; if adjacent faces have normals that are between 0 and the specified value, they can be combined into one face.
+</a><P></ul>
+<a name="6671">
+<li><strong>Faces</strong> lets you derez an object by specifying the maximum number of faces the object can have. N-Geometry tries to keep the shape by combining adjacent flat faces first to meet the maximum number of polygons.
+</a></li><P><a name="6672">
+<li><strong>Triangles</strong> is for objects that have previously been triangularized. This works like faces, but reduces the triangle count for an object.
+</a></li><P><a name="6673">
+<li><strong>Edges</strong> works like Faces above, but counts edges.
+</a></li><P><a name="6674">
+<li><strong>Points</strong> works like Faces above, but counts points.
+</a></li><P><ul>
+<BR><a name="6675">
+<li><strong>Number of (elements)</strong> lets you specify, for each of the last four methods, the maximum number of elements of the selected type that you want the resulting object to have.
+</a><P><dl><a name="6676">
+<dt>For each of the last four methods, the model is only changed destructively when the number of elements specified cannot maintain the original's shape; N-Geometry tries to keep the shape similar, regardless.<p>
+</a><P></dl></ul>
+</ul><P><a name="6562">
+<h3> Describe</h3>
+</a><a name="8500">
+<em>Any element</em><p>
+</a><P><a name="6564">
+Prints a description of a selected element in the UNIX shell window.<p>
+</a><P><ul><a name="6565">
+<li><strong>(CLICK-L)</strong> prints a description of the topological and geometric information of a selected element.
+</a></li><P><a name="6566">
+<li><strong>(CLICK-M)</strong> prints only the geometric information of a selected element.
+</a></li><P><a name="6567">
+<li><strong>(CLICK-R)</strong> prints only the topological information of a selected element.
+</a></li><P><dl><a name="6568">
+<dt>The following example shows how N-Geometry describes one face of a cube:</dt>
+</a><P></dl><a name="6569">
+<code><pre>#&lt;FACE 1&gt;<p>
+</code></pre></a><a name="6570">
+<code><pre>  body: #&lt;POLYHEDRON 1&gt;<p>
+</code></pre></a><a name="6571">
+<code><pre>  objs: ("CUBE")<p>
+</code></pre></a><a name="6572">
+<code><pre>  -edges- -opp. faces- -cw vertices-  (impinging edges:)<p>
+</code></pre></a><a name="6573">
+<code><pre>#&lt;EDGE 1&gt; #&lt;FACE 6&gt; #&lt;VERTEX 2 ( -10.0 10.0 10.0)&gt; (#&lt;EDGE 9&gt;)<p>
+</code></pre></a><a name="6574">
+<code><pre>#&lt;EDGE 2&gt; #&lt;FACE 3&gt; #&lt;VERTEX 3 ( 10.0 10.0 10.0)&gt; (#&lt;EDGE 10&gt;)<p>
+</code></pre></a><a name="6575">
+<code><pre>#&lt;EDGE 3&gt; #&lt;FACE 5&gt; #&lt;VERTEX 4 ( 10.0 -10.0 10.0)&gt; (#&lt;EDGE 12&gt;)<p>
+</code></pre></a><a name="6576">
+<code><pre>#&lt;EDGE 4&gt; #&lt;FACE 4&gt; #&lt;VERTEX 1 ( -10.0 -10.0 10.0)&gt; (#&lt;EDGE11&gt;)<p>
+</code></pre></a><a name="6577">
+<code><pre><p>
+</code></pre></a></ul><P><a name="6578">
+<em>Figure 4.36  &#32; &#32;Description of face on a polyhedron
+</em></a><P><a name="6313">
+<h3> Displace</h3>
+</a><a name="6314">
+<em>Polyhedra, wires</em><p>
+</a><P><a name="6315">
+<strong>Displace</strong> lets you not only deform vertices and nodes within the defined states of the displacements, but to extend beyond the initial state of any displacement.<p>
+</a><P><a name="6316">
+You name and save displacements through the menu item <strong>Make Displacement</strong>. Displacements are especially useful for animating non-rigid motions of a polyhedron and are commonly used in conjunction with operations that influence an entire area (particularly useful for facial expressions).<p>
+</a><P><a name="6317">
+Displacements can be animated through N-Dynamics.<p>
+</a><P><ul><a name="6318">
+<li><strong>(CLICK-L)</strong> deforms the object toward any previously made incremental displacements. Brings up a menu of named displacements from which to choose.
+</a></li><P><a name="6319">
+<li><strong>(CTRL-L)</strong> lets you deform the object toward a saved displacement state using a numeric value. The following menu is displayed:
+</a></li><P><a name="6323">
+ <P><img src="4ModifyingBodies.anc35.gif"><p>
+</a></ul><P><a name="6324">
+<em>Figure 4.37  &#32; &#32;Displacing an object numerically
+</em></a><P><dl><dl><a name="6325">
+<dt>Choose a target displacement state, then enter how far toward that state you want to displace the object:</dt>
+</a><P><a name="6329">
+ <P><img src="4ModifyingBodies.anc36.gif"><p>
+</a></dl></dl><a name="6330">
+<em>Figure 4.38  &#32; &#32;Displacing an object numerically
+</em></a><P><dl><dl><a name="6331">
+<dt>Use a value of 0.5 to go halfway to the saved state; use a value of 1.0 to go completely to the saved state.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can specify values above 1.0 if you want to displace the object beyond the displaced state.</em></font></dd></dt></dl><P>
+<ul><a name="6333">
+<li><strong>(CLICK-M)</strong> initializes the body to one of the initial states. Invokes a menu from which to choose a named initial state.
+</a></li><P><a name="6334">
+<li><strong>(CLICK-R)</strong> brings up a menu with which you can manage displacements:
+</a></li><P><a name="6338">
+ <P><img src="4ModifyingBodies.anc37.gif"><p>
+</a></ul><P><a name="6339">
+<em>Figure 4.39  &#32; &#32;Managing displacements
+</em></a><P><ul><a name="6340">
+<li><strong>Init</strong> lets you reinitialize to a saved base state.
+</a></li><P><a name="6341">
+<li><strong>Displace</strong> lets you interactively displace the object to a saved relative displacement. It is identical to using <strong>(CLICK-L)</strong> on the <strong>Displace</strong> command.
+</a></li><P><a name="6342">
+<li><strong>Displace Multiple</strong> lets you combine multiple displacements into a "gesture," which is essentially a displacement made up of multiple previously displacements. See the section <a href="4ModifyingBodies1.html#6350">"Using Displace to Build Gestures," on page &#32;4-29</a>.
+</a></li><P><a name="6346">
+<li><strong>Rename</strong> lets you rename a saved displacement.
+</a></li><P><a name="6347">
+<li><strong>Delete</strong> lets you remove one or more previously saved displacement. <br><strong>(CLICK-R)</strong> if you want to remove multiple displacements.
+</a></li><P></ul><P><a name="6350">
+<h4> Using Displace to Build Gestures</h4>
+</a><a name="6351">
+If you have saved several displacements, you can combine them and save those combinations as "gestures." Gestures are no more than displacements based on other displacements.<p>
+</a><P><a name="6354">
+Using the same basic man figure we described in the sections <a href="4ModifyingBodies2.html#11554">"Make Displacement," on page &#32;4-50</a> and <a href="4ModifyingBodies1.html#6313">"Displace," on page &#32;4-27</a>, we could combine several saved relative displacements into a gesture. To make a gesture, you must have saved an absolute base displacement for the object and at least two relative displacements for the object.<p>
+</a><P>
+<a name="6359">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="6360">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Displace.
+</STRONG>
+</a><P><a name="6361">
+<STRONG>	3.	 Choose Displace Multiple.
+</STRONG>
+</a><P><dl><a name="6362">
+<dt>A menu similar to that shown below appears:</dt>
+</a><P><a name="6366">
+ <P><img src="4ModifyingBodies.anc38.gif"><p>
+</a></dl>
+<a name="6367">
+<em>Figure 4.40  &#32; &#32;Defining a gesture
+</em></a><P><ul><a name="6368">
+<li><strong>Initialize</strong> lets you initialize the object to a saved base shape.
+</a></li><P><a name="6369">
+<li>Each relative displacement saved for the figure is displayed; moving the sliders back and forth blends the displacements together on the model.
+</a></li><P><a name="6370">
+<li><strong>Exit</strong> ends this operation, saving your displacements.
+</a></li><P><a name="6371">
+<li><strong>Save as Gesture</strong> saves the current state of the model (based on the slider values) as a new relative displacement (which can also be referenced using either the <strong>Displace</strong> command or N-Dynamics).
+</a></li><P><a name="6372">
+<li><strong>Abort</strong> exits the operation without saving the defined gestures.
+</a></li><P></ul><P>
+<a name="6373">
+<STRONG>	4.	 Move the sliders to apply displacements to the object.
+</STRONG>
+</a><P><a name="6374">
+<STRONG>	5.	 When the object looks "right," <strong>(CLICK-L)</strong> on Save as Gesture.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>Gestures</strong><em> are particularly useful when defining facial expressions. You can use relative displacements to define states for different parts of the face (e.g., open-eyes, open-mouth, big-smile), then combine those displacements into more complex combinations (such as laugh or scream).<br><br>You can then animate between those saved states in N-Dynamics.</em></font></dd></dt></dl><P>
+<a name="7593">
+<h3> Dissolve</h3>
+</a><a name="7594">
+<em>Edges, collections of edges</em><p>
+</a><P><a name="7595">
+Eliminates the selected edges and turns the adjoining faces into one face. If the two faces do not lie on a common plane, this command creates a nonplanar polygon.<p>
+</a><P><a name="7599">
+ <P><img src="4ModifyingBodies.anc39.gif"><p>
+</a><a name="7600">
+<em>Figure 4.41  &#32; &#32;Dissolving an edge
+</em></a><P><a name="8505">
+This is an effective technique to reduce the number of polygons on a model being developerd for a game console.<p>
+</a><P><a name="7761">
+<h3> Edge Subdivide</h3>
+</a><a name="7762">
+<em>Faces, collections of faces, polyhedra</em><p>
+</a><P><a name="7763">
+Cuts one face (or faces) of a polyhedron into many faces.<p>
+</a><P><ul><a name="7764">
+<li><strong>(CLICK-L)</strong> subdivides face(s) by creating new vertices at the midpoints of each edge and at the geometric center of the face, creating quadrilaterals.
+</a></li><P><a name="7765">
+<li><strong>(CLICK-M)</strong> inscribes new face(s) through edge midpoints, creating triangles.
+</a></li><P><a name="7769">
+ <P><img src="4ModifyingBodies.anc40.gif"><p>
+</a></ul><P><a name="7771">
+<em>Figure 4.42  &#32; &#32;Left, face subdivided into quadrilaterals; right, face subdivided into <br>triangles
+</em></a><P><a name="8167">
+<h3> Evert</h3>
+</a><a name="8168">
+<em>Polyhedra</em><p>
+</a><P><a name="8169">
+Turns a polyhedron inside out, by flipping its normals. <p>
+</a><P><a name="8510">
+This feature is extremely useful if you want to render both the inside and outside of a given object; suppose, for example, that you were creating a game that featured a single-object arena. If rendering the object from the outside, you'd want the normals facing out; however, when you moved inside the arena, you'd want to use <strong>Evert</strong> to flip the normals (so that you could render the inside of the object).<p>
+</a><P><a name="8049">
+<h3> Extrude</h3>
+</a><a name="8050">
+<em>Edges, faces, vertices, element collections</em><p>
+</a><P><a name="8051">
+Extrude pulls the selected element away from the main polyhedron, maintaining the surface integrity of the body.<p>
+</a><P><a name="8073">
+Depending on which type of element you are extruding, additional faces may be created: 
+<P><Table Border="1">
+<dl>
+<a name="8054">
+<em>Table 4.1 <strong></strong><em> &#32; &#32;New faces created by extrude operation</em>
+</em></a></dl>
+<tr><th align="left"><a name="8058">
+Element
+</a><th align="left"><a name="8060">
+New Faces Created
+</a>
+<tr><td valign="top"><a name="8062">
+ Face<p>
+</a><td valign="top"><a name="8064">
+ A new face along each edge and leaves the original face intact.<p>
+</a>
+<tr><td valign="top"><a name="8066">
+ Edge<p>
+</a><td valign="top"><a name="8068">
+ Four new faces; two along the sides and one each for the top and <br>bottom.<p>
+</a>
+<tr><td valign="top"><a name="8070">
+ Vertex<p>
+</a><td valign="top"><a name="8072">
+ As many new faces as there are face neighbors; a pyramidal shape with the selected vertex at the apex.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><ul><a name="8075">
+<li><strong>(CLICK-L)</strong> extrudes elements along the following normals:
+</a></li><P><ul>
+<BR><a name="8076">
+<li>For faces, the normal is the face's normal
+</a><P><BR><a name="8550">
+<li>For edges, the normal is the average of the normals of the two adjacent faces. 
+</a><P><BR><a name="8077">
+<li>For vertices, the normal is the average of the normals of all adjacent faces.
+</a><P></ul>
+<a name="8078">
+<li><strong>(CLICK-M)</strong> extrudes selected elements and moves them freely along the x, y, and z axes.
+</a></li><P><a name="8079">
+<li><strong>(CLICK-R)</strong> extrudes an element along a selected axis.
+</a></li><P></ul><P><a name="8080">
+Once you've begun extruding an element, <strong>(CLICK-R)</strong> to abandon the change, leaving the element in its original position but with new neighboring faces.<p>
+</a><P><a name="8084">
+ <P><img src="4ModifyingBodies.anc41.gif"><p>
+</a><a name="8086">
+<em>Figure 4.43  &#32; &#32;Cube with vertex, edge, and face extruded
+</em></a><P><a name="6418">
+You can extrude an entire collection of elements to avoid repeating the same extrude operation on a element by element basis; for example, you might collect all the faces around a cube, then <strong>(CLICK-L)</strong> on Extrude to extrude all the selected faces equally:<p>
+</a><P><a name="8596">
+ <P><img src="4ModifyingBodies.anc42.gif"><p>
+</a><a name="8598">
+<em>Figure 4.44  &#32; &#32;Left, collection of faces; right, faces extruded in one operation along their normals
+</em></a><P><a name="8581">
+<h3> Extrude Region</h3>
+</a><a name="8895">
+<em>Collection of faces</em><p>
+</a><P><a name="8918">
+Extrudes a collection of faces along a selected normal:<p>
+</a><P><ul><a name="8929">
+<li><strong>(CLICK-L)</strong> extrudes each contiguous collection of faces along the average normal for each collection
+</a></li><P><a name="8932">
+<li><strong>(CLICK-M)</strong> extrudes the selected faces as a region, but allows you to move them freely as well.
+</a></li><P><a name="8935">
+<li><strong>(CLICK-R)</strong> allow you to extrude the selected faces as a region along a selected axis (chosen from a menu)
+</a></li><P></ul><P><a name="8919">
+To extrude a collection of faces as a region:<p>
+</a><P>
+<a name="8940">
+<STRONG>	 1.	 Collect the faces you wish to extrude.
+</STRONG>
+</a><P><a name="8941">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Extrude Region.
+</STRONG>
+</a><P><dl><a name="8947">
+<dt>Move the mouse left and right to extrude the region:</dt>
+</a><P><a name="8901">
+ <P><img src="4ModifyingBodies.anc43.gif"><p>
+</a></dl>
+<a name="8903">
+<em>Figure 4.45  &#32; &#32;Left, collected faces: right, faces extruded as a region
+</em></a><P><a name="8948">
+<strong>Extrude Region</strong> differs from <strong>Extrude</strong> in that the collected faces are moved as a group (along the average normal of each contiguous collection) rather than along their individual normals. For example, if the same faces selected in <a href="4ModifyingBodies1.html#8903">Figure 4.45</a> were extruded, they would follow their own normals:<p>
+</a><P><a name="8912">
+ <P><img src="4ModifyingBodies.anc44.gif"><p>
+</a><a name="8913">
+<em>Figure 4.46  &#32; &#32;Same faces, moved out with <strong>Extrude</strong> rather than <strong>Extrude Region</strong>
+</em></a><P><a name="8894">
+<h3> Falloff Angle</h3>
+</a><a name="6419">
+<em>Spotlights</em><p>
+</a><P><a name="6420">
+Changes the area where light falloff begins around the edges of this light's spot pattern. This operation is interactive:<p>
+</a><P><a name="6424">
+ <P><img src="4ModifyingBodies.anc45.gif"><p>
+</a><a name="6425">
+<em>Figure 4.47  &#32; &#32;Left, original light; right, same light with modified falloff angle
+</em></a><P><a name="6426">
+Light within the inner portion of the spot pattern strikes an object at full intensity; falloff begins between the solid and dotted line in the spot pattern.<p>
+</a><P><a name="8346">
+<h3> Flatten</h3>
+</a><a name="8347">
+<em>Edges, faces, vertices</em><p>
+</a><P><a name="8348">
+Makes the selected element lie on the specified plane. This can be used, for example, to align all the points on a face in one plane.<p>
+</a><P><a name="10926">
+To flatten an element or group of elements:<p>
+</a><P>
+<a name="10927">
+<STRONG>	 1.	 Collect the elements you want to flatten.
+</STRONG>
+</a><P><a name="10930">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on <strong>Flatten</strong>.
+</STRONG>
+</a><P><a name="10931">
+<STRONG>	3.	 Select the element you want to align the collected elements with.
+</STRONG>
+</a><P><a name="10932">
+<STRONG>	4.	 Select the axis along which you want to align the collected elements.
+</STRONG>
+</a><P>
+<a name="10923">
+For example, you might align a face on the mountain below on the Y axis by selecting a point on the edge of the grid and specifying the Y axis:<p>
+</a><P><a name="8352">
+ <P><img src="4ModifyingBodies.anc46.gif"><p>
+</a><a name="8353">
+<em>Figure 4.48  &#32; &#32;Left, original grid; right, selected elements flattened on the global Y axis
+</em></a><P><a name="7609">
+<h3> Flip</h3>
+</a><a name="7610">
+<em>Edges, bones</em><p>
+</a><P><a name="7611">
+Recreates two faces by dissolving the selected edge and reconnecting it to points either clockwise or counterclockwise from the current edge. <p>
+</a><P><a name="7612">
+<strong>Flip</strong> is useful if you have loaded a damaged object and need to flip only a few segments to correct it. <p>
+</a><P><ul><a name="7613">
+<li><strong>(CLICK-L)</strong> reconnects edges to points immediately counter-clockwise from current points.
+</a></li><P><a name="7614">
+<li><strong>(CLICK-R)</strong> reconnects edges to points immediately clockwise from current points.
+</a></li><P><a name="7618">
+ <P><img src="4ModifyingBodies.anc47.gif"><p>
+</a></ul><P><a name="7620">
+<em>Figure 4.49  &#32; &#32;Cylinder with one edge flipped (counterclockwise)
+</em></a><P><a name="7621">
+<strong>Flip</strong> can also change the orientation of a bone in relationship to the root node. This can be particularly useful if you want to change the location of the root node to a neighboring segment; select the neighboring segment then choose <strong>Flip</strong> to change the location of the root node.<p>
+</a><P><a name="8100">
+<h3> Flip Path</h3>
+</a><a name="8101">
+<em>Arc</em><p>
+</a><P><a name="8102">
+When you create a contour that contains an arc, you cut the arc out of a circle. (See <a href="4ModifyingBodies1.html#8125">Figure 4.50</a>) Although both arcs are left after subdividing the circle, the default treatment is to use the smaller arc as part of the path. If you later make a wire from the contour, you can use <strong>Flip Path</strong> to make the larger arc part of the wire. (See <a href="4ModifyingBodies1.html#8144">Figure 4.51</a>.) <p>
+</a><P><a name="8123">
+ <P><img src="4ModifyingBodies.anc48.gif"><p>
+</a><a name="8125">
+<em>Figure 4.50  &#32; &#32;Sketch of arc with wire
+</em></a><P><a name="8142">
+ <P><img src="4ModifyingBodies.anc49.gif"><p>
+</a><a name="8144">
+<em>Figure 4.51  &#32; &#32;Top, wire created from sketch; bottom, after path of arc was flipped
+</em></a><P><a name="7228">
+<h3> Fractalize</h3>
+</a><a name="7229">
+<em>Face collections, polyhedra</em><p>
+</a><P><a name="7230">
+Fractalizing an object gives it a bumpy, random surface. Randomness can be created by either cutting edges or beveling them.<p>
+</a><P><a name="7231">
+<strong>Fractalize</strong> subdivides faces by cutting edges where points are randomly placed. The amount of displacement is specified as a ratio of edge length for each xyz coordinate. Although these values are usually the same (they default to .2), you can emphasize or deemphasize the bumpiness along any axis by raising or lowering that value.<p>
+</a><P><ul><a name="7232">
+<li><strong>(CLICK-L)</strong> fractalizes by inscribing faces.
+</a></li><P><a name="7236">
+ <P><img src="4ModifyingBodies.anc50.gif"><p>
+</a></ul><P><a name="7238">
+<em>Figure 4.52  &#32; &#32;Left, original icosahedron; middle, fractalized once; right, three times
+</em></a><P><ul><a name="7239">
+<li><strong>(CTRL-L)</strong> brings up a menu that lets you control the amount of randomness between the points at which edges are cut.
+</a></li><P><a name="7243">
+ <P><img src="4ModifyingBodies.anc51.gif"><p>
+</a></ul><P><a name="7244">
+<em>Figure 4.53  &#32; &#32;Fractal menu
+</em></a><P><dl><dl><a name="7245">
+<dt>The menu lets you specify both initial and final random factors; N-Geometry then interpolates between them. This lets you vary the randomness based on the degree of fractalization. Although this capability undermines the self-similar properties of a <em>true</em> fractal, it is useful for various effects.</dt>
+</a><P><a name="7246">
+<dt>The menu also lets you specify the quantity of iterations to be performed. Each iteration approximately triples the number of edges and quadruples the number of faces.</dt>
+</a><P></dl></dl><ul><a name="7247">
+<li><strong>(CLICK-M)</strong> creates randomness by <em>beveling</em> all edges. Fractalizing in this fashion gives a smooth shape to the whole polyhedron. (Use <strong>(CTRL-M)</strong> to specify a numeric randomness factor using a menu.)
+</a></li><P><a name="7251">
+ <P><img src="4ModifyingBodies.anc52.gif"><p>
+</a></ul><P><a name="7252">
+<em>Figure 4.54  &#32; &#32;Icosahedron fractalized by beveling edges
+</em></a><P><a name="6393">
+<h3> Free Rotate</h3>
+</a><a name="9242">
+<em>Any element</em><p>
+</a><P><a name="9243">
+Rotates the selected body independently around the X, Y, or Z axes. <p>
+</a><P><a name="9935">
+You can specify whether the X, Y, and Z axes are local, global, or for some other predefined object by using the appropriate mouse click:<p>
+</a><P><ul><a name="9944">
+<li><strong>(CLICK-L)</strong> rotates the body using local X, Y, and Z
+</a></li><P><a name="9945">
+<li><strong>(CLICK-M)</strong> rotates the body using global X, Y, and Z
+</a></li><P><a name="9946">
+<li><strong>(CLICK-R)</strong> rotates the body around a selected element's X, Y, and Z (chosen from a menu)
+</a></li><P></ul><P><a name="9234">
+<h3> Free Rotate Aimed</h3>
+</a><a name="9235">
+<em>Eyepoint of spotlights</em><p>
+</a><P><a name="9244">
+Rotates the eyepoint of a spot light independently around the X, Y, and Z directions while keeping the aimpoint of the light fixed.<p>
+</a><P><a name="9966">
+ <P><img src="4ModifyingBodies.anc53.gif"><p>
+</a><a name="9967">
+<em>Figure 4.55  &#32; &#32;Free Rotate Aimed of a spot light's aimpoint
+</em></a><P><a name="9993">
+You can specify whether the X, Y, and Z axes are local, global, or for some other predefined object by using the appropriate mouse click:<p>
+</a><P><ul><a name="9994">
+<li><strong>(CLICK-L)</strong> rotates the aimpoint using local X, Y, and Z
+</a></li><P><a name="9995">
+<li><strong>(CLICK-M)</strong> rotates the aimpoint using global X, Y, and Z
+</a></li><P><a name="9996">
+<li><strong>(CLICK-R)</strong> rotates the aimpoint around a selected element's X, Y, and Z (chosen from a menu)
+</a></li><P></ul><P><a name="9233">
+<h3> Free Scale</h3>
+</a><a name="9237">
+<em>Any body</em><p>
+</a><P><a name="9245">
+Lets you scale a body around the X, Y, and Z axes.<p>
+</a><P><a name="10014">
+You can specify whether the X, Y, and Z axes are for the object's center, an arbitrary vertex, or some other vertex selected from a menu:<p>
+</a><P><ul><a name="10015">
+<li><strong>(CLICK-L)</strong> scales the body around its local center
+</a></li><P><a name="10016">
+<li><strong>(CLICK-M)</strong> scales the body around a selected vertex
+</a></li><P><a name="10017">
+<li><strong>(CLICK-R)</strong> scales the body around a vertex selected from a menu
+</a></li><P></ul><P><a name="9236">
+<h3> Grow</h3>
+</a><a name="6394">
+<em>Polyhedra</em><p>
+</a><P><a name="6395">
+Changes the object by moving the edges of the polyhedron inward or outward along their normals.<p>
+</a><P><a name="6399">
+ <P><img src="4ModifyingBodies.anc54.gif"><p>
+</a><a name="6401">
+<em>Figure 4.56  &#32; &#32;Left, original man; right, man with grown faces
+</em></a><P><a name="6492">
+<h3> Hue</h3>
+</a><a name="9201">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="9202">
+Interactively adjust the color component of a light. For example, blue and red are different <em>hues</em>.<p>
+</a><P><a name="10540">
+To adjust the hue of a light interactively:<p>
+</a><P>
+<a name="10541">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10542">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the light, then <strong>(CLICK-L)</strong> on <strong>Hue</strong>.
+</STRONG>
+</a><P><dl><a name="10545">
+<dt>Move the mouse left and right to adjust the hue of the light.</dt>
+</a><P></dl>
+<a name="10553">
+As you move the mouse, both the body and its emitted light update interactively. For more information on lights, see the sections <a href="4ModifyingBodies.html#6499">"Brightness," on page &#32;4-9</a>, and <a href="4ModifyingBodies3.html#10476">"Saturation," on page &#32;4-79</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also adjust the hue of the light using the Attributes Editor, or use <strong>(CTRL-L)</strong> on <strong>Hue </strong>to set the light value numerically.</font></dd></dt></dl><P>
+<a name="7486">
+<h3> Illegal Faces</h3>
+</a><a name="10080">
+<em>Bodies</em><p>
+</a><P><a name="10081">
+Highlights faces on the selected body that are non-triangles, non-quads, or non-flat, depending on which mouse click is selected:<p>
+</a><P><ul><a name="10088">
+<li><strong>(CLICK-L)</strong> selects faces that are neither triangles nor quads (e.g., faces with five or more sides)
+</a></li><P><a name="10089">
+<li><strong>(CLICK-M)</strong> selects faces that are not triangles (faces with more than three sides)
+</a></li><P><a name="10090">
+<li><strong>(CLICK-R)</strong> selects faces that are neither triangles nor non-flat quads.
+</a></li><P><a name="10122">
+ <P><img src="4ModifyingBodies.anc55.gif"><p>
+</a></ul><P><a name="10123">
+<em>Figure 4.57  &#32; &#32;Finding illegal faces
+</em></a><P><a name="10151">
+Finding illegal faces is an iterative process; find the faces, then use commands like <strong>Cut</strong> to make them legal, use <strong>Illegal Faces</strong> again, and repeat until your model consists of only the face types you want to send to your target platform.<p>
+</a><P><a name="10052">
+<h3> Inset</h3>
+</a><a name="7487">
+<em>Faces, face collections, polyhedra</em><p>
+</a><P><ul><a name="7488">
+<li><strong>(CLICK-L)</strong> creates a face that is inset a specified amount from the edges of the selected face. The default <em>distance</em> inset is 2.0. The maximum <em>proportion</em> of the face allowed to be consumed by the inset defaults to 0.3333. (This value should always be less than 0.5.)
+</a></li><P><a name="7492">
+ <P><img src="4ModifyingBodies.anc56.gif"><p>
+</a></ul><P><a name="7493">
+<em>Figure 4.58  &#32; &#32;Cube with one face inset the default amount
+</em></a><P><ul><a name="7494">
+<li><strong>(CLICK-M)</strong> embeds another face's shape onto a currently selected face. This operation lets you create a uniquely shaped inset on the face of an existing object. You could use this effect, for example, if you wanted to create a window on the wall of a building.
+</a></li><P><dl><a name="7495">
+<dt>To perform this operation:</dt>
+</a><P></dl></ul><P>
+<a name="7496">
+<STRONG>	 1.	 Make sure both faces are perpendicular.
+</STRONG>
+</a><P><dl><a name="7497">
+<dt>For this operation, let's use a sample cube and a lamina:</dt>
+</a><P><a name="7501">
+ <P><img src="4ModifyingBodies.anc57.gif"><p>
+</a></dl>
+<a name="7502">
+<em>Figure 4.59  &#32; &#32;Cube and lamina (to be used for inset)
+</em></a><P><dl><dl><a name="7503">
+<dt>N-Geometry does not position the face for you when you use this feature. Ideally, you should put the face to be used as an inset on the same plane as the face you are embedding it into.</dt>
+</a><P></dl></dl>
+<a name="7504">
+<STRONG>	2.	 Make sure the face to be used as an inset is visible.
+</STRONG>
+</a><P><dl><a name="7505">
+<dt>You cannot use a second face from the same polyhedron as the selected face.</dt>
+</a><P></dl><a name="7506">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the lamina.
+</STRONG>
+</a><P><a name="7507">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="7508">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on "Z".
+</STRONG>
+</a><P><dl><a name="7509">
+<dt>While you choose Z in this case, you'll normally choose whatever axis the two faces are aligned along.</dt>
+</a><P></dl><a name="7510">
+<STRONG>	6.	 Choose which Z axis to use.
+</STRONG>
+</a><P><dl><a name="7511">
+<dt>In this case, let's choose the cube's Z axis.</dt>
+</a><P></dl><a name="7512">
+<STRONG>	7.	 Choose a point on the front face of the cube.
+</STRONG>
+</a><P><dl><a name="7513">
+<dt>This aligns the two faces in one plane.</dt>
+</a><P><a name="7517">
+ <P><img src="4ModifyingBodies.anc58.gif"><p>
+</a></dl>
+<a name="7518">
+<em>Figure 4.60  &#32; &#32;Lamina flattened onto front face of cube
+</em></a><P>
+<a name="7519">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the face you want to embed the shape onto.
+</STRONG>
+</a><P><dl><a name="7520">
+<dt>In this case, the front face of the cube.</dt>
+</a><P></dl><a name="7521">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="7522">
+<dt>The Modify Element menu goes away and your cursor reappears.</dt>
+</a><P></dl><a name="7523">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> on the lamina's face.
+</STRONG>
+</a><P><dl><a name="7524">
+<dt>N-Geometry uses the perimeter of the second face to create another face within the first face. If you select the original face, you can see the created "hole."</dt>
+</a><P><a name="7528">
+ <P><img src="4ModifyingBodies.anc59.gif"><p>
+</a></dl>
+<a name="7529">
+<em>Figure 4.61  &#32; &#32;Select front face of cube after lamina's face has been inset
+</em></a><P>
+<a name="7530">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the face into which the lamina was inset and choose the Cut command.
+</STRONG>
+</a><P><a name="7531">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the original face and choose the Dehole command.
+</STRONG>
+</a><P><dl><a name="7532">
+<dt>For an object to be "legal" it cannot have holes on a face. The resulting face should look something like this:</dt>
+</a><P><a name="7536">
+ <P><img src="4ModifyingBodies.anc60.gif"><p>
+</a></dl>
+<a name="7537">
+<em>Figure 4.62  &#32; &#32;Deholed face after lamina has been inset
+</em></a><P><ul><a name="7538">
+<li><strong>(CLICK-R)</strong> embeds a projected outline onto a face plane, so that you can bridge through an object by insetting the selected face on two parallel planes (e.g., the front and back) of the same object.
+</a></li><P><dl><a name="7539">
+<dt>Let's start with the same cube and lamina combination described above, after you've used <strong>Flatten</strong> to align it with the front of the cube:</dt>
+</a><P><a name="7543">
+ <P><img src="4ModifyingBodies.anc61.gif"><p>
+</a></dl></ul><P><a name="7545">
+<em>Figure 4.63  &#32; &#32;Cube with lamina aligned with front and back planes
+</em></a><P>
+<a name="7546">
+<STRONG>	 1.	 With Faces selected in the element sensitivity menu, select the two planes you want to inset the lamina into.
+</STRONG>
+</a><P><dl><a name="7547">
+<dt>In this case, <strong>(CLICK-L)</strong> on the front and back faces, then <strong>(CLICK-R)</strong> to finish the collection.</dt>
+</a><P></dl><a name="7548">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> to bring up the modify menu.
+</STRONG>
+</a><P><a name="7549">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on Inset.
+</STRONG>
+</a><P><a name="7550">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Lamina you want to inset.
+</STRONG>
+</a><P><a name="7551">
+<STRONG>	5.	 Select the axis along which you want to project the lamina.
+</STRONG>
+</a><P><dl><a name="7552">
+<dt>In this case, it's the Z axis. The faces are projected onto the collected faces:</dt>
+</a><P><a name="7556">
+ <P><img src="4ModifyingBodies.anc62.gif"><p>
+</a></dl>
+<a name="7557">
+<em>Figure 4.64  &#32; &#32;Lamina projected onto front and back planes
+</em></a><P>
+<a name="7558">
+<STRONG>	6.	 With the faces still selected, <strong>(SHIFT-L)</strong> to bring up the modify body menu again, then <strong>(CLICK-L)</strong> on the Dehole operation (as described above)
+</STRONG>
+</a><P><a name="7562">
+ <P><img src="4ModifyingBodies.anc63.gif"><p>
+</a>
+<a name="7563">
+<em>Figure 4.65  &#32; &#32;Lamina inset onto parallel planes, then bridged
+</em></a><P><a name="7318">
+<h3> Interp Smooth</h3>
+</a><a name="7319">
+<em>Faces, polyhedra</em><p>
+</a><P><a name="7320">
+Subdivides faces and polyhedra, with an effect similar to that of <strong>Edge Subdivide</strong>. This operation positions the new vertices in such a way that the angle between adjacent faces is minimized, leaving the existing vertices in place. Several iterations of this function produce a smooth surface that interpolates all the points of the original set of faces.<p>
+</a><P><ul><a name="7321">
+<li><strong>(CLICK-L)</strong> applies the smoothing operation once, using an angle average ratio of 0.5 and a hard edge weighting of <code>0</code>. (<strong>Angle average</strong> ratio and <strong>hard edge weighting</strong> are described below.)
+</a></li><P><a name="7325">
+ <P><img src="4ModifyingBodies.anc64.gif"><p>
+</a></ul><P><a name="7326">
+<em>Figure 4.66  &#32; &#32;Octahedron smoothed
+</em></a><P><ul><a name="7327">
+<li><strong>(CLICK-M)</strong> works like <strong>(CLICK-L)</strong>, but is topologically like <strong>Vertex Subdivide</strong> in that not only are all of the original vertices preserved, but the original edges are also preserved.
+</a></li><P><a name="7331">
+ <P><img src="4ModifyingBodies.anc65.gif"><p>
+</a></ul><P><a name="7332">
+<em>Figure 4.67  &#32; &#32;Octahedron smoothed
+</em></a><P><ul><a name="7333">
+<li>Because the surface is forced to go through existing vertices, the surface can develop undulations that make this operation slightly more difficult to control than <strong>Smooth</strong>. <strong>(CTRL-L)</strong> on <strong>Interp Smooth</strong> brings up a menu that lets you adjust several smoothness constraints:
+</a></li><P><a name="7337">
+ <P><img src="4ModifyingBodies.anc66.gif"><p>
+</a></ul><P><a name="7338">
+<em>Figure 4.68  &#32; &#32;Selecting smoothing parameters
+</em></a><P><ul><ul>
+<BR><a name="7339">
+<li><strong>Angle Average Ratio</strong> specifies how much the smooth surface will be pulled away from the original surface. A value of 0 makes <strong>Interp Smooth</strong> behave exactly like <strong>Edge Subdivide</strong>. A value of 0.5 (the default) minimizes the angle between new faces, and creates the smoothest surface without introducing distortion. A value of greater than 0.5 "overpulls" the surface, giving the smoothed object a "puffy" appearance.
+</a><P><BR><a name="7340">
+<li><strong>Hard Edge Weighting</strong> changes the influence of points that lie on hard edges. The weight is a factor which is multiplied by the average hardness of all the edges surrounding a vertex. The default is 0 (no weight). Increasing the weight factor causes the curvature of the surface near hard edges to become tighter.
+</a><P><BR><a name="7341">
+<li><strong>Iterations</strong> stipulates how many times the smoothing operation is to be performed.
+</a><P></ul>
+</ul><a name="7915">
+<h3> Lift from Edge</h3>
+</a><a name="7916">
+<em>Faces</em><p>
+</a><P><a name="7917">
+Moves a face by pinning a selected edge and pulling out the face using that edge as a "hinge."<p>
+</a><P><ul><a name="7918">
+<li><strong>(CLICK-L)</strong> selects the edge to pin and rotate the face from.
+</a></li><P><a name="7919">
+<li><strong>(CLICK-M)</strong> lifts the edge along the face normal.
+</a></li><P><a name="7920">
+<li><strong>(CLICK-R)</strong> lifts the edge along the global axes; the face can be moved in the X, Y, or Z directions.
+</a></li><P></ul><P><a name="7921">
+To lift a face:<p>
+</a><P>
+<a name="7922">
+<STRONG>	 1.	 Select the face you want to lift.
+</STRONG>
+</a><P><a name="7923">
+<STRONG>	2.	 Select the Lift from Edge command.
+</STRONG>
+</a><P><dl><a name="7924">
+<dt>You are put into segment sensitivity mode.</dt>
+</a><P></dl><a name="7925">
+<STRONG>	3.	 Choose the segment you want to pin the face with.
+</STRONG>
+</a><P>
+<a name="7926">
+In all three examples below, we did a <strong>(SHIFT-L)</strong> on the top face of the cube and selected the leftmost segment of the top face when prompted; then the top left segment of the face was selected as the constraining edge.<p>
+</a><P><a name="7930">
+ <P><img src="4ModifyingBodies.anc67.gif"><p>
+</a><a name="7931">
+ <p>
+</a><a name="7932">
+<em>Figure 4.69  &#32; &#32;Left, <strong>(CLICK-L)</strong> on <strong>Lift from Edge</strong>; middle, <strong>(CLICK-M)</strong>, right, <strong>(CLICK-R)</strong>
+</em></a><P><a name="7933">
+While lifting edge of a face, <strong>(CLICK-R)</strong> to abandon the motion, leaving the element with new neighboring faces but in its original position.<p>
+</a><P><a name="7935">
+<h3> Lift from Vertex</h3>
+</a><a name="7936">
+<em>Faces</em><p>
+</a><P><a name="7937">
+Moves a face by pinning one of its vertices and pulling it out, with the pinned vertex limiting how the "lifted" face can be moved.<p>
+</a><P><ul><a name="7938">
+<li><strong>(CLICK-L)</strong> selects the vertex to pin and rotate the face from.
+</a></li><P><a name="7939">
+<li><strong>(CLICK-M)</strong> selects and lifts the vertex along the face normal.
+</a></li><P><a name="7940">
+<li><strong>(CLICK-R)</strong> selects and lifts the vertex along the global axes; the face can be moved in the X, Y, or Z directions.
+</a></li><P></ul><P><a name="7941">
+To lift a face from a vertex:<p>
+</a><P>
+<a name="7942">
+<STRONG>	 1.	 Select the face you want to lift.
+</STRONG>
+</a><P><a name="7943">
+<STRONG>	2.	 Select the Lift from Vertex command.
+</STRONG>
+</a><P><dl><a name="7944">
+<dt>You are put into point sensitivity mode.</dt>
+</a><P></dl><a name="7945">
+<STRONG>	3.	 Choose the point you want to pin the face with.
+</STRONG>
+</a><P>
+<a name="7946">
+In all three examples below, we did a <strong>(SHIFT-L)</strong> on the top face of the cube and selected the leftmost segment of the top face when prompted; then the front left point of the face was selected as the constraining vertex.<p>
+</a><P><a name="7950">
+ <P><img src="4ModifyingBodies.anc68.gif"><p>
+</a><a name="7951">
+ <p>
+</a><a name="7952">
+<em>Figure 4.70  &#32; &#32;Left, <strong>(CLICK-L)</strong> on <strong>Lift from Vertex</strong>; middle, <strong>(CLICK-M)</strong>, right, <strong>(CLICK-R)</strong>
+</em></a><P><a name="11550">
+While lifting a face, <strong>(CLICK-R)</strong> to abandon the motion, leaving the element with new neighboring faces but in its original position.<p>
+</a><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+
+
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies.html">[Prev]</a> <a href="4ModifyingBodies2.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 09:36:32 -->
+
+</body>
+</html>

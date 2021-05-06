@@ -1,0 +1,371 @@
+<html><head><title>Fantasy Tree</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="13Displacements.html">[Prev]</a> <a href="15Stadium.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Fantasy Tree</h1>
+</a>
+<hr><p><a name="17169">
+<h4> Plants are another type of organic object that pop up in lots of scenes. This chapter describes a technique for creating a fantasy tree.</h4>
+</a><a name="9046">
+ <P><img src="14Plants.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="16907">
+You'll learn how to build a fantasy tree using some new techniques:<p>
+</a><P><ul><a name="16901">
+<li>Creating a solid of rotation
+</a></li><P><a name="16928">
+<li>Multiple Extrude (repeating the operation on multiple <br>collections on the same object to create a "layered" effect)
+</a></li><P><a name="16903">
+<li>Sketching a bezier wire
+</a></li><P><a name="16904">
+<li>Changing the sampling of a wire
+</a></li><P><a name="16946">
+<li>Collapsing nodes to change the topology of a region
+</a></li><P></ul><P><a name="17299">
+In <a href="17CopyReinstMult.html#6120">Chapter &#32;17</a>, <a href="17CopyReinstMult.html#8404">"Reinstance, Copy, &amp; Multiply" &#32;</a>we'll describe another technique for creating a tree with hundreds or thousands of leaves.<p>
+</a><P><a name="15958">
+<h2><HR> A Fantasy Tree</h2>
+</a><a name="16730">
+Another way to create a tree is to start with a simple solid of rotation. A solid of rotation is made by sweeping a contour wire around an arbitrary axis and generating a solid shape from the "swept" area.<p>
+</a><P><a name="16731">
+In this section, we'll build a contour wire, make a solid of rotation from that wire, change sampling on the wire, then finish up our tree.<p>
+</a><P><a name="16734">
+Try this:<p>
+</a><P>
+<a name="16048">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Solid of Rotation.
+</STRONG>
+</a><P><dl><a name="16074">
+<dt>Each of the parameters on this menu is described in detail in the <em>N-Geometry Reference Guide</em>. For now, use the default parameters.</dt>
+</a><P><a name="16054">
+ <P><img src="14Plants.anc1.gif"><p>
+</a></dl>
+<a name="16055">
+<em>Figure 14.1  &#32; &#32;Sketch parameters
+</em></a><P>
+<a name="16049">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Set Sketch Params button.
+</STRONG>
+</a><P><dl><a name="16122">
+<dt>The Sketch Editor opens in the N-Geometry window. The target shape for the wire is shown in <a href="14Plants.html#16131">Figure 14.2</a>:</dt>
+</a><P><a name="16129">
+ <P><img src="14Plants.anc2.gif"><p>
+</a></dl>
+<a name="16131">
+<em>Figure 14.2  &#32; &#32;The finished wire-refer back to this figure if necessary
+</em></a><P>
+<a name="16120">
+<STRONG>	3.	 To start the wire, move the cursor straight up the Y axis.
+</STRONG>
+</a><P><a name="16137">
+<STRONG>	4.	 <strong>(CTRL-L)</strong> to place a control point right on the Y axis.
+</STRONG>
+</a><P><a name="16138">
+<STRONG>	5.	 Move the cursor down and to the right, then <strong>(CTRL-L)</strong> again.
+</STRONG>
+</a><P><dl><a name="16185">
+<dt>This inserts the second control point.</dt>
+</a><P><a name="16114">
+ <P><img src="14Plants.anc3.gif"><p>
+</a></dl>
+<a name="17025">
+<em>Figure 14.3  &#32; &#32;Adding a control point
+</em></a><P>
+<a name="17026">
+<STRONG>	6.	 Move the cursor straight down, and use <strong>(CTRL-L)</strong> to insert a third control point.
+</STRONG>
+</a><P><dl><a name="16156">
+<dt>As you move the cursor down, the top segment begins to curve.</dt>
+</a><P><a name="16178">
+ <P><img src="14Plants.anc4.gif"><p>
+</a></dl>
+<a name="16179">
+<em>Figure 14.4  &#32; &#32;Adding another control point
+</em></a><P>
+<a name="16157">
+<STRONG>	7.	 Move the cursor back toward the Y axis, then <strong>(CLICK-L)</strong> in the position shown below:
+</STRONG>
+</a><P><a name="16226">
+ <P><img src="14Plants.anc5.gif"><p>
+</a>
+<a name="16227">
+<em>Figure 14.5  &#32; &#32;Adding a regular node
+</em></a><P>
+<a name="16279">
+<STRONG>	8.	 Now, move the cursor straight down and <strong>(CTRL-L)</strong> to insert another control point.
+</STRONG>
+</a><P><a name="16275">
+ <P><img src="14Plants.anc6.gif"><p>
+</a>
+<a name="16276">
+<em>Figure 14.6  &#32; &#32;Adding a regular node
+</em></a><P>
+<a name="16290">
+<STRONG>	9.	 Now, let's build the tree trunk.
+</STRONG>
+</a><P><dl><a name="16322">
+<dt><strong>(CTRL-L)</strong> to add another control point in the location shown in <a href="14Plants.html#16314">Figure 14.7</a>:</dt>
+</a><P><a name="16313">
+ <P><img src="14Plants.anc7.gif"><p>
+</a></dl>
+<a name="16314">
+<em>Figure 14.7  &#32; &#32;Adding another control point
+</em></a><P>
+<a name="16204">
+<STRONG>	10.	 Now, <strong>(CLICK-L)</strong> to add the final node on the wire, just about even with the X axis.
+</STRONG>
+</a><P><a name="16355">
+ <P><img src="14Plants.anc8.gif"><p>
+</a>
+<a name="16418">
+<em>Figure 14.8  &#32; &#32;Add the final node on the wire
+</em></a><P>
+<a name="16419">
+<STRONG>	11.	 <strong>(CLICK-R)</strong> after you've drawn the final node on the wire.
+</STRONG>
+</a><P><dl><a name="16454">
+<dt>The following menu appears:</dt>
+</a><P><a name="16447">
+ <P><img src="14Plants.anc9.gif"><p>
+</a></dl>
+<a name="16448">
+<em>Figure 14.9  &#32; &#32;Ending your sketching session
+</em></a><P>
+<a name="16441">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on OK, Wire too.
+</STRONG>
+</a><P><dl><a name="16479">
+<dt>This option saves the sketched wire used to create the solid of rotation. </dt>
+</a><P><a name="16554">
+<dt>If you decide that the solid of rotation created doesn't look quite right, you can change the shape or sampling of the wire, then rebuild the solid of rotation.</dt>
+</a><P></dl><a name="16485">
+<STRONG>	13.	 In the Solid of Rotation parameters, change the following parameters:
+</STRONG>
+</a><P><ul>
+<BR><a name="16460">
+<li>Change the <strong>Object Name</strong> to <strong>fantasy-tree</strong>.
+</a><P><BR><a name="16461">
+<li>Make sure the <strong>Sketch Axis</strong> is set to <strong>Y</strong>.
+</a><P><BR><a name="16462">
+<li>Set the number of <strong>n-Longitudes</strong> to <strong>12</strong>.
+</a><P><a name="16428">
+ <P><img src="14Plants.anc10.gif"><p>
+</a></ul>
+
+<a name="16429">
+<em>Figure 14.10  &#32; &#32;Solid of rotation parameters
+</em></a><P>
+<a name="16423">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Make Solid button.
+</STRONG>
+</a><P><dl><a name="16478">
+<dt>Your solid of rotation should appear:</dt>
+</a><P><a name="16495">
+ <P><img src="14Plants.anc11.gif"><p>
+</a></dl>
+<a name="16496">
+<em>Figure 14.11  &#32; &#32;Completed solid of rotation
+</em></a><P><a name="16579">
+<h3> Lowering Polygon Count for the Tree</h3>
+</a><a name="16580">
+This tree is fine if you have an unlimited number of faces for your object, but if polygon count is a consideration, you need to change the sampling of the wire:<p>
+</a><P>
+<a name="16502">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="16609">
+<STRONG>	16.	 Turn on Visibility for the fantasy-tree-wire.
+</STRONG>
+</a><P><a name="16599">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on the control wire for the bulb portion of the tree.
+</STRONG>
+</a><P><a name="16622">
+ <P><img src="14Plants.anc12.gif"><p>
+</a>
+<a name="16623">
+<em>Figure 14.12  &#32; &#32;Select the control wire for the bulb portion of the tree
+</em></a><P>
+<a name="16600">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Change Sampling.
+</STRONG>
+</a><P><dl><a name="16638">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="16649">
+ <P><img src="14Plants.anc13.gif"><p>
+</a></dl>
+<a name="16650">
+<em>Figure 14.13  &#32; &#32;Sampling parameters &#32; &#32;
+</em></a><P><ul><ul>
+<BR><a name="16636">
+<li>Set <strong>Number of Samples</strong> to <strong>8</strong>.
+</a><P></ul>
+<dl><a name="16662">
+<dt>This specifies the number of segments on the wire controlled by the control wire. Notice that when you change the sampling rate, the average segment length is automatically updated.</dt>
+</a><P></dl></ul>
+<a name="16670">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the Set Sampling button.
+</STRONG>
+</a><P><a name="16671">
+<STRONG>	20.	 Now, repeat steps <a href="14Plants.html#16599">17</a> and <a href="14Plants.html#16600">18</a>, this time with the control wire for the trunk portion of the tree.
+</STRONG>
+</a><P><dl><a name="16682">
+<dt>Specify <strong>5</strong> for the number of samples.</dt>
+</a><P></dl>
+<a name="17184">
+Once you've modified the sampling rate for the wire, you need to regenerate the solid of rotation.<p>
+</a><P>
+<a name="17185">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="17186">
+<STRONG>	22.	 <strong>(CLICK-R)</strong> on solid of rotation.
+</STRONG>
+</a><P><a name="16688">
+<STRONG>	23.	 Select the control wire from which to generate the solid of rotation.
+</STRONG>
+</a><P><a name="16697">
+<STRONG>	24.	 Complete the Solid of Rotation parameters dialog box as described in step <a href="14Plants.html#16485">13</a>.
+</STRONG>
+</a><P><dl><a name="16711">
+<dt>You should now have a lower resolution version of the tree:</dt>
+</a><P><a name="16716">
+ <P><img src="14Plants.anc14.gif"><p>
+</a></dl>
+<a name="16717">
+<em>Figure 14.14  &#32; &#32;Lower resolution tree
+</em></a><P><a name="16743">
+<h3> Prepping the Tree</h3>
+</a>
+<a name="16686">
+<STRONG>	25.	 Now, collect the points on top of the tree, almost down to the trunk.
+</STRONG>
+</a><P><dl><a name="16505">
+<dt>You can use the 3D lasso, or grow the collection from the top of the model.</dt>
+</a><P><a name="16515">
+ <P><img src="14Plants.anc15.gif"><p>
+</a></dl>
+<a name="16516">
+<em>Figure 14.15  &#32; &#32;Select the points on the bulb portion of the tree
+</em></a><P>
+<a name="16490">
+<STRONG>	26.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Collapse.
+</STRONG>
+</a><P><dl><a name="16525">
+<dt>This converts each point into a face, effectively changing the regular grid-like patter of this part of the model into a "diamond" pattern.</dt>
+</a><P><a name="16539">
+ <P><img src="14Plants.anc16.gif"><p>
+</a></dl>
+<a name="16540">
+<em>Figure 14.16  &#32; &#32;Collapse the selected points to create a diamond pattern
+</em></a><P><a name="16759">
+The bulb of the tree is now ready for the <strong>Multiple Extrude</strong> we'll do a little later.<p>
+</a><P><a name="16760">
+<h3> Bending the Tree</h3>
+</a><a name="16761">
+Now to give our tree a little more character, let's tilt it toward the sun.<p>
+</a><P>
+<a name="16764">
+<STRONG>	27.	 <strong>(SHIFT-L)</strong> on the face on top of the bulb of the tree.
+</STRONG>
+</a><P><a name="16765">
+<STRONG>	28.	 <strong>(ALT-M)</strong> on Rotate.
+</STRONG>
+</a><P><a name="16528">
+<STRONG>	29.	 When prompted, select the Z axis.
+</STRONG>
+</a><P><dl><a name="16773">
+<dt>After you specify an axis, you must specify a point to limit the effect of the magnet move. N-Geometry automatically goes into point collect mode.</dt>
+</a><P></dl><a name="16774">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on a point at the base of the tree's trunk, as shown in <a href="14Plants.html#16783">Figure 14.17</a>.
+</STRONG>
+</a><P><a name="16777">
+<STRONG>	31.	 Move the mouse to the left to bend the tree over.
+</STRONG>
+</a><P><a name="16782">
+ <P><img src="14Plants.anc17.gif"><p>
+</a>
+<a name="16783">
+<em>Figure 14.17  &#32; &#32;Bending the tree
+</em></a><P><a name="16778">
+<h3> Pulling Out the Branches</h3>
+</a><a name="16808">
+Now you can pull out some crazy branches for the tree:<p>
+</a><P>
+<a name="16809">
+<STRONG>	32.	 Collect several faces on the bulb portion of the tree.
+</STRONG>
+</a><P><a name="16810">
+<STRONG>	33.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="16807">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on Multiple Extrude.
+</STRONG>
+</a><P><dl><a name="16813">
+<dt>Specify the operations for the <strong>Multiple Extrude</strong>:</dt>
+</a><P></dl><ul>
+<BR><a name="16814">
+<li><strong>(CLICK-L)</strong> on <strong>Add</strong>, then <strong>(CLICK-L)</strong> on <strong>Extend</strong>.
+</a><P><ul>
+<BR><a name="16815">
+<li>Change <strong>dist</strong> to <strong>10</strong>.
+</a><P></ul>
+<BR><a name="16816">
+<li><strong>(CLICK-L)</strong> on <strong>Add</strong>, then <strong>(CLICK-L)</strong> on <strong>Scale</strong>.
+</a><P><ul>
+<BR><a name="16817">
+<li>Change <strong>scale </strong>to <strong>.05</strong>.
+</a><P></ul>
+<BR><a name="16818">
+<li><strong>(CLICK-L)</strong> on <strong>Add</strong>, then <strong>(CLICK-L)</strong> on <strong>Rotate</strong>.
+</a><P><ul>
+<BR><a name="16819">
+<li>Change <strong>angle </strong>to <strong>45</strong>.
+</a><P><BR><a name="16832">
+<li>Change <strong>axis</strong> to <strong>X</strong>.
+</a><P></ul>
+</ul>
+<dl><a name="16822">
+<dt>After the parameters are set, <strong>(CLICK-L)</strong> on the Extrude button. Your fantasy tree should look something like this:</dt>
+</a><P><a name="16842">
+ <P><img src="14Plants.anc18.gif"><p>
+</a></dl>
+<a name="16844">
+<em>Figure 14.18  &#32; &#32;Adding the branches
+</em></a><P>
+<a name="16850">
+<STRONG>	35.	 Use GeoMenus&gt;Shading to turn shading on for the tree.
+</STRONG>
+</a><P><a name="16864">
+ <P><img src="14Plants.anc19.gif"><p>
+</a>
+<a name="16865">
+<em>Figure 14.19  &#32; &#32;A true shade tree
+</em></a><P><a name="16811">
+<h2><HR> Congratulations!</h2>
+</a><a name="16876">
+You've now learned some very useful new techniques for building complex shapes from other simpler shapes. Although the samples we used in this chapter were organic (plants) you could use most of the techniques described for a wide variety of tasks.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="13Displacements.html">[Prev]</a> <a href="15Stadium.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 13:49:34 -->
+
+</body>
+</html>

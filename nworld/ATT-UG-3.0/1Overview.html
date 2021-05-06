@@ -1,0 +1,373 @@
+<html><head><title>Rendering Concepts</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2CreatingMaterials.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="14725">
+<h1>Rendering Concepts</h1>
+</a>
+<hr><p><a name="14726">
+<strong>The Attributes Editor lets you define both </strong><em>materials</em> and <em>lights</em><strong>, the two components necessary to create </strong><em>rendered</em><strong> images. Materials described the surface attributes of a rendered object, while lights provide illumination. </strong>This chapter summarizes some basic rendering concepts.<p>
+</a><P><a name="14734">
+ <P><img src="1Overview.ancA.gif"><p>
+</a><a name="12846">
+<h2><HR> What is Rendering?</h2>
+</a><a name="12847">
+In its most basic form, an object in N-Geometry appears as a wireframe, three-dimensional shape. An object might represent something simple (like a geometric shape) or a complex character for a video game.<p>
+</a><P><a name="13258">
+To generate a realistic picture of the object, or <em>render</em> it, you need to:<p>
+</a><P><ul><a name="12899">
+<li>create a <em>material</em> and assign it to the object (this defines the surface appearance of the object)
+</a></li><P><a name="13001">
+<li>create one or more <em>lights</em> to illuminate the object
+</a></li><P></ul><P><a name="13069">
+Both materials and lights have a number of <em>attributes</em>, which can be modified using the <strong>Attributes Editor</strong>. Depending on the attributes you specify, rendered objects can have almost an infinite variation in their appearance:<p>
+</a><P><a name="13002">
+ <P><img src="1Overview.anc1.gif"><p>
+</a><a name="13007">
+<em>Figure 1.1  &#32; &#32;Left, wireframe object, middle, rendered with single color, right, rendered with texture map
+</em></a><P><a name="13064">
+Some of these attributes correspond to visual characteristics found in the physical world (such as <em>color</em> or <em>opacity</em>), while others have no such counterpart but help simulate a realistic appearance (such as <em>reflection maps</em>).<p>
+</a><P><a name="15365">
+<h2><HR> Rendering a Scene in N&#183;World</h2>
+</a><a name="15367">
+<h3> From the Attributes Editor</h3>
+</a><a name="15368">
+To render the scene currently in the N-Geometry window from the Attributes Editor:<p>
+</a><P><ul><a name="15369">
+<li><strong>(CLICK-L)</strong> on the <strong>Render</strong> button at the bottom of the Attributes Editor window.
+</a></li><P></ul><P><a name="15370">
+Depending on your preference settings, the rendered frame will be displayed in the Nichimen Render window, or on the Paint Canvas (see <a href="3Domains.html#">"Output Window," on page &#32;3-6</a>).<p>
+</a><P><a name="15372">
+<h3> From N-Geometry</h3>
+</a><a name="15373">
+To render the current frame of N-Geometry from N-Geometry:<p>
+</a><P><ul><a name="15374">
+<li><strong>(CLICK-L)</strong> on GeoMenus&gt;Utilities&gt;Render.
+</a></li><P></ul><P><a name="15378">
+<h3> From N-Dynamics</h3>
+</a><a name="15379">
+To render a frame from N-Dynamics, include a <strong>Render Scene</strong> operation in a channel in your script. When your script is executed, a render occurs at each frame. For more information see the <em>N-Dynamics Reference Guide</em> or <em>N-Dynamics Tutorial</em>.<p>
+</a><P><a name="15380">
+<h3> Render Performance</h3>
+</a><a name="15381">
+To decrease the amount of time rendering operations consume, make the render output directory local to the machine (which avoids any network traffic). See the section <a href="3Domains.html#">"Output Directory," on page &#32;3-6</a>.<p>
+</a><P><a name="15382">
+If you plan on rendering on more than one machine, set up the render output directory to be local <em>to each machine</em>. Again, if you don't localize the output, render operations may be noticeably slowed as a result of network overhead. You'll also want to periodically remove files from this directory to conserve disk space.<p>
+</a><P><a name="15442">
+For additional speed up suggestions, see <a href="CRenderSpeedups.html#">Appendix &#32;C</a>, <a href="CRenderSpeedups.html#">"Increasing Render Speed," on page &#32;C-1</a>.<p>
+</a><P><a name="13341">
+<h2><HR> Render Domains</h2>
+</a><a name="13342">
+After you assign render attributes to an object, you typically want to do one of three things:<p>
+</a><P><ul><a name="13564">
+<li>view the objects interactively on the SGI screen
+</a></li><P><a name="13545">
+<li>generate high-quality 2D images for full motion video
+</a></li><P><a name="13546">
+<li>use the objects as 3D characters on a 3D game machine
+</a></li><P></ul><P><a name="13547">
+For each use, you'll want to specify a different render <em>domain</em> when defining render attributes.<em> </em>A render domain is essentially a "template" that includes all the possible attributes you can use when assigning attributes for a given target.<p>
+</a><P><a name="13605">
+N&#183;World currently supports the following render domains:<p>
+</a><P><ul><a name="13344">
+<li><strong>GL Shade</strong> defines attributes for an object so that it can be rendered interactively on the SGI.
+</a></li><P><a name="13611">
+<li><strong>Render</strong> is the default domain for N-Render, Nichimen's renderer. This domain is intended to produce realistic, high-quality images, with features like opacity and reflection maps, as well as ray tracing. The Render domain has more attributes than, for example, the GL Shade domain, offering more variety-however, Render domain attributes cannot be displayed interactively. Use the Render domain to create full motion video sequences or for other non-real time uses.
+</a></li><P><a name="13614">
+<li>The <strong>SonyPSX </strong>domain lets you define materials appropriate for objects that you'll export and render in real time on the Sony Playstation.
+</a></li><P><a name="13350">
+<li>The <strong>N64 </strong>domain lets you define materials appropriate for objects that you'll export and render in real time on the Nintendo 64. 
+</a></li><P><a name="13351">
+<li>The <strong>Sega </strong>domain lets you define materials appropriate for objects that you'll export and render in real time on the Sega Saturn.
+</a></li><P></ul><P><a name="13618">
+The <strong>Sony PSX</strong>, <strong>N64</strong>, and <strong>Sega</strong> domains may or may not be available to you, depending upon which Nichimen <strong>Express</strong> products are installed on your system.<p>
+</a><P><a name="14794">
+The Sony PlayStation, Nintendo 64, and Sega Saturn all render 3D objects interactively-this means that you assign colors and textures to your objects using the Attributes Editor, then export those object to the target game platform. Different platforms support different features, and the different express domains let you create attributes that take advantage of the special features of each platform.<p>
+</a><P><a name="13353">
+<h3> One Material Supports Multiple Domains</h3>
+</a><a name="14811">
+A material contains "slots" for each render domain. When you first create a material, you do so for the currently selected domain. If you want to use that material in another domain, you can simply <em>copy</em> it to another domain right in the Attributes Editor.<p>
+</a><P><a name="14850">
+ <P><img src="1Overview.anc2.gif"><p>
+</a><a name="13663">
+<em>Figure 1.2  &#32; &#32;Top, material with attributes defined for one domain; middle, with attributes copied to a second domain; bottom, with attributes for all domains. Custom domains (*) can be created using Nichimen's Wide Open World developer kit
+</em></a><P><a name="14660">
+For example, let's suppose you created a GL Shade material called <strong>red</strong>. After designing your object, you decide that you also want to send the object to the N64. Rather than creating a separate <strong>red</strong> material for each platform, you can copy the attributes from any domain to any other <em>within the same material</em>. You can modify attributes in each domain independently of one another-for example, you might need to change the <strong>Diffuse Color</strong> in the N64 domain slightly to match the red in the GL Shade domain.<p>
+</a><P><a name="15244">
+<h3> Assigning Materials</h3>
+</a><a name="15245">
+A <em>material</em> is a collection of attributes that you have named and that you can assign to an N-Geometry object. After you create a material, you can assign the <em>same</em> attributes to different N-Geometry objects by using the same material. A change to any attribute in a material affects <em>any</em> objects or face part that use that material. Materials can be saved to file and reused later.<p>
+</a><P><a name="15249">
+<h3> Inheriting Materials</h3>
+</a><a name="15250">
+You can make one material <em>inherit</em> changes made to another, so that changes made in one material "ripple through" other materials.<p>
+</a><P><a name="15251">
+Suppose you were working several objects, then discovered that certain characteristics were shared by more than one of those objects. You might, for example, have a number of buildings with a stucco finish, which are each a different color.<p>
+</a><P><a name="15252">
+If you defined a different material for each building, you'd probably create one material, make a copy of it, change an attribute or two, then repeat the process until you had a number of materials whose only difference was their diffuse color.<p>
+</a><P><a name="15270">
+ <P><img src="1Overview.ancA3.gif"><p>
+</a><a name="15271">
+<em>Figure 1.3  &#32; &#32; Materials without inheritance
+</em></a><P><a name="15272">
+However, what if you decided upon rendering the scene that the "stucco" didn't jump out quite enough, and you wanted to modify the bump maps used to create the stucco feel of the surface? You'd have to open <em>each material</em> and modify the bump map value by hand.<p>
+</a><P><a name="15273">
+As a better, you could define a set of <em>inherited</em> materials. Instead of creating a new material for each building, you could create a base material called <strong>Stucco</strong>. For each building, you could create a new material that inherited most of its characteristics from <strong>Stucco</strong>.<p>
+</a><P><a name="15299">
+ <P><img src="1Overview.ancA4.gif"><p>
+</a><a name="15301">
+<em>Figure 1.4  &#32; &#32; Materials inheriting from another material
+</em></a><P><a name="15305">
+In the relationship shown in <a href="1Overview.html#15301">Figure 1.4</a>, any changes that you made to the <strong>Stucco</strong> material would automatically be reflected in <strong>Red</strong>, <strong>Blue</strong>, and <strong>Pink</strong>. If you wanted to deepen the bump map for all the stucco buildings, you would only have to modify the values in Stucco; when the scene was re-rendered, <strong>Red</strong>, <strong>Blue</strong>, and <strong>Pink</strong> which all inherit from Stucco, would now use the modified bump map values too.<p>
+</a><P><a name="15306">
+Inheritance between materials can be defined in either the <strong>Attributes Editor</strong> or the <strong>Browser</strong>.<p>
+</a><P><a name="13665">
+<h2><HR> Rendering with N-Render or GL Shade</h2>
+</a><a name="13666">
+There are several basic steps that you'll use to render a scene using N-Render or GL Shade:<p>
+</a><P>
+<a name="9992">
+<STRONG>	 1.	 Create your objects in N-Geometry.
+</STRONG>
+</a><P><dl><a name="9993">
+<dt>Your scene may contain any number of objects.</dt>
+</a><P></dl><a name="15219">
+<STRONG>	2.	 Create lights to illuminate the object.
+</STRONG>
+</a><P><dl><a name="15220">
+<dt>You can create lights in N-Geometry or in the Attributes Editor using the Lights Editor.</dt>
+</a><P></dl><a name="9994">
+<STRONG>	3.	 Create materials using the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="10571">
+<dt>Materials are sets of attributes that determine the basic surface appearance of an object. A material also specifies which lights affect the current material.</dt>
+</a><P></dl><a name="10561">
+<STRONG>	4.	 Assign materials to your objects.
+</STRONG>
+</a><P><dl><a name="10576">
+<dt>Materials are assigned in N-Geometry the Browser, Nichimen's visual hierarchy manager. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also assign a material to face parts of objects.</font></dd></dt></dl><P>
+
+<a name="9998">
+<STRONG>	5.	 Render the scene.
+</STRONG>
+</a><P><dl><a name="9999">
+<dt>You can render the scene directly from N-Geometry, from the Attributes Editor, or from an N-Dynamics script. You can output the resulting image to a file, a separate render window, or directly to the N-Paint canvas.</dt>
+</a><P><a name="10039">
+ <P><img src="1Overview.anc.gif"><p>
+</a></dl>
+<a name="10040">
+<em>Figure 1.5  &#32; &#32;Rendering objects with N-Render
+</em></a><P><a name="10041">
+Rendering scenes is typically an iterative process-you may modify the materials and lights used to render a scene any number of times in the <strong>Attributes Editor</strong> until the scene looks just right.<p>
+</a><P><a name="13673">
+<h2><HR> Rendering with the Game Domains</h2>
+</a><a name="13674">
+If you are preparing an object for export to a game platform, the steps are slightly different than described for the GL Shade and N-Render domains:<p>
+</a><P>
+<a name="13675">
+<STRONG>	 1.	 Create your objects in N-Geometry.
+</STRONG>
+</a><P><dl><a name="13676">
+<dt>Your scene may contain any number of objects.</dt>
+</a><P></dl><a name="15226">
+<STRONG>	2.	 Create lights to illuminate the object.
+</STRONG>
+</a><P><dl><a name="15227">
+<dt>You can create lights in N-Geometry or in the Attributes Editor using the Lights Editor.</dt>
+</a><P></dl><a name="13677">
+<STRONG>	3.	 Create materials using the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="13678">
+<dt>Materials are sets of attributes that determine the basic surface appearance of an object. A material also specifies which lights affect the current material.</dt>
+</a><P></dl><a name="13679">
+<STRONG>	4.	 Assign materials to your objects.
+</STRONG>
+</a><P><dl><a name="13680">
+<dt>Materials are assigned in N-Geometry the Browser, Nichimen's visual hierarchy manager. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also assign a material to face parts of objects.</font></dd></dt></dl><P>
+
+<a name="13686">
+<STRONG>	5.	 Preview your objects on the target platform.
+</STRONG>
+</a><P><dl><a name="13687">
+<dt>Objects can be previewed interactively on the appropriate target platform by the artist.</dt>
+</a><P></dl><a name="13776">
+<STRONG>	6.	 Write your object files out in the appropriate format.
+</STRONG>
+</a><P><dl><a name="13777">
+<dt>Once objects look correct, you can write them out in target specific formats, using tools like the <strong>N64 Express</strong>, <strong>PlayStation Express</strong>, and <strong>Saturn Express</strong>.</dt>
+</a><P><a name="13740">
+ <P><img src="1Overview.anc6.gif"><p>
+</a></dl>
+<a name="13741">
+<em>Figure 1.6  &#32; &#32; Using one of the game domains
+</em></a><P><a name="13829">
+Assigning materials for use on the various game platforms is described in more detail in the appropriate <strong>N64 Express</strong>, <strong>PlayStation Express</strong>, and <strong>Saturn Express</strong> documentation.<p>
+</a><P><a name="11636">
+<h2><HR> Rendering: Some Concepts</h2>
+</a><a name="13824">
+This section describes some of the basic concepts used in rendering in N&#183;World.<p>
+</a><P><a name="14499">
+<h3> Scan Line vs. Ray Trace Rendering</h3>
+</a><a name="14500">
+If you are rendering with the N-Render domain, you are creating a 2D image from a 3D scene, taking into account the surface attributes and lighting effects in place for the object. <p>
+</a><P><a name="14501">
+N-Render supports two basic rendering techniques for calculating the value of each pixel in the 2D image:<p>
+</a><P><ul><a name="14502">
+<li><em>scan line</em> rendering
+</a></li><P><a name="14503">
+<li><em>ray trace</em> rendering
+</a></li><P></ul><P><a name="14505">
+Scan line rendering is the simpler of the two. In this model, light rays are emitted by a light source and travel through the scene. Each interaction with an object in the scene affects the color value of the pixel that the ray maps to. Rays travel until one of two things happens:<p>
+</a><P><ul><a name="14506">
+<li>They encounter a completely opaque object
+</a></li><P><a name="14507">
+<li>They travel beyond the clipping planes defined for the scene.
+</a></li><P><a name="14529">
+ <P><img src="1Overview.anc7.gif"><p>
+</a></ul><P><a name="14530">
+<em>Figure 1.7  &#32; &#32;Scan line rendering
+</em></a><P><a name="14531">
+The color value for each pixel is calculated based on the surface color of the "ray" encounters. Attributes associated with these objects determine the result of the color calculation.<p>
+</a><P><a name="14532">
+Ray trace rendering, on the other hand, uses a more realistic model which allows for rays to "bounce" off of objects in the scene. Rays begin with a certain amount of "energy" and lose some of the energy with every bounce. These interactions can result in the creation of new rays, which must be traced and their effect on pixels in the finished image calculated. Rays travel until they "bounce" a predetermined number of times, or expend their energy.<p>
+</a><P><a name="14560">
+ <P><img src="1Overview.anc8.gif"><p>
+</a><a name="14561">
+<em>Figure 1.8  &#32; &#32;Ray trace rendering
+</em></a><P><a name="13823">
+<h3> Mappers &amp; Maps</h3>
+</a><a name="11637">
+A <em>map</em> is a two-dimensional image which is projected, or <em>mapped</em>, onto the surface of a 3D object.The topological relationship between the 2D map and a 3D object is defined by a<em> mapper</em>. Mappers are a special type of object, which you create in the Browser or N-Geometry. You choose a mapper through which to project texture maps for a given material in the Nichimen Browser.<p>
+</a><P><a name="12804">
+The mapper object provides a visual cue of the relationship of the map image to the object. Mappers can be in one of two states:<p>
+</a><P><ul><a name="14575">
+<li>Frozen mappers fix the relationship between the map and a point on the object surface. You typically use frozen mappers on objects whose surface will change shape.
+</a></li><P><a name="14583">
+<li>Dynamic mappers can be animated in N-Dynamics. You could, for example, project a texture map of the globe onto a sphere, then create a script to rotate the mapper (which would simulate the globe spinning)
+</a></li><P></ul><P><a name="12805">
+The types of <em>maps</em> supported vary by domain, but include the following:<p>
+</a><P><ul><a name="11640">
+<li><strong>Texture</strong> maps apply images to the surface of an object.
+</a></li><P><a name="11642">
+<li><strong>Opacity</strong> maps define how opaque an object is.
+</a></li><P><a name="11644">
+<li><strong>Bump</strong> maps give an object the illusion of a bumpy texture by using dark and light areas in the map to modify the surface color of the object.
+</a></li><P><a name="11646">
+<li><strong>Reflection</strong> maps simulate how elements in a scene would be reflected onto the object.
+</a></li><P><a name="11648">
+<li><strong>Refraction</strong> maps simulate how elements <em>inside</em> the object would be reflected onto the object's surface (usually for a semi-transparent object).
+</a></li><P><a name="14451">
+ <P><img src="1Overview.anc9.gif"><p>
+</a></ul><P><a name="14452">
+<em>Figure 1.9  &#32; &#32;Map types: from left to right, (1) texture, (2) bump+texture, (3) texture+reflection, (4) texture+reflection+refraction, (5) texture+opacity
+</em></a><P><a name="10242">
+<h3> Shading Models</h3>
+</a><a name="10243">
+N-Render uses shading models to simulate the realistic (and sometimes non-realistic!) characteristics of material surfaces as they interact with light sources. It is the combination of render attributes, light sources, and the Shading Model which determines the final appearance of a rendered object.<p>
+</a><P><a name="12796">
+N-Render uses five different shading models:<p>
+</a><P><ul><a name="10245">
+<li>Flat
+</a></li><P><a name="10247">
+<li>Lambert
+</a></li><P><a name="10249">
+<li>Phong
+</a></li><P><a name="10251">
+<li>Blinn
+</a></li><P><a name="10253">
+<li>Cook
+</a></li><P><a name="14435">
+ <P><img src="1Overview.anc10.gif"><p>
+</a></ul><P><a name="14436">
+<em>Figure 1.10  &#32; &#32;Shading models: from left to right, Flat, Lambert, Phong, Blinn, and Cook
+</em></a><P><a name="10256">
+All of these models are described in more detail in the next chapter. <p>
+</a><P><a name="14154">
+<h3> Opacity</h3>
+</a><a name="10260">
+An object's opacity determines how much of the scene behind that object is visible. You can modify an object's opacity uniformly with the <strong>Color Opacity</strong> attribute, or use an <em>opacity map</em> to make some areas opaque and others transparent.<p>
+</a><P><ul><a name="14602">
+<li>Fully opaque objects completely obscure objects behind them. 
+</a></li><P><a name="14624">
+<li>Objects that are semi-transparent reveal a percentage of the background scene that is inversely proportional to the object's opacity. 
+</a></li><P><a name="14625">
+<li>Objects using opacity maps reveal parts of the objects behind them based on the characteristics of the map
+</a></li><P></ul><P><a name="14623">
+In other words, the more opaque an object, the less you can see of what's behind it. To render an object as a brick, you'd want to use a high opacity setting; for a sheet of glass, you'd use a lower opacity setting.<p>
+</a><P><a name="14351">
+ <P><img src="1Overview.anc11.gif"><p>
+</a><a name="14352">
+<em>Figure 1.11  &#32; &#32;The sphere in the foreground of the scene has an opacity map applied to it, making some areas of the object transparent
+</em></a><P><a name="10262">
+<h3> Visibility</h3>
+</a><a name="10263">
+Unlike opacity, which affects only the diffusive component of the shading model, the visibility parameter affects all three components of an object (ambient, diffusive, and specular). The most common use of the visibility parameter is to <em>fade</em> or <em>dissolve</em> an object in or out of a scene.<p>
+</a><P><a name="10270">
+ <P><img src="1Overview.anc3.gif"><p>
+</a><a name="10271">
+<em>Figure 1.12  &#32; &#32;Left, original object; object with 75% visibility; right, with 25% visibility. In all three cases, the sphere is in front of the pyramid
+</em></a><P><a name="14389">
+To grasp the difference between visibility and opacity, compare an object whose <em>opacity</em> is decreasing until the object is completely transparent with an object whose <em>visibility</em> is decreasing until the object becomes invisible. The specular gleam from the completely transparent object remains clearly visible, but the invisible object gives off no specular gleam at all. You can illustrate the difference for yourself by animating a sequence in N-Dynamics, first animating visibility, then trying the same animation animating opacity.<p>
+</a><P><a name="14477">
+<h3> Lights</h3>
+</a><a name="14478">
+All light sources are N-Geometry objects. Creating lights and defining their attributes is described in both <a href="4Lights.html#">"Lights," on page &#32;4-1</a>, and in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="14485">
+N-Render supports the following types of lights:<p>
+</a><P><ul><a name="14487">
+<li>point
+</a></li><P><a name="14489">
+<li>infinite
+</a></li><P><a name="14491">
+<li>ambient
+</a></li><P><a name="14494">
+<li>spot
+</a></li><P></ul><P><a name="14495">
+Just as you specify attributes for a material, you also specify attributes for a light (such as the light's color, relative brightness, shadow casting characteristics, and so forth. Working with lights is discussed in more detail in <a href="4Lights.html#">"Lights," on page &#32;4-1</a>.<p>
+</a><P><a name="10273">
+<h3> Oblique Effects</h3>
+</a><a name="10274">
+Oblique effects let you model objects whose opacity varies as a function of the angle of the eye to the object's surface.<p>
+</a><P><a name="10275">
+A soda bottle with thick glass walls serves as a good example of such an object. More light is obscured toward the edges because the light must travel farther through the glass at the silhouette edges. (The inverse effect is also possible in N-Render, with the result that opacity fades out toward the edges. This is useful in producing "glow" effects.)<p>
+</a><P><a name="10288">
+ <P><img src="1Overview.anc4.gif"><p>
+</a><a name="10289">
+<em>Figure 1.13  &#32; &#32;Oblique effects
+</em></a><P><a name="10290">
+For example, line of sight <strong>A</strong> has to look through more glass, while line of sight <strong>B</strong> looks through a very thin piece of glass. Oblique effects let you simulate the change in appearance of such oblique points of view.<p>
+</a><P><a name="14424">
+ <P><img src="1Overview.anc14.gif"><p>
+</a><a name="14425">
+<em>Figure 1.14  &#32; &#32;Left, sphere object with low opacity at edges; right, same object with high opacity at edges
+</em></a><P><a name="10291">
+If you use oblique effects, you need to specify the falloff rate for diffusion, opacity, specular strength, reflection, and refraction from the center of the object to the edge of the object in the <strong>Effects</strong> section of the Attributes Editor.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2CreatingMaterials.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:05 -->
+
+</body>
+</html>

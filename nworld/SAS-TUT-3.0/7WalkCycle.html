@@ -1,0 +1,475 @@
+<html><head><title>Making a Walk Cycle</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="6Posing.html">[Prev]</a> <a href="8WalkCycleEnhancements.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Making a Walk Cycle</h1>
+</a>
+<hr><p><a name="12742">
+<h4> Making a basic walk cycle is simple in the Skeletal Animation System. This chapter describes how to create pose to pose animations, loop motion like a walk cycle, and use the N-Dynamics Lock Feet operation.</h4>
+</a><a name="12743">
+ <P><img src="7WalkCycle.anc.gif"><p>
+</a><a name="12737">
+<p>
+</a><P><a name="10780">
+<h2><HR> In this Chapter</h2>
+</a><a name="11456">
+You'll learn how to:<p>
+</a><P><ul><a name="11467">
+<li>create a walk cycle using two different techniques
+</a></li><P><a name="12719">
+<li>create a second pose to pose animation (making a skeleton jump)
+</a></li><P></ul><P><a name="12681">
+<h2><HR> Creating a Walk Cycle</h2>
+</a><a name="13179">
+Just as traditional animators create animations by generating several poses for a character and animating between them, you can create and save any number of poses for a skeleton and use different techniques to animate between them.<p>
+</a><P><a name="12802">
+There are two typical ways of creating walk cycles from scratch (that is, without using motion capture data):<p>
+</a><P><ul><a name="13035">
+<li>Using IK operations to pose and translate the skeleton, then using an <strong>Animate Pose to Pose</strong> operation
+</a></li><P><a name="13036">
+<li>Using kinematic posing operations to pose the skeleton like an armature, then translating the skeleton.
+</a></li><P></ul><P><a name="13041">
+Both of these options are described below<p>
+</a><P><a name="12790">
+<h3> Walk Cycle 1: Using IK Operations</h3>
+</a><a name="12792">
+Creating a walk cycle in the Skeletal Animation System is simple now that you know how to pose a skeleton. In this section, you'll use some of the IK posing techniques discussed earlier to create poses, then animate the skeleton using a pose-to-pose animation.<p>
+</a><P>
+<a name="12807">
+<STRONG>	 1.	 Create a new skeleton.
+</STRONG>
+</a><P><dl><a name="12822">
+<dt><strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Skeleton</strong>.</dt>
+</a><P><a name="12831">
+ <P><img src="7WalkCycle.anc1.gif"><p>
+</a></dl>
+<a name="12832">
+<em>Figure 7.1  &#32; &#32;Skeleton primitive
+</em></a><P><a name="12836">
+To create this animation, you'll break the walk cycle into a number of poses. To create each pose, use the appropriate IK move.<p>
+</a><P>
+<a name="12823">
+<STRONG>	2.	 (SHIFT-L) on the left ankle bone of the skeleton, then <strong>(CLICK-L)</strong> on IK Move thru Root.
+</STRONG>
+</a><P><a name="12854">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the right ankle node to pin it, then <strong>(CLICK-R)</strong>.
+</STRONG>
+</a><P><dl><a name="12855">
+<dt>Pose the skeleton.</dt>
+</a><P><a name="12861">
+ <P><img src="7WalkCycle.anc2.gif"><p>
+</a></dl>
+<a name="12970">
+<em>Figure 7.2  &#32; &#32;Pose the skeleton using one of the IK operations
+</em></a><P>
+<a name="12978">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12975">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the skeleton, then <strong>(CLICK-M)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="12981">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="12988">
+ <P><img src="7WalkCycle.anc3.gif"><p>
+</a></dl>
+<a name="12989">
+<em>Figure 7.3  &#32; &#32;Saving the pose
+</em></a><P><dl><dl><a name="12982">
+<dt>Enter a name for the pose. </dt>
+</a><P><a name="13000">
+<dt><em>Make sure</em> that <strong>Include root transform?</strong> is set to <strong>Yes</strong>. This puts the rotations and translations of the skeleton's root (with respect to the base state) into the pose, as well the local bone rotations.</dt>
+</a><P></dl></dl>
+<a name="12972">
+<STRONG>	6.	 Create a script in N-Dynamics with two channels.
+</STRONG>
+</a><P><a name="12871">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the first channel.
+</STRONG>
+</a><P><ul>
+<BR><a name="12876">
+<li><strong>(CLICK-L)</strong> on the <strong>Operation</strong> field and select <strong>Skeletal Animation&gt;Animate Pose to Pose</strong>.
+</a><P><BR><a name="12890">
+<li><strong>(CLICK-L)</strong> on the <strong>Skeleton</strong> field and select the skeleton primitive you just created.
+</a><P><BR><a name="12891">
+<li><strong>(CLICK-L)</strong> on the <strong>Bones</strong> field and highlight the bones you want to update (most likely all of them).
+</a><P><BR><a name="12892">
+<li><strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</a><P></ul>
+<a name="12885">
+<STRONG>	8.	 <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><ul>
+<BR><a name="12898">
+<li><strong>(CLICK-L)</strong> on the <strong>Operation</strong> field and select <strong>Skeletal Animation&gt;Update Skeleton</strong>.
+</a><P><BR><a name="12899">
+<li><strong>(CLICK-L)</strong> on the <strong>Skeleton</strong> field and select the skeleton primitive you just created.
+</a><P><BR><a name="12901">
+<li><strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</a><P></ul>
+<dl><a name="12793">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="12912">
+ <P><img src="7WalkCycle.anc4.gif"><p>
+</a></dl>
+<a name="12913">
+<em>Figure 7.4  &#32; &#32;Pose to pose script
+</em></a><P>
+<a name="12906">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the curve channel under the <strong>Animate Pose to Pose</strong> channel.
+</STRONG>
+</a><P><a name="12925">
+ <P><img src="7WalkCycle.anc5.gif"><p>
+</a>
+<a name="12926">
+<em>Figure 7.5  &#32; &#32;Open the curve channel
+</em></a><P>
+<a name="12919">
+<STRONG>	10.	 Move the cursor over the curve channel.
+</STRONG>
+</a><P><dl><a name="12963">
+<dt>Press the "s" hot key to insert a cue at the frame where a pose should be executed.</dt>
+</a><P><a name="12938">
+ <P><img src="7WalkCycle.anc6.gif"><p>
+</a></dl>
+<a name="12939">
+<em>Figure 7.6  &#32; &#32;Inserting a cue
+</em></a><P>
+<a name="12943">
+<STRONG>	11.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><dl><a name="12944">
+<dt>A list of poses saved with the skeleton are displayed:</dt>
+</a><P><a name="12952">
+ <P><img src="7WalkCycle.anc7.gif"><p>
+</a></dl>
+<a name="12953">
+<em>Figure 7.7  &#32; &#32;Selecting a pose
+</em></a><P>
+<a name="12932">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the pose that should executed at this frame.
+</STRONG>
+</a><P><a name="12967">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="12968">
+<dt>The skeleton starts in its base position, animates to the saved pose, then returns.</dt>
+</a><P></dl><a name="13016">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Playback button to see your animation.
+</STRONG>
+</a><P>
+<a name="13015">
+To create an entire walk cycle, simply continue creating additional poses using the various IK operations. For each pose, create a new cue in the Animate Pose to Pose channel. Then, copy each new pose into the appropriate cue and reanimate.<p>
+</a><P><a name="12781">
+<h3> Walk Cycle 2: <br>Kinematic Poses with Translation</h3>
+</a><a name="12682">
+In the script above, we used poses that <em>included</em> transformations. For each pose in the jump example, we transformed the skeleton, then posed individual bones to create the poses.<p>
+</a><P><a name="12683">
+Remember that N-Dynamics animates a skeleton (and other objects) by transforming it. If you want to pose a skeleton that was posed using the pose editor, you'll need to supply some other sort of animation data. In the example below<p>
+</a><P><a name="12684">
+Let's take a look at another script that makes a skeleton walk forward in a straight line. Try this:<p>
+</a><P>
+<a name="12685">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><dl><dl><a name="12686">
+<dt><code>/usr/local/ngc/demo/scripts/walk-cycle</code><p>
+</a><P></dl></dl>
+<a name="12687">
+There are four channels in this script:<p>
+</a><P><ul><a name="12688">
+<li>The <strong>Set View</strong> channel positions the camera.
+</a></li><P><a name="12689">
+<li>The <strong>Pose to Pose</strong> channel contains a dynamic subchannel which specifies the poses to be used in this animation.
+</a></li><P><a name="12690">
+<li>The <strong>Z Move</strong> channel does a simple translation of the skeleton along the Z axis. Note that initially this channel is turned off.
+</a></li><P><a name="12691">
+<li>The <strong>Update Skeleton</strong> channel applies those changes to the skeleton.
+</a></li><P></ul><P><a name="12692">
+In this script, we created seven different poses for the skeleton to build a simple walk cycle; we loaded a skeleton primitive, then used the <strong>Pose Editor</strong> to pose the skeleton while in its root position.<p>
+</a><P><a name="12693">
+If you use the Pose command to view the different saved poses for the skeleton, you'll see that they are all centered around the global axis.<p>
+</a><P><a name="12694">
+Try this:<p>
+</a><P>
+<a name="12695">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="12696">
+<dt>The skeleton animates through the various saved poses, but its root remains fixed at the global coordinates:</dt>
+</a><P><a name="12703">
+ <P><img src="7WalkCycle.anc8.gif"><p>
+</a></dl>
+<a name="12704">
+<em>Figure 7.8  &#32; &#32;Posing a skeleton does not transform it; to move a skeleton in 3D space, you must somehow transform the root of the skeleton
+</em></a><P><dl><dl><a name="12705">
+<dt>As described in the previous section, N-Dynamics animates the object according to its transformation matrix; using the <strong>Pose Editor</strong> to pose a skeleton does not change its transformation matrix!</dt>
+</a><P></dl></dl>
+<a name="12706">
+<STRONG>	3.	 Move the cursor over the Z Move channel.
+</STRONG>
+</a><P><a name="12707">
+<STRONG>	4.	 Press "a" on the keyboard to activate the channel.
+</STRONG>
+</a><P><a name="12708">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="12709">
+<dt>This channel contains a simple Z Move operation, selecting the skeleton as the object to be updated. When you animate the skeleton this time, it moves along the Z axis; we modified the distance of the Z move until it looked right.</dt>
+</a><P><a name="12713">
+ <P><img src="7WalkCycle.anc9.gif"><p>
+</a></dl>
+<a name="12714">
+<em>Figure 7.9  &#32; &#32;Adding a translate to the script moves the skeleton in space; various poses are "hit" at specified points in time
+</em></a><P><a name="12276">
+<h2><HR> Jumping Skeleton</h2>
+</a><a name="12277">
+Suppose for example, you want to animate a skeleton jumping up into the air. There are four basic steps to animating a pose-to-pose animation:<p>
+</a><P><ul><a name="12278">
+<li>Load the skeleton you want to animate.
+</a></li><P><a name="12279">
+<li>Creating poses for the skeleton using the pose editor or other SAS commands.
+</a></li><P><dl><a name="12280">
+<dt>Posing skeletons and saving those poses is described in more detail in the section <a href="6Posing.html#11455">"Posing Skeletons in N-Geometry," on page &#32;6-3</a>.</dt>
+</a><P></dl><a name="12284">
+<li>Load the poses into an N-Dynamics script
+</a></li><P></ul><P><a name="12285">
+Let's take a look at a sample script that makes a skeleton jump up and down. Try this:<p>
+</a><P>
+<a name="12286">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="12287">
+<code><pre>/usr/local/ngc/demo/scripts/jumping-skeleton<p>
+</code></pre></a>
+<a name="12288">
+There are three channels in this script:<p>
+</a><P><ul><a name="12289">
+<li>The <strong>Set View</strong> channel positions the camera
+</a></li><P><a name="12290">
+<li>The <strong>Pose to Pose</strong> channel contains a dynamic subchannel which specifies the poses to be used in this animation
+</a></li><P><a name="12291">
+<li>The <strong>Update Skeleton</strong> channel applies those changes to the skeleton.
+</a></li><P></ul><P>
+<a name="12292">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the second channel.
+</STRONG>
+</a><P><dl><a name="12293">
+<dt>It should look something like this:</dt>
+</a><P><a name="12302">
+ <P><img src="7WalkCycle.anc10.gif"><p>
+</a></dl>
+<a name="12303">
+<em>Figure 7.10  &#32; &#32;Dynamic channel containing poses
+</em></a><P><dl><dl><a name="12304">
+<dt>Each of the vertical lines in the channel is a cue which holds a pose; in addition, both the start and ending of the channel </dt>
+</a><P></dl></dl>
+<a name="12305">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the [POSE] subchannel.
+</STRONG>
+</a><P><dl><a name="12306">
+<dt>The curve channel opens. It should look something like this:</dt>
+</a><P><a name="12310">
+ <P><img src="7WalkCycle.anc11.gif"><p>
+</a></dl>
+<a name="12311">
+<em>Figure 7.11  &#32; &#32;Curve data for poses
+</em></a><P><dl><dl><a name="12312">
+<dt>To see which pose each cue contains, you can <strong>(CLICK-M)</strong> on the cue; its name appears in the middle of the channel:</dt>
+</a><P><a name="12316">
+ <P><img src="7WalkCycle.anc12.gif"><p>
+</a></dl></dl><a name="12317">
+<em>Figure 7.12  &#32; &#32;Checking which pose a cue contains
+</em></a><P><dl><dl><a name="12318">
+<dt>If you want to assign a different saved pose to a cue, either <strong>(SHIFT-M)</strong> on the cue or <strong>(CLICK-L)</strong> on the text box (if displayed at the center of the channel). A menu appears, listing any poses saved with the skeleton, plus the option of <strong>Copy Pose</strong> at the top of the menu:</dt>
+</a><P><a name="12322">
+ <P><img src="7WalkCycle.anc13.gif"><p>
+</a></dl></dl><a name="12323">
+<em>Figure 7.13  &#32; &#32;Checking which pose a cue contains
+</em></a><P><dl><dl><a name="12324">
+<dt>The Copy Pose option is described below in the section <a href="7WalkCycle.html#12399">"Copying Poses from N-Geometry," on page &#32;7-16</a>.</dt>
+</a><P><a name="12328">
+<dt>By default, the pose at the beginning and end of the script are assumed to be the base position for the skeleton. If you check each of the cues, you'll see that they go like this:</dt>
+</a><P><dl><a name="12329">
+<dt>base - squat - jump - squat - end<p>
+</a><P></dl><a name="12330">
+<dt>The skeleton starts in a standing position, squats down, then jumps; he lands and squats down to absorb the impact, then stands again.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Remember that N-Dynamics animates by </em>transforming<em> objects. If you want the skeleton to move in 3D space, you must transform the root of the skeleton; both the "squat" and "jump" poses were created by transforming the skeleton, then modifying it.</em></font></dd></dt></dl><P>
+<a name="12338">
+<h4> Viewing or Editing All Cues in a Channel</h4>
+</a><a name="12339">
+If you want to quickly view which poses are assigned to the cues in a given channel:<p>
+</a><P>
+<a name="12340">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the channel containing the cues.
+</STRONG>
+</a><P><a name="12341">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Edit all Cue Values operation.
+</STRONG>
+</a><P><dl><a name="12342">
+<dt>A dialog box appears, showing the times in the script at which each cue occurs and the name of the pose in that cue:</dt>
+</a><P><a name="12346">
+ <P><img src="7WalkCycle.anc14.gif"><p>
+</a></dl>
+<a name="12347">
+<em>Figure 7.14  &#32; &#32;Editing multiple cues at once
+</em></a><P>
+<a name="12348">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on one of the poses.
+</STRONG>
+</a><P><dl><a name="12349">
+<dt>A list of other poses saved that can be assigned to the cue is displayed:</dt>
+</a><P><a name="12353">
+ <P><img src="7WalkCycle.anc15.gif"><p>
+</a></dl>
+<a name="12354">
+<em>Figure 7.15  &#32; &#32;Selecting a pose
+</em></a><P>
+<a name="12355">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the pose you want to use for the selected cue.
+</STRONG>
+</a><P>
+<a name="12356">
+This is a handy way for quickly viewing which poses are assigned in a channel, and for reassigning several poses to several cues at the same time.<p>
+</a><P><a name="12357">
+<h4> Moving Cues</h4>
+</a><a name="12358">
+If you think the skeleton is squatting down to soon, or should jump earlier or later, you can move the poses forward or back in time by sliding them left or right in the channel.<p>
+</a><P><a name="12359">
+Suppose you think the skeleton should squat earlier in the script. Try this:<p>
+</a><P>
+<a name="12360">
+<STRONG>	 1.	 <strong>(DRAG-L)</strong> on the cue.
+</STRONG>
+</a><P><dl><a name="12361">
+<dt>Move the cue left to the left so that the channel looks like this:</dt>
+</a><P><a name="12368">
+ <P><img src="7WalkCycle.anc16.gif"><p>
+</a></dl>
+<a name="12369">
+<em>Figure 7.16  &#32; &#32;Moving cues
+</em></a><P>
+<a name="12370">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="12371">
+<dt>The skeleton jumps again; however, this time he squats down very early in the animation; more frames elapse between the time he hits the "squat" pose and the "jump" pose.</dt>
+</a><P></dl>
+<a name="12372">
+<h4> Adding Cues (Poses)</h4>
+</a><a name="12373">
+There is no limit to the number of poses you can specify for a skeleton in an animation; in this example we used five poses to create a simple jumping motion. Adding more cues would give you more control, allowing you to create more complex motions.<p>
+</a><P><a name="12374">
+To add a pose to an animation:<p>
+</a><P>
+<a name="12375">
+<STRONG>	 1.	 Move the cursor over the curve channel for the Pose to Pose channel.
+</STRONG>
+</a><P><a name="12376">
+<STRONG>	2.	 Press "s" on the keyboard to add a cue at the cursor's current frame.
+</STRONG>
+</a><P><dl><a name="12377">
+<dt>You can repeat this process wherever you want to insert a new cue:</dt>
+</a><P><a name="12386">
+ <P><img src="7WalkCycle.anc17.gif"><p>
+</a></dl>
+<a name="12387">
+<em>Figure 7.17  &#32; &#32;Top, original channel; bottom, with two additional cues added
+</em></a><P><dl><dl><a name="12388">
+<dt>At each point where you insert a cue, you can assign a pose for the skeleton. Try adjusting the poses so that you have this order:</dt>
+</a><P><dl><a name="12389">
+<dt>base - squat - jump - squat - jump - squat - end<p>
+</a><P></dl><a name="12390">
+<dt>This makes the skeleton jump twice in the same amount of time originally alotted for the animation.</dt>
+</a><P></dl></dl><a name="12391">
+<h4> Respacing Cues Evenly</h4>
+</a><a name="12392">
+If you add a number of cues and decide that you want to space them apart evenly over the animation:<p>
+</a><P>
+<a name="12393">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the curve channel containing the cues.
+</STRONG>
+</a><P><dl><a name="12394">
+<dt>The <strong>Curve Operations</strong> menu appears.</dt>
+</a><P></dl><a name="12395">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Respace Cues command.
+</STRONG>
+</a><P><dl><a name="12396">
+<dt>The cues are spaced even distances from each other in the channel.</dt>
+</a><P></dl>
+<a name="12397">
+Manipulating cues is discussed in more detail in the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P><a name="12399">
+<h4> Copying Poses from N-Geometry</h4>
+</a><a name="12400">
+The additional poses you copy into a cue can be created using the various commands in SAS or using the <strong>Pose Editor</strong> interface. If you want, you can save the skeleton's current pose in the N-Geometry window as a pose and copy it into a cue:<p>
+</a><P><a name="12401">
+To copy the current pose into a cue:<p>
+</a><P>
+<a name="12402">
+<STRONG>	 1.	 Pose the skeleton.
+</STRONG>
+</a><P><a name="12403">
+<STRONG>	2.	 <strong>(SHIFT-M)</strong> on a cue.
+</STRONG>
+</a><P><dl><a name="12404">
+<dt>At the top of the menu is an option called <strong>Copy Pose</strong>:</dt>
+</a><P><a name="12408">
+ <P><img src="7WalkCycle.anc18.gif"><p>
+</a></dl>
+<a name="12409">
+<em>Figure 7.18  &#32; &#32;Checking which pose a cue contains
+</em></a><P>
+<a name="12410">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Copy Pose.
+</STRONG>
+</a><P><dl><a name="12411">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="12415">
+ <P><img src="7WalkCycle.anc19.gif"><p>
+</a></dl>
+<a name="12416">
+<em>Figure 7.19  &#32; &#32;Saving the pose
+</em></a><P>
+<a name="12417">
+<STRONG>	4.	 Enter the name for the pose.
+</STRONG>
+</a><P><dl><a name="12418">
+<dt>This saves the pose withthe skeleton and assigns it to the selected cue.</dt>
+</a><P></dl><a name="12419">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Animate button again.
+</STRONG>
+</a><P><dl><a name="12420">
+<dt>The new pose is incorporated into the new animation.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The </em><strong>Copy Pose</strong><em> option is also available when you use the </em><strong>Edit all Cue Values</strong><em> command when you </em><strong>(CLICK-R)</strong><em> on a channel containing several poses.</em> </font></dd></dt></dl><P>
+<a name="13194">
+<h2><HR> Congratulations!</h2>
+</a><a name="13198">
+You've now learned several techniques for generating simple animations like a walk cycle or a jump.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="6Posing.html">[Prev]</a> <a href="8WalkCycleEnhancements.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 20:20:05 -->
+
+</body>
+</html>

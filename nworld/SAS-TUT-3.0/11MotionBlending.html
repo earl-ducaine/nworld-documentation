@@ -1,0 +1,645 @@
+<html><head><title>Motion Blending</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="10EditingMCData.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Motion Blending</h1>
+</a>
+<hr><p><a name="10841">
+<h4> This is a tutorial for setting up a decompose-pose-to-pose blend in N-Dynamics.  This tutorial describes how to set up a script that lets you blend between two motions.</h4>
+</a><a name="11291">
+ <P><img src="11MotionBlending.anc.gif"><p>
+</a><a name="11281">
+<h2><HR> In this Chapter</h2>
+</a><a name="11284">
+You'll learn two motion capture data files together to create a smooth transition...in this case, from a walk into a jog.<p>
+</a><P><a name="11298">
+<h2><HR> Blending Motions</h2>
+</a><a name="12109">
+In this exercise, we will be setting up a script which reads in two separate Biovision motion capture files. After reading in the motion data, we'll decompose that data into poses, then blend the two motions together to create a seamless animation. In this example, we'll be combining a walk cycle and a jog cycle to create one animation which walks into a jog.<p>
+</a><P><a name="11867">
+If you'd rather, you can load the demo script in which these two motions are blended:<p>
+</a><P><dl><dl><a name="11875">
+<dt><code>/usr/local/ngc/demo/scripts/blend-motion</code></dt>
+</a><P></dl></dl><a name="11881">
+You can animate the script to see how the two motions blend smoothly together, then follow the discussion below to see how we did it.<p>
+</a><P><a name="11886">
+<h3> Loading your Objects</h3>
+</a>
+<a name="11852">
+<STRONG>	 1.	 In N-Geometry, <strong>(CLICK-L)</strong> on GeoMenus&gt;Open.
+</STRONG>
+</a><P><dl><a name="11913">
+<dt>Load the following BioVision skeleton from N-Geometry:</dt>
+</a><P><dl><a name="11855">
+<dt><code>/usr/local/ngc/demo/WalkGoofy.bvh</code><p>
+</a><P></dl><a name="12638">
+<dt>The skeletons appear in the N-Geometry window:</dt>
+</a><P><a name="12616">
+ <P><img src="11MotionBlending.anc1.gif"><p>
+</a></dl>
+<a name="12610">
+<em>Figure 11.1  &#32; &#32;Skeletons loaded into N-Geometry
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note!</strong>	In a motion blend, you apply both motions to the same skeleton. It is important that the two motions you are blending between be from the same vendor and that the motion capture data uses the same bone naming scheme.</font></dd></dt></dl><P>
+
+<a name="11912">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Dynamics button at the bottom of the screen.
+</STRONG>
+</a><P><dl><a name="11919">
+<dt>This makes both the N-Geometry and the N-Dynamics window visible, and arranges them nicely on your desktop.</dt>
+</a><P></dl>
+<a name="10873">
+<h3> Creating your Script</h3>
+</a>
+<a name="10875">
+<STRONG>	3.	 <strong>(CLICK-L) </strong>on the N-Dynamics window, then <strong>(CLICK-L)</strong> on Create New Script.  
+</STRONG>
+</a><P><dl><a name="11943">
+<dt>Specify the directory where you want to save the finished script, and give the script a name.</dt>
+</a><P></dl><a name="11951">
+<STRONG>	4.	 When prompted, give the script four channels.
+</STRONG>
+</a><P>
+<a name="11968">
+<h3> Editing the Script</h3>
+</a><a name="11986">
+The first step in creating this blend will use four channels:<p>
+</a><P><ul><a name="11982">
+<li>In the first channel, we'll use a <strong>Read Biovision Data</strong> operation for the WalkGoofy motion capture data.
+</a></li><P><a name="11983">
+<li>Inthe second channel, we'll use a <strong>Read Biovision Data</strong> operation for the JogTurnL motion capture data.
+</a></li><P><a name="11984">
+<li>The third channel will be a <strong>Make Visible</strong> channel for a Reference Pose we'll create (described below).
+</a></li><P><a name="11985">
+<li>The bottom channel will be an <strong>Update Skeleton</strong> for the WalkGoofy skeleton
+</a></li><P></ul><P><a name="11969">
+<h4> Setting up the First Channel</h4>
+</a>
+<a name="10892">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the first channel to open it.
+</STRONG>
+</a><P><a name="10893">
+<STRONG>	6.	 <strong>(CLICK-L) </strong>on the Operation field.
+</STRONG>
+</a><P><a name="10894">
+<STRONG>	7.	 <strong>(CLICK-L) </strong>on the Skeletal Animation&gt;Read Biovision Data.
+</STRONG>
+</a><P><a name="10900">
+<STRONG>	8.	 <strong>(CLICK-L) </strong>on the Skeleton field.
+</STRONG>
+</a><P><dl><a name="12643">
+<dt>Select <strong>WalkGoofy</strong> from the list that appears.</dt>
+</a><P></dl><a name="10901">
+<STRONG>	9.	 <strong>(CLICK-R) </strong>on the Motion Dir. field, then select the directory that contains the motion capture file:
+</STRONG>
+</a><P><dl><dl><a name="12041">
+<dt><code>/usr/local/ngc/demo/biovision/</code><p>
+</a><P></dl></dl><a name="12126">
+<STRONG>	10.	 <strong>(CLICK-R) </strong>on .bvh File Name and select the following motion capture data file:
+</STRONG>
+</a><P><dl><dl><a name="12127">
+<dt><code>WalkGoofy.bvh</code><p>
+</a><P></dl></dl><dl><a name="10903">
+<dt>N-Dynamics asks if you want to change the script length to match motion array. <strong>(CLICK-L) </strong>on <strong>Yes</strong>, then <strong>Do It</strong>. Note that the script length automatically changes to match the length of the saved motion capture file-in this case, 74 frames.</dt>
+</a><P><a name="12653">
+ <P><img src="11MotionBlending.anc2.gif"><p>
+</a></dl>
+<a name="12655">
+<em>Figure 11.2  &#32; &#32;The Read BioVision Data channel
+</em></a><P><a name="10908">
+<h4> Freezing the End Cue</h4>
+</a><a name="12063">
+Once the motion capture data has been read in, we have to freeze the end cue of the first channel. This lets us read in a motion array of a different lenght without affecting the length of any existing channel.<p>
+</a><P>
+<a name="10912">
+<STRONG>	11.	 Place your cursor over the end cue of the first channel.
+</STRONG>
+</a><P><a name="10913">
+<STRONG>	12.	 Once the cue is highlighted, <strong>(CLICK-R) </strong>on the cue, then <strong>(CLICK-L) </strong>on <strong>Freeze</strong>.
+</STRONG>
+</a><P><a name="12676">
+ <P><img src="11MotionBlending.anc3.gif"><p>
+</a>
+<a name="12678">
+<em>Figure 11.3  &#32; &#32;Freezing the end cue
+</em></a><P><a name="10916">
+For now, you can leave this channel alone...we'll come back to it later.<p>
+</a><P><a name="10928">
+<h3> Setting up the Second Channel</h3>
+</a>
+<a name="12113">
+<STRONG>	13.	 <strong>(CLICK-M)</strong> on the first channel to open it.
+</STRONG>
+</a><P><a name="12114">
+<STRONG>	14.	 <strong>(CLICK-L) </strong>on the Operation field.
+</STRONG>
+</a><P><a name="12115">
+<STRONG>	15.	 <strong>(CLICK-L) </strong>on the Skeletal Animation&gt;Read Biovision Data.
+</STRONG>
+</a><P><a name="12116">
+<STRONG>	16.	 <strong>(CLICK-L) </strong>on the Skeleton field.
+</STRONG>
+</a><P><dl><a name="12690">
+<dt>Select <strong>WalkGoofy</strong> from the list that appears.</dt>
+</a><P></dl><a name="12117">
+<STRONG>	17.	 <strong>(CLICK-R) </strong>on the Motion Dir. field, then select the directory that contains the motion capture file:
+</STRONG>
+</a><P><dl><dl><a name="12118">
+<dt><code>/usr/local/ngc/demo/biovision/</code><p>
+</a><P></dl></dl><a name="12119">
+<STRONG>	18.	 <strong>(CLICK-R) </strong>on .bvh File Name and select the following motion capture data file:
+</STRONG>
+</a><P><dl><dl><a name="12122">
+<dt><code>JogTurnL.bvh</code><p>
+</a><P><a name="12726">
+ <P><img src="11MotionBlending.anc4.gif"><p>
+</a></dl></dl>
+<a name="12727">
+<em>Figure 11.4  &#32; &#32;The Read BioVision Data channel
+</em></a><P><dl><dl><a name="10934">
+<dt>N-Dynamics will ask you if you want to change the script length to match the motion array. </dt>
+</a><P></dl></dl>
+<a name="12699">
+<STRONG>	19.	 <strong>(CLICK-L) </strong>on Yes. 
+</STRONG>
+</a><P><dl><a name="12709">
+<dt>Because you've frozen the end cue of the first channel, it will stay where it is.  The frame count at the bottom of the script editor should now read 49 and the script should look like this:</dt>
+</a><P><a name="12736">
+ <P><img src="11MotionBlending.anc5.gif"><p>
+</a></dl>
+<a name="12737">
+<em>Figure 11.5  &#32; &#32;Note that the first channel extends past the right side of the script
+</em></a><P><a name="10940">
+<h3> Changing the Script Length</h3>
+</a><a name="10942">
+Now it's time to lengthen the overall script to accomodate both motion capture files.  To determine the length of the script, add the number of frames in WalkGoofy (74) to the number of  frames in JogTurnL (49).  These channels should overlap somewhat, too, so we'll also need to add a few extra frames where the blend should occur.<p>
+</a><P><a name="10948">
+To change the script length:<p>
+</a><P>
+<a name="10949">
+<STRONG>	20.	 <strong>(CLICK-L) </strong>on the frame range box at the bottom right corner of the script editor.
+</STRONG>
+</a><P><a name="12751">
+ <P><img src="11MotionBlending.anc6.gif"><p>
+</a>
+<a name="12752">
+<em>Figure 11.6  &#32; &#32;Changing the script length
+</em></a><P>
+<a name="12173">
+<STRONG>	21.	 <strong>(CLICK-L) </strong>on <strong>Change Script Length</strong>.
+</STRONG>
+</a><P><a name="10951">
+<STRONG>	22.	 <strong>(CLICK-M) </strong>on Length (frames)  and enter 125.
+</STRONG>
+</a><P><a name="12788">
+ <P><img src="11MotionBlending.anc7.gif"><p>
+</a>
+<a name="12789">
+<em>Figure 11.7  &#32; &#32;Enter a new number of frames
+</em></a><P><dl><dl><a name="12187">
+<dt>We got this number by adding 74 frames + 49 frames + two extra frames for blending.</dt>
+</a><P></dl></dl>
+<a name="10953">
+<STRONG>	23.	 <strong>(CLICK-L) </strong>on <strong>Done</strong>.
+</STRONG>
+</a><P><dl><a name="10955">
+<dt>The script now has 125 frames. The end cue of channel 1 has been frozen at 74. You can look at frame numbers by moving  the cursor over the timeline at the bottom of the  script window.</dt>
+</a><P><a name="12803">
+ <P><img src="11MotionBlending.anc8.gif"><p>
+</a></dl>
+<a name="12804">
+<em>Figure 11.8  &#32; &#32;Move the cursor back and forth over a channel, watching the time line, to see the frame at which a channel ends; in this case, the first channel ends at frame 74
+</em></a><P><a name="10960">
+<h3> Decomposing the First File into Pose Data</h3>
+</a><a name="10962">
+	We are now going to decompose the WalkGoofy data to create a Pose-to-Pose channel. <p>
+</a><P>
+<a name="10964">
+<STRONG>	24.	 <strong>(CLICK-R) </strong>on the top channel.
+</STRONG>
+</a><P><a name="10965">
+<STRONG>	25.	 <strong>(CLICK-L) </strong>Decompose&gt;Pose to Pose.
+</STRONG>
+</a><P><a name="12825">
+ <P><img src="11MotionBlending.anc9.gif"><p>
+</a>
+<a name="12826">
+<em>Figure 11.9  &#32; &#32;Decompose the motion into poses
+</em></a><P>
+<a name="10967">
+<STRONG>	26.	 Choose 4 frames between poses, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="10968">
+<dt>After the data is decomposed, you can <strong>(CLICK-L) </strong>on the channel to see where the individual poses were created.</dt>
+</a><P><a name="12838">
+ <P><img src="11MotionBlending.anc10.gif"><p>
+</a></dl>
+<a name="12839">
+<em>Figure 11.10  &#32; &#32;Curve channel inserted below decomposed motion data
+</em></a><P><a name="10971">
+<h3> Realigning the Second Channel</h3>
+</a><a name="10974">
+	We need to allow these two motions to blend into one another towards the end of the WalkGoofy cycle and the beginning of the JogTurnL cycle.  To overlap the actions, we need to drag the JogTurnL channel from left to  right so that it overlaps the top channel by about 20 frames.  We do  this <em>before</em> we decompose the channel so it will not change the timing of the  cycle. If the channel is already decomposed when you shorten the channel, it will shorten each pose's length.<p>
+</a><P>
+<a name="10981">
+<STRONG>	27.	 <strong>(CLICK-L) </strong>on the first cue of the JogTurnL channel.
+</STRONG>
+</a><P><dl><a name="12281">
+<dt>Drag it to the right, until it is approximately 20 frames from the end of the WalkGoofy channel (frame 54)</dt>
+</a><P><a name="12855">
+ <P><img src="11MotionBlending.anc11.gif"><p>
+</a></dl>
+<a name="12856">
+<em>Figure 11.11  &#32; &#32;Drag the left edge of the second channel so it starts at frame 54
+</em></a><P><a name="10985">
+It is now safe to decompose the JogTurnL data without damaging its timing. <p>
+</a><P>
+<a name="11474">
+<STRONG>	28.	 <strong>(CLICK-R) </strong>on the JogTurnL channel.
+</STRONG>
+</a><P><a name="12256">
+<STRONG>	29.	 <strong>(CLICK-L) </strong>on Decompose&gt;Pose to Pose.
+</STRONG>
+</a><P><dl><a name="12270">
+<dt>Specify 4 frames between poses. If you open the channels after decomposing this action, your script should look something like this:</dt>
+</a><P><a name="12872">
+ <P><img src="11MotionBlending.anc12.gif"><p>
+</a></dl>
+<a name="12873">
+<em>Figure 11.12  &#32; &#32;Decomposed channels
+</em></a><P><a name="10989">
+<h3> Adding an Update Skeleton Operation</h3>
+</a><a name="10991">
+It's time to do some house cleaning and set up the last two channels. We are going to use the third channel to make a reference pose visible so we can more easily match our motions, and the fourth channel as the Update Skeleton channel.<p>
+</a><P>
+<a name="10995">
+<STRONG>	30.	 <strong>(CLICK-M) </strong>on the fourth channel.
+</STRONG>
+</a><P><a name="10996">
+<STRONG>	31.	 <strong>(CLICK-L) </strong>on the Operation field, then <strong>(CLICK-L)</strong> on Skeletal Animation&gt;Update Skeleton.
+</STRONG>
+</a><P><a name="10999">
+<STRONG>	32.	 <strong>(CLICK-L)</strong> on the Skeleton field, then specify WalkGoofy as the skeleton to be updated.
+</STRONG>
+</a><P><dl><a name="12898">
+<dt>Leave the rest of the parameters at their default values. Your parameters should look like this:</dt>
+</a><P><a name="12904">
+ <P><img src="11MotionBlending.anc13.gif"><p>
+</a></dl>
+<a name="12905">
+<em>Figure 11.13  &#32; &#32;Update Skeleton parameters
+</em></a><P><a name="11001">
+<h3> Selecting Where to Blend</h3>
+</a><a name="11016">
+In order to have two decomposed motion capture files blend smoothly, we need to select a pose from the first motion channel, create a reference pose, then find a pose in the second channel that matches it somewhat closely. <p>
+</a><P><a name="12299">
+There are some parameters to consider when comparing poses:<p>
+</a><P><ul><a name="12921">
+<li>First, it cannot be the last pose in the top channel because then there is no room for the blend to occur. 
+</a></li><P><a name="12923">
+<li>Second, a point on the skeleton must be in a position that can be matched to the second pose fairly simply.
+</a></li><P></ul><P><a name="11023">
+For example, in this tutorial we'll use the toes on the left foot as a place to match the poses.  In this case, we need a pose that is just before the  <em>end</em> of WalkGoofy and a pose that is at the <em>beginning</em> of JogTurnL where the left foot of the skeleton is in the same position.  <p>
+</a><P><a name="12313">
+Once those poses are located, we can find the distance between those points and use that as the offset values when blending the motion.<p>
+</a><P><a name="11032">
+<h3> Test Animate</h3>
+</a><a name="11034">
+We need to animate and find a good pose.  Remember, we are looking to find a pose in which the left foot is planted.  (Other animations may lend themselves to looking for similarities in other points such as the root node or hands, especially if you are blending primarily upper body motion); however, looking for the foot plant works well for walk cycles.<p>
+</a><P>
+<a name="11039">
+<STRONG>	33.	 Place your cursor over the JogTurnL channel and press the "a" hot key to  deactivate the channel.
+</STRONG>
+</a><P><dl><a name="12335">
+<dt>We don't want any of JogTurnL's translations to effect WalkGoofy quite yet. The text of the channel turns black to tell you its inactive.</dt>
+</a><P></dl><a name="11042">
+<STRONG>	34.	 <strong>(CLICK-M) </strong>along the timeline at the the different frames where cues were inserted in the first channel.
+</STRONG>
+</a><P><dl><a name="12342">
+<dt>You may have to adjust your camera so you can see the skeleton.</dt>
+</a><P><a name="12357">
+<dt>At frame 69 the WalkGoofy skeleton's left foot is planted. This cue fits both of the criteria we described above: it's close to the end of the first channel and has the clear pose (foot plant) we were looking for.</dt>
+</a><P><a name="13096">
+ <P><img src="11MotionBlending.anc14.gif"><p>
+</a></dl>
+<a name="13097">
+<em>Figure 11.14  &#32; &#32;Pose with left foot planted
+</em></a><P><dl><dl><a name="13039">
+<dt>We'll call this the <em>match frame</em> for discussion below.</dt>
+</a><P></dl></dl><a name="11049">
+<h3> Create a Reference Pose</h3>
+</a><a name="12385">
+Now that this pose has been selected and is current in the geometry window, we can create a reference pose to help us match the cycles. <p>
+</a><P>
+<a name="11051">
+<STRONG>	35.	 <strong>(CLICK-L) </strong>on the Browser button on the configuration bar at the bottom of the N-Geometry window.
+</STRONG>
+</a><P><dl><a name="12959">
+<dt>This opens the Browser.</dt>
+</a><P></dl><a name="11578">
+<STRONG>	36.	 <strong>(CLICK-L) </strong>on Skeleton.
+</STRONG>
+</a><P><dl><a name="12969">
+<dt>The Browser should now look like this:</dt>
+</a><P><a name="12977">
+ <P><img src="11MotionBlending.anc15.gif"><p>
+</a></dl>
+<a name="12978">
+<em>Figure 11.15  &#32; &#32;Using the Browser to make a reference pose
+</em></a><P>
+<a name="11579">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on WalkGoofy.
+</STRONG>
+</a><P><dl><a name="12984">
+<dt>A red outline appears around the node, indicating it is selected; also, the name appears in the <strong>Current:</strong> field at the top of the Browser.</dt>
+</a><P><a name="12989">
+ <P><img src="11MotionBlending.anc16.gif"><p>
+</a></dl>
+<a name="12990">
+<em>Figure 11.16  &#32; &#32;Selecting the WalkGoofy skeleton
+</em></a><P>
+<a name="12998">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> on the Make Reference button.
+</STRONG>
+</a><P><dl><a name="12999">
+<dt>This creates a reference pose object (basically a wire copy) of the skeleton in its current pose.</dt>
+</a><P></dl><a name="11580">
+<STRONG>	39.	 Minimize the Browser.
+</STRONG>
+</a><P>
+<a name="11058">
+<h3> Setting up the Third Channel</h3>
+</a><a name="13010">
+To have this reference visible when we animate the JogTurnLchannel, we need to select it in the <strong>Make Visible</strong> channel:<p>
+</a><P>
+<a name="11061">
+<STRONG>	40.	 <strong>(CLICK-M) </strong>on the third channel.
+</STRONG>
+</a><P><a name="11062">
+<STRONG>	41.	 <strong>(CLICK-L) </strong>on the Object field and choose the reference that was created:
+</STRONG>
+</a><P><a name="13031">
+ <P><img src="11MotionBlending.anc17.gif"><p>
+</a>
+<a name="13032">
+<em>Figure 11.17  &#32; &#32;Make the reference visible
+</em></a><P><a name="11064">
+<h3> Aligning the Second Motion with the Match Frame</h3>
+</a><a name="13038">
+Next, we need to find a frame in the second animation that matches the reference pose we just created.<p>
+</a><P>
+<a name="11065">
+<STRONG>	42.	 Deactivate the WalkGoofy channel.
+</STRONG>
+</a><P><dl><a name="13046">
+<dt>Put the cursor over it, highlighting the entire channel (curve and parent) and press the "a" hot key </dt>
+</a><P></dl><a name="11068">
+<STRONG>	43.	 Activate the JogTurnL channel.
+</STRONG>
+</a><P><a name="11069">
+<STRONG>	44.	 <strong>(DRAG-M) </strong>over the timeline to find a spot where its left leg is planted (you may have to adjust your camera again to see this):
+</STRONG>
+</a><P><dl><a name="11073">
+<dt>For our purposes, the foot plant at frame 63 is close enough. </dt>
+</a><P><a name="13108">
+ <P><img src="11MotionBlending.anc18.gif"><p>
+</a></dl>
+<a name="13109">
+<em>Figure 11.18  &#32; &#32;Left foot plant using the JogTurnL motion; reference pose in background
+</em></a><P><a name="13103">
+Now, we have to align this pose to the match frame we selected in the top channel by sliding the channel left.<p>
+</a><P>
+<a name="11076">
+<STRONG>	45.	 <strong>(CLICK-R) </strong>on the JogTurnL channel and use Slide to drag it to match up the cues.  
+</STRONG>
+</a><P><dl><a name="12414">
+<dt>Try to match up the pose third pose in the JogTurnL channel so that it lies on frame 69 (the WalkGoofy pose).</dt>
+</a><P><a name="13118">
+ <P><img src="11MotionBlending.anc19.gif"><p>
+</a></dl>
+<a name="13119">
+<em>Figure 11.19  &#32; &#32;Aligning the cues
+</em></a><P><a name="11087">
+<h3> Using Describe to Find Out about the Poses</h3>
+</a><a name="11106">
+Now that we have both poses available to us in the geo window we can describe the end point of the foot to see its current global coordinates. Before we can describe the reference pose's location, we need to turn its sensitivity on.<p>
+</a><P>
+<a name="11110">
+<STRONG>	46.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Sensitivity.
+</STRONG>
+</a><P><a name="11111">
+<STRONG>	47.	 <strong>(CLICK-L) </strong>on Reference-pose to make it sensitive. 
+</STRONG>
+</a><P><a name="11114">
+<STRONG>	48.	 Choose <strong>points</strong> on the element sensitivity menu.
+</STRONG>
+</a><P><a name="11116">
+<STRONG>	49.	 <strong>(SHIFT-L) </strong>on the end point of the left (planted) foot on the Reference-pose skeleton.
+</STRONG>
+</a><P><a name="11118">
+<STRONG>	50.	 <strong>(CLICK-L)</strong> on <strong>Describe</strong>.
+</STRONG>
+</a><P><dl><a name="11119">
+<dt>This will send the current location data to the shell you started the program in It will look like this:</dt>
+</a><P></dl><a name="11124">
+<code><pre>#&lt;BONE-NODE 5 (  11.97  -35.05  -16.91)&gt;<p>
+</code></pre></a><a name="11125">
+<code><pre>home:   11.968449, -35.04589, -16.905409<p>
+</code></pre></a><a name="11126">
+<code><pre>curr:   -5.63659, 1.0945396, 53.460068<p>
+</code></pre></a><a name="11127">
+<code><pre>dir0:   -0.10483258, 0.020356886, 0.9942815<p>
+</code></pre></a><a name="11128">
+<code><pre>dist0:  53.767536<p>
+</code></pre></a><a name="11129">
+<code><pre>home loc: 11.968449, -35.04589, -16.905409<p>
+</code></pre></a><a name="11130">
+<code><pre>objs:     ("Reference Pose")<p>
+</code></pre></a><dl><a name="11132">
+<dt>The end point of the left foot (planted foot) on JogTurnL will look like this: </dt>
+</a><P></dl><a name="11135">
+<code><pre>#&lt;BONE-NODE 5 (   9.69  -35.42  -21.41)&gt;<p>
+</code></pre></a><a name="11136">
+<code><pre>home:   9.690525, -35.4239, -21.410463<p>
+</code></pre></a><a name="11137">
+<code><pre>curr:   0.8046317, -3.554329, 122.16853<p>
+</code></pre></a><a name="11138">
+<code><pre>dir0:   0.006583316, -0.029080719, 0.99955547<p>
+</code></pre></a><a name="11139">
+<code><pre>dist0:  122.22287<p>
+</code></pre></a><a name="11140">
+<code><pre>home loc: 9.690525, -35.4239, -21.410463<p>
+</code></pre></a><a name="11141">
+<code><pre>objs:     ("WalkGoofy") {JogTurnL uses the same skeleton as WalkGoofy}<p>
+</code></pre></a><dl><a name="11143">
+<dt>Again, we are describing these points so that we can find the distance between the skeleton at the end of WalkGoofy and the skeleton at the beginning of JogTurnL.  We have matched the cues up on the timeline now we have to match the skeletons on the 3D plane. </dt>
+</a><P><a name="11148">
+<dt>In order to get the distances between the skeletons' left feet to use the offsets in the blending function, we have to do some math.</dt>
+</a><P><a name="11151">
+<dt>	If we subtract the curr: x &amp; z values of the JogTurnL pose from those of the WalkGoofy pose, we'll be able to move the JogTurnL skeleton so it's in the same place at the same time as the WalkGoofy skeleton.</dt>
+</a><P></dl>
+<ul><a name="11154">
+<li>x values:  -5.64 - (.80) = - 6.44
+</a></li><P><a name="11155">
+<li>	z values:   53.46 - 122.17  = - 68.71
+</a></li><P></ul><P><a name="11157">
+Keep those values handy...after we make changes to the WalkGoofy and JogTurnL channels we'll plug them in and animate.<p>
+</a><P><a name="11170">
+<h3> Changing the Blend Mode</h3>
+</a>
+<a name="12518">
+<STRONG>	51.	 <strong>(CLICK-M) </strong>on the Decomposed WalkGoofy channel (1st channel)
+</STRONG>
+</a><P><dl><a name="12527">
+<dt>Change the <strong>Mode </strong>to <strong>Blend</strong>, then <strong>(CLICK-L) </strong>on <strong>Do It</strong>.</dt>
+</a><P><a name="13151">
+ <P><img src="11MotionBlending.anc20.gif"><p>
+</a></dl>
+<a name="13152">
+<em>Figure 11.20  &#32; &#32;Change the Blend Type to Blend
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	The Spin Angle setting at the bottom of this window lets you adjust the direction in which the skeleton travels.  You only need to use this parameter when motion was capture along two different axes.</font></dd></dt></dl><P>
+
+<a name="11180">
+<STRONG>	52.	 <strong>(CLICK-M) </strong>on the JogTurnL channel.
+</STRONG>
+</a><P><dl><a name="11181">
+<dt>Change the mode to <strong>Blend</strong>.</dt>
+</a><P></dl><a name="11182">
+<STRONG>	53.	 <strong>(CLICK-L) </strong>on the box next to Blend Value.
+</STRONG>
+</a><P><dl><a name="12567">
+<dt>Change the value from Default to Dynamic. </dt>
+</a><P><a name="12578">
+<dt>This allows us to control the amount that JogTurnL poses effect the translations of the skeleton as it makes a smooth transition from WalkGoofy to JogTurnL.</dt>
+</a><P></dl><a name="11186">
+<STRONG>	54.	 Under Root Alignment change the Offset values from:
+</STRONG>
+</a><P><dl><a name="12573">
+<dt><code>0.0 0.0 0.0</code> </dt>
+</a><P><a name="12575">
+<dt>to </dt>
+</a><P><a name="11187">
+<dt><code>6.44 0.0 -68.71</code></dt>
+</a><P><a name="13172">
+ <P><img src="11MotionBlending.anc21.gif"><p>
+</a></dl>
+<a name="13173">
+<em>Figure 11.21  &#32; &#32;Changing the translation offset
+</em></a><P><dl><dl><a name="11188">
+<dt>By not offsetting the y value, we allow the system to interpolate root location and create a smoother blend.</dt>
+</a><P></dl></dl>
+<a name="11190">
+<STRONG>	55.	 <strong>(CLICK-L) </strong>on Do It.
+</STRONG>
+</a><P>
+<a name="11192">
+<h3> Adjust the Blend Curve</h3>
+</a><a name="11194">
+We need to adjust the blend curve to create a smooth transition. <p>
+</a><P>
+<a name="12495">
+<STRONG>	56.	 <strong>(CLICK-L)</strong> on the [BLEND-VALUE] curve channel under the the JogTurnL channel.
+</STRONG>
+</a><P><a name="12499">
+<STRONG>	57.	 Move your cursor over the channel until the now-time marker matches up with the end of the top channel.  
+</STRONG>
+</a><P><dl><a name="12507">
+<dt>We are going to make a cue in the curve here so make sure your cursor rests above the curve for the Blend Value. </dt>
+</a><P></dl><a name="11201">
+<STRONG>	58.	 Press the  "s" hot key  to insert a cue.
+</STRONG>
+</a><P>
+<a name="11204">
+Now we need to adjust the start value of the curve so that the first part of the curve has no effect on the above motion and the end part is completely controlling the skeletal motion. <p>
+</a><P>
+<a name="11208">
+<STRONG>	59.	 <strong>(CLICK-M) </strong>on the blend curve channel.
+</STRONG>
+</a><P><dl><a name="11209">
+<dt>Change the start value from 1.0 to 0.0</dt>
+</a><P><a name="13195">
+ <P><img src="11MotionBlending.anc22.gif"><p>
+</a></dl>
+<a name="13196">
+<em>Figure 11.22  &#32; &#32;Setting the start value for the curve channel
+</em></a><P>
+<a name="11210">
+<STRONG>	60.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="11211">
+<dt>If you <strong>(CLICK-L)</strong> over the blend curve, you will see a graphical representation of the curve and visualize how the JogTurnL eventually takes over.</dt>
+</a><P><a name="13207">
+ <P><img src="11MotionBlending.anc23.gif"><p>
+</a></dl>
+<a name="13208">
+<em>Figure 11.23  &#32; &#32;The second motion is blended in based on the shape of the ramp between the start of the second channel and the cue.
+</em></a><P><dl><dl><a name="13220">
+<dt>You can experiment with different curve types for different results, as explained in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl></dl><a name="11213">
+<h3> Animate!</h3>
+</a>
+<a name="11225">
+<STRONG>	61.	 Make sure both decomposed motion channels are activated, then <strong>(CLICK-L)</strong> on Animate in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="12465">
+<dt>Make sure that all the channels are active.  After you've seen the animation with the reference pose visible, you can deactivate that channel and re-animate.  Also, there are some adjustments that can be made to perfect the animation.</dt>
+</a><P></dl><a name="11229">
+<STRONG>	62.	 <strong>(CLICK-L)</strong> on the <strong>Playback</strong> button and see how smoothly the transition goes.
+</STRONG>
+</a><P><a name="13330">
+ <P><img src="11MotionBlending.anc24.gif"><p>
+</a>
+<a name="13331">
+<em>Figure 11.24  &#32; &#32;The motion blends smoothly 
+</em></a><P><a name="11231">
+<h3> Delete the Make Visible Channel</h3>
+</a><a name="13332">
+After you have successfully blended the two motions, you will no longer need the <strong>Make Visible</strong> reference-pose channel.  <p>
+</a><P>
+<a name="12471">
+<STRONG>	63.	 Move the cursor over the <strong>Make Visible</strong> reference-pose channel and press the "Shift-D" hot key.
+</STRONG>
+</a><P>
+<a name="13221">
+<h3> Save Your Work</h3>
+</a><a name="13334">
+Make sure to save your script, which contains your modified motion capture data. If you are working with Acclaim skeletons, you can also try adding a <strong>Write Acclaim Data</strong> channel to the script to write out a new single motion capture file from the two blended motions.<p>
+</a><P><a name="13333">
+<h3> Troubleshooting</h3>
+</a><a name="11235">
+<h4> Skeleton Spins</h4>
+</a><a name="13224">
+	If you experience the skeleton doing spins when it shouldn't be, you can change the blend mode from XYZ to Q-ROOT ONLY.  This might correct the gimbal lock, which is a sometime result of the way some motion is captured.<p>
+</a><P><a name="13244">
+<h4> Hesitation or Skip at the Blend</h4>
+</a><a name="13245">
+It's likely that your translation is slightly off. Try modifying the Offset value (the Z value in this case) in the second motion, or slide the second channel slightly to make it line up better.<p>
+</a><P><a name="12478">
+<h2><HR> Congratulations!</h2>
+</a><a name="12479">
+You've successfully blended two motions, going from a walk to a jog. This technique can be extended to blending other motion capture data files.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="10EditingMCData.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 21:17:40 -->
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<html><head><title>Dungeon Environment</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5Mountains.html">[Prev]</a> <a href="7Hand.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Dungeon Environment</h1>
+</a>
+<hr><p><a name="13964">
+<h4> In this chapter you'll learn how to use N-Geometry's extrude and bridge functions to create a dungeon environment complete with interconnected hallways.</h4>
+</a><a name="9046">
+ <P><img src="6Dungeon.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="14006">
+You'll learn how to:<p>
+</a><P><ul><a name="8410">
+<li>Extrude multiple faces along individual normals
+</a></li><P><a name="12972">
+<li>Bridge between parts of the same object
+</a></li><P><a name="13628">
+<li>Evert
+</a></li><P><a name="12978">
+<li>Normals (displaying)
+</a></li><P><a name="13631">
+<li>Rotating around a selected axis
+</a></li><P></ul><P><a name="11861">
+<h2><HR> Building a Dungeon</h2>
+</a>
+<a name="13029">
+<STRONG>	 1.	 Add a cube.
+</STRONG>
+</a><P><dl><a name="13578">
+<dt>Use <strong>GeoMenus&gt;File&gt;New Object&gt;Cube</strong>.</dt>
+</a><P></dl><a name="13030">
+<STRONG>	2.	 Collect the faces around the sides of the cube.
+</STRONG>
+</a><P><a name="13033">
+ <P><img src="6Dungeon.anc1.gif"><p>
+</a>
+<a name="12990">
+<em>Figure 6.1  &#32; &#32;Collect the faces around the sides of the cube
+</em></a><P>
+<a name="12984">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong>, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="12996">
+<dt>Note that each selected face moves out along its own normal.</dt>
+</a><P><a name="13039">
+ <P><img src="6Dungeon.anc2.gif"><p>
+</a></dl>
+<a name="13040">
+<em>Figure 6.2  &#32; &#32;Extrude the collected faces along their individual normals
+</em></a><P>
+<a name="13017">
+<STRONG>	4.	 <strong>(CTRL+SHIFT-L)</strong> on an open area of the N-Geometry window to make Extrude the default operation.
+</STRONG>
+</a><P><ul>
+<BR><a name="13001">
+<li><strong>(CTRL-L)</strong> on the N-Geometry window to use the default operation (now set to extrude) again. 
+</a><P><BR><a name="13047">
+<li>Extrude the collected faces four or five times until your object looks something like this:
+</a><P><a name="13063">
+ <P><img src="6Dungeon.anc3.gif"><p>
+</a></ul>
+
+<a name="13064">
+<em>Figure 6.3  &#32; &#32;Extrude the collected faces four or five times
+</em></a><P><a name="13069">
+Rather than make one long extrusion for our hallways, we want to create "blocks" that can be joined later by hallways<p>
+</a><P><a name="13058">
+<h2><HR> Joining the Hallways</h2>
+</a><a name="13071">
+We'll use the bridge operation to create a bridge or "tube" between two parts of the same object. We can use this command over and over to create an entire series of hallways.<p>
+</a><P>
+<a name="13076">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on a face along the side of one of the hallways.
+</STRONG>
+</a><P><a name="13104">
+ <P><img src="6Dungeon.anc4.gif"><p>
+</a>
+<a name="13105">
+<em>Figure 6.4  &#32; &#32;Pick a face for the end of one hallway
+</em></a><P>
+<a name="13091">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Bridge.
+</STRONG>
+</a><P><a name="13116">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the corresponding face on the next hallway over.
+</STRONG>
+</a><P><dl><a name="13117">
+<dt>This creates a bridge within the same body; the model's integrity as a single skin, however, is maintained.</dt>
+</a><P><a name="13127">
+ <P><img src="6Dungeon.anc5.gif"><p>
+</a></dl>
+<a name="13128">
+<em>Figure 6.5  &#32; &#32;Join the two hallways
+</em></a><P>
+<a name="13134">
+<STRONG>	8.	 Make bridge the default operation.
+</STRONG>
+</a><P><dl><a name="13137">
+<dt>Continue bridging corresponding faces between adjacent hallways.</dt>
+</a><P><a name="13142">
+<dt>When you're done, your model should look like <a href="6Dungeon.html#13157">Figure 6.6</a>; you might want to turn the shading on temporarily to see how this looks:</dt>
+</a><P><a name="13156">
+ <P><img src="6Dungeon.anc6.gif"><p>
+</a></dl>
+<a name="13157">
+<em>Figure 6.6  &#32; &#32;One level of the dungeon
+</em></a><P><a name="13141">
+<h2><HR> Everting the Geometry of a Body</h2>
+</a><a name="13171">
+When you build an object starting with a primitive like our dungeon, the normals are typically pointing "out;" however, since we are going to be inside of our environment, we want a quick and easy way to flip the direction of the normals on the body. The <strong>Evert</strong> command flips all the normals for the selected object.<p>
+</a><P>
+<a name="13122">
+<STRONG>	9.	 Turn shading for the dungeon off.
+</STRONG>
+</a><P><a name="13187">
+<STRONG>	10.	 <strong>(CLICK-R)</strong> on GeoMenus&gt;Object Display&gt;Normals and select the cube object from which our dungeon was pulled out.
+</STRONG>
+</a><P><a name="13194">
+ <P><img src="6Dungeon.anc7.gif"><p>
+</a>
+<a name="13195">
+<em>Figure 6.7  &#32; &#32;Displaying the normals for an object
+</em></a><P><dl><dl><a name="12975">
+<dt>The short red markers show the face normals for each face on our dungeon level. Note that they extend outward in one direction from the face.</dt>
+</a><P></dl></dl>
+<a name="13204">
+<STRONG>	11.	 Turn shading for the dungeon back on.
+</STRONG>
+</a><P><a name="13207">
+<STRONG>	12.	 Maneuver the camera around so that you're pointing straight down one of the main hallways of the dungeon.
+</STRONG>
+</a><P><a name="13213">
+ <P><img src="6Dungeon.anc8.gif"><p>
+</a>
+<a name="13214">
+<em>Figure 6.8  &#32; &#32;Align the camera so that you're looking down one of the long corridors
+</em></a><P><dl><dl><a name="13208">
+<dt>If you want, you can use the "z" hot key and truck the camera back out.</dt>
+</a><P></dl></dl>
+<a name="13201">
+<STRONG>	13.	 Now truck the camera back and forth until you're inside the dungeon.
+</STRONG>
+</a><P><dl><a name="13230">
+<dt>You may find that you're already inside the dungeon if you use the "z" hot key, in which case you won't need to reposition the camera.</dt>
+</a><P><a name="13257">
+ <P><img src="6Dungeon.anc9.gif"><p>
+</a></dl>
+<a name="13258">
+<em>Figure 6.9  &#32; &#32;Inside the dungeon
+</em></a><P><dl><dl><a name="13266">
+<dt>Because you're looking at the backs of some of the faces, you seem to be in an outside environment.</dt>
+</a><P></dl></dl>
+<a name="13235">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="13225">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on the dungeon.
+</STRONG>
+</a><P><a name="13262">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Evert.
+</STRONG>
+</a><P><dl><a name="13265">
+<dt>The geometry of the body is everted (its normals"flipped"). You should now be inside the dungeon:</dt>
+</a><P><a name="13290">
+ <P><img src="6Dungeon.anc10.gif"><p>
+</a></dl>
+<a name="13291">
+<em>Figure 6.10  &#32; &#32;The everted dungeon
+</em></a><P><dl><dl><a name="13228">
+<dt>If the dungeon itself is still selected, <strong>(CLICK-L)</strong> on none on the element sensitivity menu to deselect any objects for a better view.</dt>
+</a><P><a name="13303">
+<dt>Maneuver the camera up and down the hallways; they are completely joined.</dt>
+</a><P></dl></dl><a name="13304">
+<h2><HR> Adding a Door</h2>
+</a><a name="13305">
+While you may use such an environment in a game and use texture maps for detail you may still want to add a little geometry to your model.<p>
+</a><P><a name="13312">
+To add a door:<p>
+</a><P>
+<a name="13317">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on a face.
+</STRONG>
+</a><P><a name="13318">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="13319">
+<dt>Use the default amount of 2.0 units for the inset operation.</dt>
+</a><P><a name="13338">
+ <P><img src="6Dungeon.anc11.gif"><p>
+</a></dl>
+<a name="13339">
+<em>Figure 6.11  &#32; &#32;Inset a face where you want to create a door
+</em></a><P>
+<a name="13360">
+<STRONG>	19.	 <strong>(SHIFT-L)</strong> and <strong>(CLICK-M)</strong> on Axis Move&gt;Y.
+</STRONG>
+</a><P><dl><a name="13361">
+<dt>Just like you did in the mansion tutorial earlier on, move the doorway down so it's even with the floor.</dt>
+</a><P><a name="13368">
+ <P><img src="6Dungeon.anc12.gif"><p>
+</a></dl>
+<a name="13369">
+<em>Figure 6.12  &#32; &#32;Inset a face where you want to create a door
+</em></a><P>
+<a name="13356">
+<STRONG>	20.	 <strong>(SHIFT-L)</strong> and Extrude the face inward to create a room (into which the door will open.
+</STRONG>
+</a><P><a name="13349">
+ <P><img src="6Dungeon.anc13.gif"><p>
+</a>
+<a name="13350">
+<em>Figure 6.13  &#32; &#32;Extrude the inset face back into the wall
+</em></a><P>
+<a name="13316">
+<STRONG>	21.	 With the face still selected, <strong>(SHIFT-L).</strong>
+</STRONG>
+</a><P><a name="13395">
+<STRONG>	22.	 <strong>(CLICK-R)</strong> on Chip Off and name the chipped off body "door."
+</STRONG>
+</a><P><dl><a name="13390">
+<dt>This creates a chip the same size as the extruded "wall" and lets you move the chipped off face along its normal. This makes it easy to position the chipped off face as a door for the room. Move it out so that its almost flush from the opening:</dt>
+</a><P><a name="13421">
+ <P><img src="6Dungeon.anc14.gif"><p>
+</a></dl>
+<a name="13422">
+<em>Figure 6.14  &#32; &#32;Move the chipped off region back toward the hallway
+</em></a><P>
+<a name="13438">
+<STRONG>	23.	 <strong>(SHIFT-L)</strong> on the face and <strong>(CLICK-M)</strong> on Rotate.
+</STRONG>
+</a><P><a name="13444">
+<STRONG>	24.	 Choose Select a segment.
+</STRONG>
+</a><P><a name="13445">
+<STRONG>	25.	 Choose the segment along the edge of the chipped off region where the hinges would be:
+</STRONG>
+</a><P><a name="13453">
+ <P><img src="6Dungeon.anc15.gif"><p>
+</a>
+<a name="13454">
+<em>Figure 6.15  &#32; &#32;Rotate the door around the segment where the hinges would go
+</em></a><P><dl><dl><a name="13448">
+<dt>Move the mouse left and right to swing the door. </dt>
+</a><P><a name="13460">
+<dt>(Making the door a separate object makes it easier to animate in N-Dynamics.)</dt>
+</a><P></dl></dl><a name="13443">
+<h2><HR> Doubling your Real Estate</h2>
+</a><a name="13484">
+Now that you've built a complete level of your dungeon, why not add another level (or two)? Try this:<p>
+</a><P>
+<a name="13229">
+<STRONG>	26.	 Truck your camera backward so that you're looking down on top of the dungeon.
+</STRONG>
+</a><P><a name="13493">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the dungeon.
+</STRONG>
+</a><P><a name="13494">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on Evert to turn the dungeon back inside out.
+</STRONG>
+</a><P><a name="13496">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on faces in the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the face in the middle of the dungeon.
+</STRONG>
+</a><P><a name="13511">
+ <P><img src="6Dungeon.anc16.gif"><p>
+</a>
+<a name="13512">
+<em>Figure 6.16  &#32; &#32;Select the face at the top center of the dungeon
+</em></a><P>
+<a name="13520">
+<STRONG>	30.	 <strong>(SHIFT-L)</strong> on the face and <strong>(CLICK-L)</strong> on extrude.
+</STRONG>
+</a><P><a name="13532">
+ <P><img src="6Dungeon.anc17.gif"><p>
+</a>
+<a name="13533">
+<em>Figure 6.17  &#32; &#32;Extrude the face
+</em></a><P>
+<a name="13527">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the dungeon.
+</STRONG>
+</a><P><a name="13539">
+<STRONG>	32.	 <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><dl><a name="13542">
+<dt>Choose the face that you extruded in step <a href="6Dungeon.html#13520">30.</a></dt>
+</a><P><a name="13551">
+ <P><img src="6Dungeon.anc18.gif"><p>
+</a></dl>
+<a name="13552">
+<em>Figure 6.18  &#32; &#32;Mirroring is a powerful way to add geometry to a model
+</em></a><P><a name="13571">
+<h2><HR> Congratulations!</h2>
+</a><a name="13634">
+You've now learned the basic techniques required to create any environment that includes interconnected hallways. For a haunted house, a dungeon, or a space station, the technique would be the same.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5Mountains.html">[Prev]</a> <a href="7Hand.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 10:54:41 -->
+
+</body>
+</html>

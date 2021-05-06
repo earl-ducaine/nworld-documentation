@@ -1,0 +1,1968 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="DefForeignFunctions.html">[Prev]</a> <a href="IntroToN-Objects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="15861">
+The N&#183;World UI Toolkit contains all the tools you'll need to link your Lisp applications with the outside world. In this section, you'll learn how to:<p>
+</a><P><ul><a name="15862">
+<li>create menus in application windows and pop-up windows
+</a></li><P><a name="15863">
+<li>make fields for your menus
+</a></li><P><a name="15864">
+<li>link fields to Lisp data objects 
+</a></li><P><a name="20156">
+<li>manage the appearance of your menus
+</a></li><P><a name="20157">
+<li>program custom select methods to control how your menus behave
+</a></li><P></ul><P><a name="15865">
+<h2><HR> Types of Windows</h2>
+</a><a name="15866">
+Menus can be defined inside one of two types of windows: applications windows and pop-up windows. Each are basically similar, with the exception that applications windows have their own processes, and persist until explicitly destroyed. Pop-up windows, on the other hand, are temporary, and are destroyed when the user exits the menu.<p>
+</a><P><a name="15869">
+<h3> Applications Windows</h3>
+</a><a name="15870">
+Floating menus are defined inside of application windows. Application windows themselves are similar in most respects to normal X windows. <a href="CreatingMenus.html#15872">Figure 5.1</a> shows the anatomy of a typical application window.<p>
+</a><P><a name="15871">
+ <P><img src="CreatingMenus.anc.gif"><p>
+</a><a name="15872">
+<em>Figure 5.1  &#32; &#32;Basic components of an application window application window.
+</em></a><P><a name="15911">
+You might create menus inside of application windows when you want a menu to persist for longer period of time. Because they have their own process, users can interact with menus in application windows, move away to another task, and return to the menu at a later time. The Materials Editor is an example of a menu in an application window.<p>
+</a><P><a name="15912">
+Application windows can be made to have all the functional attributes of normal XWindows. You can specify which of these attributes a given window has. For example you determine whether a given window can be:<p>
+</a><P><ul><a name="15921">
+<li>Resized
+</a></li><P><a name="15922">
+<li>Moved
+</a></li><P><a name="15923">
+<li>Minimized or iconified
+</a></li><P><a name="15924">
+<li>Closed
+</a></li><P></ul><P><a name="15925">
+We'll describe how to define and create application windows later on in this section.<p>
+</a><P><a name="15904">
+<h3> Pop-up menus</h3>
+</a><a name="15910">
+When you want a less permanent menu, perhaps one which appears in response to a specific user action, use a pop-up menu. These menus are defined inside of pop-up windows. pop-up windows lack some of the control features of application windows, such as the window menu button, the minimize and the maximize button. However, most of the keystroke equivalents work the same way they do for application windows (e.g., <strong>ALT-F7</strong> to move,<strong> ALT-F9</strong> to minimize, etc.)<p>
+</a><P><a name="15929">
+ <P><img src="CreatingMenus.anc1.gif"><p>
+</a><a name="15930">
+<em>Figure 5.2  &#32; &#32;Anatomy of a pop-up window
+</em></a><P><a name="15941">
+The function which creates pop-up windows automatically carries out important formatting operations. The "Done" and "Abort" buttons are created by default. These buttons provide users with a method for exiting the menu. In addition, numerous formatting operations are carried out by default, including provisions for the label, and some important field-formatting functions.<p>
+</a><P><a name="21165">
+<h2><HR> Menu Object Hierarchy</h2>
+</a><a name="15951">
+The N&#183;World menu system is based on an object hierarchy. The top-level object in a given menu hierarchy is called the <em>root-field</em>. The root-field is equivalent to the window within which the menu is defined. All of the fields defined inside of the window are <em>contained</em> by the root-field. Fields contained by a higher-level object are said to be <em>sub-fields</em> of that field.<p>
+</a><P><a name="15955">
+Container-fields serve as containers for groups of other fields. They allow you to manipulate groups of fields at once by manipulating the container field. For example, when you move a container field, all the fields it contains are moved as well, but their positions relative to the origin of the container field are maintained. You can also use container fields to manage the visibility of groups of fields. The Materials Editor provides an excellent example of this. As users select different render domains in the Materials Editor, different groups of render-attribute fields appear in the bottom half of the window. <p>
+</a><P><a name="23338">
+Fields within a container field depend on each other according to a specific pattern. Fields below and to the right depend on fields above and to the left. This relationship determines how fields behave in response to certain reformatting commands.<p>
+</a><P><a name="21319">
+The bottom of the menu hierarchy is occupied by the fields with which the user interacts. <p>
+</a><P><a name="15974">
+ <P><img src="CreatingMenus.anc2.gif"><p>
+</a><a name="15975">
+<em>Figure 5.3  &#32; &#32;The N&#183;World menu object hierarchy
+</em></a><P><a name="15989">
+<h3> Creating Application Windows</h3>
+</a><a name="15990">
+Application windows are created using <code><a UI:MAKE-PORTABLE-WINDOW>UI:MAKE-PORTABLE-WINDOW</code>. The general pattern for creating an application window is outlined in the code segment below. Note that, in addition to defining the window, this general form contains provisions for:<p>
+</a><P><ul><a name="16203">
+<li>Including <code><a *standard-color-defaults*>*standard-color-defaults*</code>, a system variable which provides values for many important window attributes, including default colors, sizes, and fonts.
+</a></li><P><a name="16204">
+<li>Calling a function which defines fields for the window.
+</a></li><P><a name="16207">
+<li>Calling a function which makes the newly defined window visible.
+</a></li><P><a name="15991">
+ <P><img src="CreatingMenus.anc3.gif"><p>
+</a></ul><P><a name="16064">
+<code>ui:make-portable-window</code> instantiates a window object. The initial arguments to this function are it's width and height (in pixels) and it's X and Y position relative to the upper left corner of the screen.<p>
+</a><P><a name="16065">
+The other characteristics of the window are controlled with keyword arguments. In the above example, the title of the window "An Empty Window", is defined with the <code>:label</code> keyword. When the window is minimized, the icon will have the label "EmpWin", as specified with the <code>:icon-label</code> keyword (<a href="CreatingMenus.html#16079">Figure 5.4</a>). You can also specify an image for the icon with the <code>:icon-filename</code> option.<p>
+</a><P><a name="16078">
+ <P><img src="CreatingMenus.anc4.gif"><p>
+</a><a name="16079">
+<em>Figure 5.4  &#32; &#32;The empty window icon
+</em></a><P><a name="16195">
+<h4> Application Window field properties</h4>
+</a><a name="16308">
+<a href="CreatingMenus.html#16308">Table 5.1</a> describes some of the more common keyword arguments to <code>ui:make-portable-window</code> 
+<P><Table Border="1">
+<dl>
+<a name="16087">
+<em>Table 5.1 <strong></strong> &#32; &#32;Keyword arguments to ui:make-portable-window.
+</em></a></dl>
+<tr><th align="left"><a name="16093">
+Parameter
+</a><th align="left"><a name="16095">
+Arguments/Options
+</a><th align="left"><a name="16097">
+Description
+</a>
+<tr><td valign="top"><a name="16099">
+ :resizeable<p>
+</a><td valign="top"><a name="16101">
+ <code>t</code> or <code>nil</code><p>
+</a><td valign="top"><a name="16103">
+ If t, user can resize or maximize window. Otherwise, window size is static.<p>
+</a>
+<tr><td valign="top"><a name="16111">
+ :label<p>
+</a><td valign="top"><a name="16113">
+ "string"<p>
+</a><td valign="top"><a name="16115">
+ The text which appears in the window title bar.<p>
+</a>
+<tr><td valign="top"><a name="16117">
+ :initial-state<p>
+</a><td valign="top"><a name="16119">
+ <code>:icon</code> or <code>nil</code><p>
+</a><td valign="top"><a name="16121">
+ if :icon, then the window will initially appear iconified. If nil, then it will appear in it's default size and position.<p>
+</a>
+<tr><td valign="top"><a name="16123">
+ :symbol-for-window<p>
+</a><td valign="top"><a name="16125">
+ 'symbolname<p>
+</a><td valign="top"><a name="16127">
+ A symbol to use to refer to the window. Makes the window known to the config line.<p>
+</a>
+<tr><td valign="top"><a name="16129">
+ :resize-handler<p>
+</a><td valign="top"><a name="16131">
+ 'functionname<p>
+</a><td valign="top"><a name="16133">
+ A function, invoked when window is resized.<p>
+</a>
+<tr><td valign="top"><a name="16141">
+ :icon-label<p>
+</a><td valign="top"><a name="16143">
+ "string"<p>
+</a><td valign="top"><a name="16145">
+ Label for icon when window is iconified<p>
+</a>
+<tr><td valign="top"><a name="16153">
+ :icon-filename<p>
+</a><td valign="top"><a name="16155">
+ filename<p>
+</a><td valign="top"><a name="16157">
+ Icon image filename.<p>
+</a>
+<tr><td valign="top"><a name="16159">
+ :application<p>
+</a><td valign="top"><a name="16161">
+ applicationobject<p>
+</a><td valign="top"><a name="16163">
+ Associates window with a particular application object. Necessary to make window killable.<p>
+</a>
+<tr><td valign="top"><a name="16165">
+ :process<p>
+</a><td valign="top"><a name="16167">
+ processname<p>
+</a><td valign="top"><a name="16169">
+ A Lisp process to associate with the window.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="16200">
+<h3> Defining Pop-up Windows</h3>
+</a><a name="16194">
+The generalized form for defining pop-up windows , summarized in the code segment below, contains provisions for:<p>
+</a><P><ul><a name="16228">
+<li>Including <code>*standard-color-defaults*</code>, a system variable which provides values for many important window attributes.
+</a></li><P><a name="16229">
+<li>Calling a function which defines fields for the window.
+</a></li><P><a name="16215">
+<li>Calling a function which makes the newly defined window visible
+</a></li><P><a name="16233">
+<li>Responding to a <strong>(click-l)</strong> on the "Done" or "Abort" buttons. 
+</a></li><P><a name="16234">
+<li>Managing variables returned by the menu.
+</a></li><P><a name="16306">
+<li>Binding the window to the <code>ui:*root*</code> variable.
+</a></li><P><a name="23368">
+ <P><img src="CreatingMenus.anc5.gif"><p>
+</a></ul><P><a name="16187">
+<h4> Pop-up Window field properties</h4>
+</a><a name="16312">
+There are significantly fewer field properties for pop-up windows than for application windows.  
+<P><Table Border="1">
+<dl>
+<a name="23408">
+<em>Table 5.2  &#32; &#32;Pop-up window field properties
+</em></a></dl>
+<tr><th align="left"><a name="23414">
+Parameter
+</a><th align="left"><a name="23416">
+Options/Arguments
+</a><th align="left"><a name="23418">
+Description
+</a>
+<tr><td valign="top"><a name="23420">
+ :selected-field<p>
+</a><td valign="top"><a name="23422">
+ field-id<p>
+</a><td valign="top"><a name="23424">
+ The specified field is automatically selected when the menu is drawn<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="23369">
+<h4> Example</h4>
+</a><a name="23372">
+The file /usr/local/ngc/demo/src/ui-example.lisp contains a function, user:pop-up-example, which creates the pop-up menu shown in <a href="CreatingMenus.html#23377">Figure 5.5</a>.<p>
+</a><P><a name="23376">
+ <P><img src="CreatingMenus.anc6.gif"><p>
+</a><a name="23377">
+<em>Figure 5.5  &#32; &#32;The pop-up menu created with user:pop-up-example.
+</em></a><P><a name="23401">
+If you were to <strong>(CLICK-L)</strong> on Done with the menu in this configuration, the function would return "initial-text", the value of the first field.<p>
+</a><P><a name="16313">
+<h2><HR> General Window field properties</h2>
+</a><a name="16307">
+<h4> Using Defaults to Control Window Appearance</h4>
+</a><a name="16062">
+Lisp needs to know a few things about how a window should look before it can be created. Appearance attributes include background color, the color of the title bars, etc. You have the option of specifying all of these variables yourself, or you can use default values provided by the system. Using defaults provides a consistent look and feel to your menus, and also saves a lot of work defining window appearance attributes.<p>
+</a><P><a name="23998">
+You instruct windows to use predefined system defaults by enclosing your window definitions within a <code>UI:WITH-DEFAULTS</code> form:<p>
+</a><P><a name="23999">
+<code><pre>(<a UI:WITH-DEFAULTS defaults-symbol &BODY body>UI:WITH-DEFAULTS defaults-symbol<em> </em>&amp;BODY body)<p>
+</code></pre></a><a name="16472">
+Failure to enclose your window definitions within a <code>ui:with-defaults</code> form usually results in an error, or produces unpredictable results. Although there are several default variables, <code>ui:*standard-color-defaults*</code> contains enough parameters for most of your menu definition needs.<p>
+</a><P><a name="20957">
+<h3> Adding Fields to Applications Windows</h3>
+</a><a name="20958">
+Generally, you define your fields in a separate function from your window definitions. The generalized form which appears in the code segment below contains provisions for:<p>
+</a><P><ul><a name="17226">
+<li>Using standard system defaults for appearance attributes.
+</a></li><P><a name="17227">
+<li>Binding the list of defined fields to a variable.
+</a></li><P><a name="17228">
+<li>Making defined fields subfields of a window.
+</a></li><P><a name="17229">
+<li>Redrawing the root-field to make fields visible to the user.
+</a></li><P><a name="16798">
+ <P><img src="CreatingMenus.anc7.gif"><p>
+</a></ul><P><a name="17234">
+<h3> How Fields Work</h3>
+</a><a name="17235">
+Each class of field has a select-field method and a draw-field method defined on it. The select-field method defines an operation which is executed when the user clicks on the field. The draw-field method is called whenever the field draws itself, such as when a window is created or refreshed. Although default methods are provided for all field classes (with the exception of object fields) you can define your own draw-field and select-field methods.<p>
+</a><P><a name="21463">
+<h4> Expose Tests</h4>
+</a><a name="24760">
+You can make fields visible in certain situations with expose-tests. An expose test is a function which evaluates to t or NIL. When a fields expose-test evaluates to t, then it is drawn. If the expose test evaluates to NIL, then the field is invisible. Expose-tests are evaluated each time a window is refreshed, or when a container field is reformatted. Usually, expose-tests depend on other fields in the menu (for example, "show this field when the field above it is set to 'yes'").<p>
+</a><P><a name="21468">
+When a menu is first invoked, the window itself is drawn. Next, any expose-tests which have been defined for fields within the menu are evaluated. Fields which pass their expose-tests are then drawn on the menu according the their draw-field methods. By default, the draw-field method produces the field itself, it's label, and, if one is defined, inserts the field-value in the field.<p>
+</a><P><a name="21470">
+<h4> Fields and Data</h4>
+</a><a name="21472">
+Fields are connected to Lisp data via an intermediary called the <em>value-object</em>. When a field is drawn, the value displayed in the field is obtained from the value-object. Conversely, if a Lisp data changes, the value-object is automatically updated. However, the field must be redrawn, and it's value derived again from the value object before the change will be visible to the user.<p>
+</a><P><a name="17258">
+ <P><img src="CreatingMenus.anc8.gif"><p>
+</a><a name="17259">
+<em>Figure 5.6  &#32; &#32;Path of data between Lisp and fields
+</em></a><P><a name="17260">
+Generally, methods for updating the value-object and the field-value are defined when the field itself is defined. You'll learn more about defining and using value-objects later in this chapter.<p>
+</a><P><a name="16480">
+<h3> Field Types</h3>
+</a><a name="17279">
+There is a wide variety of field-types you can choose from when building your menus. <a href="CreatingMenus.html#17283">Figure 5.7</a> illustrates what these different types of fields look like.<p>
+</a><P><a name="17282">
+ <P><img src="CreatingMenus.anc9.gif"><p>
+</a><a name="17283">
+<em>Figure 5.7  &#32; &#32;N&#183;World field types
+</em></a><P><a name="17297">
+The generalized form for defining a field, which appears in the code segment below, contains provisions for:<p>
+</a><P><ul><a name="17298">
+<li>Defining the field type
+</a></li><P><a name="17299">
+<li>Defining field properties
+</a></li><P><a name="17303">
+<code><pre>(UI:MAKE-FIELD-FUNCTION <em>field-properties</em>)<p>
+</code></pre></a></ul><P><a name="17306">
+<h3> Field Properties</h3>
+</a><a name="17309">
+Although there are many different types of fields, all fields share several important properties. Field properties are defined in the <em>plist</em> (property list) section of a feld definition. Most of these are specified by keyword arguments when the field itself is defined. With certain exceptions, their values are stored in slots in each field instance. <a href="CreatingMenus.html#17309">Table 5.3</a> summarizes these shared parameters. 
+<P><Table Border="1">
+<dl>
+<a name="17774">
+<em>Table 5.3  &#32; &#32;Shared field field properties
+</em></a></dl>
+<tr><th align="left"><a name="17780">
+Keyword
+</a><th align="left"><a name="17782">
+Options/Arguments
+</a><th align="left"><a name="17784">
+Description
+</a>
+<tr><td valign="top"><a name="17864">
+ :width<p>
+</a><td valign="top"><a name="17866">
+ integer<p>
+</a><td valign="top"><a name="17868">
+ Controls width of field (in pixels)<p>
+</a>
+<tr><td valign="top"><a name="17858">
+ :height<p>
+</a><td valign="top"><a name="17860">
+ integer<p>
+</a><td valign="top"><a name="17862">
+ Controls height of field (in pixels)<p>
+</a>
+<tr><td valign="top"><a name="17786">
+ :value-object<p>
+</a><td valign="top"><a name="17788">
+ <em>variable-name</em><p>
+</a><td valign="top"><a name="17790">
+ Interface between a fields value and Lisp data.<p>
+</a>
+<tr><td valign="top"><a name="17792">
+ :expose-test<p>
+</a><td valign="top"><a name="17794">
+ <em>function, lambda</em><p>
+</a><td valign="top"><a name="17796">
+ If function or lambda returns t, the field is displayed. Otherwise, it is hidden.<p>
+</a>
+<tr><td valign="top"><a name="17798">
+ :draw-method<p>
+</a><td valign="top"><a name="17800">
+ <em>method</em><p>
+</a><td valign="top"><a name="17802">
+ Method you define which is called instead of the default draw-field method for a field type.<p>
+</a>
+<tr><td valign="top"><a name="17804">
+ :select-method<p>
+</a><td valign="top"><a name="17806">
+ <em>method</em><p>
+</a><td valign="top"><a name="21499">
+ Method you define which is called instead of the default select-field method for a field type.<p>
+</a>
+<tr><td valign="top"><a name="17810">
+ :foreground-gc<p>
+</a><td valign="top"><a name="17812">
+ <em>gc</em> (includes color and font data)<p>
+</a><td valign="top"><a name="17814">
+ Determines color of objects in foreground of field (e.g. text).<p>
+</a>
+<tr><td valign="top"><a name="17816">
+ :background-gc<p>
+</a><td valign="top"><a name="17818">
+ <em>gc</em> (includes color and font data)<p>
+</a><td valign="top"><a name="17820">
+ Determines color of objects in background of field.<p>
+</a>
+<tr><td valign="top"><a name="17822">
+ :decorations<p>
+</a><td valign="top"><a name="17824">
+ <em>decorations</em> &amp; <em>options</em><p>
+</a><td valign="top"><a name="17826">
+ Tools for enhancing fields appearance, such as dropshadows. etc.<p>
+</a>
+<tr><td valign="top"><a name="17828">
+ :id<p>
+</a><td valign="top"><a name="17830">
+ <em>id-value</em><p>
+</a><td valign="top"><a name="17832">
+ A handle for the field.<p>
+</a>
+<tr><td valign="top"><a name="17834">
+ :documentation-string<p>
+</a><td valign="top"><a name="17836">
+ <em>string</em><p>
+</a><td valign="top"><a name="17838">
+ A text string, automatically printed on the mouse documentation line when the cursor is over a field.<p>
+</a>
+<tr><td valign="top"><a name="17840">
+ :outer-label<p>
+</a><td valign="top"><a name="17842">
+ string<p>
+</a><td valign="top"><a name="17844">
+ Label for field in menu.<p>
+</a>
+<tr><td valign="top"><a name="17846">
+ :property-list<p>
+</a><td valign="top"><a name="17848">
+ properties<p>
+</a><td valign="top"><a name="17850">
+ A place to put unique data<p>
+</a>
+<tr><td valign="top"><a name="18109">
+ :reformat-on-select<p>
+</a><td valign="top"><a name="18111">
+ t or nil<p>
+</a><td valign="top"><a name="18113">
+ Determines whether field will redraw fields below and to the left on selection.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="17413">
+<a href="CreatingMenus.html#17886">Figure 5.8</a> shows how some of these parameters relate to visible field attributes for a typical field.<p>
+</a><P><a name="17885">
+ <P><img src="CreatingMenus.anc10.gif"><p>
+</a><a name="17886">
+<em>Figure 5.8  &#32; &#32;Appearance parameters of fields
+</em></a><P><a name="17884">
+<h3> Mouse Documentation</h3>
+</a><a name="21930">
+All fields have default documentation, which appears on the mouse-doc line when the cursor passes over a field. If you choose, you can change this documentation to suit your specific needs. Specify your own documentation with the <code>:documentation</code> keyword, e.g.:<p>
+</a><P><a name="23772">
+<code><pre>		:documentation "Expansive, clear instructions..."<p>
+</code></pre></a><a name="21929">
+<h2><HR> Defining Fields</h2>
+</a><a name="17445">
+This section details how to create each of the field types illustrated in <a href="CreatingMenus.html#17283">Figure 5.7</a>. Many of the details involved in creating fields, such as creating value-objects and defining graphics-contexts are described in the following section.<p>
+</a><P><a name="17450">
+<h3> Container Fields</h3>
+</a><a name="17451">
+Container fields provide an easy way to format groups of fields at one time. You can use them control the orientation of menus (vertical or horizontal), as well as the spacing of fields within a container field. Fields defined within a container field are said to be subfields of that container field.<p>
+</a><P><a name="21563">
+One of their most important functions is in managing the changing appearance of menus in response to user actions. Fields within a container field are arranged hierarchically: fields below are dependant on fields above, and fields to the left are dependant on field to the right. When a field with<code> reformat-on-select-p</code> is selected, all of it's dependant fields are redrawn, and the layout of the container field recomputed. During this process, any expose-test which dependant fields have are evaluated. If any fields appear or disappear as a result of this, the container field automatically recomputes its own layout to account for the change in the overall layout of the menu.<p>
+</a><P><a name="21562">
+Container fields also facilitate managing groups of fields with single operations. For example, you can move many fields from one place to another at once, with each field maintaining its relative position and size.<p>
+</a><P><a name="17452">
+<h4> Creating Container Fields</h4>
+</a><a name="17499">
+The <code>UI:MAKE-CONTAIN<a UI:MAKE-CONTAINER-FIELD>ER-FIELD</code> function is used to create container fields:<p>
+</a><P><a name="17500">
+<code><pre>(UI:MAKE-CONTAINER-FIELD <p>
+</code></pre></a><a name="17503">
+<code><pre>		(list<p>
+</code></pre></a><a name="21595">
+<code><pre>			(<em>subfield-definition</em>)<p>
+</code></pre></a><a name="17504">
+<code><pre>			(<em>subfield-definition</em>)<p>
+</code></pre></a><a name="17505">
+<code><pre>			(<em>subfield-definition</em>)<p>
+</code></pre></a><a name="21607">
+<code><pre>		<em>plist</em>)<p>
+</code></pre></a><a name="17453">
+<h4> Container Field Properties</h4>
+</a><a name="17508">
+In addition to the properties they share with other types of fields, container fields have several unique properties (<a href="CreatingMenus.html#17508">Table 5.4</a>). 
+<P><Table Border="1">
+<dl>
+<a name="17460">
+<em>Table 5.4  &#32; &#32; Container fields properties.
+</em></a></dl>
+<tr><th align="left"><a name="17466">
+Keyword
+</a><th align="left"><a name="17468">
+Options/Arguments
+</a><th align="left"><a name="17470">
+Description
+</a>
+<tr><td valign="top"><a name="17472">
+ :sizing<p>
+</a><td valign="top"><a name="17474">
+ :static :dynamic<p>
+</a><td valign="top"><a name="17476">
+ If :dynamic, field can be resized. If :static, field cannot change size.<p>
+</a>
+<tr><td valign="top"><a name="17478">
+ :orientation<p>
+</a><td valign="top"><a name="17480">
+ :horizontal :vertical<p>
+</a><td valign="top"><a name="17482">
+ Determines orientation of field.<p>
+</a>
+<tr><td valign="top"><a name="17490">
+ :equalize-label-sizes-p<p>
+</a><td valign="top"><a name="17492">
+ t or nil<p>
+</a><td valign="top"><a name="17494">
+ If t, left sides of all fields will line up vertically at a point just to the right of the end of the longest label.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="17412">
+<h3> Label Fields</h3>
+</a><a name="17524">
+Label fields are used to label regions of a menu. <p>
+</a><P><a name="24687">
+<h4> Creating Label Fields</h4>
+</a><a name="24691">
+Label fields are created with <code>UI:MAKE-LABEL-FIELD</code>:<p>
+</a><P><a name="24771">
+<code><pre><a UI:MAKE-LABEL-FIELD &REST plist>(UI:MAKE-LABEL-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="24792">
+<h4> Field properties 
+<P><Table Border="1">
+<dl>
+<a name="24775">
+<em>Table 5.5  &#32; &#32;Label field field properties
+</em></a></dl>
+<tr><th align="left"><a name="24781">
+Keyword
+</a><th align="left"><a name="24783">
+Options/Arguments
+</a><th align="left"><a name="24785">
+Description
+</a>
+<tr><td valign="top"><a name="24787">
+ :label<p>
+</a><td valign="top"><a name="24789">
+ string<p>
+</a><td valign="top"><a name="24791">
+ Text for the field label<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="24793">
+<h4> Example</h4>
+</a><a name="17536">
+The label field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with this form:<p>
+</a><P><a name="17540">
+<code><pre>(ui:make-label-field <p>
+</code></pre></a><a name="17542">
+<code><pre>		:foreground-gc (ui:make-gc (gi:make-rgb-color 0 0 0))<p>
+</code></pre></a><a name="17543">
+<code><pre>		:label "A label field")<p>
+</code></pre></a><a name="17587">
+<h3> Spacer Fields</h3>
+</a><a name="17592">
+Use spacer fields to create gaps between groups of menu items. You can control the height, width, foreground and background color, and fill-style of spacer fields.<p>
+</a><P><a name="17597">
+<h4> Creating Spacer Fields</h4>
+</a><a name="17598">
+Create spacer fields with <code>UI:MAKE-SPACER-FIELD</code>:<p>
+</a><P><a name="17599">
+<code><pre><code>(UI:MA<a UI:MAKE-SPACER-FIELDS &REST plist>KE-SPACER-FIELDS &amp;REST plist)</code><p>
+</code></pre></a><a name="17602">
+<h4> Field properties 
+<P><Table Border="1">
+<dl>
+<a name="21687">
+<em>Table 5.6  &#32; &#32;Spacer field field properties
+</em></a></dl>
+<tr><th align="left"><a name="21693">
+Keyword
+</a><th align="left"><a name="21695">
+Options/Arguments
+</a><th align="left"><a name="21697">
+Description
+</a>
+<tr><td valign="top"><a name="21699">
+ :spacer-style<p>
+</a><td valign="top"><a name="21701">
+ <p>
+</a><td valign="top"><a name="21703">
+ Determines whether the spacer can be filled with color or not.<p>
+</a>
+<tr><td valign="top"><a name="21719">
+ <p>
+</a><td valign="top"><a name="21721">
+ :filled<p>
+</a><td valign="top"><a name="21723">
+ Shows colors specifies with <br>background-gc<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="17649">
+<h4> Example</h4>
+</a><a name="17650">
+The spacer field in Figure 5.6 was created with the following form:<p>
+</a><P><a name="17659">
+<code><pre>				(ui:make-spacer-field <p>
+</code></pre></a><a name="17726">
+<code><pre>						:height 10  <p>
+</code></pre></a><a name="17661">
+<code><pre>						:background-gc (ui:make-gc (gi:make-rgb-color 1.0 1.0 1.0))<p>
+</code></pre></a><a name="17631">
+<h3> Number Fields</h3>
+</a><a name="17745">
+Use number fields when you want to accept numerical input. You can control the type of data entered by a user in this field, specifying any type or length of number.<p>
+</a><P><a name="17747">
+<h4> Creating Number Fields</h4>
+</a><a name="17634">
+Create number fields with <code>UI:MAKE-NUMBER-FIELD</code> to create number fields:<p>
+</a><P><a name="24081">
+<code><pre>(<a UI:MAKE-NUMBER-FIELD &REST plist &KEY incrementing multiple relative &REST allow-other-keys>UI:MAKE-NUMBER-FIELD &amp;REST plist &amp;KEY incrementing <br>				multiple relative<em> </em>&amp;REST allow-other-keys)<p>
+</code></pre></a><a name="24127">
+<h4> Field properties 
+<P><Table Border="1">
+<dl>
+<a name="24136">
+<em>Table 5.7  &#32; &#32;Number field properties
+</em></a></dl>
+<tr><th align="left"><a name="24142">
+Keyword
+</a><th align="left"><a name="24144">
+Options/Arguments
+</a><th align="left"><a name="24146">
+Description
+</a>
+<tr><td valign="top"><a name="24148">
+ :type<p>
+</a><td valign="top"><a name="24150">
+ :float, :integer<p>
+</a><td valign="top"><a name="24152">
+ The numeric type of the field value<p>
+</a>
+<tr><td valign="top"><a name="24154">
+ :min<p>
+</a><td valign="top"><a name="24156">
+ number<p>
+</a><td valign="top"><a name="24158">
+ The minimum field-value<p>
+</a>
+<tr><td valign="top"><a name="24160">
+ :max<p>
+</a><td valign="top"><a name="24162">
+ number<p>
+</a><td valign="top"><a name="24164">
+ The maximum field-value<p>
+</a>
+<tr><td valign="top"><a name="24166">
+ :precision<p>
+</a><td valign="top"><a name="24168">
+ number<p>
+</a><td valign="top"><a name="24170">
+ The decimal precision of the field-value (if it is of type :float).<p>
+</a>
+<tr><td valign="top"><a name="24172">
+ :numeric-type<p>
+</a><td valign="top"><a name="24174">
+ '(list)<p>
+</a><td valign="top"><a name="24176">
+ A list, specifying any or all of the above parameters, e.g. <p>
+</a><a name="24177">
+ :numeric-type '(float 1.0 3.0 2.0)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="17952">
+<h4> Examples</h4>
+</a><a name="17953">
+Numeric-type parameters are specified in a list. For example, to define a number field which accepted integers between 1 and 4, use this form:<p>
+</a><P><a name="17938">
+<code><pre>(ui:make-number-field <p>
+</code></pre></a><a name="17939">
+<code><pre>		:numeric-type '(integer 1 4)<p>
+</code></pre></a><a name="17944">
+<code><pre><em>		other field properties</em>)<p>
+</code></pre></a><a name="17947">
+To create a number field which accepted a double-precision float value between negative 1 and 1, use a form like:<p>
+</a><P><a name="17960">
+<code><pre>(ui:make-number-field<p>
+</code></pre></a><a name="17961">
+<code><pre>		:numeric-type '(float -1.0 1.0 2.0)<p>
+</code></pre></a><a name="17964">
+<code><pre>		<em>other field properties</em>)<p>
+</code></pre></a><a name="17643">
+The number field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with this form:<p>
+</a><P><a name="17644">
+<code><pre>(ui:make-number-field <p>
+</code></pre></a><a name="18020">
+<code><pre>		:outer-label " Number"<p>
+</code></pre></a><a name="17973">
+<code><pre>		:value-object (ui:make-variable '*a-number-var*)<p>
+</code></pre></a><a name="17974">
+<code><pre>		:reformat-on-select t<p>
+</code></pre></a><a name="17975">
+<code><pre>		:id 'number-field)<p>
+</code></pre></a><a name="18134">
+<h3> Text Fields</h3>
+</a><a name="18135">
+Text fields are intended for the entry and display of textual data. By default, text fields respond to mouse clicks in the following way:<p>
+</a><P><ul><a name="21878">
+<li><strong>(CLICK-L) </strong>in the field allows a user to edit the pathname from the insertion <br>point.
+</a></li><P><a name="21880">
+<li><strong>(CLICK-L) </strong>in the field clears the field value, and allows the user to enter a <br>new value.
+</a></li><P></ul><P><a name="18136">
+<h4> Creating Text Fields</h4>
+</a><a name="18137">
+Use <code>UI:MAKE-TEXT-FIELD </code>to create text fields:<p>
+</a><P><a name="18152">
+<code><pre><a UI:MAKE-TEXT-FIELD &REST plist>(UI:MAKE-TEXT-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="18138">
+<h4> Field Properties</h4>
+</a><a name="18160">
+Text fields have no unique field properties<p>
+</a><P><a name="18139">
+<h4> Example</h4>
+</a><a name="18143">
+The text field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with this form:<p>
+</a><P><a name="18186">
+<code><pre>(UI:MAKE-TEXT-FIELD<p>
+</code></pre></a><a name="18187">
+<code><pre>		:outer-label " Text"<p>
+</code></pre></a><a name="18188">
+<code><pre>		:value-object (ui:make-variable '*text-var*))<p>
+</code></pre></a><a name="18195">
+<h3> Pathname-String Fields</h3>
+</a><a name="18196">
+Pathname-string fields are used to return pathname strings. A pathname-string is a string representing a pathname, e.g. /usr/local/ngc/afile.foo. Pathname-string fields perform checking to ensure that their field-values are valid pathnames. <p>
+</a><P><a name="18257">
+ <P><img src="CreatingMenus.anc11.gif"><p>
+</a><a name="18215">
+<em>Figure 5.9  &#32; &#32;A pathname-string field
+</em></a><P><ul><a name="18217">
+<li><strong>(CLICK-L)</strong> in the field allows a user to edit the pathname from the insertion point.
+</a></li><P><a name="18218">
+<li><strong>(CLICK-M)</strong> in the field clears the field value, and allows the user to enter a new value.
+</a></li><P><a name="18222">
+<li><strong>(CLICK-R)</strong> brings up a dialog like the one shown in <a href="CreatingMenus.html#18228">Figure 5.10</a>, which offers several options to the user.
+</a></li><P></ul><P><a name="24828">
+<p>
+</a><P><a name="18226">
+ <P><img src="CreatingMenus.anc12.gif"><p>
+</a><a name="18228">
+<em>Figure 5.10  &#32; &#32;The choose directory menu
+</em></a><P><a name="18316">
+<h4> Creating Pathname Fields</h4>
+</a><a name="18230">
+Create pathname fields with <code>UI:MAKE-PATHNAME-STRING-FIELD:</code><p>
+</a><P><a name="18266">
+<code><pre><code>(<a UI:MAKE-PATHNAME-STRING-FIELD &REST plist>UI:MAKE-PATHNAME-STRING-FIELD </code>&amp;REST plist)<p>
+</code></pre></a><a name="18231">
+<h4> Field Properties</h4>
+</a><a name="18271">
+Pathname-string fields have no unique field properties.<p>
+</a><P><a name="18232">
+<h4> Example</h4>
+</a><a name="18236">
+The pathname-string field in <a href="CreatingMenus.html#18215">Figure 5.9</a> was created with the following form:<p>
+</a><P><a name="18237">
+<code><pre>(ui:make-pathname-string-field <p>
+</code></pre></a><a name="18238">
+<code><pre>		:width 300<p>
+</code></pre></a><a name="18239">
+<code><pre>		:outer-label " Pathname"<p>
+</code></pre></a><a name="18240">
+<code><pre>		:value-object (ui:make-variable '*example1-pathname*))<p>
+</code></pre></a><a name="18520">
+<h3> Directory Fields</h3>
+</a><a name="18521">
+Use directory fields to allow users to enter directories and perform searches for files using filters. <p>
+</a><P><a name="18530">
+ <P><img src="CreatingMenus.anc13.gif"><p>
+</a><a name="18531">
+<em>Figure 5.11  &#32; &#32;A directory field
+</em></a><P><ul><a name="18533">
+<li>A <strong>(CLICK-L)</strong> in the field allows a user to edit the pathname from the insertion point
+</a></li><P><a name="18534">
+<li>A<strong>(CLICK-M)</strong> in the field clears the field value, and allows the user to enter a new value.
+</a></li><P><a name="18538">
+<li>A <strong>(CLICK-R)</strong> brings up a dialog like the one shown in <a href="CreatingMenus.html#18591">Figure 5.12</a>, which offers several options to the user.
+</a></li><P></ul><P><a name="24829">
+<p>
+</a><P><a name="18543">
+ <P><img src="CreatingMenus.anc14.gif"><p>
+</a><a name="18591">
+<em>Figure 5.12  &#32; &#32;The file filter dialog box
+</em></a><P><a name="18596">
+<h4> Creating Directory Fields</h4>
+</a><a name="18611">
+Use <code>UI:MAKE-DIRECTORY-FIELD </code>to create directory fields:<p>
+</a><P><a name="18612">
+<code><pre>(<a UI:MAKE-DIRECTORY-FIELD &REST plist>UI:MAKE-DIRECTORY-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="18615">
+<h4> Field Properties</h4>
+</a><a name="21933">
+Directory fields have no special field properties.<p>
+</a><P><a name="18549">
+<h4> Examples</h4>
+</a><a name="18634">
+The directory field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with the following form:<p>
+</a><P><a name="18554">
+<code><pre>(UI:MAKE-DIRECTORY-FIELD									<p>
+</code></pre></a><a name="18555">
+<code><pre>		:outer-label " Directory"<p>
+</code></pre></a><a name="18556">
+<code><pre>		:width 150<p>
+</code></pre></a><a name="18557">
+<code><pre>		:value-object (ui:make-variable 'user:*default<br>							directory*))<p>
+</code></pre></a><a name="18644">
+<h3> File-name Fields</h3>
+</a><a name="18645">
+File-name fields allow users to enter filenames. <p>
+</a><P><a name="18680">
+ <P><img src="CreatingMenus.anc15.gif"><p>
+</a><a name="18684">
+<em>Figure 5.13 
+</em></a><P><ul><a name="18647">
+<li>A <strong>(CLICK-L)</strong> allows the user to edit the value of the field from the point of insertion.
+</a></li><P><a name="18648">
+<li>A<strong> (CLICK-M)</strong> in the field clears the field value, and allows the user to enter a new value.
+</a></li><P><a name="18649">
+<li>A <strong>(click-r)</strong> over a filename field products a pop-up menu of filenames for the user to choose from like the one in <a href="CreatingMenus.html#18659">Figure 5.14</a>, <em>but only if a :directory parameter is provided!!!</em>
+</a></li><P><a name="18657">
+ <P><img src="CreatingMenus.anc16.gif"><p>
+</a></ul><P><a name="18659">
+<em>Figure 5.14  &#32; &#32;Choose file pop-up menu
+</em></a><P><a name="18707">
+<h4> Creating Filename Fields</h4>
+</a><a name="18737">
+Use <code>UI:MAKE-FILE-NAME-FIELD</code> to create filename fields:<p>
+</a><P><a name="18753">
+<code><pre>(<a UI:MAKE-FILE-NAME-FIELD &REST plist>UI:MAKE-FILE-NAME-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="22002">
+<h4> Field Properties 
+<P><Table Border="1">
+<dl>
+<a name="22005">
+<em>Table 5.8  &#32; &#32;File-name field field properties
+</em></a></dl>
+<tr><th align="left"><a name="22011">
+Keyword
+</a><th align="left"><a name="22013">
+Options/Arguments
+</a><th align="left"><a name="22015">
+Description
+</a>
+<tr><td valign="top"><a name="22017">
+ :directory<p>
+</a><td valign="top"><a name="22019">
+ pathname<p>
+</a><td valign="top"><a name="22021">
+ Provides the directory listed by default in response to a <strong>(CLICK-R)</strong>. Usually the value-object of a nearby directory field.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="18747">
+<h4> Examples</h4>
+</a><a name="18668">
+To select a file from the directory "/usr/local/ngc/", use a form like:<p>
+</a><P><a name="18756">
+<code><pre>(ui:make-file-name-field<p>
+</code></pre></a><a name="18757">
+<code><pre>		:directory "/usr/local/ngc"<p>
+</code></pre></a><a name="18758">
+<code><pre>		other field properties)<p>
+</code></pre></a><a name="18744">
+The filename field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with the following form, which illustrates using a value-object as the :directory argument:<p>
+</a><P><a name="18669">
+<code><pre>(ui:make-file-name-field <p>
+</code></pre></a><a name="18670">
+<code><pre>		:outer-label " Filename"<p>
+</code></pre></a><a name="18671">
+<code><pre>		:directory (ui:make-variable '*example1-directory*)<p>
+</code></pre></a><a name="18672">
+<code><pre>		:value-object (ui:make-variable '*filename*)<p>
+</code></pre></a><a name="18673">
+<code><pre>		:width 300)<p>
+</code></pre></a><a name="18761">
+<h3> Command Fields</h3>
+</a><a name="18762">
+Command fields are button fields linked to functions called <em>select-methods</em>. The select-method is invoked when the button is pressed. The select-method itself may be in the form of a lambda list, a progn form, or a function defined outside of the field definition. By default, command fields are green.<p>
+</a><P><a name="18795">
+ <P><img src="CreatingMenus.anc17.gif"><p>
+</a><a name="18796">
+<em>Figure 5.15  &#32; &#32;A command field
+</em></a><P><a name="18763">
+<h4> Creating Command Fields</h4>
+</a><a name="18764">
+Create command fields with <code>UI:MAKE-COMMAND-FIELD</code>, which has the following general form:<p>
+</a><P><a name="18765">
+<code><pre>(<a UI:MAKE-COMMAND-FIELDS select-method &REST plist>UI:MAKE-COMMAND-FIELDS select-method &amp;REST plist)<p>
+</code></pre></a><a name="18767">
+The function definition can be a call to a predefined function, a lambda list, or a progn form containing several functions.<p>
+</a><P><a name="18772">
+<h4> Field Properties</h4>
+</a><a name="18818">
+Command fields have no unique field properties.<p>
+</a><P><a name="18817">
+<h4> Example</h4>
+</a><a name="18776">
+To create a command field which executes a #'lambda function, use a form like:<p>
+</a><P><a name="18820">
+<code><pre>(UI:MAKE-COMMAND-FIELD #'lambda (field mx my buttons)<p>
+</code></pre></a><a name="18821">
+<code><pre>								(<em>lambda definition</em>)<p>
+</code></pre></a><a name="18822">
+<code><pre><em>other field properties</em>)<p>
+</code></pre></a><a name="18819">
+The command field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with the following form:<p>
+</a><P><a name="18829">
+<code><pre>(UI:MAKE-COMMAND-FIELD <p>
+</code></pre></a><a name="18834">
+<code><pre>						'(progn (ui:draw-field *output-window*)<p>
+</code></pre></a><a name="18831">
+<code><pre>							(ui:make-visible *output-window*))<p>
+</code></pre></a><a name="18832">
+<code><pre>						:label "Execute command"))<p>
+</code></pre></a><a name="22052">
+When pressed, this button redraws and displays a window bound to *output-window*.<p>
+</a><P><a name="18961">
+<h3> Do It Fields</h3>
+</a><a name="18989">
+Do It fields are also special types of command fields with a predefined select-method. Do it fields are used only with pop-up menus. Pressing a Do It button returns the value <code>:exit</code> to the function which called the pop-up menu. <p>
+</a><P><a name="18990">
+By default, doit fields are labelled "Done", and are colored green.<p>
+</a><P><a name="18963">
+<h4> Creating Do it Fields</h4>
+</a><a name="18964">
+Create Do it fields with <code>UI:MAKE-DOIT-FIELD</code>:<p>
+</a><P><a name="18985">
+<code><pre>(<a UI:MAKE-DO-IT-FIELD &REST plist>UI:MAKE-DO-IT-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="18973">
+<h3> Abort Fields</h3>
+</a><a name="18974">
+Abort fields are special types of command fields with a predefined select-method. Pressing an abort button dismisses the pop-up menu, and returns the value <code>:abort</code> to the calling function.<p>
+</a><P><a name="18975">
+By default, abort fields are labelled "abort", and are colored red. <p>
+</a><P><a name="22074">
+<h4> Creating Abort Fields</h4>
+</a><a name="18977">
+Use <code>UI:MAKE-ABORT<a UI:MAKE-ABORT-FIELD>-FIELD </code>to create abort fields.<p>
+</a><P><a name="24252">
+<h4> Field Properties</h4>
+</a><a name="24253">
+Abort fields have no special properties.<p>
+</a><P><a name="19007">
+<h3> Slider Fields</h3>
+</a><a name="19008">
+Slider fields allow users to manipulate numeric values interactively by clicking on and dragging a slider. <p>
+</a><P><a name="19025">
+ <P><img src="CreatingMenus.anc18.gif"><p>
+</a><a name="19027">
+<em>Figure 5.16  &#32; &#32;Slider field.
+</em></a><P><a name="19028">
+Dragging to the left decreases the value of the field, while dragging to the right increases the value of the slider. A left click within the slider itself sets the value of the field to that point.<p>
+</a><P><a name="19090">
+<h4> Creating Slider Fields</h4>
+</a><a name="19142">
+Use <code>UI:MAKE-SLIDER-FIELD</code> to create slider fields:<p>
+</a><P><a name="19147">
+<code><pre>(<a UI:MAKE-SLIDER-FIELD &REST plist>UI:MAKE-SLIDER-FIELD &amp;REST plist)<p>
+</code></pre></a><a name="19137">
+<h4> Field Properties</h4>
+</a><a name="19158">
+<a href="CreatingMenus.html#19158">Table 5.9</a> lists additional field properties for slider fields, while <a href="CreatingMenus.html#24813">Table 5.10</a> lists default values for several of these parameters. 
+<P><Table Border="1">
+<dl>
+<a name="19031">
+<em>Table 5.9  &#32; &#32;Slider field field properties
+</em></a></dl>
+<tr><th align="left"><a name="19037">
+Keyword
+</a><th align="left"><a name="19039">
+Options
+</a><th align="left"><a name="19041">
+Description
+</a>
+<tr><td colspan=1 rowspan=2><a name="19043">
+ :numeric type<p>
+</a><td valign="top"><a name="19045">
+ '(float min max precision)<p>
+</a><td valign="top"><a name="19047">
+ Allows float values, between min and max values. Precision determines number of decimal places.<p>
+</a>
+<tr><td valign="top"><a name="19051">
+ '(integer min max)<p>
+</a><td valign="top"><a name="19053">
+ Allows integer values.<p>
+</a>
+<tr><td valign="top"><a name="19055">
+ :min-value<p>
+</a><td valign="top"><a name="19057">
+ number<p>
+</a><td valign="top"><a name="19059">
+ Minimum value for field<p>
+</a>
+<tr><td valign="top"><a name="19061">
+ :max-value<p>
+</a><td valign="top"><a name="19063">
+ number<p>
+</a><td valign="top"><a name="19065">
+ Maximum value for field<p>
+</a>
+<tr><td valign="top"><a name="19067">
+ :display-value-width<p>
+</a><td valign="top"><a name="19069">
+ number<p>
+</a><td valign="top"><a name="19071">
+ Pixel width for value display section of field. Set to 0 for no value display.<p>
+</a>
+<tr><td valign="top"><a name="19073">
+ :pointer-up-function<p>
+</a><td valign="top"><a name="19075">
+ function<p>
+</a><td valign="top"><a name="19077">
+ Function executed when user releases mouse button and lets go of slider.<p>
+</a>
+<tr><td valign="top"><a name="19079">
+ :pointer-tracking-function<p>
+</a><td valign="top"><a name="19081">
+ function<p>
+</a><td valign="top"><a name="19083">
+ Function executed when slider is moved. Useful for showing results of slider move in real time.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="24813">
+<h4> Slider Field Defaults 
+<P><Table Border="1">
+<dl>
+<a name="24806">
+<em>Table 5.10  &#32; &#32;Slider field defaults
+</em></a></dl>
+<tr><th align="left"><a name="19098">
+Argument
+</a><th align="left"><a name="19100">
+Default
+</a>
+<tr><td valign="top"><a name="19102">
+ :numeric type<p>
+</a><td valign="top"><a name="19104">
+ float (double precision)<p>
+</a>
+<tr><td valign="top"><a name="19106">
+ :min-value<p>
+</a><td valign="top"><a name="19108">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="19110">
+ :max-value<p>
+</a><td valign="top"><a name="19112">
+ 1<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="19116">
+<h4> Examples</h4>
+</a><a name="19178">
+To create a slider which accepts float values between -1 and 1, with a precision of 4 decimal places, use a form like:<p>
+</a><P><a name="19179">
+<code><pre>(ui:make-slider-field <p>
+</code></pre></a><a name="19188">
+<code><pre>		:outer-label label-string<p>
+</code></pre></a><a name="19180">
+<code><pre>		:value-object (ui:make-variable 'var-name)<p>
+</code></pre></a><a name="19181">
+<code><pre>		:numeric-type '(float -1.0 1.0 4))<p>
+</code></pre></a><a name="19189">
+The slider field in <a href="CreatingMenus.html#17283">Figure 5.7</a> was created with the following form:<p>
+</a><P><a name="17616">
+<code><pre>(ui:make-slider-field <p>
+</code></pre></a><a name="19201">
+<code><pre>		:outer-label " Slider"<p>
+</code></pre></a><a name="19196">
+<code><pre>		:numeric-type '(float -1.0 1.0 3)<p>
+</code></pre></a><a name="19197">
+<code><pre>		:display-value-width 50<p>
+</code></pre></a><a name="19416">
+<code><pre>		:value-object (ui:make-variable '*slider-var*)<p>
+</code></pre></a><a name="19420">
+<h3> Multiple Choice Fields</h3>
+</a><a name="19421">
+Multiple choice fields are designed to present the user with a limited number of mutually exclusive choices. You might use this type of field to ask a user to choose one of a small number of options. For example, multiple choice fields are used in the Materials Editor to choose between render domain. <p>
+</a><P><a name="19428">
+ <P><img src="CreatingMenus.anc19.gif"><p>
+</a><a name="19430">
+<em>Figure 5.17  &#32; &#32;A multiple-choice field
+</em></a><P><a name="19431">
+The toggle-fields themselves are defined by a separate function within the form which defines the multiple choice field.<p>
+</a><P><a name="19432">
+<h4> Creating Multiple Choice Toggle Fields</h4>
+</a><a name="19433">
+Use <code><a UI:MAKE-MULTIPLE-CHOICE-FIELD>UI:MAKE-MULTIPLE-CHOICE-FIELD</code> to create multiple choice fields, and <code>UI:MAKE-TOGGLE-FIELD</code> to create toggle fields:<p>
+</a><P><a name="19434">
+<code><pre>(UI:MAKE-MULTIPLE-CHOICE-FIELD<p>
+</code></pre></a><a name="19435">
+<code><pre>		(list<p>
+</code></pre></a><a name="19436">
+<code><pre>			(<a UI:MAKE-TOGGLE-FIELD>UI:MAKE-TOGGLE-FIELD	<p>
+</code></pre></a><a name="19496">
+<code><pre>					:on-value :first  <p>
+</code></pre></a><a name="19437">
+<code><pre>					:label "label-string")<p>
+</code></pre></a><a name="19438">
+<code><pre>			(ui:make-toggle-field<p>
+</code></pre></a><a name="19497">
+<code><pre>					:on-value :second<p>
+</code></pre></a><a name="19439">
+<code><pre>					:label "label string")<p>
+</code></pre></a><a name="19440">
+<code><pre>			(<em>more toggle fields.....</em>))<p>
+</code></pre></a><a name="19442">
+<code><pre><em>other field properties</em>)<p>
+</code></pre></a><a name="21248">
+The toggle fields are subfields of the multiple-choice field. The :subfields keyword argument provides a shorthand for defining these subfields. For example, the following field definition is exactly equivalent to the one in the above example:<p>
+</a><P><a name="21262">
+<code><pre>(UI:MAKE-MULTIPLE-CHOICE-FIELD<p>
+</code></pre></a><a name="21263">
+<code><pre>		:subfields<p>
+</code></pre></a><a name="21264">
+<code><pre>			'((:on-value :first :label "label-string")<p>
+</code></pre></a><a name="21266">
+<code><pre>			  &#32;(:on-value :second :label "label-string)<p>
+</code></pre></a><a name="21267">
+<code><pre>			 &#32; &#32;(<em>more toggle fields</em>))<p>
+</code></pre></a><a name="21268">
+<code><pre>)<p>
+</code></pre></a><a name="19446">
+<h4> Subfield Field Properties</h4>
+</a><a name="19447">
+Multiple choice fields themselves do not have any special field properties, with the exception of the :subfields keyword argument. The subfields themselves have one unique parameter: 
+<P><Table Border="1">
+<dl>
+<a name="22157">
+<em>Table 5.11  &#32; &#32;Toggle-field field properties
+</em></a></dl>
+<tr><th align="left"><a name="22163">
+Keyword
+</a><th align="left"><a name="22165">
+Options/Arguments
+</a><th align="left"><a name="22167">
+Description
+</a>
+<tr><td valign="top"><a name="22169">
+ :on-value<p>
+</a><td valign="top"><a name="22171">
+ :keyword<p>
+</a><td valign="top"><a name="22173">
+ When the field-value and :on-value are equal, the field is highlighted, or "on"<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><ul><a name="22154">
+<li><code>:on-value</code> - a keyword. When the field-value and the :on-value are equal, the toggle-fields button will be highlighted (it will be "on").
+</a></li><P></ul><P><a name="19467">
+<h4> Examples</h4>
+</a><a name="19471">
+The multiple choice field in <a href="CreatingMenus.html#19430">Figure 5.17</a> was created with the following form:<p>
+</a><P><a name="19472">
+<code><pre>(UI:MAKE-MULTIPLE-CHOICE-FIELD<p>
+</code></pre></a><a name="19473">
+<code><pre>		(list<p>
+</code></pre></a><a name="19474">
+<code><pre>			(UI:MAKE-TOGGLE-FIELD				<p>
+</code></pre></a><a name="19509">
+<code><pre>					:on-value :first  <p>
+</code></pre></a><a name="19475">
+<code><pre>					:label "Toggle-field 1")<p>
+</code></pre></a><a name="19476">
+<code><pre>			(UI:MAKE-TOGGLE-FIELD<p>
+</code></pre></a><a name="19510">
+<code><pre>					:on-value :second <p>
+</code></pre></a><a name="19477">
+<code><pre>					:label "Toggle-field 2")<p>
+</code></pre></a><a name="19478">
+<code><pre>			)<p>
+</code></pre></a><a name="19479">
+<code><pre>:outer-label " Multiple-choice"<p>
+</code></pre></a><a name="19480">
+<code><pre>:documentation "Use this field to provide a limited number<br>						of choices"<p>
+</code></pre></a><a name="19481">
+<code><pre>:value-object (ui:make-variable 'multi-choice-var)<p>
+</code></pre></a><a name="23518">
+<code><pre>)<p>
+</code></pre></a><a name="23520">
+<h4> Pop-Up Fields</h4>
+</a><a name="23521">
+Pop-up fields provide users with a larger set of choices from which to choose.<p>
+</a><P><a name="19527">
+ <P><img src="CreatingMenus.anc20.gif"><p>
+</a><a name="19529">
+<em>Figure 5.18  &#32; &#32;A pop-up field
+</em></a><P><a name="19548">
+<h4> Creating Pop-up Fields</h4>
+</a><a name="19549">
+Create pop-up fields with the <code>UI:MAKE-POP-U</code><code>P-FIELD</code> function:<p>
+</a><P><a name="24278">
+<code><pre>(<a UI:MAKE-POP-UP-FIELD label item-list &REST plist>UI:MAKE-POP-UP-FIELD label item-list &amp;REST plist)<p>
+</code></pre></a><a name="24290">
+The item-list is a list of sub-field definitions. <p>
+</a><P><a name="24279">
+<h4> Field Properties</h4>
+</a><ul><a name="24280">
+<li><strong>label</strong> generates the text label which appears on the button in the pop-up menu. 
+</a></li><P><a name="19619">
+<li><strong>value</strong> accepts a single argument which describes the value of the button, e.g. :first.
+</a></li><P></ul><P><a name="19556">
+<h4> Example</h4>
+</a><a name="19560">
+The pop-up menu shown in <a href="CreatingMenus.html#19529">Figure 5.18</a> was generated with this form:<p>
+</a><P><a name="19561">
+<code><pre>(ui:make-pop-up-field " pop-up" <p>
+</code></pre></a><a name="19562">
+<code><pre>			'(("Item1" :value :one :documentation "Item 1")<p>
+</code></pre></a><a name="19563">
+<code><pre>			 ("Item2" :value :two :documentation "Item 1")<p>
+</code></pre></a><a name="19564">
+<code><pre>			 ("Item3" :value :three :documentation "Item 1"))<p>
+</code></pre></a><a name="19565">
+<code><pre>		:outer-label " pop-up"<p>
+</code></pre></a><a name="19566">
+<code><pre>		:width 50<p>
+</code></pre></a><a name="19567">
+<code><pre>		:value-object (ui:make-variable 'pop-up-var))<p>
+</code></pre></a><a name="19631">
+<h4> Object Fields</h4>
+</a><a name="19642">
+Object fields are similar to text fields, except that they have no default select- method. Therefore, if anything is to happen when a user selects an object field you must define a select-field method. Typical uses of object fields include holding printed representations of objects which cannot otherwise be displayed, or holding values you do not wish users to edit directly.<p>
+</a><P><a name="19635">
+<h4> field properties</h4>
+</a><a name="19636">
+Object fields have no unique field properties.<p>
+</a><P><a name="19637">
+<h4> Creating Object Fields</h4>
+</a><a name="19654">
+Use the <code><a UI:MAKE-OBJECT-FIELD>UI:MAKE-OBJECT-FIELD</code> function to create object fields:<p>
+</a><P><a name="19655">
+<code><pre>(ui:make-object-field &amp;REST plist)<p>
+</code></pre></a><a name="19638">
+<h4> Example</h4>
+</a><a name="19658">
+See /usr/local/ngc/demo/src/ui-examples.lisp for an example of creating an object field with a select-method.<p>
+</a><P><a name="19665">
+<h4> Color Fields</h4>
+</a><a name="19666">
+Color fields are special fields used to select colors interactively. The color field shows the selected color to the right of its label.<p>
+</a><P><a name="19674">
+ <P><img src="CreatingMenus.anc21.gif"><p>
+</a><a name="19676">
+<em>Figure 5.19  &#32; &#32;A color field
+</em></a><P><a name="19714">
+A <strong>(click-L)</strong> on the currently selected color produces an interactive color palette. <p>
+</a><P><a name="19730">
+Users can select a predefined color from this palette, or <strong>(click-l)</strong> on the bottom portion of the menu to define custom colors interactively using sliders (<a href="CreatingMenus.html#19727">Figure 5.20</a>).<p>
+</a><P><a name="19721">
+ <P><img src="CreatingMenus.anc22.gif"><p>
+</a><a name="19727">
+<em>Figure 5.20  &#32; &#32;Custom Color Menu
+</em></a><P><a name="19677">
+<h4> Creating Color Fields</h4>
+</a><a name="19678">
+Use <code><a UI:MAKE-COLOR-FIELD>UI:MAKE-COLOR-FIELD</code> to create a color field. <p>
+</a><P><a name="19679">
+<code><pre>(ui:make-color-field &amp;REST plist &amp;KEY dynamic sensitive)<p>
+</code></pre></a><a name="19693">
+<h4> Field Properties</h4>
+</a><a name="19737">
+Color fields have no unique field properties. However, you must take care that the value-object of a color field is a color. See <a href="CreatingMenus.html#20806">"Colors," on page &#32;5-27</a> for more information on creating color variables.<p>
+</a><P><a name="19736">
+<h4> Example</h4>
+</a><a name="19697">
+The color field in <a href="CreatingMenus.html#19676">Figure 5.19</a> was created with this form:<p>
+</a><P><a name="19861">
+<code><pre>(ui:make-color-field :outer-label " Color")<p>
+</code></pre></a><a name="20806">
+<h2><HR> Colors</h2>
+</a><a name="20807">
+The function <code>GI:MAKE-RG</code><code>B-COLOR</code> defines rgb colors that you can use in your menus. This function accepts three arguments, which are saturation values for red, green, and blue respectively. These values must be in the range 0 - 1. For example, the form:<p>
+</a><P><a name="20808">
+<code><pre>(<a GI:MAKE-RGB-COLOR>GI:MAKE-RGB-COLOR 0.0 0.0 0.0)<p>
+</code></pre></a><a name="20809">
+creates a color with no red, green, or blue components (which is of course black), while <p>
+</a><P><a name="22481">
+<code><pre>(GI:MAKE-RGB-COLOR 1.0 1.0 1.0)<p>
+</code></pre></a><a name="22482">
+creates a color with complete red, green, and blue saturation (which is of course white).<p>
+</a><P><a name="20810">
+<h2><HR> Graphic Contexts</h2>
+</a><a name="22487">
+A graphic context (GC) is an object which contains color and font information. Contexts are used to define the appearance of fields in windows. You create a GC with the <code>UI:MAK</code><code>E-GC</code> function. You can specify arguments to this function to control the various attributes of the GC. For example, to create a GC with default font values, but with color set to black, use a form like:<p>
+</a><P><a name="20811">
+<code><pre>(<a UI:MAKE-GC>UI:MAKE-GC(GI:MAKE-RGB-COLOR 0.0 0.0 0.0))<p>
+</code></pre></a><a name="20804">
+<h2><HR> Value-Objects</h2>
+</a><a name="19949">
+In most cases, field-values are stored in a special objects called <em>value-objects</em>. Value-objects are constructed from variables. They have a current value, and a slot which stores an <em>initial-value</em>. You can reset the current value of a value object to its initial value, which has the effect of negating any changes to the value object. This facilitates tracking changes to field-values made by users and allowing for aborting from menus without changing the value of any value-objects.<p>
+</a><P><a name="19874">
+You can construct value-objects using the <code>UI:MAKE-VARIABLE</code> function:<p>
+</a><P><a name="19875">
+<code><pre>(<a UI:MAKE-VARIABLE>UI:MAKE-VARIABLE symbol)<p>
+</code></pre></a><a name="19876">
+For example, to create a value-object from a variable:<p>
+</a><P>
+<a name="19877">
+<STRONG>	 1.	 Bind a value to a variable
+</STRONG>
+</a><P><a name="19878">
+<code><pre>USER(67): (setf foo "This is the value of foo")<p>
+</code></pre></a><a name="19879">
+<code><pre>"This is the value of foo"<p>
+</code></pre></a><a name="19880">
+<STRONG>	2.	 Use ui:make-variable to create a named-value using the variable.
+</STRONG>
+</a><P><a name="19881">
+<code><pre>USER(68): (setf named-value (ui:make-variable 'foo))<p>
+</code></pre></a><a name="19882">
+<code><pre>#&lt;named-value FOO = "foo"&gt;<p>
+</code></pre></a>
+<a name="19883">
+Describe your new value-object<p>
+</a><P><a name="19884">
+<code><pre>USER(69): (d named-value)<p>
+</code></pre></a><a name="19885">
+Lisp returns:<p>
+</a><P><a name="19886">
+<code><pre>#&lt;named-value FOO = "the symbol value of foo"&gt;<p>
+</code></pre></a><a name="19887">
+<code><pre>is an instance of #&lt;STANDARD-CLASS UI:NAMED-VALUE&gt;:<p>
+</code></pre></a><a name="19888">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="19889">
+<code><pre>  INITIAL-VALUE   "the symbol value of foo"<p>
+</code></pre></a><a name="19890">
+<code><pre>  FORM            FOO<p>
+</code></pre></a><ul><a name="19891">
+<li>The named-value itself is named FOO.
+</a></li><P><a name="19892">
+<li>It's current value is "the symbol value of foo"
+</a></li><P><a name="19893">
+<li>It's initial value, "the symbol value of foo", is equivalent to it's current value.
+</a></li><P></ul><P><a name="19894">
+Typing the entire<code> ui:make-variable</code> form can become quite tedious. However, there is a shorthand form for creating value-objects with global variables:<p>
+</a><P><a name="19895">
+<code><pre>:variable symbol<p>
+</code></pre></a><a name="19896">
+is exactly equivalent to <p>
+</a><P><a name="19897">
+<code><pre>:value-object (ui:make-variable symbol)<p>
+</code></pre></a><a name="24308">
+<h3> Returning Values from Value-Objects</h3>
+</a><a name="24309">
+You can use <code><a UI:GET-VALUE>UI:GET-VALUE</code> to return the current value of a value-object:<p>
+</a><P><a name="24311">
+<code><pre>USER(82): (UI:GET-VALUE named-value)<p>
+</code></pre></a><a name="19901">
+<code><pre>"the symbol value of foo"<p>
+</code></pre></a><a name="19902">
+You can also change the current value of a named-object by combining this function with a <code>setf</code> form:<p>
+</a><P><a name="19903">
+<code><pre>USER(83): (setf (ui:get-value named-value) "A new current value")<p>
+</code></pre></a><a name="19904">
+Now, describing the named-value reveals that the current value has changed, but the initial value has not:<p>
+</a><P><a name="19905">
+<code><pre>USER(92): (d named-value)<p>
+</code></pre></a><a name="19906">
+<code><pre>#&lt;named-value FOO = "A new current value"&gt; is an instance of<p>
+</code></pre></a><a name="19907">
+<code><pre>    #&lt;STANDARD-CLASS UI:NAMED-VALUE&gt;:<p>
+</code></pre></a><a name="19908">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="19909">
+<code><pre>  INITIAL-VALUE   "the symbol value of foo"<p>
+</code></pre></a><a name="19910">
+<code><pre>  FORM            FOO<p>
+</code></pre></a><a name="19911">
+<code><pre>#&lt;named-value FOO = "A new current value"&gt;<p>
+</code></pre></a><a name="19912">
+The ability to retain a current value and an initial value is useful in menus, since you'll often want to provide for a way for users to "undo" their changes, or abort a menu after making changes, but without applying those changes.<p>
+</a><P><a name="22530">
+You can get the initial value of a named-value using <code>UI:INITIAL-VALUE</code>:<p>
+</a><P><a name="22532">
+<code><pre>USER(93): (UI:INIT<a UI:INITIAL VALUE>IAL-VALUE named-value)<p>
+</code></pre></a><a name="22533">
+<code><pre>"the symbol value of foo"<p>
+</code></pre></a><a name="22590">
+<h2><HR> Traversing Menu Objects</h2>
+</a><a name="22675">
+To find the value of a specific field, you must first find the field itself. To find the field, you must first find the root-field that contains it. Use <code>UI:ROOT-FIELD</code> and <code>UI:GET-FIELD</code> together to return a field.<p>
+</a><P><a name="22591">
+<code><pre>(<a UI:GET-FIELD>UI:GET-FIELD <a (UI:ROOT-FIEL>(UI:ROOT-FIELD root-field) field-id)<p>
+</code></pre></a><a name="22592">
+For example, in ui-examples.lisp, the application window created with <code>MAKE-EXAMPLE-WINDOW</code> is bound to the variable <code>*example1-window*</code>. This window serves as the root field for several fields, among them a yes-or-no field with the field-id 'y-n. So, to return this field:<p>
+</a><P><a name="22593">
+<code><pre>(ui:get-field (ui:root-field *example1-window*) 'y-n)<p>
+</code></pre></a><a name="22594">
+Lisp returns the printed representation of the field:<p>
+</a><P><a name="19916">
+<code><pre>#&lt;Y-N-FIELD 'Y-N (2 horizontal) 3043173272&gt;<p>
+</code></pre></a><a name="22607">
+When you're designing menus, you can return fields interactively using the <code>ui:si</code> variable. This variable works in much the same way as the ? variable does in Geometry, in that it is automatically bound to the most recently selected UI object.<p>
+</a><P><a name="22612">
+ <P><img src="CreatingMenus.anc23.gif"><p>
+</a><a name="22614">
+<em>Figure 5.21  &#32; &#32;Using the ui:si variable.
+</em></a><P><a name="22618">
+For example, let's assume you're debugging a menu like the one in <a href="CreatingMenus.html#22614">Figure 5.21</a>. If you were to<strong> (CLICK-L) </strong>on the field labelled "Text", and then evaluated ui:si<p>
+</a><P><a name="22619">
+<code><pre>USER(99): ui:si<p>
+</code></pre></a><a name="22620">
+Lisp would return something like:<p>
+</a><P><a name="22621">
+<code><pre>#TEXT-FIELD "sample" 3140403302&gt;<p>
+</code></pre></a><a name="22622">
+This tells you that the last object you clicked on is a text field, and that its current field value is "sample".<p>
+</a><P><a name="22624">
+<h3> Finding Superfields</h3>
+</a><a name="22625">
+You can find the field which contains this field (if any) using <code>UI:CONTAINER</code>:<p>
+</a><P><a name="22627">
+<code><pre>(ui:contai<a UI:CONTAINER>ner ui:si)<p>
+</code></pre></a><a name="22628">
+Lisp returns:<p>
+</a><P><a name="22629">
+<code><pre>#&lt;LABELED-CONTAINER " Text" (horizontal) 3140403222&gt;<p>
+</code></pre></a><a name="22630">
+<code>UI:ROOT-FIELD</code> returns the root field of any UI element passed it:<p>
+</a><P><a name="22633">
+<code><pre>(ui:root-field ui:si)<p>
+</code></pre></a><a name="22634">
+Lisp returns:<p>
+</a><P><a name="22635">
+<code><pre>#&lt;GLX-ROOT-FIELD (104857625) 427787690&gt;<p>
+</code></pre></a><a name="22637">
+<h3> Finding Subfields</h3>
+</a><a name="22638">
+You can also find all the subfields of a given container field using <code>UI:SUBFIELDS</code>:<p>
+</a><P><a name="22640">
+<code><pre>(ui:subfields container)<p>
+</code></pre></a><a name="22643">
+For example, if you were to <strong>(click-l)</strong> on a non-field area of the menu in <a href="CreatingMenus.html#22614">Figure 5.21</a>, ui:si would be set to a container field. Then, evaluating<p>
+</a><P><a name="22645">
+<code><pre>(<a ui:subfields>ui:subfields ui:si)<p>
+</code></pre></a><a name="22646">
+Returns<p>
+</a><P><a name="24636">
+<code><pre>(#&lt;SPACER-FIELD 2273216242&gt; #&lt;LABEL-FIELD "A label field" 2273216262&gt;<p>
+</code></pre></a><a name="24637">
+<code><pre> #&lt;LABELED-CONTAINER " Yes or No field" (horizontal) 2273216302&gt;<p>
+</code></pre></a><a name="22649">
+<code><pre> #&lt;LABELED-CONTAINER " Number" (horizontal) 2273151332&gt;<p>
+</code></pre></a><a name="22650">
+<code><pre> #&lt;LABELED-CONTAINER " Multiple-choice" (horizontal) 2273154342&gt;<p>
+</code></pre></a><a name="22651">
+<code><pre> #&lt;LABELED-CONTAINER " Foo" (horizontal) 2273216322&gt;<p>
+</code></pre></a><a name="22652">
+<code><pre> #&lt;LABELED-CONTAINER " Slider" (horizontal) 2273216342&gt;<p>
+</code></pre></a><a name="22653">
+<code><pre> #&lt;LABELED-CONTAINER " Text" (horizontal) 2273216362&gt;<p>
+</code></pre></a><a name="22654">
+<code><pre> #&lt;LABELED-CONTAINER " Pathname" (horizontal) 2273216402&gt;<p>
+</code></pre></a><a name="22655">
+<code><pre> #&lt;LABELED-CONTAINER " Directory" (horizontal) 2273216422&gt; ...)<p>
+</code></pre></a><a name="22598">
+which is a list of all the fields contained by the container field itself.<p>
+</a><P><a name="24617">
+<h3> Finding Select Methods</h3>
+</a><a name="24618">
+You can use the function <code>ui:sm</code> in conjunction with <code>ui:si</code> to obtain the select method for an interface object like a field. To obtain a select method:<p>
+</a><P>
+<a name="24630">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on a field.
+</STRONG>
+</a><P><a name="24631">
+<STRONG>	2.	 Evaluate <code>ui:sm</code>, with arguments <code>ui:si</code>.
+</STRONG>
+</a><P><a name="24632">
+<code><pre>(<a ui:sm>ui:sm ui:si)<p>
+</code></pre></a>
+<a name="24633">
+which returns something like:<p>
+</a><P><a name="24634">
+<code><pre>render-attributes::light-library-command<p>
+</code></pre></a><a name="24645">
+In this case, the select method shown is for the "Load" button in the Lights editor.<p>
+</a><P><a name="22588">
+<h2><HR> Returning Field Values</h2>
+</a><a name="19917">
+The value of a field (it's <em>field-value</em>) is the current value of it's value object. When a field is initialized, the current value and the initial value are the same. If a user interacts with the field and changes it's field-value, the current value of that fields value object changes. If the user aborts from the menu, then any changes made to fields in the menu are discarded. In other words, current values are reset to initial values. If the user accepts changes made to fields in the menu (say, by pressing the Do It button), initial values are set to current values, and the Lisp variables tied to the value objects are updated.<p>
+</a><P><a name="22544">
+<code>UI:GET-VALUE</code> returns the value-object of a field:<p>
+</a><P><a name="22545">
+<code><pre><code>(UI:GET-VALUE </code>field<code>)</code><p>
+</code></pre></a><a name="22546">
+In these examples, field-id is the handle you specify with the :id keyword argument when you define a field.<p>
+</a><P><a name="19921">
+You can obtain the value of the value object by using this form twice:<p>
+</a><P><a name="19922">
+<code><pre>(UI:GET-VALUE (UI:GET-VALUE field) field)<p>
+</code></pre></a><a name="19923">
+However, this is somewhat tedious. You can achieve the same effect with less code using <code>ui:field-value</code>:<p>
+</a><P><a name="19924">
+<code><pre>(<a ui:field-value field>ui:field-value field)<p>
+</code></pre></a><a name="19925">
+You can use this function to change field values as well by combining it with a setf function:<p>
+</a><P><a name="19926">
+<code><pre>(setf (ui:field-value field) a-new-value)<p>
+</code></pre></a><a name="24331">
+For example, consider the number field created with /usr/local/ngc/demo/src/ui-examples.lisp. To change the value of this field to a new value, say 1.3:<p>
+</a><P><a name="24335">
+<code><pre>(setf <p>
+</code></pre></a><a name="24340">
+<code><pre>	(ui:field-value (ui:get-field <p>
+</code></pre></a><a name="24341">
+<code><pre>		(ui:root-field *example1-window*)'number-field))1.3)<p>
+</code></pre></a><a name="24336">
+<h2><HR> Controlling Fields</h2>
+</a><a name="19741">
+You have several tools at your disposal to control the behavior of fields. You can control what happens when a user selects a field, or when fields are visible or invisible. <p>
+</a><P><a name="19962">
+<h3> Defining Select-Methods</h3>
+</a><a name="19963">
+Select-methods are functions which are executed in response to user interaction with a field. For example, you may design your fields so that one action occurs in response to a <strong>(click-L)</strong>, and another in response to a <strong>(click-r)</strong>.<p>
+</a><P><a name="24824">
+ <P><img src="CreatingMenus.anc24.gif"><p>
+</a><a name="19985">
+<em>Figure 5.22  &#32; &#32;Select methods
+</em></a><P><a name="24827">
+The select-method which defines these actions appears below:<p>
+</a><P><a name="19986">
+<code><pre>(ui:make-object-field :select-method <p>
+</code></pre></a><a name="19987">
+<code><pre>		#'(lambda (field mx my buttons)<p>
+</code></pre></a><a name="19988">
+<code><pre>			(declare (ignore mx my))<p>
+</code></pre></a><a name="19989">
+<code><pre>				(cond<p>
+</code></pre></a><a name="19990">
+<code><pre>					((ui:mb-left-p buttons)<p>
+</code></pre></a><a name="19991">
+<code><pre>						(setf (ui:field-value field) :hello)<p>
+</code></pre></a><a name="19992">
+<code><pre>						(ui:draw-field field)<p>
+</code></pre></a><a name="19993">
+<code><pre>						(ui:make-visible field)<p>
+</code></pre></a><a name="19994">
+<code><pre>						(ui:menu-notify "You clicked Left"))<p>
+</code></pre></a><a name="19995">
+<code><pre>					((ui:mb-middle-p buttons)<p>
+</code></pre></a><a name="19996">
+<code><pre>						(let ((answer (ui:menu-confirm "Delete<br>												all your files?")))<p>
+</code></pre></a><a name="19997">
+<code><pre>								(print answer)))<p>
+</code></pre></a><a name="19998">
+<code><pre>					((and		(ui:mb-shift-p buttons)<p>
+</code></pre></a><a name="19999">
+<code><pre>							(ui:mb-right-p buttons))<p>
+</code></pre></a><a name="20000">
+<code><pre>							(setf (ui:field-value field) :bar)<p>
+</code></pre></a><a name="20001">
+<code><pre>							(ui:draw-field field)<p>
+</code></pre></a><a name="20002">
+<code><pre>							(ui:make-visible field)<p>
+</code></pre></a><a name="20003">
+<code><pre>		)))<p>
+</code></pre></a><a name="20004">
+<code><pre>:outer-label "Select Method"<p>
+</code></pre></a><a name="20005">
+<code><pre>:value-object (ui:make-variable '*ob-val*)<p>
+</code></pre></a><a name="20006">
+<code><pre>:width 200)<p>
+</code></pre></a><a name="20007">
+<h4> Determining Which Mouse Buttons are Pressed</h4>
+</a><a name="20008">
+A select method is called with default arguments:<p>
+</a><P><a name="20009">
+<code><pre>(SELECT-METHOD field mx my buttons)<p>
+</code></pre></a><a name="20010">
+<code>Where:</code><p>
+</a><P><ul><a name="20011">
+<li><code>field</code> is the field that was clicked on.
+</a></li><P><a name="20012">
+<li><code>mx</code> is the x-coordinate of the pointer
+</a></li><P><a name="20013">
+<li><code>my</code> is the y-coordinate of the pointer
+</a></li><P><a name="20014">
+<li><code>buttons</code> is the mouse button, or mouse-button-key combination which was pressed.
+</a></li><P></ul><P><a name="20018">
+<a href="CreatingMenus.html#20018">Table 5.12</a> describes several functions for determining which mouse button, or which mouse-button-key combination was pressed. 
+<P><Table Border="1">
+<dl>
+<a name="20022">
+<em>Table 5.12  &#32; &#32;Mouse button/key combination tests
+</em></a></dl>
+<tr><th align="left"><a name="20026">
+Function
+</a><th align="left"><a name="20028">
+Description
+</a>
+<tr><td valign="top"><a name="20030">
+ <code>UI:MB-LEFT-P button-var</code><p>
+</a><td valign="top"><a name="20032">
+ Returns t if left button pressed<p>
+</a>
+<tr><td valign="top"><a name="20034">
+ <code>UI:MB-RIGHT-P button-var</code><p>
+</a><td valign="top"><a name="20036">
+ Returns t if right button pressed<p>
+</a>
+<tr><td valign="top"><a name="20038">
+ <code>UI:MB-MIDDLE-P button-var</code><p>
+</a><td valign="top"><a name="20040">
+ Returns t if middle button pressed<p>
+</a>
+<tr><td valign="top"><a name="20042">
+ <code>UI:MB-SHIFT-P button-var</code><p>
+</a><td valign="top"><a name="20044">
+ Returns t if Shift key pressed<p>
+</a>
+<tr><td valign="top"><a name="20046">
+ <code>UI:MB-META-P button-var</code><p>
+</a><td valign="top"><a name="20048">
+ Returns t if Meta (alt) key is pressed<p>
+</a>
+<tr><td valign="top"><a name="20050">
+ <code>UI:MB-CONTROL-P button-var</code><p>
+</a><td valign="top"><a name="20052">
+ Returns t if control key is pressed<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="20053">
+To test for combinations, combined these functions with a logical conjunction such as <code>and</code>. For example:<p>
+</a><P><a name="20054">
+<code><pre>(and			(UI:MB-LEFT-P button-var)<p>
+</code></pre></a><a name="20055">
+<code><pre>			(UI:MB-SHIFT-P button-var))<p>
+</code></pre></a><a name="20057">
+returns <code>t</code> in response to a <strong>(shift-l)</strong>.<p>
+</a><P><a name="20067">
+<h3> Expose Tests</h3>
+</a><a name="20068">
+Expose tests are used to determine whether a given field will be made visible or not. <a href="CreatingMenus.html#20081">Figure 5.23</a> shows an example of an expose test. When the value of the toggle-field is "Choice 1", the "Foo" field is not visible. However, if "Choice 2" is toggled, then "Foo" becomes visible.<p>
+</a><P><a name="20079">
+ <P><img src="CreatingMenus.anc25.gif"><p>
+</a><a name="20081">
+<em>Figure 5.23  &#32; &#32;Expose test
+</em></a><P><a name="20082">
+The expose-test itself is a relatively simple function: it tests whether or not the value of the field meets a specific criterion. The following example expose test is taken from /usr/local/ngc/demo/src/ui-examples.lisp:<p>
+</a><P><a name="20083">
+<code><pre>(ui:make-multiple-choice-field<p>
+</code></pre></a><a name="20084">
+<code><pre>		(list		(ui:make-toggle-field <p>
+</code></pre></a><a name="20085">
+<code><pre>					:on-value :first <p>
+</code></pre></a><a name="20086">
+<code><pre>					:label "Toggle-field 1")<p>
+</code></pre></a><a name="20087">
+<code><pre>				(ui:make-toggle-field :on-value :second <p>
+</code></pre></a><a name="20088">
+<code><pre>					:label "Toggle-field 2"))<p>
+</code></pre></a><a name="20089">
+<code><pre>:reformat-on-select t<p>
+</code></pre></a><a name="20090">
+<code><pre>:outer-label " Multiple-choice"<p>
+</code></pre></a><a name="20091">
+<code><pre>:documentation "Use this field to provide a limited number<br>						of choice"<p>
+</code></pre></a><a name="20092">
+<code><pre>:value-object (ui:make-variable '*multi-choice-var*)<p>
+</code></pre></a><a name="20093">
+<code><pre>)<p>
+</code></pre></a><a name="20094">
+<code><pre><p>
+</code></pre></a><a name="20095">
+<code><pre>(ui:make-text-field<p>
+</code></pre></a><a name="20096">
+<code><pre>:outer-label "Foo"<p>
+</code></pre></a><a name="20097">
+<code><pre>:value-object (ui:make-variable '*multi-choice-var*)<p>
+</code></pre></a><a name="20098">
+<code><pre>:expose-test #'(lambda(field)<p>
+</code></pre></a><a name="20099">
+<code><pre>						(declare (ignore field))<p>
+</code></pre></a><a name="20100">
+<code><pre>						(eq *multi-choice-var* :first)))<p>
+</code></pre></a><a name="21204">
+By convention, fields depend on fields above and to the left. When a field with <code>reformat-on-select</code> set to <code>t</code> is reformatted, all fields below and to the left are also reformatted. A side effect of this process is the evaluation of expose-tests, and the drawing or hiding of fields based on these new results.<p>
+</a><P><a name="21216">
+Should you wish to make a field dependant on a field beneath it in the menu, you'd need to define a select method for the field it depended on. After finding the container field that contains its field, this method would call the following functions in this order:<p>
+</a><P>
+<a name="21219">
+<STRONG>	 1.	 <code><a ui:undraw-field>ui:undraw-field container</code>
+</STRONG>
+</a><P><a name="21226">
+<STRONG>	2.	 <code><a ui:recompute-layout container>ui:recompute-layout container</code>
+</STRONG>
+</a><P><a name="21227">
+<STRONG>	3.	 <code><a ui:draw-field container>ui:draw-field container</code>
+</STRONG>
+</a><P><a name="21228">
+<STRONG>	4.	 <code><a ui:make-visible container>ui:make-visible container</code>
+</STRONG>
+</a><P>
+<a name="21215">
+You can use expose tests in this way to reveal single fields, or with container fields to reveal entire groups of fields.<p>
+</a><P><a name="19747">
+<h2><HR> Field Utilities</h2>
+</a><a name="24735">
+<h3> Menu Choose</h3>
+</a><a name="24736">
+<code>UI:MENU-CHOOSE</code> creates a pop-up menu on the fly:<p>
+</a><P><a name="24737">
+<code><pre>(<a UI:MENU-CHOOSE item-list &KEY properties...>UI:MENU-CHOOSE item-list &amp;KEY properties...)<p>
+</code></pre></a><a name="23250">
+The /usr/local/ngc/demo/src/ui-examples.lisp file contains a function, <code>USER:MENU-CHOOSE-EXAMPLE</code>, which creates a generalized menu-choose menu.<p>
+</a><P><a name="23286">
+Pop-up menus created with <code>ui:menu-choose</code> return one of three values:<p>
+</a><P><ul><a name="23149">
+<li><code>:abort</code> - if the user aborts the menu by a <strong>(click-l)</strong> on the Abort button.
+</a></li><P><a name="23151">
+<li><code>NIL</code> - if the user does not select any of the menu items, or if the user waves off the menu.
+</a></li><P><a name="23152">
+<li>value - if the user selects one of the menu items, and presses the Done button. If multiple-p is set to t, then the menu returns a list.
+</a></li><P></ul><P><a name="23277">
+One of the more useful functions of <code>ui:menu-choose</code> is to create menus on-the-fly built from variables. <code>USER:MENU-CHOOSE-VAR-EXAMPLE</code>, defined in /usr/local/ngc/demo/src/ui-examples.lisp, shows how to use <code>ui:menu-choose</code> to create a pop-up menu containing the elements of <code>3d:*global-object-list*</code>.<p>
+</a><P><a name="22761">
+ <P><img src="CreatingMenus.anc26.gif"><p>
+</a><a name="22773">
+<em>Figure 5.24  &#32; &#32;Pop-up menus created with <code>ui:menu-choose</code>
+</em></a><P><a name="22730">
+<h4> Field Properties 
+<P><Table Border="1">
+<dl>
+<a name="22796">
+<em>Table 5.13  &#32; &#32;UI:MENU-CHOOSE field properties
+</em></a></dl>
+<tr><th align="left"><a name="22802">
+Keyword
+</a><th align="left"><a name="22804">
+Options/Arguments
+</a><th align="left"><a name="22806">
+Description
+</a>
+<tr><td valign="top"><a name="22808">
+ Item-list<p>
+</a><td valign="top"><a name="22810">
+ list<p>
+</a><a name="23162">
+ ("label-string :value :a-value)<p>
+</a><td valign="top"><a name="22812">
+ The individual items that appear in the pop-up menu. For each item:<p>
+</a><a name="23163">
+ <p>
+</a>
+<tr><td valign="top"><a name="23183">
+ <p>
+</a><td valign="top"><a name="23185">
+ "label-string"<p>
+</a><td valign="top"><a name="23187">
+ The string that appears on the menu-item<p>
+</a>
+<tr><td valign="top"><a name="23177">
+ <p>
+</a><td valign="top"><a name="23179">
+ :value :a-value<p>
+</a><td valign="top"><a name="23181">
+ The value returned when the menu-item is selected.<p>
+</a>
+<tr><td valign="top"><a name="22904">
+ :label<p>
+</a><td valign="top"><a name="22906">
+ string<p>
+</a><td valign="top"><a name="22908">
+ The label which appears at the top of the menu<p>
+</a>
+<tr><td valign="top"><a name="22898">
+ :width<p>
+</a><td valign="top"><a name="22900">
+ number<p>
+</a><td valign="top"><a name="22902">
+ Width of the menu, in pixels.<p>
+</a>
+<tr><td valign="top"><a name="22892">
+ :height<p>
+</a><td valign="top"><a name="22894">
+ number<p>
+</a><td valign="top"><a name="22896">
+ Height of the menu, in pixels<p>
+</a>
+<tr><td valign="top"><a name="22886">
+ :cache-menu<p>
+</a><td valign="top"><a name="22888">
+ ???<p>
+</a><td valign="top"><a name="22890">
+ ???<p>
+</a>
+<tr><td valign="top"><a name="22880">
+ :multiple-p<p>
+</a><td valign="top"><a name="22882">
+ t or NIL<p>
+</a><td valign="top"><a name="22884">
+ If t, more than one value can be selected at one time. Also, setting this parameter to t automatically generates an abort field, regardless of :abort-field setting.<p>
+</a>
+<tr><td valign="top"><a name="22874">
+ :abort-field<p>
+</a><td valign="top"><a name="22876">
+ t or NIL<p>
+</a><td valign="top"><a name="22878">
+ If t, an abort field is automatically created. Abort fields are automatically created when multiple-p is set to t.<p>
+</a>
+<tr><td valign="top"><a name="22868">
+ :multiple-initial-values<p>
+</a><td valign="top"><a name="22870">
+ '(list)<p>
+</a><a name="23197">
+ ':value1 :value2 ...)<p>
+</a><td valign="top"><a name="22872">
+ If multiple-p is t, then the values in '(list) will be selected when the menu is first created.<p>
+</a>
+<tr><td valign="top"><a name="22862">
+ :border-color<p>
+</a><td valign="top"><a name="22864">
+ grapic-context<p>
+</a><td valign="top"><a name="22866">
+ The grapic-context (color) of the border<p>
+</a>
+<tr><td valign="top"><a name="22856">
+ :border-width<p>
+</a><td valign="top"><a name="22858">
+ number<p>
+</a><td valign="top"><a name="22860">
+ Width of the menu border, in pixels<p>
+</a>
+<tr><td valign="top"><a name="22850">
+ :label-height<p>
+</a><td valign="top"><a name="22852">
+ number<p>
+</a><td valign="top"><a name="22854">
+ Height of the label area, in pixels.<p>
+</a>
+<tr><td valign="top"><a name="23039">
+ :sub-label-forground-gc<p>
+</a><td valign="top"><a name="23041">
+ graphic context<p>
+</a><td valign="top"><a name="23043">
+ GC to control appearance of sub-label foreground<p>
+</a>
+<tr><td valign="top"><a name="23117">
+ :sub-label-background-gc<p>
+</a><td valign="top"><a name="23119">
+ graphic context<p>
+</a><td valign="top"><a name="23121">
+ GC to control appearance of sub-label background<p>
+</a>
+<tr><td valign="top"><a name="23033">
+ :max-rows<p>
+</a><td valign="top"><a name="23035">
+ number<p>
+</a><td valign="top"><a name="23037">
+ The maximum number of rows that can be displayed at one time<p>
+</a>
+<tr><td valign="top"><a name="23027">
+ :overflow-style<p>
+</a><td valign="top"><a name="23029">
+ :columns or :scroll-bar<p>
+</a><td valign="top"><a name="23031">
+ If :max-rows is less than the total number of menu items, controls how additional items are handled. <p>
+</a><a name="23212">
+ :columns - arranges additional items in paralell rows of columns.<p>
+</a><a name="23213">
+ :scroll-bar - creates a scroll bar for user to scroll through overflow items<p>
+</a>
+<tr><td valign="top"><a name="23021">
+ :scroll-bar-width<p>
+</a><td valign="top"><a name="23023">
+ number<p>
+</a><td valign="top"><a name="23025">
+ If :overflow-style is :scroll-bar, controls the width of the scroll bar<p>
+</a>
+<tr><td valign="top"><a name="23015">
+ :wave-off<p>
+</a><td valign="top"><a name="23017">
+ t or nil<p>
+</a><td valign="top"><a name="23019">
+ If t, menu will disappear when user waves off. A wave off returns :ABORT<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="23239">
+<h3> Menu Notify</h3>
+</a><a name="20112">
+<code>UI:MENU-NOTIFY</code> creates a confirmation pop-up like the one in <a href="CreatingMenus.html#20123">Figure 5.25</a>:<p>
+</a><P><a name="23704">
+<code><pre>(UI:MENU-NOTIFY message-s<a UI:MENU-NOTIFY message-string &REST message-args>tring &amp;REST message-args)<p>
+</code></pre></a><a name="23712">
+ .<P><img src="CreatingMenus.anc27.gif"><p>
+</a><a name="20123">
+<em>Figure 5.25  &#32; &#32;Menu notify pop-up dialog
+</em></a><P><a name="20124">
+The <em>message-string</em> argument provides the title for the pop-up menu, "You clicked left" in this example. A <strong>(click-L)</strong> on the "OK" command field dismisses the dialog.<p>
+</a><P><a name="20125">
+<h3> Menu Confirm</h3>
+</a><a name="24372">
+Use <code>UI:MENU-CONFIRM</code> to create a yes/no dialog box like the one in <a href="CreatingMenus.html#20143">Figure 5.26</a>:<p>
+</a><P><a name="24373">
+<code><pre>(<a ui:menu-confirm message-string &key from yes-string no-string)>ui:menu-confirm message-string &amp;key from yes-string<br>								no-string<em>)</em><p>
+</code></pre></a><a name="20141">
+ <P><img src="CreatingMenus.anc28.gif"><p>
+</a><a name="20143">
+<em>Figure 5.26  &#32; &#32;Menu-confirm pop-up dialog box.
+</em></a><P><a name="20144">
+The field to which this field is attached is its parent field. A <strong>(click-L)</strong> on "Yes" returns t, while <strong>(click-l)</strong> on "No" returns nil. Use menu-confirm in select methods to confirm a user's choice.<p>
+</a><P><a name="20293">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="DefForeignFunctions.html">[Prev]</a> <a href="IntroToN-Objects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:47:37 -->
+
+</body>
+</html>

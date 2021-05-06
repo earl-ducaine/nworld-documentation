@@ -1,0 +1,324 @@
+<html><head><title>Removing Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="11AddingGeometry.html">[Prev]</a> <a href="13Displacements.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Removing Geometry</h1>
+</a>
+<hr><p><a name="14708">
+<h4> In this chapter we'll describe some techniques for removing detail from an object.</h4>
+</a><a name="9046">
+ <P><img src="12RemovingGeometry.anc.gif"><p>
+</a><a name="8408">
+<p>
+</a><P><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="14724">
+You'll learn how to use the following commands to reduce the geometry on an object:<p>
+</a><P><ul><a name="14726">
+<li>Dissolve
+</a></li><P><a name="14728">
+<li>Merge Region
+</a></li><P><a name="14730">
+<li>Collapse
+</a></li><P><a name="14732">
+<li>Derez
+</a></li><P></ul><P><a name="14539">
+You may want to remove geometry if:<p>
+</a><P><ul><a name="14544">
+<li>you are exporting to a 3D game platform where polygon count is important
+</a></li><P><a name="14548">
+<li>you want to reduce the amount of detail in a particular region of a model
+</a></li><P></ul><P><a name="13399">
+<h2><HR> Dissolve</h2>
+</a><a name="14021">
+When you <strong>Dissolve</strong> a segment, the adjoining faces are merged into a single face.<p>
+</a><P><a name="14038">
+Try this:<p>
+</a><P>
+<a name="14039">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="14040">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14043">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="14053">
+<dt>This collects all the faces on the cube.</dt>
+</a><P></dl><a name="14046">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><a name="14059">
+<STRONG>	5.	 With the faces still selected, Edge Subdivide again.
+</STRONG>
+</a><P><dl><a name="14054">
+<dt>Your cube should look like this:</dt>
+</a><P><a name="14007">
+ <P><img src="12RemovingGeometry.anc1.gif"><p>
+</a></dl>
+<a name="14008">
+<em>Figure 12.1  &#32; &#32;Dissolving an edge
+</em></a><P>
+<a name="13413">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on one of the segments near the center of the cube.
+</STRONG>
+</a><P><a name="14069">
+ <P><img src="12RemovingGeometry.anc2.gif"><p>
+</a>
+<a name="14070">
+<em>Figure 12.2  &#32; &#32;Select a segment to dissolve
+</em></a><P>
+<a name="14064">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><dl><a name="14083">
+<dt>The segment is dissolved:</dt>
+</a><P><a name="14088">
+ <P><img src="12RemovingGeometry.anc3.gif"><p>
+</a></dl>
+<a name="14089">
+<em>Figure 12.3  &#32; &#32;The segment is dissolved
+</em></a><P><a name="14098">
+The two faces previously separated by the segment are merged into a single face:<p>
+</a><P><a name="14104">
+ <P><img src="12RemovingGeometry.anc4.gif"><p>
+</a><a name="14105">
+<em>Figure 12.4  &#32; &#32;The resulting face
+</em></a><P><a name="14099">
+<h4> Dissolving Segments between Non-Flat Faces</h4>
+</a><a name="14111">
+If you dissolve a segment between two faces that do not lie on a common plane, N-Geometry creates a non-planar face.<p>
+</a><P><a name="14121">
+Typically, you'll have some minimum tolerance of acceptability regarding maximum non-flat face angle; this may depend on your renderer.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	N-Geometry will let you dissolve any segment.</font></dd></dt></dl><P>
+<a name="14137">
+Try this:<p>
+</a><P>
+<a name="14138">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on a segment on the edge of the cube.
+</STRONG>
+</a><P><a name="14149">
+ <P><img src="12RemovingGeometry.anc5.gif"><p>
+</a>
+<a name="14150">
+<em>Figure 12.5  &#32; &#32;Select a segment on the edge of the cube
+</em></a><P>
+<a name="14140">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><dl><a name="14161">
+<dt>The resulting face, although non-flat, can still be selected and modified like any other face on the polyhedra:</dt>
+</a><P><a name="14172">
+ <P><img src="12RemovingGeometry.anc6.gif"><p>
+</a></dl>
+<a name="14173">
+<em>Figure 12.6  &#32; &#32;Select the resulting face
+</em></a><P>
+<a name="14139">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on the face, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="14183">
+<dt>N-Geometry extrudes the face, adding any geometry required to keep the surface of the model intact:</dt>
+</a><P><a name="14198">
+ <P><img src="12RemovingGeometry.anc7.gif"><p>
+</a></dl>
+<a name="14199">
+<em>Figure 12.7  &#32; &#32;Extruding the non-flat face
+</em></a><P><a name="14218">
+Of course, you can use the <strong>Cut</strong> operation on the non-flat face if you decide that you actually do need flat faces.<p>
+</a><P><a name="14227">
+ <P><img src="12RemovingGeometry.anc8.gif"><p>
+</a><a name="14228">
+<em>Figure 12.8  &#32; &#32;Cutting the non-flat face
+</em></a><P><a name="13400">
+<h2><HR> Merge Region</h2>
+</a><a name="14205">
+The <strong>Merge Region</strong> command lets you combine a group of neighboring faces into a single new face.<p>
+</a><P><a name="14210">
+Try this:<p>
+</a><P>
+<a name="14249">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="14250">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14251">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="14252">
+<dt>This collects all the faces on the cube.</dt>
+</a><P></dl><a name="14253">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><a name="14254">
+<STRONG>	5.	 With the faces still selected, Edge Subdivide again.
+</STRONG>
+</a><P><dl><a name="14255">
+<dt>Your cube should look like this:</dt>
+</a><P><a name="14241">
+ <P><img src="12RemovingGeometry.anc9.gif"><p>
+</a></dl>
+<a name="14242">
+<em>Figure 12.9  &#32; &#32;A cube, edge subdivided twice
+</em></a><P>
+<a name="14264">
+<STRONG>	6.	 Collect several contiguous faces.
+</STRONG>
+</a><P><a name="14274">
+ <P><img src="12RemovingGeometry.anc10.gif"><p>
+</a>
+<a name="14275">
+<em>Figure 12.10  &#32; &#32;Select several contiguous faces
+</em></a><P>
+<a name="14268">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="14269">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Merge Region.
+</STRONG>
+</a><P><dl><a name="14279">
+<dt>The faces are merged together into a single new face:</dt>
+</a><P><a name="14290">
+ <P><img src="12RemovingGeometry.anc11.gif"><p>
+</a></dl>
+<a name="14291">
+<em>Figure 12.11  &#32; &#32;The newly created face
+</em></a><P><a name="14280">
+The resulting face can be manipulated just like any other face on the polyhedra.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You cannot merge non-contiguous faces. Although N-Geometry does not complain if you try to merge non-contiguous faces, using the command this way has no effect on an object.</font></dd></dt></dl><P>
+<a name="14075">
+<h2><HR> Collapse</h2>
+</a><a name="14311">
+The <strong>Collapse </strong>command lets you remove an element from a polyhedra (either a vertex, segment (or bone), or face). <p>
+</a><P><ul><a name="14374">
+<li>A segment or face is reduced to a vertex. 
+</a></li><P><a name="14389">
+<li>In the case of a vertex, the vertex and all its edges are eliminated and the gap is filled with a face.
+</a></li><P></ul><P><a name="14379">
+Essentially, the geometry on the object around the selected element "collapses" to fill the resulting void and maintain surface integrity. Trying a few examples will give you a good feel for how the command works.<p>
+</a><P><a name="14312">
+Try this:<p>
+</a><P>
+<a name="14313">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="14314">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14315">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="14316">
+<dt>This collects all the faces on the cube.</dt>
+</a><P></dl><a name="14317">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><a name="14318">
+<STRONG>	5.	 With the faces still selected, Edge Subdivide again.
+</STRONG>
+</a><P><dl><a name="14319">
+<dt>Your cube should look like this:</dt>
+</a><P><a name="14323">
+ <P><img src="12RemovingGeometry.anc12.gif"><p>
+</a></dl>
+<a name="14324">
+<em>Figure 12.12  &#32; &#32;A cube, edge subdivided twice
+</em></a><P><a name="14263">
+Try collapsing a vertex, segment, or face:<p>
+</a><P><a name="14358">
+ <P><img src="12RemovingGeometry.anc13.gif"><p>
+</a><a name="14359">
+<em>Figure 12.13  &#32; &#32;Collapsing a vertex, segment, or face
+</em></a><P><a name="14353">
+Note that collapsing an element can change the shape of your model:<p>
+</a><P><a name="14436">
+<h4> Collapsing Vertices</h4>
+</a><a name="14409">
+ <P><img src="12RemovingGeometry.anc14.gif"><p>
+</a><a name="14410">
+<em>Figure 12.14  &#32; &#32;Left, selected points; right, resulting collapse
+</em></a><P><a name="14437">
+<h4> Collapsing Segments</h4>
+</a><a name="14421">
+ <P><img src="12RemovingGeometry.anc15.gif"><p>
+</a><a name="14422">
+<em>Figure 12.15  &#32; &#32;Left, selected segment; right, resulting collapse
+</em></a><P><a name="14442">
+<h4> Collapsing Faces</h4>
+</a><a name="14446">
+ <P><img src="12RemovingGeometry.anc16.gif"><p>
+</a><a name="14447">
+<em>Figure 12.16  &#32; &#32;Left, selected face; right, resulting collapse
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>Collapse</strong> command can easily generate non-planar (but completely legal for N-Geometry) faces. If you are exporting an object to a game platform that does not allow non-planar faces, use the <strong>Illegal Faces</strong> command on the body to detect them.</font></dd></dt></dl><P>
+<a name="13991">
+<h2><HR> Derez</h2>
+</a><a name="13992">
+The <strong>Derez</strong> command simplifies the topology of a selected object or group of faces by dissolving edges (while retaining the object's original shape). The resolution can be reduced by various methods, all under the user's control.<p>
+</a><P><a name="14474">
+To <strong>Derez</strong> an object:<p>
+</a><P>
+<a name="14475">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object or group of faces.
+</STRONG>
+</a><P><dl><a name="14476">
+<dt>The following menu appears:</dt>
+</a><P><a name="14480">
+ <P><img src="12RemovingGeometry.anc17.gif"><p>
+</a></dl>
+<a name="14481">
+<em>Figure 12.17  &#32; &#32;Derez menu
+</em></a><P><dl><dl><a name="14482">
+<dt>Each of the options attempts to derez the object using different methods:</dt>
+</a><P></dl></dl><ul><a name="14483">
+<li><strong>Hardness</strong> removes faces by merging adjacent faces whose normals are less than the specified angle threshold apart. For example, two faces on a grid that have parallel normals would be merged using this method.
+</a></li><P><ul>
+<BR><a name="14484">
+<li><strong>Angle Threshold</strong> specifies the threshold angle for "non-flatness." If adjacent faces interesect at an angle less than the specified value, they are merged into one face.
+</a><P></ul>
+<a name="14485">
+<li><strong>Faces</strong> lets you derez an object by specifying the maximum number of faces the object can have. N-Geometry tries to keep the shape by combining adjacent flat faces first to meet the maximum number of polygons.
+</a></li><P><a name="14486">
+<li><strong>Triangles</strong> is used for objects that have previously been triangulated. This works the same way as for <strong>Faces</strong> (above), but reduces the <em>triangle</em> count for an object.
+</a></li><P><a name="14487">
+<li><strong>Edges</strong> works like <strong>Faces</strong> above, but counts edges.
+</a></li><P><a name="14488">
+<li><strong>Points</strong> works like <strong>Faces</strong> above, but counts points.
+</a></li><P><a name="14489">
+<li><strong>Number of (elements)</strong> lets you specify, for each of the last four methods, the maximum number of elements of the selected type that you want the resulting object to have.
+</a></li><P></ul><P><a name="14490">
+For each of the last four methods, the model is only changed destructively when the number of elements specified cannot maintain the original's shape; N-Geometry always makes its best attempt to maintain the shape of the original model.<p>
+</a><P><a name="14560">
+<h2><HR> Congratulations!</h2>
+</a><a name="14561">
+You've now learned some of the most commonly used techniques to reduce geometry from part of an object, <em>or</em> from an entire object.<p>
+</a><P><a name="14562">
+As with all of the techniques described in this guide, they are best understood when practiced!<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="11AddingGeometry.html">[Prev]</a> <a href="13Displacements.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 13:24:11 -->
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<html><head><title>Smooth with History</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Mansion.html">[Prev]</a> <a href="5Mountains.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Smooth with History</h1>
+</a>
+<hr><p><a name="12075">
+<h4> In this chapter you'll learn how to use the Smooth with History <br>operation to create smoothed copies of an object, using the original as a control object. You'll then learn how to create a test animation using the lo-res version of the object, swapping in the hi-res version later on. You'll also learn some new N-Geometry commands.</h4>
+</a><a name="9046">
+ <P><img src="4Cube.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="11987">
+You'll learn about the following topics:<p>
+</a><P><a name="8409">
+<h3> Modifications</h3>
+</a><ul><a name="11413">
+<li>Bridge
+</a></li><P><a name="8410">
+<li>Smooth w/History
+</a></li><P><a name="11421">
+<li>Move
+</a></li><P></ul><P><a name="11926">
+<h3> Transformations</h3>
+</a><ul><a name="11925">
+<li>Axis Move
+</a></li><P></ul><P><a name="11988">
+<h2><HR> Bridging through an Object</h2>
+</a>
+<a name="11438">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt; New Object&gt;Cube.
+</STRONG>
+</a><P><a name="11428">
+ <P><img src="4Cube.anc1.gif"><p>
+</a>
+<a name="11441">
+<em>Figure 4.1  &#32; &#32;Starting with a primitive
+</em></a><P>
+<a name="11457">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on faces in the element sensitivity menu.
+</STRONG>
+</a><P><a name="12078">
+<STRONG>	3.	 Collect two faces on opposite sides of the cube.
+</STRONG>
+</a><P><a name="12082">
+ <P><img src="4Cube.anc2.gif"><p>
+</a>
+<a name="12083">
+<em>Figure 4.2  &#32; &#32;Collect faces on opposite sides of the cube
+</em></a><P>
+<a name="12084">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="12085">
+<dt>Specify an Inset Width value of .3 in the dialog box that appears.</dt>
+</a><P><a name="11507">
+ <P><img src="4Cube.anc3.gif"><p>
+</a></dl>
+<a name="11508">
+<em>Figure 4.3  &#32; &#32;Inset the collected faces
+</em></a><P>
+<a name="11503">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="11522">
+<dt>This exits from collect mode.</dt>
+</a><P></dl><a name="11523">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the new, inner face on the front of the cube, then <strong>(CLICK-L)</strong> on Bridge.
+</STRONG>
+</a><P><a name="11525">
+<STRONG>	7.	 Swing the camera around and <strong>(CLICK-L)</strong> on the corresponding face on the back of the cube.
+</STRONG>
+</a><P><dl><a name="11528">
+<dt>A "hole" is bridged through from one side of the object to the other:</dt>
+</a><P><a name="11534">
+ <P><img src="4Cube.anc4.gif"><p>
+</a></dl>
+<a name="11535">
+<em>Figure 4.4  &#32; &#32;The bridged cube
+</em></a><P><a name="11529">
+For a better view of the bridge, turn shading on for the cube object:<p>
+</a><P>
+<a name="11945">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11946">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="11951">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Shading.
+</STRONG>
+</a><P><dl><a name="11952">
+<dt>The object is displayed in shaded mode:</dt>
+</a><P><a name="11546">
+ <P><img src="4Cube.anc5.gif"><p>
+</a></dl>
+<a name="11547">
+<em>Figure 4.5  &#32; &#32;A shaded version of the bridged cube
+</em></a><P><a name="11541">
+<h2><HR> Smooth w/History</h2>
+</a><a name="11521">
+The <strong>Smooth w/History</strong> command lets you create smoothed copies of an object that can be updated based on the lower-resolution control object from which they were generated.<p>
+</a><P><a name="11564">
+This is useful, for example, when using N-Geometry with N-Dynamics to animate a complex object; you can animate the lower-resolution "control" object to test animations, then substitute the higher-resolution smoothed object for your final animation (simply by selecting the apprporiate object in your N-Dynamics script).<p>
+</a><P><a name="11569">
+To create a smoothed copy of an object:<p>
+</a><P>
+<a name="11575">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on bodies in the sensitivity element menu.
+</STRONG>
+</a><P><a name="11581">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="11582">
+<STRONG>	13.	 <strong>(CTRL-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="11585">
+<dt>In the dialog box that appears:</dt>
+</a><P></dl><ul>
+<BR><a name="11607">
+<li>Leave Iterations at 1
+</a><P><BR><a name="11612">
+<li>Set Copy w/History? to Yes
+</a><P><BR><a name="11621">
+<li><strong>(CLICK-L)</strong> on the Smooth button
+</a><P><a name="11593">
+ <P><img src="4Cube.anc6.gif"><p>
+</a></ul>
+
+<a name="11594">
+<em>Figure 4.6  &#32; &#32;Smoothing an object with history creates a control object
+</em></a><P><dl><dl><a name="11630">
+<dt>The new cube is created, but right now it's sitting in the same spot as the original.</dt>
+</a><P></dl></dl>
+<a name="11588">
+<STRONG>	14.	 Turn off the shading for both cubes:
+</STRONG>
+</a><P><ul>
+<BR><a name="11635">
+<li><strong>(CLICK-R)</strong> on <strong>GeoMenus&gt;Object Display&gt;Shading</strong>
+</a><P><BR><a name="11637">
+<li><strong>(CLICK-L)</strong> on Cube and Smoothed Copy of Cube
+</a><P><BR><a name="11638">
+<li><strong>(CLICK-L)</strong> on Do It
+</a><P></ul>
+<dl><a name="11642">
+<dt>Shading for the cubes is turned off:</dt>
+</a><P><a name="11650">
+ <P><img src="4Cube.anc7.gif"><p>
+</a></dl>
+<a name="11651">
+<em>Figure 4.7  &#32; &#32;The original and smoothed copy of the cube
+</em></a><P>
+<a name="11641">
+<STRONG>	15.	 Move the smoothed cube away from its control object using the following steps:
+</STRONG>
+</a><P><ul>
+<BR><a name="11661">
+<li><strong>(CLICK-L)</strong> on objects in the element sensitivity menu
+</a><P><BR><a name="11669">
+<li><strong>(SHIFT-L)</strong> on the Smoothed Copy of Cube
+</a><P><BR><a name="11665">
+<li><strong>(CLICK-L)</strong> on <strong>Axis Move&gt;X</strong> axis
+</a><P></ul>
+<dl><a name="11449">
+<dt>Move the object away from the control object:</dt>
+</a><P><a name="11680">
+ <P><img src="4Cube.anc8.gif"><p>
+</a></dl>
+<a name="11681">
+<em>Figure 4.8  &#32; &#32;The smoothed copy transformed along the X
+</em></a><P>
+<a name="11685">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="11688">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on a corner point of the unsmoothed cube, then <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="11692">
+<dt>As you move the point on the control object (the unsmoothed version), the smoothed copy is updated too:</dt>
+</a><P><a name="11700">
+ <P><img src="4Cube.anc9.gif"><p>
+</a></dl>
+<a name="11701">
+<em>Figure 4.9  &#32; &#32;Using the control object
+</em></a><P>
+<a name="11695">
+<STRONG>	18.	 Try repeating steps <a href="4Cube.html#11581">12</a> through <a href="4Cube.html#11582">13</a>, only this time, specify that the cube be smoothed 3 iterations in step <a href="4Cube.html#11582">13</a>:
+</STRONG>
+</a><P><a name="11730">
+ <P><img src="4Cube.anc10.gif"><p>
+</a>
+<a name="11731">
+<em>Figure 4.10  &#32; &#32;Create multiple versions of the object
+</em></a><P><dl><dl><a name="11738">
+<dt>Note that the new copy follows the control object as well. Try moving a point on the control object and see both of the smoothed copies follow.</dt>
+</a><P><a name="11746">
+ <P><img src="4Cube.anc11.gif"><p>
+</a></dl></dl><a name="11747">
+<em>Figure 4.11  &#32; &#32;Shaded versions of the objects
+</em></a><P><a name="12089">
+<h3> Using Smoothed Copies with N-Dynamics</h3>
+</a><a name="12090">
+When you create an animation, you can use the unsmoothed version of an object to test such things as rotations, flight paths, etc., to get the look and feel of your animation right. Because the unsmoothed versions have fewer polygons, they typically take less time to animate than the smoother version.<p>
+</a><P><a name="12091">
+After your script is working the way you want, you can simply substitute the smoothed, hi-res version of your object for the non-smoothed lo-res version and reanimate the script.<p>
+</a><P><a name="11981">
+<h2><HR> Congratulations!</h2>
+</a><a name="11982">
+You've learned how to:<p>
+</a><P><ul><a name="11983">
+<li>bridge through an object to create "tunneling effects"
+</a></li><P><a name="11984">
+<li>create smoothed copies of an object, which can be invaluable in speeding up your animation development cycle
+</a></li><P></ul><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Mansion.html">[Prev]</a> <a href="5Mountains.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 10:33:27 -->
+
+</body>
+</html>

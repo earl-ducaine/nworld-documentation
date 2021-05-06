@@ -1,0 +1,320 @@
+<html><head><title>Tubes</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="15Stadium.html">[Prev]</a> <a href="17CopyReinstMult.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Tubes</h1>
+</a>
+<hr><p><a name="19305">
+<h4> This chapter describes a simple technique for building another <br>relatively low-polygon count environment in only a few steps using tubes.</h4>
+</a><a name="9046">
+ <P><img src="16TubesAndTubeSolids.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> New Techniques in this Chapter</h2>
+</a><a name="16907">
+Earlier we learned how to build a dungeon environment; in this chapter we'll learn how to build a similar, but more detailed environment using N-Geometry's tube primitive.<p>
+</a><P><a name="17129">
+<h2><HR> The Improved Dungeon</h2>
+</a><a name="18329">
+In our earlier dungeon exercise, we built an environment by extruding a cube in several directions and creating tunnels by bridging from face to face.<p>
+</a><P><a name="18379">
+In this tutorial, we'll use N-Geometry's tube to build a tunnel of irregular shape around a path that you define.<p>
+</a><P><a name="18325">
+<h2><HR> Sketching the Path Wire</h2>
+</a><a name="17100">
+A tube is a polyhedron created by sweeping a cross-section (defined by one wire) along a path (defined by another wire). There are three steps in building a tube:<p>
+</a><P><ul><a name="17325">
+<li>create the path wire
+</a></li><P><a name="17265">
+<li>create the cross-section wire
+</a></li><P><a name="17275">
+<li>move the cross-section wire along the path wire to create the tube
+</a></li><P></ul><P><a name="17186">
+<h2><HR> Building the Path Wire</h2>
+</a><a name="17285">
+In this section, we'll build the path wire.<p>
+</a><P><a name="17187">
+Try this:<p>
+</a><P>
+<a name="17188">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Tube.
+</STRONG>
+</a><P><dl><a name="18390">
+<dt>The following menu appears:</dt>
+</a><P><a name="17193">
+ <P><img src="16TubesAndTubeSolids.anc1.gif"><p>
+</a></dl>
+<a name="17194">
+<em>Figure 16.1  &#32; &#32;Specifying path parameters
+</em></a><P><dl><dl><a name="17317">
+<dt>Each of the parameters on this menu is described in detail in the <em>N-Geometry Reference Guide</em>. </dt>
+</a><P><a name="17320">
+<dt>For now, use the default parameters as described above.</dt>
+</a><P></dl></dl>
+<a name="17195">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Set Sketch Params button.
+</STRONG>
+</a><P><dl><a name="17196">
+<dt>Using the sketching tools you've learned in previous tutorials, create a loop path for your dungeon:</dt>
+</a><P><a name="17229">
+ <P><img src="16TubesAndTubeSolids.anc2.gif"><p>
+</a></dl>
+<a name="17230">
+<em>Figure 16.2  &#32; &#32;Starting the wire
+</em></a><P>
+<a name="17231">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on OK after you've completed the wire.
+</STRONG>
+</a><P><dl><a name="18469">
+<dt>The Select Tube Parameters menu appears:</dt>
+</a><P><a name="18494">
+ <P><img src="16TubesAndTubeSolids.anc3.gif"><p>
+</a></dl>
+<a name="18495">
+<em>Figure 16.3  &#32; &#32;Specifying tube parameters
+</em></a><P><dl><dl><a name="18470">
+<dt>Make the following changes to the defaults on this menu:</dt>
+</a><P></dl><ul>
+<BR><a name="18505">
+<li><strong>(CLICK-L)</strong> on <strong>Arbitrary</strong>
+</a><P><BR><a name="18506">
+<li><strong>(CLICK-L)</strong> on <strong>New wire</strong>
+</a><P><BR><a name="18507">
+<li><strong>(CLICK-L)</strong> on <strong>Yes</strong> next to <strong>Ring?</strong>
+</a><P></ul>
+</dl>
+<a name="18508">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Make Tube button.
+</STRONG>
+</a><P><dl><a name="18509">
+<dt>The sketch editor appears again. This time, you're creating the cross-section that will be moved along the path wire to create the tube, so make sure to draw it at an appropriately smaller scale. Try something like this:</dt>
+</a><P><a name="18536">
+ <P><img src="16TubesAndTubeSolids.anc4.gif"><p>
+</a></dl>
+<a name="18537">
+<em>Figure 16.4  &#32; &#32;Creating the cross section
+</em></a><P>
+<a name="18592">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on OK after you've completed the wire.
+</STRONG>
+</a><P><dl><a name="18604">
+<dt>The completed tube appears in the N-Geometry window.</dt>
+</a><P><a name="18612">
+ <P><img src="16TubesAndTubeSolids.anc5.gif"><p>
+</a></dl>
+<a name="18613">
+<em>Figure 16.5  &#32; &#32;The generated tube
+</em></a><P><dl><dl><a name="18605">
+<dt>The tube may be inside out, depending on which way you drew the cross section. If you turn on shading for the object and see the inside rather than the outside, the tube is inside out.</dt>
+</a><P></dl></dl>
+<a name="18622">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the generated tube.
+</STRONG>
+</a><P><a name="18623">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Evert.
+</STRONG>
+</a><P><dl><a name="18635">
+<dt>You can <strong>(CLICK-R)</strong> on <strong>GeoMenus&gt;Object Display&gt;Normals</strong>, then <strong>(CLICK-L)</strong> on Tube to display the normals of the faces on the generated tube if you want to see which way they're facing.</dt>
+</a><P><a name="18655">
+ <P><img src="16TubesAndTubeSolids.anc6.gif"><p>
+</a></dl>
+<a name="18656">
+<em>Figure 16.6  &#32; &#32;The everted tube, normals facing out
+</em></a><P><a name="18512">
+<h3> Fixing the Floor</h3>
+</a><a name="18685">
+Depending on how you completed the cross-section wire, you may have a floor that isn't completely flat; here's how to fix it.<p>
+</a><P>
+<a name="18692">
+<STRONG>	8.	 Evert the tube so that the normals are pointing into the tube.
+</STRONG>
+</a><P><dl><a name="18720">
+<dt>Move the camera in so that you're pointing at a segment along the inner floor of the hallway:</dt>
+</a><P><a name="18708">
+ <P><img src="16TubesAndTubeSolids.anc7.gif"><p>
+</a></dl>
+<a name="18709">
+<em>Figure 16.7  &#32; &#32;Normals facing in
+</em></a><P><dl><dl><a name="18725">
+<dt>Notice that because the ending point on our wire didn't exactly match the starting point for the wire, extra faces were created; also, because we didn't use the grid to create our cross-section (even though you may have), the segments along the floor may not all be flat.</dt>
+</a><P></dl></dl>
+<a name="18703">
+<STRONG>	9.	 Move the camera in so that you're pointing toward the floor.
+</STRONG>
+</a><P><a name="18742">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on one of the segments.
+</STRONG>
+</a><P><a name="18749">
+ <P><img src="16TubesAndTubeSolids.anc8.gif"><p>
+</a>
+<a name="18750">
+<em>Figure 16.8  &#32; &#32;Select a segment along the floor
+</em></a><P>
+<a name="18737">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Select Edge Loop to collect the all the segments around the perimeter of the floor.
+</STRONG>
+</a><P><a name="18767">
+ <P><img src="16TubesAndTubeSolids.anc9.gif"><p>
+</a>
+<a name="18768">
+<em>Figure 16.9  &#32; &#32;Select the edge loop for that segment
+</em></a><P>
+<a name="18762">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><a name="18791">
+ <P><img src="16TubesAndTubeSolids.anc10.gif"><p>
+</a>
+<a name="18792">
+<em>Figure 16.10  &#32; &#32;Dissolve the edge loop
+</em></a><P><a name="18784">
+Now zoom in even closer; dissolving the edge loop created a "step":<p>
+</a><P><a name="18804">
+ <P><img src="16TubesAndTubeSolids.anc11.gif"><p>
+</a><a name="18805">
+<em>Figure 16.11  &#32; &#32;Resulting "step"
+</em></a><P>
+<a name="18814">
+<STRONG>	13.	 Select an edge like the one shown below:
+</STRONG>
+</a><P><a name="18829">
+ <P><img src="16TubesAndTubeSolids.anc12.gif"><p>
+</a>
+<a name="18830">
+<em>Figure 16.12  &#32; &#32;Select the edge shown
+</em></a><P>
+<a name="18839">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on the segment, then <strong>(CLICK-L)</strong> on Select Edge Loop.
+</STRONG>
+</a><P><a name="18798">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="18842">
+<dt>This selects the vertices on the selected segments.</dt>
+</a><P><a name="18853">
+ <P><img src="16TubesAndTubeSolids.anc13.gif"><p>
+</a></dl>
+<a name="18854">
+<em>Figure 16.13  &#32; &#32;Select the vertices on the edge loop
+</em></a><P>
+<a name="18860">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="18848">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Y for the axis on which to flatten the selected points.
+</STRONG>
+</a><P><dl><a name="18866">
+<dt>N-Geometry goes into point-select mode. Pick one of the points on the bottom of the step:</dt>
+</a><P><a name="18878">
+ <P><img src="16TubesAndTubeSolids.anc14.gif"><p>
+</a></dl>
+<a name="18879">
+<em>Figure 16.14  &#32; &#32;Select the vertices on the edge loop
+</em></a><P><dl><dl><a name="18873">
+<dt>The floor should now look like this:</dt>
+</a><P><a name="18900">
+ <P><img src="16TubesAndTubeSolids.anc15.gif"><p>
+</a></dl></dl><a name="18901">
+<em>Figure 16.15  &#32; &#32;Tube with flattened floor
+</em></a><P><a name="18892">
+Now our floor at least appears to be correct; however, if you remember our discussion of "virtual clay" all the way back in <a href="1Basics.html#4724">Chapter &#32;1</a>, you'll remember that a model's surface is always maintained, which means that even if points become coincident, they don't lose their identity.<p>
+</a><P><a name="18918">
+Try this:<p>
+</a><P>
+<a name="18919">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="18920">
+<STRONG>	19.	 <strong>(SHIFT-L)</strong> on one of the vertices on the floor, then <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="18923">
+<dt>You should see something like this:</dt>
+</a><P><a name="18936">
+ <P><img src="16TubesAndTubeSolids.anc16.gif"><p>
+</a></dl>
+<a name="18937">
+<em>Figure 16.16  &#32; &#32;The two vertices still exist
+</em></a><P>
+<a name="18928">
+<STRONG>	20.	 <strong>(CLICK-R)</strong> to Abort the Move operation.
+</STRONG>
+</a><P><dl><a name="18958">
+<dt>(Press the "u" hot key to undo the move if you changed the point's position.)</dt>
+</a><P></dl><a name="18966">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="18967">
+<STRONG>	22.	 <strong>(SHIFT-L)</strong> on the tube, then <strong>(CLICK-L)</strong> on Cull Elements&gt;Isolated Vertices.
+</STRONG>
+</a><P><a name="18987">
+ <P><img src="16TubesAndTubeSolids.anc17.gif"><p>
+</a>
+<a name="18988">
+<em>Figure 16.17  &#32; &#32;Cull Elements options
+</em></a><P>
+<a name="18978">
+<STRONG>	23.	 Now, move the point again:
+</STRONG>
+</a><P><a name="19009">
+ <P><img src="16TubesAndTubeSolids.anc18.gif"><p>
+</a>
+<a name="19010">
+<em>Figure 16.18  &#32; &#32;The isolated vertices are removed
+</em></a><P><dl><dl><a name="19119">
+<dt>The isolated vertex has been removed.</dt>
+</a><P></dl></dl>
+<a name="19124">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Shading&gt;Tube.
+</STRONG>
+</a><P><dl><a name="19125">
+<dt>The inside of the tube should look something like this:</dt>
+</a><P><a name="19028">
+ <P><img src="16TubesAndTubeSolids.anc19.gif"><p>
+</a></dl>
+<a name="19029">
+<em>Figure 16.19  &#32; &#32;Inside the shaded tube
+</em></a><P><a name="19070">
+<h3> Working with Normals</h3>
+</a><a name="19138">
+Use the <strong>Evert</strong> command to flip the normals so that they're pointing to the correct side:<p>
+</a><P><ul><a name="19083">
+<li>if your animation is taking place on the <em>inside</em> of the tube, turn the normals <em>in</em>
+</a></li><P><a name="19092">
+<li>if your animation is taking place on the <em>outside</em> of the tube, turn the normals <em>out</em>
+</a></li><P></ul><P><a name="19074">
+If you look at your tube from the outside, your shaded tube should look something like this:<p>
+</a><P><a name="19110">
+ <P><img src="16TubesAndTubeSolids.anc20.gif"><p>
+</a><a name="19111">
+<em>Figure 16.20  &#32; &#32;Outside the shaded tube
+</em></a><P><a name="19058">
+<h2><HR> Save your Work</h2>
+</a><a name="19059">
+Make sure to use the <strong>GeoMenus&gt;File&gt;Save</strong> operation to save your work.<p>
+</a><P><a name="19060">
+<h2><HR> Congratulations!</h2>
+</a><a name="19061">
+You've now completed an entire environment based on two simple sketched wires.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="15Stadium.html">[Prev]</a> <a href="17CopyReinstMult.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/29/96 14:28:29 -->
+
+</body>
+</html>

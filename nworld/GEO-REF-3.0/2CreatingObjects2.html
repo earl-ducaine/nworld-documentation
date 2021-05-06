@@ -1,0 +1,798 @@
+<html><head><title>File and Edit Menus</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects1.html">[Prev]</a> <a href="3TransformObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+<h1>File and Edit Menus (cont.)</h1> 
+<a name="2614">
+<h2><HR> Open</h2>
+</a><a name="10030">
+Loads an object that has been saved to file. To display the Read in New 3D-Object menu, <strong>(CLICK-L)</strong> on <strong>File&gt;Open</strong>.<p>
+</a><P><a name="10007">
+ <P><img src="2CreatingObjects.anc67.gif"><p>
+</a><a name="10008">
+<em>Figure 2.66  &#32; &#32;Reading in a 3D object
+</em></a><P><a name="10009">
+The following parameters can be specified when reading in a file:<strong> 
+<P><Table Border="1">
+<dl>
+<a name="28028">
+<em>Table 2.7  &#32; &#32;Parameters when reading in a file
+</em></a></dl>
+<tr><th align="left"><a name="28034">
+Parameter
+</a><th align="left"><a name="28036">
+Type
+</a><th align="left"><a name="28038">
+Description
+</a>
+<tr><td valign="top"><a name="28040">
+ <strong>Filename</strong><p>
+</a><td valign="top"><a name="28042">
+ <p>
+</a><td valign="top"><a name="28118">
+ Specifies the pathname of the file to read. Filenames without extensions default to .obj, and the program notifies you when it cannot find a file with the name you supplied.<p>
+</a>
+<tr><td valign="top"><a name="28046">
+ <p>
+</a><td valign="top"><a name="28048">
+ <strong>Read All</strong><p>
+</a><td valign="top"><a name="28122">
+ Reads all objects in the specified directory of the file type specified in <strong>File Type</strong>.<p>
+</a>
+<tr><td valign="top"><a name="28052">
+ <p>
+</a><td valign="top"><a name="28054">
+ <strong>Select One</strong><p>
+</a><td valign="top"><a name="28132">
+ Displays a list of objects in the specified directory, and lets you pick one object to load.<p>
+</a>
+<tr><td valign="top"><a name="28058">
+ <p>
+</a><td valign="top"><a name="28060">
+ <strong>Select Several</strong><p>
+</a><td valign="top"><a name="28136">
+ Displays a list of objects in the specified directory, but lets you select several objects to load.<p>
+</a>
+<tr><td valign="top"><a name="28064">
+ <strong>File Type</strong><p>
+</a><td valign="top"><a name="28066">
+ <p>
+</a><td valign="top"><a name="28143">
+ Determines what type of object is being read in.<p>
+</a>
+<tr><td valign="top"><a name="28070">
+ <p>
+</a><td valign="top"><a name="28072">
+ <strong>Geometry</strong><p>
+</a><td valign="top"><a name="28155">
+ N-Geometry's native format (and are given a .geo extension).<p>
+</a>
+<tr><td valign="top"><a name="28076">
+ <p>
+</a><td valign="top"><a name="28078">
+ <strong>dxf</strong><p>
+</a><td valign="top"><a name="28159">
+ AutoCAD format.<p>
+</a>
+<tr><td valign="top"><a name="28082">
+ <p>
+</a><td valign="top"><a name="28084">
+ <strong>obj</strong><p>
+</a><td valign="top"><a name="28163">
+ Wavefront format.<p>
+</a>
+<tr><td valign="top"><a name="28088">
+ <p>
+</a><td valign="top"><a name="28090">
+ <strong>asf</strong><p>
+</a><td valign="top"><a name="28167">
+ Acclaim format (skeletons). <p>
+</a>
+<tr><td valign="top"><a name="28094">
+ <p>
+</a><td valign="top"><a name="28096">
+ <strong>bvh</strong><p>
+</a><td valign="top"><a name="28151">
+ BioVision format (skeletons).<p>
+</a>
+<tr><td valign="top"><a name="28507">
+ <p>
+</a><td valign="top"><a name="28509">
+ htr<p>
+</a><td valign="top"><a name="28511">
+ Motion Analysis format (skeletons).<p>
+</a>
+<tr><td valign="top"><a name="28501">
+ <p>
+</a><td valign="top"><a name="28503">
+ All<p>
+</a><td valign="top"><a name="28505">
+ Lists all file types in the object list.<p>
+</a>
+<tr><td valign="top"><a name="28100">
+ <strong>Ignore <br>Numbering</strong><p>
+</a><td valign="top"><a name="28102">
+ <p>
+</a><td valign="top"><a name="28190">
+ Specifies whether or not to pay attention to the internal numbering of an object file. The internal numbering is sequential, starting at 1 for each type of element, and is provided to make it easier for you to read the text file. Internal numbering is usually ignored to speed up read-in, but it might be advisable to turn off <strong>Ignore Numbering</strong> when you have hand-modified or have otherwise altered a saved object because the numbers no longer correspond to the positions of the modified elements in the listing.<p>
+</a>
+<tr><td valign="top"><a name="28106">
+ <strong>Read body files</strong><p>
+</a><td valign="top"><a name="28108">
+ <p>
+</a><td valign="top"><a name="28265">
+ Specifies which body files are to be used when reading in an object.<p>
+</a>
+<tr><td valign="top"><a name="28250">
+ <p>
+</a><td valign="top"><a name="28252">
+ <strong>Newest</strong><p>
+</a><td valign="top"><a name="28271">
+ Uses the newest versions of all separately written body files.<p>
+</a>
+<tr><td valign="top"><a name="28244">
+ <p>
+</a><td valign="top"><a name="28246">
+ <strong>Recorded</strong><p>
+</a><td valign="top"><a name="28275">
+ Uses (possibly) older versions of body files that were current when the <em>original</em> object was saved.<p>
+</a>
+<tr><td valign="top"><a name="28238">
+ <p>
+</a><td valign="top"><a name="28240">
+ <strong>None</strong><p>
+</a><td valign="top"><a name="28261">
+ Skips reading any body files. Dummy or reinstanced bodies are substituted for the body files.<p>
+</a>
+<tr><td valign="top"><a name="28394">
+ <strong>Body File Reread</strong><p>
+</a><a name="28232">
+ <p>
+</a><td valign="top"><a name="28234">
+ <strong></strong><p>
+</a><td valign="top"><a name="28287">
+ Facilitates handling of binary body files already read into N-Geometry. Lets you specify the actions N-Geometry should take when it encounters an object that references a body that has already been read. This new menu item gives you a choice of five options:<p>
+</a>
+<tr><td valign="top"><a name="28226">
+ <p>
+</a><td valign="top"><a name="28228">
+ <strong>Reinstance</strong><p>
+</a><td valign="top"><a name="28296">
+ Reuses the existing body (this is the default).<p>
+</a>
+<tr><td valign="top"><a name="28220">
+ <p>
+</a><td valign="top"><a name="28222">
+ <strong>Make New</strong><p>
+</a><td valign="top"><a name="28304">
+ Makes a <em>copy</em> of the body. When the copy is saved, it is written to a different file.<p>
+</a>
+<tr><td valign="top"><a name="28214">
+ <p>
+</a><td valign="top"><a name="28216">
+ <strong>New, displacing</strong><p>
+</a><td valign="top"><a name="28311">
+ Makes a copy of the body and gives the copy the original filename. When the original body is saved, it is written to a different file.<p>
+</a>
+<tr><td valign="top"><a name="28208">
+ <p>
+</a><td valign="top"><a name="28210">
+ <strong>Revert</strong><p>
+</a><td valign="top"><a name="28317">
+ Re-reads the file and replaces all current instances of the body with the data on file.<p>
+</a>
+<tr><td valign="top"><a name="28202">
+ <p>
+</a><td valign="top"><a name="28204">
+ <strong>Revert if <br>modified</strong><p>
+</a><td valign="top"><a name="28322">
+ Replaces all instances of the body with saved data only if the body has been modified; otherwise it acts like <strong>Reinstance</strong>.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</strong><p>
+</a><P><a name="24582">
+<h2><HR> Save</h2>
+</a><a name="24584">
+<strong>File&gt;Save</strong> saves the N-Geometry object as a file on the file system of any connected file server host. This is the only way to save an object for use at another time.<p>
+</a><P><ul><a name="24585">
+<li><strong>(CLICK-L)</strong> brings up the following menu:
+</a></li><P><a name="24589">
+ <P><img src="2CreatingObjects.anc68.gif"><p>
+</a></ul><P><a name="24590">
+<em>Figure 2.67  &#32; &#32;Selecting objects to be saved
+</em></a><P><ul><ul>
+<BR><a name="24591">
+<li><strong>Camera View</strong> saves either the current viewpoint or a previously saved view in a file. (See the section <a href="5ViewingObjects.html#3137">"Views," on page &#32;5-4</a>.) Viewpoints are read back in via <strong>Camera&gt;Views</strong>.
+</a><P><BR><a name="24595">
+<li><strong>Light Groups</strong> saves currently configured light groups.
+</a><P><BR><a name="24597">
+<li><strong>Any or all</strong> brings up a multiple-value version of the same menu. Newly created and modified objects are highlighted. You can select or deselect any number of objects to save. On this menu, highlighting <strong>all objects</strong> means all objects will be saved to file. When you use <strong>Do It</strong>, N-Geometry saves the objects (without interrogation) into its own file, using the object's name and the default directory as a filename.
+</a><P></ul>
+</ul><ul><a name="28587">
+<li><strong>(CLICK-R)</strong> automatically selects all loaded objects for saving to a file, using the object's name and the default directory as a filename; you can use the default filename or change it. 
+</a></li><P></ul><P><a name="28599">
+The save menu looks like this:<p>
+</a><P><a name="28607">
+ <P><img src="2CreatingObjects.anc69.gif"><p>
+</a><a name="28608">
+<em>Figure 2.68  &#32; &#32;Saving objects
+</em></a><P><a name="28602">
+ 
+<P><Table Border="1">
+<dl>
+<a name="28614">
+<em>Table 2.8  &#32; &#32;Parameters for saving objects
+</em></a></dl>
+<tr><th align="left"><a name="28620">
+Parameter
+</a><th align="left"><a name="28622">
+Type
+</a><th align="left"><a name="28624">
+Description
+</a>
+<tr><td valign="top"><a name="28626">
+ <strong>FILENAME</strong><p>
+</a><td valign="top"><a name="28628">
+ <p>
+</a><td valign="top"><a name="28705">
+ Specifies the name of the file to be written. N-Geometry now forces this name to be the same as that of the object. If necessary, N-Geometry replaces certain characters so that the filename is valid.<p>
+</a>
+<tr><td valign="top"><a name="28632">
+ <strong>Object name</strong><p>
+</a><td valign="top"><a name="28634">
+ <p>
+</a><td valign="top"><a name="28718">
+ The name of the object. Changing this value renames the object and changes the filename.<p>
+</a>
+<tr><td valign="top"><a name="28638">
+ <strong>Write-out units</strong><p>
+</a><td valign="top"><a name="28640">
+ <p>
+</a><td valign="top"><a name="28727">
+ The units in which the object's coordinates are saved. Changing this value scales the object coordinates correspondingly. The default is the current global unit.<p>
+</a>
+<tr><td valign="top"><a name="28644">
+ <strong>Documentation</strong><p>
+</a><td valign="top"><a name="28646">
+ <p>
+</a><td valign="top"><a name="28740">
+ A brief description of the object, included at the beginning of the .obj file. This comes in handy when you write multiple versions of the same large file. You then need not load a file to find out which version it is; instead, type the following command at a LISP Listener:<p>
+</a><a name="28744">
+ <strong>			</strong>Show File &lt;filename&gt;<p>
+</a>
+<tr><td valign="top"><a name="28650">
+ <strong>Separate body files?</strong><p>
+</a><td valign="top"><a name="28652">
+ <p>
+</a><td valign="top"><a name="28753">
+ Saves an object in N-Geometry format, and lets you choose one of four formats in which to save the object:<p>
+</a>
+<tr><td valign="top"><a name="28656">
+ <p>
+</a><td valign="top"><a name="28658">
+ <strong>No</strong><p>
+</a><td valign="top"><a name="28762">
+ Writes in the old style .obj format, writing one large ASCII text file for the entire object.<p>
+</a>
+<tr><td valign="top"><a name="28662">
+ <p>
+</a><td valign="top"><a name="28664">
+ <strong>Text</strong><p>
+</a><td valign="top"><a name="28766">
+ Writes one .obj file, plus a .body file and a .tbd file for each terminal object.<p>
+</a>
+<tr><td valign="top"><a name="28668">
+ <p>
+</a><td valign="top"><a name="28670">
+ <strong>Binary</strong><p>
+</a><td valign="top"><a name="28770">
+ Writes each body in binary format, creating .body and .bbd (binary body descriptor) files for each of the object's terminal objects. Saving objects in binary format creates smaller files that can be written and read faster. When you save an object in binary format, N-Geometry writes three types of files: one .obj file, plus a .body file and a .bbd file for each terminal object in the object group.<p>
+</a><a name="28874">
+ A .body file is a short text file that contains the name of the flavor of the body, a list of the .obj files that refer to the body (multiple objects or versions can refer to a single body), and the versions of the body files that were current when the .obj file was written.<p>
+</a><a name="28875">
+ By default, N-Geometry stores the .body, .bbd, and .tbd files in a directory called Bodies, which N-Geometry creates as a subdirectory of the directory where the objects are stored. <p>
+</a><a name="28876">
+ For example, suppose you are restructuring two objects, cube and cube[2], into a new object named cube-group and stored in the /cube directory. N-Geometry stores the top-level object file, cube-group.obj, in the /cube directory but stores the .body and the .bbd files in /cube/bodies.<p>
+</a>
+<tr><td valign="top"><a name="28674">
+ <p>
+</a><td valign="top"><a name="28780">
+ <strong>History</strong><p>
+</a><td valign="top"><a name="28678">
+ If you turn the History option on, you save the sequential list of procedures that were used to get the object to its current state. <p>
+</a><a name="29991">
+ If you read an object back in that was saved with history, you can use the <strong>Rebuild</strong> function to step through the rebuilding process. See the section <a href="2CreatingObjects2.html#31978">"Rebuild," on page &#32;2-64</a> for more information.<p>
+</a>
+<tr><td valign="top"><a name="28680">
+ <strong>Number <br>elements?</strong><p>
+</a><td valign="top"><a name="28682">
+ (for Text<br>format only)<p>
+</a><td valign="top"><a name="28789">
+ If selected, writes the number for each element as part of the file.<p>
+</a>
+<tr><td valign="top"><a name="28686">
+ <strong>Faces by <br>vertex?</strong><p>
+</a><td valign="top"><a name="28688">
+ (for Text<br>format only)<p>
+</a><td valign="top"><a name="28798">
+ If selected, write vertex numbers for each face on the object as part of the file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+The various parameters on the Save dialog are described in the table below:<p>
+</a><P><a name="24563">
+<h2><HR> Export</h2>
+</a><a name="24677">
+If you want to save an object in a format other than N-Geometry's native format, you should use the File&gt;Export command. If you choose this option, a dialog box showing the various supported export formats is displayed:<p>
+</a><P><a name="29305">
+ <P><img src="2CreatingObjects.anc70.gif"><p>
+</a><a name="29306">
+<em>Figure 2.69  &#32; &#32;The Export menu
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Not all formats support all the functionality of geometry's native format. <br><em><br>For example, if your object has displacements or GL Shade parameters assigned to it, it must be saved in N-Geometry's native .geo format with the </em><strong>File&gt;Save</strong><em> command. Non-native formats do not support these features.</em></font></dd></dt></dl><P>
+<ul><a name="29311">
+<li><strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> to export a single object
+</a></li><P><a name="30069">
+<li><strong>(CLICK-R)</strong> to select several objects to export
+</a></li><P></ul><P><a name="30068">
+Each of these formats is described in the sections below.<p>
+</a><P><a name="29310">
+<h3> Exporting AutoCAD DXF</h3>
+</a><a name="29369">
+To export the object as in DXF format, choose <strong>AutoCAD DXF</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which objects are to be saved:<p>
+</a><P><a name="29366">
+ <P><img src="2CreatingObjects.anc71.gif"><p>
+</a><a name="29367">
+<em>Figure 2.70  &#32; &#32;Saving an object in AutoCAD DXF format
+</em></a><P><a name="29328">
+<h3> Exporting Wavefront OBJ</h3>
+</a><a name="29375">
+To export the object as an OBJ format, choose <strong>Wavefront OBJ</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which objects are to be saved. You can also specify whether the object is to be saved in its transformed state.<p>
+</a><P><a name="29379">
+ <P><img src="2CreatingObjects.anc72.gif"><p>
+</a><a name="29380">
+<em>Figure 2.71  &#32; &#32;Saving an object in Wavefront OBJ format
+</em></a><P><a name="29329">
+<h3> Exporting Acclaim Skeletons</h3>
+</a><a name="29382">
+To export a skeleton object in Acclaim format, choose <strong>Acclaim Skeleton</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which skeletons are to be saved:<p>
+</a><P><a name="29386">
+ <P><img src="2CreatingObjects.anc73.gif"><p>
+</a><a name="29387">
+<em>Figure 2.72  &#32; &#32;Saving a skeleton in Acclaim format
+</em></a><P><a name="29330">
+<h3> Exporting Biovision Skeletons</h3>
+</a><a name="29465">
+To export a skeleton object in Biovision format, choose <strong>Biovision Skeleton</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which skeletons are to be saved:<p>
+</a><P><a name="29469">
+ <P><img src="2CreatingObjects.anc74.gif"><p>
+</a><a name="29470">
+<em>Figure 2.73  &#32; &#32;Saving a skeleton in Biovision format
+</em></a><P><a name="29331">
+<h3> Exporting HTR Skeletons</h3>
+</a><a name="29480">
+To export a skeleton object in Motion Analysis' HTR format, choose <strong>HTR Skeleton</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which skeletons are to be saved:<p>
+</a><P><a name="29484">
+ <P><img src="2CreatingObjects.anc75.gif"><p>
+</a><a name="29485">
+<em>Figure 2.74  &#32; &#32;Saving a skeleton in HTR format
+</em></a><P><a name="29332">
+<h3> Exporting Sony RSD</h3>
+</a><a name="29407">
+To export the selected object as in Sony's RSD format, choose <strong>Sony RSD</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which objects are to be saved:<p>
+</a><P><a name="29411">
+ <P><img src="2CreatingObjects.anc76.gif"><p>
+</a><a name="30082">
+<em>Figure 2.75  &#32; &#32;Saving an object in Sony's RSD format
+</em></a><P><a name="30083">
+For more information on the Sony RSD format, refer to the <em>PlayStation Express User's Guide</em>.<p>
+</a><P><a name="30084">
+<h3> Exporting Nintendo 64</h3>
+</a><a name="29505">
+To export the selected object as in Nintendo's native format, choose <strong>Nintendo 64</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which objects are to be saved:<p>
+</a><P><a name="29509">
+ <P><img src="2CreatingObjects.anc77.gif"><p>
+</a><a name="29510">
+<em>Figure 2.76  &#32; &#32;Saving an object in Sony's RSD format
+</em></a><P><a name="29511">
+For more information on the Nintendo format, refer to the <em>Nintendo Express User's Guide</em>.<p>
+</a><P><a name="29334">
+<h3> Exporting Sega SGL</h3>
+</a><a name="29523">
+To export the selected object as in Sega's SGL format, choose <strong>Sega SGL</strong>. You can <strong>(CLICK-L)</strong> on the <strong>Objects</strong> text edit box to specify which objects are to be saved:<p>
+</a><P><a name="29527">
+ <P><img src="2CreatingObjects.anc78.gif"><p>
+</a><a name="29528">
+<em>Figure 2.77  &#32; &#32;Saving an object in Sega's SGL format
+</em></a><P><a name="29529">
+For more information on the Sega SGL format, refer to the <em>Sega Express User's Guide</em>.<p>
+</a><P><a name="32005">
+<h2><HR> Get</h2>
+</a><a name="32006">
+Brings an object from the LISP world into the N-Geometry environment. This element appears on the GeoMenus only if you are running the N&#183;World Devo Kit (Wide Open World).<p>
+</a><P><a name="32010">
+ <P><img src="2CreatingObjects.anc79.gif"><p>
+</a><a name="32011">
+<em>Figure 2.78  &#32; &#32;The Get Object menu
+</em></a><P><a name="32012">
+Since you normally create and modify objects entirely within the N-Geometry environment, you probably will not select this menu item. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You'll need to use this only if you're familiar with LISP environment and want to create custom objects.</em></font></dd></dt></dl><P>
+<a name="31743">
+<h2><HR> The Edit Menu</h2>
+</a><a name="32031">
+The <strong>GeoMenus&gt;Edit </strong>menu lets you do all of the following tasks:<p>
+</a><P><ul><a name="32032">
+<li>Make one or more copies of an existing object (using several techniques)
+</a></li><P><a name="32035">
+<li>Edit the body of an object (selected from an object list)
+</a></li><P><a name="32036">
+<li>Edit an object (selected from an object list)
+</a></li><P><a name="32052">
+<li>Deleting an object from N-Geometry
+</a></li><P></ul><P><a name="32037">
+The <strong>GeoMenus&gt;Edit </strong>menu looks like this: <p>
+</a><P><a name="32041">
+ <P><img src="2CreatingObjects.anc80.gif"><p>
+</a><a name="32042">
+<em>Figure 2.1  &#32; &#32;The Edit menu
+</em></a><P><a name="32043">
+Each of the options on the <strong>File</strong> menu are described in the following sections.<p>
+</a><P><a name="32024">
+<h2><HR> Copy</h2>
+</a><a name="31744">
+Creates a new object that is an identical but discrete copy of the original. See the section <a href="1Overview.html#8644">"Objects," on page &#32;1-4</a>.<p>
+</a><P><ul><a name="31748">
+<li><strong>(CLICK-L)</strong> physically copies the geometry of an object, creating a single discrete new object in the same location as the original. The duplicate is named "Copy of Object" where "Object" is the name of the original.
+</a></li><P><a name="31749">
+<li><strong>(CLICK-R)</strong> on <strong>Copy</strong> displays the following options for adding objects to N-Geometry:
+</a></li><P><a name="31753">
+ <P><img src="2CreatingObjects.anc81.gif"><p>
+</a></ul><P><a name="31754">
+<em>Figure 2.2  &#32; &#32;Other copy options
+</em></a><P><a name="31755">
+Each of these options is described below.<p>
+</a><P><a name="31758">
+<h3> Reinstance</h3>
+</a><a name="31759">
+Creates a new object that <em>shares</em> the body of the original polyhedron. Any change to the first object is automatically reflected in the new object.<p>
+</a><P><a name="31760">
+<strong>(CLICK-R)</strong> on <strong>Copy</strong> to reinstance an object.<p>
+</a><P><ul><a name="31761">
+<li>If you modify the <em>body</em> of the original polyhedron, that change is reflected in all the instances of that object-for example, if you extrude a face on the original polyhedron, all reinstances that share that body will have the same extruded face.
+</a></li><P><a name="31762">
+<li>If you select the <em>object</em>, the original and reinstances can be transformed independently.
+</a></li><P></ul><P><a name="31766">
+<a href="2CreatingObjects2.html#31802">Figure 2.3</a> shows a cube that was copied once and reinstanced once. Only the <em>reinstanced</em> cube reflects the modification to the original.<p>
+</a><P><a name="31767">
+To create multiple reinstances of an object, see the <strong>Multiply</strong> section below.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Why Reinstance? Reinstancing objects takes considerably less memory than copying, since only one body is shared by multiple objects. If you're working on a very complex scene, you may want to consider using reinstanced objects.</em></font></dd></dt><a name="31800">
+ <P><img src="2CreatingObjects.anc82.gif"><p>
+</a></dl><P>
+<a name="31802">
+<em>Figure 2.3  &#32; &#32;Left, copied and reinstanced cube; right, only reinstanced cube is affected by body modification
+</em></a><P><a name="31805">
+<h3> Multiply</h3>
+</a><a name="31806">
+<strong>(CLICK-R)</strong> on <strong>Copy</strong> to multiply an object.<p>
+</a><P><a name="31807">
+<strong>Multiply</strong> either copies or reinstances a specified object; the positions of the copies or instances are based on the input you provide through the following dialog box:<p>
+</a><P><a name="31811">
+ <P><img src="2CreatingObjects.anc83.gif"><p>
+</a><a name="31812">
+<em>Figure 2.4  &#32; &#32;Multiply dialog box
+</em></a><P><a name="31960">
+The following parameters can be specified when generating a grid:<strong> 
+<P><Table Border="1">
+<dl>
+<a name="31815">
+<em>Table 2.1  &#32; &#32;Multiply parameters
+</em></a></dl>
+<tr><th align="left"><a name="31821">
+Parameter
+</a><th align="left"><a name="31823">
+Type
+</a><th align="left"><a name="31825">
+Description
+</a>
+<tr><td valign="top"><a name="31827">
+ <strong>Object to <br>multiply</strong><p>
+</a><td valign="top"><a name="31829">
+ <p>
+</a><td valign="top"><a name="31831">
+ The object to be copied<p>
+</a>
+<tr><td valign="top"><a name="31833">
+ <strong>Duplicate how</strong><p>
+</a><td valign="top"><a name="31835">
+ <p>
+</a><td valign="top"><a name="31837">
+ Method is used to duplicate the original (selected from the options described below).<p>
+</a>
+<tr><td valign="top"><a name="31839">
+ <p>
+</a><td valign="top"><a name="31841">
+ <strong>Reinstance-Copy</strong><p>
+</a><td valign="top"><a name="31843">
+ Makes a copy of original, then reinstances that copy so the original object can be modified without affecting the generated lattice.<p>
+</a>
+<tr><td valign="top"><a name="31845">
+ <p>
+</a><td valign="top"><a name="31847">
+ <strong>Copy</strong><p>
+</a><td valign="top"><a name="31849">
+ Makes copies of the original.<p>
+</a>
+<tr><td valign="top"><a name="31851">
+ <p>
+</a><td valign="top"><a name="31853">
+ <strong>Reinstance</strong><p>
+</a><td valign="top"><a name="31855">
+ Makes new instances of the original.<p>
+</a>
+<tr><td valign="top"><a name="31857">
+ <strong>Arrangement mode</strong><p>
+</a><td valign="top"><a name="31859">
+ <p>
+</a><td valign="top"><a name="31861">
+ Layout of the new objects<p>
+</a>
+<tr><td valign="top"><a name="31863">
+ <p>
+</a><td valign="top"><a name="31865">
+ <strong>Linear</strong><p>
+</a><td valign="top"><a name="31867">
+ Positions the copies in a single row (along the x axis).<p>
+</a>
+<tr><td valign="top"><a name="31869">
+ <p>
+</a><td valign="top"><a name="31871">
+ <strong>Planar</strong><p>
+</a><td valign="top"><a name="31873">
+ Positions the copies along the x and y planes.<p>
+</a>
+<tr><td valign="top"><a name="31875">
+ <p>
+</a><td valign="top"><a name="31877">
+ <strong>Cubical</strong><p>
+</a><td valign="top"><a name="31879">
+ Positions the copies along the x, y, and z planes.<p>
+</a>
+<tr><td valign="top"><a name="31881">
+ <p>
+</a><td valign="top"><a name="31883">
+ <strong>Helical</strong><p>
+</a><td valign="top"><a name="31885">
+ Positions the copies along a helix (like a bed spring) of the specified dimensions.<p>
+</a><a name="31886">
+ <strong>Radius</strong> specifies the radius of the helix.<p>
+</a><a name="31887">
+ <strong>Pitch</strong> specifies the angle of the helix.<p>
+</a><a name="31888">
+ <strong>Instances per rev</strong> sets the number of duplicates that appear on each revolution of the helix.<p>
+</a><a name="31889">
+ <strong>Revolutions</strong> specifies how many times the helix wraps around its own axis.<p>
+</a>
+<tr><td valign="top"><a name="31891">
+ <p>
+</a><td valign="top"><a name="31893">
+ <strong>Per vertex</strong><p>
+</a><td valign="top"><a name="31895">
+ Positions the copies along the vertices of a specified object. (So, for example, four smaller cubes could be created on the corner of a larger cube.)<p>
+</a>
+<tr><td valign="top"><a name="31897">
+ <strong>Number of <br>copies</strong><p>
+</a><td valign="top"><a name="31899">
+ <p>
+</a><td valign="top"><a name="31901">
+ The number of duplicate objects to create. If more than one value is specified, enter the number of duplicates to create along each axis (x, y, and z).<p>
+</a>
+<tr><td valign="top"><a name="31903">
+ <strong>Spacing mode</strong><p>
+</a><td valign="top"><a name="31905">
+ <p>
+</a><td valign="top"><a name="31907">
+ How the copies are spaced.<p>
+</a>
+<tr><td valign="top"><a name="31909">
+ <strong></strong><p>
+</a><td valign="top"><a name="31911">
+ <strong>Abutting</strong><p>
+</a><a name="31912">
+ <p>
+</a><td valign="top"><a name="31914">
+ Puts the amount of space specified in <strong>Interobject spacing</strong> between the <em>edges</em> of adjacent generated objects.<p>
+</a>
+<tr><td valign="top"><a name="31916">
+ <p>
+</a><td valign="top"><a name="31918">
+ <strong>On centers</strong><p>
+</a><td valign="top"><a name="31920">
+ Puts the amount of space specified in <strong>Object centers</strong> between the <em>centers</em> of adjacent generated objects.<p>
+</a>
+<tr><td valign="top"><a name="31922">
+ <strong>Randomize</strong><p>
+</a><td valign="top"><a name="31924">
+ <p>
+</a><td valign="top"><a name="31926">
+ Controls "randomizing" effects used when generating multiplied objects.<p>
+</a>
+<tr><td valign="top"><a name="31928">
+ <p>
+</a><td valign="top"><a name="31930">
+ <strong>Density</strong><p>
+</a><td valign="top"><a name="31932">
+ Number of objects are created along the specified path or lattice.<p>
+</a><a name="31933">
+ For example, if you selected <strong>Linear</strong> for arrangement mode, 10 for <strong>Number of copies</strong>, and .5 for <strong>Density</strong>, only five duplicates would be created. (A smaller or larger number would produce a lower or higher density of coverage.) The duplicates would appear in random positions along the imaginary lattice.<p>
+</a>
+<tr><td valign="top"><a name="31935">
+ <p>
+</a><td valign="top"><a name="31937">
+ <strong>Position</strong><p>
+</a><td valign="top"><a name="31939">
+ Jogs the position of the duplicates, giving the generated pattern a more random appearance.<p>
+</a><a name="31940">
+ For example, if you created multiple copies of a cube using a linear arrangement and specified a position value of <strong>10</strong>, each duplicate could be +/-5 units from its "default" position.<p>
+</a><a name="31941">
+ <strong>Note.</strong> &#32; &#32;<em>Because you can specify position values for each of the x, y, and z planes, you can get cubical effects even if you choose a planar arrangement.</em><p>
+</a>
+<tr><td valign="top"><a name="31943">
+ <p>
+</a><td valign="top"><a name="31945">
+ <strong>Rotation</strong><p>
+</a><td valign="top"><a name="31947">
+ Similar to Position, except that it specifies rotational limits for each duplicate. A higher value allows more rotation; you can specify the range of rotation for duplicates along the x, y, and z axes independently.<p>
+</a>
+<tr><td valign="top"><a name="31949">
+ <p>
+</a><td valign="top"><a name="31951">
+ <strong>Scale</strong><p>
+</a><td valign="top"><a name="31953">
+ Scales generated duplicates, using scaling factors between 0 and the specified value. The higher the value, the larger the maximum size. Scale can be specified independently in the x, y, and z plane.<p>
+</a>
+<tr><td valign="top"><a name="31955">
+ <p>
+</a><td valign="top"><a name="31957">
+ <strong>Stretch</strong><p>
+</a><td valign="top"><a name="31959">
+ Stretches generated duplicates, using stretching factors between 0 and the specified value. The higher the value, the more "stretch" allowed. Stretch can be specified independently in the x, y, and z plane.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</strong><p>
+</a><P><a name="31964">
+<a href="2CreatingObjects2.html#31970">Figure 2.5</a> shows the results of multiplying a cube using planar arrangement mode, with six copies in the x direction and four in the y, with randomized rotation limits of 45, 45, and 45, and a randomized scale of 2.0:<p>
+</a><P><a name="31968">
+ <P><img src="2CreatingObjects.anc84.gif"><p>
+</a><a name="31970">
+<em>Figure 2.5  &#32; &#32;Multiplied copies of a single cube using planar copy
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Copies of the object are positioned based on the orientation of the <br>original object.</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	<em>The generated duplicates are grouped together as one object in the object hierarchy; </em><strong>(CLICK-R)</strong><em> on an object in the object list to view its inferiors.</em></font></dd></dt></dl><P>
+<a name="31975">
+Also refer to the <em>N-Geometry Tutorial</em> for several examples of using Multiply to create other, more complex objects.<p>
+</a><P><a name="31978">
+<h3> Rebuild</h3>
+</a><a name="31979">
+Rebuild lets you build a copy or partial copy of an existing terminal level object; the rebuild process goes through each step that was used in creating the original object, so that you could, for example, recreate an object as it existed at its halfway point. <p>
+</a><P><a name="31983">
+ <P><img src="2CreatingObjects.anc85.gif"><p>
+</a><a name="31984">
+<em>Figure 2.6  &#32; &#32;The Rebuild menu
+</em></a><P><ul><a name="31985">
+<li><strong>Object</strong> lets you specify the object to rebuild. <strong>(CLICK-L)</strong> on the text edit box to display a list of currently loaded objects and select the terminal object you want to rebuild.
+</a></li><P><a name="31986">
+<li><strong>Step through</strong> specifies whether the recreation takes place one step at a time, or all at once.
+</a></li><P></ul><P><a name="31987">
+If you set the <strong>Step through</strong> option to <strong>Yes</strong> when you <strong>(CLICK-L)</strong> on <strong>Rebuild</strong>, a second, smaller dialog box appears:<p>
+</a><P><a name="31991">
+ <P><img src="2CreatingObjects.anc86.gif"><p>
+</a><a name="31992">
+<em>Figure 2.7  &#32; &#32;Stepping through the rebuild process
+</em></a><P><a name="31993">
+<strong>(CLICK-L)</strong> on <strong>Do It</strong> to execute each step performed to build the selected object, and <strong>(CLICK-L)</strong> on <strong>Stop</strong> when you're done. In the list of objects, the rebuilt object appears as "Rebuilt Object" (where "Object" is the name of the original object).<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You may find it helpful to turn the visibility of the original object off so that it doesn't interfere with your view of the new object as it is being rebuilt.</em></font></dd></dt></dl><P>
+<a name="29337">
+<h2><HR> Edit Body</h2>
+</a><a name="32068">
+The <strong>Edit Body</strong> command lets you edit the body of an object that is currently loaded into N-Geometry. This is equivalent to selecting <strong>bodies</strong> on the element sensitivity menu then using <strong>(SHIFT-L)</strong> on the body; however, there are times when, for example, the body is invisible or is simply beyond the edge of the N-Geometry window, and you'll need to use the <strong>Edit Body </strong>command.<p>
+</a><P><a name="32078">
+To edit the body of an object:<p>
+</a><P>
+<a name="32083">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Edit Body.
+</STRONG>
+</a><P><dl><a name="32109">
+<dt>An object list appears, displaying any objects currently loaded into N-Geometry.</dt>
+</a><P><a name="32113">
+ <P><img src="2CreatingObjects.anc87.gif"><p>
+</a></dl>
+<a name="32114">
+<em>Figure 2.8  &#32; &#32;Object list
+</em></a><P>
+<a name="32115">
+<STRONG>	2.	 Select the object from the object list that appears.
+</STRONG>
+</a><P><dl><a name="32116">
+<dt>The body modification menu for the selected type of object is displayed.</dt>
+</a><P></dl><a name="32135">
+<STRONG>	3.	 Select the<strong> </strong>command you wish to execute.
+</STRONG>
+</a><P>
+<a name="32134">
+<h2><HR> Edit Object</h2>
+</a><a name="32143">
+The <strong>Edit Object </strong>command is similar to the Edit Body command described previously; however, with this command, you edit object itself rather than the body. This is equivalent to selecting <strong>objects</strong> on the element sensitivity menu then using <strong>(SHIFT-L)</strong> on the object; however, there are times when, for example, the object is invisible or is simply beyond the edge of the N-Geometry window, and you'll need to use the <strong>Edit Object</strong> command.<p>
+</a><P><a name="32144">
+To edit the body of an object:<p>
+</a><P>
+<a name="32145">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Edit Body.
+</STRONG>
+</a><P><dl><a name="32146">
+<dt>An object list appears, displaying any objects currently loaded into N-Geometry.</dt>
+</a><P><a name="32150">
+ <P><img src="2CreatingObjects.anc88.gif"><p>
+</a></dl>
+<a name="32151">
+<em>Figure 2.9  &#32; &#32;Object list
+</em></a><P>
+<a name="32152">
+<STRONG>	2.	 Select the object from the object list that appears.
+</STRONG>
+</a><P><dl><a name="32153">
+<dt>The body modification menu for the selected type of object is displayed.</dt>
+</a><P></dl><a name="32154">
+<STRONG>	3.	 Select the<strong> </strong>command you wish to execute.
+</STRONG>
+</a><P>
+<a name="32141">
+<p>
+</a><P><a name="32063">
+<h2><HR> Delete</h2>
+</a><a name="24683">
+Deletes an object and permanently removes it from the N-<em>Geometry</em> environment.<p>
+</a><P><ul><a name="24684">
+<li><strong>(CLICK-L)</strong> presents a list of objects from which you may select an object to kill.
+</a></li><P><dl><a name="24685">
+<dt><strong>Any or All </strong>lets you kill all or several items at once (basically the same as using <strong>(CLICK-R)</strong>. If the object is a multiple-object group, <strong>(CLICK-L)</strong> on the object to delete all objects that make up the top-level object. <strong>(CLICK-R)</strong> on a multiple object group to display that object's hierarchy and select subobjects to delete.</dt>
+</a><P></dl><a name="24686">
+<li><strong>(CLICK-M)</strong> rescues the last item you deleted.
+</a></li><P><a name="24687">
+<li><strong>(CLICK-R)</strong> lets you select multiple objects to delete at once.
+</a></li><P></ul><P>
+<hr><br>
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects1.html">[Prev]</a> <a href="3TransformObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 08:11:44 -->
+
+</body>
+</html>

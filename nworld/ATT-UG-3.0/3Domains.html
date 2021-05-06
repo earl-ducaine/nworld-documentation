@@ -1,0 +1,1236 @@
+<html><head><title>Render Domains</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingMaterials.html">[Prev]</a> <a href="4Lights.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="18232">
+<p>
+</a><a name="15707">
+<h1>Render Domains</h1>
+</a>
+<hr><p><a name="15708">
+<h4> A material can be used in one or more domains; each render domain has a different set of attributes that can be specified to take advantage of that domain. This chapter describes the attributes for the GL Shade and the Render domains. (Attributes for the various game domains is described in more detail in the appropriate Game Express manuals.)</h4>
+</a><a name="15895">
+ <P><img src="3Domains.anc.gif"><p>
+</a><a name="15710">
+<h2><HR> GL Shade Domain</h2>
+</a><a name="12051">
+You can specify <strong>Shader</strong> and <strong>Texture</strong> map parameters for the GL Shade domain. The preferences you specify here are used as defaults if you do not make any changes to the material locally.<p>
+</a><P><a name="15717">
+<h3> Setting GL Shade Preferences</h3>
+</a><a name="15718">
+To set GL Shade Preferences, <strong>(CLICK-L)</strong> on the <strong>GL Shade</strong> button, then <strong>(CLICK-L)</strong> on the <strong>Prefs</strong> button. The GL Shade defaults menu appears:<p>
+</a><P><a name="15722">
+ <P><img src="3Domains.anc1.gif"><p>
+</a><a name="15723">
+<em>Figure 3.1  &#32; &#32;The GL Shade domain defaults menu
+</em></a><P><a name="15725">
+<h4> Map Directory</h4>
+</a><a name="15726">
+This is the default directory for texture maps. <p>
+</a><P><ul><a name="15727">
+<li><strong>(CLICK-L)</strong> on the Map Directory field to place the cursor in the field and edit it.
+</a></li><P><a name="15728">
+<li><strong>(CLICK-M)</strong> on the Map Directory field to clear the directory and specify a new one.
+</a></li><P><a name="15729">
+<li><strong>(CLICK-R)</strong> on the Map Directory field to specify a new directory or project interactively using a Choose Directory pop-up, as described in <em>Getting Started</em>.
+</a></li><P></ul><P><a name="15730">
+After specifying a map directory, <strong>(CLICK-L)</strong> on one of the buttons at the bottom of the dialog box:<strong></strong><p>
+</a><P><ul><a name="15731">
+<li><strong>(CLICK-L)</strong> on <strong>Done</strong> to use the specified directory for the current N&#183;World session.
+</a></li><P><a name="15732">
+<li><strong>(CLICK-L)</strong> on <strong>Save Preferences</strong> to save the specified directory to file (as your default).
+</a></li><P><a name="15733">
+<li><strong>(CLICK-L)</strong> on <strong>Abort</strong> if you change your mind.
+</a></li><P></ul><P><a name="12052">
+<h3> Shader Attributes (GL Shade)</h3>
+</a><a name="12053">
+To edit <strong>Shader</strong> attributes,<strong> (CLICK-L)</strong> on the Shader icon in the Material Parameters section of the Attributes Editor menu. The GL Shade shader attributes appear in the Attributes section of the Attributes Editor window:<p>
+</a><P><a name="12056">
+ <P><img src="3Domains.anc2.gif"><p>
+</a><a name="12057">
+<em>Figure 3.2  &#32; &#32;GL Shade shader attributes
+</em></a><P><a name="12068">
+<h4> Diffuse Color</h4>
+</a><a name="12075">
+Specifies the diffuse color of the object. Diffuse color is the color reflected by the object equally in all directions. <strong>(CLICK-L)</strong> on the field to reveal a Select Color dialog. <p>
+</a><P><a name="12069">
+<h4> Shininess</h4>
+</a><a name="12093">
+This parameter controls the prominence of the specular highlight. A higher value produces a more prominent highlight, and a "shinier" look. <p>
+</a><P><a name="12072">
+<h4> Specular Color</h4>
+</a><a name="15353">
+Sets the color of the specular highlight.<p>
+</a><P><a name="15355">
+<h4> Emission Color</h4>
+</a><a name="15356">
+This color defines the darkest possible color of the surface. <p>
+</a><P><a name="12073">
+<h4> Smooth Shade?</h4>
+</a><a name="12107">
+Selects the interpolation method used to render. Smooth shade creates a smoother transition between neighboring faces, giving the object an overall smoother appearance.<p>
+</a><P><a name="12074">
+<h4> Outline Faces</h4>
+</a><a name="12121">
+Draws outlines around each face of the object being rendered.<p>
+</a><P><a name="12130">
+<h3> Texture Parameters (GL Shade)</h3>
+</a><a name="12131">
+Texture parameters control texture maps you wish to include in your materials.<p>
+</a><P><a name="12132">
+<h4> Texture Map</h4>
+</a><a name="12050">
+A texture map is an image which is projected onto an object. <strong>(CLICK-L)</strong> on this field to select an image map from among files in the default map directory.<p>
+</a><P><a name="12141">
+ <P><img src="3Domains.anc3.gif"><p>
+</a><a name="12142">
+<em>Figure 3.3  &#32; &#32;Select map file (shown here with icons on)
+</em></a><P><ul><a name="12137">
+<li><strong>Options - </strong><strong>(CLICK-L)</strong> on Options, then <strong>(CLICK-L)</strong> on the Icons toggle to show the thumbnail-sized icon for each image file, if it exists. Icon files are created automatically by N-Paint when an image is loaded into memory.
+</a></li><P></ul><P><a name="12179">
+<h2><HR> Render Domain (N-Render)</h2>
+</a><a name="12180">
+The Render domain is N&#183;World's native render domain. N-Render, N&#183;World's native renderer, includes expanded support for shader attributes like ray tracing, as well as more powerful image-mapping techniques.<p>
+</a><P><a name="15737">
+<h3> Setting Render Domain Preferences</h3>
+</a><a name="15738">
+To set your N-Render defaults, <strong>(CLICK-L)</strong> on the <strong>Render</strong> domain button, then <strong>(CLICK-L)</strong> on the <strong>Prefs </strong>button. The following dialog box is displayed:<p>
+</a><P><a name="15742">
+ <P><img src="3Domains.anc4.gif"><p>
+</a><a name="15743">
+<em>Figure 3.4  &#32; &#32;Setting N-Render defaults
+</em></a><P><a name="15746">
+<h4> Output Directory</h4>
+</a><a name="15747">
+The directory into which rendered image files are written. Intermediate render files are kept in this directory, which N-Render uses to build the final rendered image.<p>
+</a><P><a name="15749">
+<h4> Output Name</h4>
+</a><a name="15858">
+The prefix for the render file.<p>
+</a><P><a name="15857">
+<h4> Map Directory</h4>
+</a><a name="15750">
+The default directory for map image files. When specifying a map file for a texture, bump, or other type of map, this is the directory that is specified if you have not loaded a map from any other directory in this session.<p>
+</a><P><a name="15752">
+<h4> Output Window</h4>
+</a><a name="15753">
+The destination window into which the current scene is rendered.<p>
+</a><P><ul><a name="15755">
+<li><strong>Render Window</strong> outputs to the Render Display Window.
+</a></li><P><a name="15757">
+<li><strong>Paint Canvas</strong> automatically loads the rendered image into N-Paint.
+</a></li><P></ul><P><a name="15759">
+<h4> Render Width</h4>
+</a><a name="15760">
+The width of the rendered image (in pixels).<p>
+</a><P><a name="15762">
+<h4> Render Height</h4>
+</a><a name="15763">
+The height of the rendered image (in pixels).<p>
+</a><P><a name="15765">
+<h4> Render Gamma</h4>
+</a><a name="15766">
+The overall gamma correction value to be applied to the rendered scene. A lower value will produce a darker image. The default gamma value for the SGI is <strong>1.0</strong>.<p>
+</a><P><a name="15768">
+<h4> Output Format</h4>
+</a><a name="15769">
+The file format of the rendered image.<strong> (CLICK-L)</strong> on this field and choose a format from the pop-up menu:<p>
+</a><P><a name="15773">
+ <P><img src="3Domains.anc5.gif"><p>
+</a><a name="15774">
+<em>Figure 3.5  &#32; &#32;Select output format pop-up menu
+</em></a><P><a name="15776">
+<h4> Background </h4>
+</a><a name="15777">
+Specifies what to do with the image currently in the <strong>Output Window</strong>:<p>
+</a><P><ul><a name="15778">
+<li><strong>Clear</strong> erases the window before rendering to it.
+</a></li><P><a name="15779">
+<li><strong>Existing Image</strong> renders the scene over the existing image.
+</a></li><P></ul><P><a name="15781">
+<h4> Anti-Alias</h4>
+</a><a name="15782">
+Determines how much of the surrounding area to use when computing the color of each pixel. Higher values mean images are rendered more quickly at the expense of image quality.<p>
+</a><P><a name="15784">
+<h4> Ray Depth</h4>
+</a><a name="15785">
+Determines how many ray bounces to calculate. A value of <strong>1</strong> results in essentially a scan line render (a single bounce). Higher values give a more pronounced ray tracing effect.<p>
+</a><P><a name="15787">
+<h4> Ray Power</h4>
+</a><a name="15788">
+The minimum power at which a ray will bounce. A ray loses some value power each time it bounces or passes through a semi-transparent object. A lower value will allow the ray to bounce more times.<p>
+</a><P><a name="15790">
+Ray traced images have a more natural look and feel to them; the ability of a ray tracing renderer to simulate the bouncing of light found in real-world environments makes it simple to create lifelike images like the one shown in <p>
+</a><P><a name="18355">
+ <P><img src="3Domains.anc6.gif"><p>
+</a><a name="18356">
+<em>Figure 3.6  &#32; &#32;Sample ray traced image
+</em></a><P><a name="18338">
+<h4> Pixel Filter</h4>
+</a><a name="15791">
+Determines the method by which anti-aliasing is performed. There are five algorithms to choose from. <strong>Box</strong>, <strong>Tent</strong>, <strong>Tentc</strong>, and <strong>Gaussian</strong> produce increasingly anti-aliased images. <strong>Anti-flicker</strong> is a special filter that can be used for broadcast images.<p>
+</a><P><a name="15793">
+<h4> Compute Matte?</h4>
+</a><a name="15794">
+Specifies whether a matte is computed for the output image. If you select <strong>Yes</strong>, the resulting image will be a four-channel (RGBA) image, with the appropriate matte in the alpha channel. If <strong>No</strong>, the resulting images will be a three-channel (RGB) image.<p>
+</a><P><a name="15796">
+<h4> Dither Image?</h4>
+</a><a name="15797">
+Dithers the image to smooth the banding that can sometimes occur in a rendered frame.<p>
+</a><P><a name="15799">
+<h4> Enable Shadows?</h4>
+</a><a name="15800">
+Specifies whether shadows should be calculated when rendering the image.<p>
+</a><P><a name="15802">
+<h4> Show Render Time? </h4>
+</a><a name="15803">
+Specifies whether the time to render the last frame is displayed in the N&#183;World UNIX shell.<p>
+</a><P><a name="15805">
+<h4> Display Render?</h4>
+</a><a name="15806">
+Specifies whether the rendered image is actually displayed in the destination <strong>Output Window</strong>. <p>
+</a><P><ul><a name="15807">
+<li><strong>At End</strong> shows the completed frame after it has been rendered.
+</a></li><P><a name="18413">
+<li><strong>During</strong> shows each line of the render as it is completed, so you can tell how far the render has gone.
+</a></li><P><a name="18414">
+<li><strong>None</strong> does not display the rendered frame (even though it is generated).
+</a></li><P></ul><P><a name="15809">
+<h4> Save Render?</h4>
+</a><a name="15810">
+Specifies whether files are saved to the <strong>Output Directory</strong> specified above. <p>
+</a><P><a name="15812">
+<h4> Fog Color </h4>
+</a><a name="15813">
+The default fog color used with the fog render effects.<p>
+</a><P><a name="15815">
+<h4> Shadow Smoothness</h4>
+</a><a name="15816">
+Specifies a factor for "smoothing" the generated shadow. Higher values smooth the shadow more, but take more time to render.<p>
+</a><P><a name="15818">
+<h4> Shadow Map Min and Shadow Map Max </h4>
+</a><a name="15819">
+These are the default minimum and maximum values for the size of any shadow map that is created; these values can be overwritten by specifying other values for a particular light. See the section <a href="4Lights.html#10417">"Shadowing," on page &#32;4-20</a> for more information.<p>
+</a><P><a name="15820">
+<h3> Saving Preferences</h3>
+</a><a name="15889">
+After specifying your render defaults, <strong>(CLICK-L)</strong> on one of the buttons at the bottom of the dialog box:<p>
+</a><P><ul><a name="15821">
+<li><strong>(CLICK-L)</strong> on <strong>Done</strong> to save changes to Render preferences for the current session.
+</a></li><P><a name="15822">
+<li><strong>(CLICK-L)</strong> on <strong>Save Preferences</strong> to save Render preferences to file (these will be the defaults each time you start N-Render.
+</a></li><P><a name="15823">
+<li><strong>(CLICK-L)</strong> on <strong>Abort</strong> to discard changes you've made.
+</a></li><P></ul><P><a name="12182">
+<h3> Shader Attributes (N-Render)</h3>
+</a><a name="10436">
+<h4> Shading Model</h4>
+</a><a name="10437">
+The are five basic shading models which can be used in N-Render: <p>
+</a><P><ul><a name="10439">
+<li><strong>Flat</strong> renders without calculating diffusion or specular components. This is a fast shading model, suitable for background images which require no shading. Objects and backgrounds rendered with materials using this shading model have a flat, non-glossy appearance.
+</a></li><P><a name="10441">
+<li><strong>Lambert</strong> calculates the diffusion component, but not the specular component for a rendered image. Objects rendered with materials using the Lambert shading model appear "flat."
+</a></li><P><a name="10443">
+<li><strong>Phong</strong> is suitable for objects made of plastic. It calculates both a diffusion and a specular component for objects lit in a scene. Objects rendered with materials using the Phong shading model are characterized by a specular highlight.
+</a></li><P><a name="10445">
+<li><strong>Blinn</strong> is suitable for objects made of metal. This shading model is Blinn's implementation of the physical shading model for surface reflection developed by the applied physicists Torrance and Sparrow.
+</a></li><P><a name="10447">
+<li><strong>Cook</strong> is also suitable for metal objects. The Cook shading model is similar to the Blinn model, except it takes into account the angle of the viewer in relationship to the scene when rendering any specular highlights.
+</a></li><P><dl><a name="10448">
+<dt>A change in the viewer's angle causes a specular shift, which is faithfully rendered using this model. This specular shift takes into account the polarizing effect of metal surfaces on reflected light.</dt>
+</a><P></dl></ul><P><a name="17554">
+Each model uses a subset of the render attributes described below to achieve its "look." The shader attributes that can be specified with each shading model are described in <a href="3Domains.html#17965">Table 3.1</a>:<p>
+</a><P><a name="17965">
+  
+<P><Table Border="1">
+<a name="17562">
+Table 3.1  &#32; &#32;Shading Model Parameters (by shading model)<p>
+</a>
+<tr><th align="left"><a name="17574">
+Attribute
+</a><th align="left"><a name="17576">
+Flat
+</a><th align="left"><a name="17578">
+Lambert
+</a><th align="left"><a name="17580">
+Phong
+</a><th align="left"><a name="17582">
+Blinn
+</a><th align="left"><a name="17584">
+Cook
+</a>
+<tr><td valign="top"><a name="17586">
+Raytrace?
+</a><td valign="top"><a name="17588">
+&#183;
+</a><td valign="top"><a name="17590">
+&#183;
+</a><td valign="top"><a name="17592">
+&#183;
+</a><td valign="top"><a name="17594">
+&#183;
+</a><td valign="top"><a name="17596">
+&#183;
+</a>
+<tr><td valign="top"><a name="17598">
+Reflectance
+</a><td valign="top"><a name="17600">
+&#183;
+</a><td valign="top"><a name="17602">
+&#183;
+</a><td valign="top"><a name="17604">
+&#183;
+</a><td valign="top"><a name="17606">
+&#183;
+</a><td valign="top"><a name="17608">
+&#183;
+</a>
+<tr><td valign="top"><a name="17610">
+Refractance
+</a><td valign="top"><a name="17612">
+&#183;
+</a><td valign="top"><a name="17614">
+&#183;
+</a><td valign="top"><a name="17616">
+&#183;
+</a><td valign="top"><a name="17618">
+&#183;
+</a><td valign="top"><a name="17620">
+&#183;
+</a>
+<tr><td valign="top"><a name="17622">
+Index
+</a><td valign="top"><a name="17836">
+&#183;
+</a><td valign="top"><a name="17838">
+&#183;
+</a><td valign="top"><a name="17840">
+&#183;
+</a><td valign="top"><a name="17842">
+&#183;
+</a><td valign="top"><a name="17844">
+&#183;
+</a>
+<tr><td valign="top"><a name="17634">
+Color
+</a><td valign="top"><a name="17846">
+&#183;
+</a><td valign="top"><a name="17848">
+&#183;
+</a><td valign="top"><a name="17850">
+&#183;
+</a><td valign="top"><a name="17852">
+&#183;
+</a><td valign="top"><a name="17854">
+&#183;
+</a>
+<tr><td valign="top"><a name="17646">
+Color Opacity
+</a><td valign="top"><a name="17856">
+&#183;
+</a><td valign="top"><a name="17858">
+&#183;
+</a><td valign="top"><a name="17860">
+&#183;
+</a><td valign="top"><a name="17862">
+&#183;
+</a><td valign="top"><a name="17864">
+&#183;
+</a>
+<tr><td valign="top"><a name="17658">
+Specular Color
+</a><td valign="top"><a name="17882">
+
+</a><td valign="top"><a name="17884">
+
+</a><td valign="top"><a name="17886">
+&#183;
+</a><td valign="top"><a name="17888">
+&#183;
+</a><td valign="top"><a name="17890">
+&#183;
+</a>
+<tr><td valign="top"><a name="17670">
+Specular Exponent
+</a><td valign="top"><a name="17672">
+
+</a><td valign="top"><a name="17674">
+
+</a><td valign="top"><a name="17892">
+&#183;
+</a><td valign="top"><a name="17894">
+&#183;
+</a><td valign="top"><a name="17896">
+&#183;
+</a>
+<tr><td valign="top"><a name="17682">
+Ambient Gel
+</a><td valign="top"><a name="17898">
+
+</a><td valign="top"><a name="17900">
+&#183;
+</a><td valign="top"><a name="17902">
+&#183;
+</a><td valign="top"><a name="17904">
+&#183;
+</a><td valign="top"><a name="17906">
+&#183;
+</a>
+<tr><td valign="top"><a name="17694">
+Directional Gel
+</a><td valign="top"><a name="17908">
+
+</a><td valign="top"><a name="17910">
+&#183;
+</a><td valign="top"><a name="17912">
+&#183;
+</a><td valign="top"><a name="17914">
+&#183;
+</a><td valign="top"><a name="17916">
+&#183;
+</a>
+<tr><td valign="top"><a name="17706">
+Fresnel
+</a><td valign="top"><a name="17708">
+
+</a><td valign="top"><a name="17710">
+
+</a><td valign="top"><a name="17712">
+
+</a><td valign="top"><a name="17714">
+
+</a><td valign="top"><a name="17928">
+&#183;
+</a>
+<tr><td valign="top"><a name="17718">
+Visibility
+</a><td valign="top"><a name="17918">
+&#183;
+</a><td valign="top"><a name="17920">
+&#183;
+</a><td valign="top"><a name="17922">
+&#183;
+</a><td valign="top"><a name="17924">
+&#183;
+</a><td valign="top"><a name="17926">
+&#183;
+</a>
+<tr><td valign="top"><a name="17730">
+Highlight Opacity
+</a><td valign="top"><a name="17732">
+
+</a><td valign="top"><a name="17734">
+
+</a><td valign="top"><a name="17930">
+&#183;
+</a><td valign="top"><a name="17932">
+&#183;
+</a><td valign="top"><a name="17934">
+&#183;
+</a>
+<tr><td valign="top"><a name="17742">
+Smooth Shade?
+</a><td valign="top"><a name="17936">
+&#183;
+</a><td valign="top"><a name="17938">
+&#183;
+</a><td valign="top"><a name="17940">
+&#183;
+</a><td valign="top"><a name="17942">
+&#183;
+</a><td valign="top"><a name="17944">
+&#183;
+</a>
+<tr><td valign="top"><a name="17754">
+Facing Control
+</a><td valign="top"><a name="17946">
+&#183;
+</a><td valign="top"><a name="17948">
+&#183;
+</a><td valign="top"><a name="17950">
+&#183;
+</a><td valign="top"><a name="17952">
+&#183;
+</a><td valign="top"><a name="17954">
+&#183;
+</a>
+<tr><td valign="top"><a name="17766">
+Light Group
+</a><td valign="top"><a name="17872">
+&#183;
+</a><td valign="top"><a name="17874">
+&#183;
+</a><td valign="top"><a name="17876">
+&#183;
+</a><td valign="top"><a name="17878">
+&#183;
+</a><td valign="top"><a name="17880">
+&#183;
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="17556">
+<h4> Ray Trace</h4>
+</a><a name="12190">
+Toggles ray tracing on and off. Ray tracing is the more complex of the two basic models for rendering scenes. Using ray tracing, rays from light sources can be "split" upon encountering an object, with some portion of the ray traveling through the object (if it is not completely opaque) and some portion bouncing off the object in another direction, possibly to interact with another object.<p>
+</a><P><ul><a name="12191">
+<li><strong>Reflectance - </strong>Surface reflectance. A higher value makes the surface of the object rendered with this material more reflective (rays don't lose as much strength when striking the surface)<strong>.</strong>
+</a></li><P><a name="12192">
+<li><strong>Refractance</strong> - Surface refractance. A higher value means more interior detail will be rendered.
+</a></li><P><a name="12193">
+<li><strong>Index</strong> - The refractive index for any object rendered with this material. A higher value means an object bends (refracts) light to a greater degree.
+</a></li><P></ul><P><a name="12189">
+<h4> Color</h4>
+</a><a name="10453">
+Sets the diffuse (surface) color of an object rendered with this material.<p>
+</a><P><a name="10455">
+<h4> Color Opacity</h4>
+</a><a name="10457">
+Sets the opacity of the color of an object rendered with this material. Reducing the color opacity typically produces a glassy appearance on the object to which it is applied. (You might, for example, modify the opacity of a bottle or the lens in a pair of glasses.)<p>
+</a><P><a name="10458">
+A value of 1.0 creates a completely opaque object, while a value of 0.0 produces a completely transparent object.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When using shading models that support specular highlights, make sure that the highlight opacity and object opacity match. Otherwise, the object can appear more transparent, while the specular remains more visible.</em></font></dd></dt></dl><P>
+<a name="10461">
+<h4> Specular Color</h4>
+</a><a name="10463">
+Sets the color of the specular highlight.<p>
+</a><P><a name="10465">
+<h4> Specular Exponent</h4>
+</a><a name="10467">
+Determines the size of the specular highlight on an object rendered with this material. The exponent works differently depending on the shading model selected:<p>
+</a><P><ul><a name="10469">
+<li>With the <strong>Phong</strong> shading model, a lower value produces a more prominent specular highlight.
+</a></li><P><a name="10470">
+<li>With the <strong>Blinn</strong> and <strong>Cook</strong> shading models, a higher value produces a more prominent specular highlight.
+</a></li><P></ul><P><a name="10472">
+<h4> Ambient Gel</h4>
+</a><a name="15252">
+This color filter (specified with RGB values) affects only ambient lights. The effect is similar to gels on directional lights. (Imagine putting the ambient light inside a colored sphere, so that any object affected by the light was modified.)<p>
+</a><P><a name="10475">
+An ambient light filter affects only ambient light hitting an object. This can also be used to give a colored tint to a white light just for selected objects. The effects of an ambient light filter are most visible in shadow areas (since they tend to be affected more by ambient light than areas illuminated by directional lights).<p>
+</a><P><a name="10477">
+<h4> Directional Gel</h4>
+</a><a name="10479">
+Similar to <strong>Ambient Gel</strong> above, except that the filter affects only non-ambient light sources (infinite, point, and spot lights).<p>
+</a><P><a name="17250">
+Like an ambient light filter, this can be used to give a colored tint to a white light just for selected objects.<p>
+</a><P><a name="17252">
+<h4> Fresnel</h4>
+</a><a name="10484">
+The Fresnel color is available only with the Cook shading model; it sets the color for the perimeter of the area defined by the specular highlight, creating a two-tone specular highlight.<p>
+</a><P><a name="17328">
+<h4> Visibility</h4>
+</a><a name="17329">
+Sets the visibility for an object rendered with this material. For example, if you wanted to make an object gradually disappear, you could write a script in N-Dynamics that animated the visibility for this material from <strong>1</strong> down to <strong>0</strong>. Specify the attribute using a value between 0 and 1, with 0 being completely invisible.<p>
+</a><P><a name="13510">
+<h4> Highlight Opacity</h4>
+</a><a name="13512">
+The relative opacity of the specular highlight. A value of 1.0 makes the specular highlight completely visible, a value 0.0 makes it invisible.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This value should match color opacity if you want both the surface opacity and the specular's opacity to have the same value.</font></dd></dt></dl><P>
+<a name="10494">
+<h4> Facing Control</h4>
+</a><a name="10496">
+Specifies which faces are rendered. For example, you may have cases where you want back faces rendered (e.g., for a wine glass), but other where you don't (e.g., a house).<p>
+</a><P><ul><a name="10497">
+<li><strong>Front</strong> renders only the faces whose normals face the camera.
+</a></li><P><a name="10498">
+<li><strong>Back</strong> renders only the faces whose normals face away from the camera.
+</a></li><P><a name="10499">
+<li><strong>Both</strong> renders both front and back faces.
+</a></li><P></ul><P><a name="10501">
+<h4> Smooth Shade?</h4>
+</a><a name="10503">
+Selects the interpolation method used to render a scene. Smooth shade creates a smoother transition between neighboring faces, giving the object rendered with this material an overall smoother appearance.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When using the Phong, Blinn, or Cook shading models, render the scene with </em><strong>Smooth Shade</strong><em> selected.</em></font></dd></dt></dl><P>
+<a name="10506">
+<h4> Light Group</h4>
+</a><a name="10509">
+Select the light group used to be used with this material. <strong>(CLICK-M)</strong> on this field to open the Light Group editor. For details on using the light group editor, see <a href="4Lights.html#9999">"Lights," on page &#32;4-1</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	To make a light affect one object but not another, you must first assign that light to a light group, then use that light group in the material you use to render the object.</font></dd></dt></dl><P>
+<a name="10592">
+<h3> Mapping Attributes (N-Render)</h3>
+</a><a name="15142">
+Image mapping is a powerful technique in computer graphics for defining the rendered appearance of a three-dimensional object. In image mapping, a two-dimensional image is used to determine the color, opacity, bumpiness, or reflectance of the surface of a three-dimensional object. <p>
+</a><P><a name="15144">
+By using mapping, you can substantially increase the visual interest of rendered objects. When you do mapping, you are in essence laminating an <em>image</em> to the surface of an <em>object</em>. Any image in TIFF, TPX, or SGI format can be used as a source image for mapping. For example, you can use frame grabbed, painted, rendered, or algorithmically derived images.<p>
+</a><P><a name="15145">
+N-Render supports five different types of maps, all of which are discussed later in this chapter: <p>
+</a><P><ul><a name="15146">
+<li>Texture mapping
+</a></li><P><a name="15147">
+<li>Opacity mapping
+</a></li><P><a name="15148">
+<li>Bump mapping
+</a></li><P><a name="15149">
+<li>Reflectance mapping
+</a></li><P><a name="15150">
+<li>Refraction mapping
+</a></li><P></ul><P><a name="16658">
+<h4> Sample Maps Directory</h4>
+</a><a name="16659">
+A number of sample maps are stored in the following directory:<p>
+</a><P><dl><dl><a name="16662">
+<dt>/usr/local/ngc/presets/maps</dt>
+</a><P></dl></dl><a name="16663">
+Some of these maps are used to build the preset materials; you can also use these maps to build your own materials.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This directory is read only, so you won't accidentally erase any maps. Store any maps you create to a different directory.</font></dd></dt></dl><P>
+<a name="15151">
+<h4> Visualizing the Mapping Process</h4>
+</a><a name="15216">
+To help you visualize the mapping process, imagine wrapping a Christmas present in a square sheet of paper.<p>
+</a><P><a name="15152">
+First, you have to decide how to line up the pattern of the paper with the object. Perhaps you want to align a particular motif with some dominant feature of the object. You might, for instance, want the image of Santa Claus on the wrapping paper to end up on the <em>top</em> of the package.<p>
+</a><P><a name="15153">
+You must also decide how to tuck and fold the excess paper so the package looks neatly wrapped and the pattern lines up in such a way that it appears to match across the seams. When you map with N-Render, you can stretch your "wrapping paper" quite a bit, almost as if it were rubber. Of course, if you stretch your "paper," you also stretch the "pattern" in the same way as you might distort an image printed on a balloon when you inflate the balloon. Further, you can stretch one part of your "paper" more than others and get still other effects. Imagine a wrapping-paper image of Santa Claus, for example, acquiring oversized, pointed ears like those of his elfin helpers.<p>
+</a><P><a name="15154">
+You can map a 2D image with <em>no</em> distortion, but only to the three following geometric primitives: <p>
+</a><P><ul><a name="15155">
+<li>the outside of a cylinder
+</a></li><P><a name="15156">
+<li>the outside of a cone
+</a></li><P><a name="15157">
+<li>the face of a plane
+</a></li><P></ul><P><a name="15158">
+Mapping to any other surface induces some degree of distortion. This distortion can take the form of unequal scaling (whereby equally sized areas on the map are unequal on the mapped surface) or unequal orientation (whereby angles are not preserved in the mapping process; right angles, for example, become acute or oblique angles). The introduction of distortion is referred to as the general cartographer's problem because it arises in any attempt to project a spherical earth to a flat map.<p>
+</a><P><a name="15159">
+Because the source image is of finite resolution, an image tends to blur when the mapping process severely distorts it. Blurring can also occur when the texture is mapped to a surface whose projected screen area is greater than the texture map itself.<p>
+</a><P><a name="15160">
+Blurring can also occur on a texture-mapped object that is severely distorted by perspective. A prime example is a checkerboard placed so that its left and right edges appear to converge at infinity. At some point before the virtual horizon, the board blurs to gray.<p>
+</a><P><a name="15164">
+<h4> Texture Mapping</h4>
+</a><a name="15934">
+With texture mapping, you are laminating color onto the surface of an object. With texture mapping alone, for instance, you could apply an image of wood grain or a brick pattern to all the faces of an object, thereby creating the illusion that it was made of wood or brick:<p>
+</a><P><a name="15971">
+ <P><img src="3Domains.anc7.gif"><p>
+</a><a name="15972">
+<em>Figure 3.7  &#32; &#32;Brick texture applied to sphere
+</em></a><P><a name="15924">
+<h4> Opacity Mapping</h4>
+</a><a name="15930">
+With opacity mapping, you are laminating the pattern of opacity. You could use opacity mapping by itself to make parts of the object completely transparent (so the object appeared to have a hole in it) or to give an object some level of transparency (like frosted glass).<p>
+</a><P><a name="15982">
+ <P><img src="3Domains.anc8.gif"><p>
+</a><a name="15983">
+<em>Figure 3.8  &#32; &#32;Brick texture map and ringed opacity map applied to sphere
+</em></a><P><a name="15171">
+<h4> Bump Mapping</h4>
+</a><a name="15172">
+Bump mapping produces the appearance of an embossed surface, creating the <em>illusion</em> that the object's surface has fine-scale geometric detail, complete with highlights and shadowed edges. As a simple example, imagine that you have created a sphere in N-Geometry, but your ultimate goal is to render a golf ball. Rather than rebuild the object with the fine-scale geometry required to produce the hundreds of dimples on a golf ball's surface, you could create a bump map of dimples and <em>map</em> it onto the surface of the sphere.<p>
+</a><P><a name="15173">
+The silhouette edge of a bump-opacity-mapped surface is still a polygonal edge; the true geometry is not altered, only the shader's "perception" of it. The illusion of surface texture is frequently strong enough to overcome this limitation. In addition, because bump-opacity mapping mimics fine-scale geometry, the rendered image can have significant amounts of specular aliasing as the simulated "facets" catch sharp highlights. You can modify the "depth" of these facets through the Attributes Editor.<p>
+</a><P><a name="15997">
+ <P><img src="3Domains.anc9.gif"><p>
+</a><a name="15998">
+<em>Figure 3.9  &#32; &#32;Dot pattern bump map applied with texture to create "golf ball" effect
+</em></a><P><a name="15174">
+Texture maps and bump maps automatically have opacity maps associated with them (based on the alpha channel of the mapped image-see the section <a href="3Domains.html#10742">"Use Map Alpha," on page &#32;3-29</a>).<p>
+</a><P><a name="15180">
+<h4> Reflection Mapping</h4>
+</a><a name="15181">
+Reflection mapping, used to simulate highly polished surfaces, is especially effective in conveying the impression of a metallic surface such as chrome or gold. This technique establishes (on a pixel-by-pixel basis) what the eye <em>should</em> see reflected in the surface of an object. <p>
+</a><P><a name="16016">
+ <P><img src="3Domains.anc10.gif"><p>
+</a><a name="18031">
+<em>Figure 3.10  &#32; &#32;Checkerboard pattern applied as reflection map at 50% opacity
+</em></a><P><a name="18032">
+<h4> Refraction Mapping</h4>
+</a><a name="18036">
+Refraction mapping, on the other hand, creates the illusion of what the inside of an object to which the mapper is applied should look like.<p>
+</a><P><a name="16037">
+ <P><img src="3Domains.anc11.gif"><p>
+</a><a name="16038">
+<em>Figure 3.11  &#32; &#32;Checkerboard pattern applied as refraction map at 50% opacity
+</em></a><P><a name="15183">
+Both map types enable you to make the image reflected back to the viewer a "world view" of the object's immediate environment. You would expect the chrome bumper of an automobile parked by a stand of trees, for example, to reflect some portion of the image of the trees.<p>
+</a><P><a name="15184">
+Reflection and refraction maps do not need mappers, since the surface geometry of the object determines how the map appears on the surface.<p>
+</a><P><a name="15139">
+<h4> N-Render Image Mapping Parameters</h4>
+</a><a name="10593">
+N-Render mapping parameters are divided into five major areas. Each of the five types of image map supported by N-Render has its own "slot" in the Material Parameters section-<strong>(CLICK-L)</strong> on a slot to select it.<p>
+</a><P><a name="16047">
+<a href="3Domains.html#16047">Table 3.2</a> shows which parameters can be specified for each type of map; each of these attributes is described in more detail on the pages that follow. 
+<P><Table Border="1">
+<a name="16320">
+Table 3.2 <strong> &#32; &#32;Mapping parameters</strong><p>
+</a>
+<tr><th align="left"><a name="16592">
+Characteristic
+</a><th align="left"><a name="16330">
+Texture
+</a><th align="left"><a name="16332">
+Opacity
+</a><th align="left"><a name="16334">
+Bump
+</a><th align="left"><a name="16336">
+Reflection
+</a><th align="left"><a name="16338">
+Refraction
+</a>
+<tr><td valign="top"><a name="16594">
+Map
+</a><td valign="top"><a name="16340">
+&#183;
+</a><td valign="top"><a name="16730">
+&#183;
+</a><td valign="top"><a name="16756">
+&#183;
+</a><td valign="top"><a name="16806">
+&#183;
+</a><td valign="top"><a name="16834">
+&#183;
+</a>
+<tr><td valign="top"><a name="16596">
+Opacity
+</a><td valign="top"><a name="16704">
+&#183;
+</a><td valign="top"><a name="16732">
+&#183;
+</a><td valign="top"><a name="16758">
+&#183;
+</a><td valign="top"><a name="16356">
+&#183;
+</a><td valign="top"><a name="16836">
+&#183;
+</a>
+<tr><td valign="top"><a name="16598">
+Brightness
+</a><td valign="top"><a name="16360">
+&#183;
+</a><td valign="top"><a name="16734">
+&#183;
+</a><td valign="top"><a name="16760">
+&#183;
+</a><td valign="top"><a name="16366">
+&#183;
+</a><td valign="top"><a name="16838">
+&#183;
+</a>
+<tr><td valign="top"><a name="16784">
+Depth
+</a><td valign="top"><a name="16786">
+
+</a><td valign="top"><a name="16788">
+
+</a><td valign="top"><a name="16796">
+&#183;
+</a><td valign="top"><a name="16792">
+
+</a><td valign="top"><a name="16840">
+
+</a>
+<tr><td valign="top"><a name="16600">
+UV Scale
+</a><td valign="top"><a name="16370">
+&#183;
+</a><td valign="top"><a name="16736">
+&#183;
+</a><td valign="top"><a name="16762">
+&#183;
+</a><td valign="top"><a name="16376">
+&#183;
+</a><td valign="top"><a name="16842">
+&#183;
+</a>
+<tr><td valign="top"><a name="16602">
+UV Offset
+</a><td valign="top"><a name="16380">
+&#183;
+</a><td valign="top"><a name="16738">
+&#183;
+</a><td valign="top"><a name="16764">
+&#183;
+</a><td valign="top"><a name="16386">
+
+</a><td valign="top"><a name="16844">
+
+</a>
+<tr><td valign="top"><a name="16604">
+UV Rotate
+</a><td valign="top"><a name="16390">
+&#183;
+</a><td valign="top"><a name="16740">
+&#183;
+</a><td valign="top"><a name="16766">
+&#183;
+</a><td valign="top"><a name="16396">
+
+</a><td valign="top"><a name="16846">
+
+</a>
+<tr><td valign="top"><a name="16606">
+Clip Texture?
+</a><td valign="top"><a name="16400">
+&#183;
+</a><td valign="top"><a name="16742">
+&#183;
+</a><td valign="top"><a name="16768">
+&#183;
+</a><td valign="top"><a name="16406">
+&#183;
+</a><td valign="top"><a name="16848">
+&#183;
+</a>
+<tr><td valign="top"><a name="16608">
+Shader
+</a><td valign="top"><a name="16410">
+&#183;
+</a><td valign="top"><a name="16744">
+&#183;
+</a><td valign="top"><a name="16770">
+&#183;
+</a><td valign="top"><a name="16416">
+&#183;
+</a><td valign="top"><a name="16850">
+&#183;
+</a>
+<tr><td valign="top"><a name="16610">
+Shader Sample Limit
+</a><td valign="top"><a name="16420">
+&#183;
+</a><td valign="top"><a name="16746">
+&#183;
+</a><td valign="top"><a name="16772">
+&#183;
+</a><td valign="top"><a name="16426">
+&#183;
+</a><td valign="top"><a name="16852">
+&#183;
+</a>
+<tr><td valign="top"><a name="16612">
+Clipping Range?
+</a><td valign="top"><a name="16430">
+&#183;
+</a><td valign="top"><a name="16748">
+&#183;
+</a><td valign="top"><a name="16774">
+&#183;
+</a><td valign="top"><a name="16436">
+&#183;
+</a><td valign="top"><a name="16854">
+&#183;
+</a>
+<tr><td valign="top"><a name="16614">
+Use Alpha?
+</a><td valign="top"><a name="16440">
+&#183;
+</a><td valign="top"><a name="16750">
+&#183;
+</a><td valign="top"><a name="16776">
+&#183;
+</a><td valign="top"><a name="16446">
+&#183;
+</a><td valign="top"><a name="16856">
+&#183;
+</a>
+<tr><td valign="top"><a name="16616">
+Boundary
+</a><td valign="top"><a name="16450">
+&#183;
+</a><td valign="top"><a name="16752">
+&#183;
+</a><td valign="top"><a name="16778">
+&#183;
+</a><td valign="top"><a name="16456">
+&#183;
+</a><td valign="top"><a name="16858">
+&#183;
+</a>
+<tr><td valign="top"><a name="16618">
+Color Scale
+</a><td valign="top"><a name="16460">
+&#183;
+</a><td valign="top"><a name="16754">
+&#183;
+</a><td valign="top"><a name="16780">
+
+</a><td valign="top"><a name="16466">
+&#183;
+</a><td valign="top"><a name="16860">
+&#183;
+</a>
+<tr><td valign="top"><a name="16620">
+Background Scale
+</a><td valign="top"><a name="16470">
+
+</a><td valign="top"><a name="16472">
+
+</a><td valign="top"><a name="16474">
+
+</a><td valign="top"><a name="16476">
+&#183;
+</a><td valign="top"><a name="16862">
+&#183;
+</a>
+<tr><td valign="top"><a name="16622">
+Index
+</a><td valign="top"><a name="16480">
+
+</a><td valign="top"><a name="16482">
+
+</a><td valign="top"><a name="16484">
+
+</a><td valign="top"><a name="16486">
+
+</a><td valign="top"><a name="16864">
+&#183;
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15199">
+<h4> Map</h4>
+</a><a name="10615">
+Specifies the image to be mapped onto the surface of the object.<p>
+</a><P><ul><a name="10616">
+<li><strong>(CLICK-L)</strong> in the text box, then use the browser which appears to select an image file.
+</a></li><P></ul><P><a name="10624">
+<h4> Opacity</h4>
+</a><a name="10626">
+Defines how much of the applied map to be used (expressed as a percentage) versus the diffuse color. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This attribute should not be confused with an opacity map, which controls opacity of the object. This attribute affects only the transparency of the applied map.</font></dd></dt><a name="10630">
+ <P><img src="3Domains.anc12.gif"><p>
+</a></dl><P>
+<a name="10631">
+<em>Figure 3.12  &#32; &#32;Left, sphere with texture map of 50% opacity; right, with 100% opacity (map is shown in upper left corner)
+</em></a><P><a name="10632">
+Opacity is expressed as a value between 0 and 1, with values of 0 completely transparent and 1 completely opaque.<p>
+</a><P><a name="10639">
+<h4> Brightness</h4>
+</a><a name="10641">
+Modifies the relative brightness of the applied map. The default value is 1.0.<p>
+</a><P><a name="16912">
+ <P><img src="3Domains.anc13.gif"><p>
+</a><a name="16913">
+<em>Figure 3.13  &#32; &#32;Left, sphere with brightness of 1.0; right, with brightness of 2.0
+</em></a><P><a name="10643">
+<h4> UV Scale</h4>
+</a><a name="10645">
+The UV scale for a map determines how an image is repetitively mapped onto an object or face part. You can raise either U or V to a value greater than 1 to apply the map to the same object more than once.<p>
+</a><P><a name="10664">
+ <P><img src="3Domains.anc14.gif"><p>
+</a><a name="10666">
+<em>Figure 3.14  &#32; &#32;Changes in UV scale: left 3,1; right 3,3
+</em></a><P><ul><a name="10667">
+<li>The sphere on the left shows only the U scale bumped to 3; note the pattern repeats as it wraps "left to right" around the sphere.
+</a></li><P><a name="10669">
+<li>The sphere on the right shows both the U and V scale bumped to 3. This time, the pattern repeats both horizontally <em>and</em> vertically.
+</a></li><P></ul><P><a name="10671">
+<h4> UV Offset</h4>
+</a><a name="10673">
+Specifies the offset (from the mapper's origin) at which to begin applying the map.<p>
+</a><P><a name="10677">
+ <P><img src="3Domains.anc15.gif"><p>
+</a><a name="10679">
+<em>Figure 3.15  &#32; &#32;Changes in UV offset: first 0,0; second .25,0; third 0,.25, fourth .25,.25
+</em></a><P><a name="10683">
+<a href="3Domains.html#10679">Figure 3.15</a> shows how different offset values affect mapping of an image onto a surface; in this case, a texture applied through a planar mapper to a lamina:<p>
+</a><P><ul><a name="10687">
+<li>The first lamina shows the original lamina, with the map starting at the origin.
+</a></li><P><a name="10688">
+<li>The second lamina shows the <strong>U</strong> offset bumped to .25.
+</a></li><P><a name="10689">
+<li>The third lamina shows the <strong>V</strong> offset bumped to .25.
+</a></li><P><a name="10690">
+<li>The fourth lamina shows both the <strong>U</strong> and <strong>V</strong> offsets modified.
+</a></li><P><a name="16975">
+ <P><img src="3Domains.anc16.gif"><p>
+</a></ul><P><a name="16977">
+<em>Figure 3.16  &#32; &#32;Left, unmodified UV Offset, right, with a negative U value of .3
+</em></a><P><a name="10692">
+<h4> UV Rotate</h4>
+</a><a name="10694">
+Rotates the map by the specified number of degrees before applying it to the object or face part. <p>
+</a><P><a name="17047">
+ <P><img src="3Domains.anc17.gif"><p>
+</a><a name="17048">
+<em>Figure 3.17  &#32; &#32;Changes in UV rotate: left, 0 degrees; middle, -45 degrees; right, 90 degrees
+</em></a><P><a name="17042">
+The map is pinned at the 0,0 UV before it is rotated.<p>
+</a><P><ul><a name="10695">
+<li>Negative values rotate the map in a clockwise direction.
+</a></li><P><a name="10696">
+<li>Positive values rotate the map in a counter-clockwise direction.
+</a></li><P><a name="17054">
+ <P><img src="3Domains.anc18.gif"><p>
+</a></ul><P><a name="17055">
+<em>Figure 3.18  &#32; &#32;Left, original; right, rotated 25 degrees
+</em></a><P><a name="13547">
+<h4> Clip Texture?</h4>
+</a><a name="13549">
+Applies only a <em>portion</em> of the specified map file onto the object or face part. Note that the map is clipped:<p>
+</a><P><ul><a name="10706">
+<li><strong>Upper Left</strong> specifies the offsets (measured from 0,0) at which the clipping begins.
+</a></li><P><a name="10707">
+<li><strong>Lower Right</strong> specifies the offset (measured from 0, 0) at which the clipping ends.
+</a></li><P><a name="10708">
+<li><strong>Diffuse Range </strong>specifies how smooth the transition should be in the u and v directions respectively (the number of pixels over which a gradient is created, in which the map fades completely out). Higher values produce softer edges.
+</a></li><P><a name="10722">
+ <P><img src="3Domains.anc19.gif"><p>
+</a></ul><P><a name="10723">
+<em>Figure 3.19  &#32; &#32;Clip map applies only a subportion of the image file to the object or face part
+</em></a><P><a name="10724">
+This feature can be used, for example, to clip the edges from a map that has been applied through a mapper that is larger than the object.<p>
+</a><P><a name="10726">
+<h4> Shader</h4>
+</a><a name="10728">
+Sets the sampling quality of texture mapping. The sampling quality depends on the shader selected. In order of increasing quality, the available shaders are:<p>
+</a><P><ul><a name="10729">
+<li><strong>Point</strong> maps textures directly onto the surface, with no post-filtering.
+</a></li><P><a name="10730">
+<li><strong>Jitter</strong> maps textures onto the surface, <em>randomizing</em> with a matrix of size specified in <strong>Sample Limit.</strong>
+</a></li><P><a name="10731">
+<li><strong>Summed</strong> maps texture onto the surface using a mipmap technique.
+</a></li><P><a name="12320">
+<li><strong>Sampling</strong> maps opacity onto the surface, using an <em>average</em> pixel value within a matrix of size specified in <strong>Sample Limit.</strong>
+</a></li><P></ul><P><a name="10732">
+<strong>(CLICK-L)</strong> on shader, then select the sampling method you want to use from the pop-up that appears. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Using a higher quality shader typically requires longer image rendering time.</em></font></dd></dt></dl><P>
+<a name="10735">
+<h4> Clipping Range</h4>
+</a><a name="10737">
+Creates a range (an area between two imaginary planes), and allows the application of maps only when the object is between those two planes (measured in world units, with respect to the camera).<p>
+</a><P><a name="10738">
+The two values specify the minimum and maximum distance between which maps are applied. Once an object moves out of the specified range, maps are no longer applied to the object.<p>
+</a><P><a name="10739">
+This feature can be used to make objects that move far away in the scene (where they require less detail) render faster.<p>
+</a><P><a name="10742">
+<h4> Use Map Alpha</h4>
+</a><a name="10744">
+Specifies whether the alpha channel for a map should be used when determining which part of the map to apply to the surface of the object. This feature can be used to create a "decal" effect on an object-create a matte under the portion of the map that you want to use, then set this attribute to <strong>Yes</strong>.<p>
+</a><P><ul><a name="10746">
+<li><strong>Yes</strong> indicates that you want to use the matte channel. Only the portion of the image that has a matte is applied to the object or face part. Note also that the matte's opacity is considered when applying the map.
+</a></li><P><a name="10747">
+<li><strong>No</strong> ignores the matte channel saved with the image, applying the entire image to the object or face part.
+</a></li><P><a name="10768">
+ <P><img src="3Domains.anc20.gif"><p>
+</a></ul><P><a name="10769">
+<em>Figure 3.20  &#32; &#32;The map and alpha channel used on the sphere; left, with map alpha off (ignoring the matte), right, with it on (using only that portion of the matte with a matte)
+</em></a><P><a name="10771">
+<h4> Boundary</h4>
+</a><a name="10773">
+If you set the mapper value smaller than an object, or specify a <strong>UV Scale</strong> greater than 1, an image is recursively mapped on an object. In either case, you can specify the recurrence pattern to be used when mapping on an object. (In some cases, the map repeats; in others, it mirrors around an axis as indicated by the patterns shown below.)<p>
+</a><P><a name="10774">
+Consider the application of the following texture map:<p>
+</a><P><a name="10778">
+ <P><img src="3Domains.anc21.gif"><p>
+</a><a name="10780">
+<em>Figure 3.21  &#32; &#32;Sample texture map
+</em></a><P><ul><a name="10782">
+<li><strong>STD</strong> maps coordinates cyclically, causing the map to repeat as necessary.
+</a></li><P><a name="10784">
+<li><strong>U</strong> applies the mapper by mirroring the coordinates as required along the U axis.
+</a></li><P><a name="10786">
+<li><strong>V</strong> applies the mapper by mirroring the coordinates as required along the V axis.
+</a></li><P><a name="10788">
+<li><strong>UV</strong> applies the mapper by mirroring the coordinates as required along both the U and V axes.
+</a></li><P><a name="10790">
+<li><strong>Const</strong> applies the mapper by extending the edges of the map.
+</a></li><P></ul><P><a name="10791">
+The map boundary can strongly affect the appearance of the rendered object. For example, consider the texture map in <a href="3Domains.html#10780">Figure 3.21</a> as applied through a planar mapper to the same lamina, using different <strong>Map Boundary</strong> techniques:<p>
+</a><P><a name="10798">
+ <P><img src="3Domains.anc22.gif"><p>
+</a><a name="10799">
+<em>Figure 3.22  &#32; &#32;Sample of different map boundary parameters; in order, STD, U, V, and UV map boundary
+</em></a><P><a name="10915">
+<h4> Color Scale</h4>
+</a><a name="10916">
+<em>Texture, opacity, reflection, refraction</em><p>
+</a><P><a name="10917">
+Modifies the color of the <em>map</em> applied to the object. The color specified works like a filter applied to the map, so that it takes on a tint of the specified color.<p>
+</a><P><a name="18089">
+ <P><img src="3Domains.anc23.gif"><p>
+</a><a name="18091">
+<em>Figure 3.23  &#32; &#32;Color scale-grid behind spheres with original texture map; spheres using yellow and blue color scales
+</em></a><P><a name="13573">
+<h4> Background Color</h4>
+</a><a name="13574">
+<em>Reflection, refraction</em><p>
+</a><P><a name="13575">
+If you are using a partially opaque reflection or refraction map, N-Render needs to know what "color" to use to give the object a correct appearance.<p>
+</a><P><a name="18296">
+The calculated background color for any reflection or refraction mapping.<p>
+</a><P><a name="18106">
+ <P><img src="3Domains.anc24.gif"><p>
+</a><a name="18107">
+<em>Figure 3.24  &#32; &#32;Two yellow spheres. Left, with 50% opacity reflection map, and white background color; right, with 10% opacity reflection map, and magenta background color.
+</em></a><P><a name="10923">
+<h4> Depth</h4>
+</a><a name="10924">
+<em>Bump</em><p>
+</a><P><a name="10925">
+Controls the steepness of the bump texture walls. Bump depth is expressed using both U and V values; higher values cause the texture to appear bumpier. Both U and V coordinates can be specified, so you can make either the vertical or horizontal "bumps" more prominent. A higher U value accentuates the horizontal bumps; a higher V value accentuates the vertical bumps.<p>
+</a><P><a name="10927">
+U and V values may be between the values of -10 and 10.<p>
+</a><P><ul><a name="10928">
+<li>If using a positive value, the black areas of the applied map appear to project outward from the mapped object (like bumps).
+</a></li><P><a name="10929">
+<li>If using a negative value, the black areas of the applied map appear to project inward onto the mapped object (like craters).
+</a></li><P><a name="10947">
+ <P><img src="3Domains.anc25.gif"><p>
+</a></ul><P><a name="10948">
+<em>Figure 3.25  &#32; &#32;Apparent effect of positive and negative bump depth values
+</em></a><P><a name="18117">
+ <P><img src="3Domains.anc26.gif"><p>
+</a><a name="18118">
+<em>Figure 3.26  &#32; &#32;Left, bump map using positive values; right, bump map using negative values
+</em></a><P><a name="18140">
+Increasing the value in either direction makes the bumps more prominent, as shown in <a href="3Domains.html#18133">Figure 3.27</a>.<p>
+</a><P><a name="18132">
+ <P><img src="3Domains.anc27.gif"><p>
+</a><a name="18133">
+<em>Figure 3.27  &#32; &#32;Left, bump map value of 1.0; right, bump map value of 3.0
+</em></a><P><a name="10950">
+<h4> Index</h4>
+</a><a name="10951">
+<em>Refraction</em><p>
+</a><P><a name="10952">
+Used only with refraction maps, this value modifies how the refraction map is applied to the object. A higher value causes more of the "refracted" scene to be applied to the object. To use this, you'd probably want to use a map of the rendered scene itself as your map.<p>
+</a><P><a name="10956">
+The example in <a href="3Domains.html#10971">Figure 3.29</a> was created using the following map:<p>
+</a><P><a name="10960">
+ <P><img src="3Domains.anc28.gif"><p>
+</a><a name="10961">
+<em>Figure 3.28  &#32; &#32;Sample map
+</em></a><P><a name="10965">
+The map is inverted and applied to the object as shown in <a href="3Domains.html#10971">Figure 3.29</a>:<p>
+</a><P><a name="10969">
+ <P><img src="3Domains.anc29.gif"><p>
+</a><a name="10971">
+<em>Figure 3.29  &#32; &#32;Modifying the refraction index; left, 1.33; right 2.0
+</em></a><P><a name="12210">
+<h3> Effects Attributes (N-Render)</h3>
+</a><a name="13576">
+These special effects attributes are only available with the Render domain.<p>
+</a><P><a name="12335">
+<h4> Oblique Effects?</h4>
+</a><a name="12212">
+When rendering a semi-transparent object, such as a glass sphere, its edges typically become more opaque and light more diffuse at the outside of the object, since you are actually looking through a greater amount of opaque material at the outside of the object (the viewpoint along line A in the figure below). When viewing the object directly, you are looking through a thinner wall (the viewpoint along line B in the figure below).<p>
+</a><P><a name="12225">
+ <P><img src="3Domains.anc30.gif"><p>
+</a><a name="12227">
+<em>Figure 3.30  &#32; &#32;Oblique effects
+</em></a><P><a name="12228">
+<strong>(CLICK-L)</strong> on <strong>Yes</strong> to display the oblique effects attributes.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you are using oblique effects when creating a material, you may need to modify shadow lights used in rendering a scene that includes semi-opaque objects. Changing an object's transparency does not affect the intensity of the shadow cast by that object; you must modify the shadow light's brightness for the shadow to look realistic.</em></font></dd></dt></dl><P>
+<a name="12231">
+<h4> Diffuse</h4>
+</a><a name="12232">
+Specifies how light is diffused along the edges of an object when using oblique effects. Diffusion is specified using center, outside, and exponent values:<p>
+</a><P><ul><a name="12233">
+<li><strong>In</strong> determines the diffusion value for the object at its center.
+</a></li><P><a name="12234">
+<li><strong>Out</strong> determines the diffusion value for the object at its outside.
+</a></li><P><a name="12235">
+<li><strong>Exp</strong> determines the rate of change in opacity diffusion from center to outside.
+</a></li><P></ul><P><a name="12238">
+<h4> Opacity</h4>
+</a><a name="12239">
+Specifies the opacity of an object when using oblique effects. Opacity is specified using center, outside, and exponent values:<p>
+</a><P><ul><a name="12240">
+<li><strong>In</strong> determines the opacity of the object at its center.
+</a></li><P><a name="12241">
+<li><strong>Out</strong> determines the opacity of the object at its outside.
+</a></li><P><a name="12242">
+<li><strong>Exp</strong> determines the rate of change in opacity from center to outside.
+</a></li><P><a name="18161">
+ <P><img src="3Domains.anc31.gif"><p>
+</a></ul><P><a name="18163">
+<em>Figure 3.31  &#32; &#32;Left, sphere with no oblique effects; right, with opacity oblique effects. Note the edges of the sphere on the right are more opaque than the center of the sphere.
+</em></a><P><a name="12245">
+<h4> Specular</h4>
+</a><a name="12246">
+Specifies the characteristics of the specular highlight when using oblique effects. (For a realistic effect, these should be the same as the values defined for the opacity of the object.)<p>
+</a><P><ul><a name="12247">
+<li><strong>In</strong> determines the opacity of the highlight at its center.
+</a></li><P><a name="12248">
+<li><strong>Out</strong> determines the opacity of the highlight at its outside.
+</a></li><P><a name="12249">
+<li><strong>Exp</strong> determines the rate of change in opacity for the specular component from center to outside.
+</a></li><P></ul><P><a name="12250">
+Higher values create a more opaque highlight.<p>
+</a><P><a name="12252">
+<h4> Reflect</h4>
+</a><a name="12253">
+Determines how reflection maps are applied to an object when using oblique effects.<p>
+</a><P><ul><a name="12254">
+<li><strong>In</strong> determines the transparency of the map at its center.
+</a></li><P><a name="12255">
+<li><strong>Out</strong> determines the transparency of the map at its outside.
+</a></li><P><a name="12256">
+<li><strong>Exp</strong> determines the rate of change in for the reflection map from center to outside.
+</a></li><P></ul><P><a name="12258">
+<h4> Refract</h4>
+</a><a name="12259">
+Determines how refraction maps are applied to an object when using oblique effects:<p>
+</a><P><ul><a name="12260">
+<li><strong>In</strong> determines the transparency of the map at its center.
+</a></li><P><a name="12261">
+<li><strong>Out</strong> determines the transparency of the map at its outside.
+</a></li><P><a name="12262">
+<li><strong>Exp</strong> determines the rate of change in for the refraction map from center to outside.
+</a></li><P></ul><P><a name="12264">
+<h4> Use Fog?</h4>
+</a><a name="12266">
+The process used for making objects disappear into a "fog" as they move away from the camera. <p>
+</a><P><a name="12267">
+Select <strong>Yes</strong> to use fog, then modify the parameters below to define its effects.<p>
+</a><P><a name="12269">
+<h4> Fog Limit</h4>
+</a><a name="12270">
+These two values define where the fog effect begins, and where it increases to 100% opacity. The distances are expressed in units in which the scene is rendered, measured from the camera's point of view.<p>
+</a><P><a name="12271">
+At the minimum distance, the fog has an opacity of zero; at the maximum distance and beyond, it has an opacity of 100%. Objects moved toward the maximum distance appear to disappear into a fog of the specified color.<p>
+</a><P><a name="18207">
+ <P><img src="3Domains.anc32.gif"><p>
+</a><a name="18209">
+<em>Figure 3.32  &#32; &#32;Fog limits. a is the distance from the camera at which the fog starts; b the range over which the fog effect increases from 0% to 100%; objects in "c" are enveloped in the fog at 100%
+</em></a><P><a name="18268">
+ <P><img src="3Domains.anc33.gif"><p>
+</a><a name="18269">
+<em>Figure 3.33  &#32; &#32;Left, octahedron with no fog effect; right, with partially past minimum fog limit
+</em></a><P><a name="12273">
+<h4> Use Default Color?</h4>
+</a><a name="12274">
+If set to <strong>Yes</strong>, the default fog color specified using the Render Defaults menu is used. If set to <strong>No</strong>, a color edit box appears; <strong>(CLICK-L)</strong> on the color box to edit the color of the fog.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingMaterials.html">[Prev]</a> <a href="4Lights.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:16 -->
+
+</body>
+</html>

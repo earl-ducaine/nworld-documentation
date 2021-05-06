@@ -1,0 +1,443 @@
+<html><head><title>Objects and TOD Animations</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1-Overview.html">[Prev]</a> <a href="3-ActionEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="21090">
+<h1>Objects and TOD Animations</h1>
+</a>
+<hr><p><a name="16096">
+PlayStation Express gives you the ability to preview objects in textures on the Sony PlayStation as you model them. Seeing your work on the PlayStation at an early stage can help to prevent unpleasant surprises later in the game development process. This chapter shows you how to create, attribute, and preview a simple object on the Sony PlayStation. You can preview TOD animations as well. In many cases, TOD files are a more appropriate (and simpler) animation format choice. TOD files can be created from Geometry objects and texture maps.<p>
+</a><P><a name="21171">
+<h2><HR> Previewing Attributed Objects</h2>
+</a><a name="21389">
+Knowing what your objects and texture maps will actually look like on the target platform can save a lot of time and energy during the modeling and attributing process. PlayStation Express lets you see your models and textures in real time on the PlayStation, so you always know what your work will look like in the game.<p>
+</a><P><a name="21392">
+In this brief tutorial, we'll create an object in N-Geometry, attribute it using the Attributes Editor, then preview it on the Sony PlayStation.<p>
+</a><P><a name="21618">
+<h4> A Note about Tutorial Files</h4>
+</a><a name="21619">
+We'll be loading files from N&#183;World demo directories during the course of this tutorial. When N&#183;World is distributed, these directories are generally write-protected. This means that you might not be able to save your materials or other files to these directories. When you are saving objects, materials, or other items, make sure to specify a directory for which you have adequate write permissions (your home directory, symbolized with a tilde (~) is often a good choice). If you have any questions about the configuration of your particular site, consult your System Administrator.<p>
+</a><P><a name="21620">
+<h3> Creating and Attributing an N&#183;World Object</h3>
+</a>
+<a name="21401">
+<STRONG>	 1.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;Sphere.
+</STRONG>
+</a><P><a name="21971">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the Sphere, and then <strong>(CLICK-L)</strong> on Triangulate.
+</STRONG>
+</a><P><a name="21403">
+<STRONG>	3.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;mapper.
+</STRONG>
+</a><P><dl><a name="21404">
+<dt>Create a spherical mapper, and set the bounds source for the mapper to your new sphere. Your mapper parameters should look like this:</dt>
+</a><P><a name="21408">
+ <P><img src="2-TOD+TextTut.anc.gif"><p>
+</a></dl>
+<a name="21409">
+<em>Figure 2.1  &#32; &#32;Spherical mapper parameters
+</em></a><P>
+<a name="21410">
+<STRONG>	4.	 In the GeoMenus, <strong>(CLICK-L)</strong> on Shading, then select your object from the menu which appears.
+</STRONG>
+</a><P><a name="21414">
+ <P><img src="2-TOD+TextTut.anc1.gif"><p>
+</a>
+<a name="21415">
+<em>Figure 2.2  &#32; &#32;Toggling shading for Geometry objects
+</em></a><P>
+<a name="21416">
+<STRONG>	5.	 Open the Browser, then <strong>(CLICK-L)</strong> on the Geo button.
+</STRONG>
+</a><P><dl><a name="21417">
+<dt>The Browser shows all the object currently loaded into Geometry, and also provides a visual representation of object hierarchy:</dt>
+</a><P><a name="21421">
+ <P><img src="2-TOD+TextTut.anc2.gif"><p>
+</a></dl>
+<a name="21422">
+<em>Figure 2.3  &#32; &#32;The Browser display
+</em></a><P>
+<a name="21423">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> over your object in the Browser display.
+</STRONG>
+</a><P><dl><a name="21424">
+<dt>The Operations menu for your sphere appears. </dt>
+</a><P><a name="21428">
+ <P><img src="2-TOD+TextTut.anc3.gif"><p>
+</a></dl>
+<a name="21429">
+<em>Figure 2.4  &#32; &#32;The Browser Operations menu for sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If your Browser doesn't show all the objects in the Geometry window, <strong>(CLICK-L)</strong> on Recompute to refresh the Browser display.</font></dd></dt></dl><P>
+
+<a name="21431">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Assign Mapper.
+</STRONG>
+</a><P><dl><a name="21432">
+<dt>A pop-up menu appears listing the mappers you've created. <strong>(CLICK-L)</strong> on the spherical mapper you created in step <a href="2-VectorEditor.html#21403">3</a>.</dt>
+</a><P><a name="21439">
+ <P><img src="2-TOD+TextTut.anc4.gif"><p>
+</a></dl>
+<a name="21440">
+<em>Figure 2.5  &#32; &#32;Assigning a mapper using the Browser
+</em></a><P><dl><dl><a name="21441">
+<dt>The browser display changes to reflect the mappers new association with your sphere.</dt>
+</a><P><a name="21445">
+ <P><img src="2-TOD+TextTut.anc5.gif"><p>
+</a></dl></dl><a name="21446">
+<em>Figure 2.6  &#32;Mapper associated with an object in the Browser
+</em></a><P>
+<a name="21447">
+<STRONG>	8.	 Open the Attributes Editor.
+</STRONG>
+</a><P><a name="21448">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on New.
+</STRONG>
+</a><P><dl><a name="21603">
+<dt>Enter a directory and filename for you new material in the dialog box which appears:</dt>
+</a><P><a name="21607">
+ <P><img src="2-TOD+TextTut.anc6.gif"><p>
+</a></dl>
+<a name="21608">
+<em>Figure 2.7  &#32; &#32;Creating a new material
+</em></a><P><dl><dl><a name="21458">
+<dt>Icons for your new material appear in the Attributes Editor (<a href="2-VectorEditor.html#21464">Figure 2.8</a>)</dt>
+</a><P><a name="21462">
+ <P><img src="2-TOD+TextTut.anc7.gif"><p>
+</a></dl></dl><a name="21464">
+<em>Figure 2.8  &#32; &#32;Sony PSX Render domain attributes editor menu
+</em></a><P>
+<a name="21465">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the Sony PSX button.
+</STRONG>
+</a><P><dl><a name="21466">
+<dt>This selects the PlayStation domain as the current render domain, and reveals the SonyPSX domain attribute menus (<a href="2-VectorEditor.html#21464">Figure 2.8</a>).</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	The SonyPSX domain is specially designed for attributing objects for display on the PlayStation. You should read <a href="7-PSX-domain.html#9745">Chapter &#32;7</a> and become familiar with SonyPSX attributes and defaults.</font></dd></dt></dl><P>
+
+<a name="21474">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Texture.
+</STRONG>
+</a><P><dl><a name="21475">
+<dt>The Attributes menu will change to reflect PlayStation Texture map attributes.</dt>
+</a><P><a name="21986">
+ <P><img src="2-TOD+TextTut.anc8.gif"><p>
+</a></dl>
+<a name="21987">
+<em>Figure 2.9  &#32; &#32;PSX domain texture attributes
+</em></a><P>
+<a name="21476">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the Texture Map field, and select the following texture map file:
+</STRONG>
+</a><P><dl><a name="21477">
+<dt><code>/usr/local/ngc/presets/maps/Green_snake_B.tpx</code></dt>
+</a><P></dl><a name="21482">
+<STRONG>	13.	 In the Browser, <strong>(CLICK-R)</strong> on your sphere.
+</STRONG>
+</a><P><dl><a name="21483">
+<dt>The Operations menu appears again.</dt>
+</a><P></dl><a name="21484">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="21485">
+<dt>A menu appears listing all materials loaded into memory. <strong>(CLICK-L)</strong> on the material you just created.</dt>
+</a><P><a name="21493">
+ <P><img src="2-TOD+TextTut.anc9.gif"><p>
+</a></dl>
+<a name="21494">
+<em>Figure 2.10  &#32; &#32;Assigning a material
+</em></a><P><dl><dl><a name="21797">
+<dt>The browser will prompt you to select a mapper for any texture maps associated with the material.</dt>
+</a><P><a name="21499">
+ <P><img src="2-TOD+TextTut.anc10.gif"><p>
+</a></dl></dl><a name="21500">
+<em>Figure 2.11  &#32; &#32;Assigning a texture map to a mapper in the Browser
+</em></a><P>
+<a name="21994">
+<STRONG>	15.	 <strong>(CLICK-R)</strong> on the Mapper field, then <strong>(CLICK-L) </strong>on the Spherical mapper you created in step<strong> </strong><a href="2-VectorEditor.html#21403">3</a>.
+</STRONG>
+</a><P><dl><a name="21505">
+<dt>The browser window should now show the sphere and its mapper, as well as the material you just assigned it.</dt>
+</a><P><a name="21509">
+ <P><img src="2-TOD+TextTut.anc11.gif"><p>
+</a></dl>
+<a name="21510">
+<em>Figure 2.12  &#32; &#32;The Browser with mapper and material assigned to Sphere
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If you don't see icons for your materials, <strong>(CLICK-L)</strong> on the Options button at the bottom of the browser, then <strong>(CLICK-L)</strong> on the Icons toggle.</font></dd></dt></dl><P>
+
+<a name="21514">
+<STRONG>	16.	 In the Attributes Editor, <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="21515">
+<dt>Your sphere should appear in the Geometry window with the green snake scales applied to it. PlayStation materials are displayed in the Geometry window using GL Shade.</dt>
+</a><P></dl>
+<a name="21516">
+<h3> Setting up the PC</h3>
+</a><a name="21803">
+Before we can send our object to the PlayStation, we need to set up the PC to receive the information.<p>
+</a><P>
+<a name="21804">
+<STRONG>	17.	 Create a directory for your preview on the PC.
+</STRONG>
+</a><P><dl><a name="21805">
+<dt>If &lt;name&gt; is the name of your new directory, type in a command like this at the DOS prompt:</dt>
+</a><P><a name="21808">
+<dt><code>C:\mkdir &lt;name&gt;</code></dt>
+</a><P></dl><a name="21809">
+<STRONG>	18.	 Change to your new directory
+</STRONG>
+</a><P><dl><a name="21810">
+<dt><code>cd c:\&lt;name&gt;</code></dt>
+</a><P></dl><a name="21811">
+<STRONG>	19.	 Type fs at the DOS prompt.
+</STRONG>
+</a><P><dl><a name="21812">
+<dt><code>c:\fs</code></dt>
+</a><P><a name="21813">
+<dt>This initializes the FTP server on the PC to receive data from the SGI.</dt>
+</a><P></dl><a name="21802">
+<STRONG>	20.	 On the SGI, <strong>(CLICK-L)</strong> on Preview in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="21817">
+<dt>If you have not already specified the FTP parameters during an earlier preview, or by specifying SonyPSX domain defaults, then the FTP parameters dialog appears:</dt>
+</a><P><a name="21818">
+ <P><img src="2-TOD+TextTut.anc12.gif"><p>
+</a></dl>
+<a name="21819">
+<em>Figure 2.13  &#32; &#32;PlayStation Express FTP parameters menu
+</em></a><P><ul><a name="21847">
+<li><strong>Host Name</strong> - The host name of the PC you're FTP'ing to.
+</a></li><P><a name="21848">
+<li><strong>Host Directory</strong> - The directory you want to FTP the data to. Specify the directory you created in step <a href="2-VectorEditor.html#21804">17</a>. Remember to use <em>forward</em> slashes, e.g.
+</a></li><P><dl><dl><a name="21853">
+<dt><code>c:\mystuff\animation --&gt; /mystuff/animation</code><p>
+</a><P></dl></dl><a name="21858">
+<li><strong>User ID</strong> - A valid user ID on the target PC.
+</a></li><P><a name="21859">
+<li><strong>Password</strong> - A valid password for the User ID.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If you have any questions about these parameters, consult your System Administrator.</font></dd></dt></dl><P>
+
+<a name="21814">
+<STRONG>	21.	 Now, <strong>(CLICK-L)</strong> on Preview in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="21517">
+<dt>PlayStation Express FTP's the data to the PC.</dt>
+</a><P></dl><a name="21995">
+<STRONG>	22.	 Press the ESC key on the PC to exit FTP server mode.
+</STRONG>
+</a><P><a name="21863">
+<STRONG>	23.	 Type <code>go</code> at the DOS prompt on the PC.
+</STRONG>
+</a><P><dl><a name="21879">
+<dt>Your object should appear on the PlayStation display!!</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	The Preview function exports all objects visible in the Geometry window to the Sony PlayStation. </font></dd></dt></dl><P>
+<a name="21519">
+That's all there is to it! Essentially, previewing objects on the Sony PlayStation is no different from ordinary render operations.<p>
+</a><P><a name="21520">
+<h4> Manipulating Objects on the PlayStation</h4>
+</a><a name="21521">
+You can use the PlayStation joystick controller to manipulate the objects you're previewing on the Sony PlayStation.<p>
+</a><P><a name="21522">
+<h3> Troubleshooting</h3>
+</a><a name="21523">
+If your object doesn't appear on the PlayStation display:<p>
+</a><P>
+<a name="21524">
+<STRONG>	 1.	 Make sure your object has the correct mapper and material assigned to it.
+</STRONG>
+</a><P><a name="21525">
+<STRONG>	2.	 Make sure the material assigned to the object is defined in SonyPSX render domain.
+</STRONG>
+</a><P><a name="21526">
+<STRONG>	3.	 Make sure that the PlayStation and PC are connected to each other and to the SGI.
+</STRONG>
+</a><P><a name="21880">
+<STRONG>	4.	 Make sure that you specified the correct host directory when you FTP'd the information to the PC. 
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	You may have to <strong>(CLICK-L)</strong> on the Prefs button to specify a new host directory. See <a href="7-PSX-domain.html#10341">"`SonyPSX Domain Defaults," on page &#32;7-4</a> for more information about setting SonyPSX domain defaults.<strong></strong></font></dd></dt></dl><P>
+<a name="21384">
+<h2><HR> Previewing TOD Animations of Attributed Objects</h2>
+</a><a name="18636">
+In this section, we'll show how to animate and object or group of objects, then send that animation to the Sony PlayStation as a TOD animation. Models sent using this method have the following limitations:<p>
+</a><P><ul><a name="20406">
+<li>Objects - You can animate multiple objects with SonyPSX domain attributes.<br>Objects can be grouped, and you can have subobjects.
+</a></li><P><a name="21653">
+<li><strong>Displacements - </strong>No displacement animation is allowed.
+</a></li><P><a name="21664">
+<li><strong>Attributes</strong> <strong>- </strong>Sony domain attributes, including texture maps.
+</a></li><P></ul><P><a name="20457">
+Given these restraints, TOD animations are often a good choice for animating complex scenes with "fixed" shapes. Basically, TOD animations are appropriate for animations in which objects do not change shape.<p>
+</a><P><a name="20460">
+For example, you could animate a plane flying over a city, with propellers turning, or a camera moving along a dark hallway. Textures could be applied to the fuselage of the airplane or the walls in the hallway.<p>
+</a><P><a name="20554">
+<h4> Creating the Animation</h4>
+</a><a name="20557">
+ <P><img src="2-TOD+TextTut.anc13.gif"><p>
+</a><a name="20558">
+<em>Figure 2.14  &#32; &#32;Creating a TOD animation (with textures)
+</em></a><P><a name="20310">
+<h4> Create the Objects</h4>
+</a>
+<a name="20749">
+<STRONG>	 1.	 Create the objects you want to animate in N-Geometry.
+</STRONG>
+</a><P><dl><a name="20750">
+<dt>You may assign any Sony domain attributes to the objects, including texture maps.</dt>
+</a><P></dl>
+<a name="20455">
+<h4> Animate the Object</h4>
+</a>
+<a name="20741">
+<STRONG>	2.	 Create a script in N-Dynamics to animate the object.
+</STRONG>
+</a><P><dl><a name="20756">
+<dt>The script can perform any actions that do not change the shape of the object. You may, for example, include channels that move or rotate an object (or the camera), but you cannot apply displacements to that object.</dt>
+</a><P></dl><a name="21318">
+<STRONG>	3.	 Include a Record Animation channel in your script as the last channel in the script.
+</STRONG>
+</a><P><a name="20735">
+<STRONG>	4.	 Animate the script.
+</STRONG>
+</a><P><dl><a name="20759">
+<dt><strong>(CLICK-L)</strong> on the Animate button. You can watch the script as it is animated in the N-Geometry window.</dt>
+</a><P></dl>
+<a name="21336">
+<h4> Set up the PC</h4>
+</a><a name="21894">
+While N-Dynamics animates the script, we'll configure the PC to receive the data we'll be sending over.<p>
+</a><P>
+<a name="21898">
+<STRONG>	5.	 Create a directory on the PC to store the preview data.
+</STRONG>
+</a><P><dl><a name="21899">
+<dt>If <code>&lt;name&gt;</code> is a directory name, then type a command like this at a DOS prompt:</dt>
+</a><P><a name="21900">
+<dt><code>c:\mkdir &lt;name&gt;</code></dt>
+</a><P></dl><a name="21901">
+<STRONG>	6.	 Make the directory you just created the current directory.
+</STRONG>
+</a><P><dl><a name="21902">
+<dt>Again, if <code>&lt;name&gt;</code> is the directory you just created, type a command like this at the DOS prompt:</dt>
+</a><P><a name="21905">
+<dt><code>c:\cd &lt;name&gt;</code></dt>
+</a><P></dl><a name="21891">
+<STRONG>	7.	 Start the FTP server.
+</STRONG>
+</a><P><dl><a name="21337">
+<dt>Type the following at the DOS prompt:</dt>
+</a><P><dl><a name="21338">
+<dt><strong>fs</strong><p>
+</a><P></dl></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	This batch file should start the FTP software. If it does not, make sure that you added the FTP directory to your path!!</font></dd></dt></dl><P>
+
+<a name="21340">
+<STRONG>	8.	 When N-Dynamics completes the script, <strong>(CLICK-L)</strong> on Export.
+</STRONG>
+</a><P><dl><a name="21341">
+<dt>Select PlayStation Preview from the Export menu:</dt>
+</a><P><a name="21345">
+ <P><img src="2-TOD+TextTut.anc14.gif"><p>
+</a></dl>
+<a name="21346">
+<em>Figure 2.15  &#32; &#32;Exporting TOD data
+</em></a><P>
+<a name="21347">
+<STRONG>	9.	 Choose your FTP Options.
+</STRONG>
+</a><P><dl><a name="21674">
+<dt>The default values for these options are specified in the SonyPSX domain defaults.</dt>
+</a><P></dl>
+<ul><a name="21348">
+<li><strong>Host Name</strong> - The name of the PC you're FTP'ing the data to. Consult your System Administrator if you don't know your PC's hostname.
+</a></li><P><a name="21349">
+<li><strong>Host Directory</strong> - The directory on the target PC into which to copy the data.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	You must use FORWARD slashes when delimiting directories, even though you are referring to DOS directories. For example, to make c:\mystuff\animations the Host Directory, you would type /mystuff/animations into the Host Directory field!!</font></dd></dt></dl><P>
+<ul><a name="21351">
+<li><strong>User ID</strong> - An appropriate User ID with FTP privileges on the target PC. Consult your System Administrator for an appropriate user name and password to use for this operation.
+</a></li><P><a name="21352">
+<li><strong>Password</strong> - See above.
+</a></li><P></ul><P>
+<a name="21945">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Done</strong> when you've entered your FTP options.
+</STRONG>
+</a><P><dl><a name="21946">
+<dt>PlayStation Express will FTP the data to the PC.</dt>
+</a><P></dl><a name="21911">
+<STRONG>	11.	 After the FTP is complete, hit the ESC key on the PC.
+</STRONG>
+</a><P><dl><a name="21355">
+<dt>ESC exits FTP host mode.</dt>
+</a><P></dl>
+<a name="21356">
+<h4> Previewing the Animation on the PSX</h4>
+</a><a name="21357">
+The files you FTP'd are now on the PC. To view them on the PSX, you must FTP them again, this time from the PC to the PSX. <p>
+</a><P>
+<a name="21362">
+<STRONG>	12.	 Type the following command at the DOS prompt to FTP the data to the PSX:
+</STRONG>
+</a><P><dl><a name="21363">
+<dt><code>go</code></dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000>Note:	If you get a "bad command or filename" error, it's almost certainly because you failed to update your path correctly. See "Modifying your AUTOEXEC.BAT" in the Sony PSX Installation Guide.</font></dd></dt></dl><P>
+
+<a name="21368">
+<STRONG>	13.	 Your animation should appear on the PSX!!
+</STRONG>
+</a><P>
+<a name="20736">
+<h4> Write the TOD Animation to Disk</h4>
+</a><a name="20765">
+TOD animations are saved directly to disk; because you aren't working with vectors, waves, actions, or subactions, you don't need to open either the Vector Editor or the Action Editor.<p>
+</a><P><a name="19858">
+<h4> Saving your N-Dynamics Script</h4>
+</a>
+<a name="19859">
+<STRONG>	14.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="19860">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on the File button.
+</STRONG>
+</a><P><a name="19861">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on File&gt;Save Script.
+</STRONG>
+</a><P><dl><a name="19862">
+<dt>For a complete description of how to save scripts, see the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="21377">
+<h2><HR> Getting Help</h2>
+</a><a name="21378">
+If you run into any problems or have any questions, please call <em>Nichimen Graphics Support</em> at (800) 366-4743.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1-Overview.html">[Prev]</a> <a href="3-ActionEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:15 -->
+
+</body>
+</html>

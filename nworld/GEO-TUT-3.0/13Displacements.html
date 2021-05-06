@@ -1,0 +1,294 @@
+<html><head><title>Displacements &amp; Gestures</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="12RemovingGeometry.html">[Prev]</a> <a href="14Plants.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Displacements &amp; Gestures</h1>
+</a>
+<hr><p><a name="15189">
+<h4> In this chapter we'll learn how to define displacement states for an object and how to combine those displacement states into gestures.</h4>
+</a><a name="9046">
+ <P><img src="13Displacements.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="14583">
+Displacements are named, saved states of a polyhedron's vertices or a wire's nodes. What does that mean? <p>
+</a><P><a name="14584">
+Imagine you were doing a traditional animation with clay models; for each frame, you'd have to repose the skeleton, then shoot a frame. If a character turned his head left, you'd have to turn the head slightly for each frame, and shoot each new position.<p>
+</a><P><a name="14585">
+Now imagine that instead of a clay character, you are using a model in N-Geometry. Using displacement operations, you could save a pose of the model looking straight ahead as an <em>absolute</em> displacement, rotate the head using a rotate command, then save a pose of the model looking left as a <em>relative</em> displacement.<p>
+</a><P><a name="14586">
+Each of these displacements can be named. You can then animate an object from one state to another in N-Dynamics. You might specify that the model start in its original position at frame 1, and that it end looking left (using the relative displacement) in frame 30. When you animate the script, the frames between would be generated <em>automatically</em>, and the model would gradually turn its head to the left.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can't add or subtract the number of points on a polygon if you want its displacements to remain valid. This means that operations such as </em><strong>Scale</strong><em>, </em><strong>Twist</strong><em>, and </em><strong>Rotate</strong><em> are valid to create relative displacements, but </em><strong>Collapse</strong><em> and </em><strong>Dissolve</strong><em> are not. You should make any changes to your model before making displacements.</em></font></dd></dt></dl><P>
+<a name="14588">
+Absolute displacements save information for all vertices on the object; relative displacements save information only for those vertices that have been moved. There are two types of relative displacements:<p>
+</a><P><ul><a name="14590">
+<li>Linear
+</a></li><P><a name="14591">
+<li>Rotational
+</a></li><P></ul><P><a name="14595">
+<h2><HR> Making Displacements</h2>
+</a><a name="14597">
+Try the following mini-tutorial to see how displacements work:<p>
+</a><P>
+<a name="14598">
+<STRONG>	 1.	 Make a basic object.
+</STRONG>
+</a><P><a name="14602">
+ <P><img src="13Displacements.anc1.gif"><p>
+</a>
+<a name="14603">
+<em>Figure 13.1  &#32; &#32;Object in original position
+</em></a><P>
+<a name="14604">
+<STRONG>	2.	 Select <strong>bodies</strong> on the sensitivity element menu.
+</STRONG>
+</a><P><a name="14605">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on <strong>Make Displacement</strong>.
+</STRONG>
+</a><P><dl><a name="14606">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="14610">
+ <P><img src="13Displacements.anc2.gif"><p>
+</a></dl>
+<a name="14611">
+<em>Figure 13.2  &#32; &#32;Saving an absolute displacement
+</em></a><P><dl><dl><a name="14612">
+<dt>Give the object's original position a descriptive name, such as "base." Then choose <strong>Absolute</strong> (since other displacements are calculated from the object while it's in this "absolute" position).</dt>
+</a><P></dl></dl>
+<a name="14613">
+<STRONG>	4.	 Next, modify or "displace" the object to its target state.
+</STRONG>
+</a><P><dl><a name="14614">
+<dt>In this example, we collected the polygons around the man's head and made them larger with the <strong>Scale </strong>command:</dt>
+</a><P><a name="14618">
+ <P><img src="13Displacements.anc3.gif"><p>
+</a></dl>
+<a name="14619">
+<em>Figure 13.3  &#32; &#32;Modify the body and save its new position as a relative displacement
+</em></a><P>
+<a name="14620">
+<STRONG>	5.	 Select Bodies from the sensitivity element menu.
+</STRONG>
+</a><P><a name="14621">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the object again, then <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="14622">
+<STRONG>	7.	 This time, <strong>(CLICK-L)</strong> on Relative Displacement.
+</STRONG>
+</a><P><dl><a name="14623">
+<dt>Several additional items appear on the menu:</dt>
+</a><P><a name="14627">
+ <P><img src="13Displacements.anc4.gif"><p>
+</a></dl>
+<a name="14628">
+<em>Figure 13.4  &#32;Saving a relative displacement
+</em></a><P>
+<a name="14629">
+<STRONG>	8.	 <strong>Give the relative displacement a descriptive name.</strong>
+</STRONG>
+</a><P><dl><a name="14630">
+<dt>Again, you can reference saved displacements by name in N-Dynamics.</dt>
+</a><P></dl><a name="14631">
+<STRONG>	9.	 <strong>Choose Previous State.</strong>
+</STRONG>
+</a><P><dl><a name="14632">
+<dt>The current state is based on a previous saved state.</dt>
+</a><P></dl><a name="14633">
+<STRONG>	10.	 Next to State, specify the name of the absolute displacement this pose is based on.
+</STRONG>
+</a><P><dl><a name="14634">
+<dt>In this case, we used the name "base" for our absolute displacement.</dt>
+</a><P></dl><a name="14635">
+<STRONG>	11.	 Choose Save Displacement State.
+</STRONG>
+</a><P><dl><a name="14636">
+<dt>You've now saved both an absolute and relative displacement state for the object.</dt>
+</a><P></dl><a name="14637">
+<STRONG>	12.	 Test the displacement by selecting the object and <strong>(CLICK-M)</strong> on the Displace command.
+</STRONG>
+</a><P><dl><a name="14638">
+<dt>Initialize the shape to its original state by initializing it to its absolute displacement state.</dt>
+</a><P></dl><a name="14639">
+<STRONG>	13.	 With the object still selected, <strong>(CLICK-L)</strong> on Displace, and <strong>(CLICK-L)</strong> on the name of the relative displacement you created earlier.
+</STRONG>
+</a><P><dl><a name="14640">
+<dt>Move the mouse left and right to move the object between its original state and its relative displacement.</dt>
+</a><P><a name="14646">
+ <P><img src="13Displacements.anc5.gif"><p>
+</a></dl>
+<a name="14647">
+<em>Figure 13.5  &#32; &#32;Using displacements to change the shape of the man's head
+</em></a><P><a name="14648">
+Each of the other options in the Select Displacement Parameters is described in more detail in the N-Geometry Reference Guide.<p>
+</a><P><a name="14665">
+<h3> Linear vs. Rotational Displacements</h3>
+</a><a name="14666">
+When should you use rotational rather than linear displacements? In a linear displacement, points move from their base position to their target position along a linear path. While this type of animation is easy to calculate, it can cause shearing effects:<p>
+</a><P><a name="14675">
+ <P><img src="13Displacements.anc6.gif"><p>
+</a><a name="14676">
+<em>Figure 13.6  &#32; &#32;When using a linear displacement, points follow a straight path to their target state, which can cause shearing or distortion-note the arm in stage 2
+</em></a><P><a name="14677">
+<em>Linear</em> displacements make sense if you're performing operations on an object that wouldn't cause points to be moved through other points (such as scaling or moving).<p>
+</a><P><a name="14678">
+In a <em>rotational</em> displacement, points move rotationally around a selected axis:<p>
+</a><P><a name="14687">
+ <P><img src="13Displacements.anc7.gif"><p>
+</a><a name="14689">
+<em>Figure 13.7  &#32; &#32;Left, displacing using a rotational displacement lets you select an axis which the displaced vertices rotate around
+</em></a><P><a name="14690">
+Choose rotational displacements if you want the displacement to follow a <em>curved</em> rather than straight path. You specify the rotation axis that the displaced points are to rotate around when defining the relative rotational displacement (notice the addition of the <strong>Axis</strong> menu item):<p>
+</a><P><a name="14694">
+ <P><img src="13Displacements.anc8.gif"><p>
+</a><a name="14695">
+<em>Figure 13.8  &#32; &#32;Saving a rotational displacement
+</em></a><P><a name="14696">
+To make a rotational displacement:<p>
+</a><P>
+<a name="14697">
+<STRONG>	 1.	 Put the object in its base state.
+</STRONG>
+</a><P><a name="14698">
+<STRONG>	2.	 Save an absolute displacement for the object.
+</STRONG>
+</a><P><a name="14699">
+<STRONG>	3.	 Displace the shape to its target state.
+</STRONG>
+</a><P><a name="14700">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="14701">
+<STRONG>	5.	 Choose Rel Rotation for the type of displacement.
+</STRONG>
+</a><P><a name="14702">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Axis.
+</STRONG>
+</a><P><dl><a name="14703">
+<dt>The menu that appears lets you choose an axis that the points should rotate around (typically a point on the object itself). In the example above, we selected the <strong>Select a segment</strong> option and chose the segment on the arm that the rotation occurs around:</dt>
+</a><P><a name="14710">
+ <P><img src="13Displacements.anc9.gif"><p>
+</a></dl>
+<a name="14711">
+<em>Figure 13.9  &#32;Selecting an axis for a rotational displacement
+</em></a><P><a name="14712">
+Both linear and rotational displacements can be animated using the <strong>Displace</strong> command, described below.<p>
+</a><P><a name="14715">
+<h2><HR> Using Displacements</h2>
+</a><a name="14717">
+<strong>Displace</strong> lets you not only deform vertices and nodes within the defined states of the displacements, but to extend beyond the initial state of any displacement.<p>
+</a><P><a name="14718">
+You name and save displacements through the menu item <strong>Make Displacement</strong>. Displacements are especially useful for animating non-rigid motions of a polyhedron and are commonly used in conjunction with operations that influence an entire area (particularly useful for facial expressions).<p>
+</a><P><a name="14719">
+Displacements can be animated through N-Dynamics.<p>
+</a><P><ul><a name="14720">
+<li><strong>(CLICK-L)</strong> deforms the object toward any previously made incremental displacements. Brings up a menu of named displacements from which to choose.
+</a></li><P><a name="14721">
+<li><strong>(CTRL-L)</strong> lets you deform the object toward a saved displacement state using a numeric value. The following menu is displayed:
+</a></li><P><a name="14725">
+ <P><img src="13Displacements.anc10.gif"><p>
+</a></ul><P><a name="14726">
+<em>Figure 13.10  &#32; &#32;Displacing an object numerically
+</em></a><P><a name="14727">
+Choose a target displacement state, then enter how far toward that state you want to displace the object:<p>
+</a><P><a name="14731">
+ <P><img src="13Displacements.anc11.gif"><p>
+</a><a name="14732">
+<em>Figure 13.11  &#32; &#32;Displacing an object numerically
+</em></a><P><a name="14733">
+Use a value of 0.5 to go halfway to the saved state; use a value of 1.0 to go completely to the saved state.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can specify values above 1.0 if you want to displace the object beyond the displaced state.</em></font></dd></dt></dl><P>
+<ul><a name="14735">
+<li><strong>(CLICK-M)</strong> initializes the body to one of the initial states. Invokes a menu from which to choose a named initial state.
+</a></li><P><a name="14736">
+<li><strong>(CLICK-R)</strong> brings up a menu with which you can manage displacements:
+</a></li><P><a name="14740">
+ <P><img src="13Displacements.anc12.gif"><p>
+</a></ul><P><a name="14741">
+<em>Figure 13.12  &#32; &#32;Managing displacements
+</em></a><P><ul><a name="14742">
+<li><strong>Init</strong> lets you reinitialize to a saved base state.
+</a></li><P><a name="14743">
+<li><strong>Displace</strong> lets you interactively displace the object to a saved relative displacement. It is identical to using <strong>(CLICK-L)</strong> on the <strong>Displace</strong> command.
+</a></li><P><a name="14744">
+<li><strong>Displace Multiple</strong> lets you combine multiple displacements into a "gesture," which is essentially a displacement made up of multiple previously displacements. See the section <a href="13Displacements.html#14752">"Defining Gestures," on page &#32;13-13</a>.
+</a></li><P><a name="14748">
+<li><strong>Rename</strong> lets you rename a saved displacement.
+</a></li><P><a name="14749">
+<li><strong>Delete</strong> lets you remove one or more previously saved displacement. <strong>(CLICK-R)</strong> if you want to remove multiple displacements.
+</a></li><P></ul><P><a name="14752">
+<h2><HR> Defining Gestures</h2>
+</a><a name="14753">
+If you have saved several displacements, you can <em>combine</em> them and save those combinations as "gestures." Gestures are displacements that are built from other previously saved displacements.<p>
+</a><P><a name="14756">
+Using the same basic man figure we described in the sections <a href="13Displacements.html#14595">"Making Displacements," on page &#32;13-3</a> and <a href="13Displacements.html#14715">"Using Displacements," on page &#32;13-11</a>, we could combine several saved relative displacements into a gesture. To make a gesture, you must have saved an absolute base displacement for the object and at least two relative displacements for the object.<p>
+</a><P>
+<a name="14761">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="14762">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Displace.
+</STRONG>
+</a><P><a name="14763">
+<STRONG>	3.	 Choose Displace Multiple.
+</STRONG>
+</a><P><dl><a name="14764">
+<dt>A menu similar to that shown below appears:</dt>
+</a><P><a name="14768">
+ <P><img src="13Displacements.anc13.gif"><p>
+</a></dl>
+<a name="14769">
+<em>Figure 13.13  &#32; &#32;Defining a gesture
+</em></a><P><ul><a name="14770">
+<li><strong>Initialize</strong> returns the object to a saved base state.
+</a></li><P></ul><P><a name="14771">
+A slider is displayed for each <em>relative displacement</em> saved for the object; moving the sliders back and forth blends the displacements together.<p>
+</a><P><ul><a name="14772">
+<li><strong>Exit</strong> ends this operation, saving your displacements.
+</a></li><P><a name="14773">
+<li><strong>Save as Gesture</strong> saves the current state of the model (based on the slider values) as a <em>new</em> relative displacement.
+</a></li><P><dl><a name="14939">
+<dt>This displacement state can be referenced using either the <strong>Displace</strong> command or animated in N-Dynamics.</dt>
+</a><P></dl><a name="14774">
+<li><strong>Abort</strong> exits the operation without saving the defined gestures.
+</a></li><P></ul><P>
+<a name="14775">
+<STRONG>	4.	 Move the sliders to apply displacements to the object.
+</STRONG>
+</a><P><a name="14776">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Save as Gesture to save the current state of the model.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>Gestures</strong><em> are particularly useful when defining facial expressions. You can use relative displacements to define states for different parts of the face (e.g., open-eyes, open-mouth, big-smile), then combine those displacements into more complex combinations (such as laugh or scream) and reference those states when animating a script in N-Dynamics.</em></font></dd></dt></dl><P>
+<a name="15223">
+Animating with displacements and gestures is described in more detail in the <em>N-Dynamics Tutorial</em>.<p>
+</a><P><a name="15230">
+<h2><HR> Congratulations!</h2>
+</a><a name="15231">
+You've now learned how to create a displacement state for an object, and how to mix multiple displacement states into a gesture.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="12RemovingGeometry.html">[Prev]</a> <a href="14Plants.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 13:38:15 -->
+
+</body>
+</html>

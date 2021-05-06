@@ -1,0 +1,739 @@
+<html><head><title>Reinstance, Copy, &amp; Multiply</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="16Tubes+TubeSolids.html">[Prev]</a> <a href="18Mappers.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Reinstance, Copy, &amp; Multiply</h1>
+</a>
+<hr><p><a name="20805">
+<h4> This chapter describes the difference between three techniques that can be used to "duplicate" an object in N-Geometry: Reinstance, Copy, and Multiply. You'll also learn how to create various types of lattices using the Multiply command.</h4>
+</a><a name="9046">
+ <P><img src="17CopyReinstMult.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> New Techniques in this Chapter</h2>
+</a><a name="16900">
+This chapter describes the difference between several commands that are used to "duplicate" objects in N-Geometry:<p>
+</a><P><ul><a name="16901">
+<li>Reinstance
+</a></li><P><a name="16946">
+<li>Copy
+</a></li><P><a name="18323">
+<li>Multiply
+</a></li><P></ul><P><a name="18324">
+Each of these techniques can be used in different contexts in N-Geometry.<p>
+</a><P><a name="17129">
+<h2><HR> Reinstanced Objects</h2>
+</a><a name="18363">
+When you reinstance an object, N-Geometry creates a new object that <em>shares</em> the body of the original polyhedron. Any change made to the body is shared by any reinstance that shares that body.<p>
+</a><P><ul><a name="18364">
+<li>If you modify any instance of the <em>body</em>, all instances reflect that change.
+</a></li><P><a name="18365">
+<li>If you modify <em>objects</em>, any reinstance can be changed independently (since changes are made to the object, not the body).
+</a></li><P></ul><P><a name="18403">
+Try this:<p>
+</a><P>
+<a name="17188">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><dl><a name="18598">
+<dt>A cube appears in the N-Geometry window.</dt>
+</a><P><a name="17193">
+ <P><img src="17CopyReinstMult.anc1.gif"><p>
+</a></dl>
+<a name="17194">
+<em>Figure 17.1  &#32; &#32;A default cube
+</em></a><P>
+<a name="20633">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Copy<strong>.</strong>
+</STRONG>
+</a><P><dl><a name="20825">
+<dt>A menu of copy options appears.</dt>
+</a><P></dl><a name="20824">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Reinstance&gt;Cube.
+</STRONG>
+</a><P><dl><a name="18420">
+<dt>Nothing appears to happen; however, you have <em>reinstanced</em> the cube. The reinstance is currently in the same position as the original.</dt>
+</a><P></dl><a name="18438">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on objects in the elements sensitivity menu.
+</STRONG>
+</a><P><a name="20640">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the reinstanced cube, then <strong>(CLICK-L)</strong> on Axis Move&gt;X.
+</STRONG>
+</a><P><dl><a name="20644">
+<dt>Remember that the name of the selected object appears in the upper left corner of the N-Geometry window. Move the reinstanced cube along the positive X axis (to the right).</dt>
+</a><P><a name="18465">
+ <P><img src="17CopyReinstMult.anc2.gif"><p>
+</a></dl>
+<a name="18466">
+<em>Figure 17.2  &#32; &#32;A reinstanced cube
+</em></a><P>
+<a name="18472">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20671">
+<STRONG>	7.	 then <strong>(SHIFT-L)</strong> on a corner of the original cube, then <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="18479">
+<dt>As you move the mouse around, the vertex on the original and the corresponding vertex on the reinstanced cube move in unison (with relation to their local space).</dt>
+</a><P><a name="18494">
+ <P><img src="17CopyReinstMult.anc3.gif"><p>
+</a></dl>
+<a name="18495">
+<em>Figure 17.3  &#32; &#32;Reinstanced objects inherit modifications performed on the original
+</em></a><P><dl><dl><a name="18453">
+<dt>Now try the same thing, this time choosing a vertex on the reinstanced object-the original object is updated as well. Again, this is because reinstanced objects share the same <em>body</em>.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Any modification that you perform on the body of a reinstanced object affects all other reinstances of that object.</font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	<em>Reinstancing objects takes considerably less memory than copying; you may want to consider this when working with very complex objects.</em></font></dd></dt></dl><P>
+<a name="18544">
+<h2><HR> Copied Objects</h2>
+</a><a name="18551">
+When you copy an object, you create a single discrete new object in the same location as the original. The duplicate is named "Copy of Object" where "Object" is the name of the original.<p>
+</a><P><a name="18563">
+Try this:<p>
+</a><P>
+<a name="18564">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><dl><a name="18568">
+<dt>A cube appears in the N-Geometry window:</dt>
+</a><P><a name="18574">
+ <P><img src="17CopyReinstMult.anc4.gif"><p>
+</a></dl>
+<a name="18575">
+<em>Figure 17.4  &#32; &#32;A cube
+</em></a><P>
+<a name="20834">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on objects on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20679">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Copy.
+</STRONG>
+</a><P><dl><a name="18607">
+<dt>Nothing appears to happen; however, you have copied the cube. The copy is currently in the same position as the original.</dt>
+</a><P></dl><a name="20690">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Axis Move&gt;X.
+</STRONG>
+</a><P><dl><a name="18631">
+<dt>Move the copy of the original cube along the positive X axis (to the right).</dt>
+</a><P><a name="18635">
+ <P><img src="17CopyReinstMult.anc5.gif"><p>
+</a></dl>
+<a name="18636">
+<em>Figure 17.5  &#32; &#32;A copied cube
+</em></a><P>
+<a name="18665">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="18666">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on a corner of the copied cube, then <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="18667">
+<dt>As you move the mouse around, the vertex on the copy moves; however, the original is unaffected:</dt>
+</a><P><a name="18671">
+ <P><img src="17CopyReinstMult.anc6.gif"><p>
+</a></dl>
+<a name="18672">
+<em>Figure 17.6  &#32; &#32;Copied objects have completely unique bodies and bdi's
+</em></a><P><dl><dl><a name="18673">
+<dt>Now try the same thing, this time choosing a vertex on the original object-the copy is unaffected. This is because <em>copied</em> objects are completely discrete-that is, they have individual bodies, as if they were both created from scratch.</dt>
+</a><P></dl></dl><a name="18550">
+<h2><HR> Multiplied Objects</h2>
+</a><a name="18715">
+Finally, you can create <em>multiple</em> copies or instances of an object, in various <em>patterns</em>, using the <strong>Multiply</strong> command.<p>
+</a><P><a name="18710">
+Try this:<p>
+</a><P>
+<a name="18718">
+<STRONG>	 1.	 Create a simple object, such as a cube.
+</STRONG>
+</a><P><a name="18748">
+ <P><img src="17CopyReinstMult.anc7.gif"><p>
+</a>
+<a name="18749">
+<em>Figure 17.7  &#32; &#32;A cube
+</em></a><P>
+<a name="20846">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Copy<strong>.</strong>
+</STRONG>
+</a><P><dl><a name="20847">
+<dt>A menu of copy options appears.</dt>
+</a><P></dl><a name="20848">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Multiply&gt;Cube.
+</STRONG>
+</a><P><dl><a name="18759">
+<dt>The <strong>Choose Multiple Copy Parameters</strong> dialog box appears. By specifying different parameters in the dialog box, you can create different patterns of either copied or reinstanced versions of a selected object.</dt>
+</a><P></dl>
+<a name="18769">
+<h3> Making a Linear Lattice of Objects</h3>
+</a><a name="19122">
+A linear lattice extends in one dimension, along the X plane. You specify how many copies of the object should be made and how much space should be between the new objects.<p>
+</a><P><a name="19141">
+To create a sample linear lattice of objects, try the following:<p>
+</a><P>
+<a name="18770">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Object to Multiply, then <strong>(CLICK-L)</strong> on Cube.
+</STRONG>
+</a><P><a name="18728">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Duplicate How.
+</STRONG>
+</a><P><dl><a name="18777">
+<dt>Duplicates can be either copied or reinstanced versions of the object specified. There are three options:</dt>
+</a><P></dl>
+<ul><a name="18783">
+<li><strong>Reinstance-Copy</strong> makes a copy of original, then reinstances that copy so the original object can be modified without affecting the generated lattice.
+</a></li><P><a name="18784">
+<li><strong>Copy</strong> makes copies of the original.
+</a></li><P><a name="18785">
+<li><strong>Reinstance</strong> reinstances the original.
+</a></li><P><dl><a name="18780">
+<dt>For this exercise, <strong>(CLICK-L)</strong> on <strong>Reinstance-Copy</strong>.</dt>
+</a><P></dl></ul><P>
+<a name="18729">
+<STRONG>	6.	 Arrangement Mode specifies the pattern for the lattice of generated duplicates.
+</STRONG>
+</a><P><dl><a name="18796">
+<dt>There are five options for Arrangement Mode:</dt>
+</a><P></dl><ul>
+<BR><a name="18801">
+<li>Linear
+</a><P><BR><a name="18802">
+<li>Planar
+</a><P><BR><a name="18803">
+<li>Cubical
+</a><P><BR><a name="18804">
+<li>Helical
+</a><P><BR><a name="18805">
+<li>Per Point
+</a><P></ul>
+<dl><a name="18806">
+<dt>These options are described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P><a name="18810">
+<dt>For now, <strong>(CLICK-L)</strong> on <strong>Linear</strong>.</dt>
+</a><P></dl><a name="18730">
+<STRONG>	7.	 For Number of Copies, enter 4.
+</STRONG>
+</a><P><a name="18731">
+<STRONG>	8.	 For Spacing Mode, use Abutting.
+</STRONG>
+</a><P><dl><a name="18827">
+<dt>You can specify an amount of distance between each object, or space duplicates from center to center. These options are described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl><a name="18734">
+<STRONG>	9.	 Set Interobject Dist to 5.
+</STRONG>
+</a><P><a name="18860">
+<STRONG>	10.	 Set Randomize to No.
+</STRONG>
+</a><P><a name="18845">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Make Multiple Copies.
+</STRONG>
+</a><P><dl><a name="18846">
+<dt>You should get a row of cubes that looks something like this:</dt>
+</a><P><a name="18852">
+ <P><img src="17CopyReinstMult.anc8.gif"><p>
+</a></dl>
+<a name="18853">
+<em>Figure 17.8  &#32; &#32;Insensitive multiplied lattice of cubes (linear), with original still visible
+</em></a><P><dl><dl><a name="18847">
+<dt>The reinstanced versions of the cube appear in the N-Geometry window, but are insensitive.</dt>
+</a><P></dl></dl>
+<a name="18884">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Sensitivity to see a list of objects.
+</STRONG>
+</a><P><a name="18887">
+<STRONG>	13.	 <strong>(CLICK-R)</strong> on "Copy of Cube 4x Row".
+</STRONG>
+</a><P><dl><a name="18898">
+<dt>If you multiplied a different object, select the appropriate lattice. N-Geometry groups the objects in a structured object, rather than putting everything at the top level:</dt>
+</a><P><a name="18915">
+ <P><img src="17CopyReinstMult.anc9.gif"><p>
+</a></dl>
+<a name="18916">
+<em>Figure 17.9  &#32; &#32;Object structure of multiplied object
+</em></a><P>
+<a name="18928">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Visibility&gt;Cube to make the original invisible.
+</STRONG>
+</a><P><a name="18936">
+ <P><img src="17CopyReinstMult.anc10.gif"><p>
+</a>
+<a name="18937">
+<em>Figure 17.10  &#32; &#32;Multiplied lattice of cubes (linear)
+</em></a><P><a name="18910">
+<h3> Making a Planar Lattice of Objects</h3>
+</a><a name="19108">
+A planar lattice extends in two dimensions, like a grid, along the X and Y planes. You specify how many copies of the object should be made along each axis and how much space should be between the new objects along each axis.<p>
+</a><P><a name="18924">
+To create a <em>sample</em> planar lattice of objects, use the following parameters:<p>
+</a><P><ul><a name="18950">
+<li><strong>Arrangement Mode</strong> of <strong>Planar</strong>
+</a></li><P><a name="18951">
+<li>For <strong>Number of Copies</strong>, enter <strong>3</strong>-space-<strong>5</strong>. This specifies the number of copies to make along the X and Y planes.
+</a></li><P><a name="18952">
+<li><strong>Spacing Mode</strong> of <strong>Abutting</strong>
+</a></li><P><a name="18953">
+<li>For <strong>Interobject Dist</strong>, enter <strong>5</strong>-space-<strong>5</strong>
+</a></li><P><a name="18968">
+<li>Set <strong>Randomize</strong> to <strong>No</strong>
+</a></li><P></ul><P><a name="18980">
+These options are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="19226">
+<strong>(CLICK-L)</strong> on <strong>Make Multiple Copies</strong> to create a plane of objects:<p>
+</a><P><a name="18991">
+ <P><img src="17CopyReinstMult.anc11.gif"><p>
+</a><a name="18992">
+<em>Figure 17.11  &#32; &#32;Multiplied lattice of cubes (planar)
+</em></a><P><a name="18986">
+<h3> Making a Cubical Lattice of Objects</h3>
+</a><a name="19085">
+A cubical lattice extends in three dimensions, along the X, Y, and Z planes. You specify how many copies of the object should be made along each axis and how much space should be between the new objects along each axis.<p>
+</a><P><a name="18998">
+To create a sample cubical lattice of objects, use the following parameters:<p>
+</a><P><ul><a name="18999">
+<li><strong>Arrangement Mode</strong> of <strong>Cubical</strong>
+</a></li><P><a name="19000">
+<li>For <strong>Number of Copies</strong>, enter <strong>2</strong>-space-<strong>3</strong>-space-<strong>4</strong>. This specifies the number of copies to make along the X, Y, and Z planes.
+</a></li><P><a name="19001">
+<li>This time, specify a <strong>Spacing Mode</strong> of <strong>On Centers.</strong>
+</a></li><P><a name="19002">
+<li>For <strong>Object Centers</strong>, enter <strong>30</strong>-space-<strong>40</strong>-space-<strong>50</strong>.
+</a></li><P><a name="19003">
+<li>Set <strong>Randomize</strong> to <strong>No</strong>
+</a></li><P></ul><P><a name="19233">
+These options are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="19004">
+<strong>(CLICK-L)</strong> on <strong>Make Multiple Copies</strong> to create the lattice:<p>
+</a><P><a name="19008">
+ <P><img src="17CopyReinstMult.anc12.gif"><p>
+</a><a name="19009">
+<em>Figure 17.12  &#32; &#32;Multiplied lattice of cubes (cubical)
+</em></a><P><a name="19054">
+<h3> Making a Helical Lattice of Objects</h3>
+</a><a name="19055">
+A helical lattice looks like a spring. When creating a helical lattice, you specify a <strong>radius</strong> (how tight the spring is) and a <strong>pitch</strong> (how stretched the spring appears). The specified object is then copied along the resulting "spring."<p>
+</a><P><a name="19083">
+To create a sample helical lattice of objects, use the following parameters:<p>
+</a><P><ul><a name="19056">
+<li><strong>Arrangement Mode</strong> of <strong>Helical</strong>
+</a></li><P><a name="19059">
+<li>For <strong>Radius</strong>, enter <strong>30</strong>.
+</a></li><P><a name="19165">
+<li>For <strong>Pitch</strong>, enter <strong>45</strong>.
+</a></li><P><a name="19169">
+<li>For <strong>Instances per Rev</strong>, enter <strong>6</strong>.
+</a></li><P><a name="19173">
+<li>For <strong>Revolutions</strong>, enter <strong>3</strong>.
+</a></li><P><a name="19060">
+<li>Set <strong>Randomize</strong> to <strong>No</strong>
+</a></li><P></ul><P><a name="19237">
+These options are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="19061">
+<strong>(CLICK-L)</strong> on <strong>Make Multiple Copies</strong> to create a helical lattice of objects:<p>
+</a><P><a name="19065">
+ <P><img src="17CopyReinstMult.anc13.gif"><p>
+</a><a name="19066">
+<em>Figure 17.13  &#32; &#32;Multiplied lattice of cubes (helical)
+</em></a><P><a name="18996">
+Turning on shading for the objects makes the "helix" effect more apparent.<p>
+</a><P><a name="19207">
+<h3> Randomizing a Generated Lattice</h3>
+</a><a name="19212">
+You can randomize the characteristics used to generate a lattice, giving it a more "natural" look and feel. You can randomize the following parameters:<p>
+</a><P><ul><a name="19251">
+<li>Density
+</a></li><P><a name="19252">
+<li>Position
+</a></li><P><a name="19253">
+<li>Rotation
+</a></li><P><a name="19254">
+<li>Scale
+</a></li><P><a name="19262">
+<li>Stretch
+</a></li><P></ul><P><a name="19263">
+These options are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="19270">
+To create a <em>sample</em> cubical lattice of objects, using some of the random characteristics, use the following parameters:<p>
+</a><P><ul><a name="19294">
+<li><strong>Arrangement Mode</strong> of <strong>Planar</strong>
+</a></li><P><a name="19295">
+<li>For <strong>Number of Copies</strong>, enter <strong>6</strong>-space-<strong>4</strong>
+</a></li><P><a name="19296">
+<li><strong>Spacing Mode</strong> of <strong>Abutting</strong>
+</a></li><P><a name="19297">
+<li>For <strong>Interobject Dist</strong>, enter <strong>5</strong>-space-<strong>5</strong>
+</a></li><P><a name="19298">
+<li>Set <strong>Randomize</strong> to <strong>Yes</strong>
+</a></li><P><ul>
+<BR><a name="19311">
+<li>Set <strong>Density </strong>to <strong>1</strong>
+</a><P><BR><a name="19323">
+<li>Set <strong>Position </strong>to <strong>0</strong>-space-<strong>0</strong>-space-<strong>0</strong>
+</a><P><BR><a name="19327">
+<li>Set <strong>Rotation </strong>to <strong>45</strong>-space-<strong>45</strong>-space-<strong>45</strong>
+</a><P><BR><a name="19331">
+<li>Set <strong>Scale </strong>to <strong>2</strong>
+</a><P><BR><a name="19335">
+<li>Set <strong>Stretch </strong>to <strong>0</strong>-space-<strong>0</strong>-space-<strong>0</strong>
+</a><P></ul>
+</ul><P><a name="19277">
+These options are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="19278">
+<strong>(CLICK-L)</strong> on <strong>Make Multiple Copies</strong> to create a randomized planar lattice of objects:<p>
+</a><P><a name="19282">
+ <P><img src="17CopyReinstMult.anc14.gif"><p>
+</a><a name="19283">
+<em>Figure 17.14  &#32; &#32;Randomized lattice of cubes (planar)
+</em></a><P><a name="19221">
+The results that you can achieve using the Randomize feature of <strong>Multiply</strong> are almost limitless. As with all features of N-Geometry, feel free to experiment, changing parameters a little each time to create unique effects.<p>
+</a><P><a name="19448">
+<h4> Using the "Previous" Button</h4>
+</a><a name="19447">
+If you are experimenting with the <strong>Multiply</strong> operation, you'll want to make use of the Previous button in the Choose Multiple Copy Parameters dialog box.<p>
+</a><P><a name="19453">
+<strong>(CLICK-L)</strong> on the	 <strong>Previous</strong> button to bring up the parameters used by the last <strong>Multiply</strong> command. You can then change one or two parameters and make a new lattice of objects.<p>
+</a><P><a name="19211">
+<h3> Making a Per Point Lattice</h3>
+</a><a name="19596">
+One final option when using the <strong>Multiply</strong> command is to create a per-point lattice.<p>
+</a><P><a name="19597">
+A per point lattice makes copies of one object and positions those copies on some or all of the points on a second object. Using different parameters available with the <strong>Multiply</strong> command, you can fine tune how those objects are placed on the target object.<p>
+</a><P><a name="19598">
+To create a per-point lattice, you need to do three things:<p>
+</a><P><ul><a name="19578">
+<li>create a "bounding" object
+</a></li><P><a name="19582">
+<li>create the object to be multiplied
+</a></li><P><a name="19586">
+<li>make the lattice
+</a></li><P></ul><P><a name="19615">
+Follow the steps below to create a simple tree that will use a per-point lattice to create a random distribution of leaves.<p>
+</a><P><a name="19636">
+<h4> Creating the Tree Trunk</h4>
+</a>
+<a name="19652">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Lamina.
+</STRONG>
+</a><P><a name="19664">
+ <P><img src="17CopyReinstMult.anc15.gif"><p>
+</a>
+<a name="19665">
+<em>Figure 17.15  &#32; &#32;Sketch parameters
+</em></a><P><dl><dl><a name="19666">
+<dt>Each of the parameters on this menu is described in detail in the <em>N-Geometry Reference Guide</em>. </dt>
+</a><P><a name="19667">
+<dt>For now, change only the following parameters:</dt>
+</a><P></dl><ul>
+<BR><a name="19668">
+<li>set <strong>Mouse Grid (x)</strong>, <strong>(y)</strong>, and <strong>(z)</strong> to <strong>1.0</strong>
+</a><P></ul>
+</dl>
+<a name="19669">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Set Sketch Params button.
+</STRONG>
+</a><P><dl><a name="19683">
+<dt>Create a lamina that looks something like this for your tree trunk:</dt>
+</a><P><a name="19704">
+ <P><img src="17CopyReinstMult.anc16.gif"><p>
+</a></dl>
+<a name="19705">
+<em>Figure 17.16  &#32; &#32;Sketched trunk
+</em></a><P>
+<a name="19726">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> when you're done sketching the wire, then <strong>(CLICK-L)</strong> on OK.
+</STRONG>
+</a><P><dl><a name="19732">
+<dt>The lamina appears in the N-Geometry window:</dt>
+</a><P><a name="19750">
+ <P><img src="17CopyReinstMult.anc17.gif"><p>
+</a></dl>
+<a name="19751">
+<em>Figure 17.17  &#32; &#32;Generated lamina for the tree trunk
+</em></a><P>
+<a name="19755">
+<STRONG>	4.	 Select one of the faces on the lamina and extrude it slightly.
+</STRONG>
+</a><P><a name="19766">
+ <P><img src="17CopyReinstMult.anc18.gif"><p>
+</a>
+<a name="19767">
+<em>Figure 17.18  &#32; &#32;Extrude the lamina
+</em></a><P>
+<a name="19775">
+<STRONG>	5.	 Move the camera so that you're looking at the bottom of the tree.
+</STRONG>
+</a><P><dl><a name="19776">
+<dt>If you started your lamina from the center of the sketch editor, the bottom of your extruded tree will have two faces:</dt>
+</a><P><a name="19782">
+ <P><img src="17CopyReinstMult.anc19.gif"><p>
+</a></dl>
+<a name="19783">
+<em>Figure 17.19  &#32; &#32;The bottom of the tree may have more than one face
+</em></a><P>
+<a name="19789">
+<STRONG>	6.	 Collect the faces on the bottom of the tree.
+</STRONG>
+</a><P><a name="19790">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Merge Region.
+</STRONG>
+</a><P><dl><a name="19794">
+<dt>The faces are merged together.</dt>
+</a><P><a name="19800">
+ <P><img src="17CopyReinstMult.anc20.gif"><p>
+</a></dl>
+<a name="19801">
+<em>Figure 17.20  &#32; &#32;Merge the faces on the bottom of the tree
+</em></a><P><dl><dl><a name="19795">
+<dt>Now, even though you've merged the bottom faces into one face, we still need to use the <strong>Dissolve</strong> command to get rid of the extra segments on the bottom face.</dt>
+</a><P></dl></dl>
+<a name="19777">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on a segment like the one shown in <a href="17CopyReinstMult.html#19820">Figure 17.21</a>, then <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><a name="19819">
+ <P><img src="17CopyReinstMult.anc21.gif"><p>
+</a>
+<a name="19820">
+<em>Figure 17.21  &#32; &#32;Dissolve extra segments
+</em></a><P><dl><dl><a name="19841">
+<dt>The segment is dissolved, leaving one segment along the length of the merged region (the new face):</dt>
+</a><P><a name="19849">
+ <P><img src="17CopyReinstMult.anc22.gif"><p>
+</a></dl></dl><a name="19850">
+<em>Figure 17.22  &#32; &#32;After dissolving the extra segment
+</em></a><P>
+<a name="19844">
+<STRONG>	9.	 Dissolve the similar segment on the other side of the base.
+</STRONG>
+</a><P><a name="19856">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on one of the segments at the base, then <strong>(CLICK-M)</strong> on Axis Move&gt;Z.
+</STRONG>
+</a><P><a name="19865">
+ <P><img src="17CopyReinstMult.anc23.gif"><p>
+</a>
+<a name="19866">
+<em>Figure 17.23  &#32; &#32;Giving the tree some depth
+</em></a><P>
+<a name="19860">
+<STRONG>	11.	 Axis Move the corresponding segment on the other side of the tree base.
+</STRONG>
+</a><P><dl><a name="19879">
+<dt>When you're done, you should have a tree trunk that looks something like this:</dt>
+</a><P><a name="19886">
+ <P><img src="17CopyReinstMult.anc24.gif"><p>
+</a></dl>
+<a name="19887">
+<em>Figure 17.24  &#32; &#32;Finished tree trunk
+</em></a><P><a name="19651">
+<h4> Creating the Bounding Object</h4>
+</a><a name="19639">
+This part is simple; think of the bounding object as a volume along whose vertices you want the multiplied copies of the object to appear.<p>
+</a><P>
+<a name="19918">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="19919">
+<STRONG>	13.	 <strong>(CLICK-R)</strong> on Sphere.
+</STRONG>
+</a><P><dl><a name="19920">
+<dt>Change the following parameters on the menu that appears:</dt>
+</a><P></dl><ul>
+<BR><a name="19923">
+<li>enter <strong>8</strong> for n-Latitudes
+</a><P><BR><a name="19937">
+<li>enter <strong>8</strong> for n-Longitudes
+</a><P><a name="19946">
+ <P><img src="17CopyReinstMult.anc25.gif"><p>
+</a></ul>
+
+<a name="19947">
+<em>Figure 17.25  &#32; &#32;Sphere parameters
+</em></a><P>
+<a name="19957">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Make Sphere button.
+</STRONG>
+</a><P><dl><a name="19938">
+<dt>This creates a sphere divided eight times horizontally and vertically:</dt>
+</a><P><a name="19962">
+ <P><img src="17CopyReinstMult.anc26.gif"><p>
+</a></dl>
+<a name="19963">
+<em>Figure 17.26  &#32; &#32;Sphere
+</em></a><P>
+<a name="19969">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on the Sphere, then <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="19974">
+<dt>Move the sphere so that it's centered around the end of one of the branches.</dt>
+</a><P><a name="19979">
+ <P><img src="17CopyReinstMult.anc27.gif"><p>
+</a></dl>
+<a name="19980">
+<em>Figure 17.27  &#32; &#32;Moved sphere
+</em></a><P><a name="19992">
+In this case, the sphere defines the basic area in which leaves will be multiplied. You can scale modify the topology of the object if you want to create a more irregular shape for the distribution of the leaves, or change the number of points on the bounding object.<p>
+</a><P><a name="19939">
+<h4> Creating the Object to be Multiplied</h4>
+</a><a name="20048">
+Now we need to create the leaf. Use <strong>GeoMenus&gt;File&gt;New Object&gt;Lamina</strong>, make a leaf-shaped lamina. Don't worry about the scale of the leaf; we'll modify that appropriately when we return to the N-Geometry window.<p>
+</a><P><a name="20023">
+ <P><img src="17CopyReinstMult.anc28.gif"><p>
+</a><a name="20024">
+<em>Figure 17.28  &#32; &#32;Create a leaf-shaped lamina
+</em></a><P><a name="20065">
+If you use any bezier wires (curved segments) in creating the lamina, the following menu appears:<p>
+</a><P><a name="20091">
+ <P><img src="17CopyReinstMult.anc29.gif"><p>
+</a><a name="20092">
+<em>Figure 17.29  &#32; &#32; &#32; &#32;Bezier samples for generated lamina
+</em></a><P><a name="20108">
+Use the default number of segments (11) and <strong>(CLICK-L)</strong> on <strong>Make Lamina</strong>.<p>
+</a><P><a name="20114">
+ <P><img src="17CopyReinstMult.anc30.gif"><p>
+</a><a name="20115">
+<em>Figure 17.30  &#32; &#32; &#32; &#32;The generated leaf
+</em></a><P>
+<a name="20109">
+<STRONG>	16.	 If you need to, <strong>(SHIFT-L)</strong> on the leaf, then <strong>(CLICK-L)</strong> on Scale to scale it to the appropriate size:
+</STRONG>
+</a><P><a name="20129">
+ <P><img src="17CopyReinstMult.anc31.gif"><p>
+</a>
+<a name="20130">
+<em>Figure 17.31  &#32; &#32; &#32; &#32;Scaled leaf
+</em></a><P>
+<a name="20144">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on the leaf, then <strong>(CLICK-R)</strong> on Position&gt;Origin.
+</STRONG>
+</a><P><dl><a name="20145">
+<dt>This puts the leaf at the global center.</dt>
+</a><P><a name="20150">
+ <P><img src="17CopyReinstMult.anc32.gif"><p>
+</a></dl>
+<a name="20151">
+<em>Figure 17.32  &#32; &#32; &#32; &#32;Repositioned leaf
+</em></a><P><a name="20066">
+You're now ready to make your lattice.<p>
+</a><P><a name="20067">
+<h4> Making the Lattice</h4>
+</a>
+<a name="19641">
+<STRONG>	18.	 <strong>(CLICK-R)</strong> on GeoMenus&gt;Copy.
+</STRONG>
+</a><P><a name="20911">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on <strong>Multiply</strong>.
+</STRONG>
+</a><P><dl><a name="20163">
+<dt>Enter the following parameters:</dt>
+</a><P></dl><ul>
+<BR><a name="20164">
+<li><strong>(CLICK-L)</strong> on <strong>Object to Multiply</strong> and select the leaf object.
+</a><P><BR><a name="20178">
+<li>Set <strong>Duplicate How</strong> to <strong>Reinstance-Copy</strong>
+</a><P><BR><a name="20179">
+<li><strong>(CLICK-L)</strong> on <strong>Arrangement Mode</strong> and select <strong>Per Point</strong>.
+</a><P><BR><a name="20187">
+<li><strong>(CLICK-L)</strong> on <strong>Points Source </strong>and select the sphere object.
+</a><P><BR><a name="20183">
+<li>Set <strong>Align?</strong> to <strong>Random</strong>
+</a><P><BR><a name="20204">
+<li>Set <strong>Randomize </strong>to <strong>No</strong>
+</a><P></ul>
+<dl><a name="20214">
+<dt>After you've selected these parameters, <strong>(CLICK-L)</strong> on the <strong>Make Multiple Copies</strong> button.</dt>
+</a><P><a name="20231">
+<dt>Reinstanced copies of leaves appear at each point on the sphere, with their normals aligned randomly:</dt>
+</a><P><a name="20240">
+ <P><img src="17CopyReinstMult.anc33.gif"><p>
+</a></dl>
+<a name="20241">
+<em>Figure 17.33  &#32; &#32; &#32; &#32;Reinstanced leaf
+</em></a><P><a name="20247">
+The reinstanced leaves are structured under a top level object. If your objects were called "leaf" and "sphere," the generated top level object is called "leafs on sphere."<p>
+</a><P>
+<a name="20232">
+<STRONG>	20.	 Make the sphere invisible.
+</STRONG>
+</a><P><a name="20292">
+<STRONG>	21.	 Turn Shading on for both the new lattice and the trunk.
+</STRONG>
+</a><P><a name="20309">
+ <P><img src="17CopyReinstMult.anc34.gif"><p>
+</a>
+<a name="20310">
+<em>Figure 17.34  &#32; &#32; &#32; &#32;Shaded tree
+</em></a><P><a name="20304">
+You can create new bounding objects, using normal or magnet moves to create free-form shapes. Just remember that an object is generated at each point along the bounding object.<p>
+</a><P><a name="20344">
+ <P><img src="17CopyReinstMult.anc35.gif"><p>
+</a><a name="20345">
+<em>Figure 17.35  &#32; &#32; &#32; &#32;New bounding object, and generated lattice
+</em></a><P><a name="20325">
+<h4> Aligning Objects on Points of the Bounding Object</h4>
+</a><a name="20331">
+In the example above, used a random alignment of leaves on the points of the bounding object; there are several options for aligning the multiplied object on the bounding object:<p>
+</a><P><a name="20368">
+ <P><img src="17CopyReinstMult.anc36.gif"><p>
+</a><a name="20369">
+<em>Figure 17.36  &#32; &#32; &#32; &#32;Alignment options (No, Normals, Random, Radial)
+</em></a><P><a name="20359">
+<p>
+</a><P><a name="20327">
+<h4> Using Randomize with Per Point</h4>
+</a><a name="20326">
+You can use the <strong>Randomize</strong> feature of the <strong>Multiply</strong> command to distribute the reinstanced or copied objects around the points of the bounding object.<p>
+</a><P><a name="20233">
+<h4> Combining Subobjects</h4>
+</a><a name="19608">
+If you are working with a game platform, and you want to make all the subobjects into one single top level object:<p>
+</a><P>
+<a name="20264">
+<STRONG>	22.	 Collect all the leaves (or objects) that you want to combine.
+</STRONG>
+</a><P><dl><a name="20389">
+<dt>You might, for example, make all the objects in the scene invisible except for those you want to combine, then use the 3D lasso to collect the objects.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Objects created with the <strong>Multiply</strong> command are added to the scene with their sensitivity turned off (gray). You must make an object sensitive to select it through the N-Geometry window. Refer to the N-Geometry Reference Guide for directions on toggling the sensitivity of an object.</font></dd></dt></dl><P>
+
+<a name="20288">
+<STRONG>	23.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on combine.
+</STRONG>
+</a><P><a name="20399">
+<STRONG>	24.	 Give the new object a name when prompted, then <strong>(CLICK-L)</strong> on the Rename button.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you combine many subobjects into a single top-level object, then delete the subobjects, you should see better response when moving the camera in the N-Geometry window. This is because there are fewer objects for N-Geometry to keep track of during the move.</font></dd></dt></dl><P>
+<a name="20416">
+<h2><HR> Save your Work</h2>
+</a><a name="20417">
+Make sure to use the <strong>GeoMenus&gt;File&gt;Save</strong> operation to save your work.<p>
+</a><P><a name="20418">
+<h2><HR> Congratulations!</h2>
+</a><a name="20419">
+You've now learned:<p>
+</a><P><ul><a name="20440">
+<li>the difference between reinstancing and copying objects
+</a></li><P><a name="20439">
+<li>how to create normal and randomized lattices (including leaves on a tree!) using N-Geometry's <strong>Multiply</strong> command
+</a></li><P></ul><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="16Tubes+TubeSolids.html">[Prev]</a> <a href="18Mappers.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 14:27:56 -->
+
+</body>
+</html>

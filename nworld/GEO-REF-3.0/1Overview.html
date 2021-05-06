@@ -1,0 +1,1218 @@
+<html><head><title>Overview</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0Intro.html">[Prev]</a> <a href="2CreatingObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="196980">
+<h1>Overview</h1>
+</a>
+<hr><p><a name="198315">
+N-Geometry is an integrated system for creating, modifying, and storing 3D objects. It is a window-based system that lets you create and modify objects interactively in the 3D editor.<p>
+</a><P><a name="7554">
+Objects can be drawn either orthographically or in perspective. You can select the point of view, display backfacing polygons, and define other parameters that affect the display, such as hiding hidden lines. <p>
+</a><P><a name="7556">
+Once you've created an object, you can manipulate all or part of it by choosing various operations from N-Geometry's menus.<p>
+</a><P><a name="7558">
+The N-Geometry window provides smooth, dynamic control of the eyepoint. N-Geometry is capable of mimicking actual camera attributes, such as lens focal length, film format, angle, and point of view. N-Geometry is designed to work seamlessly with other programs in the N-World environment such as N-Dynamics (to animate objects) and N-Render (to color objects).<p>
+</a><P><a name="7560">
+Using the windowing system and graphical input from a mouse, you can use one of the pre-defined commands to generate primitive polyhedra such as cubes or cylinders, then use a full range of geometric and topological operations on an object or any of its specific vertices, edges, or faces to customize it.<p>
+</a><P><a name="6636">
+<h2><HR> The Environment</h2>
+</a><a name="6916">
+The world in N-Geometry is a Cartesian coordinate space; the N-Geometry world is defined in terms of a starting point, known as the <em>global origin</em>, and a set of three mutually perpendicular directions, known as the major axes.<p>
+</a><P><a name="8455">
+Any point in space can be uniquely defined by three numbers, the x, y, and z coordinates, which represent its distance from the three planes perpendicular to the major axes passing through the global origin. The three directions, together with the global origin, are called the <em>global coordinate system</em>, as shown in <a href="1Overview.html#6640">Figure 1.1</a>. <p>
+</a><P><a name="8503">
+In N-Geometry this coordinate system is "right-handed;" positive y represents "up," positive x is "right," and positive z is "forward."<p>
+</a><P><a name="6919">
+  <P><img src="1Overview.anc.gif"><p>
+</a><a name="6640">
+<em>Figure 1.1  &#32; &#32;The global coordinate system
+</em></a><P><a name="6642">
+While this global coordinate system is always in effect, it is possible for objects you create to have their own x, y, and z axes. Such coordinate systems are referred to as <em>local coordinate systems</em>. Local coordinate systems can have a different origin and their axes can point in different directions from the global coordinate system. Local coordinate systems can also be non-Cartesian.<p>
+</a><P><a name="8515">
+The number of local coordinate systems is unlimited, but they are always defined in terms relative to the global coordinate system.<p>
+</a><P><a name="6644">
+<h3> The Camera</h3>
+</a><a name="6646">
+To look at the objects that you create in N-Geometry, you need to use the <em>camera</em>; in fact, the only way that you can look at a scene is <em>through</em> the camera.<p>
+</a><P><a name="8523">
+The camera is a special kind of object, in that you never see it, but it can be moved and modified in much the same way as other N-Geometry objects, and its motion can be choreographed with animation scripts created in N-Dynamics.<p>
+</a><P><a name="8524">
+Also, you can specify that the camera take on certain characteristics so that the view angle matches that of known real-world camera formats. This means that you can create animations that match certain film formats.<p>
+</a><P><a name="8525">
+When talking about the camera, there are two points in space that are often referred to: a point from which the scene is viewed, called the <em>eyepoint</em>, and a point toward which the camera is aimed, called the <em>aimpoint</em>. The distance between the eyepoint and the aimpoint is called the <em>aim-distance</em>, and the direction from the aimpoint to the eyepoint is called the <em>camera direction</em>.<p>
+</a><P><a name="8590">
+ <P><img src="1Overview.anc1.gif"><p>
+</a><a name="8591">
+<em>Figure 1.2  &#32; &#32;Camera terminology
+</em></a><P><a name="6648">
+From the eyepoint, the camera takes in a certain region of global space that is then projected onto the window. The angle between the left and right sides of this pyramid is called the <em>view angle</em>. Because the window is rectangular, the shape of this region is a rectangular pyramid whose apex is at the eyepoint and whose sides project away from the eyepoint toward infinity.<p>
+</a><P><a name="6650">
+The region that the camera sees does not actually extend all the way from the eyepoint to infinity. Rather, it extends from some distance in front of the eye, known as the <em>hither</em> distance, to some far off distance, known as the <em>yon</em> distance. The planes perpendicular to the line of sight passing through these points are called the <em>hither clipping plane</em> and <em>yon clipping plane</em>, respectively. Only objects that fall inside the pyramid between these two planes can be visible.<p>
+</a><P><a name="8559">
+ <P><img src="1Overview.anc2.gif"><p>
+</a><a name="8560">
+<em>Figure 1.3  &#32; &#32;Hither and yon clipping planes
+</em></a><P><a name="8538">
+The region of visibility between the hither and yon clipping planes is called the <em>viewing volume</em>.<p>
+</a><P><a name="8644">
+<h3> Objects</h3>
+</a><a name="6654">
+As shown in <a href="1Overview.html#6655">Figure 1.4</a>, an <em>object</em> is actually composed of two parts:<p>
+</a><P><ul><a name="8649">
+<li>a <em>body</em>
+</a></li><P><a name="8671">
+<li>a <em>transformation</em><em> matrix</em>
+</a></li><P><a name="8685">
+ 	<P><img src="1Overview.anc3.gif"><p>
+</a></ul><P><a name="6655">
+<em>Figure 1.4  &#32; &#32;Components of an object
+</em></a><P><a name="8663">
+The body can be one of two things:<p>
+</a><P><ul><a name="8665">
+<li>a basic geometric entity, called a <em>geobody</em>
+</a></li><P><a name="8666">
+<li>a group of other objects
+</a></li><P></ul><P><a name="8668">
+The <em>transformation matrix</em> is a set of numbers that can modify the appearance of the object.<p>
+</a><P><a name="6658">
+<h4> Body</h4>
+</a><a name="6660">
+If an object's body is a geobody, the object is referred to as a <em>simple object</em> even though the geobody itself can be quite complex.<p>
+</a><P><a name="6957">
+A geobody is an entity that holds all the essential geometric and topological information of an object, as shown in <a href="1Overview.html#6662">Figure 1.5</a>. It is what makes an object recognizable as a form-what makes a cube a cube. It is frequently built up from other geometric entities, called <em>elements</em>, but is itself self-contained.<p>
+</a><P><a name="6972">
+A cube, for example, is a polyhedron comprised of six <em>face elements</em>, which in turn are defined by <em>vertex elements</em> located at particular points in space and topologically interconnected in a certain way by <em>edge elements</em>. Among the geobodies defined by N-Geometry are isolated points and line segments, wires (contiguous segments), and polyhedra.<p>
+</a><P><a name="6792">
+ <P><img src="1Overview.anc4.gif"><p>
+</a><a name="6662">
+<em>Figure 1.5  &#32; &#32;Object with a geobody for its body
+</em></a><P><a name="6664">
+While a geobody is a unique entity, it cannot be viewed or manipulated in <br>N-Geometry without being instanced, that is, being the body of some object, as shown in <a href="1Overview.html#6667">Figure 1.6</a>. It is possible for two (or more) objects to s<em></em>hare a single geobody. A geobody which belongs to more than one object is said to be <em>multi-instanced</em>. (You can create a multi-instanced object with the <strong>Reinstance</strong> command, described elsewhere in this manual.)<p>
+</a><P><a name="6805">
+ <P><img src="1Overview.anc5.gif"><p>
+</a><a name="6667">
+<em>Figure 1.6  &#32; &#32;Reinstanced objects
+</em></a><P><a name="6669">
+An object whose body is a group of objects is called a <em>compound</em> object. Each member of the group is an object complete with its own body and transformation matrix, and can in turn be either a simple or compound object, as shown in <a href="1Overview.html#6672">Figure 1.7</a>. With repeated nesting, a single object can consist of hundreds of geobodies.<p>
+</a><P><a name="6818">
+ <P><img src="1Overview.anc6.gif"><p>
+</a><a name="6672">
+<em>Figure 1.7  &#32; &#32;Compound object
+</em></a><P><a name="6674">
+<h4> Transformation Matrix</h4>
+</a><a name="6676">
+The transformation matrix modifies the <em>apparent</em> geometry of an object. An object can be made to look like it is in a location other than where the information in its body says it is. The matrix can also make objects look larger or smaller, stretched, or rotated.<p>
+</a><P><a name="6678">
+When you modify the matrix, you are, in effect modifying the coordinate system in which the object is embedded. It does not affect the body of the object at all but only its <em>appearance</em> in the world. The raw data of a body exists in the local coordinate system of the body's object, which is initially coincident with the global coordinate system. <p>
+</a><P><a name="6999">
+When you modify the transformation matrix of the object you separate the local coordinate system from the global coordinate system. For example, a polyhedron might have all its vertices centered around the origin. Applying a translation transformation to the polyhedron's object displaces the space in which the polyhedron is defined. The polyhedron's vertices are still centered around the local origin but are now far from the global origin because the local space has moved relative to the global coordinate system.<p>
+</a><P><a name="6680">
+When there is no difference between the local coordinate space of an object and the global coordinate space (that is, when applying the object's transformation matrix leaves the object in the same position from which it started), the transformation matrix is said to be an <em>identity matrix</em>.<p>
+</a><P><a name="6682">
+Each object, including an object that has been reinstanced, has a unique transformation matrix. This is what makes sharing geobodies feasible, since you can make a single geobody appear to be in different locations with different sizes or shapes simply by belonging to objects with different transformation matrices.<p>
+</a><P><a name="6684">
+The matrix itself is an array of sixteen numbers that is used to change the drawn position of each point in an object. Because it is such a small data structure, it is easy to change and can be considered more volatile than the geometric information in the body. N-Dynamics, for example, replaces the values in the transformation matrices of animated objects with its own numbers.<p>
+</a><P><a name="6686">
+An object can be forced into the global coordinate system by a process called <strong>Apply Transformation</strong>. This transfers all of the information in the object's transformation matrix into the raw data of the body. This action effectively shifts the local coordinate system out from underneath the body, thereby making the body coincide with the global coordinate system. The apparent position of an object becomes its home position.<p>
+</a><P><a name="6688">
+<h3> Transform vs. Modify</h3>
+</a><a name="6690">
+The 3D editor lets you make many different types of changes to an object. While some changes can be made to an object, others can only be made to the body itself:<p>
+</a><P><ul><a name="197197">
+<li><em>Transformations</em> are those operations performed on an entire object. To perform a transformation, you select <strong>objects</strong> on the element sensitivity menu.
+</a></li><P><a name="197202">
+<li><em>Modifications</em> are changes made to the body of an object. These affect only the elements of the object's body. To perform a modifcation, you select <strong>points</strong>, <strong>segments</strong>, or <strong>bodies </strong>on the element sensitivity menu.
+</a></li><P></ul><P><a name="7018">
+Many effects can be generated by changing an object's transformation matrix or changing the body itself (e.g., with functions that move, scale, or rotate an object or body).<p>
+</a><P><a name="6694">
+Modifications to the body change the data in each primitive element of the body, while changes to the transformation matrix affect only the <em>appearance</em> of the object. It is easy to initialize (erase) the transformation matrix to undo any changes made to the appearance. Changes made to a body, however, are permanent, and can only be undone by subsequent opposite changes (using the <strong>Undo</strong> operation).<p>
+</a><P><a name="7124">
+Operations are specified relative to some coordinate system:<p>
+</a><P><ul><a name="8717">
+<li>When you <em>transform</em> an object, the transformation can be applied in any coordinate space. When you transform an object, you can generally use different mouse clicks execute the command in local space, inthe object's superior's local space, or in global space.
+</a></li><P><a name="8718">
+<li>When you <em>modify</em> a body, the modifications are always executed in local coordinate space of the body's object.
+</a></li><P></ul><P><a name="6705">
+<h3> Object Hierarchy</h3>
+</a><a name="6707">
+A multiple object can also be visualized as a <em>hierarchy</em>. In this form, the nesting of objects is displayed spread out in levels, with the containing object at the top. The containing object is called a <em>top-level object</em>. Objects that comprise the body of a top-level object are called <em>inferiors</em>, or <em>inferior objects</em>. Objects that have inferiors are referred to as the <em>superior</em> of those objects. Simple objects with no inferiors are often called <em>terminal objects</em>, because the tree structure ends with them.<p>
+</a><P><a name="6709">
+<a href="1Overview.html#6902">Figure 1.8</a> shows the hierarchy of a top-level object, which is represented by the single rectangle at the top. It has for its body a list of objects. The objects that make up the list are represented by the four rectangles immediately below the top-level object.<p>
+</a><P><a name="6711">
+The leftmost rectangle has for its body a geobody, in this case an icosahedron. The hexagonal shape between the object and body is a body-display-item (<em>bdi</em>) which is inserted and used by the 3D editor for storing display information.<p>
+</a><P><a name="6900">
+The middle two inferior objects are instanced. They share the same geometric information, but their transformation matrices and bdis (represented by hexagons) are different. The two objects might look completely different from one another. <p>
+</a><P><a name="197244">
+The rightmost inferior object is a compound object and is itself made up of a list of objects.<p>
+</a><P><a name="6901">
+ <P><img src="1Overview.anc7.gif"><p>
+</a><a name="6902">
+<em>Figure 1.8  &#32; &#32;Hierarchy of a top-level object
+</em></a><P><a name="7810">
+<h2><HR> The 3D Editor</h2>
+</a><a name="7811">
+When you first enter N-Geometry, you see the window-based work area, as shown in <a href="1Overview.html#7829">Figure 1.1</a>. This work area, is referred to by various names including the 3D editor, the view window, or the geometry frame. You display and control the geometric objects you create or modify through the 3D editor.<p>
+</a><P><a name="7827">
+ <P><img src="1Overview.anc8.gif"><p>
+</a><a name="7829">
+<em>Figure 1.1  &#32; &#32;Geometry frame
+</em></a><P><a name="7830">
+The following paragraphs give brief descriptions of the different parts of the N-Geometry window.<p>
+</a><P><a name="7832">
+<h3> The Sensitivity Element Menu</h3>
+</a><a name="7833">
+Specifies what type of geometric element is highlighted in the 3D editor. You can work with the following types of elements:<p>
+</a><P><ul><a name="8756">
+<li><strong>points</strong>
+</a></li><P><a name="8758">
+<li><strong>segments</strong>
+</a></li><P><a name="8759">
+<li><strong>faces</strong>
+</a></li><P><a name="8760">
+<li><strong>bodies</strong>
+</a></li><P><a name="197253">
+<li><strong>objects</strong>
+</a></li><P></ul><P><a name="8757">
+The <strong>none</strong> entry deselects all elements, and <strong>collect</strong> option lets you select a group of elements on which you want to perform the same operation.<p>
+</a><P><a name="197254">
+Once an element is highlighted, it can be selected so various operations can be performed on it. See the section <a href="1Overview.html#8951">"Selecting Elements," on page &#32;1-34</a>.<p>
+</a><P><a name="7838">
+<h3> The View Window</h3>
+</a><a name="7839">
+Displays the camera's view of geometric objects you create or modify. The view window is a 2D view of the 3D environment.<p>
+</a><P><a name="7845">
+<h3> The Camera Motion Menu</h3>
+</a><a name="7848">
+Lets you specify the different camera motions. See the section <a href="1Overview.html#197924">"Moving the Camera," on page &#32;1-21</a> for a more in-depth description of the various types of camera movements.<p>
+</a><P><a name="7851">
+<h2><HR> The GeoMenus</h2>
+</a><a name="7852">
+By default, when you start N-Geometry, a long window, entitled <strong>GeoMenus</strong>, appears along the side of the N-Geometry window. The GeoMenus are grouped into four sets sections:<p>
+</a><P><a name="7859">
+ <P><img src="1Overview.anc9.gif"><p>
+</a><a name="7860">
+<em>Figure 1.2  &#32; &#32;The GeoMenus window
+</em></a><P><a name="198337">
+When you see commands like <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;File&gt;New Object</strong>, it means to <strong>(CLICK-L)</strong> on the <strong>New Object</strong> command under the <strong>File</strong> section of the <strong>GeoMenus</strong>.<p>
+</a><P><a name="7862">
+<h4> File</h4>
+</a><a name="7863">
+Use the commands on the <strong>File</strong> menu to create new primitives, load and save objects, export objects to other file formats, and to delete objects.<p>
+</a><P><a name="7868">
+<h4> Camera</h4>
+</a><a name="7871">
+The <strong>Camera</strong> menu lets you define characteristics of the view window, save views, manipulate the camera, and toggle the display of overlays on the view window.<p>
+</a><P><a name="7874">
+<h4> Object Display </h4>
+</a><a name="7875">
+The <strong>Object Display</strong> menu lets you set display characteristics for any object loaded into N-Geometry. Visibility, shading, backfacing, sensitivity, and so forth are all set using this menu.<p>
+</a><P><a name="7880">
+<h4> Utilities</h4>
+</a><a name="7881">
+The <strong>Utilities</strong> menu lets you set your N-Geometry preferences, restructure objects, rename objects, display information on objects, and define custom menus.<p>
+</a><P><a name="7892">
+<h2><HR> The Mouse Monitor Window</h2>
+</a><a name="198351">
+The Mouse Monitor displays the current values of whatever the mouse is currently controlling, either the camera or an element in N-Geometry:<p>
+</a><P><a name="198405">
+ <P><img src="1Overview.anc10.gif"><p>
+</a><a name="198406">
+<em>Figure 1.3  &#32; &#32;The Geometry Monitor menu
+</em></a><P><a name="198413">
+The elements displayed in the mouse monitor window change depending on the action you're performing in N-Geometry:<p>
+</a><P><a name="198414">
+When <em>moving the camera</em>, the following values may be displayed: 
+<P><Table Border="1">
+<dl>
+<a name="198435">
+<em>Table 1.1  &#32; &#32;Camera parameters for the mouse monitor window
+</em></a></dl>
+<tr><th align="left"><a name="198451">
+Parameter
+</a><th align="left"><a name="198437">
+Description
+</a>
+<tr><td valign="top"><a name="198453">
+ xe, ye, ze<p>
+</a><td valign="top"><a name="198439">
+ X, Y, and Z coordinates of the camera eyepoint.<p>
+</a>
+<tr><td valign="top"><a name="198455">
+ xa, ya, za<p>
+</a><td valign="top"><a name="198511">
+ X, Y, and Z coordinates of the camera aimpoint.<p>
+</a>
+<tr><td valign="top"><a name="198457">
+ azm alt rll<p>
+</a><td valign="top"><a name="198443">
+ Azimuth, altitude, and roll (camera's orientation).<p>
+</a>
+<tr><td valign="top"><a name="198459">
+ vu<p>
+</a><td valign="top"><a name="198445">
+ View angle.<p>
+</a>
+<tr><td valign="top"><a name="198461">
+ ht yn<p>
+</a><td valign="top"><a name="198447">
+ Hither and yon plane values.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="198432">
+The values displayed in the mouse monitor window depend on which camera mode is selected from the camera sensitivity menu along the bottom of the N-Geometry window.<p>
+</a><P><a name="198528">
+When <em>editing an element</em> in N-Geometry, the following values may be displayed: 
+<P><Table Border="1">
+<dl>
+<a name="198538">
+<em>Table 1.2  &#32; &#32;Camera parameters for the mouse monitor window
+</em></a></dl>
+<tr><th align="left"><a name="198542">
+Parameter
+</a><th align="left"><a name="198544">
+Description
+</a>
+<tr><td valign="top"><a name="198546">
+ dx, dy, dz<p>
+</a><td valign="top"><a name="198548">
+ Relative motion along X, Y, and Z axes.<p>
+</a>
+<tr><td valign="top"><a name="198550">
+ dist<p>
+</a><td valign="top"><a name="198552">
+ Relative single axis motion.<p>
+</a>
+<tr><td valign="top"><a name="198554">
+ da, db, dc<p>
+</a><td valign="top"><a name="198556">
+ Relative rotation around three axes.<p>
+</a>
+<tr><td valign="top"><a name="198558">
+ ang<p>
+</a><td valign="top"><a name="198560">
+ Relative single axis rotation.<p>
+</a>
+<tr><td valign="top"><a name="198562">
+ xfac, yfac, zfac<p>
+</a><td valign="top"><a name="198564">
+ Other 3-axis values (e.g., with <strong>Free Scale</strong>, shows scaling factor along each axis)<p>
+</a>
+<tr><td valign="top"><a name="198611">
+ amt<p>
+</a><td valign="top"><a name="198613">
+ Other single value (e.g. <strong>Scale</strong> along a single axis)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="198346">
+<h2><HR> Commonly Performed Geometry Tasks</h2>
+</a><a name="8831">
+This section describes how to perform the tasks that you'll do over and over in N-Geometry (such as selecting objects, moving the camera, entering values, and specifying pathnames).<p>
+</a><P><a name="8828">
+<h3> Left, Middle, and Right Mouse Clicks</h3>
+</a><a name="197380">
+The three-button mouse puts a lot of power literally at your fingertips. When you click on a command, it usually makes a difference which mouse button you click. If a command has periods after before and after it (a "dotted" command), it means that different mouse clicks have different effects:<p>
+</a><P><a name="197417">
+ <P><img src="1Overview.anc11.gif"><p>
+</a><a name="197418">
+<em>Figure 1.4  &#32; &#32;Selecting a command
+</em></a><P><a name="197411">
+Here are some guidelines for understanding how operations are mapped to the mouse:<p>
+</a><P><ul><a name="197381">
+<li><strong>(CLICK-L)</strong> to select the simplest operation.
+</a></li><P><a name="197382">
+<li><strong>(CLICK-M)</strong> selects the next level of complexity.
+</a></li><P><a name="197383">
+<li><strong>(CLICK-R)</strong> is usually the most complex option, almost always asking for additional from a pop-up menu. <strong>(CLICK-R)</strong> is also commonly used to perform an operation on several elements.
+</a></li><P></ul><P><a name="197384">
+Consider the <strong>Extrude</strong> command, for example:<p>
+</a><P><ul><a name="197387">
+<li><strong>(CLICK-L)</strong> extrudes the selected element along its normal.
+</a></li><P><a name="197388">
+<li><strong>(CLICK-M)</strong> extrudes the element, but also lets you move it freely in 3D space.
+</a></li><P><a name="197389">
+<li><strong>(CLICK-R)</strong> lets you select an axis from a menu along which to extrude the element.
+</a></li><P></ul><P><a name="197396">
+For other commands (for example, the <strong>XYZ Rotate</strong> command), left, middle, and right might let you specify an axis along which to perform the operation (e.g., left=X, middle=Y, and right=Z).<p>
+</a><P><a name="197337">
+How can you keep track of what each mouse click does? 	As you move the cursor over a command, <strong>read the mouse documentation line at the bottom of the screen!</strong> If there are multiple options for a command, they are always described in the mouse documentation line.<p>
+</a><P><a name="197670">
+<h3> Other Mouse Clicks</h3>
+</a><a name="197671">
+If you hold the <strong>(CTRL)</strong> key down when selecting an operation, you can specify a numeric value for an operation. <p>
+</a><P><a name="197673">
+For example, if you wanted to extrude a face by an exact amount, you would <strong>(SHIFT-L)</strong> on the face, then <strong>(CTRL-L)</strong> on the <strong>Extrude </strong>command. A dialog box showing the face's current location would be displayed:<p>
+</a><P><a name="197690">
+ <P><img src="1Overview.anc12.gif"><p>
+</a><a name="197691">
+<em>Figure 1.5  &#32; &#32;Specifying changes numerically
+</em></a><P><a name="197705">
+Enter a value for how far you want to extrude the face, then <strong>(CLICK-L)</strong> on <strong>Axis Move</strong>. The dialog box displayed for entering numeric arguments to an operation vary, depending on which parameters are required to execute the move.<p>
+</a><P><a name="199082">
+<h4> Constraining Mouse Movement</h4>
+</a><a name="199083">
+You can constrain mouse movement when you are transforming or modifying an object interactively using the <strong>SHIFT</strong> key.<p>
+</a><P><a name="199106">
+Try this:<p>
+</a><P>
+<a name="199105">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="199119">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on a point on the cube.
+</STRONG>
+</a><P><a name="199120">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Move</strong>.
+</STRONG>
+</a><P><dl><a name="199132">
+<dt>Hold down the <strong>SHIFT</strong> key and move the mouse left and right; the selected point moves only along the global X axis, as shown in <a href="1Overview.html#6667">Figure 1.6</a></dt>
+</a><P><a name="199126">
+ <P><img src="1Overview.ancA13.gif"><p>
+</a></dl>
+<a name="199127">
+<em>Figure 1.6  &#32; &#32;Constraining mouse movement along a global axis
+</em></a><P>
+<a name="199148">
+<STRONG>	4.	 Let up on the <strong>SHIFT</strong> key to resume normal mouse movement.
+</STRONG>
+</a><P>
+<a name="199163">
+The mouse is constrained to the initial direction of the mouse after you press the <strong>SHIFT</strong> key, so you can constrain movement along they <strong>Y</strong> axis (moving the mouse up or down) or the <strong>Z</strong> axis (holding the middle mouse button down).<p>
+</a><P><a name="197908">
+<h4> Working with Object Lists</h4>
+</a><a name="197909">
+If you select an operation from the GeoMenus, you may need to select objects from an <em>object list</em>. An object list looks something like this (depending on which objects are loaded in N-Geometry):<p>
+</a><P><a name="197913">
+ <P><img src="1Overview.anc13.gif"><p>
+</a><a name="197914">
+<em>Figure 1.7  &#32; &#32;Object list
+</em></a><P><a name="197915">
+In the dialog box above:<p>
+</a><P><ul><a name="197916">
+<li>The <strong>Default Point Light</strong> is a <em>top-level</em> object.
+</a></li><P><a name="197917">
+<li>The <strong>Door Group</strong> is a <em>compound</em> object; it contains three <em>inferior</em> objects. 
+</a></li><P><a name="197919">
+<li>The <strong>Door Group</strong> above, for example, is the <em>superior</em> object to three other <em>terminal</em> objects-<strong>Door</strong>, <strong>Window</strong>, and <strong>Handle</strong>. 
+</a></li><P></ul><P><a name="197920">
+An object's relative position in the hierarchy is shown by how far it is indented.<p>
+</a><P><ul><a name="197921">
+<li><strong>(CLICK-L)</strong> on an object to select that object.
+</a></li><P><a name="197922">
+<li><strong>(CLICK-R)</strong> on an object to open its hierarchy and view its inferiors. The <strong>Restructure</strong> command lets you change how objects are structured.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>An object's position in the object hierarchy is also displayed in the mouse documentation line. A quick glance at the description of the object can tell you its relative position in an object or group's hierarchy.</em></font></dd></dt></dl><P>
+<a name="196536">
+<h3> Working with Text Edit Boxes</h3>
+</a><a name="197926">
+At some point, you'll need to specify a name for an object, part, displacement, or pose. You name an element in a <em>text edit box</em>. For example, if you had collected one fact <p>
+</a><P><a name="197951">
+ <P><img src="1Overview.anc14.gif"><p>
+</a><a name="197953">
+<em>Figure 1.8  &#32; &#32;A text edit box
+</em></a><P><a name="197946">
+To change the text in a text edit box:<p>
+</a><P><ul><a name="197963">
+<li><strong>(CLICK-L)</strong> to position the cursor in the box
+</a></li><P><a name="197964">
+<li>Use <strong>(CTRL-F)</strong> or <strong>(CTRL-B)</strong> to move back and forth
+</a></li><P><a name="197965">
+<li><strong>(CLICK-M)</strong> to clear the text edit box completely and enter a new string
+</a></li><P></ul><P><a name="197925">
+<h4> Specifying Objects, Directories, &amp; Projects</h4>
+</a><a name="197929">
+Some text edit boxes let you select objects or directories; for example, when you <strong>Export</strong> an object, you need to specify which object you want to export and which directory you want to save it in.<p>
+</a><P><a name="198047">
+If, for example, you <strong>(CLICK-L)</strong> on Export, an object list appears.<p>
+</a><P><a name="198073">
+ <P><img src="1Overview.anc15.gif"><p>
+</a><a name="198074">
+<em>Figure 1.9  &#32; &#32;Object list
+</em></a><P><a name="198056">
+You'd <strong>(CLICK-L)</strong> on the object you wanted to export, and get the following export menu:<p>
+</a><P><a name="198079">
+ <P><img src="1Overview.anc16.gif"><p>
+</a><a name="198080">
+<em>Figure 1.10  &#32; &#32;Object list
+</em></a><P><a name="198038">
+The object you selected above would be displayed, along with your default directory (usually your home directory).<p>
+</a><P><a name="198084">
+If you wanted to change which object you were saving, you could now <strong>(CLICK-L)</strong> on the text edit box to display the object list again.<p>
+</a><P><a name="198087">
+To change the directory in which you want to save the object, you have three options:<p>
+</a><P><ul><a name="198088">
+<li><strong>(CLICK-L)</strong> to position the cursor in the text edit box and enter the directory manually
+</a></li><P><a name="198089">
+<li><strong>(CLICK-M)</strong> to clear the text edit box completely and enter a new directory
+</a></li><P><a name="198092">
+<li><strong>(CLICK-R)</strong> to display a list of directories associated with the current project (or to add a new directory to the current project).
+</a></li><P><a name="198105">
+ <P><img src="1Overview.anc17.gif"><p>
+</a></ul><P><a name="198106">
+<em>Figure 1.11  &#32; &#32;Selecting a new directory
+</em></a><P><dl><dl><a name="198093">
+<dt>A project is nothing more than a series of directories that you group together logically. If you are working on an animation project, you might create a project of directories in which to store the different elements (e.g., objects, scripts, images, maps, etc.).</dt>
+</a><P><a name="198156">
+<dt>The <strong>Specify a new Directory</strong> command adds other directories to the list at the top of the menu; directories with asterisks ("*") next to them are temporary (not part of the project).</dt>
+</a><P><a name="198188">
+<dt>When you choose <strong>Specify a new Directory</strong>, a blank text edit box appears; enter the name of the directory you want to add to the list of available directories:</dt>
+</a><P><a name="198215">
+ <P><img src="1Overview.anc18.gif"><p>
+</a></dl></dl><a name="198216">
+<em>Figure 1.12  &#32; &#32;Selecting a new directory
+</em></a><P><dl><dl><a name="198220">
+<dt>The newly specified directory appears in the current directory list at the top of the projects menu. To make the directory part of a project, choose <strong>Edit Current Project</strong>, then highlight any directories you want to add to the project.</dt>
+</a><P><a name="198190">
+<dt>Projects are described in more detail in the <em>Getting Started</em> manual.</dt>
+</a><P></dl></dl><a name="197924">
+<h3> Moving the Camera</h3>
+</a><a name="196537">
+You move the camera by selecting a camera mode (described in <a href="1Overview.html#7908">"Camera Motion Menu," on page &#32;1-21</a>) and moving the mouse. After you've selected a mode, you can move the camera by doing the following:<p>
+</a><P><ul><a name="196538">
+<li>To begin camera motion, <strong>(CLICK-M)</strong> in the view window and move the mouse. <strong>(CLICK-L)</strong> when the camera is in the new, desired position.
+</a></li><P><a name="196539">
+<li>To abort the current camera motion, <strong>(CLICK-R)</strong>.
+</a></li><P><a name="196540">
+<li>To halt camera motion for a single command, <strong>(CTRL-R)</strong> on the viewport window, then execute the desired command from the menu. When the menu disappears, the camera is still active.
+</a></li><P></ul><P><a name="8838">
+<h4> Constraining Camera Movement</h4>
+</a><a name="8839">
+The camera moves along the longitudes and latitudes of a vertically oriented globe that is centered about the aimpoint. <strong>Fixed-aim</strong> is enabled during a swing, so as the camera moves, it orients itself to remain fixed on the aimpoint. An object being viewed remains centered in the view window.<p>
+</a><P><a name="8840">
+N-Geometry lets you constrain camera movements so that the camera responds to either vertical or horizontal movements of the mouse. This constraint is useful when you are trying to preserve a particular value.<p>
+</a><P><a name="8841">
+To constrain mouse movement, hold down the <strong>CTRL</strong> key while you move the mouse during interactive camera operations; the camera moves only in the direction of the initial mouse movement. For example, if you hold down the <strong>CTRL</strong> key while you are in pan mode and move the mouse to the left or right, the up/down angle of the camera remains constant and the camera pans only left and right.<p>
+</a><P><a name="7908">
+<h4> Camera Motion Menu</h4>
+</a><a name="7909">
+How the camera responds to the mouse movement is determined by the Camera Motion menu, which appears at the bottom of the View window, as shown in <a href="1Overview.html#7918">Figure 1.13</a>.<p>
+</a><P><a name="7916">
+ <P><img src="1Overview.anc19.gif"><p>
+</a><a name="7918">
+<em>Figure 1.13  &#32; &#32;The camera motion menu
+</em></a><P><a name="7931">
+<h4> zoom +</h4>
+</a><a name="7932">
+Interactively changes several camera parameters to adjust the camera's view angle. <p>
+</a><P><ul><a name="196076">
+<li><strong>(CLICK-L)</strong> to change the zoom of the camera; this is similar in effect to zooming in on an object with a camera using a telephoto lens. 
+</a></li><P><dl><a name="196115">
+<dt>Then <strong>(CLICK-M)</strong> to start the camera and move the mouse up and down to adjust the view angle. This puts the camera in truck mode (moving toward and away from the aimpoint). This is similar to physically moving toward the object.</dt>
+</a><P></dl></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>While these two modes appear identical, the first changes the lens characteristic of the camera, while the second moves the camera object.</em></font></dd></dt><dl><a name="196118">
+<dt>By alternately zooming and using truck mode, you can adjust the perspective effects while keeping the <em>size</em> of the object on the screen relatively constant.</dt>
+</a><P></dl></dl><P>
+<ul><a name="196052">
+<li><strong>(CLICK-M)</strong> lets you set the hither and you clipping planes using the mouse. 
+</a></li><P><ul>
+<BR><a name="196084">
+<li>Move the mouse with no button pressed to adjust the <em>hither</em> plane
+</a><P><BR><a name="196112">
+<li><strong>(HOLD-M)</strong> to adjust the <em>yon</em> plane:
+</a><P><a name="196103">
+ <P><img src="1Overview.anc20.gif"><p>
+</a></ul>
+</ul><P><a name="196104">
+<em>Figure 1.14  &#32; &#32;Hither and yon clipping planes
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Remember that there are clipping planes for each of the three axes; all three are modified as you make adjustments with the mouse</em>.</font></dd></dt></dl><P>
+<ul><a name="196109">
+<li><strong>(CLICK-R)</strong> opens a menu that lets you set several camera parameters including projection method (perspective or orthographic), lens type, view angle, hither and yon planes, and whether auto ranging is on or off.
+</a></li><P></ul><P><a name="7963">
+<h4> Rotate</h4>
+</a><a name="7964">
+Rotations are of two types: pans and swings. The type of motion executed depends on whether or not <strong>fixed-aim</strong> is selected.<p>
+</a><P><ul><a name="7965">
+<li><strong>(CLICK-L)</strong> <em>swings</em> the camera. During a swing, the camera follows a circular path around a particular aimpoint, constantly reorienting itself to remain fixed on this aimpoint. By default, this is the global axes coordinates.
+</a></li><P><a name="7966">
+<li><strong>(CLICK-M)</strong> <em>pans</em> the camera. Rotates the camera around its own center.
+</a></li><P><a name="7967">
+<li><strong>(CLICK-R)</strong> lets you set an explicit orientation for the camera:
+</a></li><P><a name="7971">
+ <P><img src="1Overview.anc21.gif"><p>
+</a></ul><P><a name="7972">
+<em>Figure 1.15  &#32; &#32;Setting a new camera orientation
+</em></a><P><ul><ul>
+<BR><a name="196126">
+<li><strong>azimuth</strong> sets the orientation of the camera with relation to the global center; aligning the camera along the X axis sets these values to <br>(90 0 0) (rotation around the Y axis).
+</a><P><BR><a name="196127">
+<li><strong>altitude</strong> rotates the camera around the Z axis.
+</a><P><BR><a name="196128">
+<li><strong>roll</strong> tilts the camera from side to side around its local axis (pointing from the eyepoint to the aimpoint).
+</a><P></ul>
+</ul><a name="7974">
+<h4> Translate</h4>
+</a><a name="7975">
+Linear translations of the camera are divided into <em>moves</em> and <em>shifts</em>.<p>
+</a><P><ul><a name="7976">
+<li><strong>(CLICK-L)</strong> moves the camera. A linear translation with <strong>fixed-aim</strong> on. The camera compensates for its displacement by panning to maintain the aimpoint.
+</a></li><P><a name="7977">
+<li><strong>(CLICK-M)</strong> shifts the camera. A linear translation with constant camera orientation. The aimpoint shifts with the camera.
+</a></li><P><a name="7978">
+<li><strong>(CLICK-R)</strong> lets you set an explicit eyepoint with the following menu:
+</a></li><P><a name="7982">
+ <P><img src="1Overview.anc22.gif"><p>
+</a></ul><P><a name="7983">
+<em>Figure 1.16  &#32; &#32;Setting a new camera location
+</em></a><P><a name="7986">
+<h4> Camera Modifiers</h4>
+</a><a name="7987">
+The last two items on the Camera Motion menu are camera modifiers that can be turned on and off in conjunction with the Rotate and Translate camera motion types.<p>
+</a><P><ul><a name="7988">
+<li><strong>(CLICK-L)</strong> on <strong>rotate</strong> or <strong>translate</strong> starts the camera with <strong>fixed-aim</strong> <em>on</em>.
+</a></li><P><a name="7989">
+<li><strong>(CLICK-M)</strong> on <strong>rotate</strong> or <strong>translate </strong>starts the camera with <strong>fixed-aim</strong> <em>off</em>.
+</a></li><P><a name="7990">
+<li><strong>(CLICK-R)</strong> on <strong>rotate</strong> or <strong>translate</strong> to set explicit values from the keyboard for the motion types.
+</a></li><P></ul><P><a name="7992">
+<h4> Global</h4>
+</a><a name="7993">
+If enabled, uses a global rather than a local coordinate system to determine rotation and motion axes for the camera. When global is enabled, the camera is moved along the global x, y, and z axes, and rotation ignores the camera's orientation.<p>
+</a><P><a name="7994">
+If <strong>global</strong> is not enabled, a local coordinate system is in effect; the rotation and motion axes are determined by the camera's <em>local</em> x, y, and z axes, and the rotation depends upon the camera's orientation.<p>
+</a><P><a name="7997">
+<h4> Fixed-aim</h4>
+</a><a name="7998">
+Makes the camera change its orientation during a move so the camera remains pointed at a particular aimpoint. (The aimpoint is the point at which the camera is aimed, often the center of an object.)<p>
+</a><P><a name="7999">
+When fixed-aim is off, the aimpoint moves with the camera. Objects seems to "drift" in the view window.<p>
+</a><P><a name="8000">
+To numerically specify an aimpoint, <strong>(CLICK-R)</strong> on fixed-aim to bring up the following menu:<p>
+</a><P><a name="8004">
+ <P><img src="1Overview.anc23.gif"><p>
+</a><a name="8005">
+<em>Figure 1.17  &#32; &#32;Setting a new aim point
+</em></a><P><a name="8006">
+<h3> Camera Motions</h3>
+</a><a name="8007">
+The table below describes how the various options on the Camera Motion Menu can be combined to produce different kind of camera movement in N-Geometry: 
+<P><Table Border="1">
+<dl>
+<a name="8010">
+<em>Table 1.3 <strong> &#32; &#32;Selecting a ca</strong>mera motion
+</em></a></dl>
+<tr><th align="left"><a name="8018">
+Motion
+</a><th align="left"><a name="8020">
+Rotate or Translate?
+</a><th align="left"><a name="8022">
+Global
+</a><th align="left"><a name="8024">
+Fixed-aim
+</a>
+<tr><td valign="top"><a name="8026">
+ Swing global<p>
+</a><td valign="top"><a name="8028">
+ <strong>(ROTATE-L)</strong><p>
+</a><td valign="top"><a name="8030">
+ On<p>
+</a><td valign="top"><a name="8032">
+ On<p>
+</a>
+<tr><td valign="top"><a name="8034">
+ Swing local<p>
+</a><td valign="top"><a name="8036">
+ <strong>(ROTATE-L)</strong><p>
+</a><td valign="top"><a name="8038">
+ Off<p>
+</a><td valign="top"><a name="8040">
+ On<p>
+</a>
+<tr><td valign="top"><a name="8042">
+ Pan global<p>
+</a><td valign="top"><a name="8044">
+ <strong>(ROTATE-M)</strong><p>
+</a><td valign="top"><a name="8046">
+ On<p>
+</a><td valign="top"><a name="8048">
+ Off<p>
+</a>
+<tr><td valign="top"><a name="8050">
+ Pan local<p>
+</a><td valign="top"><a name="8052">
+ <strong>(ROTATE-M)</strong><p>
+</a><td valign="top"><a name="8054">
+ Off<p>
+</a><td valign="top"><a name="8056">
+ Off<p>
+</a>
+<tr><td valign="top"><a name="8058">
+ Move global<p>
+</a><td valign="top"><a name="8060">
+ <strong>(TRANSLATE-L)</strong><p>
+</a><td valign="top"><a name="8062">
+ On<p>
+</a><td valign="top"><a name="8064">
+ On<p>
+</a>
+<tr><td valign="top"><a name="8066">
+ Move local<p>
+</a><td valign="top"><a name="8068">
+ <strong>(TRANSLATE-L)</strong><p>
+</a><td valign="top"><a name="8070">
+ Off<p>
+</a><td valign="top"><a name="8072">
+ On<p>
+</a>
+<tr><td valign="top"><a name="8074">
+ Shift global<p>
+</a><td valign="top"><a name="8076">
+ <strong>(TRANSLATE-M)</strong><p>
+</a><td valign="top"><a name="8078">
+ On<p>
+</a><td valign="top"><a name="8080">
+ Off<p>
+</a>
+<tr><td valign="top"><a name="8082">
+ Shift local<p>
+</a><td valign="top"><a name="8084">
+ <strong>(TRANSLATE-M)</strong><p>
+</a><td valign="top"><a name="8086">
+ Off<p>
+</a><td valign="top"><a name="8088">
+ Off<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><ul><a name="8899">
+<li>When <strong>global</strong> is enabled, motion axes are parallel to the displayed axes.
+</a></li><P><a name="8902">
+<li>When <strong>global</strong> is disabled, the motion axes are determined by the camera's frame of reference.
+</a></li><P><a name="8090">
+<li>During <em>moves</em> and <em>swings</em>, the camera remains aimed at a point no matter where the camera is moved. 
+</a></li><P><a name="8091">
+<li>During <em>pans</em> and <em>shifts</em>, the camera's aimpoint is free to move. An object at which the camera was aimed would appear to drift in the view window in a direction opposite to that of the mouse movement.
+</a></li><P></ul><P><a name="8093">
+<h4> Swing Global</h4>
+</a><a name="8094">
+The camera moves along the longitudes and latitudes of a vertically oriented globe that is centered about the aimpoint.<p>
+</a><P><a name="8095">
+As the camera moves, it orients itself to remain fixed on the aimpoint. An object being viewed remains centered in the view window.<p>
+</a><P><a name="8096">
+The motion axes are parallel to the global axes.<p>
+</a><P><a name="8097">
+(This mode is especially helpful because it lets you view the object from any side.)<p>
+</a><P><a name="10183">
+ <P><img src="1Overview.anc24.gif"><p>
+</a><a name="10184">
+<em>Figure 1.18  &#32; &#32;Swing global camera move
+</em></a><P><a name="8099">
+<h4> Swing Local</h4>
+</a><a name="8100">
+The camera moves along longitudes and latitudes of a globe centered around the aimpoint.<p>
+</a><P><a name="8101">
+The rotation is based on the camera's orientation instead of the global coordinate system.<p>
+</a><P><a name="8102">
+The motion axes are determined by the angle of the camera.<p>
+</a><P><a name="10195">
+ <P><img src="1Overview.anc25.gif"><p>
+</a><a name="10196">
+<em>Figure 1.19  &#32; &#32;Swing local camera move
+</em></a><P><a name="8104">
+<h4> Pan Global</h4>
+</a><a name="8105">
+The camera remains stationary and rotates around its center as the mouse is moved.<p>
+</a><P><a name="8106">
+The rotation axes are parallel to the global axes.<p>
+</a><P><a name="8107">
+The camera does not reorient itself to remain aimed at the object; the aimpoint moves with the mouse.<p>
+</a><P><a name="8108">
+An object that is being viewed appears to drift through the view window in a direction opposite to the mouse movement.<p>
+</a><P><a name="10205">
+ <P><img src="1Overview.anc26.gif"><p>
+</a><a name="10206">
+<em>Figure 1.20  &#32; &#32;Pan global camera move
+</em></a><P><a name="8110">
+<h4> Pan Local</h4>
+</a><a name="8111">
+Pan local mode resembles pan global mode in that the camera remains stationary and rotates around its center.<p>
+</a><P><a name="8112">
+The camera rotates on axes that are determined by the camera's orientation, not by the global axes. The rotation axes are determined by the camera's frame of reference and are not necessarily parallel to the global axes.<p>
+</a><P><a name="10214">
+ <P><img src="1Overview.anc27.gif"><p>
+</a><a name="10215">
+<em>Figure 1.21  &#32; &#32;Pan local camera move
+</em></a><P><a name="8114">
+<h4> Move Global</h4>
+</a><a name="8115">
+The camera moves linearly along the global x, y, and z axes.<p>
+</a><P><a name="8116">
+The camera changes its orientation to remain pointed at the aimpoint.<p>
+</a><P><a name="8117">
+An object that is being viewed appears to move along one of the global axes while it remains centered in the view window.<p>
+</a><P><a name="10223">
+ <P><img src="1Overview.anc28.gif"><p>
+</a><a name="10224">
+<em>Figure 1.22  &#32; &#32;Move global camera move
+</em></a><P><a name="8119">
+<h4> Move Local</h4>
+</a><a name="8120">
+Move local mode resembles move global mode except that the axes along which the mouse moves are determined by the camera's initial orientation.<p>
+</a><P><a name="8121">
+The motion axes are not parallel to the displayed axes but are determined by the angle of the camera.<p>
+</a><P><a name="10232">
+ <P><img src="1Overview.anc29.gif"><p>
+</a><a name="10233">
+<em>Figure 1.23  &#32; &#32;Move local camera move
+</em></a><P><a name="8123">
+<h4> Shift Global</h4>
+</a><a name="8124">
+The camera moves linearly along the global x, y, and z axes. The object appears to drift through the view window in a direction opposite to the mouse movement.<p>
+</a><P><a name="10244">
+ <P><img src="1Overview.anc30.gif"><p>
+</a><a name="10245">
+<em>Figure 1.24  &#32; &#32;Shift global camera move
+</em></a><P><a name="8126">
+<h4> Shift Local</h4>
+</a><a name="8127">
+Shift local mode differs from shift global in that the axes along which the camera moves are determined by the camera's local coordinate system, not the global axes.<p>
+</a><P><a name="8128">
+The motion axes are not parallel to the displayed axes but are determined by the camera's frame of reference.<p>
+</a><P><a name="10253">
+ <P><img src="1Overview.anc31.gif"><p>
+</a><a name="197903">
+<em>Figure 1.25  &#32; &#32;Shift local camera move
+</em></a><P><a name="197904">
+<h3> Modifying Bodies</h3>
+</a><a name="197905">
+This section describes how to <em>modify</em> bodies by performing operations (as opposed to transformations) on selected elements. There are four types of body <em>elements</em> in geometry, which roughly correspond to the number of dimensions in that type of element:<p>
+</a><P><ul><a name="8943">
+<li>points (0 dimensional)
+</a></li><P><a name="8944">
+<li>segments (1 dimensional)
+</a></li><P><a name="8945">
+<li>faces (2 dimensional)
+</a></li><P><a name="8946">
+<li>bodies (3 dimensional)
+</a></li><P></ul><P><a name="197526">
+The operations you can perform on those elements include moving, scaling, rotating, cutting, collapsing, beveling, extruding, mirroring, twisting, randomizing, and so forth. <p>
+</a><P><a name="197527">
+You can perform operations on elements of a polyhedron or on the elements of a wire. The elements that make up a wire are called <em>winged segments</em>, which are equivalent to edges of a polyhedron, and <em>nodes</em>, which are similar to a polyhedron's vertices.<p>
+</a><P><a name="8951">
+<h4> Selecting Elements</h4>
+</a><a name="196573">
+To select an element:<p>
+</a><P>
+<a name="197538">
+<STRONG>	 1.	 Select the element type you want to modify in the element sensitivity menu.
+</STRONG>
+</a><P><a name="197543">
+<STRONG>	2.	 Move the mouse over the element you want to modify.
+</STRONG>
+</a><P><dl><a name="197561">
+<dt>Once you have selected an element type, moving the mouse over the object in the view window causes elements of that type to be highlighted (see <a href="1Overview.html#197570">Figure 1.26</a>.) </dt>
+</a><P><a name="197568">
+ <P><img src="1Overview.anc32.gif"><p>
+</a></dl>
+<a name="197570">
+<em>Figure 1.26  &#32; &#32;Cube with face highlighted
+</em></a><P>
+<a name="197540">
+<STRONG>	3.	 When the element you want to modify is highlighted, <strong>(SHIFT-L)</strong> directly on the element.
+</STRONG>
+</a><P>
+<a name="8984">
+The modify menu displayed is context sensitive; that is, only the operations that can be performed on the selected element type are displayed in the menu.<p>
+</a><P><a name="197585">
+In most cases the element remains selected after each operation is executed, so you can do another operation on it without have to reselect the element.<p>
+</a><P><a name="8985">
+<h4> Deselecting an Element</h4>
+</a><a name="197575">
+Once selected, an element <em>stays</em> selected until:<p>
+</a><P><ul><a name="197576">
+<li>you <strong>(CLICK-L)</strong> in an open area of the N-Geometry window
+</a></li><P><a name="197578">
+<li>you select a different element type on the element sensitivity menu
+</a></li><P></ul><P><a name="8989">
+<h3> Collect Mode: Working with Several Elements at Once</h3>
+</a><a name="8990">
+You may find there are occasions when you want to perform the same geometric operation on one or more elements of the same type. There are two ways for you to do this:<p>
+</a><P><ul><a name="8991">
+<li>Select each element individually and perform the operation on one element at a time.
+</a></li><P><a name="8992">
+<li>Use <strong>collect</strong> mode to collect all of the desired elements of one type into a group, then perform the operation on all of them at once.
+</a></li><P></ul><P><a name="8994">
+<h4> Starting a Collection</h4>
+</a><a name="8995">
+To collect several elements of one type:<p>
+</a><P><ul><a name="8996">
+<li><strong>(CLICK-L)</strong> on the element type you want to work with, then <strong>(CLICK-L)</strong> on <strong>Collect</strong>
+</a></li><P><dl><a name="197602">
+<dt>or</dt>
+</a><P></dl><a name="8997">
+<li><strong>(CLICK-R)</strong> on the element type 
+</a></li><P></ul><P><a name="8998">
+As an example of how to collect elements, assume you want to perform an operation on several faces.<p>
+</a><P>
+<a name="197606">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on a faces in the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="197612">
+<dt>Note that <strong>collect</strong> is automatically highlighted in the element sensitivity menu.</dt>
+</a><P></dl><a name="8999">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on several faces.
+</STRONG>
+</a><P><dl><a name="9002">
+<dt>Continue to select faces until all the ones you want are selected.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Clicking on an already collected element removes it from the collection.</font></dd></dt></dl><P>
+
+<a name="9004">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> to complete the collection.
+</STRONG>
+</a><P><a name="196179">
+ <P><img src="1Overview.anc33.gif"><p>
+</a>
+<a name="196181">
+<em>Figure 1.27  &#32; &#32;A collection of faces on a grid
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong><strong>	(CTRL-R)</strong> temporarily halts collect mode. (You might use this, for example, if you want to move the object to select an element that is currently obscured.) You can execute any geometry command and then immediately return to collect mode.</font></dd></dt></dl><P>
+<a name="9006">
+<h4> Ending a Collection</h4>
+</a><a name="196995">
+There are two ways to complete a collection:<p>
+</a><P><ul><a name="196996">
+<li><strong>(CLICK-R)</strong> on the N-Geometry window (as described above)
+</a></li><P><dl><a name="197634">
+<dt>or</dt>
+</a><P></dl><a name="196999">
+<li>Move the mouse off the edge of the view window
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>An operation done on a collected group does not always give the same result as when the operation is performed sequentially on individual elements.</em></font></dd></dt></dl><P>
+<a name="9009">
+<h4> Growing or Shrinking a Collection</h4>
+</a><a name="9010">
+To grow a collection, you must already have a collection started-<strong>(CLICK-L)</strong> on <strong>collect</strong> in the element sensitivity menu, then:<p>
+</a><P><ul><a name="9011">
+<li><strong>(CLICK-L)</strong> on an element you want in your collection.
+</a></li><P><a name="9012">
+<li><strong>(CTRL-L)</strong> to grow the collection outward from the already collected elements.
+</a></li><P><a name="9013">
+<li><strong>(ALT-L)</strong> to shrink the collection.
+</a></li><P><a name="197640">
+ <P><img src="1Overview.anc34.gif"><p>
+</a></ul><P><a name="197641">
+<em>Figure 1.28  &#32; &#32;Growing a collection
+</em></a><P><a name="197654">
+You can grow collections of point, edges, or faces. Growing a collection is handy when you want to collect multiple elements that are obscured or that would require you to turn the camera repeatedly.<p>
+</a><P><a name="9014">
+<h4> Using the Lasso to Collect Elements</h4>
+</a><a name="197158">
+You may collect elements whose normals are facing the camera (a "2D" collection) or all elements of the selected type, even though they're on the back of the object (a "3D" collection). To collect elements with a lasso:<p>
+</a><P><ul><a name="9016">
+<li><strong>(ALT-L)</strong> on the view window to start a <strong>2D</strong> collection. While holding down the <strong>(L)</strong> mouse button, use the mouse to draw a line around the elements you want to collect. When you release the mouse button, N-Geometry completes the lasso for you and selects the elements within the loop.
+</a></li><P><a name="9017">
+<li><strong>(ALT+CTRL-L) </strong>starts a <strong>3D</strong> collection, including polygons on back of the model. Elements must fall within the area drawn by the lasso to be included in the collection.
+</a></li><P><a name="196013">
+ <P><img src="1Overview.anc35.gif"><p>
+</a></ul><P><a name="196015">
+<em>Figure 1.29  &#32; &#32;A 2D collection of grid faces using the lasso
+</em></a><P><ul><a name="197109">
+<li><strong>(ALT+CTRL+SHIFT-L) </strong>also starts a <strong>3D</strong> collection; however, an element need only be partially clipped to be included in a selection.
+</a></li><P><a name="197114">
+ <P><img src="1Overview.anc36.gif"><p>
+</a></ul><P><a name="197115">
+<em>Figure 1.30  &#32; &#32;Collecting the same faces using (ALT+CTRL+SHIFT)-elements need only be touched by the lasso
+</em></a><P><a name="9019">
+<h4> Saving a Collection</h4>
+</a><a name="9020">
+You can save collections by making them a <em>part</em>. A part is a named collection of one or more elements of the same type. To create a part:<p>
+</a><P>
+<a name="197738">
+<STRONG>	 1.	 Create a collection. 
+</STRONG>
+</a><P><a name="197742">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> to end collect mode.
+</STRONG>
+</a><P><a name="197747">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on <strong>Add to Part</strong> to make the collection a part.
+</STRONG>
+</a><P><dl><a name="197759">
+<dt>Enter a name for the part in the dialog box that appears</dt>
+</a><P></dl>
+<a name="196222">
+To reselect a part you have already created, choose one of the elements in that part, then <strong>(CLICK-L)</strong> on <strong>Parts</strong> on the body menu.<p>
+</a><P><a name="196227">
+<strong>(CLICK-M)</strong> on <strong>Parts</strong> to open a menu that lets you do the following:<p>
+</a><P><ul><a name="9022">
+<li><strong>Delete</strong> one or more parts.
+</a></li><P><a name="9023">
+<li><strong>Rename</strong> a part.
+</a></li><P><a name="9024">
+<li><strong>Select</strong> the elements of one or more parts.
+</a></li><P><a name="9025">
+<li><strong>Select All except</strong> selects all elements on the object <em>except</em> those in the selected part.
+</a></li><P><a name="9026">
+<li><strong>Select Intersection</strong> select those elements that occur in <em>all</em> of the chosen parts. 
+</a></li><P></ul><P><a name="8258">
+<h3> Moving Objects and Elements</h3>
+</a><a name="8259">
+You can move objects or elements by moving the mouse (interactively) or by specifying the amount of movement through a dialog (numerically).<p>
+</a><P><a name="8260">
+<h4> Moving Objects with the Mouse</h4>
+</a><a name="8261">
+By default, you use the mouse to move an object. If the operation is in 3D, mouse movement is typically controlled as follows:<p>
+</a><P><ul><a name="8262">
+<li>to modify along the x axis, move the mouse left or right
+</a></li><P><a name="8263">
+<li>to modify along the y axis, move the mouse forward and backward
+</a></li><P><a name="8264">
+<li>to modify along the z axis, move the mouse forward and backward while holding down the middle button (denoted as <strong>(HOLD-M)</strong> in the body text).
+</a></li><P></ul><P><a name="8265">
+<h4> Moving Objects Using Numeric Menus</h4>
+</a><a name="8266">
+To specify the amounts precisely, use <strong>(CTRL-L)</strong>, <strong>(CTRL-M)</strong>, or <strong>(CTRL-R)</strong> while selecting the menu item. An appropriate menu appears to let you specify the amounts numerically:<p>
+</a><P><a name="8270">
+ <P><img src="1Overview.anc37.gif"><p>
+</a><a name="8271">
+<em>Figure 1.31  &#32; &#32;Specifying changes numerically
+</em></a><P><a name="8272">
+To make specifying numeric parameters the default, go to the <strong>Utilities&gt;Preferences&gt;Element Edit</strong> and set <strong>Numeric Input Default</strong> to <strong>Yes</strong>. This menu item causes numeric value menus to come up each time you select a geometric operation. (In this mode, you can still specify mouse-controlled operation by holding the <strong>CTRL </strong>key when you select the operation.)<p>
+</a><P><a name="196815">
+<h4> Moving Pop-up Windows</h4>
+</a><a name="196820">
+Sometimes a pop up is displayed over the N-Geometry window, preventing you from seeing or selecting objects in the screen. <p>
+</a><P><a name="196852">
+To move a pop-up window:<p>
+</a><P>
+<a name="196857">
+<STRONG>	 1.	 Move the mouse over the pop-up window.
+</STRONG>
+</a><P><a name="196858">
+<STRONG>	2.	 Press <strong>ALT+F7</strong>.
+</STRONG>
+</a><P><dl><a name="196862">
+<dt>The menu is highlighted in red.</dt>
+</a><P></dl><a name="196863">
+<STRONG>	3.	 Drag the menu to a new position using the mouse.
+</STRONG>
+</a><P>
+<a name="8278">
+<h3> Magnet Moves</h3>
+</a><a name="8279">
+Certain operations let you manipulate not only the selected element but vertices that are near it. You can define a spherical area around an element so that as the element is manipulated, the vertices within the defined area are also influenced by the operation.<p>
+</a><P><a name="9256">
+For example, as the selected vertex is pulled, the vertices within the defined area are pulled along with the selected vertex as if influenced by it. The effect of the influence is greatest on the vertices closest to the selected vertex and falls off for the vertices toward the outer edge of the sphere. The rate of fall off can also be controlled. The effect of the influence is 100% on the selected element and gradually decreases to no effect at the outer edge of the defined area.<p>
+</a><P><a name="8280">
+To enable an operation to influence an area:<p>
+</a><P>
+<a name="9266">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the element you want to modify.
+</STRONG>
+</a><P><a name="9270">
+<STRONG>	2.	 (<strong>ALT</strong>-L) on Move.
+</STRONG>
+</a><P><dl><a name="9722">
+<dt>While the original element stays highlighted in the 3D editor, you select a second point in the scene (not necessarily on the same object), that defines the range of influence for the operation.</dt>
+</a><P></dl><a name="9720">
+<STRONG>	3.	 Move the mouse.
+</STRONG>
+</a><P><dl><a name="9724">
+<dt>Note how not only the originally selected element, but other vertices, move as well.</dt>
+</a><P></dl>
+<a name="9262">
+If you want to specify the area of influence numerically, hold down both the<br><strong>ALT</strong> <em>and</em> <strong>CTRL</strong> keys when selecting the operation. This brings up the following menu, which is described in the following section:<p>
+</a><P><a name="8284">
+ <P><img src="1Overview.anc38.gif"><p>
+</a><a name="8285">
+<em>Figure 1.32  &#32; &#32;Specifying an area of influence numerically
+</em></a><P><a name="8286">
+<h4> Defining an Area of Influence</h4>
+</a><a name="9735">
+There are three basic methods for determining the area of influence; two use an imaginary sphere to measure the area of influence, the third measures area along the surface of the selected body (which is particularly useful if you are working with a convoluted shape).<p>
+</a><P><ul><a name="9758">
+<li><strong>Distance route </strong>specifies the method used to determine the area of influence.
+</a></li><P><ul>
+<BR><a name="9784">
+<li><strong>Mid</strong><strong>point</strong> creates an imaginary point that is located at the "center" of an element or the current collection of elements; the outer edge of influence is measured from this midpoint of that element or collection.
+</a><P><a name="9776">
+ <P><img src="1Overview.anc39.gif"><p>
+</a></ul>
+</ul><P><a name="9780">
+<em>Figure 1.33  &#32; &#32;Measuring from the midpoint
+</em></a><P><dl><dl><dl><a name="10011">
+<dt>The sphere of influence tends to produce a more "bloated" or "puffy" appearance in a modified shape when using operations such as <strong>Move</strong>.<p>
+</a><P></dl></dl><ul>
+<BR><a name="9760">
+<li><strong>Sho</strong><strong>rtest</strong> measures directly from the element to the assigned distance. If the area of influence is measured from a single point, the <strong>Shortest</strong> and <strong>Midpoint</strong> methods are identical.
+</a><P><dl><a name="10073">
+<dt>Because there are really a number of smaller area of influences being calculated, using this method tends to cause topological changes to retain the shape of the selected element or elements.<p>
+</a><P></dl><BR><a name="9790">
+<li><strong>Sur</strong><strong>face</strong> measures from the element in a somewhat straight line, except that the line of measure tends to follow edges.
+</a><P><a name="9803">
+ <P><img src="1Overview.anc40.gif"><p>
+</a></ul>
+</dl><a name="9804">
+<em>Figure 1.34  &#32; &#32;Measuring along the surface
+</em></a><P><dl><dl><dl><a name="10072">
+<dt>Because the area of influence is measured along the surface, modifying a shape with commands like <strong>Move</strong> tend to keep the shape of the object.<p>
+</a><P></dl></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This method is most useful if you are performing an operation on an irregular surface.</em></font></dd></dt></dl><P>
+<ul><a name="9700">
+<li><strong>Fall</strong><strong>off </strong>determines the type of curve used to determine how the influence of the operation falls off as you approach the edge of the area of influence.
+</a></li><P><ul>
+<BR><a name="10087">
+<li><strong>Straight</strong> uses an inverse linear curve; influence decreases linearly from the center.
+</a><P><BR><a name="10088">
+<li><strong>Spike</strong> uses an inverse square curve; influence decreases quickly near the center, more slowly at the edge.
+</a><P><BR><a name="10089">
+<li><strong>Bell</strong> use a cosine curve; influence decreases slowly at the center and edge, quicker in between.
+</a><P><BR><a name="10090">
+<li><strong>Dome</strong> uses a half-cosine curve; influence decreases gradually at the center, more quickly at the edge.
+</a><P></ul>
+<a name="9739">
+<li><strong>Influence </strong><strong>dist</strong> lets you specify the distance used for calculating the area of influence. If you use either the Midpoint or Shortest methods, the distance represents the radius of the "invisible" sphere. If you use the Surface method, it represents the distance measured along the surface of the object.
+</a></li><P></ul><P><a name="9298">
+The default values for these parameters can be found in <strong>Utilities&gt;Preferences&gt;Element Edit</strong>.<p>
+</a><P><a name="8360">
+<h3> Operations That Need an Axis</h3>
+</a><a name="8361">
+Certain transformations and modifications (such as moves, extrudes, and rotations) give you the option of specifying an axis along or around which the operation is to occur. When selecting an operation that requires an axis to be chosen, the following menu is displayed:<p>
+</a><P><a name="8365">
+ <P><img src="1Overview.anc41.gif"><p>
+</a><a name="8366">
+<em>Figure 1.35  &#32; &#32;Choosing a value for an axis
+</em></a><P><a name="197794">
+If, for example, you were to <strong>(CLICK-R)</strong> on <strong>Extrude</strong> with a face selected, you'd be presented with the menu above, so you could specify an axis along which the operation was to be performed.<p>
+</a><P><a name="197795">
+Each of the entries on this menu is described below:<p>
+</a><P><ul><a name="8367">
+<li><strong>This Element's Normal</strong> selects the current element's normal as the axis value.
+</a></li><P><dl><a name="8368">
+<dt>For an edge, the normal is the average of the normals of the two adjacent faces. For a vertex, the normal is the average of the normals of the adjacent faces. Polyhedra have no normal. Requesting that a polyhedron move along its normal moves it along its local y axis.</dt>
+</a><P></dl><a name="8369">
+<li><strong>Select Normal</strong> lets you selects the normal of any element; after selecting this option, move the mouse over the view window and (CLICK-L) on the element whose normal you want to use
+</a></li><P><a name="8370">
+<li><strong>Select a Segment</strong> selects any segment, edge or rotation axis to use as an axis.
+</a></li><P><a name="8371">
+<li><strong>Select element pair</strong> selects any two elements and use the direction between them as the axis.
+</a></li><P><a name="8372">
+<li><strong>[X]</strong>, <strong>[Y]</strong>, and <strong>[Z]</strong> 
+</a></li><P><ul>
+<BR><a name="8373">
+<li><strong>(CLICK-L)</strong> on X, Y, or Z to use one of the object's local axes.
+</a><P><BR><a name="8374">
+<li><strong>(CLICK-M)</strong> to use the global x, y, or z axis.
+</a><P><BR><a name="8375">
+<li><strong>(CLICK-R)</strong> to use the local x, y, or z axis of another object.
+</a><P></ul>
+<a name="8376">
+<li><strong>Camera</strong> selects an axis relative to the current camera view (relative to screen):
+</a></li><P><ul>
+<BR><a name="8377">
+<li><strong>(CLICK-L)</strong> selects the axis going left and right across the screen.
+</a><P><BR><a name="8378">
+<li><strong>(CLICK-M)</strong> selects the axis going up and down across the screen.
+</a><P><BR><a name="8379">
+<li><strong>(CLICK-R)</strong> selects the Z axis from the eyepoint to the aimpoint.
+</a><P></ul>
+<a name="8380">
+<li><strong>Eyepoint to Object</strong> selects the axis from the eyepoint to an object's local origin.
+</a></li><P><a name="8381">
+<li><strong>Type in Cartesian Direction</strong> defines a direction based on two sets of xyz coordinates you supply.
+</a></li><P><a name="8382">
+<li><strong>Type in Spherical Orientation</strong> defines an arc along which to move the element. The dialog box asks for three coordinates to define this arc: the first is the longitude, the second the latitude, and the third the radius from the center point of the object to the point on the imaginary sphere.
+</a></li><P></ul><P><a name="8384">
+<h3> Operations That Need an Origin</h3>
+</a><a name="8385">
+Certain operations (such as <strong>Scale</strong> and <strong>Rotate</strong>), let you select a point from which to begin the operation. For example, if you rotate an object, you'll get different results if you rotate it around the object's center or rotate it around a point on the perimeter of the body.<p>
+</a><P><a name="9031">
+In cases where an origin point has significance, the following menu is displayed, which lets you select the origin point:<p>
+</a><P><a name="8389">
+ <P><img src="1Overview.anc42.gif"><p>
+</a><a name="8390">
+<em>Figure 1.36  &#32; &#32;Choosing an origin point
+</em></a><P><ul><a name="8391">
+<li><strong>Cursor</strong> brings up a three-arm cursor that you can move to any position on the screen.
+</a></li><P><a name="8392">
+<li><strong>This Element's Midpoint</strong> uses the midpoint of the selected element as the origin.
+</a></li><P><a name="8393">
+<li><strong>Object Midpoint</strong> uses the midpoint of an object as the origin.
+</a></li><P><a name="8394">
+<li><strong>Origin</strong> uses the object's local origin, the global origin, or the origin of another object (depending on whether you click left, middle, or right).
+</a></li><P><a name="8395">
+<li><strong>Aimpoint</strong> uses the point toward which the N-Geometry camera is aimed as the point of origin.
+</a></li><P><a name="8396">
+<li><strong>Eyepoint</strong> uses the N-Geometry camera location as the point of origin.
+</a></li><P><a name="8397">
+<li><strong>Type In Location</strong> lets you type in an absolute origin using the xyz coordinates.
+</a></li><P><a name="8398">
+<li><strong>Select Element</strong> uses a vertex or the center of segment or face as the origin.
+</a></li><P><a name="8163">
+<li><strong>Point along Segment</strong> lets you specify a location on a segment of your choosing as the origin.
+</a></li><P></ul><P><a name="196354">
+<h2><HR> Shortcuts</h2>
+</a><a name="9067">
+<h3> Defining a Default Operation</h3>
+</a><a name="9068">
+N-Geometry has the concept of a "current default" operation. This is handy if you are using the same operation repetitively and don't want to select it from the menu every time.<p>
+</a><P><a name="9647">
+To define the current default operation:<p>
+</a><P>
+<a name="9657">
+<STRONG>	 1.	 Select an element and perform the operation on it.
+</STRONG>
+</a><P><a name="9658">
+<STRONG>	2.	 Move the mouse over an empty area of the N-Geometry window and use<strong> (CTRL+SHIFT-L)</strong>.
+</STRONG>
+</a><P><dl><a name="9662">
+<dt>A message appears in the upper left corner of the 3D editor, telling you that the last operation you used is now the default operation.</dt>
+</a><P></dl><a name="9661">
+<STRONG>	3.	 <strong>(CTRL-L)</strong> on an element to use the current default operation.
+</STRONG>
+</a><P><dl><a name="197849">
+<dt>Once a default operation has been defined, you use <strong>(CTRL-L)</strong> as a shortcut for <strong>(SHIFT-L)</strong> + selecting the operation.</dt>
+</a><P></dl>
+<a name="9184">
+This shortcut is extremely useful when you are performing the same operation repeatedly on different elements (e.g., moving different points on a model).<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>After you've defined the current default operation, you can select a different element type (e.g., a point instead of a segment) and still use </em><strong>(CTRL-L)</strong><em> to apply the current default operation to the selected element.</em></font></dd></dt></dl><P>
+<a name="198767">
+<h3> Hotkeys</h3>
+</a><a name="198765">
+N-Geometry features a complete set of hot keys. <p>
+</a><P><ul><a name="198773">
+<li>To display the hot keys available, press "h" with the mouse over the N-Geometry window.
+</a></li><P><a name="198774">
+<li>For a more complete description of the hot keys, see <a href="BHotKeys.html#8957">Appendix &#32;B</a>, <a href="BHotKeys.html#12569">"Hot Keys" &#32;</a> at the endo of this guide.
+</a></li><P></ul><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0Intro.html">[Prev]</a> <a href="2CreatingObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 08:11:36 -->
+
+</body>
+</html>

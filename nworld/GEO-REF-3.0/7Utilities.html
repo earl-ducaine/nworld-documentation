@@ -1,0 +1,817 @@
+<html><head><title>Utilities</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6DisplayingObjects.html">[Prev]</a> <a href="ATroubleshooting.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="4299">
+<h1>Utilities</h1>
+</a>
+<hr><p><a name="5157">
+The <strong>Utilities</strong> menu lets you do the following:<p>
+</a><P><ul><a name="5106">
+<li>Restructure objects
+</a></li><P><a name="5107">
+<li>Rename objects
+</a></li><P><a name="5108">
+<li>Display information about objects
+</a></li><P><a name="5430">
+<li>Render the current N-Geometry scene
+</a></li><P><a name="5431">
+<li>Set operational preferences for N-Geometry
+</a></li><P><a name="5109">
+<li>Customize your menu display
+</a></li><P><a name="2770">
+ <P><img src="7Utilities.anc.gif"><p>
+</a></ul><P><a name="2771">
+<em>Figure 7.1  &#32; &#32;Utilities menu
+</em></a><P><a name="5442">
+<h2><HR> Restructure</h2>
+</a><a name="5444">
+Collects several objects to form one new <em>compound </em>object. For example, if you have created a door by making three separate objects-the door itself, a handle, and a window-they can be collected and made into one named object with this command. The new object is referred to as a "group."<p>
+</a><P><a name="5445">
+Such a restructured object can then be animated in N-Dynamics by referencing the new compound object rather than animating each terminal object separately. (Refer to the <em>N-Dynamics Reference Manual</em> and <em>N-Dynamics Tutorial</em> for more information.)<p>
+</a><P><a name="5446">
+Using the same technique, you can attach a light to an object in order to illuminate a particular part of the object. If you later transform that object, the light will be also be transformed, remaining in its relative position to the object.<p>
+</a><P><a name="5447">
+To restructure an object:<p>
+</a><P><ul><a name="5448">
+<li><strong>(CLICK-L)</strong> or <strong>(CLICK-R)</strong> on the <strong>Utilities&gt;Restructure</strong> command. This brings up an object list. Use the mouse to select the objects you want to group together. 
+</a></li><P><dl><a name="5449">
+<dt>When you click on <strong>Do It</strong>, the following menu appears:</dt>
+</a><P><a name="5453">
+ <P><img src="7Utilities.anc1.gif"><p>
+</a></dl></ul><P><a name="5454">
+<em>Figure 7.2  &#32; &#32;Restructuring objects
+</em></a><P><ul><ul>
+<BR><a name="5455">
+<li><strong>Existing object</strong> combines all the selected objects into one of the objects that already exist in the scene. If, for example, we were working with the door example mentioned above, we might see an object list like this:
+</a><P><a name="5459">
+ <P><img src="7Utilities.anc2.gif"><p>
+</a></ul>
+</ul><a name="5461">
+<em>Figure 7.3  &#32; &#32;Restructuring into an existing object
+</em></a><P><dl><dl><dl><a name="5462">
+<dt>Choose the Door, Handle, and Window objects, then <strong>(CLICK-L)</strong> on<br><strong>Do It</strong>; you're then prompted to select which of those three objects you want to combine those objects <em>into</em>. <strong>(CLICK-L)</strong> on "Door" to create a new group called "Door Group." The next time you look at a list of objects in the scene, you can see that a new group has been created:<p>
+</a><P><a name="5466">
+ <P><img src="7Utilities.anc3.gif"><p>
+</a></dl></dl></dl><a name="5467">
+<em>Figure 7.4  &#32; &#32;The resulting superior object (now a group)
+</em></a><P><dl><dl><dl><a name="5468">
+<dt>If you <strong>(CLICK-R)</strong> on the group, you can see the inferior objects in of the Door Group object:<p>
+</a><P><a name="5472">
+ <P><img src="7Utilities.anc4.gif"><p>
+</a></dl></dl></dl><a name="5474">
+<em>Figure 7.5  &#32; &#32;Displaying the elements in a group
+</em></a><P><dl><dl><dl><a name="5475">
+<dt>This is particularly useful if you create new, top level objects and want to add them to an existing group. For example, you might create a peephole later and add it to the existing door group.<p>
+</a><P></dl></dl><ul>
+<BR><a name="5476">
+<li><strong>New object</strong> creates a group in the same way that <strong>Existing Object</strong> does, except that you can enter a new, arbitrary name for the created group (rather than one based on an existing object's name).
+</a><P><BR><a name="5477">
+<li><strong>Top level</strong> lets you select objects that are down in the hierarchy and move them to the top level. So, for example, if you chose the Door, Window, and Handle objects as shown in <a href="7Utilities.html#5474">Figure 7.5</a>, then moved them to the top level, they would once more look like they did in <a href="7Utilities.html#5461">Figure 7.3</a>.
+</a><P></ul>
+</dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you move all objects in a group to the top level, the empty group is eliminated from the object list.</em></font></dd></dt></dl><P>
+<ul><a name="5485">
+<li><strong>(CLICK-M)</strong> on <strong>Restructure</strong> opens a menu containing a list of your top level objects. The items on this menu permit you to reorder the objects on the list. To move an item, highlight it with the mouse and then, holding down the left mouse button, drag the item to a different position on the list. The item remains where it is when you release the mouse button. When you have finished rearranging the list, click on <strong>Do It</strong>.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>An object's position in the object hierarchy is also displayed in the mouse documentation line. A quick glance at the description of the object can tell you its relative position in an object or group's hierarchy.</em></font></dd></dt></dl><P>
+<a name="5488">
+<h2><HR> Rename</h2>
+</a><a name="5489">
+Renames an object. N-Geometry assigns an object a unique name, such as <strong>Cube</strong> when it is added to the environment. However, an assigned name does not necessarily reflect the nature of the object, and a name that describes the initial state of an object with relative accuracy such as cube or sphere might become inappropriate once the object has undergone extensive modification. <strong>Rename</strong> enables you to keep an object's name descriptive of its current state or its intended use.<p>
+</a><P><ul><a name="5490">
+<li><strong>(CLICK-L)</strong> changes the name of a single object.
+</a></li><P><a name="5491">
+<li><strong>(CLICK-M)</strong> on <strong>Rename</strong> lets you modify one or more objects at once, by specifying a prefix, suffix, or other random search and replace string. After choosing several objects the following menu is displayed:
+</a></li><P><a name="5495">
+ <P><img src="7Utilities.anc5.gif"><p>
+</a></ul><P><a name="5496">
+<em>Figure 7.6  &#32; &#32;Rename menu
+</em></a><P><ul><ul>
+<BR><a name="5497">
+<li><strong>Prefix for Name</strong> <em>prepends</em> the specified string to the selected objects. For example, a string of "big-" applied to a selected object "door" would change the object's name to "big-door".
+</a><P><BR><a name="5498">
+<li><strong>Suffix for Name</strong> is identical to <strong>Prefix for Name</strong>, except that the specified string is <em>appended</em> to the selected objects.
+</a><P><BR><a name="5499">
+<li><strong>Replace String</strong> lets you replace all occurrences of a string in the object list with another string. Enter the string you want to search for, press <strong>RETURN</strong>, then enter replacement string and press <strong>RETURN</strong> again.
+</a><P><BR><a name="5500">
+<li><strong>Modify which</strong> lets you specify which types of objects you want to rename.
+</a><P></ul>
+</ul><ul><a name="5501">
+<li><strong>(CLICK-R)</strong> changes the name of several objects. After selecting several objects that you want to rename, a menu is displayed showing the old name for each, and displaying a text box for the new name of each.
+</a></li><P></ul><P><a name="5503">
+<h2><HR> Info</h2>
+</a><a name="5504">
+The Info operation lets you display various types of information about objects in the N-Geometry window. If you <strong>(CLICK-L)</strong> on <strong>Info</strong>, a menu of operations is displayed:<p>
+</a><P><a name="5508">
+ <P><img src="7Utilities.anc6.gif"><p>
+</a><a name="5509">
+<em>Figure 7.7  &#32; &#32;<strong>Info</strong> operations
+</em></a><P><a name="5510">
+Each of these operations is described below.<p>
+</a><P><a name="5512">
+<h4> Set ?</h4>
+</a><a name="5513">
+Sets the global variable "?" to the last object, and the previous object to "??". This operation is typically reserved for use by developers.<p>
+</a><P><a name="5514">
+For details on how to use this command, see the <em>N&#183;World Developer's Reference Guide</em>.<p>
+</a><P><a name="5516">
+<h4> List Objects</h4>
+</a><a name="5517">
+The <strong>List</strong> command displays a list of elements in the selected object(s). This list is printed in the UNIX shell window from which N&#183;World was started.<p>
+</a><P><a name="5518">
+A list for a complex object might look like this:<p>
+</a><P><a name="5519">
+<code><pre>----------------- SELECTED OBJECTS --------------------<p>
+</code></pre></a><a name="5520">
+<code><pre>"2-Subobjects" <p>
+</code></pre></a><a name="5521">
+<code><pre>   "Copy of Torus"  #&lt;POLYHEDRON 94&gt;:   648pts  1296edges   648faces.<p>
+</code></pre></a><a name="5522">
+<code><pre>   "Torus"          #&lt;POLYHEDRON 91&gt;:   648pts  1296edges   648faces.<p>
+</code></pre></a><a name="5523">
+<code><pre><p>
+</code></pre></a><a name="5524">
+<code><pre>Element totals:  1296 pts, 2592 segments, 1296 faces.<p>
+</code></pre></a><a name="5526">
+<h4> Annotate</h4>
+</a><a name="5528">
+The <strong>Annotate</strong> item prints element serial numbers over the line drawing of the object. The serial numbers will disappear by hitting the <strong>SPACEBAR</strong>, moving the camera, or moving the mouse off of the view window.<p>
+</a><P><ul><a name="5529">
+<li><strong>(CLICK-L)</strong> prints serial numbers for all visible vertices within the selected object.
+</a></li><P><a name="5530">
+<li><strong>(CLICK-M)</strong> prints serial numbers for all edges.
+</a></li><P><a name="5531">
+<li><strong>(CLICK-R)</strong> prints serial numbers for all faces.
+</a></li><P><a name="5535">
+ <P><img src="7Utilities.anc7.gif"><p>
+</a></ul><P><a name="5537">
+<em>Figure 7.8  &#32; &#32;Icosahedron with edges annotated
+</em></a><P><a name="5538">
+In addition to the above options, you may <strong>(CTRL-*)</strong> on <strong>Annotate</strong> display pertinent information about elements on the screen. <p>
+</a><P><a name="5539">
+Using this operation requires some knowledge of the LISP format function and its directives, and should only be used if you need a special type of element display. For more information on this option, contact <em>Nichimen Graphics Support</em>.<p>
+</a><P><ul><a name="5540">
+<li><strong>Format String</strong> specifies the template for printing the information. It corresponds to the second (string) argument of format.
+</a></li><P><a name="5541">
+<li><strong>Format Args</strong> lists The values that are inserted into the above string according to the rules of the format function. The forms are evaluated inside each element as it is being annotated.
+</a></li><P></ul><P><a name="5543">
+<h4> Show Data</h4>
+</a><a name="5544">
+Displays known information about an object or the camera.<p>
+</a><P><ul><a name="5545">
+<li><strong>(CLICK-L)</strong> prints geometric and topological information.
+</a></li><P><a name="5546">
+<li><strong>(CLICK-R)</strong> prints screen coordinate data for an object.
+</a></li><P><a name="5547">
+<li><strong>(CTRL-L)</strong> prints information to a file.
+</a></li><P></ul><P><a name="5548">
+<h2><HR> Render</h2>
+</a><a name="5553">
+Lets you render the current scene in N-Geometry.<p>
+</a><P><ul><a name="5555">
+<li><strong>(CLICK-L)</strong> on Render to render the current scene.
+</a></li><P><a name="5556">
+<li><strong>(CLICK-R)</strong> displays the render defaults menu, where you can modify your defaults before rendering the scene. These parameters are described in more detail in the <em>Attributes Editor User's Guide</em>.
+</a></li><P><a name="5562">
+ <P><img src="7Utilities.anc8.gif"><p>
+</a></ul><P><a name="5564">
+<em>Figure 7.9  &#32; &#32;Render defaults menu
+</em></a><P><a name="4339">
+<h2><HR> Preferences</h2>
+</a><a name="4896">
+The <strong>Preferences</strong> command opens a multi-page menu which lets you set global operational parameters for N-Geometry.<p>
+</a><P><ul><a name="4340">
+<li><strong>(CLICK-L)</strong> on <strong>Utilities&gt;Preferences</strong> to display the Preferences menu. This menu defines a large number of operational parameters for N-Geometry.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Some of these menu items are also found on the Modes submenu (see the section <a href="5ViewingObjects.html#3089">"Modes," on page &#32;5-2</a>), which typically comes up faster than this menu).</em></font></dd></dt></dl><P>
+<a name="4892">
+Across the bottom of the preferences menu are several buttons which let you save or change your preferences:<p>
+</a><P><ul><ul>
+<BR><a name="4345">
+<li><strong>Set Preferences</strong> saves the preferences you've defined for the current session, but not to file.
+</a><P><BR><a name="4346">
+<li><strong>Set &amp; Save</strong> saves the preferences you've set to file. These become your defaults whenever you boot up N-Geometry.
+</a><P><BR><a name="4347">
+<li><strong>Current</strong> undoes any changes you've made to the current menu without exiting the Preferences menu.
+</a><P><BR><a name="4348">
+<li><strong>Defaults</strong> reverts to the user's saved preferences.
+</a><P><BR><a name="4901">
+<li><strong>Abort</strong> exits from the Preferences menu without saving any changes.
+</a><P></ul>
+</ul><a name="4902">
+To open a section of the menu, <strong>(CLICK-L)</strong> on the vertical bar with the appropriate name. Each submenu on the Preferences menu is described below:<p>
+</a><P><a name="4905">
+<h4> Camera Preferences</h4>
+</a><ul><a name="4904">
+<li><strong>Orthographic Mode</strong> switches between perspective and orthographic camera display modes.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Depending on your renderer, you may or may not be able to render orthographic views. N-Render does support orthographic renders.</em></font></dd></dt><dt><dd><font color=dd000>Note.	You can also toggle orthographic mode on and off with <strong>(SHIFT-O)</strong></font></dd></dt><dl><a name="4359">
+<dt><a href="7Utilities.html#4366">Figure 7.10</a> illustrates two views of the same object, one in perspective and one in orthographic mode.</dt>
+</a><P><a name="4364">
+ <P><img src="7Utilities.anc9.gif"><p>
+</a></dl></dl><P>
+<a name="4366">
+<em>Figure 7.10  &#32; &#32;A perspective view and an orthographic view of the same object
+</em></a><P><ul><a name="4921">
+<li><strong>Screen Stretch Factor</strong> controls the shape of pixels. The shape of monitor pixels varies, depending on the internal adjustments of each monitor. Most black-and-white console monitors do not have square pixels. <strong>Screen Stretch Factor</strong> compensates for the spatial asymmetry in x and y by stretching in x. The value should vary for each type of terminal and the particular settings of each monitor. The default is 1.0.
+</a></li><P><a name="4371">
+<li><strong>Auto Hither/Yon</strong> specifies whether hither and you clipping planes are calculated automatically.
+</a></li><P><ul>
+<BR><a name="4372">
+<li>If set to <strong>No</strong>, the default, the hither and yon clipping distances remain constant.
+</a><P><BR><a name="4373">
+<li>If set to <strong>Yes</strong>, the planes are continuously adjusted based on the position of objects in the previous frame.
+</a><P></ul>
+<dl><a name="4374">
+<dt>With auto-adjusting, at least part of an object must be visible or the hither and yon clipping planes are not updated. You should set <strong>Auto Hither/Yon</strong> to <strong>No</strong> when parameters such as eyepoint and location of object are explicitly set, since explicit settings might move the object beyond the hither and yon clipping planes.</dt>
+</a><P><a name="4375">
+<dt>To set the hither and yon planes, <strong>(CLICK-R)</strong> on <strong>zoom +</strong>.</dt>
+</a><P></dl><a name="4377">
+<li><strong>Range Expansion</strong> sets the hither and yon clipping planes to a certain distance in front of and behind the geometric points that are closest and farthest when <strong>Auto Hither/Yon</strong> is on. The amount of "headroom" is specified by this ratio, which can be a number from <strong>0</strong> to <strong>1</strong>. In <a href="7Utilities.html#4414">Figure 7.11</a>, this is the ratio of distance a to b:
+</a></li><P><a name="4412">
+ <P><img src="7Utilities.anc10.gif"><p>
+</a></ul><P><a name="4414">
+<em>Figure 7.11  &#32; &#32;Setting the viewing depth ratio
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Keeping the amount of headroom to a minimum generally increases the quality of rendered images.</font></dd></dt></dl><P>
+<ul><a name="4417">
+<li><strong>Min Hither Distance </strong>defines the minimum hither distance for in effect. Even with <strong>Auto Hither/Yon</strong> set to <strong>Yes</strong>, N-Geometry sets a minimum hither distance from the eye.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>A very low minimum hither distance reduces the depth precision with which objects are rendered; objects may appear to overlap or be displayed out of order as they get extremely close to the viewer.</em></font></dd></dt><a name="4438">
+ <P><img src="7Utilities.anc11.gif"><p>
+</a></dl><P>
+<a name="4439">
+<em>Figure 7.12  &#32; &#32;Hither and yon clipping planes
+</em></a><P><ul><a name="4441">
+<li><strong>World Units</strong> specifies the unit by which distances and sizes are measured. The default is <strong>FEET</strong>. You may also use microns, millimeters, centimeters, meters, kilometers, inches, yards, and miles.
+</a></li><P><dl><a name="4442">
+<dt><strong>NEW</strong> lets you create your own unit, expressed in terms of metric conversion.</dt>
+</a><P><a name="4443">
+<dt>Changing this value scales all the objects in the world and the physical location of the camera. The effect is not visible, but the <em>coordinates</em> of all bodies are changed.</dt>
+</a><P></dl><a name="4445">
+<li><strong>Camera Format</strong> defines the characteristics of your viewport, and is particularly useful when creating rendered scenes you wish to composite, for example, with live footage. If you know the camera settings used to generate the live footage, you can select that format and be sure that the two will match.
+</a></li><P><dl><a name="4446">
+<dt>The first part of the menu lists film formats, identifying them by both aspect ratio and focal length; the second part lists available video formats. The following formats are supported: 
+<P><Table Border="1">
+<dl>
+<a name="4452">
+<em>Table 7.1 <strong> &#32; &#32;Supported Camera Formats </strong>
+</em></a></dl>
+<tr><th align="left"><a name="4456">
+Film
+</a><th align="left"><a name="4458">
+Video
+</a>
+<tr><td valign="top"><a name="4460">
+ Free<p>
+</a><td valign="top"><a name="4462">
+ NTSC<p>
+</a>
+<tr><td valign="top"><a name="4464">
+ 16mm<p>
+</a><td valign="top"><a name="4466">
+ PAL narrow<p>
+</a>
+<tr><td valign="top"><a name="4468">
+ 35mm<p>
+</a><td valign="top"><a name="4470">
+ PAL square<p>
+</a>
+<tr><td valign="top"><a name="4472">
+ Academy<p>
+</a><td valign="top"><a name="4474">
+ D1-(NTSC)<p>
+</a>
+<tr><td valign="top"><a name="4476">
+ 1.85<p>
+</a><td valign="top"><a name="4478">
+ D1-(PAL)<p>
+</a>
+<tr><td valign="top"><a name="4480">
+ Pan<p>
+</a><td valign="top"><a name="4482">
+ HDTV 240M<p>
+</a>
+<tr><td valign="top"><a name="4484">
+ 70mm<p>
+</a><td valign="top"><a name="4486">
+ HDTV Eureka<p>
+</a>
+<tr><td valign="top"><a name="4488">
+ UltraPan<p>
+</a><td valign="top"><a name="4490">
+ HDTV square<p>
+</a>
+<tr><td valign="top"><a name="4492">
+ Vista<p>
+</a><td valign="top"><a name="4494">
+ HDTV Hi-Res<p>
+</a>
+<tr><td valign="top"><a name="4496">
+ 35still<p>
+</a><td valign="top"><a name="4498">
+ Hi-Res<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</dt>
+</a><P><a name="4499">
+<dt><strong>NTSC</strong> video format is the default.</dt>
+</a><P></dl></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Positioning the mouse over any of the format names listed in the pop-up menu displays the aspect ratio of that format in the mouse documentation line.</em></font></dd></dt><dl><a name="4501">
+<dt>See the <em>American Cinematographers Guide</em>, published by the American Society of Cinematographers, for detailed information about each film format.</dt>
+</a><P><a name="4503">
+<dt>You can <em>define</em> a new camera format by choosing the <strong>New</strong> option at the top of the menu. <strong>(CLICK-L)</strong> on <strong>New</strong> to display the following menu:</dt>
+</a><P><a name="4507">
+ <P><img src="7Utilities.anc12.gif"><p>
+</a></dl></dl><P>
+<a name="4508">
+<em>Figure 7.13  &#32; &#32;Defining a new camera format
+</em></a><P><ul><ul>
+<BR><a name="4509">
+<li><strong>Full Name</strong> should be a descriptive name for the format
+</a><P><BR><a name="4510">
+<li><strong>Id</strong> is a shorthand name for the camera format; it will appear on the list of selectable formats.
+</a><P><BR><a name="4511">
+<li><strong>Type</strong> can be one of the following:
+</a><P><ul>
+<BR><a name="4512">
+<li><strong>Video</strong> is for video format.
+</a><P><BR><a name="4513">
+<li><strong>Cine</strong> is for images lying crosswise on film.
+</a><P><BR><a name="4514">
+<li><strong>Other</strong> is for other film formats.
+</a><P></ul>
+<BR><a name="4515">
+<li><strong>Gate width</strong> (for film formats) is projected image width in inches.
+</a><P><BR><a name="4516">
+<li><strong>Pixel width</strong> (for digital video formats) is "standard" number of pixels across
+</a><P><BR><a name="4517">
+<li><strong>Normal fl </strong>(for film formats) is the "normal" lens for that film size. This is usually what yields about a 40 degree angle of view, but could be wider for wide formats.
+</a><P><BR><a name="4518">
+<li><strong>Aspect Ratio</strong> is the ratio of width/height of a visually correct image.
+</a><P><BR><a name="4519">
+<li><strong>Squeeze Factor</strong>, (for cine formats and digital video with non-square pixels), is the factor the format width should be multiplied by to be visually correct.
+</a><P><dl><a name="4520">
+<dt>For example, D1 is 720x486 pixels, a ratio of almost 1.5 to 1. However, to be visually correct for NTSC (1.333:1) the width needs to be multiplied by .9).<p>
+</a><P></dl></ul>
+</ul>
+<ul><a name="4522">
+<li><strong>Shutdown Save Views</strong> determines what happens with views you may have created when you shut down N-Geometry:
+</a></li><P><ul>
+<BR><a name="4523">
+<li><strong>All</strong> saves all views to their default filenames.
+</a><P><BR><a name="4524">
+<li><strong>New</strong> automatically saves all new or modified views to their default filenames.
+</a><P><BR><a name="4525">
+<li><strong>Ask</strong> queries whether or not to save each new or modified view.
+</a><P><BR><a name="4526">
+<li><strong>Menu</strong> displays a menu and prompts you which views to save. This is the default.
+</a><P><BR><a name="4527">
+<li><strong>None</strong> shuts down without prompting or saving any new or modified views.
+</a><P></ul>
+</ul><P><a name="4528">
+<h4> Mouse Preferences</h4>
+</a><ul><a name="4530">
+<li><strong>Mouse Speed</strong> controls how fast the cursor moves in relation to movement of the mouse. Decreasing this value makes your mouse move slower; raising the value makes it more responsive. 
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong><em>	It may be helpful to lower the mouse speed if you are doing detail work that requires fine movement.</em></font></dd></dt><dl><a name="4532">
+<dt>The default is 25.</dt>
+</a><P></dl></dl><P>
+<ul><a name="4534">
+<li><strong>Mouse Accelerator</strong> accelerates camera motion and the like as you move the mouse faster.  0 is linear (the speed of the motion is proportional to the speed of the mouse), and increasing the value increases the relative speed of the motion.  (This parameter works together with <strong>Mouse Speed</strong> above).
+</a></li><P><a name="4939">
+<li><strong>Translation Factor</strong> applies a factor (multiplier) to the mouse speed for translation operations, to control how much a selected element is moved. Controlling the speed of a move operation is helpful in situations when you have zoomed in on an element. If the factor is set to 0, the mouse won't move. The default is 1, normal mouse movement.
+</a></li><P><a name="4942">
+<li><strong>Shift Key Factor</strong> accelerates mouse movement by the specified factor If you hold the <strong>SHIFT</strong> key down.
+</a></li><P><a name="4943">
+<li><strong>Monitor Operations</strong> enables the mouse monitor window.
+</a></li><P><a name="4535">
+<li><strong>Track Serial Numbers?</strong> if selected, displays the serial number for the currently selected element in the upper left corner of the N-Geometry window.
+</a></li><P><a name="4536">
+<li><strong>Describe Selected?</strong> if selected, topological and geometric information about the currently selected element in the upper left corner of the N-Geometry window: 
+<P><Table Border="1">
+<dl>
+<a name="4539">
+<em>Table 7.2  &#32; &#32;Information displayed when Describe Selected? is on
+</em></a></dl>
+<tr><th align="left"><a name="4543">
+Element Type
+</a><th align="left"><a name="4545">
+Information Displayed
+</a>
+<tr><td valign="top"><a name="4547">
+ point<p>
+</a><td valign="top"><a name="4549">
+ Vertex # of "object name"<br>X, Y, and Z location<p>
+</a>
+<tr><td valign="top"><a name="4551">
+ segment<p>
+</a><td valign="top"><a name="4553">
+ Edge # of "object name"<br>Length<br>Hard angle<p>
+</a>
+<tr><td valign="top"><a name="4555">
+ face<p>
+</a><td valign="top"><a name="4557">
+ Face # of "object name"<br>X, Y, Z location of face midpoint<p>
+</a>
+<tr><td valign="top"><a name="4559">
+ body<p>
+</a><td valign="top"><a name="4561">
+ Polyhedron # of "object name"<br># of faces<br># of triangles<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</a></li><P><a name="4562">
+<li><strong>Sketch Grid X, Y, and Z </strong>set the defaults for these items, which appear on the Encode Setup menu (used when encoding an object).
+</a></li><P></ul><P><a name="4563">
+<h4> Axes &amp; Cursor Preferences</h4>
+</a><ul><a name="4565">
+<li><strong>Show Global Axes?</strong> specifies whether or not the global axes are displayed.
+</a></li><P><a name="4567">
+<li><strong>Global Axis Length</strong> specifies the length (in current world units) of the global axes.
+</a></li><P><a name="4569">
+<li><strong>Global Axis Gap Size</strong> creates a gap of the specified length between the origin and the negative x, y, and z axes. This lets you tell at a glance which direction along a given axis is positive or negative (the one with the gap is negative).
+</a></li><P><a name="4571">
+<li><strong>Show Axis Letters</strong> specifies whether the axes labels (x, y, and z) are displayed.
+</a></li><P><a name="4594">
+ <P><img src="7Utilities.anc13.gif"><p>
+</a></ul><P><a name="4596">
+<em>Figure 7.14  &#32; &#32;The global axes, global axis gap, and axis labels
+</em></a><P><ul><a name="4618">
+<li><strong>Color Coded</strong> displays the global axis letters using the following color scheme: 
+<P><Table Border="1">
+<dl>
+<a name="4599">
+<em>Table 7.3  &#32; &#32;Colored axis letters
+</em></a></dl>
+<tr><th align="left"><a name="4603">
+Axis
+</a><th align="left"><a name="4605">
+Color
+</a>
+<tr><td valign="top"><a name="4607">
+ x<p>
+</a><td valign="top"><a name="4609">
+ red<p>
+</a>
+<tr><td valign="top"><a name="4611">
+ y<p>
+</a><td valign="top"><a name="4613">
+ green<p>
+</a>
+<tr><td valign="top"><a name="4615">
+ z<p>
+</a><td valign="top"><a name="4617">
+ yellow<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</a></li><P><dl><a name="4619">
+<dt>(This color scheme matches that used for local axes on bones for skeleton primitives.)</dt>
+</a><P></dl><a name="4944">
+<li><strong>Local Axes Length</strong> specifies the length for the displayed local axes of an object.
+</a></li><P><a name="4620">
+<li><strong>3D Cursor Type</strong> specifies the default cursor type used for encoding an object.
+</a></li><P><ul>
+<BR><a name="4621">
+<li><strong>Crosshair</strong> uses the standard crosshairs cursor.
+</a><P><BR><a name="4622">
+<li><strong>Locator box</strong> uses a 3D box to show the position of the cursor relative to the x, y, and z global axes.
+</a><P></ul>
+<dl><a name="4626">
+<dt>See the section <a href="2CreatingObjects1.html#30443">"Cursor," on page &#32;2-33</a> for a description of the various cursor types.</dt>
+</a><P></dl></ul><P><a name="4627">
+<h4> Color Preferences</h4>
+</a><ul><a name="4949">
+<li><strong>Camera Background Image Directory </strong>lets you specify the directory in which the camera background image (below) can be found.
+</a></li><P><a name="4951">
+<li><strong>Camera Background Image</strong> lets you specify a background image that can be displayed behind the N-Geometry Window. The image is stretched or squashed appropriately to fit into the N-Geometry frame.
+</a></li><P><a name="4629">
+<li><strong>Camera Background Color</strong> sets the color for the background of the N-Geometry window.
+</a></li><P><a name="4631">
+<li><strong>Camera Text Color</strong> sets the color of the text for the messages that appear in the upper left corner of the N-Geometry window.
+</a></li><P><a name="4633">
+<li><strong>Global Axis Color</strong> sets the color of the global axes.
+</a></li><P><a name="4635">
+<li><strong>Default Object Line Color</strong> sets the default color for wireframe objects.
+</a></li><P><a name="4637">
+<li><strong>Default Object Surface Color</strong> sets the color used to shade an object when the object is displayed in shaded mode (see <a href="6DisplayingObjects.html#4210">"Shading," on page &#32;6-7</a>)..
+</a></li><P><a name="4638">
+<li><strong>Default Light Line Color</strong> sets the color used to draw light objects.
+</a></li><P><a name="4639">
+<li><strong>Default Mapper Line Color</strong> sets the color used to draw mapper objects.
+</a></li><P><a name="4640">
+<li><strong>Default Control Line Color</strong> sets the color used to draw control handles for bezier wires and other types of curved segments.
+</a></li><P></ul><P><a name="4645">
+<h4> Pathname Preferences</h4>
+</a><ul><a name="4647">
+<li><strong>Global Default</strong> is the default directory that N-World products looks to first for any objects.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The global default directory is common to all N-World products.</em></font></dd></dt></dl><P>
+<ul><a name="4650">
+<li><strong>Font Data</strong> is the directory where Bitstream font information is stored.
+</a></li><P><a name="4652">
+<li><strong>Default Object</strong> is the directory displayed by default when loading or saving objects. The system default is the user's home directory.
+</a></li><P><a name="4654">
+<li><strong>Default View</strong> is the directory displayed by default when loading or saving views.
+</a></li><P><a name="4658">
+<li><strong>Relative Bodyfile</strong> is used if you save objects using separate body files the <strong>File&gt;Save</strong> menu. The default is bodies/, which causes all body files to be saved in a subdirectory right beneath the directory where objects are saved.
+</a></li><P><ul>
+<BR><a name="4659">
+<li><strong>Auto Create?</strong> specifies whether relative bodyfiles are created automatically. If the specified directory cannot be found with <strong>Auto Create?</strong> set to <strong>Yes</strong>, the file is created automatically as well. If this parameter is set to <strong>No</strong>, you are prompted to specify the directory in which the relative body files are saved.
+</a><P></ul>
+</ul><P><a name="4660">
+<h4> Element Edit Preferences</h4>
+</a><ul><a name="4662">
+<li><strong>Scale by Zero Action</strong> lets you define what happens when you try to scale an object with a zero:
+</a></li><P><ul>
+<BR><a name="4663">
+<li><strong>Ignore</strong> allows scaling of objects by zero without warning, regardless of potential problems.
+</a><P><BR><a name="4664">
+<li><strong>Notify</strong> allows scaling of objects by zero, but displays a warning in the UNIX shell from which N-Geometry was started.
+</a><P><BR><a name="4665">
+<li><strong>Ask</strong> displays a pop-up dialog asking you to either confirm or enter a new value for the scaling operation. This is the default.
+</a><P><BR><a name="4666">
+<li><strong>Replace</strong> automatically replaces zero with the value found in the LISP form 3D::*DEFAULT-SCALE-BY-ZERO-STANDIN*.
+</a><P></ul>
+<a name="4668">
+<li><strong>Scale by Zero Standin</strong> lets you specify a default value used with the Replace option in the <strong>Scale by Zero Action</strong> (directly above).
+</a></li><P><a name="4670">
+<li><strong>Magnet Falloff Function</strong> specifies the curve type used to calculate area of influence calculations.
+</a></li><P><ul>
+<BR><a name="4671">
+<li><strong>Straight</strong> uses an inverse linear curve; influence decreases linearly from the center.
+</a><P><BR><a name="4672">
+<li><strong>Spike</strong> uses an inverse square curve; influence decreases quickly near the center, more slowly at the edge.
+</a><P><BR><a name="4673">
+<li><strong>Bell</strong> use a cosine curve; influence decreases slowly at the center and edge, quicker in between.
+</a><P><BR><a name="4674">
+<li><strong>Dome</strong> uses a half-cosine curve; influence decreases gradually at the center, more quickly at the edge.
+</a><P></ul>
+<a name="4676">
+<li><strong>Magnet Distance Route</strong> determines how areas of influence are measured:
+</a></li><P><ul>
+<BR><a name="4677">
+<li><strong>Shortest</strong> uses the shortest direct distance from the periphery of the selected element.
+</a><P><BR><a name="4678">
+<li><strong>Midpoint</strong> uses the shortest direct distance from the midpoint of the selected element.
+</a><P><BR><a name="4679">
+<li><strong>Surface</strong> approximates the shortest distance following face surfaces.
+</a><P></ul>
+<a name="4681">
+<li><strong>Numeric Input Default</strong> specifies whether numeric input menus are displayed by default for modify operations.
+</a></li><P><a name="4683">
+<li><strong>Tube Transforming Item</strong> determines whether an additional field appears on the tube creation dialog box. (Advanced users can then specify a function in that dialog box that modifies the cross-section of the tube as it moves along the path. For more information on using this feature, contact <em>Graphics Support</em>.)
+</a></li><P><a name="4686">
+<li><strong>Logo Utilities Item</strong>, if selected, adds items to the text menu for automatic extruding, deholing, beveling, and coplanaring of letters, all useful functions for creating specialized type like that used in logos.
+</a></li><P><a name="4688">
+<li><strong>Max Face Size for Update</strong> is the maximum number of vertices a face can have and still have its normals updated interactively.
+</a></li><P><a name="4690">
+<li><strong>Max Normals for Update</strong> specifies the maximum number of normals that are updated during interactive operations (e.g., <strong>Move</strong>). It primarily affects <em>backfacing</em>. If the operation would cause more than the specified number of normals to be updated, backfacing display is not updated until after the operation is completed.
+</a></li><P><a name="4692">
+<li><strong>Min Edge Length</strong> is the smallest length an edge can have. If N-Geometry is told either directly or indirectly to cut an edge that would produce an edge smaller than this number, the operation is not performed.
+</a></li><P><a name="4694">
+<li><strong>Max Face Bevel Ratio</strong> is used for <strong>Bevel</strong> and <strong>Coplanar</strong> operations. If the newly created faces would cut into the original face by more than this amount (expressed as a fraction of the face size), they are trimmed back. The default is one-third.
+</a></li><P><a name="4695">
+<li><strong>Coincidence Tolerance</strong> is used for wires. For certain operations, the closest two points can be before they are considered to be in the same place.
+</a></li><P><ul>
+<BR><a name="4696">
+<li><strong>for Weld</strong> specifies the maximum distance elements may be separated by for the Weld operation to "take." 
+</a><P></ul>
+<a name="4698">
+<li><strong>Default Arc Subdiv Angle</strong> is used when converting arcs to wires. This is the interval at which the wires are to be subdivided.
+</a></li><P><a name="4700">
+<li><strong>Min Bounds Ratio</strong> is used with the Scale to Fit operation. It specifies the minimum ration maintained between the two objects when performing the operation (which prevents objects from being scaled to values close to zero). This is of particular value when scaling objects that are vastly different in size.
+</a></li><P><a name="4702">
+<li><strong>Allow Doubled Edge Cuts</strong> specifies whether N-Geometry allows you to cut a face along an existing edge, creating a double edge. Double edges are visually indistinguishable from single edges, but are typically undesirable, especially when rendering.
+</a></li><P><a name="4704">
+<li><strong>Copy Bridgee?</strong> specifies whether <strong>Bridge</strong> operation (<strong>(CTRL-*)</strong> to another body) copies the second body and leaves the original untouched, or absorbs it into the body bridged from.
+</a></li><P></ul><P><a name="4705">
+<h4> Object Preferences</h4>
+</a><ul><a name="4707">
+<li><strong>Shutdown Save Objects</strong> determines what N-Geometry does with objects when you shut down:
+</a></li><P><ul>
+<BR><a name="4708">
+<li><strong>All</strong> automatically saves all objects to their default names.
+</a><P><BR><a name="4709">
+<li><strong>New</strong> saves all new or modified objects.
+</a><P><BR><a name="4710">
+<li><strong>Ask</strong> queries you about each object before shutting down.
+</a><P><BR><a name="4711">
+<li><strong>Menu</strong> displays a menu and prompts you to specify which objects to save. This is the default.
+</a><P><BR><a name="4712">
+<li><strong>None</strong> shuts down without saving any objects.
+</a><P></ul>
+<a name="4714">
+<li><strong>Object Addition Mode</strong> determines whether the latest object is added to the bottom (the default) or top of object lists.
+</a></li><P><ul>
+<BR><a name="4715">
+<li><strong>Append </strong>adds the object to the bottom of the list.
+</a><P><BR><a name="4716">
+<li><strong>Prepend </strong>adds the object to the top of the list.
+</a><P></ul>
+<a name="4717">
+<li><strong>Default Rewrite Bodyfiles?</strong> specifies whether <strong>Force Write New?</strong> is set to <strong>Yes</strong> or <strong>No</strong> by default on the <strong>File&gt;Save</strong> menu when writing objects out with separate body files.
+</a></li><P><a name="4719">
+<li><strong>Default Primitives Size</strong> sets the default size (in world units) of ready made polyhedra. The default is 10.
+</a></li><P><a name="4721">
+<li><strong>Collectability Test</strong> determines which elements are collected when using the lasso to make a collection.
+</a></li><P><ul>
+<BR><a name="4722">
+<li><strong>Drawn</strong> selects all lassoed points regardless of their sensitivity status.
+</a><P><BR><a name="4723">
+<li><strong>Drawn + Sensitive</strong> tests for sensitivity of points before including them in a collection (points with sensitivity off are not included in a collection).
+</a><P></ul>
+<a name="4725">
+<li><strong>Sensitivity Threshold</strong> is the maximum number of points a newly added object can have and still start out "sensitive." (Objects added to N-Geometry that have more than this target number of vertices are loaded in "insensitive," speeding up N-Geometry.)
+</a></li><P><a name="4726">
+<li><strong>Restructure Renames Inferior?</strong> specifies how to name objects created by making a multiple object out of a terminal object.
+</a></li><P><ul>
+<BR><a name="4727">
+<li>If <strong>Yes</strong>, restructuring <strong>A</strong> into terminal object <strong>B</strong> causes <strong>A</strong> and <br><strong>Essential-B</strong> to be grouped under <strong>B</strong>.
+</a><P><BR><a name="4728">
+<li>If <strong>No</strong>, <strong>A</strong> and <strong>B</strong> are grouped under <strong>B Group</strong>.
+</a><P></ul>
+<a name="4730">
+<li><strong>Copy Copies Appearance</strong> specifies whether a copied object should use the same display parameters (e.g., shading and visibility) as the object it was copied from or use the default parameters for the object type as found in the <strong>Utilities&gt;Preferences&gt;Default Display</strong> menu.
+</a></li><P><a name="4731">
+<li><strong>Sticky Standin Bodies?</strong> substitutes boxes for selected objects <em>at all times</em>. This can significantly speedup redisplay in N-Geometry if you are working with a large object.
+</a></li><P><a name="4733">
+<li><strong>Point Display Radius</strong> specifies the radius, in pixels, of a point object (such as a scaling center). The valid values are 1 to 4. The default is 3, and higher values act as if you specified 4.
+</a></li><P><a name="4735">
+<li><strong>Segment Highlight Width</strong> lets you specify the width of highlighted segments when working in Segments mode. The default is 3.
+</a></li><P><a name="4737">
+<li><strong>Light Strength Radius</strong> defines the size of the "sunburst" around a light in the N-Geometry view window.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This parameter does not effect the brightness of the light, only its appearance in the interface.</em></font></dd></dt></dl><P>
+<ul><a name="4740">
+<li><strong>Highlight Segment Heads</strong> specifies whether or not to display a dot at the head end of a segment, edge, or instance of a related flavor as it is highlighted so you can see its orientation. While the orientation of a segment is usually not important, it <em>can</em> be significant when you are selecting a segment to act as an axis.
+</a></li><P><a name="4741">
+<li><strong>Draw control points solid? </strong>specifies whether the wires that control the <br>shape of a Bezier or spline are drawn as wires or as points.
+</a></li><P><a name="4743">
+<li><strong>Highlight Hidden</strong> determines whether or not hidden elements are displayed (e.g., can you see through a wire-frame cube or is it opaque?).
+</a></li><P><ul>
+<BR><a name="4744">
+<li><strong>Yes </strong>highlights points and segments that are collected but currently hidden from view.
+</a><P><BR><a name="4745">
+<li><strong>No</strong>, the default, highlights only those collected points and segments that are currently visible.
+</a><P></ul>
+<a name="4747">
+<li><strong>Visible Attachments</strong> determines whether object attachments (such as scaling centers, rotation axes, and other sub-objects) are <strong>Visible</strong> or <strong>Hidden</strong>. (Display of attachments can also be set from the Modes submenu.) The default is <strong>Visible</strong>.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This parameter overrides an elements Visibility parameter (set using </em><strong>Object Display&gt;Visibility</strong><em>).</em></font></dd></dt></dl><P>
+<a name="4749">
+<h4> Default Display Preferences</h4>
+</a><a name="4750">
+Lets you set the default display mode for the various types of bodies in N-Geometry:<p>
+</a><P><ul><a name="4751">
+<li>Wire, Polyhedron, Patch Body, Wire Frame, Cube Wire Frame, and Rectangular Mesh.
+</a></li><P></ul><P><a name="4752">
+For each type of body, you can specify whether or not each of the following display characteristics is on or off. <strong>(CLICK-L)</strong> on the text edit box to the right of the body type, and toggle the fields that you want to change:<p>
+</a><P><ul><a name="4753">
+<li>Visibility, Backfacing, Shading, Silhouetting, Points, Points Only, Point Normals, Edge Normals, Face Normals, Standins, Local Axes, and Sensitivity.
+</a></li><P></ul><P><a name="4754">
+<h4> Menu Preferences</h4>
+</a><ul><a name="4756">
+<li><strong>Main Menu Style</strong> determines how the GeoMenus menu is displayed.
+</a></li><P><ul>
+<BR><a name="4757">
+<li><strong>Side Only</strong> displays the GeoMenus in a single column at the right of the screen only.
+</a><P><BR><a name="4758">
+<li><strong>Flip Only</strong> displays the GeoMenus as a flip menu if you <strong>(CLICK-R)</strong> on the N-Geometry window.
+</a><P><BR><a name="4759">
+<li><strong>Main + Side</strong> displays the GeoMenus in a single column at the side of the page. If you <strong>(CLICK-R)</strong> directly on the N-Geometry window, only the Main menu is displayed.
+</a><P></ul>
+<a name="4762">
+<li><strong>Edit Menu Style</strong> sets the type of menu used to display edit commands when you <strong>(SHIFT-L)</strong> on an element (or use Modify Body or Modify Selected):
+</a></li><P><ul>
+<BR><a name="4763">
+<li><strong>Multicolumn</strong> displays all operations in a multicolumn display.
+</a><P><BR><a name="4764">
+<li><strong>Flip</strong> displays a single column of edit operations for the chosen element; additional columns of operations appear as numbered strips to the right or left of the current column.
+</a><P><BR><a name="4765">
+<li><strong>Scroll</strong> displays all operations in a single column; if more operations exist than can fit in the column, a scroll bar appears on the left of the column so that you can select operations at the bottom of the list.
+</a><P></ul>
+<a name="4767">
+<li><strong>Wave-off Distance</strong> sets the distance you must move the mouse off of most menus or dialog boxes (those without <strong>Abort</strong> buttons) for that element to "disappear." Decrease the value to make the response more sensitive.
+</a></li><P><ul>
+<BR><a name="4768">
+<li><strong>for Flip Menus</strong> sets the wave-off distance for flip menus. Decrease this value to make the response more sensitive.
+</a><P></ul>
+<a name="4770">
+<li><strong>Document File Info</strong> displays additional information when reading in files. When you <strong>Open</strong> a file, if you use <strong>Select One</strong> or <strong>Select Several</strong> you get a list of files.  If this switch is set, the author and date are displayed on the mouse documentation line as you move the mouse over the file in the file list.
+</a></li><P></ul><P><a name="4976">
+<h4> Debug Preferences</h4>
+</a><a name="4979">
+These options are for users of the <em>Nichimen Developer's Kit</em> only. Refer to the documentation for that product for more information on these options.<p>
+</a><P><a name="4771">
+<h4> Global Preferences</h4>
+</a><ul><a name="4773">
+<li><strong>Global GC Behavior</strong> determines when and how a gc (garbage collection) operation is performed on the machine running N-Geometry.
+</a></li><P><ul>
+<BR><a name="4774">
+<li><strong>Notify</strong> displays a message that garbage collection should be performed.
+</a><P><BR><a name="4775">
+<li><strong>Auto</strong> performs a garbage collection whenever needed, without prompting the user that the operation is needed.
+</a><P><BR><a name="4776">
+<li><strong>Auto + Warn</strong> displays a warning and automatically performs the required garbage collection.
+</a><P><BR><a name="4777">
+<li><strong>No GC</strong> specifies that no garbage collection is to take place.
+</a><P></ul>
+<a name="4778">
+<li><strong>GC Threshold (bytes)</strong> specifies the number of bytes that are tenured before the specified GC behavior is executed.
+</a></li><P><a name="4779">
+<li><strong>Print Progress</strong> specifies how output sent to the UNIX shell (e.g., error descriptions) should appear.
+</a></li><P><ul>
+<BR><a name="4780">
+<li><strong>None</strong> sends no output to the shell.
+</a><P><BR><a name="4781">
+<li><strong>Notes</strong> sends descriptions only.
+</a><P><BR><a name="4782">
+<li><strong>Time + Notes</strong> sends descriptions and a timestamp for each message.
+</a><P></ul>
+<a name="4783">
+<li><strong>Error Menu</strong> determines what options are available if an error occurs:
+</a></li><P><ul>
+<BR><a name="4784">
+<li><strong>Simple</strong> displays a basic error message menu.
+</a><P><BR><a name="4785">
+<li><strong>Expert</strong> gives the additional option of entering the LISP debugger (useful for developers).
+</a><P><BR><a name="4786">
+<li><strong>None</strong> goes directly to the LISP debugger.
+</a><P></ul>
+<a name="4787">
+<li><strong>Describe Errors</strong>, if selected, provides a more verbose description of the error messages generated.
+</a></li><P></ul><P><a name="4982">
+<h3> Custom Menus</h3>
+</a><a name="5436">
+Lets you control what operations appear on N-Geometry's modify menu; there are three pre-defined modes for menus.<p>
+</a><P><a name="5004">
+When you <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;Utilities&gt;Custom Menus</strong> you can select from one of the following pre-defined menu modes:<p>
+</a><P><a name="4999">
+<h4> Long</h4>
+</a><a name="4989">
+Displays all possible commands for the selected element type on the modify body menu; more commonly used commands appear in the left column, less common on the right (for optimized flip menus).<p>
+</a><P><a name="4985">
+<h4> Short</h4>
+</a><a name="5009">
+Displays the most commonly used commands on a single page menu. (This mode is useful if you are just getting familiar with the system.)<p>
+</a><P><a name="4986">
+<h4> By Category</h4>
+</a><a name="5010">
+Displays menus as they appeared in N&#183;World 2.1 and earlier software releases; experienced users may want to use this mode if they are familiar with the location of certain commands in the menu.<p>
+</a><P><a name="4987">
+<h4> Edit Menus</h4>
+</a><a name="4988">
+The <strong>Edit Menus</strong> option lets you define your own custom menu configurations; you select which commands are to be included and name that configuration. <p>
+</a><P><a name="5171">
+This is handy whether you have a particular set of commands that you commonly use, or if you are working on a specialized task and want to create a menu with only a few operations on it.<p>
+</a><P><a name="5017">
+To create a custom menu:<p>
+</a><P>
+<a name="5018">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Utilities&gt;Custom Menu.
+</STRONG>
+</a><P><a name="5019">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Edit Menus.
+</STRONG>
+</a><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6DisplayingObjects.html">[Prev]</a> <a href="ATroubleshooting.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 11:24:37 -->
+
+</body>
+</html>

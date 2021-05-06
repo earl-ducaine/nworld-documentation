@@ -1,0 +1,792 @@
+<html><head><title>Constructing an Airplane</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Basics.html">[Prev]</a> <a href="3Mansion.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6238">
+<h1>Constructing an Airplane</h1>
+</a>
+<hr><p><a name="9561">
+<h4> In this chapter you'll learn some of the basic working ideas for N-Geometry, modeling an airplane from scratch.</h4>
+</a><a name="6680">
+ <P><img src="2Airplane.anc.gif"><p>
+</a><a name="6678">
+<h2><HR> In this Chapter</h2>
+</a><a name="9074">
+You'll learn about the following topics:<p>
+</a><P><a name="6243">
+<h4> Modifications</h4>
+</a><ul><a name="6244">
+<li>Extrude
+</a></li><P><a name="6245">
+<li>Move along Axis
+</a></li><P><a name="6246">
+<li>Scale
+</a></li><P><a name="6247">
+<li>Rotate
+</a></li><P><a name="6248">
+<li>Undo
+</a></li><P><a name="8351">
+<li>Chip Off
+</a></li><P></ul><P><a name="6250">
+<h4> Hot Keys</h4>
+</a><ul><a name="6251">
+<li>x,y &amp; z (to align along an axis)
+</a></li><P><a name="6252">
+<li>a (Aim)
+</a></li><P></ul><P><a name="6254">
+<h4> Modes</h4>
+</a><ul><a name="6671">
+<li>Labeled Axes
+</a></li><P></ul><P><a name="6255">
+<h4> The Default Operation Key</h4>
+</a><a name="6258">
+You'll learn how to assign a default function in N-Geometry, a shortcut for executing a given command over and over.<p>
+</a><P><a name="6263">
+<h3> Before You Begin</h3>
+</a><ul><a name="6634">
+<li><strong>(CLICK-L) </strong>on <strong>GeoMenus&gt;Camera&gt;Modes&gt;Labeled Axes</strong>.
+</a></li><P><dl><a name="6264">
+<dt>Note the orientation of the Z-axis; we'll build the airplane so that it's facing forward (along the Z axis)</dt>
+</a><P></dl></ul><P><a name="7534">
+<h2><HR> Starting the Airplane</h2>
+</a>
+<a name="6268">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><dl><a name="6272">
+<dt>N-Geometry displays a list of primitives that you can create:</dt>
+</a><P><a name="7933">
+ <P><img src="2Airplane.anc1.gif"><p>
+</a></dl>
+<a name="7934">
+<em>Figure 2.1  &#32; &#32;Creating a primitive
+</em></a><P>
+<a name="6274">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on cube.
+</STRONG>
+</a><P><dl><a name="6276">
+<dt>A cube appears in your N-Geometry window:</dt>
+</a><P><a name="6278">
+ <P><img src="2Airplane.anc2.gif"><p>
+</a></dl>
+<a name="7377">
+<em>Figure 2.2  &#32; &#32;A cube primitive
+</em></a><P>
+<a name="6285">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the top face of the cube.
+</STRONG>
+</a><P><dl><a name="7959">
+<dt>This is the face with its normal facing the +Y axis.</dt>
+</a><P><a name="6782">
+ <P><img src="2Airplane.anc3.gif"><p>
+</a></dl>
+<a name="7378">
+<em>Figure 2.3  &#32; &#32;Select the top face of the cube
+</em></a><P><dl><dl><a name="6289">
+<dt>The modify menu for faces appears:</dt>
+</a><P><a name="7369">
+ <P><img src="2Airplane.anc4.gif"><p>
+</a></dl></dl><a name="7374">
+<em>Figure 2.4  &#32; &#32;The modify menu
+</em></a><P>
+<a name="6291">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="6293">
+<dt>Move your mouse to the right. The face moves up along its normal.  Extrude the face so that it looks like the cube in <a href="2Airplane.html#7379">Figure 2.5</a>:</dt>
+</a><P><a name="6797">
+ <P><img src="2Airplane.anc5.gif"><p>
+</a></dl>
+<a name="7379">
+<em>Figure 2.5  &#32; &#32;Extruding a face
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Move the mouse left to move the face toward (and even into) the cube's body.</font></dd></dt></dl><P>
+<a name="6301">
+<h4> Hot Keys</h4>
+</a><a name="7204">
+There are quite a few one stroke "hot keys" in N-Geomety. Some of the ones you might find most useful are: 
+<P><Table Border="1">
+<dl>
+<a name="7211">
+<em>Table 2.1 <strong></strong><em> &#32; &#32;Some useful hot keys</em>
+</em></a></dl>
+<tr><th align="left"><a name="7215">
+Key
+</a><th align="left"><a name="7217">
+Description
+</a>
+<tr><td valign="top"><a name="7219">
+ u<p>
+</a><td valign="top"><a name="7221">
+ Undoes the last modification.<p>
+</a>
+<tr><td valign="top"><a name="7223">
+ x<p>
+</a><td valign="top"><a name="7225">
+ Align the camera along the X axis.<p>
+</a>
+<tr><td valign="top"><a name="7252">
+ (CTRL-x)<p>
+</a><td valign="top"><a name="7277">
+ Align the camera along the -X axis.<p>
+</a>
+<tr><td valign="top"><a name="7283">
+ y<p>
+</a><td valign="top"><a name="7285">
+ Align the camera along the Y axis.<p>
+</a>
+<tr><td valign="top"><a name="7287">
+ (CTRL-y)<p>
+</a><td valign="top"><a name="7289">
+ Align the camera along the -Y axis.<p>
+</a>
+<tr><td valign="top"><a name="7291">
+ z<p>
+</a><td valign="top"><a name="7293">
+ Align the camera along the Z axis.<p>
+</a>
+<tr><td valign="top"><a name="7337">
+ (CTRL-z)<p>
+</a><td valign="top"><a name="7350">
+ Align the camera along the -Z axis.<p>
+</a>
+<tr><td valign="top"><a name="7295">
+ o<p>
+</a><td valign="top"><a name="7297">
+ Return to your original camera view.<p>
+</a>
+<tr><td valign="top"><a name="8370">
+ a<p>
+</a><td valign="top"><a name="8372">
+ Aims the camera at the currently selected element.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="6311">
+<h2><HR> Pulling Out the Wings</h2>
+</a><a name="7360">
+Now that you are ready to pull out the wings you will need to re-position your camera:<p>
+</a><P>
+<a name="6313">
+<STRONG>	5.	 Move your cursor over the N-Geometry window and <strong>(CLICK-M)</strong>.
+</STRONG>
+</a><P><dl><a name="7540">
+<dt>Now you can move the camera.</dt>
+</a><P></dl><a name="6316">
+<STRONG>	6.	 <strong>(HOLD-M)</strong> and drag the mouse toward you. 
+</STRONG>
+</a><P><dl><a name="7557">
+<dt>As you move the camera, the cube recedes.</dt>
+</a><P></dl><a name="6319">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>(CLICK-R)</strong> on any item on the element sensitivity menu (points. segments, faces, bodies) to go into collect mode for that element type. Note that the word <strong>collect</strong> is highlighted in the element sensitivity menu.</font></dd></dt><dl><a name="6322">
+<dt><strong>(CLICK-L)</strong> on the element type again to exit from collect mode or use the "c" hot key to toggle in and out of collect mode.</dt>
+</a><P></dl></dl><P>
+
+<a name="6324">
+<STRONG>	8.	 Collect the two faces whose normals lie along the x axis.
+</STRONG>
+</a><P><a name="7628">
+ <P><img src="2Airplane.anc6.gif"><p>
+</a>
+<a name="8046">
+<em>Figure 2.6  &#32; &#32;Selecting the faces to pull out for the wings
+</em></a><P><dl><dl><a name="8047">
+<dt>Remember, you must <strong>(CLICK-R)</strong> or wave off the Geometry window to end a collection before performing any other modifications.</dt>
+</a><P></dl></dl>
+<a name="6331">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the N-Geometry window to modify the collection.
+</STRONG>
+</a><P><a name="6333">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><a name="7646">
+ <P><img src="2Airplane.anc7.gif"><p>
+</a>
+<a name="7647">
+<em>Figure 2.7  &#32; &#32;Select Extrude
+</em></a><P><dl><dl><a name="6337">
+<dt>Move the mouse to the right and watch the wings grow out along the x axis.</dt>
+</a><P><a name="7655">
+ <P><img src="2Airplane.anc8.gif"><p>
+</a></dl></dl><a name="7656">
+<em>Figure 2.8  &#32; &#32;Extruding the wings
+</em></a><P>
+<a name="6341">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> to end the Extrude operation.
+</STRONG>
+</a><P><dl><a name="6343">
+<dt>Note that the faces stay selected until you select a different element type or start a new collection-this makes it easy to continue working with those faces:</dt>
+</a><P></dl><a name="7427">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6347">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><a name="6351">
+<STRONG>	14.	 Move the mouse to the right and watch the wings grow out along the x axis again.
+</STRONG>
+</a><P><a name="8059">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> to end the Extrude operation.
+</STRONG>
+</a><P>
+<a name="6353">
+Now repeat the extrusion using these steps:<p>
+</a><P>
+<a name="6355">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the N-Geometry window then <strong>(CLICK-L)</strong> on Extrude when the Modify menu appears.
+</STRONG>
+</a><P><dl><a name="7436">
+<dt>Extrude the selected faces as before.</dt>
+</a><P></dl><a name="6359">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> to end the Extrude operation.
+</STRONG>
+</a><P><dl><a name="8087">
+<dt>After three extrusions your plane wing should look like this:</dt>
+</a><P><a name="8090">
+ <P><img src="2Airplane.anc9.gif"><p>
+</a></dl>
+<a name="8091">
+<em>Figure 2.9  &#32; &#32;Repeating the Extrude operation
+</em></a><P><a name="6363">
+<h2><HR> Using the Default Function Key</h2>
+</a><a name="6364">
+Performing operations over and over can be tedious. You can assign the last selected command to the Default Function key using the procedure below.<p>
+</a><P><a name="8067">
+<h4> To Store the Operation in the Default Function Key</h4>
+</a><ul><a name="7443">
+<li>Perform the operation (such as Extrude) that you want to repeat.
+</a></li><P><a name="7452">
+<li><strong>(SHIFT+CTRL-L)</strong> on an open area of the N-Geometry window.
+</a></li><P><dl><a name="7456">
+<dt>The "repeatable" operation is displayed in the upper left corner of the N-Geometry window.  </dt>
+</a><P></dl></ul><P><a name="7457">
+<h4> To Use the Default Function</h4>
+</a><ul><a name="7522">
+<li>Select the elements upon which you want to perform the stored operation.
+</a></li><P><a name="7524">
+<li><strong>(CTRL-L)</strong> on an open area of the N-Geometry window.
+</a></li><P><dl><a name="7467">
+<dt>When you move the mouse, the default function is performed on the selected elements.</dt>
+</a><P></dl></ul><P><a name="6375">
+<h2><HR> Tapering the Wings</h2>
+</a><a name="7576">
+To improve the plane's aerodynamic design, you can taper the back of the wings:<p>
+</a><P>
+<a name="6378">
+<STRONG>	18.	 Spin your camera around so that you are looking at the back of the wing.
+</STRONG>
+</a><P><dl><a name="9040">
+<dt><strong>(CLICK-M)</strong> on the window to start the camera, <strong>(CLICK-L)</strong> to stop it.</dt>
+</a><P></dl><a name="6380">
+<STRONG>	19.	 <strong>(CLICK-R)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="6383">
+<STRONG>	20.	 Collect the vertical segments along the trailing of the wing and then end your collection.
+</STRONG>
+</a><P><a name="7673">
+ <P><img src="2Airplane.anc10.gif"><p>
+</a>
+<a name="7674">
+<em>Figure 2.10  &#32; &#32;Select the vertical segments along the trailing edge of the wing
+</em></a><P>
+<a name="6388">
+<STRONG>	21.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="6392">
+<dt>As you move the mouse left and right, the back of the wing shrinks or grows alongs its y axis. Taper the back of the wing until it looks right to you.</dt>
+</a><P></dl><a name="7602">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> to end the scale operation.
+</STRONG>
+</a><P><a name="7685">
+ <P><img src="2Airplane.anc11.gif"><p>
+</a>
+<a name="7686">
+<em>Figure 2.11  &#32; &#32;Tapered wing
+</em></a><P><a name="6400">
+<h2><HR> Pulling Out the Fuselage</h2>
+</a><a name="7609">
+Now let's extrude the cube's back face in order to create the back of the plane.<p>
+</a><P>
+<a name="6402">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on the cube's back face.
+</STRONG>
+</a><P><dl><a name="6404">
+<dt>Press the "x" hot key to view the plane from the side (looking along the x axis from the positive end).</dt>
+</a><P></dl><a name="6411">
+<STRONG>	24.	 Extrude the face back as shown in <a href="2Airplane.html#7695">Figure 2.12</a>:
+</STRONG>
+</a><P><a name="7694">
+ <P><img src="2Airplane.anc12.gif"><p>
+</a>
+<a name="7695">
+<em>Figure 2.12  &#32; &#32;Pulling out the fuselage
+</em></a><P>
+<a name="6415">
+<STRONG>	25.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Scale to taper the tail.
+</STRONG>
+</a><P><a name="7703">
+ <P><img src="2Airplane.anc13.gif"><p>
+</a>
+<a name="7704">
+<em>Figure 2.13  &#32; &#32;Use <strong>Scale</strong> to scale a selected element or group of elements
+</em></a><P>
+<a name="6419">
+<STRONG>	26.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><dl><a name="8118">
+<dt>Make sure the back face is still selected.</dt>
+</a><P></dl><a name="6421">
+<STRONG>	27.	 <strong>(CLICK-M)</strong> on Axis Move.
+</STRONG>
+</a><P><a name="6423">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on Y.
+</STRONG>
+</a><P><dl><a name="6425">
+<dt>Move the mouse to lift the tail.</dt>
+</a><P><a name="7715">
+ <P><img src="2Airplane.anc14.gif"><p>
+</a></dl>
+<a name="7716">
+<em>Figure 2.14  &#32; &#32;Move elements along any axis
+</em></a><P><a name="6429">
+<h2><HR> The Tail</h2>
+</a>
+<a name="8530">
+<STRONG>	29.	 Extrude the tail back so that it looks like <a href="2Airplane.html#7725">Figure 2.15</a>:
+</STRONG>
+</a><P><a name="7724">
+ <P><img src="2Airplane.anc15.gif"><p>
+</a>
+<a name="7725">
+<em>Figure 2.15  &#32; &#32;Extruding the tail from the fuselage
+</em></a><P><a name="8131">
+Now let's create some horizontal and vertical stabilizers for the tail.<p>
+</a><P>
+<a name="6437">
+<STRONG>	30.	 Press the "a" hot key to aim the camera at the selected element (currently the tail), then truck the camera in closer.
+</STRONG>
+</a><P><a name="6439">
+<STRONG>	31.	 <strong>(CLICK-R)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="6442">
+<STRONG>	32.	 Collect the faces on the top and sides of the tail.
+</STRONG>
+</a><P><a name="7733">
+ <P><img src="2Airplane.anc16.gif"><p>
+</a>
+<a name="7734">
+<em>Figure 2.16  &#32; &#32;Make a collection of faces
+</em></a><P>
+<a name="6446">
+<STRONG>	33.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6448">
+<STRONG>	34.	 Extrude the fins.
+</STRONG>
+</a><P><a name="7745">
+ <P><img src="2Airplane.anc17.gif"><p>
+</a>
+<a name="7746">
+<em>Figure 2.17  &#32; &#32;Extrude multiple faces along their normals at the same time
+</em></a><P>
+<a name="6454">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on Scale and move the mouse to taper the stabilizers.
+</STRONG>
+</a><P><dl><a name="6456">
+<dt><strong>(CLICK-L)</strong> to end the scaling operation when you're done.</dt>
+</a><P><a name="7754">
+ <P><img src="2Airplane.anc18.gif"><p>
+</a></dl>
+<a name="7755">
+<em>Figure 2.18  &#32; &#32;Scale the tips of the stabilizers
+</em></a><P>
+<a name="6460">
+<STRONG>	36.	 <strong>(CLICK-M)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="8175">
+<dt>Using <strong>(CLICK-M)</strong> instead of <strong>(CLICK-L)</strong> lets you choose an axis along which to move a face:</dt>
+</a><P><a name="9320">
+ <P><img src="2Airplane.anc19.gif"><p>
+</a></dl>
+<a name="9321">
+<em>Figure 2.19  &#32; &#32;Selecting an axis along which to perform an operation
+</em></a><P><dl><dl><a name="9329">
+<dt>Performing operations along an axis is described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl></dl>
+<a name="6462">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on Z.
+</STRONG>
+</a><P><dl><a name="6464">
+<dt>Move the mouse to move the tail fins back. </dt>
+</a><P></dl><a name="6466">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> to end the move.
+</STRONG>
+</a><P><a name="7763">
+ <P><img src="2Airplane.anc20.gif"><p>
+</a>
+<a name="7764">
+<em>Figure 2.20  &#32; &#32;Move the selected element or collection along a specified axis
+</em></a><P><a name="6470">
+<h2><HR> The Nose</h2>
+</a><a name="8180">
+Now let's create the nose of the airplane.<p>
+</a><P>
+<a name="6472">
+<STRONG>	39.	 Press the "z" hot key.
+</STRONG>
+</a><P><dl><a name="8191">
+<dt>We're now looking directly at the front of the airplane.</dt>
+</a><P></dl><a name="6474">
+<STRONG>	40.	 <strong>(CLICK-L)</strong> on the front face of the cube.
+</STRONG>
+</a><P><a name="6477">
+<STRONG>	41.	 Press the "a" hot key to aim the camera at that face.
+</STRONG>
+</a><P><a name="8199">
+<STRONG>	42.	 <strong>(CLICK-M)</strong> on the N-Geometry window and truck the camera in closer to the front face.
+</STRONG>
+</a><P><a name="6479">
+<STRONG>	43.	 Extrude the face (the nose) forward.
+</STRONG>
+</a><P><a name="7775">
+ <P><img src="2Airplane.anc21.gif"><p>
+</a>
+<a name="7776">
+<em>Figure 2.21  &#32; &#32;Pull out the nose of the plane
+</em></a><P>
+<a name="6487">
+<STRONG>	44.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6489">
+<STRONG>	45.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="6491">
+<dt>Move the mouse so that the face scales to approximately a third of its original size.</dt>
+</a><P><a name="7784">
+ <P><img src="2Airplane.anc22.gif"><p>
+</a></dl>
+<a name="7785">
+<em>Figure 2.22  &#32; &#32;The front face is scaled, creating a nice taper effect
+</em></a><P>
+<a name="6496">
+<STRONG>	46.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6498">
+<STRONG>	47.	 <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="6500">
+<dt>The following menu appears:</dt>
+</a><P><a name="8228">
+ <P><img src="2Airplane.anc23.gif"><p>
+</a></dl>
+<a name="8229">
+<em>Figure 2.23  &#32; &#32;The Inset menu
+</em></a><P>
+<a name="6502">
+<STRONG>	48.	 <strong>(CLICK-M)</strong> on the Inset Width (from Edge) text edit box to clear it.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>(CLICK-M)</strong> on a text edit box clears any text currently displayed in the box.</font></dd></dt><dl><a name="6506">
+<dt>Type in <strong>.5</strong> and leave <strong>Max Face Used-area Ratio</strong> at <strong>.33333</strong>. (These values are described in more detail in the <em>N-Geometry Reference Guide</em>.)</dt>
+</a><P></dl></dl><P>
+
+<a name="6510">
+<STRONG>	49.	 <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="6512">
+<dt>This command insets a new face within a face.</dt>
+</a><P><a name="7793">
+ <P><img src="2Airplane.anc24.gif"><p>
+</a></dl>
+<a name="7794">
+<em>Figure 2.24  &#32; &#32;Inset face
+</em></a><P>
+<a name="6516">
+<STRONG>	50.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6518">
+<STRONG>	51.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="6520">
+<dt>Move the mouse to scale the new inset face until it is about a quarter of its original size.</dt>
+</a><P></dl><a name="6523">
+<STRONG>	52.	 Extrude the scaled face.
+</STRONG>
+</a><P><a name="7802">
+ <P><img src="2Airplane.anc25.gif"><p>
+</a>
+<a name="7803">
+<em>Figure 2.25  &#32; &#32;Creating the axle for the propeller
+</em></a><P><dl><dl><a name="6529">
+<dt>We'll use this pole as the axle for the propeller.</dt>
+</a><P></dl></dl><a name="8356">
+<h2><HR> Creating the Propeller</h2>
+</a><a name="8276">
+At this point, we could simply extrude the propeller out from the pole; however, let's create a new, separate object so that later we can animate it independently from the plane's body in N-Dynamics.<p>
+</a><P>
+<a name="6534">
+<STRONG>	53.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="6536">
+<STRONG>	54.	 <strong>(CLICK-R)</strong> on Chip Off.
+</STRONG>
+</a><P><dl><a name="9337">
+<dt>The <strong>Chip Off</strong> command appears on the right side of the flip menu; move your cursor over the blue vertical bar labeled "2" to see the body modification commands on this half of the menu.</dt>
+</a><P><a name="9344">
+ <P><img src="2Airplane.anc26.gif"><p>
+</a></dl>
+<a name="9345">
+<em>Figure 2.26  &#32; &#32;Part 2 of the modify body menu
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>Chip Off</strong> creates a new object.</font></dd></dt></dl><P>
+
+<a name="6540">
+<STRONG>	55.	 <strong>(CLICK-M)</strong> on the Name text edit box to clear it.
+</STRONG>
+</a><P><a name="8598">
+<STRONG>	56.	 Type in "propeller" for the name of the new object.
+</STRONG>
+</a><P><a name="7814">
+ <P><img src="2Airplane.anc27.gif"><p>
+</a>
+<a name="7815">
+<em>Figure 2.27  &#32; &#32;Naming the new object
+</em></a><P>
+<a name="6546">
+<STRONG>	57.	 <strong>(CLICK-L)</strong> on the <strong>Add Object</strong> button.
+</STRONG>
+</a><P><dl><a name="9353">
+<dt>The new object is automatically selected and can be moved along its normal.</dt>
+</a><P><a name="6548">
+<dt>Move the mouse to move the chipped off body (in this case, the propeller) away from the original object.</dt>
+</a><P><a name="7823">
+ <P><img src="2Airplane.anc28.gif"><p>
+</a></dl>
+<a name="7824">
+<em>Figure 2.28  &#32; &#32;Chipping off a face
+</em></a><P>
+<a name="6552">
+<STRONG>	58.	 <strong>(SHIFT-L)</strong> on the N--Geometry window.
+</STRONG>
+</a><P><a name="6556">
+<STRONG>	59.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="6558">
+<dt>Move the mouse to grow the propeller.</dt>
+</a><P><a name="9360">
+ <P><img src="2Airplane.anc29.gif"><p>
+</a></dl>
+<a name="9361">
+<em>Figure 2.29  &#32; &#32;Growing the propeller
+</em></a><P>
+<a name="6560">
+<STRONG>	60.	 Extrude the face.
+</STRONG>
+</a><P><a name="9373">
+ <P><img src="2Airplane.anc30.gif"><p>
+</a>
+<a name="9374">
+<em>Figure 2.30  &#32; &#32;Growing the propeller
+</em></a><P>
+<a name="6564">
+<STRONG>	61.	 <strong>(SHIFT-L)</strong> on the face, then <strong>(CLICK-L)</strong> on Vertex Subdivide.
+</STRONG>
+</a><P><a name="9385">
+ <P><img src="2Airplane.anc31.gif"><p>
+</a>
+<a name="9386">
+<em>Figure 2.31  &#32; &#32;Vertex subdivide the front face of the propeller
+</em></a><P>
+<a name="6568">
+<STRONG>	62.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="6571">
+<STRONG>	63.	 <strong>(SHIFT-L)</strong> on the center vertex of prop's newly subdivided face.
+</STRONG>
+</a><P><a name="6573">
+<STRONG>	64.	 <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="6575">
+<dt>Move the mouse until you have a pointed front on the prop.</dt>
+</a><P><a name="9396">
+ <P><img src="2Airplane.anc32.gif"><p>
+</a></dl>
+<a name="7833">
+<em>Figure 2.32  &#32; &#32;Modifying the propeller
+</em></a><P>
+<a name="6579">
+<STRONG>	65.	 <strong>(CLICK-R)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="6582">
+<STRONG>	66.	 Collect the two side faces of the prop whose normals lie along the x axis.
+</STRONG>
+</a><P><a name="6585">
+<STRONG>	67.	 Extrude those faces.
+</STRONG>
+</a><P><a name="9402">
+ <P><img src="2Airplane.anc33.gif"><p>
+</a>
+<a name="7845">
+<em>Figure 2.33  &#32; &#32;Propeller extruded
+</em></a><P>
+<a name="6591">
+<STRONG>	68.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="7181">
+<STRONG>	69.	 <strong>(CLICK-L)</strong> on Rotate.
+</STRONG>
+</a><P><dl><a name="6595">
+<dt>Move the mouse to twist your propelers along their normals and through their midpoints.</dt>
+</a><P><a name="7853">
+ <P><img src="2Airplane.anc34.gif"><p>
+</a></dl>
+<a name="7854">
+<em>Figure 2.34  &#32; &#32;Twisting the propeller
+</em></a><P><a name="6600">
+<h2><HR> Renaming Your Object</h2>
+</a><a name="8693">
+Because you started the airplane from the cube primitive, it still has the name "Cube."<p>
+</a><P><a name="8694">
+To change the name of your object:<p>
+</a><P>
+<a name="8697">
+<STRONG>	70.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Utilities&gt;Rename.
+</STRONG>
+</a><P><dl><a name="8695">
+<dt><strong>(CLICK-L)</strong> on the object you want to rename (in this case, Cube).</dt>
+</a><P></dl><a name="8717">
+<STRONG>	71.	 <strong>(CLICK-M)</strong> on the Name text edit box and enter the name of the object:
+</STRONG>
+</a><P><a name="8710">
+ <P><img src="2Airplane.anc35.gif"><p>
+</a>
+<a name="8711">
+<em>Figure 2.35  &#32; &#32;Renaming an object
+</em></a><P><a name="8706">
+<h2><HR> Restructuring your Object</h2>
+</a><a name="8721">
+Earlier, we chipped off the face of the plane to create the propeller. If we want to animate the plane and the propeller together in N-Dynamics, we need to restructure the two objects into a single object.<p>
+</a><P><a name="8727">
+We call this process "restructuring." Multiple objects restructured into a single object can then be animated as a group <em>or</em> independently from one another in N-Dynamics. (The <strong>Restructure</strong> command is described in more detail in the <em>N-Geometry Reference Manual</em>.)<p>
+</a><P><a name="8730">
+To restructure the propeller into the airplane and create an "airplane group":<p>
+</a><P>
+<a name="8738">
+<STRONG>	72.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Utilities&gt;Restructure.
+</STRONG>
+</a><P><dl><a name="8767">
+<dt>Both the airplane and propeller appear in the object list.</dt>
+</a><P><a name="8772">
+ <P><img src="2Airplane.anc36.gif"><p>
+</a></dl>
+<a name="8773">
+<em>Figure 2.36  &#32; &#32;A list of objects in the scene
+</em></a><P>
+<a name="8743">
+<STRONG>	73.	 <strong>(CLICK-L)</strong> on propeller, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="9456">
+<dt>The following menu appears:</dt>
+</a><P><a name="9450">
+ <P><img src="2Airplane.anc37.gif"><p>
+</a></dl>
+<a name="9451">
+<em>Figure 2.37  &#32; &#32;How to restructure the object
+</em></a><P>
+<a name="8744">
+<STRONG>	74.	 (CLICK-L) on Existing object.
+</STRONG>
+</a><P><a name="8751">
+<STRONG>	75.	 <strong>(CLICK-L)</strong> on airplane.
+</STRONG>
+</a><P><a name="8782">
+<STRONG>	76.	 <strong>(CLICK-R)</strong> on GeoMenus&gt;Utilities&gt;Restructure again.
+</STRONG>
+</a><P><dl><a name="8783">
+<dt>The airplane and propeller have been grouped into an "airplane Group" object.</dt>
+</a><P><a name="8787">
+ <P><img src="2Airplane.anc38.gif"><p>
+</a></dl>
+<a name="8788">
+<em>Figure 2.38  &#32; &#32;The propeller and airplane restructured into a new object
+</em></a><P><a name="9465">
+Now, when you create an animation in script in N-Dynamics, you can specify the "airplane Group" as the object to be animated and both the body and plane will move as a unit.<p>
+</a><P><a name="8720">
+<h2><HR> Saving the Airplane</h2>
+</a>
+<a name="8688">
+<STRONG>	77.	 <strong>(CLICK-L) </strong>on GeoMenus&gt;File&gt;Save.
+</STRONG>
+</a><P><a name="6602">
+<STRONG>	78.	 <strong>(CLICK-L)</strong> on airplane Group.
+</STRONG>
+</a><P><a name="6604">
+<STRONG>	79.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="7862">
+ <P><img src="2Airplane.anc39.gif"><p>
+</a>
+<a name="7863">
+<em>Figure 2.39  &#32; &#32;File dialog box
+</em></a><P>
+<a name="6608">
+<STRONG>	80.	 <strong>(CLICK-L)</strong> on Write Object File.
+</STRONG>
+</a><P><dl><a name="7892">
+<dt>Your plane is now saved to disk.</dt>
+</a><P><a name="7896">
+ <P><img src="2Airplane.anc40.gif"><p>
+</a></dl>
+<a name="7872">
+<em>Figure 2.40  &#32; &#32;The finished plane
+</em></a><P><a name="6614">
+<h2><HR> Congratulations!</h2>
+</a><a name="8339">
+You've now created a basic model and learned how to:<p>
+</a><P><ul><a name="8342">
+<li>create a primitive
+</a></li><P><a name="8344">
+<li>extrude faces
+</a></li><P><a name="8345">
+<li>scale and rotate faces
+</a></li><P><a name="8350">
+<li>move faces along axes
+</a></li><P><a name="8352">
+<li>chip off objects
+</a></li><P><a name="8675">
+<li>rename an object
+</a></li><P><a name="8676">
+<li>save an object
+</a></li><P></ul><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Basics.html">[Prev]</a> <a href="3Mansion.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 09:28:32 -->
+
+</body>
+</html>

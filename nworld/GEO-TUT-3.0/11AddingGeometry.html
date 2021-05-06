@@ -1,0 +1,742 @@
+<html><head><title>Adding Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="10SelectingAndParts.html">[Prev]</a> <a href="12RemovingGeometry.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Adding Geometry</h1>
+</a>
+<hr><p><a name="15491">
+<h4> In this chapter, we'll describe some techniques for adding detail to selected areas of an object.</h4>
+</a><a name="9046">
+ <P><img src="11AddingGeometry.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="13330">
+We'll describe some of the commands that you typically use to add geometry to an object, including:<p>
+</a><P><ul><a name="15499">
+<li>Cut
+</a></li><P><a name="13331">
+<li>Bevel
+</a></li><P><a name="13332">
+<li>Edge Subdivide
+</a></li><P><a name="13333">
+<li>Vertex Subdivide
+</a></li><P><a name="14703">
+<li>Smooth
+</a></li><P></ul><P><a name="13428">
+When do you need to add geometry? If you remember the concept of "virtual clay" from our overview of N-Geometry, you know that the surface of the model always remains solid on an object created in N-Geometry.<p>
+</a><P><a name="14831">
+In general, you need to add geometry in the following cases:<p>
+</a><P><ul><a name="14819">
+<li>When you can't pull out a face of the shape you need from the shape's current topology.
+</a></li><P><a name="14830">
+<li>When the scale of two neighboring parts of an object are different
+</a></li><P><a name="14824">
+<li>When you are doing a high quality render and want to smooth the whole object.
+</a></li><P></ul><P><a name="14867">
+However:<p>
+</a><P><ul><a name="14868">
+<li>You should balance the need for extra detail with any polygon count considerations (e.g., if you are developing a model for a 3D game system, you may want to add texture detail using a product like N-Paint 3D)
+</a></li><P></ul><P><a name="13458">
+An N-Geometry object is a closed surface of polygons. If you need to add more detail in a particular area of a model, you need to be able to "insert" additional points, segments, or faces directly onto this "closed surface." In this chapter we'll discuss some of the more common tools for doing just that.<p>
+</a><P><a name="13375">
+<h2><HR> Cut</h2>
+</a><a name="13379">
+The <strong>Cut</strong> command has two basic uses:<p>
+</a><P><ul><a name="13383">
+<li>cutting segments into multiple segments
+</a></li><P><a name="13384">
+<li>cutting faces into multiple faces
+</a></li><P></ul><P><a name="13380">
+<h3> Building a Chair</h3>
+</a><a name="13388">
+When do you need to cut a face?<p>
+</a><P><a name="13480">
+For this example, let's try building a chair from a cube primitive; you'll be able to see where the cut operation can be used on both segments and faces.<p>
+</a><P>
+<a name="13490">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="13491">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the bottom face of the cube, then <strong>(CLICK-M)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="13494">
+<dt>The segments on the bottom face are selected.</dt>
+</a><P></dl><a name="13493">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="13495">
+<dt>This cuts each of the collected segments into thirds.</dt>
+</a><P><a name="13499">
+ <P><img src="11AddingGeometry.anc1.gif"><p>
+</a></dl>
+<a name="13506">
+<em>Figure 11.1  &#32; &#32;Segments on the bottom face cut into thirds
+</em></a><P>
+<a name="13508">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the bottom face, then <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><a name="13519">
+ <P><img src="11AddingGeometry.anc2.gif"><p>
+</a>
+<a name="13520">
+<em>Figure 11.2  &#32; &#32;Select the face you want to cut
+</em></a><P>
+<a name="13514">
+<STRONG>	5.	 Move the cursor over the selected face.
+</STRONG>
+</a><P><dl><a name="13530">
+<dt>As you do, different points along the face are selected.</dt>
+</a><P></dl><a name="13531">
+<STRONG>	6.	 There are two vertices on the segment along the front of the cube. <strong>(CLICK-L)</strong> on the vertex to the right.
+</STRONG>
+</a><P><a name="13544">
+<STRONG>	7.	 Now, <strong>(CLICK-L)</strong> on the vertex just on the other side of the corner.
+</STRONG>
+</a><P><dl><a name="13568">
+<dt>This creates a triangular face, as shown below:</dt>
+</a><P><a name="13549">
+ <P><img src="11AddingGeometry.anc3.gif"><p>
+</a></dl>
+<a name="13550">
+<em>Figure 11.3  &#32; &#32;Select the face you want to cut
+</em></a><P>
+<a name="13558">
+<STRONG>	8.	 Now, repeat the Cut operation for the other corners.
+</STRONG>
+</a><P><dl><a name="13572">
+<dt>Your object should look like this when you're done:</dt>
+</a><P><a name="13578">
+ <P><img src="11AddingGeometry.anc4.gif"><p>
+</a></dl>
+<a name="13579">
+<em>Figure 11.4  &#32; &#32;Make three more cuts like the first
+</em></a><P><a name="13573">
+Now, move the camera so that you're looking at the top of the cube.<p>
+</a><P>
+<a name="13591">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the top face, then <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="13593">
+<dt>Move the face down so that the object has the dimensions of a seat cushion.</dt>
+</a><P><a name="13599">
+ <P><img src="11AddingGeometry.anc5.gif"><p>
+</a></dl>
+<a name="13600">
+<em>Figure 11.5  &#32; &#32;Axis Move the top of the cube
+</em></a><P>
+<a name="13594">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on one of the segments along the side of the cushion, then <strong>(CLICK-R)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="13610">
+<dt>Your cursor "locks" onto the segment. Move the mouse left and right until the cursor is almost at the back of the cushion, then <strong>(CLICK-L)</strong>.</dt>
+</a><P><a name="13620">
+ <P><img src="11AddingGeometry.anc6.gif"><p>
+</a></dl>
+<a name="13621">
+<em>Figure 11.6  &#32; &#32;Cut the segment almost at the back of the cushion
+</em></a><P>
+<a name="13630">
+<STRONG>	11.	 Make a similar cut on the other side of the cushion.
+</STRONG>
+</a><P><dl><a name="13638">
+<dt>Don't worry if the two aren't at exactly the same location along the Z axis; we'll fix that in a minute.</dt>
+</a><P></dl><a name="13646">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the top face, then <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="13649">
+<dt>Cut the top face between the two vertices you just created, so that your object looks something like this:</dt>
+</a><P><a name="13656">
+ <P><img src="11AddingGeometry.anc7.gif"><p>
+</a></dl>
+<a name="13657">
+<em>Figure 11.7  &#32; &#32;Cutting the top face
+</em></a><P><a name="13663">
+To straighten out this cut, let's use the <strong>Flatten</strong> command.<p>
+</a><P>
+<a name="13664">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on one of the vertices at the ends of the cut you just made, then <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="13672">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Z for the axis to Flatten along.
+</STRONG>
+</a><P><a name="13669">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on the corresponding vertex on the other side of the cushion.
+</STRONG>
+</a><P><dl><a name="13677">
+<dt>The cut should straighten out:</dt>
+</a><P><a name="13725">
+ <P><img src="11AddingGeometry.anc8.gif"><p>
+</a></dl>
+<a name="13726">
+<em>Figure 11.8  &#32; &#32;Straightening the cut
+</em></a><P><a name="13690">
+Now we can use the <strong>Multiple Extrude</strong> operation to pull out the back and legs of our chair.<p>
+</a><P>
+<a name="13696">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on face you created with the cut operation.
+</STRONG>
+</a><P><a name="13711">
+ <P><img src="11AddingGeometry.anc9.gif"><p>
+</a>
+<a name="13712">
+<em>Figure 11.9  &#32; &#32;Choosing the face to extrude
+</em></a><P>
+<a name="13692">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Multiple Extrude.
+</STRONG>
+</a><P><dl><a name="13735">
+<dt>The Multiple Extrude dialog box appears.</dt>
+</a><P></dl><a name="13734">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><a name="13737">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on Extend.
+</STRONG>
+</a><P><dl><a name="15523">
+<dt>Specify a <strong>dist</strong> of 25 and <strong>exp</strong> of <strong>none</strong>.</dt>
+</a><P></dl><a name="13740">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><a name="13741">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Rotate.
+</STRONG>
+</a><P><dl><a name="13615">
+<dt>Specify an <strong>angle</strong> of -25, <strong>axis</strong> of X and <strong>exp</strong> of <strong>none</strong>.</dt>
+</a><P></dl><a name="13750">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the Extrude button.
+</STRONG>
+</a><P><dl><a name="13751">
+<dt>Your chair should now look something like this:</dt>
+</a><P><a name="13756">
+ <P><img src="11AddingGeometry.anc10.gif"><p>
+</a></dl>
+<a name="13757">
+<em>Figure 11.10  &#32; &#32;Extruded back
+</em></a><P>
+<a name="13766">
+<STRONG>	23.	 Move the camera back so that it's pointed at the bottom of the chair again.
+</STRONG>
+</a><P><a name="13769">
+<STRONG>	24.	 Collect the two triangular faces at the back of the chair bottom.
+</STRONG>
+</a><P><a name="13776">
+ <P><img src="11AddingGeometry.anc11.gif"><p>
+</a>
+<a name="13777">
+<em>Figure 11.11  &#32; &#32;Collect the back faces on the chair bottom
+</em></a><P>
+<a name="13786">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on Multiple Extrude.
+</STRONG>
+</a><P><dl><a name="13787">
+<dt>The Multiple Extrude dialog box appears. We need to make a couple of changes and add one more operation to the multiple extrude to make the back legs.</dt>
+</a><P></dl><a name="13788">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><a name="13789">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><ul>
+<BR><a name="13792">
+<li>For the <strong>Extend</strong> operation specify a <strong>dist</strong> of 25 and <strong>exp</strong> of none.
+</a><P><BR><a name="13801">
+<li>Change the <strong>Rotate</strong> operation-specify an <strong>angle</strong> of 25, <strong>axis</strong> of X and <strong>exp</strong> of none.
+</a><P><BR><a name="13811">
+<li>For the <strong>Scale </strong>operation specify a <strong>scale </strong>of .33 and <strong>exp</strong> of none.
+</a><P><BR><a name="13794">
+<li><strong>(CLICK-L)</strong> on the Extrude button.
+</a><P></ul>
+<dl><a name="13838">
+<dt>Your chair should now look something like this:</dt>
+</a><P><a name="13842">
+ <P><img src="11AddingGeometry.anc12.gif"><p>
+</a></dl>
+<a name="13843">
+<em>Figure 11.12  &#32; &#32;Extruded back legs
+</em></a><P><dl><dl><a name="13847">
+<dt>Don't worry about the bottom of the legs-we'll Flatten them out later.</dt>
+</a><P></dl></dl>
+<a name="13848">
+<STRONG>	28.	 Collect the triangular faces for the front legs and <strong>(SHIFT-L)</strong>, then <strong>(CLICK-L)</strong> on Multiple Extrude.
+</STRONG>
+</a><P><a name="13853">
+<STRONG>	29.	 You can use the same parameters you used to pull out the back legs, with one exception:
+</STRONG>
+</a><P><ul>
+<BR><a name="13856">
+<li>Change the <strong>Rotate</strong> operation-specify an <strong>angle</strong> of <br>-25, <strong>axis</strong> of X and <strong>exp</strong> of none.
+</a><P></ul>
+<dl><a name="13860">
+<dt>Your chair should now look like this:</dt>
+</a><P><a name="13864">
+ <P><img src="11AddingGeometry.anc13.gif"><p>
+</a></dl>
+<a name="13865">
+<em>Figure 11.13  &#32; &#32;Extruded back legs
+</em></a><P>
+<a name="13854">
+<STRONG>	30.	 Now, collect the four feet on the bottom of the chair legs.
+</STRONG>
+</a><P><a name="13875">
+<STRONG>	31.	 <strong>(SHIFT-L)</strong> on the collection and <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="13876">
+<STRONG>	32.	 Choose the lowest point on one of the chair legs.
+</STRONG>
+</a><P><a name="13885">
+<STRONG>	33.	 <strong>(CLICK-L)</strong> on Y for the axis to flatten along.
+</STRONG>
+</a><P><dl><a name="13880">
+<dt>The feet should all flatten out:</dt>
+</a><P><a name="13898">
+ <P><img src="11AddingGeometry.anc14.gif"><p>
+</a></dl>
+<a name="13899">
+<em>Figure 11.14  &#32; &#32;Flattened feet
+</em></a><P>
+<a name="13905">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Shading&gt;Cube to shade the object:
+</STRONG>
+</a><P><a name="13914">
+ <P><img src="11AddingGeometry.anc15.gif"><p>
+</a>
+<a name="13915">
+<em>Figure 11.15  &#32; &#32;Shaded chair
+</em></a><P><a name="13964">
+<h2><HR> Edge Subdivide</h2>
+</a><a name="14192">
+The Edge Subdivide command adds geometry by cutting a face from the midpoint of each <em>edge</em> to the face's midpoint.<p>
+</a><P><a name="14329">
+Try this:<p>
+</a><P>
+<a name="14333">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="14338">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Grid.
+</STRONG>
+</a><P><a name="14346">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Make Grid button.
+</STRONG>
+</a><P><dl><a name="14345">
+<dt>Your grid should look something like this:</dt>
+</a><P><a name="14355">
+ <P><img src="11AddingGeometry.anc16.gif"><p>
+</a></dl>
+<a name="14356">
+<em>Figure 11.16  &#32; &#32;Create a grid
+</em></a><P><a name="14365">
+Now, suppose that you pulled up some mountains on the grid as described in the tutorial on magnet moves:<p>
+</a><P><a name="14378">
+ <P><img src="11AddingGeometry.anc17.gif"><p>
+</a><a name="14379">
+<em>Figure 11.17  &#32; &#32;Create a grid
+</em></a><P><a name="14370">
+What if you really liked the mountains, but wanted to pull up a small city full of buildings using the foreground of the grid? Right now, you don't have enough <em>detail</em>.<p>
+</a><P><a name="14389">
+Even if you didn't create any mountains, continue on with these steps:<p>
+</a><P>
+<a name="14388">
+<STRONG>	4.	 Zoom in on the grid.
+</STRONG>
+</a><P><a name="14390">
+<STRONG>	5.	 Collect several faces on the grid.
+</STRONG>
+</a><P><a name="14396">
+ <P><img src="11AddingGeometry.anc18.gif"><p>
+</a>
+<a name="14397">
+<em>Figure 11.18  &#32; &#32;Select several faces on the grid where you want to add some buildings
+</em></a><P>
+<a name="14403">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><dl><a name="14420">
+<dt>Each of the collected faces is cut from its edge to the face midpoint. The old face is converted into a number of faces equal to the number of edges on the <em>original</em> face.</dt>
+</a><P><a name="14413">
+ <P><img src="11AddingGeometry.anc19.gif"><p>
+</a></dl>
+<a name="14414">
+<em>Figure 11.19  &#32; &#32;Edge Subdivided faces
+</em></a><P>
+<a name="14408">
+<STRONG>	7.	 Collect several of the smaller faces and Edge Subdivide them.
+</STRONG>
+</a><P><a name="14429">
+ <P><img src="11AddingGeometry.anc20.gif"><p>
+</a>
+<a name="14430">
+<em>Figure 11.20  &#32; &#32;Edge Subdivide some of the faces again
+</em></a><P>
+<a name="14436">
+<STRONG>	8.	 Now, use the Extrude and Multiple Extrude tools to pull up the faces into a small city.
+</STRONG>
+</a><P><a name="14442">
+ <P><img src="11AddingGeometry.anc21.gif"><p>
+</a>
+<a name="14443">
+<em>Figure 11.21  &#32; &#32;By adding detail, you can change the relative scale of an object
+</em></a><P><a name="14437">
+Of course, <strong>Edge Subdivide</strong> will work on any face with any number of sides:<p>
+</a><P>
+<a name="14458">
+<STRONG>	9.	 Create a tetrahedron, a cube, and a dodecahedron.
+</STRONG>
+</a><P><a name="14459">
+<STRONG>	10.	 Select objects in the element sensitivity menu, then use Axis Move&gt;X to spread the objects out.
+</STRONG>
+</a><P><a name="14460">
+<STRONG>	11.	 Collect the faces shown below:
+</STRONG>
+</a><P><a name="14464">
+ <P><img src="11AddingGeometry.anc22.gif"><p>
+</a>
+<a name="14465">
+<em>Figure 11.22  &#32; &#32;Edge Subdivide creates a number of faces equal to the number of segments on the face
+</em></a><P>
+<a name="14466">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><dl><a name="14468">
+<dt>The faces are inscribed like this:</dt>
+</a><P><a name="14472">
+ <P><img src="11AddingGeometry.anc23.gif"><p>
+</a></dl>
+<a name="14473">
+<em>Figure 11.23  &#32; &#32;Faces are inscribed from the midpoint of each edge to the face <br>midpoint
+</em></a><P><a name="13396">
+<h2><HR> Vertex Subdivide</h2>
+</a><a name="14196">
+<strong>Vertex Subdivide</strong> also adds geometry by cutting a face. However, instead of cutting the face from the midpoint of each edge, a segment is cut from each <em>vertex</em> to the face's midpoint.<p>
+</a><P><a name="14228">
+Try this:<p>
+</a><P>
+<a name="14232">
+<STRONG>	 1.	 Create a tetrahedron, a cube, and an dodecahedron.
+</STRONG>
+</a><P><a name="15368">
+<STRONG>	2.	 Select objects in the element sensitivity menu, then use Axis Move&gt;X to spread the objects out.
+</STRONG>
+</a><P><a name="14234">
+<STRONG>	3.	 Collect the faces shown below:
+</STRONG>
+</a><P><a name="14218">
+ <P><img src="11AddingGeometry.anc24.gif"><p>
+</a>
+<a name="14219">
+<em>Figure 11.24  &#32; &#32;Vertex subdivide creates a number of faces equal to the number of vertices on the face
+</em></a><P>
+<a name="14024">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Vertex Subdivide.
+</STRONG>
+</a><P><dl><a name="14237">
+<dt>The faces are inscribed like this:</dt>
+</a><P><a name="14242">
+ <P><img src="11AddingGeometry.anc25.gif"><p>
+</a></dl>
+<a name="14243">
+<em>Figure 11.25  &#32; &#32;Faces are inscribed from each vertex to the face midpoint
+</em></a><P><a name="14252">
+Vertex subdivide is handy if you want to pull out a "spike" from a face:<p>
+</a><P>
+<a name="14255">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the vertex on the face midpoint of one of the objects, then <strong>(CLICK-L)</strong> on Axis Move:
+</STRONG>
+</a><P><a name="14271">
+ <P><img src="11AddingGeometry.anc26.gif"><p>
+</a>
+<a name="14272">
+<em>Figure 11.26  &#32; &#32;Use axis move to lift the face out
+</em></a><P><a name="14506">
+<h2><HR> Bevel</h2>
+</a><a name="14507">
+Beveling an <em>edge</em> or <em>vertex</em> replaces that element with a face aligned with the vertex or edge's normal. You can think of a <strong>Bevel</strong> operation as slicing off a corner or edge of an object.<p>
+</a><P><a name="14508">
+Beveling a polyhedron bevels <em>all</em> its edges, or all edges that exceed a specified degree of acuteness.<p>
+</a><P><a name="14509">
+<h3> Beveling a Point</h3>
+</a><a name="14510">
+Try this:<p>
+</a><P>
+<a name="14511">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="14512">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on one a vertex on one of the corners, then <strong>(CLICK-L)</strong> on Bevel.
+</STRONG>
+</a><P><dl><a name="14514">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="14518">
+ <P><img src="11AddingGeometry.anc27.gif"><p>
+</a></dl>
+<a name="14519">
+<em>Figure 11.27  &#32; &#32;Bevel parameters
+</em></a><P>
+<a name="14522">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Bevel button.
+</STRONG>
+</a><P><dl><a name="14523">
+<dt>The corner is "cut off" or <em>beveled</em>. You can specify different <strong>Bevel Width</strong> values to bevel more or less:</dt>
+</a><P><a name="14527">
+ <P><img src="11AddingGeometry.anc28.gif"><p>
+</a></dl>
+<a name="14528">
+<em>Figure 11.28  &#32; &#32;Beveled point, using Bevel width of .25, .33, and .4.
+</em></a><P><a name="14529">
+Of course, you're not limited to beveling points on the perimeter of an object. If you bevel a point in the middle of a flat surface, for example, you'll get this result:<p>
+</a><P><a name="14533">
+ <P><img src="11AddingGeometry.anc29.gif"><p>
+</a><a name="14534">
+<em>Figure 11.29  &#32; &#32;Beveled point, using Bevel width of .25, .33, and .4.
+</em></a><P><a name="14535">
+The resulting face can then be extruded, scaled, and modified.<p>
+</a><P><a name="14560">
+<h3> Beveling a Segment</h3>
+</a><a name="14561">
+Beveling a segment affects only that edge:<p>
+</a><P>
+<a name="14562">
+<STRONG>	4.	 Create a cube.
+</STRONG>
+</a><P><a name="14539">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on one an edge of the cube, then <strong>(CLICK-L)</strong> on Bevel.
+</STRONG>
+</a><P><a name="14543">
+ <P><img src="11AddingGeometry.anc30.gif"><p>
+</a>
+<a name="14544">
+<em>Figure 11.30  &#32; &#32;Beveled edge
+</em></a><P><a name="14580">
+If you bevel an edge in the middle of a flat surface, you get the following result:<p>
+</a><P><a name="14586">
+ <P><img src="11AddingGeometry.anc31.gif"><p>
+</a><a name="14587">
+<em>Figure 11.31  &#32; &#32;Left, selected edge; right, same edge beveled
+</em></a><P><a name="14545">
+<h3> Beveling a Body</h3>
+</a><a name="14546">
+When you bevel an entire body, it has the effect of "sanding all the sharp edges down;" both edges and points are beveled:<p>
+</a><P>
+<a name="14547">
+<STRONG>	6.	 Create a cube.
+</STRONG>
+</a><P><a name="14548">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Bevel.
+</STRONG>
+</a><P><a name="14552">
+ <P><img src="11AddingGeometry.anc32.gif"><p>
+</a>
+<a name="14553">
+<em>Figure 11.32  &#32; &#32;Beveled body
+</em></a><P><a name="14554">
+There are additional beveling methods that can be employed in N-Geometry, as described in the <em>N-Geometry Reference Guide</em>. The techniques described in this chapter, however, give you a good working knowledge of how to use the bevel command.<p>
+</a><P><a name="14704">
+<h2><HR> Smooth</h2>
+</a><a name="14710">
+The <strong>Smooth</strong> function is one of N-Geometry's most powerful features.<p>
+</a><P><a name="14728">
+This section describes how you can smooth an entire object or different parts of an object, depending on where you want to add detail.<p>
+</a><P><a name="14705">
+<h3> Smoothing an Entire Object</h3>
+</a><a name="14748">
+Working even with a simple object like a cube lets you see how the smooth operation adds geometry.<p>
+</a><P><a name="14754">
+Try this:<p>
+</a><P>
+<a name="14761">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="14770">
+ <P><img src="11AddingGeometry.anc33.gif"><p>
+</a>
+<a name="14771">
+<em>Figure 11.33  &#32; &#32;Start with a cube
+</em></a><P>
+<a name="14763">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on Smooth.
+</STRONG>
+</a><P><a name="14783">
+ <P><img src="11AddingGeometry.anc34.gif"><p>
+</a>
+<a name="14784">
+<em>Figure 11.34  &#32; &#32;Smooth acts a lot like the bevel command described earlier
+</em></a><P>
+<a name="14803">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube again, then <strong>(CLICK-L)</strong> on Smooth again.
+</STRONG>
+</a><P><a name="14794">
+ <P><img src="11AddingGeometry.anc35.gif"><p>
+</a>
+<a name="14795">
+<em>Figure 11.35  &#32; &#32;Smooth adds geometry to the object each time it is applied
+</em></a><P><a name="14845">
+The smooth feature can be used on any object that you create; smoothing even moderately simple objects can have a dramatic effect. For example, look at the plane below to see how a simple object can be smoothed into a much more complex model:<p>
+</a><P><a name="14854">
+ <P><img src="11AddingGeometry.anc36.gif"><p>
+</a><a name="14855">
+<em>Figure 11.36  &#32; &#32;Left, original; middle, smoothed once; right, smoothed twice
+</em></a><P><a name="14847">
+<h3> Smoothing Part of an Object</h3>
+</a><a name="14865">
+If you only need to add detail to part of an object, then only smooth that part!<p>
+</a><P><a name="14866">
+Especially in situations where polygon count is significant, you should only add detail to selected portions of the model.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can't smooth a single face.</font></dd></dt></dl><P>
+<a name="14869">
+Suppose you'd drawn a loudspeaker system and wanted to smooth the horn portions:<p>
+</a><P>
+<a name="14931">
+<STRONG>	 1.	 Collect the faces on the area(s) you want to smooth.
+</STRONG>
+</a><P><a name="14903">
+ <P><img src="11AddingGeometry.anc37.gif"><p>
+</a>
+<a name="14904">
+<em>Figure 11.37  &#32; &#32;Collect the faces to smooth
+</em></a><P>
+<a name="14876">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="14872">
+<dt>Only the selected areas are smoothed.</dt>
+</a><P><a name="14922">
+ <P><img src="11AddingGeometry.anc38.gif"><p>
+</a></dl>
+<a name="14923">
+<em>Figure 11.38  &#32; &#32;After one smooth
+</em></a><P>
+<a name="14948">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Smooth again.
+</STRONG>
+</a><P><dl><a name="14949">
+<dt>Again, no detail is added to the "box" portion of our speaker system, only to the horns:</dt>
+</a><P><a name="14953">
+ <P><img src="11AddingGeometry.anc39.gif"><p>
+</a></dl>
+<a name="14954">
+<em>Figure 11.39  &#32; &#32;After one smooth
+</em></a><P><a name="14707">
+<h3> Smoothing Tips</h3>
+</a><a name="14964">
+When you're building a model in N-Geometry, it's a good thing to know if you eventually plan to smooth the model or not.<p>
+</a><P><a name="14971">
+In particular, you should keep in mind that when you smooth an object, N-Geometry pays particular attention to hard edges when figuring out just how to smooth the object.<p>
+</a><P><a name="14975">
+Let's look at an example:<p>
+</a><P><a name="14976">
+Suppose that in the previous example (our loudspeaker) that we had created the object like this:<p>
+</a><P>
+<a name="15010">
+<STRONG>	 1.	 Add a cube.
+</STRONG>
+</a><P><a name="15011">
+<STRONG>	2.	 Extrude the sides twice.
+</STRONG>
+</a><P><a name="15012">
+<STRONG>	3.	 Select the edge loops closest to the ends (but not the end loop).
+</STRONG>
+</a><P><a name="15019">
+<STRONG>	4.	 Scale the collected segments.
+</STRONG>
+</a><P><a name="14987">
+ <P><img src="11AddingGeometry.anc40.gif"><p>
+</a>
+<a name="14988">
+<em>Figure 11.40  &#32; &#32;After one smooth
+</em></a><P><a name="14994">
+If we were to smooth this entire object, we'd get some results that you might not expect:<p>
+</a><P><a name="15002">
+ <P><img src="11AddingGeometry.anc41.gif"><p>
+</a><a name="15003">
+<em>Figure 11.41  &#32; &#32;After one smooth
+</em></a><P><a name="14997">
+What happened to our hard edges? The rather well defined "joints" near each end of our object were smoothed into a long, straight section. Also, the ends of our object were scaled quite a bit as well. While this is mathematically accurate, you may want to keep a little more of the original object's shape.<p>
+</a><P><a name="15026">
+Try this:<p>
+</a><P>
+<a name="15033">
+<STRONG>	5.	 Start with a new cube.
+</STRONG>
+</a><P><a name="15036">
+<STRONG>	6.	 Extrude the faces on each side once.
+</STRONG>
+</a><P><a name="15040">
+<STRONG>	7.	 Now, make another <em>very narrow</em> extrusion so that your object looks like this:
+</STRONG>
+</a><P><a name="15045">
+ <P><img src="11AddingGeometry.anc42.gif"><p>
+</a>
+<a name="15046">
+<em>Figure 11.42  &#32; &#32;Make a small extrusion
+</em></a><P>
+<a name="14980">
+<STRONG>	8.	 Extrude the faces again.
+</STRONG>
+</a><P><a name="15055">
+<STRONG>	9.	 Make a final <em>very narrow</em> extrusion, so that your object looks like this:
+</STRONG>
+</a><P><a name="15061">
+ <P><img src="11AddingGeometry.anc43.gif"><p>
+</a>
+<a name="15062">
+<em>Figure 11.43  &#32; &#32;Extrude again, then make another tiny extrusion at the end of the object
+</em></a><P>
+<a name="15069">
+<STRONG>	10.	 Select the segments in all four edge loops that make the final "joint."
+</STRONG>
+</a><P><a name="15076">
+ <P><img src="11AddingGeometry.anc44.gif"><p>
+</a>
+<a name="15077">
+<em>Figure 11.44  &#32; &#32;Select the segments around both "joints"
+</em></a><P>
+<a name="15056">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Scale to scale down the segments:
+</STRONG>
+</a><P><a name="15090">
+ <P><img src="11AddingGeometry.anc45.gif"><p>
+</a>
+<a name="15091">
+<em>Figure 11.45  &#32; &#32;Object with scaled "joints"
+</em></a><P>
+<a name="15100">
+<STRONG>	12.	 Now, <strong>(SHIFT-L)</strong> on the body and <strong>(CLICK-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="15107">
+<dt>Your results should look something like this:</dt>
+</a><P><a name="15118">
+ <P><img src="11AddingGeometry.anc46.gif"><p>
+</a></dl>
+<a name="15119">
+<em>Figure 11.46  &#32; &#32;Smoothed object
+</em></a><P><a name="15085">
+Compare this result with the diagram in <a href="11AddingGeometry.html#15003">Figure 11.41</a>; note that the scaled "joints" are maintained, and the object ends are kept closer to their original scale.<p>
+</a><P><a name="15129">
+<h2><HR> Congratulations!</h2>
+</a><a name="15141">
+You've learned some additional techniques for adding geometry to local areas of an N-Geometry object. The cut, bevel, edge subdivide, vertex subdivide, and smooth commands can all be used to add geometry to parts of an object, or to change the appearance and topology of the entire object.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="10SelectingAndParts.html">[Prev]</a> <a href="12RemovingGeometry.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 12:47:00 -->
+
+</body>
+</html>

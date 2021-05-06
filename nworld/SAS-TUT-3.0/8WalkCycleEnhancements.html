@@ -1,0 +1,515 @@
+<html><head><title>Walk Cycle Enhancements</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="7WalkCycle.html">[Prev]</a> <a href="9CartoonEffects.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Walk Cycle Enhancements</h1>
+</a>
+<hr><p><a name="11345">
+<h4> This chapter describes some additional N-Dynamics operations that can be performed in conjunction with animation techniques already described.</h4>
+</a><a name="11346">
+ <P><img src="8WalkCycleEnhancements.anc.gif"><p>
+</a><a name="11105">
+<h2><HR> In this Chapter</h2>
+</a><a name="11106">
+You'll learn how to :<p>
+</a><P><ul><a name="11108">
+<li>make a wire from the motion of a bone joint, modify that wire, then reanimate the skeleton using the new wire as a "guide"
+</a></li><P><a name="11109">
+<li>make a skeleton move along a trajectory (a special kind of wire which lets you control how fast the joint moves)
+</a></li><P><a name="11110">
+<li>make a skeleton reach for an object using an IK operation
+</a></li><P><a name="11111">
+<li>make a skeleton reach for a part using an IK operation
+</a></li><P></ul><P><a name="11112">
+The N-Dynamics operation used to perform these tasks are also described in the <em>Skeletal Animation System Reference Guide</em>. For a more in-depth discussion of the parameters for these dynamic operations, refer to that guide.<p>
+</a><P><a name="10593">
+<h2><HR> Avoiding Obstacles</h2>
+</a><a name="10898">
+<h3> Animating a Skeleton along a Wire</h3>
+</a><a name="10899">
+When you animate a skeleton in the SAS, each joint on the skeleton moves through space, tracing a virtual path. <p>
+</a><P><a name="10900">
+The SAS lets you optionally generate a wire along that path as the skeleton is animated; you can then bend or twist that wire, and reanimate the skeleton, making the same joint follow the modified wire. <p>
+</a><P><a name="11093">
+This is a highly visual method for modifying an animation that you may want to modify in some minor way-such as making a skeleton step over an obstacle in its path.<p>
+</a><P><a name="10901">
+Animating a skeleton along a wire (or a trajectory) is typically a multi-step process:<p>
+</a><P><ul><a name="10902">
+<li>First, you'll generate the "guide wire" from the motion of a selected joint on a skeleton
+</a></li><P><a name="10903">
+<li>Second, you'll modify that wire in N-Geometry to specify the new path you want the joint to follow.
+</a></li><P><a name="10904">
+<li>Third, you'll reanimate the skeleton using the new wire as a "guide"
+</a></li><P></ul><P><a name="10905">
+Note that the wire or trajectory you animate the joint along does not have to be generated from the animation of a skeleton; in fact, you can make the selected joint follow any wire or trajectory in N-Geometry, <em>as </em>described in the section below <a href="8WalkCycleEnhancements.html#10991">"Animating a Skeleton along a Trajectory," on page &#32;8-10</a>.<p>
+</a><P><a name="10909">
+<h3> Creating the Wire</h3>
+</a><a name="10910">
+The <strong>Make Wire from Joint Motion</strong> operation creates a wire from the path of a joint through 3D space when it is animated through N-Dynamics. <p>
+</a><P><a name="10911">
+This operation gives you a visual reference for a joint's position over time. You can then change the shape of the wire and reanimate the skeleton using that modified wire as a "constraint," as described below.<p>
+</a><P><a name="10912">
+Try this:<p>
+</a><P>
+<a name="10913">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="10914">
+<code><pre>/usr/local/ngc/demo/scripts/make-wire-from-node<p>
+</code></pre></a><dl><a name="10915">
+<dt>There are five channels in this script:</dt>
+</a><P></dl><ul>
+<BR><a name="10916">
+<li>The first channel, <strong>Set View</strong>, places the camera appropriately.
+</a><P><BR><a name="10917">
+<li>The second channel, <strong>Read Acclaim Data</strong>, specifies which skeleton should be animated and which Acclaim motion capture file should be used to animate that skeleton.
+</a><P><BR><a name="10918">
+<li>The third channel, <strong>Update Skeleton</strong>,<em> applies</em> the motion capture data to the specified skeleton.
+</a><P><BR><a name="10919">
+<li>The fourth channel, <strong>Make Wire from Joint Motion</strong>, creates a wire based on the movement of a specified joint on a skeleton (typically the one you're animating).
+</a><P><BR><a name="10920">
+<li>The fifth channel, <strong>Make Visible</strong>, makes the obstacle in the skeleton's path visible.
+</a><P><dl><a name="10921">
+<dt>At the end of each frame a wire segment is drawn from the position of the selected joint at the previous frame to its position at the current frame.<p>
+</a><P></dl></ul>
+<a name="10922">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Animate in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10923">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="10928">
+ <P><img src="8WalkCycleEnhancements.anc1.gif"><p>
+</a></dl>
+<a name="10929">
+<em>Figure 8.1  &#32; &#32;Specify a name for the wire that is generate-it's a normal geo object
+</em></a><P>
+<a name="10930">
+<STRONG>	3.	 Enter a name for the wire that will be generated and <strong>(CLICK-L)</strong> on done.
+</STRONG>
+</a><P><dl><a name="10931">
+<dt>For this example, call it "motion-from-leg".</dt>
+</a><P><a name="10932">
+<dt>The generated wire is just like a wire you'd encode by hand in N-Geometry; give it a name that will make it easy to recognize if you want to use it again later.</dt>
+</a><P><a name="10933">
+<dt>For this script, we had to select the joint to generate the wire and create a IK Set for the dynamic IK operation to use. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When generating a wire, it's generally a good idea to select a joint that is limited in rotations to a single axis, such as a wrist or ankle (rather than a finger or toe). A joint restricted to rotation around a single axis produces a straighter wire, which is easier to control.</em></font></dd></dt><dl><a name="10935">
+<dt>The script begins to animate and creates a wire from the specified joint.</dt>
+</a><P><a name="11175">
+ <P><img src="8WalkCycleEnhancements.anc2.gif"><p>
+</a></dl></dl><P>
+<a name="10940">
+<em>Figure 8.2  &#32; &#32;Making a wire from a joint's motion
+</em></a><P><dl><dl><a name="10941">
+<dt>At this point, you have a wire that shows the path of the joint at the bottom of the right leg over the course of the animation. </dt>
+</a><P><a name="10942">
+<dt>However, around frame 82, the skeleton's foot hits the obstacle we've placed in its path. What we want to do is change the shape of the wire, then reanimate the skeleton using the wire as a "guide."</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The generated wire is divided into a number of segments; each segment represents the motion of the joint from one frame to the next.</em></font></dd></dt></dl><P>
+
+<a name="10944">
+<STRONG>	4.	 Truck the camera in close to the obstacle.
+</STRONG>
+</a><P><a name="10949">
+ <P><img src="8WalkCycleEnhancements.anc3.gif"><p>
+</a>
+<a name="10950">
+<em>Figure 8.3  &#32; &#32;Close up of the wire and obstacle
+</em></a><P>
+<a name="10951">
+<STRONG>	5.	 Collect several points along the wire near where it intersects with the obstacle.
+</STRONG>
+</a><P><a name="10952">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="10953">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on Axis Move, and specify the "Y" axis from the menu that appears.
+</STRONG>
+</a><P><a name="10954">
+<STRONG>	8.	 Move the mouse left and right until the section of wire clears the obstacle with enough room left for the toes. 
+</STRONG>
+</a><P><dl><a name="10955">
+<dt>It should look something like this:</dt>
+</a><P><a name="10960">
+ <P><img src="8WalkCycleEnhancements.anc4.gif"><p>
+</a></dl>
+<a name="10961">
+<em>Figure 8.4  &#32; &#32;Modified wire
+</em></a><P><dl><dl><a name="10962">
+<dt>You may have to select a move a few points along the wire to smooth it a bit.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you change the length of a segment significantly, then reanimate the skeleton using that wire, it can cause a slight pause or jump in the motion (since the joint jumps from point to point at each frame). Try to keep the size of individual segments close to their original length for smoother motion.</em></font></dd></dt></dl><P>
+
+<a name="10964">
+<STRONG>	9.	 Deactivate the Make Wire from Joint Motion channel.
+</STRONG>
+</a><P><dl><a name="10965">
+<dt>Move the mouse over the channel and press the "a" key on the keyboard to toggle the active status of the channel. The text should turn black to indicate that the channel has been temporarily turned off.</dt>
+</a><P></dl><a name="10966">
+<STRONG>	10.	 Add another channel to the script.
+</STRONG>
+</a><P><dl><a name="10967">
+<dt>Move the cursor over the black title bar of the script and press the "s" key to add another channel.</dt>
+</a><P></dl><a name="10968">
+<STRONG>	11.	 <strong>(CLICK-M)</strong> on the channel.
+</STRONG>
+</a><P><a name="10969">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Skeletal Animation.
+</STRONG>
+</a><P><a name="10970">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on IK Move along Wire.
+</STRONG>
+</a><P><a name="10971">
+<STRONG>	14.	 <strong>(CLICK-M)</strong> on the channel and specify the following parameters:
+</STRONG>
+</a><P>
+<a name="10972">
+<h3> Using the Generated Wire as a Guide</h3>
+</a><a name="10973">
+To animate the skeleton using the newly generated guide wire, you'd make some modifications to your existing script.<p>
+</a><P><a name="10974">
+Let's load a sample script that we already modified so you can see the changes:<p>
+</a><P>
+<a name="10975">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="10976">
+<code><pre>/usr/local/ngc/demo/scripts/IK-move-along-wire<p>
+</code></pre></a><dl><a name="10977">
+<dt>This script is identical to the "make-wire-from-node" script above, except that it shows the changes you'd make to animate the same ankle joint along the new wire:</dt>
+</a><P></dl><ul>
+<BR><a name="10978">
+<li>Added another <strong>Make Visible</strong> channel so we can display the modified wire.
+</a><P><BR><a name="10979">
+<li>Added an <strong>IK Move along Wire</strong> channel, specifying the modified wire as our "guide."
+</a><P><BR><a name="10980">
+<li>Deactivated the <strong>Make Wire from Joint Motion</strong> channel.
+</a><P><dl><a name="10981">
+<dt>We could also delete this channel altogether once we were happy with the motion; however, while you're going back and forth between the original motion and a modified wire, it could be handy to keep the channel that generated the motion readily available.<p>
+</a><P></dl></ul>
+<a name="10982">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="10983">
+<dt>Note first the changed shape of the wire. When the foot approaches the rock now, it raises up and steps over the obstacle:</dt>
+</a><P><a name="10988">
+ <P><img src="8WalkCycleEnhancements.anc5.gif"><p>
+</a></dl>
+<a name="10989">
+<em>Figure 8.5  &#32; &#32;Animating skeleton along the modified wire
+</em></a><P><a name="10991">
+<h2><HR> Animating a Skeleton along a Trajectory</h2>
+</a><a name="10992">
+Animating a skeletal joint along a trajectory is similar to animating a skeleton along a wire, except you have more control over how fast the joint moves along that trajectory; rather than moving one segment for each frame of animation, the animation of the specified joint is controlled by a curve channel associated with the <strong>IK Move along Trajectory</strong> operation.<p>
+</a><P><a name="10993">
+Try this:<p>
+</a><P>
+<a name="10994">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="10995">
+<code><pre>/usr/local/ngc/demo/scripts/ik-move-along-trajectory<p>
+</code></pre></a><dl><a name="10996">
+<dt>This script contains three channels:</dt>
+</a><P></dl><ul>
+<BR><a name="10997">
+<li>The first channel, <strong>Set View</strong>, places the camera appropriately.
+</a><P><BR><a name="10998">
+<li>The second channel, <strong>Make Visible semi-circle</strong>, makes the trajectory visible.
+</a><P><BR><a name="10999">
+<li>The third channel, <strong>IK Move along Trajectory</strong>, moves the specified joint along the specified trajectory. 
+</a><P><dl><a name="11000">
+<dt>How fast the joint moves along the trajectory is determined by the data in the curve channel under the <strong>IK Move along Trajectory</strong> operation.<p>
+</a><P></dl></ul>
+<a name="11001">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="11002">
+<dt>The skeleton swings its right arm along the trajectory.</dt>
+</a><P><a name="11007">
+ <P><img src="8WalkCycleEnhancements.anc6.gif"><p>
+</a></dl>
+<a name="11008">
+<em>Figure 8.6  &#32; &#32;Moving a skeletal joint along a trajectory
+</em></a><P><dl><dl><a name="11009">
+<dt>Note that the skeleton moves in a linear fashion along the entire length of the trajectory.</dt>
+</a><P></dl></dl>
+<a name="11010">
+<STRONG>	3.	 Look at the IK Move along Trajectory channel in the script.
+</STRONG>
+</a><P><dl><a name="11011">
+<dt>The curve data looks like this:</dt>
+</a><P><a name="11016">
+ <P><img src="8WalkCycleEnhancements.anc7.gif"><p>
+</a></dl>
+<a name="11017">
+<em>Figure 8.7  &#32; &#32;Sample curve data for IK Move along Trajectory operation
+</em></a><P><dl><dl><a name="11018">
+<dt>This sample curve data goes from 0 to 1; the value specified at any frame indicates the relative position along the trajectory that the joint tries to move to for that frame.</dt>
+</a><P><a name="11019">
+<dt>Try this:</dt>
+</a><P></dl></dl>
+<a name="11020">
+<STRONG>	4.	 Move the cursor over frame 20 of the curve and press the "s" hot key or <strong>(CLICK-R)</strong> on the channel and Add Cue.
+</STRONG>
+</a><P><dl><a name="11021">
+<dt>This inserts a new cue in the curve channel:</dt>
+</a><P><a name="11026">
+ <P><img src="8WalkCycleEnhancements.anc8.gif"><p>
+</a></dl>
+<a name="11027">
+<em>Figure 8.8  &#32; &#32;Adding a new cue
+</em></a><P>
+<a name="11028">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><a name="11029">
+<STRONG>	6.	 Drag the slider to a value of about .25, then <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="11030">
+<dt>The curve should now look like this:</dt>
+</a><P><a name="11035">
+ <P><img src="8WalkCycleEnhancements.anc9.gif"><p>
+</a></dl>
+<a name="11036">
+<em>Figure 8.9  &#32; &#32;Modified cue value
+</em></a><P>
+<a name="11037">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Animate once more in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="11038">
+<dt>The skeleton animates, but spends the first 20 frames moving from the beginning of the trajectory to a point one-fourth (.25) along its length. In the last 10 frames, it moves from there to the end (specified by the value of 1 in the end cue).</dt>
+</a><P></dl><a name="11039">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Playback.
+</STRONG>
+</a><P><dl><a name="11040">
+<dt>You may notice that the transition around the cue is a little bit sudden. You can simply modify the curve treatment for the curve, then reanimate.</dt>
+</a><P></dl><a name="11041">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the curve channel.
+</STRONG>
+</a><P><a name="11042">
+<STRONG>	10.	 In the dialog box that appears, <strong>(CLICK-L)</strong> on the Curve type text box.
+</STRONG>
+</a><P><a name="11043">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Slow In/Out, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="11044">
+<dt>The curve should now look something like this:</dt>
+</a><P><a name="11049">
+ <P><img src="8WalkCycleEnhancements.anc10.gif"><p>
+</a></dl>
+<a name="11050">
+<em>Figure 8.10  &#32; &#32;The linear curve modified with a slow in/out treatment
+</em></a><P><dl><dl><a name="11051">
+<dt>Additional curve treatments are described in more detail in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl></dl>
+<a name="11052">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Animate in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="11053">
+<dt>The skeleton reanimates along the trajectory.</dt>
+</a><P></dl><a name="11054">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Playback.
+</STRONG>
+</a><P><dl><a name="11055">
+<dt>You should notice that the movement is slightly smoother, particularly around the area where you inserted the cue.</dt>
+</a><P><a name="11056">
+<dt>You can play with the curve data in some additional ways, then try reanimating and playing your recording back:</dt>
+</a><P></dl><ul>
+<BR><a name="11057">
+<li><strong>(CLICK-L)</strong> and drag the cue left or right to move it forward or back in time.
+</a><P><BR><a name="11058">
+<li>Add more cues to give you more control over the movement of the joint along the trajectory.
+</a><P><BR><a name="11059">
+<li><strong>(CLICK-M)</strong> on the beginning and ending cues to change their value. For example, you could specify a value of .5 for the beginning cue if you wanted to start the IK move from the midpoint of the trajectory.
+</a><P></ul>
+
+<a name="11060">
+Note that this operation can also be used in conjunction with the <strong>Make Wire from Joint Motion</strong> operation; however, you'll need to use the N-Geometry <strong>Copy into Trajectory</strong> command on the generated wire, then specify that trajectory as your "guide."<p>
+</a><P><a name="10777">
+<h2><HR> Reaching for an Object</h2>
+</a><a name="10778">
+The IK Move to Object operation lets you move a joint on a skeleton to the center of another object.<p>
+</a><P>
+<a name="10779">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="10780">
+<code><pre>/usr/local/ngc/demo/scripts/ik-move-to-object<p>
+</code></pre></a><dl><a name="10781">
+<dt>There are three channels in this script:</dt>
+</a><P></dl><ul>
+<BR><a name="10782">
+<li>The first channel, <strong>Set View</strong>, places the camera appropriately
+</a><P><BR><a name="10783">
+<li>The second channel, <strong>IK Move to Object</strong>, specifies which bone should be moved to which object.
+</a><P><BR><a name="10784">
+<li>The third channel, <strong>Make Visible</strong>, makes the tetrahedron visible.
+</a><P></ul>
+<a name="10785">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10786">
+<dt>In this script, we specified that the hand bone should reach out toward the center of the tetrahedron:</dt>
+</a><P><a name="10791">
+ <P><img src="8WalkCycleEnhancements.anc11.gif"><p>
+</a></dl>
+<a name="10792">
+<em>Figure 8.11  &#32; &#32;IK Move to Object
+</em></a><P>
+<a name="10793">
+<STRONG>	3.	 In the script, <strong>(CLICK-M)</strong> on the middle channel.
+</STRONG>
+</a><P><dl><a name="10794">
+<dt>You can see that we specified the following parameters:</dt>
+</a><P><a name="10799">
+ <P><img src="8WalkCycleEnhancements.anc12.gif"><p>
+</a></dl>
+<a name="10800">
+<em>Figure 8.12  &#32; &#32;Specifying parameters for the IK Move to Object operation
+</em></a><P><dl><dl><a name="10801">
+<dt>These parameters are described in detail in the <em>Skeletal Animation System Reference Guide</em>. However, you can see that you need to specify which skeleton you are moving, which bone on that skeleton, the IK Set to be used in performing the operation, and the object you are reaching for.</dt>
+</a><P></dl></dl><a name="10802">
+As the script animates, the SAS animates the movement of the specified joint to the specified object.<p>
+</a><P><a name="10803">
+<h4> Modifying the IK Set</h4>
+</a><a name="10804">
+If the motion produced by this operation doesn't look quite right, you have several options. Perhaps the easiest is to change the IK Set governing the IK Move.<p>
+</a><P>
+<a name="10805">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="10806">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the joint at the tip of the right hand.
+</STRONG>
+</a><P><a name="10807">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on IK Set.
+</STRONG>
+</a><P><a name="10808">
+<STRONG>	7.	 Modify the IK Set to your liking (as described in the section<a href="6Posing.html#12801">"Defining an IK Set," on page &#32;6-8</a>.
+</STRONG>
+</a><P><a name="10812">
+<STRONG>	8.	 Reanimate the skeleton using the modified IK Set.
+</STRONG>
+</a><P><dl><a name="10813">
+<dt>You can compare the two animations using the various options described when you <strong>(CLICK-R)</strong> on the Playback button in the N-Dynamics window.</dt>
+</a><P></dl>
+<a name="10814">
+<h4> Modifying the DOF Limits</h4>
+</a><a name="10815">
+If the motion looks pretty good, but you are getting some rotations that you don't like, you might try modifying the DOF limits for one or more bones. <p>
+</a><P><a name="10816">
+For example, if the bones you want to rotate are rotating, just not far enough, you might want to simply change their limits, then try to reanimate.<p>
+</a><P><a name="10836">
+<h2><HR> Reaching for a Part on an Object</h2>
+</a><a name="10837">
+The <strong>IK Move to Part</strong> operation is similar to the <strong>IK Move to Object</strong> command described earlier, except in this case the target of the IK move is a skin part on a specified object.<p>
+</a><P>
+<a name="10838">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><a name="10839">
+<code><pre>/usr/local/ngc/demo/scripts/ik-move-to-part<p>
+</code></pre></a><dl><a name="10840">
+<dt>There are three channels in this script:</dt>
+</a><P></dl><ul>
+<BR><a name="10841">
+<li>The first channel, <strong>Set View</strong>, places the camera appropriately
+</a><P><BR><a name="10842">
+<li>The second channel, <strong>IK Move to Part</strong>, specifies which bone should be moved to which face part.
+</a><P><BR><a name="10843">
+<li>The third channel, <strong>Make Visible</strong>, makes the skin attached to the skeleton visible.
+</a><P></ul>
+<a name="10844">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10845">
+<dt>In this script, we specified that the hand bone should reach up and touch the face part (a face part we defined on the skin attached to the skeleton):</dt>
+</a><P><a name="10850">
+ <P><img src="8WalkCycleEnhancements.anc13.gif"><p>
+</a></dl>
+<a name="10851">
+<em>Figure 8.13  &#32; &#32;IK Move to Part
+</em></a><P>
+<a name="10852">
+<STRONG>	3.	 In the script, <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><dl><a name="10853">
+<dt>You can see that we specified the following parameters:</dt>
+</a><P><a name="10858">
+ <P><img src="8WalkCycleEnhancements.anc14.gif"><p>
+</a></dl>
+<a name="10859">
+<em>Figure 8.14  &#32; &#32;Specifying parameters for the IK Move to Part operation
+</em></a><P><dl><dl><a name="10860">
+<dt>These parameters are described in detail in the <em>Skeletal Animation System Reference Guide</em>. However, you can see that you need to specify which skeleton you are moving, which bone on that skeleton, the IK Set to be used in performing the operation, and the part you are reaching for.</dt>
+</a><P></dl></dl><a name="10861">
+<h4> Modifying the IK Set</h4>
+</a><a name="10862">
+If the motion produced by this operation doesn't look quite right, you have several options. Perhaps the easiest is to change the IK Set governing the IK Move.<p>
+</a><P>
+<a name="10863">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="10864">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the joint at the tip of the right hand.
+</STRONG>
+</a><P><a name="10865">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="10866">
+<dt>The IK set for this IK operation looks like this:</dt>
+</a><P><a name="10871">
+ <P><img src="8WalkCycleEnhancements.anc15.gif"><p>
+</a></dl>
+<a name="10872">
+<em>Figure 8.15  &#32; &#32;Sample IK Set for the IK Move to Part operation
+</em></a><P><ul><ul>
+<BR><a name="10873">
+<li>The right hand bone can rotate around its X axis
+</a><P><BR><a name="10874">
+<li>The right forearm bone can rotate around its X axis
+</a><P><BR><a name="10875">
+<li>The right upper arm can rotate around all three axes
+</a><P></ul>
+<dl><a name="10876">
+<dt>You'll typically get smoother motion if you can limit the rotation axes for a IK set more accurately. For example, if you added Y and Z rotations for the right-hand bone to the IK set, the hand might appear to "pop" slightly when doing an IK solve from one frame to the next. </dt>
+</a><P></dl></ul><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>A better IK set produces better motion!</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong> 	<em>Any type of IK operation in which the hand goes above usually require that the shoulder be able to rotate in the X, Y, and Z; be sure to allow for these rotations in the IK Set if you're performing such an IK move.</em></font></dd></dt><dl><a name="10879">
+<dt>You can modify the IK Set to your liking (as described in the section<a href="6Posing.html#12801">"Defining an IK Set," on page &#32;6-8</a>.</dt>
+</a><P></dl></dl><P>
+<a name="10883">
+<h4> Modifying the DOF Limits</h4>
+</a><a name="10884">
+If the motion looks pretty good, but you are getting some rotations that you don't like, you might try modifying the DOF limits for one or more bones. <p>
+</a><P><a name="10885">
+For example, if the bone you want to rotate are rotating, just not far enough, you might want to simply change their limits, then try to reanimate.<p>
+</a><P><a name="10834">
+<h2><HR> Congratulations!</h2>
+</a><a name="11402">
+The techniques you've learned in this chapter offer some interesting techniques for modifying existing motion-from creating and modifying wires to reaching for an object while on the run.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="7WalkCycle.html">[Prev]</a> <a href="9CartoonEffects.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 20:33:25 -->
+
+</body>
+</html>

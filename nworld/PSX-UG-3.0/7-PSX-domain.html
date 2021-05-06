@@ -1,0 +1,216 @@
+<html><head><title>Sony PSX Materials and Attributes</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6-TOD+TextTut.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9747">
+<h1>Sony PSX Materials and Attributes</h1>
+</a>
+<hr><p><a name="9748">
+<h4> This chapter outlines briefly the procedure for exporting objects, textures, and animation to the Sony PlayStation platform. It also describes the parameters and attributes you'll use to define materials for the SonyPSX render domain. In the last section of this chapter, we'll create an object, define a Sony PSX domain material, attribute the object, then preview it on the PSX.</h4>
+</a><a name="9864">
+<h2><HR> The SonyPSX Domain</h2>
+</a><a name="10324">
+<h3> Materials and Inheritance</h3>
+</a><a name="10325">
+Materials are groups of attributes which determine the appearance of an object in a rendered scene. In N&#183;World, materials are separate data structures, which you must associate with objects using the Nichimen Browser. This system provides for enhanced flexibility, since you can define a single material and apply it to many objects. In object based systems, you must redefine object attributes for each object in a scene.<p>
+</a><P><a name="10451">
+Materials can be assigned to an entire object or to a selected face part of an object (a face part is a collection of faces from the object). Materials you want to use with the PlayStation must be defined in the SonyPSX render domain. This domain has several properties and unique parameters, which you control with the Attributes Editor menus.<p>
+</a><P><a name="10334">
+The method for creating materials is no different for the SonyPSX domain than for any other domain. To learn how to create materials, as well as how to specify attribute inheritance from one material to another, see the<em> N-World Attributes Editor User's Guide</em>. The section <a href="2-VectorEditor.html#21171">"Previewing Attributed Objects," on page &#32;2-2</a> illustrates how to create, attribute, and display an object specifically on the PlayStation.<p>
+</a><P><a name="10322">
+<h3> The Attributes Editor</h3>
+</a><a name="10317">
+You define materials using the Attributes Editor. To launch the Attributes Editor, <strong>(CLICK-L)</strong> on the Attributes button in the config bar.<p>
+</a><P><a name="10455">
+ <P><img src="7-PSX-domain.anc.gif"><p>
+</a><a name="10438">
+<em>Figure 7.1  &#32; &#32;The Attributes Editor menu for the SonyPSX render domain.
+</em></a><P><a name="10341">
+<h3> `SonyPSX Domain Defaults</h3>
+</a><a name="9974">
+<strong>(Click-L)</strong> on the <strong>Prefs</strong> button to define a number of settings for the SonyPSX domain.<p>
+</a><P><a name="9978">
+ <P><img src="7-PSX-domain.anc1.gif"><p>
+</a><a name="9979">
+<em>Figure 7.2  &#32; &#32;SonyPSX domain preferences
+</em></a><P><a name="9981">
+<h4> Map Directory</h4>
+</a><a name="9982">
+The default directory from which maps are read.<p>
+</a><P><a name="9994">
+<h4> Max World Coords</h4>
+</a><a name="9995">
+Scaling factor used when converting the floating point coordinate values (used to represent objects in N-World) to a fixed point coordinate value on the PlayStation. A higher value means your objects will appear smaller on the PlayStation, while a lower value means your objects will appear larger.<p>
+</a><P><a name="10456">
+The LISP formula used to convert the floating point value to a fixed point value is as follows:<p>
+</a><P><a name="9996">
+<code><pre>(round (* 32768 (/ number *max-coord-value*)))<p>
+</code></pre></a><a name="9997">
+This takes the floating point value passed, divides it by the max-coord-value, then multiplies it by 32768, and finally rounds it to an integer. (The max-coord-value variable is the Max World Coords value specified.)<p>
+</a><P><a name="9998">
+So, for example, if we passed a floating point value of 1.0, and had specified a Max World Coords of 1000, we'd get the following calculation:<p>
+</a><P><a name="9999">
+<code><pre>(round (* 32768 (/ 1.0 1000)))<p>
+</code></pre></a><a name="10000">
+which would return:<p>
+</a><P><a name="10001">
+<code><pre>32<p>
+</code></pre></a><a name="10003">
+<h3> FTP</h3>
+</a><a name="10696">
+When you preview objects and animations on the PlayStation, the data are FTP'd to a PC host which is in turn connected to the playstation. Before you can use PlayStation Express, you need to be sure that you have an FTP account on the appropriate PC. You can specify default hostnames, usernames, and passwords to use during the FTP login.<p>
+</a><P><ul><a name="10697">
+<li><strong>Host name</strong> - The hose name of the PC attached to the PlayStation.
+</a></li><P><a name="10698">
+<li><strong>Host dir</strong> - The directory on the host PC into which to write preview data.
+</a></li><P><a name="10699">
+<li><strong>User ID</strong> - The user ID to use during the FTP login process.
+</a></li><P><a name="10700">
+<li><strong>Password</strong> - A password to use during the FTP login process.
+</a></li><P></ul><P><a name="10695">
+<h4> Save Preferences/Done &amp; Abort</h4>
+</a><ul><a name="10004">
+<li><strong>(CLICK-L)</strong> on <strong>Done</strong> to apply changes to defaults for the current session only.
+</a></li><P><a name="10703">
+<li><strong>(CLICK-L)</strong> on <strong>Save Preferences</strong> to save your changes to disk.
+</a></li><P><a name="10704">
+<li><strong>(CLICK-L)</strong> on <strong>Abort</strong> to exit the preferences menu without making any changes.
+</a></li><P></ul><P><a name="10006">
+<h2><HR> SonyPSX Attributes</h2>
+</a><a name="10007">
+SonyPSX Attributes are divided into two sections:, Shader and Texture. Shader parameters control how the shader renders the scene, while Texture parameters control how texture maps are applied to objects in a scene.<p>
+</a><P><a name="10009">
+<h3> Shader Attributes</h3>
+</a><a name="10011">
+<h4> Color</h4>
+</a><a name="10012">
+<em>Default: White</em><p>
+</a><P><a name="10013">
+The color attribute is used for two purposes in the SonyPSX render domain:<p>
+</a><P><ul><a name="10014">
+<li>To define the color of the object.
+</a></li><P><a name="10015">
+<li>As a color multiplier of the RGB values for any applied map.
+</a></li><P></ul><P><a name="10016">
+If you apply a map over an object or part that has a color other than white, the appearance of that map is altered. For example, if you apply a red brick texture onto a yellow cube, the bricks would take on a yellowish hue (how yellow depends on the RGB value of the yellow assigned to the cube).<p>
+</a><P><a name="10019">
+<h4> Light Calc?</h4>
+</a><a name="10707">
+<em>Default: Yes</em><p>
+</a><P><dl><dl><a name="10706">
+<dt>Determines whether to calculate the effect of any lights in the scene.</dt>
+</a><P></dl></dl><a name="10705">
+<h4> Facing Control</h4>
+</a><a name="10020">
+<em>Default: Front</em><p>
+</a><P><ul><a name="10021">
+<li><strong>Front</strong> renders only those faces whose normals point toward the camera. Faces pointing away from the camera are not rendered).
+</a></li><P><a name="10022">
+<li><strong>Back </strong>renders only those faces whose normals point away from the camera. Faces whose normals point toward the camera are not rendered.
+</a></li><P><a name="10023">
+<li><strong>Both</strong> renders all faces in the scene, regardless of their orientation.
+</a></li><P></ul><P><a name="10025">
+<h4> Omit Face?</h4>
+</a><a name="10026">
+<em>Default: No</em><p>
+</a><P><ul><a name="10027">
+<li><strong>Yes</strong> keeps the polygon information for the selected faces from being sent to the PlayStation when the <strong>Preview</strong> button is pressed. 
+</a></li><P><dl><a name="10028">
+<dt>For example, you might set Omit face? to Yes for faces on the back of an object.</dt>
+</a><P></dl><a name="10029">
+<li><strong>No</strong> sends the polygon information for the face.
+</a></li><P></ul><P><a name="10031">
+<h4> Smooth Shade?</h4>
+</a><a name="10032">
+<em>Default: No</em><p>
+</a><P><a name="10036">
+The smooth shade parameter selects either "color by vertex" or "color by face." (<a href="7-PSX-domain.html#10045">Figure 7.3</a>)<p>
+</a><P><ul><a name="10037">
+<li><strong>Yes</strong> shades the face from each vertex on the face, producing a smoother appearance (uses the vertex normal for each vertex on the face).
+</a></li><P><a name="10038">
+<li><strong>No</strong> colors the vertex by face; the face has a uniform color over the entire face (uses the face normal only).
+</a></li><P><a name="10043">
+ <P><img src="7-PSX-domain.anc2.gif"><p>
+</a></ul><P><a name="10045">
+<em>Figure 7.3  &#32; &#32;Color by vertex vs. color by face
+</em></a><P><a name="10047">
+<h4> Preshade</h4>
+</a><a name="10048">
+<em>Default: Yes</em><p>
+</a><P><ul><a name="10049">
+<li><strong>Yes</strong> shades the object or faces using existing lights for the scene before sending them to the PlayStation.
+</a></li><P><a name="10050">
+<li><strong>No</strong> sends the object or faces using only the color of the object; any light influence is ignored, and all faces have the specified <strong>Color</strong> attribute.
+</a></li><P></ul><P><a name="10052">
+<h3> Texture Parameters</h3>
+</a><a name="10054">
+<h4> Texture Map</h4>
+</a><a name="10055">
+<em>Default: None</em><p>
+</a><P><a name="10056">
+Specify the pathname for the texture map to be applied to the face, part, or body. The application of texture maps through mappers is described in more detail in the <em>Attributes Editor User's Guide.</em><p>
+</a><P><a name="10057">
+The <em>size</em> and <em>number</em> of texture maps which can be sent to the PlayStation are limited only by the texture map memory available.<p>
+</a><P><a name="10708">
+<h4> ABE</h4>
+</a><a name="10713">
+<em>Default: No</em><p>
+</a><P><a name="10714">
+Enable half-transparent drawing mode. When ABE is selected, you can specify a model with which to mix surface and background colors.<p>
+</a><P><ul><a name="10717">
+<li><strong>50+50</strong> - 50% of background color + 50% of surface color.
+</a></li><P><a name="10718">
+<li><strong>100+100</strong> - 100% of background color + 100% of foreground color 
+</a></li><P><a name="10720">
+<li><strong>100-100</strong> - 100% of surface color - 100% of background color.
+</a></li><P><a name="10719">
+<li><strong>100+25</strong> - 100% of background color + 25% of surface color.
+</a></li><P></ul><P><a name="10059">
+<h2><HR> SonyPSX Domain Commands</h2>
+</a><a name="10070">
+<h4> Revert</h4>
+</a><ul><a name="10774">
+<li><strong>(CLICK-L)</strong> on <strong>Revert</strong> to undo all changes to the material since it was last saved.
+</a></li><P><a name="10778">
+<li><strong>(CLICK-R)</strong> on <strong>Revert</strong> to reset all locally set attribute values to their default values.
+</a></li><P></ul><P><a name="10773">
+<h4> Redisplay</h4>
+</a><a name="10071">
+Redisplay the scene on the SGI.<p>
+</a><P><ul><a name="10072">
+<li><strong>(CLICK-L)</strong> to redisplay the scene, applying changes you've made to attribute values since the last redisplay.
+</a></li><P><a name="10073">
+<li><strong>(CLICK-M)</strong> to redisplay the scene without updating attribute values.
+</a></li><P><a name="10074">
+<li><strong>(CTRL-M) </strong>to redisplay the scene, updating any changes you may have made to texture maps in the scene since the last redisplay.
+</a></li><P></ul><P><a name="10079">
+<h4> Preview</h4>
+</a><a name="10080">
+Preview the current scene on the PlayStation.<p>
+</a><P><ul><a name="10081">
+<li><strong>(CLICK-L)</strong> to preview the object after updating changes made to attribute values.
+</a></li><P></ul><P><a name="9865">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6-TOD+TextTut.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:27 -->
+
+</body>
+</html>

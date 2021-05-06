@@ -1,0 +1,248 @@
+<html><head><title>Stadium</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="14Plants.html">[Prev]</a> <a href="16Tubes+TubeSolids.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Stadium</h1>
+</a>
+<hr><p><a name="18434">
+<h4> This chapter describes a simple technique for building a complete low-polygon count stadium environment in only a few steps.</h4>
+</a><a name="9046">
+ <P><img src="15Stadium.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="16900">
+In building this object we'll learn some new techniques, plus expand on some we learned before:<p>
+</a><P><ul><a name="16901">
+<li>Creating wires and arcs
+</a></li><P><a name="16946">
+<li>Using contour solids
+</a></li><P></ul><P><a name="17129">
+<h2><HR> Sketching the Contour Wire</h2>
+</a><a name="17100">
+A contour solid is a polyhedron created by scaling the cross section out to the contour. There are three basic steps in creating a contour solid:<p>
+</a><P><ul><a name="17325">
+<li>create the contour wire
+</a></li><P><a name="17265">
+<li>create the path wire
+</a></li><P><a name="17275">
+<li>move the contour wire along the path wire to create a solid
+</a></li><P></ul><P><a name="17186">
+<h2><HR> Building the Contour Wire</h2>
+</a><a name="17285">
+In this section, we'll build the path wire. The path wire defines the "dimensions" of the stadium.<p>
+</a><P><a name="17187">
+Try this:<p>
+</a><P>
+<a name="17188">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Contour Solid.
+</STRONG>
+</a><P><a name="17193">
+ <P><img src="15Stadium.anc1.gif"><p>
+</a>
+<a name="17194">
+<em>Figure 15.1  &#32; &#32;Sketch parameters
+</em></a><P><dl><dl><a name="17317">
+<dt>Each of the parameters on this menu is described in detail in the <em>N-Geometry Reference Guide</em>. </dt>
+</a><P><a name="17320">
+<dt>For now, change only the following parameters:</dt>
+</a><P></dl><ul>
+<BR><a name="17321">
+<li>set <strong>Mouse Grid (x)</strong>, <strong>(y)</strong>, and <strong>(z)</strong> to <strong>1.0</strong>
+</a><P></ul>
+</dl>
+<a name="17195">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Set Sketch Params button.
+</STRONG>
+</a><P><dl><a name="17196">
+<dt>The Sketch Editor opens in the N-Geometry window. The target shape for the wire is shown in <a href="15Stadium.html#17205">Figure 15.2</a>:</dt>
+</a><P><a name="17203">
+ <P><img src="15Stadium.anc2.gif"><p>
+</a></dl>
+<a name="17205">
+<em>Figure 15.2  &#32; &#32;The finished wire-refer back here if you need to
+</em></a><P><dl><dl><a name="17901">
+<dt>In this exercise, it's not critical that you get the shape exactly right; just make sure that you start the wire on the Y axis and end it at the global center.</dt>
+</a><P></dl></dl>
+<a name="17206">
+<STRONG>	3.	 To start the wire, move the cursor straight up the Y axis.
+</STRONG>
+</a><P><a name="17207">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> to place node right on the Y axis.
+</STRONG>
+</a><P><a name="17208">
+<STRONG>	5.	 Move the cursor to the right, then <strong>(CLICK-L)</strong> again.
+</STRONG>
+</a><P><a name="17229">
+ <P><img src="15Stadium.anc3.gif"><p>
+</a>
+<a name="17230">
+<em>Figure 15.3  &#32; &#32;Starting the wire
+</em></a><P>
+<a name="17231">
+<STRONG>	6.	 <strong>(ALT-L)</strong> and move the cursor straight down.
+</STRONG>
+</a><P><dl><a name="17386">
+<dt>You use the <strong>ALT</strong> key to start an arc in the sketch editor. Move the mouse straight down and <strong>(CLICK-L)</strong> again to define the arc:</dt>
+</a><P><a name="17432">
+ <P><img src="15Stadium.anc4.gif"><p>
+</a></dl>
+<a name="17433">
+<em>Figure 15.4  &#32; &#32;Defining the arc
+</em></a><P>
+<a name="17554">
+<STRONG>	7.	 Move the mouse back up and <strong>(CLICK-L)</strong> as shown in <a href="15Stadium.html#17464">Figure 15.5</a> to create the arc.
+</STRONG>
+</a><P><a name="17463">
+ <P><img src="15Stadium.anc5.gif"><p>
+</a>
+<a name="17464">
+<em>Figure 15.5  &#32; &#32;Ending the arc
+</em></a><P><a name="17545">
+You can complete the rest of the wire using <strong>(CLICK-L)</strong> to insert nodes wherever necessary.<p>
+</a><P><a name="17534">
+ <P><img src="15Stadium.anc6.gif"><p>
+</a><a name="17535">
+<em>Figure 15.6  &#32; &#32;Completing the contour wire
+</em></a><P>
+<a name="17575">
+<STRONG>	8.	 <strong>(CLICK-R)</strong> after you draw the last node, then <strong>(CLICK-L)</strong> on OK.
+</STRONG>
+</a><P>
+<a name="17790">
+<h2><HR> Creating the Path Wire</h2>
+</a><a name="17576">
+After you <strong>(CLICK-L)</strong> on OK to complete the first wire, you're prompted to enter the drawing parameters for the second wire (the path the contour wire follows).<p>
+</a><P><a name="17602">
+ <P><img src="15Stadium.anc7.gif"><p>
+</a><a name="17603">
+<em>Figure 15.7  &#32; &#32;Parameters for the contour solid
+</em></a><P>
+<a name="17783">
+<STRONG>	9.	 Use the default parameters, then <strong>(CLICK-L)</strong> on Make Solid.
+</STRONG>
+</a><P><dl><a name="17613">
+<dt>The sketch editor appears again. </dt>
+</a><P></dl>
+<a name="17778">
+Now, we're going Let's assume that our arena is intended for either basketball or hockey. Try this:<p>
+</a><P>
+<a name="17616">
+<STRONG>	10.	 Draw a wire in the shape of a hockey rink. Start with a node straight up the Y axis.
+</STRONG>
+</a><P><a name="17646">
+ <P><img src="15Stadium.anc8.gif"><p>
+</a>
+<a name="17647">
+<em>Figure 15.8  &#32; &#32;Completing the contour wire
+</em></a><P>
+<a name="17793">
+<STRONG>	11.	 Draw the arc for the first corner of the rink. 
+</STRONG>
+</a><P><dl><a name="17806">
+<dt>Make the mouse clicks described in <a href="15Stadium.html#17749">Figure 15.9</a> to complete the arc.</dt>
+</a><P><a name="17748">
+ <P><img src="15Stadium.anc9.gif"><p>
+</a></dl>
+<a name="17749">
+<em>Figure 15.9  &#32; &#32;Completing the contour wire
+</em></a><P>
+<a name="17619">
+<STRONG>	12.	 Now, complete the rest of the wire until you have a wire that looks like this:
+</STRONG>
+</a><P><a name="17854">
+ <P><img src="15Stadium.anc10.gif"><p>
+</a>
+<a name="17856">
+<em>Figure 15.10  &#32; &#32;Completing the path wire
+</em></a><P>
+<a name="17891">
+<STRONG>	13.	 <strong>(CLICK-R)</strong> after you draw the last node, then <strong>(CLICK-L)</strong> on OK.
+</STRONG>
+</a><P><dl><a name="17896">
+<dt>The sketch editor goes away and the contour solid appears in the N-Geometry window.</dt>
+</a><P><a name="17940">
+ <P><img src="15Stadium.anc11.gif"><p>
+</a></dl>
+<a name="17941">
+<em>Figure 15.11  &#32; &#32;The completed stadium
+</em></a><P>
+<a name="17906">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Shading.
+</STRONG>
+</a><P><dl><a name="17949">
+<dt>Pick the new object from the object list. The generated object is called "Consolid" by default, short for "contour solid."</dt>
+</a><P><a name="17959">
+ <P><img src="15Stadium.anc12.gif"><p>
+</a></dl>
+<a name="17960">
+<em>Figure 15.12  &#32; &#32;The shaded stadium
+</em></a><P><a name="17950">
+<h2><HR> Going Inside the Stadium</h2>
+</a><a name="17971">
+The generated contour solid is a closed surface; all its normals are on the same side of the object, that is on the "inside" or the "outside."<p>
+</a><P><a name="17976">
+If your object looks like it does in <a href="15Stadium.html#17960">Figure 15.12</a>, that is, it looks normal when viewing it from the outside, you need to evert the object before you go inside of it.<p>
+</a><P>
+<a name="17981">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="17982">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the stadium, then <strong>(CLICK-L)</strong> on Evert.
+</STRONG>
+</a><P><dl><a name="17983">
+<dt>The normals on the faces of your object are everted, or "flipped" to the other side. Everting the object will make it look "open."</dt>
+</a><P><a name="17997">
+ <P><img src="15Stadium.anc13.gif"><p>
+</a></dl>
+<a name="17999">
+<em>Figure 15.13  &#32; &#32;The everted stadium
+</em></a><P><dl><dl><a name="17992">
+<dt>If you are looking at an everted shaded object, you may find it hard to identify which faces you are actually seeing at any given moment. This is because you are actually looking at the faces on the far side of the object (those whose normals are now pointing toward the camera).</dt>
+</a><P></dl></dl><a name="18013">
+While this may be somewhat confusing if you are looking at the stadium from the <em>outside</em>, it's likely that your action will take place on the <em>inside</em> of the stadium.<p>
+</a><P>
+<a name="18018">
+<STRONG>	17.	 Press the "y" hot key so that you are looking straight down at the top of the stadium.
+</STRONG>
+</a><P><a name="18021">
+<STRONG>	18.	 Adjust the camera so that it looks something like this:
+</STRONG>
+</a><P><a name="18027">
+ <P><img src="15Stadium.anc14.gif"><p>
+</a>
+<a name="18028">
+<em>Figure 15.14  &#32; &#32;The everted stadium from above
+</em></a><P><a name="18253">
+You can apply textures to each area of the inside of your stadium, creating a complete environment for any sport.<p>
+</a><P><a name="18247">
+<h2><HR> Save your Work</h2>
+</a><a name="18249">
+Make sure to use the <strong>GeoMenus&gt;File&gt;Save</strong> operation to save your work.<p>
+</a><P><a name="18248">
+<h2><HR> Congratulations!</h2>
+</a><a name="18163">
+You've now completed an entire environment based on two simple sketched wires.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="14Plants.html">[Prev]</a> <a href="16Tubes+TubeSolids.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/29/96 12:20:56 -->
+
+</body>
+</html>

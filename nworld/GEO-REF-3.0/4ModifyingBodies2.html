@@ -1,0 +1,709 @@
+<html><head><title>Working with Bodies</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies1.html">[Prev]</a> <a href="4ModifyingBodies3.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+<h1> Working with Bodies (cont.) </h1> 
+<a name="11554">
+<h3> Make Displacement</h3>
+</a><a name="6174">
+<em>Polyhedra, wires</em><p>
+</a><P><a name="6175">
+Saves and names displacements. <p>
+</a><P><a name="6177">
+Operations in the <strong>Displacements</strong> section of the GeoMenu let you create, modify, and save displacements for polygons. A <em>displacement</em> is a named, saved state of a polyhedron's vertices or a wire's nodes. What does that mean? <p>
+</a><P><a name="6178">
+Imagine you were doing a traditional animation with clay models; for each frame, you'd have to repose the skeleton, then shoot a frame. If a character turned his head to the left, you'd have to turn the head slightly for each frame, and shoot it in each new position.<p>
+</a><P><a name="6179">
+Now imagine that instead of a clay character, you are using a wireframe model in N-Geometry. Using our displacement operations, you could save a pose of the model looking straight ahead as an <em>absolute</em> displacement, rotate the head using one of the rotate commands, then save a pose of the model looking left as a <em>relative</em> displacement.<p>
+</a><P><a name="6180">
+Each of these displacements can be named and animated from the N-Dynamics animation choreographer as keyframe poses in a script. You might specify that the model start in its original position at frame 1, and that it end looking left (using the relative displacement) in frame 30. When you animated the script, the frames between would be generated <em>automatically</em>, and the model would turn its head to the left.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can't add or subtract the number of points on a polygon if you want its displacements to remain valid. This means that operations such as </em><strong>Scale</strong><em>, </em><strong>Twist</strong><em>, and </em><strong>Rotate</strong><em> are valid to create relative displacements, but </em><strong>Collapse</strong><em> and </em><strong>Dissolve</strong><em> are not. For this reason, you should make any changes to your model before making any displacements.</em></font></dd></dt></dl><P>
+<a name="6182">
+Absolute displacements save information for all vertices on the object; relative displacements save information only for those vertices that have been moved.<p>
+</a><P><a name="6183">
+There are two types of relative displacements:<p>
+</a><P><ul><a name="6184">
+<li>Linear
+</a></li><P><a name="6185">
+<li>Rotational
+</a></li><P></ul><P><a name="6186">
+The <strong>Make Displacement</strong> command below shows how each type of displacement is used.<p>
+</a><P><a name="6187">
+Try the following mini-tutorial to see how displacements work:<p>
+</a><P>
+<a name="6188">
+<STRONG>	 1.	 Make a basic object.
+</STRONG>
+</a><P><a name="6192">
+ <P><img src="4ModifyingBodies.anc69.gif"><p>
+</a>
+<a name="6193">
+<em>Figure 4.71  &#32; &#32;Left, object in original position
+</em></a><P>
+<a name="6194">
+<STRONG>	2.	 Select Bodies from the sensitivity element menu.
+</STRONG>
+</a><P><a name="6195">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><dl><a name="6196">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="6200">
+ <P><img src="4ModifyingBodies.anc70.gif"><p>
+</a></dl>
+<a name="6201">
+<em>Figure 4.72  &#32; &#32;Saving an absolute displacement
+</em></a><P><dl><dl><a name="6202">
+<dt>Give the object's original position a descriptive name, such as "base." Then choose <strong>Absolute</strong> (since other displacements are calculated from the object while it's in this "absolute" position).</dt>
+</a><P></dl></dl>
+<a name="6203">
+<STRONG>	4.	 Next, modify or "displace" the object to its target state.
+</STRONG>
+</a><P><dl><a name="6204">
+<dt>In this example, we collected the polygons around the man's head and made them larger with the <strong>Scale </strong>command:</dt>
+</a><P><a name="6208">
+ <P><img src="4ModifyingBodies.anc71.gif"><p>
+</a></dl>
+<a name="6209">
+<em>Figure 4.73  &#32; &#32;Modify the body and save its new position as a relative displacement
+</em></a><P>
+<a name="6210">
+<STRONG>	5.	 Select Bodies from the sensitivity element menu.
+</STRONG>
+</a><P><a name="6211">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the object again, then <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="6212">
+<STRONG>	7.	 This time, <strong>(CLICK-L)</strong> on Relative Displacement.
+</STRONG>
+</a><P><dl><a name="6213">
+<dt>Several additional items appear on the menu:</dt>
+</a><P><a name="6217">
+ <P><img src="4ModifyingBodies.anc72.gif"><p>
+</a></dl>
+<a name="6218">
+<em>Figure 4.74  &#32;Saving a relative displacement
+</em></a><P>
+<a name="6219">
+<STRONG>	8.	 <strong>Give the relative displacement a descriptive name.</strong>
+</STRONG>
+</a><P><dl><a name="6220">
+<dt>Again, you can reference saved displacements by name in N-Dynamics.</dt>
+</a><P></dl><a name="6221">
+<STRONG>	9.	 <strong>Choose Previous State.</strong>
+</STRONG>
+</a><P><dl><a name="6222">
+<dt>The current state is based on a previous saved state.</dt>
+</a><P></dl><a name="6223">
+<STRONG>	10.	 Next to State, specify the name of the absolute displacement this pose is based on.
+</STRONG>
+</a><P><dl><a name="6224">
+<dt>In this case, we used the name "base" for our absolute displacement.</dt>
+</a><P></dl><a name="6225">
+<STRONG>	11.	 Choose Save Displacement State.
+</STRONG>
+</a><P><dl><a name="6226">
+<dt>You've now saved both an absolute and relative displacement state for the object.</dt>
+</a><P></dl><a name="6227">
+<STRONG>	12.	 Test the displacement by selecting the object and <strong>(CLICK-M)</strong> on the Displace command.
+</STRONG>
+</a><P><dl><a name="6228">
+<dt>Initialize the shape to its original state by initializing it to its absolute displacement state.</dt>
+</a><P></dl><a name="6229">
+<STRONG>	13.	 With the object still selected, <strong>(CLICK-L)</strong> on Displace, and <strong>(CLICK-L)</strong> on the name of the relative displacement you created earlier.
+</STRONG>
+</a><P><dl><a name="6230">
+<dt>Move the mouse left and right to move the object between its original state and its relative displacement.</dt>
+</a><P><a name="6236">
+ <P><img src="4ModifyingBodies.anc73.gif"><p>
+</a></dl>
+<a name="6237">
+<em>Figure 4.75  &#32; &#32;Using displacements to change the shape of the man's head
+</em></a><P><a name="6238">
+Each of the other options in the Select Displacement Parameters is described below.<p>
+</a><P><ul><a name="6239">
+<li><strong>Saving Mode</strong> specifies what kind of displacement is saved:
+</a></li><P><ul>
+<BR><a name="6240">
+<li><strong>Absolute</strong> saves the current state of the polyhedron or wire. The save consists of a list of the absolute locations of all the polyhedron's vertices or wire's winged segments.
+</a><P><BR><a name="6241">
+<li><strong>Relative</strong> saves an incremental <em>linear</em> displacement. This is a list of the differences between the current state and another state. Only those vertices or winged segments that are actually different are saved. The menu changes so you can specify whether the displacements are made from a previous absolute state of the same polyhedron or wire, or if they are made from the current state of another polyhedron or wire.
+</a><P><BR><a name="6242">
+<li><strong>Rel Rotation</strong> saves an incremental <em>rotational</em> displacement. Rotational developments were developed because of the shearing effect that can occur when you move part of a model, such as an arm or a leg. See the section <a href="4ModifyingBodies2.html#6255">"Linear vs. rotational displacements," on page &#32;4-54</a> for a description of both kinds of displacements and when to use each.
+</a><P></ul>
+<a name="6246">
+<li><strong>Source </strong>specifies the "from" state for the displacement-the state the relative displacement is calculated from.
+</a></li><P><ul>
+<BR><a name="6247">
+<li><strong>Previous State</strong> specifies that the displacement is a variation of the same polyhedron or wire.
+</a><P><BR><a name="6248">
+<li><strong>From polyhedron</strong> specifies the object from which a displacement is performed. The polyhedron must have the same topology (typically a copy of the same object in a different pose).
+</a><P><BR><a name="6249">
+<li><strong>To polyhedron</strong> displaces the object toward a polyhedron with the same topology (again, typically a copy of the object). This can be used to displace the object "to" the state of the "to polyhedron".
+</a><P><BR><a name="6250">
+<li><strong>Other Polyhedron</strong> can be used to generate a relative displacement from an object not necessarily the original, but topologically identical to it (same number of vertices connected in the same way). For example, if you had created a displacement for a cube, you could base its relative displacement from any other cube, but not a cylinder, which has a different number of points connected in a different way.
+</a><P><dl><a name="6251">
+<dt>You could, however, generate a displacement from a copy of the object you might have saved earlier (as long as the two objects had identical topologies).<p>
+</a><P></dl></ul>
+<a name="6252">
+<li><strong>State</strong> specifies the state from which the new displacement has been derived.
+</a></li><P></ul><P><a name="6255">
+<h4> Linear vs. rotational displacements</h4>
+</a><a name="6256">
+When should you use rotational rather than linear displacements? In a linear displacement, points move from their base position to their target position along a linear path. While this type of animation is easy to calculate, it can cause shearing effects:<p>
+</a><P><a name="6266">
+ <P><img src="4ModifyingBodies.anc74.gif"><p>
+</a><a name="6267">
+<em>Figure 4.76  &#32; &#32;When using a linear displacement, points follow a straight path to their target state, which can cause shearing or distortion
+</em></a><P><a name="6268">
+Linear displacements make sense if you're performing operations on an object that wouldn't cause points to be moved through other points (such as scaling or moving).<p>
+</a><P><a name="6269">
+In a rotational displacement, points move rotationally around a selected axis:<p>
+</a><P><a name="6279">
+ <P><img src="4ModifyingBodies.anc75.gif"><p>
+</a><a name="6281">
+<em>Figure 4.77  &#32; &#32;Left, displacing using a rotational displacement lets you select an axis which the displaced vertices rotate around
+</em></a><P><a name="6282">
+Choose rotational displacements if the operation you want the displacement to follow a curved rather than straight path. You specify the rotation axis that the displaced points are to rotate around when defining the relative rotational displacement (notice the addition of the <strong>Axis</strong> menu item):<p>
+</a><P><a name="6286">
+ <P><img src="4ModifyingBodies.anc76.gif"><p>
+</a><a name="6287">
+<em>Figure 4.78  &#32; &#32;Saving a rotational displacement
+</em></a><P><a name="6288">
+To make a rotational displacement:<p>
+</a><P>
+<a name="6289">
+<STRONG>	 1.	 Set the item to base shape.
+</STRONG>
+</a><P><a name="6290">
+<STRONG>	2.	 Save an absolute displacement for the object.
+</STRONG>
+</a><P><a name="6291">
+<STRONG>	3.	 Displace the shape to its target state.
+</STRONG>
+</a><P><a name="6292">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Make Displacement.
+</STRONG>
+</a><P><a name="6293">
+<STRONG>	5.	 Choose Rel Rotation for the type of displacement.
+</STRONG>
+</a><P><a name="6294">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Axis.
+</STRONG>
+</a><P><dl><a name="6295">
+<dt>The menu that appears lets you choose an axis that the points should rotate around (typically a point on the object itself). In the example above, we selected the <strong>Select a segment</strong> option and chose the segment on the arm that the rotation occurs around:</dt>
+</a><P><a name="6303">
+ <P><img src="4ModifyingBodies.anc77.gif"><p>
+</a></dl>
+<a name="6304">
+<em>Figure 4.79  &#32;Selecting an axis for a rotational displacement
+</em></a><P><a name="6305">
+Both linear and rotational displacements can be animated using the <strong>Displace</strong> command, described below.<p>
+</a><P><a name="11186">
+<h3> Make Frozen Mapper</h3>
+</a><a name="11187">
+<em>Any body</em><p>
+</a><P><a name="11188">
+Fixes the relationship of the specified mapper to the surface of the object. To do this, you need to capture the mapper and the position of the vertices at a certain point in time and save those positions for reference during rendering. <p>
+</a><P><a name="11189">
+This is called "applying a dynamic mapper" and produces a <em>frozen</em> mapper. The resulting frozen mapper is a <em>copy</em> of the dynamic mapper, saved with the positions of the object's vertices and the mapper's transformation at the time it was created.<p>
+</a><P><a name="11190">
+You typically apply a mapper to an object that <em>changes shape</em> (deforms) over the course of an animation.<p>
+</a><P><a name="11191">
+When you animate an object with a frozen mapper, the map image <em>always</em> remains in the same position on the surface of the object. Because a frozen mapper represents a fixed mapping relationship, no visible mapper object exists for frozen mappers, nor can their transformations be animated.<p>
+</a><P><a name="11192">
+Creating and applying mappers is discussed in detail in the <em>N-Geometry Tutorial</em>.<p>
+</a><P><a name="11194">
+<h3> Make Part Frozen Mapper</h3>
+</a><a name="11195">
+<em>Faces, bodies</em><p>
+</a><P><a name="11196">
+Applies a mapper created in N-Geometry to a selected face part.<p>
+</a><P><a name="11197">
+The creation and application of mappers is discussed in detail in the <em>N-Geometry Tutorial</em>.<p>
+</a><P><a name="6878">
+<h3> Make Patch Body</h3>
+</a><a name="6879">
+<em>Polyhedron</em><p>
+</a><P><a name="6880">
+Makes a patch-body for the currently selected object. A patch body has the same number of vertices, edges, and faces as the original object; however, all edges are smoothed in the "patched" copy. The effect is particularly visible if you turn shading on for the patch body object. Some renderers <em>require</em> patch bodies for rendering purposes.<p>
+</a><P><a name="6881">
+To create a patch body:<p>
+</a><P>
+<a name="6882">
+<STRONG>	 1.	 Create an object.
+</STRONG>
+</a><P><a name="6883">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="6884">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Make Patch Body.
+</STRONG>
+</a><P><a name="6889">
+ <P><img src="4ModifyingBodies.anc78.gif"><p>
+</a>
+<a name="6891">
+<em>Figure 4.80  &#32; &#32;Left, original object with patchified body; right, after moving point on original object
+</em></a><P><a name="6892">
+After you <strong>(CLICK-L)</strong> on <strong>Make Patch Body</strong>, a menu pops up to give the new patched body a name.<p>
+</a><P><a name="6893">
+To change the shape of the patchified body, change the shape of the original polygon body; in <a href="4ModifyingBodies2.html#6891">Figure 4.80</a>, we moved a point on the original, or "control" icosahedron to deform the patch body.<p>
+</a><P><a name="6800">
+<h3> Make Spline</h3>
+</a><a name="6801">
+<em>Wires</em><p>
+</a><P><a name="6802">
+Creates a splined wire from a control wire. The splined wire is actually a regular wire whose nodes lie on a b-spline curve that uses the control wire's nodes as control points.<p>
+</a><P><a name="6803">
+To create a splined wire:<p>
+</a><P>
+<a name="6804">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on a previously encoded wire.
+</STRONG>
+</a><P><dl><a name="6805">
+<dt>The following menu appears:</dt>
+</a><P><a name="6809">
+ <P><img src="4ModifyingBodies.anc79.gif"><p>
+</a></dl>
+<a name="6810">
+<em>Figure 4.81  &#32; &#32;Selecting spline-wire parameters
+</em></a><P><ul><a name="6811">
+<li><strong>Name</strong> is the name of the generated spline.
+</a></li><P><a name="6812">
+<li><strong>nDivisions</strong> specifies the number of segments for the splined wire. This number defaults to 4 times the number of segments in the control wire.
+</a></li><P><a name="6813">
+<li><strong>Degree</strong> determines the smoothness of the spline. A degree of 1 causes the spline to lie exactly on the control wire. Higher degrees create splines that are smoother and lie further from the control points. 
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Using a value for Degree higher than the number of segments in the control wire produces no additional changes.</em></font></dd></dt></dl><P>
+<ul><a name="6815">
+<li><strong>B-spline curve</strong> specifies that the generated spline is a curve, controllable by a set of control points defined by the shape of the original wire.
+</a></li><P><a name="6816">
+<li><strong>Segmented wire</strong> creates a multi-segment wire of the same shape.
+</a></li><P><a name="6821">
+ <P><img src="4ModifyingBodies.anc80.gif"><p>
+</a></ul><P><a name="6823">
+<em>Figure 4.82  &#32; &#32;Left, B-spline curve encoded from control wire; right, segmented wire
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Splined wires cannot be made from wires that contain arcs.</em></font></dd></dt></dl><P>
+<a name="6834">
+<h3> Make Splined Surface</h3>
+</a><a name="6835">
+<em>Rectangular mesh</em><p>
+</a><P><a name="6836">
+This feature lets you create a new polyhedron approximating a B-spline surface of arbitrary degree, using the rectangular mesh nodes as control points.<p>
+</a><P><a name="6837">
+To make a splined surface:<p>
+</a><P>
+<a name="6838">
+<STRONG>	 1.	 Create a rectangular mesh.
+</STRONG>
+</a><P><dl><a name="6839">
+<dt>Create the mesh from the <strong>GeoMenus&gt;File&gt;New Object&gt;Grid</strong> menu.</dt>
+</a><P></dl><a name="6840">
+<STRONG>	2.	 Pull out several points from the rectangular mesh by performing an Axis Move along the Y axis.
+</STRONG>
+</a><P><a name="6844">
+ <P><img src="4ModifyingBodies.anc81.gif"><p>
+</a>
+<a name="6845">
+<em>Figure 4.83  &#32; &#32;The rectangular mesh
+</em></a><P>
+<a name="6846">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the mesh.
+</STRONG>
+</a><P><a name="6847">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on make splined Surface.
+</STRONG>
+</a><P><dl><a name="6848">
+<dt>The following menu appears:</dt>
+</a><P><a name="6852">
+ <P><img src="4ModifyingBodies.anc82.gif"><p>
+</a></dl>
+<a name="6853">
+<em>Figure 4.84  &#32; &#32;Menu for creating splined surface from rectangular mesh
+</em></a><P><ul><a name="6854">
+<li><strong>Name</strong> is the name of the created splined surface.
+</a></li><P><a name="6855">
+<li><strong>nDivisions</strong> is the number of subdivisions created on the newly generated splined surface.
+</a></li><P><a name="6856">
+<li><strong>Degree</strong> controls the method used to generate the splined surface along both the u and v coordinates; a value of 1 generates a surface with the same shape as the original; a value of 4 (the maximum) generates a surface that least closely resembles the original.
+</a></li><P></ul><P>
+<a name="6857">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Make Spline button.
+</STRONG>
+</a><P><dl><a name="6858">
+<dt>The splined surface appears under the original rectangular mesh:</dt>
+</a><P><a name="6862">
+ <P><img src="4ModifyingBodies.anc83.gif"><p>
+</a></dl>
+<a name="6863">
+<em>Figure 4.85  &#32; &#32;The rectangular mesh with the generated spline surface beneath it
+</em></a><P>
+<a name="6864">
+<STRONG>	6.	 To change the shape of the generated spline surface, move points on the original rectangular mesh:
+</STRONG>
+</a><P><a name="6868">
+ <P><img src="4ModifyingBodies.anc84.gif"><p>
+</a>
+<a name="6869">
+<em>Figure 4.86  &#32; &#32;The rectangular mesh with the generated spline surface beneath it
+</em></a><P><a name="10796">
+<h3> Materials</h3>
+</a><a name="10797">
+Assigns or removes materials from the selected body, or invokes the Attributes Editor, which is used to edit materials. <p>
+</a><P><ul><a name="10816">
+<li><strong>(CLICK-L)</strong> to assign a material to an object. This displays a list of currently loaded materials. <strong>(CLICK-L)</strong> on the material you want to assign to the object.
+</a></li><P><a name="10828">
+<li><strong>(CTRL-*)</strong> to clear all attributes from the object.
+</a></li><P><a name="10840">
+<li><strong>(CLICK-R)</strong> to open the Attributes Editor, where you can edit materials.
+</a></li><P></ul><P><a name="10814">
+Materials define how a body will look when it is rendered; you can specify things like a color, opacity, and surface texture for the material used to render the object.<p>
+</a><P><a name="10798">
+For a complete description of attributes and how they are assigned, refer to the <em>Attributes Editor User Guide</em>.<p>
+</a><P><a name="7211">
+<h3> Mirror</h3>
+</a><a name="7212">
+<em>Polyhedra</em><p>
+</a><P><a name="7213">
+Duplicates the geometry of a polyhedron by copying it around a selected face. The result is the original object with twice the geometric complexity (no discrete polyhedra is created). <strong>Copy, mirrored </strong>resembles the <strong>Mirror</strong> command, except that the mirrored polyhedron becomes a new object.<p>
+</a><P><ul><a name="7214">
+<li><strong>(CLICK-L)</strong> mirrors the polyhedron around a selected face.
+</a></li><P><a name="7218">
+ <P><img src="4ModifyingBodies.anc85.gif"><p>
+</a></ul><P><a name="7219">
+<em>Figure 4.87  &#32; &#32;Mirrored icosahedron
+</em></a><P><ul><a name="7220">
+<li><strong>(CLICK-M)</strong> works similarly, except that when the face is nearly perpendicular to an axis (x, y, or z), the mirroring takes place as if that face were exactly aligned with that axis.
+</a></li><P><a name="7221">
+<li><strong>(CLICK-R)</strong> works similarly, but locates the seam at 0 on the mirroring axis.
+</a></li><P></ul><P><a name="6101">
+<h3> Move</h3>
+</a><a name="6102">
+<em>Edges, faces, polyhedra, vertices</em><p>
+</a><P><a name="6103">
+Moves the selected element in one of three ways:<p>
+</a><P><ul><a name="6104">
+<li><strong>(CLICK-L)</strong> moves an element along the global x, y, and z axes. It is usually helpful to have the axes visible during this operation.
+</a></li><P><a name="6105">
+<li><strong>(CLICK-M)</strong> moves an element relative to the camera position.
+</a></li><P></ul><P><a name="6106">
+When you move a face, the other faces move (stretch or shrink) to maintain continuity. This is also true with edges and vertices; when they are moved, the polyhedron changes as necessary.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>It is very easy to generate non-planar faces with the move operation. By moving a vertex at random, adjacent faces can easily become non-planar. If you intend to render an object and you know how you want the object to look, you can use Cut to divide the object into triangles. If you do not cut faces, most renderers triangularize non-planar faces automatically, which might cause the object to be rendered in a manner you did not intend.</em></font></dd></dt><a name="6119">
+ <P><img src="4ModifyingBodies.anc86.gif"><p>
+</a></dl><P>
+<a name="6120">
+<em>Figure 4.88  &#32; &#32;Cube before and after point move
+</em></a><P><a name="7963">
+<h3> Move Texture</h3>
+</a><a name="9584">
+<em>Vertices</em><p>
+</a><P><a name="10187">
+Modifies the UV coordinates of a frozen mapper, effectively "sliding" the area of the texture map around the selected vertex. Use this command to fine tune the position of a map in relation to a body, i.e., to align a feature on a map with a feature on an object.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can only use <strong>Move Texture</strong> on a frozen mapper.</font></dd></dt></dl><P>
+<a name="10367">
+To move the texture of a frozen mapper:<p>
+</a><P>
+<a name="10368">
+<STRONG>	 1.	 Create a frozen mapper.
+</STRONG>
+</a><P><dl><a name="10372">
+<dt>See the section <a href="4ModifyingBodies2.html#11186">"Make Frozen Mapper," on page &#32;4-57</a> for details on how to create a frozen mapper.</dt>
+</a><P></dl><a name="10258">
+<STRONG>	2.	 Apply a material to the body and make sure the texture map is applied to the body through the frozen mapper.
+</STRONG>
+</a><P><a name="10241">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10242">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on a vertex on the body that is close to where you want to slide the map.
+</STRONG>
+</a><P><dl><a name="10260">
+<dt>For example, you may want to align the lines in a map with the edges of an object:</dt>
+</a><P><a name="10268">
+ <P><img src="4ModifyingBodies.anc87.gif"><p>
+</a></dl>
+<a name="10270">
+<em>Figure 4.89  &#32; &#32;Selecting a point on the body near where you want slide the texture
+</em></a><P>
+<a name="10247">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Move Texture.
+</STRONG>
+</a><P><dl><a name="11152">
+<dt>A list of mappers associated with the body is displayed. <strong>(CLICK-L)</strong> on the mapper whose UVs you want to change.</dt>
+</a><P><a name="10346">
+ <P><img src="4ModifyingBodies.anc88.gif"><p>
+</a></dl>
+<a name="10347">
+<em>Figure 4.90  &#32; &#32;Select the frozen mapper you want to adjust
+</em></a><P>
+<a name="10250">
+<STRONG>	6.	 Move the mouse to slide the texture interactively.
+</STRONG>
+</a><P><dl><a name="10299">
+<dt>You can repeat this process for any number of points on the body until your texture is properly aligned:</dt>
+</a><P><a name="10313">
+ <P><img src="4ModifyingBodies.anc89.gif"><p>
+</a></dl>
+<a name="10314">
+<em>Figure 4.91  &#32; &#32;After sliding the texture around each of the point on top of the object
+</em></a><P><a name="9583">
+<h3> Multiple Extrude</h3>
+</a><a name="7964">
+<em>Faces, collections of faces</em><p>
+</a><P><a name="7965">
+<strong>Multiple Extrude</strong> lets you perform multiple operations on a face or collection of faces at one time. In addition to the basic extrusion of a face, you can move, scale, rotate, twist, and circularize the face as it is extruded from the original body. In addition, the extrusion can be given a "domed" appearance. This feature is great for pulling out horns, antennae, claws, etc. on creatures, or any non-uniform extrusion from a body.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you want to extrude </em>all<em> the faces on an object, you must select the faces; a quick way to do this is to select the object, then </em><strong>(CLICK-R)</strong><em> on </em><strong>Select Elements</strong><em> to select all of its faces.</em></font></dd></dt></dl><P>
+<a name="7967">
+<strong>(SHIFT-L)</strong> on the element you want to extrude and select <strong>Multiple Extrude</strong>. The following menu similar to the one shown in <a href="4ModifyingBodies2.html#7973">Figure 4.92</a> appears:<p>
+</a><P><a name="7971">
+ <P><img src="4ModifyingBodies.anc90.gif"><p>
+</a><a name="7973">
+<em>Figure 4.92  &#32; &#32;Multiple extrude menu (showing all operations)
+</em></a><P><a name="7977">
+The menu shown in <a href="4ModifyingBodies2.html#7973">Figure 4.92</a> displays <em>all</em> the possible extrusion operations that can be performed on an element. When the menu first appears, no operations are displayed. To add an extrusion operation (that will be performed on the selected element) <strong>(CLICK-L)</strong> on the <strong>Add</strong> button. The following menu appears:<p>
+</a><P><a name="7981">
+ <P><img src="4ModifyingBodies.anc91.gif"><p>
+</a><a name="7983">
+<em>Figure 4.93  &#32; &#32;Multiple extrude operations
+</em></a><P><a name="7984">
+<strong>(CLICK-L)</strong> on the type of extrusion you want to perform. Because you can also specify a number of times that the element is extruded, you can also specify an <strong>exponent</strong> value that determines the length of each extrusion.<p>
+</a><P><a name="7985">
+Each time you click on an extrusion operation, it is added to the list in the menu shown in <a href="4ModifyingBodies2.html#7973">Figure 4.92</a>. For each extrusion operation, enter the parameters required for that operation.<p>
+</a><P><ul><a name="7989">
+<li><strong>Extend</strong> performs the basic extension of the element from the original object along the element's normal. This specifies the number of times the face is extruded.
+</a></li><P><a name="7990">
+<li><strong>Move</strong> moves the selected element away from the object along the selected axis.
+</a></li><P><ul>
+<BR><a name="7991">
+<li><strong>Direction</strong> is the axis or normal along which to move the object.
+</a><P></ul>
+<a name="7992">
+<li><strong>Scale</strong> lets you scale each extrusion (either larger or smaller). Specifying a value of <strong>.1</strong>, for example, will cause the final extruded face to be one-tenth the size of the original.
+</a></li><P><a name="7993">
+<li><strong>Dome</strong> creates a "dome" effect, with each extrusion tapering toward the extruded element's final shape.
+</a></li><P><a name="7994">
+<li><strong>Circ</strong> circularizes the extrusion. The effect is only visible if there are enough edges along the face(s) being extruded to make it more circular. The radius of the circle used can be specified as well:
+</a></li><P><ul>
+<BR><a name="7995">
+<li><strong>None</strong> bases the radius on the size of the face, with no measurement of the "inner" or "outer" radius (see below).
+</a><P><BR><a name="7996">
+<li><strong>Inner</strong> uses a radius measured from the center of the face to the closest point on its perimeter.
+</a><P><BR><a name="7997">
+<li><strong>Outer</strong> uses a radius measured from the center of the face to the farthest point on its perimeter.
+</a><P></ul>
+</ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The effect of </em><strong>Inner</strong><em> and </em><strong>Outer</strong><em> is more apparent when there is a greater disparity between the outermost and innermost points on the face being circularized</em>.</font></dd></dt><a name="8023">
+ <P><img src="4ModifyingBodies.anc92.gif"><p>
+</a><a name="8024">
+ <p>
+</a></dl><P>
+<a name="8025">
+<em>Figure 4.94  &#32; &#32;Measuring the radius for a circularized extensions. Left, inner radius; right, outer radius
+</em></a><P><ul><ul>
+<BR><a name="8026">
+<li><strong>Average</strong> uses an average of the inner and outer radii.
+</a><P></ul>
+</ul><ul><a name="8027">
+<li><strong>Twist</strong> rotates the face around the face's normal as it is extruded-the effect is similar to twisting the lid off of a jar, but finding that the two were connected.
+</a></li><P><a name="8028">
+<li><strong>Rotate</strong> extrudes the face as if it were moving along a spring-shaped path around a selected axis (use <strong>(CLICK-L)</strong> on <strong>Axis</strong> to select the axis).
+</a></li><P><a name="8037">
+ <P><img src="4ModifyingBodies.anc93.gif"><p>
+</a></ul><P><a name="8039">
+<em>Figure 4.95  &#32; &#32;Multiple extrude operations: extrude only, extrude plus move, scale, dome, circle, twist, and rotate
+</em></a><P><a name="8040">
+Experiment with different combinations to see the unique effects you can create. A complete section can be found on the <strong>Multiple Extrude</strong> command in the <em>N-Geometry Tutorial</em>.<p>
+</a><P><a name="9585">
+<h3> Part Materials</h3>
+</a><a name="6527">
+<em>Faces, collections of faces, bodies</em><p>
+</a><P><a name="8620">
+Lets you assign or remove attributes from the part to which the selected element belongs. After selecting the element:<p>
+</a><P><ul><a name="6528">
+<li><strong>(CLICK-L)</strong> to select the part you want to assign attributes to. The attributes editor opens, which lets you assign attributes to the selected part. (Make sure to <strong>(CLICK-L)</strong> on the <strong>Apply Changes</strong> button after making any modifications to the attribute set.)
+</a></li><P><a name="6529">
+<li><strong>(CTRL-*)</strong> lets you remove any assigned attributes from the selected part.
+</a></li><P></ul><P><a name="6530">
+For a complete description of attributes and how they are assigned to parts, refer to the <em>Attributes Editor User's Guide</em>.<p>
+</a><P><a name="6750">
+<h3> Parts</h3>
+</a><a name="6751">
+<em>Edges, faces, rectangular mesh, polyhedra</em><p>
+</a><P><a name="6752">
+Select from a list of parts. Choosing a part selects all the elements of that part so that you can carry out the same operation on all elements of that part at the same time.<p>
+</a><P><ul><a name="6753">
+<li><strong>(CLICK-L)</strong> reacts differently depending on what is currently selected. If you click on <strong>Parts</strong> with a <em>body</em> selected, the menu lists parts segregated by element type. If you click on <strong>Parts</strong> with an element (or collection of elements) selected, the menu offers you a choice of parts belonging to the element's parent. These choices are grouped into the following categories:
+</a></li><P><ul>
+<BR><a name="6754">
+<li>Parts whose components exactly match the selected element or elements
+</a><P><BR><a name="6755">
+<li>Parts that wholly contain the element but also contain other elements
+</a><P><BR><a name="6756">
+<li>Parts that contain some but not all of the selected elements
+</a><P></ul>
+<a name="6757">
+<li><strong>(CLICK-M)</strong> brings up a menu of the following selections: 
+</a></li><P><ul>
+<BR><a name="6758">
+<li><strong>Delete</strong> lets you <strong>(CLICK-R)</strong> to delete more than one part, or use <br><strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> to delete only one part.
+</a><P><BR><a name="6759">
+<li><strong>Rename</strong> selects one part to rename.
+</a><P><BR><a name="6760">
+<li><strong>Select</strong> lets you <strong>(CLICK-R)</strong> to select more than one part, or use <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> to select only one part.
+</a><P><BR><a name="6761">
+<li><strong>Select All Except</strong> lets you <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> to select all parts in a body except the one you specify; <strong>(CLICK-R)</strong> to select all parts except the several you specify.
+</a><P><BR><a name="6762">
+<li><strong>Select Intersection</strong> chooses several parts from a menu, then selects only the elements included in the overlap-the elements that are contained in all the chosen parts.
+</a><P></ul>
+<a name="6763">
+<li><strong>(CLICK-R)</strong> chooses several parts.
+</a></li><P></ul><P><a name="7780">
+<h3> Plane Cut</h3>
+</a><a name="7781">
+<em>Faces, polyhedra</em><p>
+</a><P><a name="7782">
+Cut both faces and polyhedra with an intersecting plane. You can also truncate a polyhedron by cutting it with a plane, discarding one half or the other, and then sealing the resulting openings with one or more faces.<p>
+</a><P><a name="7783">
+To plane cut or truncate, you must first define a plane by specifying a direction normal to the plane and the location of a reference point through which the plane will pass.<p>
+</a><P><ul><a name="7784">
+<li><strong>(CLICK-L)</strong> plane cuts a face or polyhedron. A menu appears that lets you specify a direction normal to the plane and a reference point through which the plane will pass.
+</a></li><P><a name="7792">
+ <P><img src="4ModifyingBodies.anc94.gif"><p>
+</a></ul><P><a name="7793">
+<em>Figure 4.96  &#32; &#32;A cube with a plane cut using the normal of the Y face
+</em></a><P><ul><a name="7794">
+<li><strong>(CLICK-M)</strong> truncates a polyhedron. A menu appears that lets you specify a direction normal to the plane and a reference point through which the plane will pass, as well as which side of the object you want to keep. If you select <strong>Positive</strong>, N-Geometry retains the part of your object that is on the positive side of the direction normal of the intersecting plane; if you select <strong>Negative</strong>, N-Geometry retains the other half.
+</a></li><P><a name="7802">
+ <P><img src="4ModifyingBodies.anc95.gif"><p>
+</a></ul><P><a name="7803">
+<em>Figure 4.97  &#32; &#32;Truncated man, keeping the positive, using the normal of the Y face
+</em></a><P><ul><a name="7804">
+<li><strong>(CLICK-R)</strong> makes multiple plane cuts to a polyhedron within certain boundaries. As for <strong>(CLICK-M)</strong>, a menu appears that lets you specify a direction normal to the plane and a reference point through which the plane will pass. You can define the plane and the number of cuts to be made using the following dialog box:
+</a></li><P><a name="7808">
+ <P><img src="4ModifyingBodies.anc96.gif"><p>
+</a></ul><P><a name="7809">
+<em>Figure 4.98  &#32; &#32;Specifying an area for plane cuts to take place
+</em></a><P><ul><a name="7810">
+<li><strong>Plane Normal</strong> specifies the normal for the intersecting plane.
+</a></li><P><a name="7811">
+<li><strong>Ref. Location</strong> specifies where the normal is calculated from.
+</a></li><P><a name="7812">
+<li><strong>Interval</strong> specifies the distance between each cut, expressed in global units.
+</a></li><P><a name="7813">
+<li><strong>Lower Bound</strong> specifies the start point, where plane cuts begin.
+</a></li><P><a name="7814">
+<li><strong>Upper Bound</strong> specifies the end point, where plane cuts end.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Most users find it easiest to select the </em><strong>Lower Bound</strong><em> and </em><strong>Upper Bound</strong><em> using the </em><strong>Point Along Element</strong><em> method from the menu that appears when you </em><strong>(CLICK-L)</strong><em> on those text edit boxes.</em></font></dd></dt><a name="7827">
+ <P><img src="4ModifyingBodies.anc97.gif"><p>
+</a></dl><P>
+<a name="7828">
+<em>Figure 4.99  &#32; &#32;Element with multiple plane cuts between specified points (normal to the X plane)
+</em></a><P><a name="3901">
+<h3> Position</h3>
+</a><a name="3902">
+<em>Most element types</em><p>
+</a><P><a name="3903">
+Moves an element by aligning its midpoint with a point in global space (usually a vertex on the same or another object). The object is moved locally, preserving its current orientation and scale, so that the selected feature coincides with the selected point.<p>
+</a><P><ul><a name="3904">
+<li><strong>(CLICK-L)</strong> lets you choose a point at which to set the element's midpoint. Note that the effects are different depending on the type of element you choose to reposition:
+</a></li><P><a name="3908">
+ <P><img src="4ModifyingBodies.anc98.gif"><p>
+</a></ul><P><a name="3909">
+<em>Figure 4.100  &#32; &#32;Two cubes
+</em></a><P><a name="3913">
+ <P><img src="4ModifyingBodies.anc99.gif"><p>
+</a><a name="3914">
+<em>Figure 4.101  &#32; &#32;Repositioning a point, edge, or face
+</em></a><P><a name="3928">
+ <P><img src="4ModifyingBodies.anc100.gif"><p>
+</a><a name="3929">
+<em>Figure 4.102  &#32; &#32;Repositioning a polyhedra
+</em></a><P><ul><a name="3930">
+<li><strong>(CLICK-R)</strong> lets you select the point you want to reposition an element "to" from a menu with the following options:
+</a></li><P><a name="3934">
+ <P><img src="4ModifyingBodies.anc101.gif"><p>
+</a></ul><P><a name="3936">
+<em>Figure 4.103  &#32; &#32;Menu to position an object
+</em></a><P><ul><a name="3937">
+<li><strong>Cursor</strong> lets you choose the alignment point in 3D space with the cursor.
+</a></li><P><a name="3938">
+<li><strong>Object midpoint</strong> lets you choose the midpoint of an object selected from a list.
+</a></li><P><a name="3939">
+<li><strong>Origin</strong> positions the midpoint of the element over the global origin.
+</a></li><P><a name="3940">
+<li><strong>Aimpoint</strong> positions the midpoint of the element over the aimpoint.
+</a></li><P><a name="3941">
+<li><strong>Eyepoint</strong> positions the midpoint of the element over the eyepoint.
+</a></li><P><a name="3942">
+<li><strong>Type in location</strong> lets you specify a point over which to align the midpoint of the element using Cartesian coordinates.
+</a></li><P><a name="3943">
+<li><strong>Select element</strong> works the same way as <strong>(CLICK-L)</strong>; you choose the destination point with the mouse.
+</a></li><P><a name="3944">
+<li><strong>Point along segment</strong> lets you choose a random point along a segment using the mouse.
+</a></li><P></ul><P><a name="6444">
+<h3> Position Highlight</h3>
+</a><a name="6445">
+<em>Point, infinite, and spot lights</em><p>
+</a><P><a name="6446">
+Specify a location on a surface where, from the current camera position, the light's highlight will fall. This operation performs the function by adjusting the light's position (for point lights) or direction (for infinite lights).<p>
+</a><P><ul><a name="6447">
+<li><strong>(CLICK-L)</strong> to select a vertex.
+</a></li><P><a name="6448">
+<li><strong>(CLICK-M)</strong> to select an edge.
+</a></li><P><a name="6449">
+<li><strong>(CLICK-R)</strong> to select a face as the location of the highlight.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Shadows are only created by a light if the renderer used to create the image supports shadows and the attributes of the illuminated objects in the scene must specify a light group that includes this light.</em></font></dd></dt></dl><P>
+<a name="6451">
+Because shades objects share the same lights with N-Render and use the same gamma correction if N-Render is loaded into the environment, you can closely approximate what an object would look like if it were rendered with Lambert shading. See the section <a href="6DisplayingObjects.html#4210">"Shading," on page &#32;6-7</a>.<p>
+</a><P><a name="8226">
+<h3> Randomize</h3>
+</a><a name="8227">
+<em>Polyhedra</em><p>
+</a><P><a name="8228">
+Adds a degree of noise to a polyhedron.<p>
+</a><P><ul><a name="8229">
+<li><strong>(CLICK-L)</strong> moves each vertex a random amount in a <em>random direction</em>.
+</a></li><P><a name="8230">
+<li><strong>(CLICK-R)</strong> moves each vertex a random amount along its <em>normal</em>. The normal for a vertex is defined as the average of the normals of adjacent faces.
+</a></li><P><a name="8234">
+ <P><img src="4ModifyingBodies.anc102.gif"><p>
+</a></ul><P><a name="8236">
+<em>Figure 4.104  &#32; &#32;Sphere with vertices randomized along vertex normals
+</em></a><P><a name="7093">
+<h3> Replace with Arc</h3>
+</a><a name="7094">
+<em>Wire segments</em><p>
+</a><P><a name="7095">
+You can replace segments of wires with arcs. Simply click on <strong>Replace with Arc</strong> to substitute an arc for a selected segment. Once you replace a segment with an arc, you can replace the arc with a segment again by using <strong>Replace with Segment</strong>.<p>
+</a><P><a name="7096">
+This is useful if you are want to perform operations that can only be performed on one type of element.<p>
+</a><P>
+<hr><br>
+
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies1.html">[Prev]</a> <a href="4ModifyingBodies3.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 09:36:32 -->
+
+</body>
+</html>

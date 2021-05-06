@@ -1,0 +1,1127 @@
+<html><head><title>The Interface</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="3ScriptEditor.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="15114">
+<h1>The Interface</h1>
+</a>
+<hr><p><a name="13378">
+<h4> This chapter describes the basics of the N-Dynamics interface. It describes the basic components of the Script Editor, basic script management tasks, animating scripts, making and saving recordings, and more.</h4>
+</a><a name="15115">
+<h2><HR> The Script Editor</h2>
+</a><a name="13382">
+The work area of N-Dynamics is the script editor, shown in <a href="2Interface.html#10960">Figure 2.1</a>. You create, edit, and modify scripts in the script editor:<p>
+</a><P><a name="11042">
+ <P><img src="2Interface.anc.gif"><p>
+</a><a name="10960">
+<em>Figure 2.1  &#32; &#32;The N-Dynamics Interface
+</em></a><P><a name="13165">
+The N-Dynamics window can be resized both vertically and horizontally to view either more channels or a larger part of a given channel. The following paragraphs briefly describe the major parts of the script editor.<p>
+</a><P><a name="13167">
+<h3> Navigation Box</h3>
+</a><a name="15413">
+The navigation box shows your relative depth in the current script.<p>
+</a><P><a name="15412">
+<h3> Title Bar</h3>
+</a><a name="13168">
+Displays the name of the current script. You can <strong>(CLICK-R)</strong> on the title bar to perform various script level operations, described later.<p>
+</a><P><a name="13170">
+<h3> Channels</h3>
+</a><a name="13280">
+When you first create a script, the script editor pane displays an empty gray window to represent the script. To build a script, you fill it with <em>channels</em>.<p>
+</a><P><a name="13271">
+Channels and their subchannels are displayed as nested blocks. <p>
+</a><P><a name="13283">
+<h3> Now-Time Cursor</h3>
+</a><a name="13284">
+The vertical line running up and down the script is called the <em>now-time</em> cursor. As you move the mouse left and right over a script, both the time box and the frame box update interactively.<p>
+</a><P><a name="13274">
+Time runs from left to right. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You must have a script loaded for the time box and frame box to update interactively; if you have no script, there is no point of reference for the now time cursor.</em></font></dd></dt></dl><P>
+<a name="13291">
+<h3> Frame Range Area</h3>
+</a><a name="13365">
+The frame range area contains both the time box and the frame box (described below). It shows the length of the script and shows your current position within the script.<p>
+</a><P><a name="13361">
+<h4> Time Box</h4>
+</a><a name="13177">
+The time box shows the time (in seconds) that corresponds to the position of the now-time cursor. The two small numbers in the upper-left and upper-right corners (0.000 and 1.000 in <a href="2Interface.html#10960">Figure 2.1</a>) show the start and end times for the script.<p>
+</a><P><a name="13184">
+<h4> Frame Box</h4>
+</a><a name="13185">
+The frame box shows the frame number that corresponds to the position of the now-time cursor.<p>
+</a><P><a name="14936">
+<h4> Frame Range Box</h4>
+</a><a name="14937">
+The frame range box (next to the Playback button) shows the frame range that is currently "selected." These are the frames that will be animated or played back with the Animate or Playback buttons (described below).<p>
+</a><P><a name="13367">
+<h3> Time Line</h3>
+</a><a name="13189">
+The time line lets you control the portion of the script currently in view in the <br>N-Dynamics frame. (The time line regulates which portion of a script is animated when it is executed.) The time line is discussed in more detail in <a href="3ScriptEditor.html#17700">Chapter &#32;, "Using the Script Editor." &#32;</a><p>
+</a><P><a name="13392">
+<h3> Navigation Arrow</h3>
+</a><a name="15433">
+If a navigation arrow appears in a channel, it indicates that the channel contains one or more subchannels. N-Dynamics has a hierarchical structure, so it is possible to place channels <em>within</em> other channels. <p>
+</a><P><a name="15441">
+For operations that are dynamic (e.g., that change over time), you define that change in a <em>curve</em> subchannel. Both curves and other operations can be contained in a top-level or <em>parent</em> channel.<p>
+</a><P><a name="15434">
+<h3> Script Length Box</h3>
+</a><a name="15424">
+The script length box indicates the current length of the script. You can also <strong>(CLICK-L)</strong> on the button and modify the length of the script, specifying either a target number of frames or a script length (in seconds).<strong></strong><p>
+</a><P><a name="15421">
+<h3> Menu Buttons</h3>
+</a><a name="13393">
+There are five buttons across the bottom of the Script Editor:<p>
+</a><P><ul><a name="13405">
+<li>File
+</a></li><P><a name="17164">
+<li>Export
+</a></li><P><a name="13407">
+<li>Options
+</a></li><P><a name="15486">
+<li>Views
+</a></li><P><a name="13408">
+<li>Animate
+</a></li><P><a name="13409">
+<li>Playback
+</a></li><P></ul><P><a name="15702">
+Each of these are described in the following sections.<p>
+</a><P><a name="11046">
+<h2><HR> File</h2>
+</a><a name="13445">
+You use the <strong>File</strong> button to create, copy, kill, rename, select, load, and save scripts. A script is a series of instructions that lets you trigger different events in the other N&#183;World products.<p>
+</a><P><a name="13135">
+You might write a script, for example, that rotated a cube (in N-Geometry), applied a material to the cube and rendered it (in N-Render), then composited the colored cube onto an image (in N-Paint). Most operations in the N&#183;World suite of products can be animated using N-Dynamics-see <a href="5Operations.html#167">Chapter &#32;5</a>, <a href="5Operations.html#32120">"Dynamic Operations" &#32;</a>for a complete list.<p>
+</a><P><a name="13562">
+If you <strong>(CLICK-L)</strong> on the <strong>File </strong>button but haven't loaded any scripts, N-Dynamics displays the following menu:<p>
+</a><P><a name="15565">
+ <P><img src="2Interface.anc1.gif"><p>
+</a><a name="15566">
+<em>Figure 2.2  &#32; &#32;Creating or loading a script
+</em></a><P><ul><a name="15548">
+<li><strong>(CLICK-L)</strong> on Create New Script to create a new script.
+</a></li><P><a name="15570">
+<li><strong>(CLICK-L)</strong> on Load Scripts to load a script from disk.
+</a></li><P></ul><P><a name="15571">
+Both of these options are described below.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note!</strong>	Any changes you make to scripts are saved only in memory until they are explicitly saved using the commands under the <strong>File</strong> button. </font></dd></dt></dl><P>
+<a name="15579">
+If you have already created or loaded a script into memory, additional options appear when you <strong>(CLICK-L)</strong> on <strong>File</strong>:<p>
+</a><P><a name="11081">
+ <P><img src="2Interface.anc2.gif"><p>
+</a><a name="11082">
+<em>Figure 2.3  &#32; &#32;Script operations
+</em></a><P><a name="13487">
+Each of the options on the Script Operations menu is described in the following sections.<p>
+</a><P><a name="11095">
+<h4> Creating a New Script</h4>
+</a><a name="11291">
+The Create New Script command lets you start a new script in N-Dynamics. <p>
+</a><P>
+<a name="15610">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Create New Script </strong>to create a new script. 
+</STRONG>
+</a><P><a name="15611">
+<STRONG>	2.	 Enter the directory and name you want to use for the new script:
+</STRONG>
+</a><P><a name="11279">
+ <P><img src="2Interface.anc3.gif"><p>
+</a>
+<a name="11100">
+<em>Figure 2.4  &#32; &#32;Adding a new script
+</em></a><P><a name="15628">
+You can create any number of scripts in N-Dynamics.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The script exists only in memory until saved! Save the copy using the commands under the File button.</em></font></dd></dt></dl><P>
+<a name="15630">
+<h4> Making a Copy of a Script</h4>
+</a><a name="15631">
+To make a copy of a script in memory (also to memory):<p>
+</a><P>
+<a name="11223">
+<STRONG>	 1.	 Make the script you want to copy the current script.
+</STRONG>
+</a><P><a name="11241">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;Copy this Script.
+</STRONG>
+</a><P><dl><a name="11242">
+<dt>Enter the new directory and name for the copy:</dt>
+</a><P><a name="11119">
+ <P><img src="2Interface.anc4.gif"><p>
+</a></dl>
+<a name="11120">
+<em>Figure 2.5  &#32; &#32;Copying a script
+</em></a><P>
+<a name="11276">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The copy exists only in memory until saved! Save the copy using the commands under the File button.</em></font></dd></dt></dl><P>
+<a name="11070">
+<h4> Deleting a Script</h4>
+</a><a name="11203">
+To delete a script from memory:<p>
+</a><P>
+<a name="11250">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Delete Scripts.
+</STRONG>
+</a><P><dl><a name="11251">
+<dt>A list of scripts loaded into memory is displayed:</dt>
+</a><P><a name="11136">
+ <P><img src="2Interface.anc5.gif"><p>
+</a></dl>
+<a name="11137">
+<em>Figure 2.6  &#32; &#32;Killing a script from memory
+</em></a><P>
+<a name="11259">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> to highlight each script you want to delete.
+</STRONG>
+</a><P><a name="11264">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This deletes the selected script from memory only! If you want to delete the saved script from disk, you must do so from a UNIX shell. In the UNIX file system, scripts have the extension </em>.script<em>.</em></font></dd></dt></dl><P>
+<a name="11071">
+<h4> Renaming a Script</h4>
+</a><a name="11195">
+If you want to change the name of the currently selected script:<p>
+</a><P>
+<a name="11187">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Rename this Script.
+</STRONG>
+</a><P><dl><a name="11198">
+<dt>Enter the new name and directory for this script.</dt>
+</a><P><a name="11147">
+ <P><img src="2Interface.anc6.gif"><p>
+</a></dl>
+<a name="11148">
+<em>Figure 2.7  &#32; &#32;Renaming a script in memory
+</em></a><P>
+<a name="11272">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This changes the name of the script in memory only! You still must save the script using the commands under the </em><strong>File</strong><em> button to write its new name to file.</em></font></dd></dt></dl><P>
+<a name="11108">
+<h4> Making a Script the Current Script</h4>
+</a><a name="11168">
+If you have more than one script loaded into memory and want to select which script to make the current script:<p>
+</a><P>
+<a name="11169">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File.
+</STRONG>
+</a><P><dl><a name="11172">
+<dt>Any scripts in memory appear at the bottom of the menu.</dt>
+</a><P></dl><a name="11176">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the script you want to work with.
+</STRONG>
+</a><P><a name="11155">
+ <P><img src="2Interface.anc7.gif"><p>
+</a>
+<a name="11156">
+<em>Figure 2.8  &#32; &#32;Selecting a script you've already loaded
+</em></a><P><a name="10961">
+<h3> Loading a Script</h3>
+</a><a name="15792">
+Loading a script reads a script from disk; if any elements (such as objects or materials) were referenced by the script, they are also loaded when you read in the script.<p>
+</a><P><a name="15998">
+To load a script from disk:<p>
+</a><P>
+<a name="15793">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Load Scripts.
+</STRONG>
+</a><P><dl><a name="15886">
+<dt>A dialog box similar to the one below is shown:</dt>
+</a><P><a name="15892">
+ <P><img src="2Interface.anc8.gif"><p>
+</a></dl>
+<a name="15893">
+<em>Figure 2.9  &#32; &#32;Reading a script from disk
+</em></a><P><ul><a name="16025">
+<li><strong>Choose a Directory</strong> displays a list of directories that includes the following:
+</a></li><P><ul>
+<BR><a name="16221">
+<li>your home directory (included by default)
+</a><P><BR><a name="16222">
+<li>any directory from which you read an object or script in this session
+</a><P><BR><a name="16223">
+<li>any directory to which you save an object or script in this session
+</a><P><BR><a name="16224">
+<li>any directory added with the Specify a new Directory command
+</a><P><BR><a name="16234">
+<li>any directory loaded as part of a project
+</a><P></ul>
+<dl><a name="16235">
+<dt>If the directory has an asterisk ("*") next to it, it means that the directory has not been saved with a project. Projects are described a little later, in the section <a href="2Interface.html#14312">"Project Operations," on page &#32;2-15</a>.</dt>
+</a><P></dl><a name="16033">
+<li><strong>Directory Operations</strong> let you remove directories from the directory list at the top of the menu or specify a new directory from which to load a script.
+</a></li><P><a name="16034">
+<li><strong>Project Operations</strong> displays a list of project operatons, also described in the section <a href="2Interface.html#14312">"Project Operations," on page &#32;2-15</a>.
+</a></li><P></ul><P><a name="15914">
+<h4> Loading a Script from your Default or a Previously Used Directory</h4>
+</a><a name="15887">
+At the top of the menu shown in <a href="2Interface.html#15893">Figure 2.9</a> is a list of directories from which you have already loaded elements. (By default, only the current user's home directory is displayed here). <p>
+</a><P><a name="16018">
+To load a script from this directory:<p>
+</a><P>
+<a name="16023">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the directory.
+</STRONG>
+</a><P><dl><a name="15926">
+<dt>A list of scripts in that directory is displayed:</dt>
+</a><P><a name="15930">
+ <P><img src="2Interface.anc9.gif"><p>
+</a></dl>
+<a name="15931">
+<em>Figure 2.10  &#32; &#32;Reading a script from disk
+</em></a><P>
+<a name="15932">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on each script you want to load.
+</STRONG>
+</a><P><dl><a name="15933">
+<dt>As each script is selected, it turns blue. You can load more than one script at a time.</dt>
+</a><P></dl><a name="15934">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="15935">
+<dt>The selected scripts are loaded into memory.</dt>
+</a><P></dl>
+<a name="15905">
+<h4> Loading a Script from a Random Directory</h4>
+</a><a name="15944">
+If the directory from which you want to load a script is not shown at the top of the menu described in <a href="2Interface.html#15893">Figure 2.9</a>, you can specify a random directory from which to load a script. <p>
+</a><P><a name="15945">
+To specfy a "random" directory:<p>
+</a><P>
+<a name="15963">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Load Scripts&gt;Specify a new Directory</strong>.
+</STRONG>
+</a><P><dl><a name="15964">
+<dt>A dialog box is displayed. </dt>
+</a><P><a name="15970">
+ <P><img src="2Interface.anc10.gif"><p>
+</a></dl>
+<a name="15971">
+<em>Figure 2.11  &#32; &#32;Specifying a new directory
+</em></a><P>
+<a name="15965">
+<STRONG>	2.	 Enter the name of the directory from which you want to load a script.
+</STRONG>
+</a><P><a name="15972">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Done</strong>.
+</STRONG>
+</a><P><dl><a name="15962">
+<dt>A list of scripts in that directory is displayed:</dt>
+</a><P><a name="15949">
+ <P><img src="2Interface.anc11.gif"><p>
+</a></dl>
+<a name="15950">
+<em>Figure 2.12  &#32; &#32;Reading a script from disk
+</em></a><P>
+<a name="15951">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on each script you want to load.
+</STRONG>
+</a><P><dl><a name="15952">
+<dt>As each script is selected, it turns blue. You can load more than one script at a time.</dt>
+</a><P></dl><a name="15953">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="15954">
+<dt>The selected scripts are loaded into memory.</dt>
+</a><P></dl>
+<a name="15875">
+<h3> Saving a Script</h3>
+</a><a name="15978">
+When you save a script, you save your work permanently to disk. When you save a script, you save the following elements:<p>
+</a><P><ul><a name="15979">
+<li><em>scripts</em>-the script itself.
+</a></li><P><a name="15980">
+<li><em>objects</em>-the objects referenced by the script.
+</a></li><P><a name="15981">
+<li><em>recordings</em>-one-bit black and white versions of your animation, automatically generated when most scripts are run.
+</a></li><P></ul><P><a name="15876">
+To save a script and (optionally) any objects associated with that script:<p>
+</a><P>
+<a name="15877">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Save Script.
+</STRONG>
+</a><P><dl><a name="15857">
+<dt>A dialog box similar to that shown below appears:</dt>
+</a><P><a name="15861">
+ <P><img src="2Interface.anc12.gif"><p>
+</a></dl>
+<a name="15862">
+<em>Figure 2.13  &#32; &#32;Writing scripts and objects
+</em></a><P><dl><dl><a name="15863">
+<dt>You have the option of saving the script, the objects, or both. </dt>
+</a><P></dl><ul>
+<BR><a name="16093">
+<li>The <strong>Name</strong> column shows the name of the element. You can specify a different name for the script or object here; doing so automatically updates the script or object's name in memory.
+</a><P><BR><a name="16106">
+<li>The <strong>Directory</strong> indicates the directory in which the element will be saved. You can specify a directory manually, or <strong>(CLICK-R)</strong> on the field to select a directory.
+</a><P><BR><a name="16113">
+<li>The <strong>Mod</strong> column indicates the element has been modified in some way since it was loaded into N&#183;World.
+</a><P><BR><a name="16096">
+<li>The <strong>Save</strong> column contains a series of check boxes-objects with check marks are saved when you <strong>(CLICK-L)</strong> on <strong>Save</strong>. <strong>(CLICK-L)</strong> on the individual check boxes to select which elements to save.
+</a><P><BR><a name="16105">
+<li>The <strong>Type</strong> column displays the type of element (e.g., script, object, light, etc.)
+</a><P></ul>
+<dl><a name="15864">
+<dt>Saving objects with scripts is <em>recommended</em>.</dt>
+</a><P></dl><ul>
+<BR><a name="16069">
+<li>Most objects are saved in their current, transformed state-if the script twists a cube, for instance, and you execute the script before saving, the cube is saved in its twisted state. However, since the animation is based only on transformations (which are temporary), if you reexecute the script the object is always initialized to its original state and the animation works as it always did.
+</a><P><BR><a name="16070">
+<li>If your script references a skeleton object for which you have not saved a base state, you're asked if you want to save the base state for the skeleton.
+</a><P></ul>
+</dl><a name="15820">
+<h3> Loading Previously Saved Recordings</h3>
+</a><a name="15821">
+When you animate a script, a one-bit black-and-white "preview" or <em>recording</em> of the animation is generated. These recordings can be played, saved to disk, and then read back in later. <p>
+</a><P><a name="16078">
+You might, for example, create several test animations then play them back for comparison. See the section <a href="2Interface.html#10954">"Animate," on page &#32;2-29</a> for more information on recordings.<p>
+</a><P><a name="15827">
+<h3> Saving Recordings</h3>
+</a><a name="15828">
+To save a recording (black-and-white preview) to disk:<p>
+</a><P>
+<a name="15829">
+<STRONG>	 1.	 Animate the script.
+</STRONG>
+</a><P><dl><a name="15830">
+<dt>This generates the one-bit playback test animation (the recording). You cannot save a recording until the script has been animated. See the section <a href="2Interface.html#10954">"Animate," on page &#32;2-29</a>.</dt>
+</a><P></dl><a name="15834">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;Save Recordings.
+</STRONG>
+</a><P><dl><a name="15836">
+<dt>A dialog box similar to that shown below appears:</dt>
+</a><P><a name="15840">
+ <P><img src="2Interface.anc13.gif"><p>
+</a></dl>
+<a name="15841">
+<em>Figure 2.14  &#32; &#32;Writing recordings
+</em></a><P><dl><dl><a name="15842">
+<dt>The "Type" column at the far right of the dialog box tells you that the objects being saved are <em>recordings</em>.</dt>
+</a><P><a name="15843">
+<dt>A separate entry appears for each recording you have saved to memory (see <a href="2Interface.html#12650">"Renaming a Recording," on page &#32;2-35</a> for information on how to save multiple recordings to memory.) </dt>
+</a><P></dl></dl>
+<a name="15847">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Yes for each recording that you want to save.
+</STRONG>
+</a><P><a name="15848">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P>
+<a name="14312">
+<h2><HR> Project Operations</h2>
+</a><a name="14313">
+If you are working on a large project whose files are located in a set group of directories, you can create a <em>project</em>. A project is nothing more than a named set of directories. When you load a project, you load the directories into the menu described in <a href="2Interface.html#15893">Figure 2.9</a>, making it easy to select them with a single mouse click.<p>
+</a><P><a name="14314">
+You might, for example, create a project named "space_warrior" that used <br>N-Geometry objects from one directory and N-Paint images from another. Simply by loading the project "space_warrior" into memory, any associated directories are made added to the menu in <a href="2Interface.html#15893">Figure 2.9</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Project definitions are kept in a user's home directory, in a file called /.ngc/.ngc-projects.</em></font></dd></dt></dl><P>
+<a name="14319">
+To see the project operations menu:<p>
+</a><P>
+<a name="14320">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Load Scripts.
+</STRONG>
+</a><P><dl><a name="14321">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="14325">
+ <P><img src="2Interface.anc14.gif"><p>
+</a></dl>
+<a name="14326">
+<em>Figure 2.15  &#32; &#32;The Project Operations menu
+</em></a><P><a name="16144">
+<h3> Setting the Current Project</h3>
+</a><a name="16194">
+Selecting the project you want to work with loads all the directories associated with the project into the appropriate directory lists. These directories are displayed at the top of the menu shown in <a href="2Interface.html#14326">Figure 2.15</a> and whenever you <strong>(CLICK-R)</strong> on a field that specifies a directory in N-Dynamics).<p>
+</a><P><a name="16195">
+To select the project you want to work with:<p>
+</a><P>
+<a name="16148">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Set Current Project.
+</STRONG>
+</a><P><dl><a name="16206">
+<dt>A list of projects defined for the current user is displayed:</dt>
+</a><P><a name="16152">
+ <P><img src="2Interface.anc15.gif"><p>
+</a></dl>
+<a name="16153">
+<em>Figure 2.16  &#32; &#32;Selecting a project
+</em></a><P>
+<a name="16154">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the project you want to make the current project.
+</STRONG>
+</a><P>
+<a name="16258">
+<h3> Edit Current Project</h3>
+</a><a name="16259">
+To specify which directories should be included in the current project:<p>
+</a><P>
+<a name="16260">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Edit Current Project</strong>.
+</STRONG>
+</a><P><dl><a name="16283">
+<dt>A list of directories associated with the current project is displayed:</dt>
+</a><P><a name="16264">
+ <P><img src="2Interface.anc16.gif"><p>
+</a></dl>
+<a name="16265">
+<em>Figure 2.17  &#32; &#32;Specifying directories for a project
+</em></a><P>
+<a name="16266">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> to highlight each directory you want to make part of the project.
+</STRONG>
+</a><P><dl><a name="16267">
+<dt>You can select more than one directory at a time. Note that to add a new directory to a project, you must use the <strong>Specify a new Directory</strong> command.</dt>
+</a><P></dl><a name="16268">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="16269">
+<dt>The selected scripts are loaded into memory.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The asterisk next to a directory ("*") tells you that the directory is not part of a project. Reading from or writing to a directory does not add it to the list of directories associated with the current project-you must do this explicitly.</em></font></dd></dt></dl><P>
+<a name="14327">
+<h3> Creating a New Project</h3>
+</a><a name="14328">
+To create a new project:<p>
+</a><P>
+<a name="14329">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Load Scripts&gt;Create New Project</strong>.
+</STRONG>
+</a><P><dl><a name="14330">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="14334">
+ <P><img src="2Interface.anc17.gif"><p>
+</a></dl>
+<a name="14335">
+<em>Figure 2.18  &#32; &#32;Naming a new project
+</em></a><P>
+<a name="16309">
+<STRONG>	2.	 Enter the name for the project.
+</STRONG>
+</a><P><a name="14336">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="14337">
+<dt>Your project definitions file (/.ngc/.ngc-projects in your home directory) is updated automatically.</dt>
+</a><P></dl><a name="16310">
+<STRONG>	4.	 Add directories to the project.
+</STRONG>
+</a><P><dl><a name="16317">
+<dt>This procedure is described in the section<a href="2Interface.html#16258">"Edit Current Project," on page &#32;2-16</a>.</dt>
+</a><P></dl>
+<a name="14338">
+<h3> Deleting Project Definitions</h3>
+</a><a name="14339">
+If you've finished working with a project, and want to delete it from the list of displayed projects:<p>
+</a><P>
+<a name="16329">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Load Scripts&gt;Delete Project Definitions.
+</STRONG>
+</a><P><dl><a name="16330">
+<dt>A menu of currently loaded project definitions is displayed:</dt>
+</a><P><a name="16334">
+ <P><img src="2Interface.anc18.gif"><p>
+</a></dl>
+<a name="14346">
+<em>Figure 2.19  &#32; &#32;Deleting project definitions
+</em></a><P>
+<a name="14347">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> to highlight each project definition you want to delete.
+</STRONG>
+</a><P><dl><a name="14348">
+<dt>Note that only the <em>definition</em>, not the actual directories themselves, are deleted in this process. You can select more than one project at a time to delete.</dt>
+</a><P></dl><a name="14349">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="14350">
+<dt>The selected projects are deleted.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This command deletes project definitions permanently.</em></font></dd></dt></dl><P>
+<a name="15709">
+<h2><HR> Export</h2>
+</a><a name="17170">
+The <strong>Export</strong> button is used in conjunction with Nichimen's <strong>Game Express</strong> and <strong>Game Exchange</strong> tools to preview and export animation data created in N&#183;World.<p>
+</a><P><a name="17200">
+In order to use the Export button, you must have:<p>
+</a><P><ul><a name="17201">
+<li>Put a <strong>Record Animation</strong> operation somewhere in your script
+</a></li><P><a name="17202">
+<li>Animated the script
+</a></li><P></ul><P><a name="17203">
+The record animation operation records all the information necessary to export animation data to the various platforms. After animating the script, you'd <strong>(CLICK-L)</strong> on Export to specify additional <strong>Export</strong> parameters:<p>
+</a><P><a name="17217">
+ <P><img src="2Interface.ancA19.gif"><p>
+</a><a name="17218">
+<em>Figure 2.20  &#32; &#32;Exporting animation data
+</em></a><P><a name="17212">
+The platforms to which you can export are displayed on the left side of the dialog box.<p>
+</a><P><ul><a name="17225">
+<li><strong>Preview</strong> sends a binary preview of the specified object and animation tothe target platform.
+</a></li><P><a name="17226">
+<li><strong>Export</strong> writes the appropriate files for the animation to the specified directory.
+</a></li><P></ul><P><a name="17230">
+For more information on exporting animation, refer to the description of the <strong>Record Animation</strong> operation later in this manual, and to the appropriate Game Express User's Guide for your target platform.<p>
+</a><P><a name="17165">
+<h2><HR> Options</h2>
+</a><a name="15710">
+The <strong>Options </strong>dialog box lets you control the "look and feel" of N-Dynamics-how channels are displayed (or highlighted), playback rate, channel colors, and so forth. <p>
+</a><P><a name="15711">
+If you <strong>(CLICK-L)</strong> on the <strong>Options</strong> button at the bottom of the N-Dynamics window, the dialog box in <a href="2Interface.html#15720">Figure 2.21</a> is displayed:<p>
+</a><P><a name="15718">
+ <P><img src="2Interface.anc19.gif"><p>
+</a><a name="15720">
+<em>Figure 2.21  &#32; &#32;The <strong>Options</strong> dialog box
+</em></a><P><ul><a name="15721">
+<li><strong>Do It</strong> accepts the current settings (saves the settings for the current session).
+</a></li><P><a name="15722">
+<li><strong>Save Preferences</strong> saves the current preferences to file. These become your default preferences.
+</a></li><P><a name="15723">
+<li><strong>Abort</strong> exits without changing any preferences.
+</a></li><P></ul><P><a name="15724">
+<h4> Script Modes</h4>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Modes settings are saved with each script, not as a user default.</em></font></dd></dt></dl><P>
+<ul><a name="15727">
+<li><strong>Field Mode?</strong> causes all rendered images to be written in field mode (odd lines one frame, even lines the next frame). Note that rendering in field mode takes twice as long as rendering in frame mode.
+</a></li><P><a name="15729">
+<li><strong>Frames (or Fields) per Second</strong> specifies the number of frames per second for the generated animation. This value determines how many tick marks appear each second for the timeline across the bottom of the N-Dynamics window.
+</a></li><P><a name="16370">
+<li><strong>Modules </strong>specifies which classes of operations are displayed when you specify a new operation. You could use this, for example, if you wanted to hide the N-Paint operations from the pop-up list that appears when you <strong>(CLICK-L)</strong> on an Operation text edit box when assigning an operation to a channel in the script. <strong>(CLICK-L)</strong> on the text box to select which operation types you want to be able to select.
+</a></li><P><a name="15731">
+<li><strong>Playback FPS</strong> determines how many frames are played back per second with the Playback button. If you set the Frames Per Second to 30, but set this field to 10, animation is played back at 1/3 speed.
+</a></li><P></ul><P><a name="15734">
+<h4> Script Editor Modes</h4>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Modes settings are saved with each script, not as a user default.</em></font></dd></dt></dl><P>
+<ul><a name="15736">
+<li><strong>Animate Increment</strong> controls which frames are animated when you use the animate command to create a test animation. You can animate every frame (value = 1), every other frame (value = 2), or by any other whole number increment. This is useful if you want to test animate a complicated script but don't need to see every frame.
+</a></li><P><a name="15738">
+<li><strong>Auto Adjust Timeline?</strong> controls the behavior of the time line, described in the section <a href="2Interface.html#13367">"Time Line," on page &#32;2-4</a>.
+</a></li><P><ul>
+<BR><a name="15742">
+<li>If <strong>Yes</strong>, the time line displayed at the bottom of the N-Dynamics window adjusts to fit the length of the currently selected channel.
+</a><P><BR><a name="15743">
+<li>If <strong>No</strong>, the time line stays the same, regardless of the length of the currently selected channel.
+</a><P></ul>
+</ul><P><a name="15744">
+<h4> Global Preferences</h4>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Global preferences are saved in each user's preference file.</em></font></dd></dt></dl><P>
+<ul><a name="15747">
+<li><strong>Action Editor Host </strong>is the name of the host to which action editor data is sent (using the Action Editor product). See the <em>PlayStation Express User's Guide</em> for more information on specifying a hostname.
+</a></li><P><a name="15749">
+<li><strong>Channel Highlight </strong>controls how channels are highlighted as the cursor moves over them. A highlighted channel has a thin outline drawn around it.
+</a></li><P><ul>
+<BR><a name="15750">
+<li><strong>Bright </strong>highlights the channel under the mouse in yellow.
+</a><P><BR><a name="15751">
+<li><strong>Medium </strong>highlights the channel in white.
+</a><P><BR><a name="15752">
+<li><strong>None </strong>does not highlight the channel.
+</a><P></ul>
+<a name="15754">
+<li><strong>Channel Padding Style</strong> specifies how much space is between channels in the N-Dynamics window. 
+</a></li><P><ul>
+<BR><a name="16401">
+<li><strong>Open</strong> has the most room between channels.
+</a><P><BR><a name="16402">
+<li><strong>Medium</strong> has less.
+</a><P><BR><a name="16403">
+<li><strong>Tight</strong> has the least.
+</a><P></ul>
+<a name="15756">
+<li><strong>Confirm Enabled?</strong> determines when user prompts are displayed<strong>.</strong>
+</a></li><P><ul>
+<BR><a name="16406">
+<li><strong>Yes </strong>prompts you to confirm any destructive actions you may perform. 
+</a><P><BR><a name="16407">
+<li><strong>No </strong>performs operations as soon as selected.
+</a><P></ul>
+<a name="15758">
+<li><strong>Debugger Enabled?</strong> If set to <strong>Yes</strong>, lets the user enter the LISP debugger from any error message displayed.
+</a></li><P><a name="15760">
+<li><strong>Expanding Channel Size?</strong> determines whether channels expand vertically to fill the height of the N-Dynamics window.
+</a></li><P><a name="15762">
+<li><strong>Grid Enabled?</strong> determines how channels are resized horizontally when you drag their edges, and where cues can be inserted in a channel.
+</a></li><P><ul>
+<BR><a name="15763">
+<li><strong>Yes</strong> constrains the beginning and ending of channels, as well as the placement of any markers or cues, so that they fall exactly on frames.
+</a><P><BR><a name="15764">
+<li><strong>No</strong> lets you resize channels freely, and does not constrain the placement of markers or cues to frames.
+</a><P></ul>
+<a name="15768">
+<li><strong>Hot Keys?</strong> specifies whether hot keys are enabled. Press the "h" key on the keyboard to display a summary of the hot keys. Hot keys are described in <a href="AHotKeys.html#8957">Appendix &#32;A, "." &#32;</a>
+</a></li><P><a name="15773">
+<li><strong>Playback Loop Pause</strong> sets the length of the pause between each playback of a recording. When you <strong>(CLICK-R)</strong> on the <strong>Playback</strong> button, you can animate the recording continuously until you <strong>(CLICK)</strong> the mouse. If you set a value other than 0.0 here, then choose continuous playback, N-Dynamics will pause the specified number of seconds each time the recording is played back.
+</a></li><P><a name="15775">
+<li><strong>Sort Library Menus</strong> specifies whether lists of scripts and recordings are sorted alphabetically or by creation date.
+</a></li><P></ul><P><a name="10952">
+<h2><HR> Views</h2>
+</a><a name="11805">
+If you want to look at different parts of the same script at the same time (for example, you can split the N-Dynamics window; each smaller window is referred to as a "view.")<p>
+</a><P><a name="11823">
+When you've reconfigured the window into a set of multiple views that you like, that setup can be saved as a "configuration."<p>
+</a><P><a name="11810">
+The commands under the <strong>Views</strong> menu let you add and remove views and configurations. If you <strong>(CLICK-L)</strong> on <strong>Views</strong>, the View Operations menu is displayed:<p>
+</a><P><a name="11586">
+ <P><img src="2Interface.anc20.gif"><p>
+</a><a name="11587">
+<em>Figure 2.22  &#32; &#32;The Views operations
+</em></a><P><a name="11593">
+<h4> Adding a View</h4>
+</a><a name="11601">
+There are three ways to create additional views in an N-Dynamics script:<p>
+</a><P><a name="14790">
+<h4> Method #1</h4>
+</a><a name="14791">
+To add a second view of the current script:<p>
+</a><P>
+<a name="11845">
+<STRONG>	 1.	 Make sure you have a script loaded.
+</STRONG>
+</a><P><dl><a name="12566">
+<dt>The example below is from the script triple-rotate, which is in the directory /usr/local/ngc/demo.</dt>
+</a><P></dl><a name="11837">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Views.
+</STRONG>
+</a><P><a name="11859">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Add View.
+</STRONG>
+</a><P><dl><a name="11860">
+<dt>A white bar appears across the center of the N-Dynamics window, splitting the window into two views of the same script:</dt>
+</a><P><a name="11669">
+ <P><img src="2Interface.anc21.gif"><p>
+</a></dl>
+<a name="11670">
+<em>Figure 2.23  &#32; &#32;Left, single view of script; right, two views of same script
+</em></a><P><dl><dl><a name="11864">
+<dt>Each view has a black title bar across the top, which shows the name of the script in square brackets. With multiple views of the same script, you can view different channels in the same script at the same time.</dt>
+</a><P></dl></dl>
+<a name="11907">
+<STRONG>	4.	 In the top view, <strong>(CLICK-L)</strong> on the channel X Rotate Cube.
+</STRONG>
+</a><P><dl><a name="11908">
+<dt>The channel expands to fill the entire top view.</dt>
+</a><P></dl><a name="11964">
+<STRONG>	5.	 In the bottom view, <strong>(CLICK-L)</strong> on the channel Z Rotate Cube.
+</STRONG>
+</a><P><a name="11949">
+ <P><img src="2Interface.anc22.gif"><p>
+</a>
+<a name="11950">
+<em>Figure 2.24  &#32; &#32;Left, split view of script "triple-rotate"; right, top and bottom of channels exploded to fit entire view
+</em></a><P><a name="11921">
+As <a href="2Interface.html#11950">Figure 2.24</a> shows, multiple views let you view curves for channels which are not next to each other in the script. Note that you can continue to add as many views as you want, so that you have two, three, or as many views as you need.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can also leave the top view as a kind of reference "view" and zoom in on other channels in other views.</em></font></dd></dt></dl><P>
+<a name="11594">
+<h4> Method #2</h4>
+</a><a name="14793">
+To add a second view and fill it with a selected channel:<p>
+</a><P>
+<a name="14794">
+<STRONG>	 1.	 <strong>(CTRL-L)</strong> on the channel you want to get a "close-up" view of.
+</STRONG>
+</a><P><dl><a name="14797">
+<dt>A second view opens; the selected channel is displayed so that it fills the entire created view:</dt>
+</a><P><a name="14826">
+ <P><img src="2Interface.anc23.gif"><p>
+</a></dl>
+<a name="14828">
+<em>Figure 2.25  &#32; &#32;Left, split view of script "triple-rotate"; right, after <strong>(CTRL-L)</strong> on a selected channel, which creates a second view for just that channel
+</em></a><P><a name="14851">
+<h4> Method #3</h4>
+</a><a name="14852">
+To add a second view by dragging the mouse:<p>
+</a><P>
+<a name="14853">
+<STRONG>	 1.	 <strong>(DRAG-L)</strong> on the white bar at the bottom of the script editor window.
+</STRONG>
+</a><P><dl><a name="14856">
+<dt>The white bar runs from side to side, just above the Seconds label.</dt>
+</a><P></dl>
+<a name="14857">
+You can resize any view by dragging the white bar at the bottom of the view up or down.<p>
+</a><P><a name="14792">
+<h4> Single View</h4>
+</a><a name="11602">
+Closes all views but the top level view in the N-Dynamics window:<p>
+</a><P><a name="11762">
+ <P><img src="2Interface.anc24.gif"><p>
+</a><a name="11763">
+<em>Figure 2.26  &#32; &#32;Reducing to a single view of a script
+</em></a><P><a name="11595">
+<h4> Spacing Views Evenly</h4>
+</a><a name="11773">
+If you've already created several views, and want to make them all take up the same amount of space vertically in the N-Dynamics window:<p>
+</a><P>
+<a name="12104">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Views.
+</STRONG>
+</a><P><a name="12108">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Space Views Evenly.
+</STRONG>
+</a><P><dl><a name="12109">
+<dt>Each view resizes vertically to take up the same amount of space in the <br>N-Dynamics window:</dt>
+</a><P><a name="11625">
+ <P><img src="2Interface.anc25.gif"><p>
+</a></dl>
+<a name="11626">
+<em>Figure 2.27  &#32; &#32;Space views evenly makes all views the same size
+</em></a><P><a name="11778">
+<h4> Saving View Configurations</h4>
+</a><a name="11789">
+Once you've created several views of a script, you can save them together as a <em>view configuration</em>. The view configuration remembers the size of each view, and the state of each channel in each view.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Configurations are saved only to memory, not to disk. If you kill a script from memory, the views associated with that script are flushed.</em></font></dd></dt></dl><P>
+<a name="12114">
+For example, if you had two views open, with <em>all</em> the channels in the top view closed but only a single channel in the bottom view open, you could save that setup as a configuration:<p>
+</a><P>
+<a name="12126">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Views.
+</STRONG>
+</a><P><a name="12129">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Save Configuration.
+</STRONG>
+</a><P><dl><a name="12127">
+<dt>Enter the name for the new view configuration in the dialog box that appears:</dt>
+</a><P><a name="11781">
+ <P><img src="2Interface.anc26.gif"><p>
+</a></dl>
+<a name="11782">
+<em>Figure 2.28  &#32; &#32;Saving a configuration to memory
+</em></a><P><a name="12199">
+Saved view configurations appear at the bottom of the View Operations menu:<p>
+</a><P><a name="12208">
+ <P><img src="2Interface.anc27.gif"><p>
+</a><a name="12209">
+<em>Figure 2.29  &#32; &#32;Selecting a saved view configuration
+</em></a><P><a name="12203">
+To select a previously saved view configuration:<p>
+</a><P>
+<a name="12225">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Views.
+</STRONG>
+</a><P><a name="12229">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on one of the view configurations under the Select Configuration section.
+</STRONG>
+</a><P>
+<a name="11596">
+<h4> Deleting View Configurations</h4>
+</a><a name="12161">
+If you want to delete a view configuration:<p>
+</a><P>
+<a name="12234">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Views&gt;Delete Configurations.
+</STRONG>
+</a><P><dl><a name="12246">
+<dt>A list of saved view configurations is displayed:</dt>
+</a><P><a name="11632">
+ <P><img src="2Interface.anc28.gif"><p>
+</a></dl>
+<a name="11633">
+<em>Figure 2.30  &#32; &#32;Deleting a view configuration from memory
+</em></a><P>
+<a name="11597">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> to highlight each of the configurations you want to delete.
+</STRONG>
+</a><P><a name="12251">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P>
+<a name="10954">
+<h2><HR> Animate</h2>
+</a><a name="10965">
+After you've created a script, the <strong>Animate</strong> button lets you execute it. At each frame, every channel is executed, from top to bottom. When all channels have been executed for the first frame, all channels that affect the second frame are executed, again from top to bottom, and so on until the end of the script is reached.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The order in which channels appear in a script can drastically affect an animation. For example, you typically place any </em><strong>Render</strong><em> channel near the bottom of the script, </em>after<em> you've executed any other operations on your objects.</em></font></dd></dt></dl><P>
+<a name="12967">
+As the script animates, you can watch its progress in the N-Geometry window. The black-and-white animation that you see playing back in the N-Geometry window is called a <em>recording</em>. You can save multiple recordings to memory, then play back different versions for quick comparisons. You can animate a script with or without a recording:<p>
+</a><P><ul><a name="13034">
+<li><strong>(CLICK-L)</strong> to animate a script and save the one-bit preview recording to memory.
+</a></li><P><a name="13031">
+<li><strong>(CLICK-M)</strong> to animate a script without saving the recording. The animation is still displayed in the N-Geometry window, but no <em>recording</em> is made.
+</a></li><P></ul><P><a name="16456">
+If you have included an operation in your script that writes frames out to disk (such as a <strong>Save Image to File </strong>operation), the <strong>Animate</strong> command also writes out those frames.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Only the frames in the frame range box (in the lower right corner of the script editor) at the time you click on </em><strong>Animate</strong><em> are animated.</em></font></dd></dt></dl><P>
+<a name="14055">
+<h4> Animating Scripts with Paint, Render, or Shading Operations</h4>
+</a><a name="14056">
+There are several cases where you should use <strong>(CLICK-M)</strong> to animate:<p>
+</a><P><ul><a name="14060">
+<li>when shading is turned on for an object-any shaded areas appear as solid black, creating a silhouette effect
+</a></li><P><a name="14061">
+<li>for a script whose purpose is to render frames
+</a></li><P><a name="14062">
+<li>for a script whose purpose is to execute paint operations on one or more images
+</a></li><P></ul><P><a name="14059">
+If you want to generate test recordings for scripts that contain these operations, you can write those frames to a movie. See the section <a href="5Operations.html#8966">"Record Movie Image," on page &#32;5-22</a>, for more information; saving a movie file is also described in the <em>N-Dynamics Tutorial</em>.<p>
+</a><P><a name="12601">
+<h4> Animating Part of a Script</h4>
+</a><a name="12979">
+If you don't want to animate an <em>entire</em> script, you can use the mouse to select an individual frame, or range of frames that you want to animate in the N-Geometry window.<p>
+</a><P><a name="12976">
+<h4> Animating an Individual Frame</h4>
+</a><a name="12985">
+To animate an individual frame:<p>
+</a><P>
+<a name="12988">
+<STRONG>	 1.	 Move the mouse over the frame range area until the single frame you want to animate appears in the frame box.
+</STRONG>
+</a><P><a name="12986">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the frame range area of the script.
+</STRONG>
+</a><P><dl><a name="16483">
+<dt>The one-bit preview animation for that frame is displayed in the N-Geometry window. </dt>
+</a><P></dl>
+<a name="16486">
+<h4> Animating Interactively</h4>
+</a><a name="16487">
+To interactively animate a portion of the script (causing all animation and deformations to be performed interactively):<p>
+</a><P>
+<a name="13015">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> and drag the mouse across the frame range area.
+</STRONG>
+</a><P><dl><a name="13016">
+<dt>The N-Geometry window is updated automatically as you move from frame to frame.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Interactive display to the render display window is not possible. If you want to interactively view part of a script that contains a Render channel, simply deactivate the render channel temporarily.</em></font></dd></dt></dl><P>
+<a name="17171">
+<h4> Animating a Range of Frames</h4>
+</a><a name="17172">
+To animate a range of frames (say frames 50-100 of a 300 frame script):<p>
+</a><P>
+<a name="17175">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Frame Range Box.
+</STRONG>
+</a><P><a name="17176">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Change Active Frames.
+</STRONG>
+</a><P><dl><a name="17177">
+<dt>Enter the first frame you want to animate in <strong>Min Frame</strong> and the last frame in <strong>Max Frame</strong>.</dt>
+</a><P></dl><a name="17182">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="17184">
+<dt>Note that the white animation line underneath the time line changes length. The white line indicates which frames are <em>active</em>.</dt>
+</a><P></dl><a name="17183">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Animate button.
+</STRONG>
+</a><P>
+<a name="10955">
+<h2><HR> Playback</h2>
+</a><a name="10956">
+Lets you play back a recording that you have made by executing a script. As described in the section <a href="2Interface.html#10954">"Animate," on page &#32;2-29</a>, you can save more than one recording for the same script.<p>
+</a><P><a name="12643">
+You use the commands under the <strong>Playback</strong> button to select a recording to play, delete recordings, rename recordings, or save a recording by name to memory.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Only the frames in the frame range box (in the lower right corner of the script editor) at the time you click on Playback are played back.</em></font></dd></dt></dl><P>
+<ul><a name="12606">
+<li><strong>(CLICK-L)</strong> plays the last recording you generated (in the Playback window).
+</a></li><P><a name="12607">
+<li><strong>(SHIFT-L)</strong> loops through the current recording until interrupted with a mouse click.
+</a></li><P></ul><P><a name="12608">
+If you want to play back a different recording already loaded into memory:<p>
+</a><P><ul><a name="12611">
+<li><strong>(CLICK-M)</strong> lets you select a recording from memory to play back in the Playback window.
+</a></li><P><a name="12612">
+<li><strong>(SHIFT-M)</strong> loops through a selected recording until interrupted with a mouse click.
+</a></li><P></ul><P><a name="12609">
+To select a recording-related operation from a menu, <strong>(CLICK-R)</strong> on the <strong>Playback</strong> button. The following menu is displayed:<p>
+</a><P><a name="12630">
+ <P><img src="2Interface.anc29.gif"><p>
+</a><a name="12631">
+<em>Figure 2.31  &#32; &#32;Working with recordings
+</em></a><P><a name="12625">
+<h4> Deleting a Recording</h4>
+</a><a name="12769">
+If you've generated several recordings, and want to delete one or more of them to clean up your work area:<p>
+</a><P>
+<a name="12770">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the Playback button.
+</STRONG>
+</a><P><a name="12771">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Delete Recordings.
+</STRONG>
+</a><P><dl><a name="12772">
+<dt>A list of the recordings currently in memory is displayed:</dt>
+</a><P><a name="12661">
+ <P><img src="2Interface.anc30.gif"><p>
+</a></dl>
+<a name="12662">
+<em>Figure 2.32  &#32; &#32;Deleting recordings
+</em></a><P>
+<a name="12656">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on each recording you want to delete.
+</STRONG>
+</a><P><dl><a name="12773">
+<dt>Each recording you select turns blue.</dt>
+</a><P></dl><a name="12774">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="12775">
+<dt>The selected recordings are killed from memory. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This deletes the selected recording from memory only! If you want to delete the saved recording from disk, you must do so from a UNIX shell.</em></font></dd></dt></dl><P>
+<a name="12647">
+<h4> Playing a Recording</h4>
+</a><a name="12749">
+To play back a recording that has previously been saved (or loaded into) memory:<p>
+</a><P>
+<a name="12790">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the Playback button.
+</STRONG>
+</a><P><a name="12791">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Play any Recording.
+</STRONG>
+</a><P><dl><a name="12792">
+<dt>A list of recordings currently in memory is displayed:</dt>
+</a><P><a name="12670">
+ <P><img src="2Interface.anc31.gif"><p>
+</a></dl>
+<a name="12671">
+<em>Figure 2.33  &#32; &#32;Playing recordings
+</em></a><P>
+<a name="12808">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the recording you want to play back.
+</STRONG>
+</a><P><dl><a name="12826">
+<dt>The animation is played back one time in the Playback window.</dt>
+</a><P></dl>
+<a name="16506">
+<h4> Playing Part of the Last Animated Recording</h4>
+</a><a name="16507">
+If you've already executed the script, and want only to reanimate part of the last generated recording:<p>
+</a><P>
+<a name="16508">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> and drag the mouse across the frame range area.
+</STRONG>
+</a><P><dl><a name="16509">
+<dt>The selected portion of the animation plays back in the window.</dt>
+</a><P></dl>
+<a name="16510">
+This option is useful if you are working with a very complex scene that might take too long to animate at real time by using <strong>(DRAG-M)</strong> with the mouse.<p>
+</a><P><a name="13882">
+<h4> Identifying the Last Animated &amp; Last Played Recordings</h4>
+</a><a name="13884">
+If you have saved several recordings to memory, played them back, reanimated, then played others back, you might lose track of which recording is which.<p>
+</a><P><a name="13911">
+When you play back or rename a recording, a menu like the following is displayed:<p>
+</a><P><a name="13902">
+ <P><img src="2Interface.anc32.gif"><p>
+</a><a name="13904">
+<em>Figure 2.34  &#32; &#32;Identifying the last played and current recordings
+</em></a><P><ul><a name="14921">
+<li>The <strong>[A]</strong> shows the recording last <em>animated</em>. It is the recording last generated with the Animate command. If you select <strong>Animate</strong> again, you overwrite this recording. (If you want to save this version before animating again, use the <strong>Rename Recording</strong> command.)
+</a></li><P><a name="14922">
+<li>The <strong>[P]</strong> shows the last recording that was <em>played</em>. This is the default for the Playback button until you animate again.
+</a></li><P></ul><P><a name="14923">
+<h4> Playing a Recording in Looped Mode</h4>
+</a><a name="12653">
+If you want to play a recording in memory <em>other than</em> the current recording in looped mode:<p>
+</a><P>
+<a name="12715">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="12716">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Play any Recording (Looped).
+</STRONG>
+</a><P><a name="12717">
+<STRONG>	3.	 Select the recording you want to play back from the menu displayed (which is similar to the one displayed in <a href="2Interface.html#12671">Figure 2.33</a>).
+</STRONG>
+</a><P><dl><a name="12741">
+<dt>The animation is played back continuously in the Playback window until interrupted with a click of the mouse.</dt>
+</a><P></dl>
+<a name="12649">
+<h4> Playing the Current Recording in Looped Mode</h4>
+</a><a name="12729">
+If you want to play the current recording in looped mode:<p>
+</a><P>
+<a name="12730">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="12731">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Play Current Recording (Looped).
+</STRONG>
+</a><P><dl><a name="12762">
+<dt>The animation is played back continuously in the Playback window until interrupted with a click of the mouse.</dt>
+</a><P></dl>
+<a name="12650">
+<h4> Renaming a Recording</h4>
+</a><a name="12837">
+To rename a recording that is currently loaded into memory:<p>
+</a><P>
+<a name="12840">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="12841">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Rename Recording.
+</STRONG>
+</a><P><dl><a name="12842">
+<dt>A menu of recordings currently in memory (like the one in <a href="2Interface.html#12671">Figure 2.33</a>) is displayed.</dt>
+</a><P></dl><a name="12859">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the recording you want to rename.
+</STRONG>
+</a><P><dl><a name="12860">
+<dt>Enter the new name for the recording in the dialog box that appears.</dt>
+</a><P></dl>
+<a name="12651">
+<h4> Saving the Current Recording to Memory</h4>
+</a><a name="12867">
+You can save several recordings to memory so that you can play them back one after another for a quick comparison. You might load a script, animate it, and save that recording to memory; then load a second script, animate it, and save that recording to memory.<p>
+</a><P><a name="12874">
+You could then use the various Playback commands to play back the recordings one after another.<p>
+</a><P><a name="12881">
+To save a recording to memory:<p>
+</a><P>
+<a name="12901">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="12902">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Save Current Recording (to Memory).
+</STRONG>
+</a><P><a name="12907">
+<STRONG>	3.	 Give the recording a name in the dialog box that appears.
+</STRONG>
+</a><P><dl><a name="14626">
+<dt>You're also prompted to specify a default directory for the recording, which is the default supplied if you later save this recording to disk.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This saves the selected recording to memory only! If you want to save a recording to disk, use the File/Write Recordings operation, described in <a href="2Interface.html#15827">"Saving Recordings," on page &#32;2-14</a>.</em></font></dd></dt></dl><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="3ScriptEditor.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/29/96 11:45:09 -->
+
+</body>
+</html>

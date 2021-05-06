@@ -1,0 +1,525 @@
+<html><head><title>Attaching Objects</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2BuildingSkeletons.html">[Prev]</a> <a href="4UsingSkins.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Attaching Objects</h1>
+</a>
+<hr><p><a name="10753">
+<h4> This chapter describes techniques for using attached objects with skeletons to create realistic characters. You'll also learn how to attach entire object hierarchies to bones, collections of bones, or to an entire skeleton.</h4>
+</a><a name="12086">
+ <P><img src="3AttachedObjects.anc.gif"><p>
+</a><a name="12080">
+<h2><HR> In this Chapter</h2>
+</a><a name="10754">
+You'll learn how to:<p>
+</a><P><ul><a name="11232">
+<li>attach a set of default objects to a skeleton (useful for testing animations with a robot like skin)
+</a></li><P><a name="11233">
+<li>attach a terminal object to a bone or a skeleton
+</a></li><P><a name="13081">
+<li>attach an object hierarchy to a bone
+</a></li><P><a name="13082">
+<li>attach an object hierarchy to a collection of bones
+</a></li><P><a name="13083">
+<li>attach an object hierarchy to a skeleton
+</a></li><P></ul><P><a name="10593">
+<h2><HR> Attaching Objects to a Skeleton</h2>
+</a><a name="11253">
+So far, we've animated just a skeleton. However, the real power of the Skeletal Animation System is that skeletons can be used to animate <em>attached objects</em> or <em>skins</em>.<p>
+</a><P><a name="11282">
+In this chapter, we'll discuss the first option, how to use attached objects with a skeleton.<p>
+</a><P><a name="11267">
+Attached objects retain their shape regardless of how the bone to which they are attached moves or rotates-all points on the attached object "inherit" the transformation of the bone to which they are attached. Attached objects often have a "robotic" or "metallic" feel.<p>
+</a><P><a name="11914">
+You might use the attached object approach for a robot, a tin man, or simply for attaching an object like a gun or sword to a character's hand. <p>
+</a><P><a name="12621">
+You can also create a set of default objects on a skeleton with the <strong>Make Attached Objects</strong> command; these automatically generated objects can then be modified into a character!<p>
+</a><P><a name="11245">
+<h2><HR> Make Attached Objects</h2>
+</a><a name="11244">
+The <strong>Make Attached Objects</strong> command lets you attach a set of polyhedra to a skeleton. This is particularly useful for testing an animation without attaching objects by hand.<p>
+</a><P><a name="11396">
+However, if you plan on using attached objects for your animation, it's also an easy way to get started-objects are attached to the correct bone, and can be modified to make a completely unique correction.<p>
+</a><P><a name="11416">
+Try this:<p>
+</a><P>
+<a name="11460">
+<STRONG>	 1.	 Load the following skeleton:
+</STRONG>
+</a><P>
+<a name="11461">
+<code>/usr/local/ngc/demo/acclaim/acclaim_walk_man.asf</code><p>
+</a><P><dl><dl><a name="11464">
+<dt>The skeleton appears in the N-Geometry window.</dt>
+</a><P></dl></dl>
+<a name="11421">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="11465">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Make Attached Objects.
+</STRONG>
+</a><P><dl><a name="11466">
+<dt>Individual polyhedra are created and attached to each bone on the skeleton. Your skeleton should now look something like this:</dt>
+</a><P><a name="11475">
+ <P><img src="3AttachedObjects.anc1.gif"><p>
+</a></dl>
+<a name="11476">
+<em>Figure 3.1  &#32; &#32;The Make Attached Objects command attaches polyhedra to each bone
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If the Skeletal Animation System recognizes different bone names, it tries to make more appropriate objects (e.g., a head for a head bone.</font></dd></dt></dl><P>
+<a name="12671">
+In N-Geometry, the generated objects are automatically restructured into a top level object called <strong>Skeleton attached Objects</strong>, where <strong>Skeleton</strong> is the name of the skeleton to which the objects are attached. Individual polyhedra are subobjects and are named<br><strong>Skeleton Bone</strong>.<p>
+</a><P><a name="12712">
+ <P><img src="3AttachedObjects.anc2.gif"><p>
+</a><a name="12714">
+<em>Figure 3.2  &#32; &#32;Structure in N-Geometry for attached objects
+</em></a><P><a name="11470">
+<h3> Modifying Attached Objects</h3>
+</a><a name="11515">
+Once you've attached the objects, you could simply use the tools in N-Geometry to add complexity to the objects in order to create a character.<p>
+</a><P><a name="11546">
+You can make any topological changes to the attached object. In <a href="3AttachedObjects.html#11541">Figure 3.3</a>, we scaled some of the faces at different joint and pulled out some additional detail around the head to create something of our own:<p>
+</a><P><a name="11540">
+ <P><img src="3AttachedObjects.anc3.gif"><p>
+</a><a name="11541">
+<em>Figure 3.3  &#32; &#32;You can modify the attached objects to create a unique character
+</em></a><P><a name="11535">
+<h3> Animating the Skeleton</h3>
+</a><a name="11566">
+Now, let's load a script that animates a character. You can substitute your object later if you want to, or simply follow along as we examine the script.<p>
+</a><P><a name="11863">
+Load in the following script:<p>
+</a><P><a name="11864">
+<code><pre>/usr/local/ngc/demo/scripts/dog-boy<p>
+</code></pre></a><a name="11608">
+There are four channels in this script:<p>
+</a><P><ul><a name="11609">
+<li>the <strong>Set View</strong> channel sets the camera view for the animation
+</a></li><P><a name="11610">
+<li>the <strong>Read Acclaim Data</strong> channel specifies which motion capture file is being used to animate the skeleton
+</a></li><P><a name="11611">
+<li>the <strong>Update Skeleton</strong> channel applies the motion capture file to the skeleton
+</a></li><P><a name="11612">
+<li>the <strong>Make Visible </strong>channel makes the attached objects visible.
+</a></li><P></ul><P><a name="11613">
+You can substitute your skeleton and attached objects in the various channels, or simply animate those in the sample script.<p>
+</a><P>
+<a name="11614">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Animate button to animate the script.
+</STRONG>
+</a><P><dl><a name="11615">
+<dt>Note that the objects now follow the motion of the various bones to which they were attached:</dt>
+</a><P><a name="11654">
+ <P><img src="3AttachedObjects.anc4.gif"><p>
+</a></dl>
+<a name="11655">
+<em>Figure 3.4  &#32; &#32;Animating the attached objects
+</em></a><P>
+<a name="11621">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="11622">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the File button of the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="12642">
+<dt>Use the <strong>Write Script and Objects</strong> command to save the script, the skeleton, and the skin. (This dialog box is described in more detail in the <em>N-Dynamics Reference Guide</em>.)</dt>
+</a><P></dl>
+<a name="12644">
+<h2><HR> Attaching Your Own Objects to a Skeleton</h2>
+</a><a name="12645">
+The Make Attached Objects command creates a set of default objects for the selected skeleton; if you want to attach <em>your own</em> objects to a skeleton or a bone on a skeleton, you can follow the technique described in the tutorial below:<p>
+</a><P>
+<a name="10769">
+<STRONG>	 1.	 Load the following skeleton:
+</STRONG>
+</a><P><dl><a name="10770">
+<dt><code>/usr/local/ngc/demo/biovision/WalkGoofy.bvh</code></dt>
+</a><P></dl><a name="10773">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Add New Object&gt;Create&gt;Tetrahedron.
+</STRONG>
+</a><P><dl><a name="10776">
+<dt>The tetrahedron appears at the global center.</dt>
+</a><P></dl><a name="10777">
+<STRONG>	3.	 Press "Z" so that you're looking at the skeleton directly along the Z axis.
+</STRONG>
+</a><P><dl><a name="10778">
+<dt>It should look like this:</dt>
+</a><P><a name="10782">
+ <P><img src="3AttachedObjects.anc5.gif"><p>
+</a></dl>
+<a name="10783">
+<em>Figure 3.5  &#32; &#32;Attaching an object
+</em></a><P>
+<a name="10784">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="10785">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><a name="10786">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Axis Move, and select Y from the menu that appears.
+</STRONG>
+</a><P><a name="10787">
+<STRONG>	7.	 Align the tetrahedron with the skeleton's head bone.
+</STRONG>
+</a><P><dl><a name="10788">
+<dt>It should look something like this:</dt>
+</a><P><a name="10792">
+ <P><img src="3AttachedObjects.anc6.gif"><p>
+</a></dl>
+<a name="10793">
+<em>Figure 3.6  &#32; &#32;Aligning the object
+</em></a><P>
+<a name="10794">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on faces in the sensitivity element menu.
+</STRONG>
+</a><P><a name="10795">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the bottom face of the tetrahedron.
+</STRONG>
+</a><P><a name="10796">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="10797">
+<dt>Shrink the face so that it's an appropriate size for the skeleton's head. Something like this:</dt>
+</a><P><a name="10801">
+ <P><img src="3AttachedObjects.anc7.gif"><p>
+</a></dl>
+<a name="10802">
+<em>Figure 3.7  &#32; &#32;Scaling the bottom face of the head object
+</em></a><P>
+<a name="10803">
+<STRONG>	11.	 On the GeoMenus, <strong>(CLICK-R)</strong> on Local Axes in the Object Display menu, then (CLICK-L) on each object whose axes you want to see.
+</STRONG>
+</a><P><dl><a name="10804">
+<dt>Choose both the WalkGoofy (skeleton) and tetrahedron objects.</dt>
+</a><P></dl><a name="10805">
+<STRONG>	12.	 Note that a small XYZ appear near the global center.
+</STRONG>
+</a><P><dl><a name="10806">
+<dt>This indicates the location and orientation of the skeleton's local axes.</dt>
+</a><P><a name="10813">
+ <P><img src="3AttachedObjects.anc8.gif"><p>
+</a></dl>
+<a name="10814">
+<em>Figure 3.8  &#32; &#32;Displaying the local axes
+</em></a><P>
+<a name="10815">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on segments in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="10816">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on the head bone of the skeleton.
+</STRONG>
+</a><P><a name="10817">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Attach Object.
+</STRONG>
+</a><P><a name="10818">
+<STRONG>	16.	 Choose the object(s) you want to attach from the list that appears and <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="10819">
+<dt>In this case, choose the tetrahedron. After you choose the object you want to attach, a dialog box appears:</dt>
+</a><P><a name="10824">
+ <P><img src="3AttachedObjects.anc9.gif"><p>
+</a></dl>
+<a name="10825">
+<em>Figure 3.9  &#32; &#32;Making the attached object's position its home position
+</em></a><P>
+<a name="10826">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="10827">
+<dt>If you are planning on animating this skeleton and object, you should make this position the object's home position. </dt>
+</a><P><a name="10828">
+<dt>This dialog box lets you optionally update the transformation matrix for the attached object:</dt>
+</a><P></dl><ul>
+<BR><a name="10829">
+<li>If you want the object to be driven based on its new "attached" position, <strong>(CLICK-L)</strong> on <strong>Yes</strong>. This is typically the option you'll choose.
+</a><P><BR><a name="10830">
+<li>If you want the object to be based on its original transformation matrix, <strong>(CLICK-L)</strong> on <strong>No</strong>.
+</a><P></ul>
+<dl><a name="10831">
+<dt>When you select <strong>Yes</strong>, note that the local axes for the attached tetrahedron are updated:</dt>
+</a><P><a name="10839">
+ <P><img src="3AttachedObjects.anc10.gif"><p>
+</a></dl>
+<a name="10840">
+<em>Figure 3.10  &#32; &#32;Reorigin and freeze updates a moved object's transformation matrix
+</em></a><P>
+<a name="10841">
+<STRONG>	18.	 <strong>(SHIFT-L)</strong> on the head bone.
+</STRONG>
+</a><P><a name="10842">
+<STRONG>	19.	 <strong>(CLICK-R)</strong> on Rotate/Twist.
+</STRONG>
+</a><P><dl><a name="10843">
+<dt>As you move the head bone, the attached object (our rudimentary head) follows that motion:</dt>
+</a><P><a name="10850">
+ <P><img src="3AttachedObjects.anc11.gif"><p>
+</a></dl>
+<a name="10851">
+<em>Figure 3.11  &#32; &#32;The object follows the motion of the bone to which it is attached
+</em></a><P>
+<a name="10852">
+<STRONG>	20.	 Attach several additional objects to the skeleton.
+</STRONG>
+</a><P><dl><a name="10853">
+<dt>	The topology of objects attached with the Attach Object command does not change. In this regard, objects attached using this method have a somewhat robotic appearance-they have a fixed volume, and don't bend or change shape at joints.</dt>
+</a><P><a name="10854">
+<dt>When you're through, your character might look something like this:</dt>
+</a><P><a name="10863">
+ <P><img src="3AttachedObjects.anc12.gif"><p>
+</a></dl>
+<a name="10864">
+<em>Figure 3.12  &#32; &#32;A "skin" of attached objects, with skeleton visible and invisible
+</em></a><P>
+<a name="10865">
+<STRONG>	21.	 Restructure the objects into an object called "triangle-skin."
+</STRONG>
+</a><P><dl><a name="10866">
+<dt>Restructuring objects into a single composite object makes it easier to animate in a script. (Restructuring objects is described in the <em>N-Geometry Reference Guide</em> and in <em>Getting Started</em>, which shows how to restructure using the Browser.)</dt>
+</a><P></dl>
+<a name="10867">
+<h4> Animating the Character</h4>
+</a><a name="10868">
+To animate the character, you need to create a script in N-Dynamics. You can load a sample script to see how we animated the skeleton:<p>
+</a><P>
+<a name="10869">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on File in N-Dynamics.
+</STRONG>
+</a><P><a name="10870">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on Load Scripts.
+</STRONG>
+</a><P><dl><a name="10871">
+<dt>Read in the following script:</dt>
+</a><P><dl><a name="10872">
+<dt><code>/usr/local/ngc/demo/scripts/triangle-head</code><p>
+</a><P></dl><a name="10873">
+<dt>There are four channels in this script:</dt>
+</a><P></dl><ul>
+<BR><a name="10874">
+<li>the <strong>Set View</strong> channel sets the camera view for the animation
+</a><P><BR><a name="10875">
+<li>the <strong>Read Biovision Data</strong> channel specifies which motion capture file is being used to animate the skeleton
+</a><P><BR><a name="10876">
+<li>the <strong>WalkGoofy Update Skeleton</strong> channel applies the motion capture file to the skeleton
+</a><P><BR><a name="10877">
+<li>the <strong>Make Visible triangle-skin</strong> channel makes the attached object visible.
+</a><P></ul>
+<dl><a name="10878">
+<dt>You can substitute your skeleton and attached objects in the various channels, or simply animate those in the sample script.</dt>
+</a><P></dl><a name="10879">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the Animate button to animate the script.
+</STRONG>
+</a><P><dl><a name="10880">
+<dt>Note that the objects now follow the motion of the various bones to which they were attached:</dt>
+</a><P><a name="10884">
+ <P><img src="3AttachedObjects.anc13.gif"><p>
+</a></dl>
+<a name="10885">
+<em>Figure 3.13  &#32; &#32;The attached objects follow the animated skeleton
+</em></a><P>
+<a name="10886">
+<STRONG>	25.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="10887">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on the File button of the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="10888">
+<dt>Use the <strong>Write Script and Objects</strong> command to save the script, the skeleton, and the skin. (This dialog box is described in more detail in the <em>N-Dynamics Reference Guide</em>.)</dt>
+</a><P></dl>
+<a name="10889">
+<h4> Positioning a Terminal Object to Attach</h4>
+</a><a name="10890">
+An object does not have to be located anywhere near the bone to which you want to attach it.<p>
+</a><P><a name="10891">
+You might, for example, want to attach a halo-like object floating over your character's head:<p>
+</a><P><a name="10898">
+ <P><img src="3AttachedObjects.anc14.gif"><p>
+</a><a name="10899">
+<em>Figure 3.14  &#32; &#32;An object in any location can be attached to any bone
+</em></a><P><a name="10900">
+If you want to attach objects, create the object, then position it by selecting the <strong>body</strong> in N-Geometry and positioning the body using any of the modify commands.<p>
+</a><P><a name="12454">
+If you attached the torus in the example above to the head bone, it would follow the motion of that bone:<p>
+</a><P><a name="10907">
+ <P><img src="3AttachedObjects.anc15.gif"><p>
+</a><a name="10908">
+<em>Figure 3.15  &#32; &#32;Objects can be any distance or orientation from the bone to which they are attached
+</em></a><P><a name="12442">
+<h2><HR> Attaching a Hierarchy of Objects</h2>
+</a><a name="12784">
+Up to now we've discussed attaching a single object to a bone or skeleton, or making a set of default attached objects. <p>
+</a><P><a name="12817">
+However, what if you have a group of objects that are restructured into an object?<p>
+</a><P><a name="12785">
+<h3> Attaching a Hierarchy of Objects to a Single Bone</h3>
+</a><a name="12810">
+If you want to attach a hierarchy of objects to a bone, you can do that too. In this example, we'll show how to attach a gun, which has two subobjects, to a bone.<p>
+</a><P>
+<a name="12840">
+<STRONG>	 1.	 Create the object group. 
+</STRONG>
+</a><P><dl><a name="12843">
+<dt>In this case, we created a gun group that had two subobjects, the <strong>gun</strong> itself, and the <strong>sight</strong>.</dt>
+</a><P><a name="12856">
+ <P><img src="3AttachedObjects.anc16.gif"><p>
+</a></dl>
+<a name="12857">
+<em>Figure 3.16  &#32; &#32;Create the object hierarchy
+</em></a><P>
+<a name="12865">
+<STRONG>	2.	 Put the skeleton in its base position.
+</STRONG>
+</a><P><a name="12868">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity window and move the object to its new location.
+</STRONG>
+</a><P><a name="12876">
+ <P><img src="3AttachedObjects.anc17.gif"><p>
+</a>
+<a name="12877">
+<em>Figure 3.17  &#32; &#32;Move the object hierarchy to its new location
+</em></a><P>
+<a name="12820">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the bone to which you want to attach the object.
+</STRONG>
+</a><P><a name="12821">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Attach.
+</STRONG>
+</a><P><a name="12825">
+<STRONG>	6.	 In the object list that appears, <strong>(CLICK-L)</strong> on the group you want to attach to the bone.
+</STRONG>
+</a><P><dl><a name="12896">
+<dt>If your group contained two objects (e.g., <strong>gun</strong> and <strong>sight</strong>) that were restructured into <strong>gun Group</strong>, you'd select the <strong>gun Group</strong> object:</dt>
+</a><P><a name="12889">
+ <P><img src="3AttachedObjects.anc18.gif"><p>
+</a></dl>
+<a name="12890">
+<em>Figure 3.18  &#32; &#32;Selecting the object group
+</em></a><P><dl><dl><a name="12826">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="12917">
+ <P><img src="3AttachedObjects.anc19.gif"><p>
+</a></dl></dl><a name="12918">
+<em>Figure 3.19  &#32; &#32;Making the object's position it's home position
+</em></a><P>
+<a name="12901">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="12924">
+<dt>You can now pose the skeleton with the object hierarchy attached</dt>
+</a><P><a name="12937">
+ <P><img src="3AttachedObjects.anc20.gif"><p>
+</a></dl>
+<a name="12938">
+<em>Figure 3.20  &#32; &#32;The attached object hierarchy follows the bone to which it is attached
+</em></a><P><a name="12954">
+<h3> Attaching a Hierarchy to a Collection of Bones</h3>
+</a><a name="12960">
+If you have already created an object hierarchy of objects that you want to attach to a skeleton, the Skeletal Animation System has a built in shortcut that lets you attach several objects at once. If you use this option (described below), objects are attached to the bone they are physically closest to in 3D space.<p>
+</a><P><a name="12967">
+Try this:<p>
+</a><P>
+<a name="12980">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="12985">
+<STRONG>	2.	 Create several objects and position them near the bone you want them attached to.
+</STRONG>
+</a><P><dl><a name="12986">
+<dt>Your objects might look something like this:</dt>
+</a><P><a name="13058">
+ <P><img src="3AttachedObjects.anc21.gif"><p>
+</a></dl>
+<a name="13059">
+<em>Figure 3.21  &#32; &#32;Attaching an object hierarchy-position objects close to the bone that should drive them
+</em></a><P>
+<a name="12999">
+<STRONG>	3.	 Restructure the objects into a group using the browser or N-Geometry.
+</STRONG>
+</a><P><a name="13000">
+<STRONG>	4.	 Collect the bones to which you want to attach the objects.
+</STRONG>
+</a><P><a name="13003">
+<STRONG>	5.	 When the collection is complete, <strong>(SHIFT-L)</strong> on the collection and move the mouse over the <strong>Attach</strong> command.
+</STRONG>
+</a><P><dl><a name="13004">
+<dt>Now, if you read the mouse documentation line, you'll see that <strong>(CLICK-L)</strong> will attach terminal objects (those in the group) to the closest bone.</dt>
+</a><P></dl><a name="13007">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Attach.
+</STRONG>
+</a><P><a name="13015">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the object group, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="13023">
+<dt>As when attaching a single object, you're prompted to make the object's current position its home position:</dt>
+</a><P><a name="13027">
+ <P><img src="3AttachedObjects.anc22.gif"><p>
+</a></dl>
+<a name="13028">
+<em>Figure 3.22  &#32; &#32;Making the object's position it's home position
+</em></a><P>
+<a name="13016">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="13035">
+<dt>The objects in the group are automatically attached to the bone they are nearest to:</dt>
+</a><P><a name="13045">
+ <P><img src="3AttachedObjects.anc23.gif"><p>
+</a></dl>
+<a name="13046">
+<em>Figure 3.23  &#32; &#32;Objects in the hierarchy are attached to the closest bone using this option
+</em></a><P><a name="13017">
+<h3> Attaching a Hierarchy to a Skeleton</h3>
+</a><a name="12946">
+Attaching an object hierarchy lets you perform either of the techniques described above. If you <strong>(SHIFT-L)</strong> on a skeleton, then move the mouse over the Attach command, you'll see that you can attach an object to the skeleton, or attach terminal objects in a complex object to the bones they are physically closest to.<p>
+</a><P><ul><a name="13098">
+<li>If you attach an object hierarchy to a skeleton, that object uses the transformation matrix of the root when you animate the skeleton.
+</a></li><P><dl><a name="13117">
+<dt>You might use this option if you have built a complex suit of armor that fits over the torso of the character.</dt>
+</a><P></dl><a name="13118">
+<li>If you attach terminal objects in the hierarchy to the closest bone, the behavior is as described for a collection of bones in the section <a href="3AttachedObjects.html#12954">"Attaching a Hierarchy to a Collection of Bones," on page &#32;3-21</a>.
+</a></li><P><dl><a name="13129">
+<dt>You might use this option if you are working with a set of objects that you have already modeled and want to attach all at once to the skeleton.</dt>
+</a><P></dl></ul><P><a name="12793">
+<h2><HR> Saving Your Work</h2>
+</a><a name="12794">
+When you've finished attaching your objects, you should save your work.<p>
+</a><P><a name="12795">
+To save a skeleton with attached objects, simply save the attached object. <p>
+</a><P><a name="12809">
+When you save an attached object, a reference to the skeleton it is attached to is also saved with the object. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you read in multiple objects that reference the same skeleton, N-Geometry prevents multiple copies of the skeleton from being generated.</font></dd></dt></dl><P>
+<a name="12639">
+Because the reference to the skeleton is kept with the attached object, that means you can keep adding complexity to a skeleton that can be shared by many characters.<p>
+</a><P><a name="12638">
+<h2><HR> Making Attached Objects Visible in N-Dynamics</h2>
+</a><a name="13153">
+If you animate with attached objects, you must <em>always</em> include a <strong>Make Visible</strong> channel for those objects. The <strong>Update Skins?</strong> parameter in the <strong>Update Skeleton</strong> operation applies only to assigned skins, as described in the following chapter.<p>
+</a><P><a name="13152">
+<h2><HR> Congratulations!</h2>
+</a><a name="12443">
+You've now learned how to make a set of default attached objects, attach simple terminal objects to a bone or skeleton, and attach a hierarchy of objects to a bone, collection of bones, or a skeleton.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2BuildingSkeletons.html">[Prev]</a> <a href="4UsingSkins.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 19:05:45 -->
+
+</body>
+</html>

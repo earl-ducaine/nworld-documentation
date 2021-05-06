@@ -1,0 +1,138 @@
+<html><head><title>3D Paint Mode</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8VramEditor.html">[Prev]</a> <a href="AFileFormats.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="15511">
+<h1>3D Paint Mode</h1>
+</a>
+<hr><p><a name="15793">
+<h4> With 3D paint you can create texture maps directly on an object in one of two ways. You can paint images on a normal, flat canvas onto which the geometry of an object has been unfolded. The edges of the polygons are visible on the canvas, which helps you to orient yourself and your work with respect to the object. In 3D mode, you can use paint tools to draw directly onto an object in the Geometry window. </h4>
+</a><a name="15935">
+<h2><HR> In this Chapter</h2>
+</a><a name="15936">
+In this chapter, we'll cover:<p>
+</a><P><ul><a name="15795">
+<li>3D Paint controls
+</a></li><P><a name="15796">
+<li>3D Paint Map mode
+</a></li><P><a name="15801">
+<li>3D Paint 3D mode
+</a></li><P><a name="15939">
+<li>3D Paint Controls
+</a></li><P></ul><P><a name="15518">
+<h2><HR> Using 3D Paint</h2>
+</a><a name="15940">
+3D Paint works in conjunction with N-Geometry. Menu options which control 3D paint modes are only visible when N-Geometry is running concurrently with N-Paint.<p>
+</a><P><a name="15525">
+ <P><img src="93DPaintMode.anc.gif"><p>
+</a><a name="15527">
+<em>Figure 9.1  &#32; &#32;The 3D Paint modes menu
+</em></a><P><ul><a name="15526">
+<li><strong>2D</strong> is the normal N-Paint mode.
+</a></li><P><a name="15519">
+<li><strong>Map</strong> mode allows you to paint directly on a texture map, with the geometry of the object "unfolded" and displayed as an overlay on the Paint canvas.
+</a></li><P><a name="15523">
+<li><strong>3D</strong> mode allows you to paint directly on a Geometry object.
+</a></li><P></ul><P><a name="15556">
+<h3> Using 3D Paint</h3>
+</a><a name="15557">
+To use 3D Paint, you must:<p>
+</a><P><ul><a name="15561">
+<li>Attach mappers to the objects you wish to paint.
+</a></li><P><a name="15562">
+<li>Create and save maps for these objects, and assign the maps to the objects mappers using the Materials Editor.
+</a></li><P><a name="15570">
+<li>Toggle shading ON in the GeoMenus.
+</a></li><P></ul><P><a name="15534">
+<h3> Map Mode</h3>
+</a><a name="15590">
+ <P><img src="93DPaintMode.anc1.gif"><p>
+</a><a name="15591">
+<em>Figure 9.2  &#32; &#32;3D Paint, Map Mode menu
+</em></a><P><a name="15535">
+When map mode is selected, the currently selected object in the N-Geometry window is "unfolded" onto the paint canvas. The geometry of the 3D object is projected onto the 2D canvas, with polygon edges represented by blue lines. You can use these lines to orient yourself with respect to the object in the Geometry window.<p>
+</a><P><a name="15538">
+ <P><img src="93DPaintMode.anc2.gif"><p>
+</a><a name="15539">
+<em>Figure 9.3  &#32; &#32;A sphere "unfolded" onto the Paint canvas
+</em></a><P><a name="15524">
+Once this unfolding process is completed, any paint which you apply to the canvas is automatically applied to the maps on the object. These changes are immediately visible in the Geometry window.<p>
+</a><P><a name="15577">
+ <P><img src="93DPaintMode.anc3.gif"><p>
+</a><a name="15578">
+<em>Figure 9.4  &#32; &#32;Canvas changes are updated on objects immediately
+</em></a><P><a name="15586">
+<h4> Part Select</h4>
+</a><a name="15600">
+You can paint on selected faces or face parts of an objects as well. N-Paint creates a matte using the selected parts. <p>
+</a><P><ul><a name="15601">
+<li><strong>(CLICK-L)</strong> on Part Select to select a part to highlight on the Paint Canvas.
+</a></li><P><dl><a name="15613">
+<dt>OR</dt>
+</a><P></dl><a name="15616">
+<li><strong>(CLICK-M)</strong> on the Map button to create a Matte using the selected face parts.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	This operation only creates the matte. To use or display the matte, you must toggle the appropriate controls in the Matte Modes menu. For more information about using mattes, see <a href="4ToolsMode.html#691970">"Matte Commands," on page &#32;3-4</a>.</font></dd></dt><dl><a name="15602">
+<dt>The Part Select pop-up menu appears, listing all defined face parts for the Geometry object:</dt>
+</a><P><a name="15603">
+ <P><img src="93DPaintMode.anc4.gif"><p>
+</a></dl></dl><P>
+<a name="15604">
+<em>Figure 9.5  &#32; &#32;The Select Face Part pop-up menu
+</em></a><P><dl><dl><a name="15609">
+<dt><strong>(CLICK-L)</strong> on the part(s) you want to use.</dt>
+</a><P></dl></dl><ul><a name="15621">
+<li><strong>3DPaint-selected</strong> allows you to select faces not in predefined face parts.
+</a></li><P></ul><P><a name="15635">
+<h3> 3D Mode</h3>
+</a><a name="15636">
+3D mode allows you to paint directly onto an object. To select 3D Paint mode, <strong>(CLICK-L)</strong> on the 3D button in the Modes section of the Tools menu.<p>
+</a><P><a name="15637">
+ <P><img src="93DPaintMode.anc5.gif"><p>
+</a><a name="15638">
+<em>Figure 9.6  &#32; &#32;The 3D Paint, 3D mode menu
+</em></a><P><a name="15955">
+<h3> The 3D Paint Canvas</h3>
+</a><a name="15956">
+When you enter 3D mode, the Paint Canvas is replaced by the 3D Paint Canvas. The 3D Paint canvas reflects the current Geometry view. So, if you want to paint on a portion of your model that is hidden in the current view, just go to N-Geometry and move the camera until the parts you want to paint are visible. <p>
+</a><P><a name="15646">
+<h4> Geometry</h4>
+</a><a name="15650">
+This button controls the current view mode for the Geometry window.<p>
+</a><P><ul><a name="15655">
+<li><strong>(CLICK-L)</strong> on <strong>Geometry</strong> to make the Geometry window <strong>visible</strong>.
+</a></li><P><a name="15656">
+<li><strong>(CLCK-M) </strong>on <strong>Geometry</strong> to place the Geometry window in <strong>Orthographic</strong> mode.
+</a></li><P></ul><P><a name="15587">
+<h4> Update Maps</h4>
+</a><a name="15657">
+Use this control to save changes you've made to texture maps.<p>
+</a><P><ul><a name="15658">
+<li><strong>(CLICK-L)</strong> to save changes to texture maps in <strong>memory</strong>.
+</a></li><P><a name="15659">
+<li><strong>(CLICK-M)</strong> to save changes to selected parts.
+</a></li><P><a name="15660">
+<li><strong>(SHIFT-M)</strong> to save changes to partially visible faces.
+</a></li><P></ul><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8VramEditor.html">[Prev]</a> <a href="AFileFormats.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/27/96 11:41:51 -->
+
+</body>
+</html>

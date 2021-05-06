@@ -1,0 +1,352 @@
+<html><head><title>Sega Materials and Attributes</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1ExportAndCompile.html">[Prev]</a> <a href="3Functions.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9746">
+<h1>Sega Materials and Attributes</h1>
+</a>
+<hr><p><a name="10199">
+<h4> This chapter outlines briefly the attributes and parameters associated with the Sega domain in the N&#183;World Attributes Editor.</h4>
+</a><a name="9775">
+<h2><HR> The Sega Domain</h2>
+</a><a name="9776">
+The Sega domain contains attributes and parameters specifically designed for attributing objects to be displayed on the Sega Saturn. You should use the Sega domain for materials you define in the Attributes Editor and which you intend to use on the Saturn. This section is designed to provide a brief overview of the domain as a whole, and its interface in the Attributes Editor. Refer to the <em>Attributes Editor Reference Guide </em>for more information about attributes and materials in general<em>.</em><p>
+</a><P><a name="10162">
+<h3> Materials and Inheritance</h3>
+</a><a name="10163">
+Materials are groups of attributes which determine the appearance of an object in a rendered scene. In N&#183;World, materials are separate data structures, which you must associate with objects using the Nichimen Browser. This system provides for enhanced flexibility, since you can define a single material and apply it to many objects. In object based systems, you must redefine object attributes for each object in a scene.<p>
+</a><P><a name="10264">
+Materials can be assigned to an entire object or to a selected face part of an object (a face part is a collection of faces from the object). Materials you want to use with the Sega Saturn must be defined in the Sega render domain. This domain has several properties and unique parameters, which you control with the Attributes Editor menus.<p>
+</a><P><a name="10164">
+The method for creating materials is no different for the Sega domain than for any other domain. To learn how to create materials, as well as how to specify attribute inheritance from one material to another, see the <em>Attributes Editor Reference Guide</em>.<p>
+</a><P><a name="10270">
+<h3> The Attributes Editor</h3>
+</a><a name="10285">
+You define materials using the Attributes Editor. To launch the Attributes Editor, <strong>(CLICK-L)</strong> on the Attributes button in the config bar.<p>
+</a><P><a name="10283">
+ <P><img src="2SegaDomain.anc.gif"><p>
+</a><a name="10275">
+<em>Figure 3.1  &#32; &#32;Attributes Editor menu for the Sega domain.
+</em></a><P><a name="10160">
+<h3> Sega Domain Defaults</h3>
+</a><a name="9778">
+The following dialog appears when you <strong>(CLICK-L) </strong>on <strong>Prefs</strong> for the Sega Domain:<p>
+</a><P><a name="9782">
+ <P><img src="2SegaDomain.anc1.gif"><p>
+</a><a name="9783">
+Figure 3.1  &#32; &#32;Sega domain defaults dialog.<p>
+</a><a name="9785">
+ Map Directory<p>
+</a><a name="9786">
+The default directory from which maps are read.<p>
+</a><P><a name="9788">
+ Maximum Angle<p>
+</a><a name="9789">
+The maximum angle a non-flat face can be "bent" before it is cut into two faces when sent to the Saturn.:<p>
+</a><P><a name="9808">
+ <P><img src="2SegaDomain.anc2.gif"><p>
+</a><a name="9809">
+<em>Figure 3.2  &#32; &#32;Cutting non-flat faces
+</em></a><P><a name="9811">
+ Background Color<p>
+</a><a name="9812">
+The color displayed behind the object during the test preview.<p>
+</a><P><a name="9814">
+ Preshade Object?<p>
+</a><a name="9815">
+If set to <strong>Yes</strong>, the lights in the <strong>Default Light Group</strong> are used to preshade the object before it is sent to the Sega Saturn. See the <em>Attributes Editor User's Guide</em> for more information on setting up light groups.<p>
+</a><P><a name="9817">
+ Update Camera?<p>
+</a><a name="9818">
+If set to <strong>Yes</strong>, the position of the camera on the Sega Saturn is updated to follow the position of the camera in the N-Geometry window.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> <em>	You may experience gimbal lock on the display of the Sega Saturn if you rotate the camera and look at the object straight down along the Y axis. This is an unavoidable effect often encountered in 3D simulations.</em></font></dd></dt><a name="9821">
+ Saving Your Defaults<p>
+</a></dl><P>
+<a name="9822">
+To save your defaults, <strong>(Click-L)</strong> on the <strong>Save Preferences</strong> button at the bottom of the window.<p>
+</a><P><a name="9823">
+<h3> Sega Domain Shader Parameters</h3>
+</a><a name="9824">
+The Sega domain is divided into two sections; Shader parameters and Texture parameters. Shader parameters control how objects are rendered, while texture parameters affect the display and appearance of texture maps. To see Shader parameters, <strong>(CLICK-L)</strong> on the box under the word <strong>Shader</strong> in the Attributes Editor. <a href="2ExportAndCompile.html#9783">Figure 3.1</a> shows what the Attributes Editor looks like in shader mode for the Sega domain.<p>
+</a><P><a name="9827">
+ Color<p>
+</a><a name="9828">
+<em>Default: White</em><p>
+</a><P><a name="9829">
+The color attribute is used for two purposes in the Sega render domain:<p>
+</a><P><ul><a name="9830">
+<li>To define the color of the object.
+</a></li><P><a name="9831">
+<li>An RGB value (color) multiplier for RGB values of any applied map.
+</a></li><P></ul><P><a name="9832">
+If you apply a map over an object or part that has a color other than white, the appearance of that map is altered. For example, if you apply a red brick texture onto a yellow cube, the bricks would take on a yellowish hue (how yellow would depend on the RGB value of the yellow assigned to the cube).<p>
+</a><P><a name="9834">
+ Facing Control<p>
+</a><a name="9835">
+<em>Default: Front</em><p>
+</a><P><ul><a name="9836">
+<li><strong>Front</strong> renders only those faces with normals facing the camera. Faces whose normals point away from the camera are not rendered.
+</a></li><P><a name="9837">
+<li><strong>Both</strong> renders all faces in the scene, regardless of their orientation.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The </em><strong>Facing Control</strong><em> attribute is identical to the </em><strong>Plane</strong><em> attribute in SGL terminology (and in the Saturn documentation).</em></font></dd></dt><a name="9840">
+ Omit Face?<p>
+</a></dl><P>
+<a name="9841">
+<em>Default: No</em><p>
+</a><P><ul><a name="10237">
+<li><strong>Yes</strong> keeps the polygon information for the selected faces from being sent to the Saturn when the <strong>Preview</strong> button is pressed. 
+</a></li><P><dl><a name="10238">
+<dt>For example, you might set Omit face? to Yes for faces on the back of an object.</dt>
+</a><P></dl><a name="10239">
+<li><strong>No</strong> sends the polygon information for the face.
+</a></li><P><a name="9846">
+ Preshade<p>
+</a></ul><P><a name="9847">
+<em>Default: Yes</em><p>
+</a><P><ul><a name="9848">
+<li><strong>Yes</strong> shades the object or faces using existing lights for the scene before sending them to the Sega Saturn.
+</a></li><P><a name="9849">
+<li><strong>No</strong> sends the object or faces using only the color of the object; any light influence is ignored, and all faces have the specified <strong>Color</strong> attribute.
+</a></li><P><a name="9851">
+ Sort Control<p>
+</a></ul><P><a name="9852">
+<em>Default: Min</em><p>
+</a><P><a name="9853">
+The Sega maintains a z-order sort index which lets you specify which faces are to be displayed "on top". This is of significance if you have overlapping or intersecting faces.<p>
+</a><P><ul><a name="9854">
+<li><strong>Min</strong> performs a z-order sort. Faces with a vertex closest to the camera are displayed on top.
+</a></li><P><a name="9855">
+<li><strong>Max</strong> performs a z-order sort. Faces with a vertex furthest from the camera are displayed on top.
+</a></li><P><a name="9856">
+<li><strong>Center</strong> calculates the center point for each face, then displays those faces based on the distance of those center points from the camera. Faces with center points closest to the camera are displayed on top.
+</a></li><P><a name="9858">
+ Use Lights?<p>
+</a></ul><P><a name="9859">
+<em>Default: No</em><p>
+</a><P><a name="9860">
+This attribute, along with the Preshade attribute, determines how faces are shaded on the Sega Saturn: 
+<P><Table Border="1">
+<a name="9863">
+Table 3.1 <strong> &#32; &#32;Interaction of Use Lights? and Preshade attributes</strong><p>
+</a>
+<tr><th align="left"><a name="9869">
+Preshade
+</a><th align="left"><a name="9871">
+Use Lights?
+</a><th align="left"><a name="9873">
+Result
+</a>
+<tr><td valign="top"><a name="9875">
+ No<p>
+</a><td valign="top"><a name="9877">
+ No<p>
+</a><td valign="top"><a name="9879">
+ The face color is defined by the <strong>Color</strong> attribute. No shading takes place.<p>
+</a>
+<tr><td valign="top"><a name="9881">
+ Yes<p>
+</a><td valign="top"><a name="9883">
+ No<p>
+</a><td valign="top"><a name="9885">
+ Faces are preshaded on the SGI before being sent to the Sega Saturn, using the lights in the current <br>N-Geometry scene.<p>
+</a>
+<tr><td valign="top"><a name="9887">
+ No<p>
+</a><td valign="top"><a name="9889">
+ Yes<p>
+</a><td valign="top"><a name="9891">
+ Faces are shaded interactively on the Sega Saturn, using light information defined in the SGL program.<p>
+</a>
+<tr><td valign="top"><a name="9893">
+ Yes<p>
+</a><td valign="top"><a name="9895">
+ Yes<p>
+</a><td valign="top"><a name="9897">
+ Faces are pre-shaded on the SGI before being sent to the Sega Saturn, using the lights in the current <br>N-Geometry scene. Those preshaded faces are also shaded interactively on the Sega Saturn.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9899">
+ Use Clipping?<p>
+</a><a name="9900">
+<em>Default: No</em><p>
+</a><P><a name="9901">
+Specifies whether or not to display vertices outside of a user-defined clipping area.<p>
+</a><P><ul><a name="9902">
+<li><strong>Yes</strong> clips vertices outside of the area.
+</a></li><P><a name="9903">
+<li><strong>No</strong> calculates the display for all vertices in the scene.
+</a></li><P><a name="9905">
+ Smooth Shade?<p>
+</a></ul><P><a name="9906">
+<em>Default: No</em><p>
+</a><P><a name="9907">
+The smooth shade parameter selects either "color by vertex" or "color by face." <p>
+</a><P><ul><a name="9908">
+<li><strong>Yes</strong> shades the face from each vertex on the face, producing a smoother appearance (uses the vertex normal for each vertex on the face).
+</a></li><P><a name="9909">
+<li><strong>No</strong> colors the vertex by face; the face has a uniform color over the entire face (uses the face normal only).
+</a></li><P><a name="9914">
+ <P><img src="2SegaDomain.anc3.gif"><p>
+</a></ul><P><a name="9915">
+<em>Figure 3.3  &#32; &#32;Color by vertex vs. color by face
+</em></a><P><a name="9917">
+ Draw as Mesh?<p>
+</a><a name="9918">
+<em>Default: No</em><p>
+</a><P><ul><a name="9919">
+<li><strong>Yes</strong> draws the selected face as a "mesh," by drawing every other line on the face.
+</a></li><P><a name="9920">
+<li><strong>No</strong> draws the face as solid.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>While this attribute causes the face to appear transparent, it is actually more of a "venetian blind" effect; the transparency of the drawn portion of the faces is not affected by this setting.</em></font></dd></dt><a name="9923">
+ Drawing Mode<p>
+</a></dl><P>
+<a name="9924">
+<em>Default: Overwrite</em><p>
+</a><P><a name="9925">
+Determines which of the various drawing modes available on the Sega Saturn is used to draw the face:<p>
+</a><P><ul><a name="9927">
+<li><strong>Overwrite</strong> performs a z-sort on all faces, displaying those closest to the camera "on top." This is the default mode, and is described in the Sega <em>VDP-I</em> manual on p. 87.
+</a></li><P><a name="9936">
+ <P><img src="2SegaDomain.anc4.gif"><p>
+</a></ul><P><a name="9937">
+<em>Figure 3.4  &#32; &#32;Overwrite drawing mode
+</em></a><P><ul><a name="9939">
+<li><strong>Shadow</strong> draws the selected face as a shadow; this mode is described in the Sega <em>VDP-I</em> manual on p. 88.
+</a></li><P><a name="9948">
+ <P><img src="2SegaDomain.anc5.gif"><p>
+</a></ul><P><a name="9949">
+<em>Figure 3.5  &#32; &#32;Shadow drawing mode
+</em></a><P><ul><a name="9951">
+<li><strong>Semi-bright</strong> cuts the luminance value for the selected face in half.
+</a></li><P><a name="9960">
+ <P><img src="2SegaDomain.anc6.gif"><p>
+</a></ul><P><a name="9961">
+<em>Figure 3.6  &#32; &#32;Semi-bright drawing mode
+</em></a><P><ul><a name="9963">
+<li><strong>Semi-transparent</strong> cuts the transparency for the selected face to 50%; the color of any faces serve as RGB multipliers to determine the final appearance of the face.
+</a></li><P><a name="9972">
+ <P><img src="2SegaDomain.anc7.gif"><p>
+</a></ul><P><a name="9973">
+<em>Figure 3.7  &#32; &#32;Semi-transparent drawing mode
+</em></a><P><a name="9974">
+<h3> Texture Map Parameters</h3>
+</a><a name="10474">
+Texture map parameters allow you to specify an image to use as a texture map, as well as control certain Sega specific aspects of the maps behavior. <strong>(CLICK-L)</strong> on the box under the word <strong>Texture</strong> to see Texture attributes in the Attributes Editor.<p>
+</a><P><a name="10479">
+ <P><img src="2SegaDomain.anc8.gif"><p>
+</a><a name="10480">
+<em>Figure 3.8  &#32; &#32;Sega domain texture attributes
+</em></a><P><a name="9975">
+ Texture Map<p>
+</a><a name="9976">
+<em>Default: None</em><p>
+</a><P><a name="9977">
+Specify the pathname for the texture map to be applied to the face, part, or body. The application of texture maps through mappers is described in more detail in the <em>N-Render Reference Guide</em>.<p>
+</a><P><a name="9978">
+The <em>size</em> and <em>number</em> of texture maps which can be sent to the Sega Saturn are limited only by the texture map memory available.<p>
+</a><P><a name="9986">
+ Reuse Map?<p>
+</a><a name="9987">
+<em>Default: No - Only if a texture map is specified</em><p>
+</a><P><a name="10459">
+If yes, then all faces share the same texture map. If you specify a texture map in the <strong>Texture Map</strong> field, then <strong>(Click-L)</strong> on <strong>Yes</strong> for <strong>Reuse Map</strong>, the direction field appears, with four choices.<p>
+</a><P><ul><a name="9994">
+<li><strong>No Flip</strong> applies the texture map normally.
+</a></li><P><a name="9995">
+<li><strong>H Flip</strong> flips the applied texture map around the horizontal axis (up/down).
+</a></li><P><a name="9996">
+<li><strong>V Flip</strong> flips the applied texture map around the vertical axis (left/right).
+</a></li><P><a name="9997">
+<li><strong>HV Flip</strong> flips the applied texture map both vertically and horizontally.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The "flipping" is based on the face's orientation, not its relationship to the viewer.</em></font></dd></dt><a name="10001">
+ Scale<p>
+</a></dl><P>
+<a name="10002">
+<em>Only if a Texture Map is specified.</em><p>
+</a><P><ul><a name="10003">
+<li><strong>Scale</strong> lets you specify the how the map is to be scaled. You can use scaling to "fit" texture maps to faces.
+</a></li><P><a name="10028">
+ <P><img src="2SegaDomain.anc9.gif"><p>
+</a></ul><P><a name="10030">
+<em>Figure 3.9  &#32; &#32;Scaling texture map
+</em></a><P><a name="10031">
+Normally, the portion of the map that is applied to a face is determined by checking its uv values against those of the applied map:<p>
+</a><P><a name="10032">
+<code><pre>u(max) - u(min) = value x width = pixels applied in u<p>
+</code></pre></a><a name="10033">
+<code><pre>v(max) - v(min) = value x height = pixels applied in v<p>
+</code></pre></a><a name="10037">
+So, for the example shown above in <a href="2ExportAndCompile.html#10030">Figure 3.9</a>, the following calculation would be made:<p>
+</a><P><a name="10038">
+<code><pre>.7 - .2 = .5 x 80 = 40 pixels applied in u<p>
+</code></pre></a><a name="10039">
+<code><pre>.9 - .2 = .7 x 40 = 28 pixels applied in v<p>
+</code></pre></a><a name="10040">
+So if no <strong>Scale</strong> is specified for the texture map applied to this face, a 40x28 portion of the map is applied.<p>
+</a><P><a name="10041">
+Specifying a <strong>Scale</strong> value allows you to change the number of pixels applied to the specified face. If you wanted <em>twice</em> the information to be applied to the selected face, you could add a scale value of 2, which would affect the equation as follows:<p>
+</a><P><a name="10042">
+<code><pre>.7 - .2 = .5 x 80 = 40 x 2 = 80 pixels applied in u<p>
+</code></pre></a><a name="10043">
+<code><pre>.9 - .2 = .7 x 40 = 28 x 2 = 56 pixels applied in v<p>
+</code></pre></a><a name="10044">
+Rather than a 40 x 28 portion of the map, an 80 x 56 portion is applied; the object appears to have twice the detail.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The width of the resulting map must always be divisible by 8, and must be &lt; 505.<br><br>The height must be &lt;256.</em></font></dd></dt></dl><P>
+<a name="7249">
+<h3> Sega Domain Commands</h3>
+</a><a name="10530">
+The four button along the bottom of the Attributes Editor allow you perform various operations on your attributes, or send objects to the Saturn<p>
+</a><P><a name="10531">
+ Revert<p>
+</a><ul><a name="10536">
+<li><strong>(CLICK-L)</strong> on <strong>Revert</strong> to undo all changes made to attributes for the current material since the last time it was saved.
+</a></li><P><a name="10537">
+<li><strong>(CLICK-R)</strong> on <strong>Revert</strong> to reset any local attributes to their default values.
+</a></li><P><a name="10538">
+ Redisplay<p>
+</a><a name="10539">
+<li><strong>(CLICK-L)</strong> on <strong>Redisplay</strong> to redisplay the current material in the geometry window. You should do this after making changes to your materials.
+</a></li><P><a name="10543">
+<li><strong>(CTRL-M)</strong> on <strong>Redisplay</strong> to update texture maps. If you've edited the image files you're using as texture maps, use this option to make sure the updated maps are used.
+</a></li><P><a name="10544">
+ Reset<p>
+</a></ul><P><a name="10545">
+<strong>(CLICK-L)</strong> on <strong>Reset</strong> to reset the attached Saturn.<p>
+</a><P><a name="10546">
+ Preview<p>
+</a><a name="10547">
+<strong>(CLICK-L)</strong> on Preview to send all the objects in the current scene to the Sega Saturn.<strong></strong><p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1ExportAndCompile.html">[Prev]</a> <a href="3Functions.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 11:55:02 -->
+
+</body>
+</html>

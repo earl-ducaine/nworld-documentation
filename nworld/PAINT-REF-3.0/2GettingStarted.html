@@ -1,0 +1,397 @@
+<html><head><title>Configuring N-Paint</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="4ToolsMode.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="11412">
+<h1>Configuring N-Paint</h1>
+</a>
+<hr><p><a name="9044">
+<h4> This chapter describes how to use N-Paint's Setup mode to define certain N-Paint parameters.</h4>
+</a><a name="13247">
+<h2><HR> In this Chapter</h2>
+</a><a name="13248">
+In this chapter, we'll describe how to use the N-Paint Setup menus to configure N-Paint.<p>
+</a><P><a name="13500">
+<h2><HR> The Setup Menu</h2>
+</a><a name="9113">
+The Setup menu lets you define several parameters which affect the "look and feel" of N-Paint. While the default settings for N-Paint are those that most users are comfortable with, you may want to customize them. You can modify N-Paint Setup parameters at any time, the changes you make take effect immediately.<p>
+</a><P><a name="9045">
+<h3> Setup Parameters</h3>
+</a><a name="9154">
+To view the Setup parameters, <strong>(CLICK-L)</strong> on the Setup menu item. The following menu appears:<p>
+</a><P><a name="10309">
+ <P><img src="2GettingStarted.anc.gif"><p>
+</a><a name="9223">
+<em>Figure 2.1  &#32; &#32;Setup parameters
+</em></a><P><a name="9047">
+<h4> Save Unpaint</h4>
+</a><a name="9111">
+Specifies whether to save unpaint on all painting and drawing operations. If this feature is turned off, you may see a slight performance improvement. You can also turn off the unpaint feature if you are low on memory.<p>
+</a><P><a name="9048">
+<h4> Confirm Enabled</h4>
+</a><a name="9110">
+If Confirm Enabled is on, a confirmation menu will appear whenever you perform a potentially destructive operation (such as erasing the entire canvas).<p>
+</a><P><a name="13582">
+<h4> Use I/O LUT</h4>
+</a><a name="13672">
+Enable <strong>I</strong>nput/<strong>O</strong>utput <strong>L</strong>ook-<strong>U</strong>p <strong>T</strong>able. You can use the Look-Up table to determine how color values are mapped between different color depths. N-Paint has a 16-bit architecture, which means that each pixel has 4 components (RGBA), each of 16 bits, for a total of 64. When you load or save image which have different color depths, like an 8-bit image, color values must be mapped between the two color depths. 
+<P><Table Border="1">
+<dl>
+<a name="13676">
+<em>Table 2.1 <strong></strong><em> &#32; &#32;Mapping between 8 and 16 bits</em>
+</em></a></dl>
+<tr><th align="left"><a name="13688">
+Status
+</a><th align="left"><a name="13690">
+Depth
+</a><th align="left"><a name="13692">
+Before (binary)
+</a><th align="left"><a name="13694">
+After (binary)
+</a><th align="left"><a name="13696">
+Before (decimal)
+</a><th align="left"><a name="13698">
+After (decimal)
+</a>
+<tr><td valign="top"><a name="13700">
+ Off<p>
+</a><td valign="top"><a name="13702">
+ 8 ` 16 <p>
+</a><td valign="top"><a name="13704">
+ 11111111<p>
+</a><td valign="top"><a name="13706">
+ 1111111100000000<p>
+</a><td valign="top"><a name="13708">
+ 255<p>
+</a><td valign="top"><a name="13710">
+ 65280<p>
+</a>
+<tr><td valign="top"><a name="13712">
+ On<p>
+</a><td valign="top"><a name="13714">
+ 8 ` 16<p>
+</a><td valign="top"><a name="13716">
+ 11111111<p>
+</a><td valign="top"><a name="13718">
+ 1111111111111111<p>
+</a><td valign="top"><a name="13720">
+ 255<p>
+</a><td valign="top"><a name="13722">
+ 65535<p>
+</a>
+<tr><td valign="top"><a name="13724">
+ Off<p>
+</a><td valign="top"><a name="13726">
+ 16 ` 8<p>
+</a><td valign="top"><a name="13728">
+ 11111110 11111111<p>
+</a><td valign="top"><a name="13730">
+ 11111110<p>
+</a><td valign="top"><a name="13732">
+ 65279<p>
+</a><td valign="top"><a name="13734">
+ 254<p>
+</a>
+<tr><td valign="top"><a name="13736">
+ On<p>
+</a><td valign="top"><a name="13738">
+ 16 ` 8<p>
+</a><td valign="top"><a name="13740">
+ 11111110 11111111<p>
+</a><td valign="top"><a name="13742">
+ 11111111<p>
+</a><td valign="top"><a name="13744">
+ 65279<p>
+</a><td valign="top"><a name="13746">
+ 255<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><ul><a name="13750">
+<li>The first line in <a href="2GettingStarted.html#13672">Table 2.1</a> shows what would happen to a pixel of pure white if loaded with Use I/O LUT off-the 8 bits of data are loaded into the most significant bits of the 16-bit channel and the least significant bits are padded with zeroes.
+</a></li><P><a name="10092">
+<li>The second line shows what happens to that same pixel with Use I/O LUT on. N-Paint uses a lookup table to determine the appropriate 16-bit value for the 8-bit value.
+</a></li><P><a name="10013">
+<li>The third line shows what happens when saving a 16-bit channel into an 8-bit channel with Use I/O LUT off-the 8 least significant bits are truncated.
+</a></li><P><a name="10098">
+<li>The fourth line shows what happens when saving a 16-bit channel into an 8-bit channel with Use I/O LUT on-the 16-bit value is rounded to the nearest 8-bit value after division by 256.
+</a></li><P></ul><P><a name="10097">
+There is a trade-off; turning Use I/O LUT on ensures color consistency when loading 8-bit images, but is slightly slower. Turning Use I/O LUT off introduces a minor amount of data noise but is faster.<p>
+</a><P><a name="10026">
+Typically, you might do your setup work with the feature turned off, then turn it on when you are ready to actually write out modified images.<p>
+</a><P><a name="10019">
+Note that this effect becomes particularly visible in cases where you are switching between 8 and 16 bits in any repetitive sequence; turning Use I/O LUT off can cause a buildup of degradation with each subsequent save of the image.<p>
+</a><P><a name="9817">
+<h4> Debugger Enabled</h4>
+</a><a name="10341">
+When the Debugger is enabled, an additional option is displayed on any error dialog box, allowing you to enter the LISP debugger.<p>
+</a><P><a name="10160">
+<h4> Use Mouse Buttons</h4>
+</a><a name="10161">
+Determines how the mouse interacts with N-Paint:<p>
+</a><P><ul><a name="10429">
+<li>If <em>selected</em>, N-Paint operations are determined by which mouse button is selected; that is, the middle and right buttons have different functions than the left button.
+</a></li><P><a name="10430">
+<li>If <em>not selected</em>, all three mouse buttons are identical, and are modified using the <strong>CTRL</strong> and <strong>ALT</strong> keys. If you are using a tablet, this should not be selected. For more information, see the section <a href="0AboutThisDoc.html#3885">"Using the Tablet and Mouse" &#32;</a> in <a href="0AboutThisDoc.html#4343">"About this Document."</a>
+</a></li><P></ul><P><a name="10150">
+<h4> Horiz Stretch</h4>
+</a><a name="9775">
+Controls the horizontal stretch factor to be used for displays with non-square pixels. This is automatically set when the canvas is created. You can override the specified stretch factor and specify whether or not stretch factor is used.<p>
+</a><P><a name="9103">
+<h4> Numeric Keypad</h4>
+</a><a name="10436">
+When this feature is enabled, a numeric keypad appears when you <strong>(CLICK-L/M/R)</strong> on a number edit box. <p>
+</a><P><a name="13772">
+ <P><img src="2GettingStarted.ancA1.gif"><p>
+</a><a name="13774">
+<em>Figure 2.2  &#32; &#32;A numeric keypad
+</em></a><P><a name="13773">
+Otherwise, you edit numeric values like this:<p>
+</a><P><ul><ul>
+<BR><a name="10438">
+<li><strong>(CLICK-L)</strong> to position the cursor in the numeric edit box.
+</a><P><BR><a name="10439">
+<li><strong>(CLICK-M)</strong> or <strong>(CLICK-R)</strong> to clear the numeric edit box.
+</a><P></ul>
+</ul><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you want to enter numbers using the numeric keypad on the keyboard, make sure that the keypad option is turned off and press the </em><strong>Num &#32;Lock</strong><em> key on the keyboard.</em></font></dd></dt></dl><P>
+<a name="13021">
+<h4> Unpaint Parameters</h4>
+</a><a name="13022">
+The unpaint parameters define how N-Paint's undo feature works; <strong>(CLICK-L) </strong>on the <strong>Unpaint Parameters</strong> button to display the following menu:<p>
+</a><P><a name="10350">
+ <P><img src="2GettingStarted.anc1.gif"><p>
+</a><a name="10352">
+<em>Figure 2.3  &#32; &#32;Unpaint parameters
+</em></a><P><ul><a name="10360">
+<li><strong>Unpaint Delay</strong> specifies the delay before the unpaint starts when you <strong>(CLICK-L)</strong> on the <strong>Undo</strong> button.
+</a></li><P><a name="10361">
+<li><strong>Unpaint Size </strong>determines how many pixels are stored in the unpaint buffer. This determines how many operations can be "undone". A higher value means more operations can be undone, but also consumes more memory.
+</a></li><P><a name="10362">
+<li><strong>Unpaint Index Size</strong> is the size of the index that keeps track of the operations to be undone. While the default (32767) may seem high, it is certainly possible to use more memory than this when working with multiple images, or if you need to undo many operations.
+</a></li><P></ul><P><a name="10344">
+<h3> Startup Options</h3>
+</a><a name="10375">
+Startup options define how N-Paint configures itself on startup. <strong>(CLICK-L)</strong> on the Startup Options button to display the following menu:<p>
+</a><P><a name="10379">
+ <P><img src="2GettingStarted.anc2.gif"><p>
+</a><a name="10380">
+<em>Figure 2.4  &#32; &#32;Startup options
+</em></a><P><ul><a name="10381">
+<li><strong>Initial Canvas Color </strong>sets the color for the painting canvas when starting N-Paint.
+</a></li><P><a name="10401">
+<li><strong>Tablet Enabled </strong>specifies whether or not a tablet is attached to the workstation.
+</a></li><P><a name="10405">
+<li><strong>Initial Image File </strong>specifies a default image loaded when N-Paint is started.
+</a></li><P></ul><P><a name="10342">
+<h4> Horiz Stretch</h4>
+</a><a name="9784">
+Specifies the amount by which individual pixels are "stretched" (if horizontal stretch is enabled by pressing the <strong>Horiz Stretch</strong> button).<p>
+</a><P><a name="9055">
+<h4> Fast Warp Size</h4>
+</a><a name="9096">
+Specifies the quality for any operations using the warp ink. A lower value produces images "truer" to the original, while higher values produce "chunkier" results.<p>
+</a><P><a name="9056">
+<h4> Color Warning</h4>
+</a><a name="9095">
+If selected, a warning message is displayed if you select an invalid color for one of the following color-spaces:<p>
+</a><P><ul><a name="9584">
+<li>NTSC
+</a></li><P><a name="9587">
+<li>PAL
+</a></li><P><a name="9594">
+<li>601
+</a></li><P></ul><P><a name="9057">
+<h4> Menu Mode</h4>
+</a><a name="9292">
+Specifies the level of menu complexity:<p>
+</a><P><ul><a name="9094">
+<li><strong>Short </strong>mode is useful when first learning the system-only a basic set of menu items is displayed.
+</a></li><P><a name="9290">
+<li><strong>Normal</strong> is a good working mode; most elements in the menus are displayed, except for several advanced features.
+</a></li><P><a name="9291">
+<li><strong>Long </strong>mode displays full menus.
+</a></li><P></ul><P><a name="10208">
+<h4> Derez Width</h4>
+</a><a name="10209">
+Specifies the width of the canvas when displayed in de-rez mode (used, for example, to pull a matte using a lower resolution version of the currently displayed canvas).<p>
+</a><P><a name="13287">
+<h4> Target Platform</h4>
+</a><a name="13288">
+Specifies the gain and gamma values to be used for the N-Paint display. <strong>(CLICK-L)</strong> on this field to reveal a pop-up menu, listing your choices:<p>
+</a><P><a name="13289">
+ <P><img src="2GettingStarted.anc3.gif"><p>
+</a><a name="13290">
+<em>Figure 2.5  &#32; &#32;Select target platform pop-up
+</em></a><P><ul><a name="13298">
+<li><strong>(CLICK-L)</strong> on a platform to select it. <a href="2GettingStarted.html#13348">Table 2.2</a> shows the default gamma and gain values for each platform.
+</a></li><P><a name="13367">
+<li><strong>Revert</strong> resets target platform parameters to their default values, undoing any changes to these parameters you may have made.
+</a></li><P><a name="13368">
+<li><strong>Create New</strong> allows you to create a new target platform specification. See below for an explanation of the Target Platform parameters.
+</a></li><P><a name="13338">
+<li><strong>Edit</strong> allows you to change the gamma and gain values for the currently selected target platform. <strong>(CLICK-L)</strong> on <strong>Edit</strong> to reveal the Platform Settings dialog:
+</a></li><P><a name="13350">
+ <P><img src="2GettingStarted.anc4.gif"><p>
+</a></ul><P><a name="13351">
+<em>Figure 2.6  &#32; &#32;Platform Settings dialog
+</em></a><P><ul><ul>
+<BR><a name="13347">
+<li><strong>Name</strong> is the name of the platform as it appears in the Select Target Platform pop-up menu (<a href="2GettingStarted.html#13290">Figure 2.5</a>).
+</a><P><BR><a name="13360">
+<li><strong>Full Name</strong> is a longer description of the target platform. Full Name is only visible in this dialog.
+</a><P><BR><a name="13361">
+<li><strong>Gamma (RGB)</strong> consists of three fields, one for each of the Red, Green, and Blue components of an RGB image. To change a setting, <strong>(CLICK-L)</strong> in the field and enter a new value.
+</a><P><BR><a name="13348">
+<li><strong>Gain (RGB)</strong> consists of three fields, one for each of the Red, Green, and Blue components of an RGB image. To change a setting, <strong>(CLICK-L)</strong> in the field and enter a new value. 
+<P><Table Border="1">
+<dl>
+<a name="13328">
+<em>Table 2.2  &#32; &#32;Default gamma and gain settings for Target Platforms
+</em></a></dl>
+<tr><th align="left"><a name="13306">
+Platform
+</a><th align="left"><a name="13308">
+Gamma (RGB)
+</a><th align="left"><a name="13376">
+Gain (RGB)
+</a>
+<tr><td valign="top"><a name="13310">
+ PC<p>
+</a><td valign="top"><a name="13312">
+ 1.0 1.0 1.0<p>
+</a><td valign="top"><a name="13378">
+ 1.0 1.0 1.0<p>
+</a>
+<tr><td valign="top"><a name="13314">
+ N-64<p>
+</a><td valign="top"><a name="13316">
+ 1.0 1.0 1.0<p>
+</a><td valign="top"><a name="13380">
+ 1.0 1.0 1.0<p>
+</a>
+<tr><td valign="top"><a name="13318">
+ Saturn<p>
+</a><td valign="top"><a name="13320">
+ 1.0 1.0 1.0 <p>
+</a><td valign="top"><a name="13382">
+ 1.0 1.0 1.0<p>
+</a>
+<tr><td valign="top"><a name="13420">
+ SGI<p>
+</a><td valign="top"><a name="13422">
+ 1.7 1.7 1.7<p>
+</a><td valign="top"><a name="13424">
+ 1.0 1.0 1.0<p>
+</a>
+<tr><td valign="top"><a name="13414">
+ Playstation<p>
+</a><td valign="top"><a name="13416">
+ 1.0 1.0 1.0<p>
+</a><td valign="top"><a name="13418">
+ 1.0 1.0 1.0<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</a><P></ul>
+</ul><a name="10463">
+<h3> Color Reduction Parameters</h3>
+</a><a name="12270">
+These parameters which affect the behavior of the N-Paints Color Reduction module.<p>
+</a><P><a name="12271">
+<h4> Auto Highlight</h4>
+</a><a name="12272">
+When you click on a slot in the palette in Color Reduction, pixels in the image which map to that slot are automatically highlighted when Auto Highlight is on.<p>
+</a><P><a name="12273">
+<h4> Auto Remap</h4>
+</a><a name="12274">
+When toggled on, images are automatically remapped to the current palette. Otherwise, you must remap the images manually. <p>
+</a><P><a name="13117">
+If Auto Remap is selected, then image indices will be automatically reordered following any operation which moves slots in the palette.<p>
+</a><P><a name="12275">
+<h4> Dither Method</h4>
+</a><a name="12276">
+Specifies a method for dithering colors in color-reduced images. <strong>(CLICK-L)</strong> on the Dither Method field for a pop-up menu listing possible methods for dithering.<p>
+</a><P><ul><a name="12284">
+<li>Error Propagation - uses the Floyd-Steinberg algorithm.
+</a></li><P></ul><P><a name="12269">
+<h3> VRAM Editor Parameters</h3>
+</a><a name="13556">
+<h4> Stop at failure?</h4>
+</a><a name="13557">
+When this option is selected, the VRAM Editor will return an error message when it is unable to place a tile using the Best Fit algorithm. Otherwise, the offending tile will not be placed, but no error message will appear.<p>
+</a><P><a name="13558">
+<h4> Use DOS filename?</h4>
+</a><a name="13559">
+When this option is toggled, TIM file names are truncated to eight characters in accordance with DOS file name requirements. For example, <code>CharacterSprite.lbm</code> will end up as <code>Characte.TIM</code>.<p>
+</a><P><a name="13553">
+<h3> Additional Setup Parameters</h3>
+</a><a name="10478">
+At the far right of the screen, an additional area controls the display channels and the current memory and disk usage:<p>
+</a><P><a name="10467">
+ <P><img src="2GettingStarted.anc5.gif"><p>
+</a><a name="10469">
+<em>Figure 2.7  &#32; &#32;N-Paint memory usage
+</em></a><P><a name="9613">
+<h3> Display Channels</h3>
+</a><a name="9635">
+The <strong>Display Channels</strong> section allows you to specify which channels of an image are displayed. Note that this does not affect which channels of an image are modified by a particular operation.<p>
+</a><P><ul><a name="9628">
+<li><strong>RGB</strong> - Display all non-alpha channels of an image (You can turn the matte on and off manually in the N-Paint menus).
+</a></li><P><a name="9629">
+<li><strong>Red</strong> - Displays only the red channel of an image.
+</a></li><P><a name="9630">
+<li><strong>Green</strong> - Displays only the green channel of an image.
+</a></li><P><a name="9631">
+<li><strong>Blue</strong> - Displays only the blue channel of an image.
+</a></li><P></ul><P><a name="11182">
+<h3> Tablet</h3>
+</a><a name="9615">
+The <strong>Tablet</strong> section appears in the Setup menu only if a tablet is hooked up to the machine on which N-Paint is installed:<p>
+</a><P><ul><a name="9652">
+<li><strong>Reset Tablet</strong> issues a reset command to the tablet.
+</a></li><P><a name="9618">
+<li><strong>Pressure Min</strong> specifies the minimum amount of pressure required for painting to occur. The range is 0 to 255.
+</a></li><P><a name="9621">
+<li><strong>Pressure Exp</strong> is an exponent which controls how a change in tablet pressure maps to a change in brush opacity.
+</a></li><P></ul><P><a name="11183">
+<h3> Color Bars</h3>
+</a><a name="11184">
+The color bars option lets you generate a canvas of standard color bars. <strong>(CLICK-L)</strong> on the <strong>Color Bars</strong> button to select which option you want:<p>
+</a><P><a name="11198">
+ <P><img src="2GettingStarted.anc6.gif"><p>
+</a><a name="11199">
+<em>Figure 2.8  &#32; &#32;Color bars<em></em>
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="4ToolsMode.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/27/96 10:28:52 -->
+
+</body>
+</html>

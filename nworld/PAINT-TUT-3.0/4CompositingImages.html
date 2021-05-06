@@ -1,0 +1,163 @@
+<html><head><title>Compositing Images</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3PullingMattes.html">[Prev]</a> <a href="5BrushTextures.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11174">
+<h1>Compositing Images</h1>
+</a>
+<hr><p><a name="11175">
+<h4> In this chapter, we'll look at how to use N-Paint to composite one image onto another.</h4>
+</a><a name="11280">
+ <P><img src="4CompositingImages.anc.gif"><p>
+</a><a name="11335">
+<h2><HR> Eliminating Matte Lines</h2>
+</a><a name="11313">
+Sometimes when you composite an image, slight mismatches between the matte and the boundaries of the image result in matte lines showing up in the composited image. These lines are areas of the background which are composited along with the image.<p>
+</a><P><a name="11315">
+Using the shrink ink, you can slightly reduce the size of the matte with a quick operation to ensure that only image (and no background) are composited onto the image.<p>
+</a><P><a name="13863">
+Here's an example:<p>
+</a><P>
+<a name="11316">
+<STRONG>	 1.	 Load the following images:
+</STRONG>
+</a><P><dl><dl><a name="11355">
+<dt><code>/usr/local/ngc/demo/images/<a hero-scaled.rgba>hero-scaled.rgba</code><p>
+</a><P><a name="11359">
+<dt><code>/usr/local/ngc/demo/images/<a background.rgb>background.rgb</code><p>
+</a><P></dl></dl><a name="11320">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;Select.
+</STRONG>
+</a><P><dl><a name="13839">
+<dt>Select <strong>hero-scaled</strong> from the pop-up list of images which appears.</dt>
+</a><P></dl><a name="11363">
+<STRONG>	3.	 (<strong>CLICK-L) </strong>on Add and View in the matte modes section of the menu.
+</STRONG>
+</a><P><dl><a name="13865">
+<dt>Note that the matte fits almost exactly over the entire character, perhaps even spilling over a little bit onto the black background. If the matte covers part of that black background, it will be pulled through during the composite operation, resulting in black lines around our composited image.</dt>
+</a><P></dl><a name="11322">
+<STRONG>	4.	 Select the Quad tool and the Shrink ink.
+</STRONG>
+</a><P><a name="11323">
+<STRONG>	5.	 Set Count to 1 In the Shrink Ink parameters section of the menu.
+</STRONG>
+</a><P><a name="11327">
+ <P><img src="4CompositingImages.anc1.gif"><p>
+</a>
+<a name="11328">
+<em>Figure 4.1  &#32; &#32;The Shrink ink parameters menu
+</em></a><P>
+<a name="11329">
+<STRONG>	6.	 (<strong>CLICK-L) </strong>on Do Full Canvas.
+</STRONG>
+</a><P><dl><a name="11176">
+<dt>The shrink ink "shrinks" light areas in an image. Turning "Add" on means we're actually painting onto the matte, changing the matte itself. </dt>
+</a><P><a name="13911">
+<dt>Suppose, for example, that our initial matte is slightly larger than the oval shown in the left in <a href="4CompositingImages.html#11341">Figure 4.2</a>; when we composite, a black outline will be pulled through. If we slightly reduce the size of the matte, only image is pulled through:</dt>
+</a><P><a name="11338">
+ <P><img src="4CompositingImages.anc2.gif"><p>
+</a></dl>
+<a name="11341">
+<em>Figure 4.2  &#32; &#32;Left, compositing with unshrunk matte; right with "shrunk" matte. Note the edge around the image on the left, with a larger matte.
+</em></a><P><dl><dl><a name="13873">
+<dt>Remember, the concept here is to "shrink" the matte down to be slightly smaller than the image you are going to composite. This ensures that only the image (and no background) is composited.</dt>
+</a><P><a name="11340">
+<dt>You can repeat this process, if necessary, to incrementally shrink the matte until the image composites correctly.</dt>
+</a><P></dl></dl><a name="11304">
+<h3> Using the Scale Image Ink</h3>
+</a><a name="11187">
+You can use the scale image ink to composite a foreground image onto a background image. Usually, you'll use this ink with a shape tool like the Quad tool. You can configure the ink to maintain the foreground image's aspect ratio and size, or you can interactively change both of these parameters.<p>
+</a><P>
+<a name="11213">
+<STRONG>	7.	 (<strong>CLICK-L) </strong>on File&gt;Select, and select background.
+</STRONG>
+</a><P><dl><a name="11214">
+<dt>The background image should appear on the canvas:</dt>
+</a><P><a name="11215">
+ <P><img src="4CompositingImages.anc3.gif"><p>
+</a></dl>
+<a name="11216">
+<em>Figure 4.3  &#32; &#32;The background image
+</em></a><P>
+<a name="11220">
+<STRONG>	8.	 Select the Quad tool and the Scale Image ink.
+</STRONG>
+</a><P><dl><a name="13880">
+<dt>The Scale Image ink parameters menu appears:</dt>
+</a><P><a name="13879">
+ <P><img src="4CompositingImages.anc4.gif"><p>
+</a></dl>
+<a name="11233">
+<em>Figure 4.4  &#32; &#32;The Scale Image ink parameters menu
+</em></a><P>
+<a name="11223">
+<STRONG>	9.	 (<strong>CLICK-L) </strong>on the Image field, and select the hero-scaled image from the pop-up menu which appears.
+</STRONG>
+</a><P><a name="11255">
+<STRONG>	10.	 (<strong>CLICK-L) </strong>on the Operations button.
+</STRONG>
+</a><P><dl><a name="11241">
+<dt>The Operations pop-up menu appears:</dt>
+</a><P><a name="11242">
+ <P><img src="4CompositingImages.anc5.gif"><p>
+</a></dl>
+<a name="11243">
+<em>Figure 4.5  &#32; &#32;The Scale Image ink operations menu
+</em></a><P>
+<a name="11248">
+<STRONG>	11.	 (<strong>CLICK-L) </strong>on Set [Rect] Ratio
+</STRONG>
+</a><P><dl><a name="11249">
+<dt>This action constrains the Quad tool to use the foreground image's aspect ratio. Doing this means that there will be no distortion as you scale the image.</dt>
+</a><P></dl><a name="11254">
+<STRONG>	12.	 (<strong>CLICK-L) </strong>on Matte and Fast
+</STRONG>
+</a><P><ul>
+<BR><a name="11260">
+<li><strong>Matte</strong> means that only that portion of the foreground image covered by the matte will be composited.
+</a><P><BR><a name="11261">
+<li><strong>Fast</strong> means that the foreground image will not be anti-aliased. This means faster composition with a slight degradation of image quality.
+</a><P></ul>
+<a name="11251">
+<STRONG>	13.	 Draw a rectangle on the canvas with mouse.
+</STRONG>
+</a><P><dl><a name="11252">
+<dt>The rectangle defines the area through which the image will be composited.</dt>
+</a><P><a name="11253">
+<dt>As soon as you (<strong>CLICK-L) </strong>to close the rectangle, the image will appear on the background image.</dt>
+</a><P><a name="11262">
+ <P><img src="4CompositingImages.anc6.gif"><p>
+</a></dl>
+<a name="11263">
+<em>Figure 4.6  &#32; &#32;The composited image
+</em></a><P><a name="11271">
+If both your source and your target images are of the same size, you can use the Do Full Canvas option to composite the two images, rather than using the rectangle tool.<p>
+</a><P><a name="13919">
+Compositing a series of images (e.g., a character walking across a background) can be done by creating a script in N-Dynamics. This procedure is described later in this guide and also in the <em>N-Dynamics Tutorial</em>.<p>
+</a><P><a name="13922">
+<h2><HR> Congratulations!</h2>
+</a><a name="13923">
+You've now learned how to composite one image over another, and how to modify your matte before doing so to ensure optimal results. As mentioned above, you can composite series of images by creating a script in N-Dynamics.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3PullingMattes.html">[Prev]</a> <a href="5BrushTextures.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 21:44:38 -->
+
+</body>
+</html>

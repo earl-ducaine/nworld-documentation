@@ -1,0 +1,701 @@
+<html><head><title>Working with Bodies</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3TransformObjects.html">[Prev]</a> <a href="4ModifyingBodies1.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="3639">
+<h1>Working with Bodies</h1>
+</a>
+<hr><p><a name="9005">
+This section describes the operations that let you directly modify a <em>body</em>'s geometry. We call a change to an object's body a <em>modification</em>. <p>
+</a><P><a name="8832">
+As described earlier, an object is made up of two elements:<p>
+</a><P><ul><a name="8813">
+<li>a <em>body</em>, which describes the topology of the object
+</a></li><P><a name="8814">
+<li>a <em>transformation matrix</em>, which describes the object's orientation in 3D space
+</a></li><P></ul><P><a name="8817">
+If you want to make changes to the <em>shape</em> of an object without altering its transformation matrix, you want to modify its <em>body</em>.<p>
+</a><P><a name="8387">
+You can modify a body by selecting points, segments, faces, or the entire body. To modify a body:<p>
+</a><P>
+<a name="3838">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the type of element you want to modify in the element sensitivity menu.
+</STRONG>
+</a><P><a name="8823">
+<STRONG>	2.	 Move the mouse over the element you want to modify in N-Geometry.
+</STRONG>
+</a><P><a name="8842">
+<STRONG>	3.	 When the element is highlighted, <strong>(SHIFT-L)</strong>.
+</STRONG>
+</a><P><dl><a name="8859">
+<dt>After you <strong>(SHIFT-L)</strong> on the element, a context-sensitive menu of modify operations is displayed; only modification which may be performed on the selected element type are displayed in the menu:</dt>
+</a><P><a name="8876">
+ <P><img src="4ModifyingBodies.anc.gif"><p>
+</a></dl>
+<a name="8877">
+<em>Figure 4.1  &#32; &#32;Short Modify menu for <strong>body</strong> elements
+</em></a><P><dl><dl><a name="8871">
+<dt>The mouse is automatically positioned over the menu.</dt>
+</a><P></dl></dl>
+<a name="8880">
+<STRONG>	4.	 Move the mouse over the commands.
+</STRONG>
+</a><P><dl><a name="9253">
+<dt>As you move over each command it is highlighted. The mouse documentation line at the bottom of the screen gives a brief description of what will happen with each mouse click on the currently highlighted command.</dt>
+</a><P></dl><a name="9254">
+<STRONG>	5.	 Click on the command using the appropriate mouse button.
+</STRONG>
+</a><P><dl><a name="9255">
+<dt>You can refer to the mouse documentation line for a quick prompt as to what each mouse click does, or refer to the documentation in this chapter.</dt>
+</a><P></dl>
+<a name="10141">
+You can specify whether you want to use short, full, or custom menus by using the <strong>GeoMenus&gt;Custom Menus</strong> command.<p>
+</a><P><a name="6737">
+<h3> Add to Part</h3>
+</a><a name="6738">
+<em>Faces, edges, vertices</em><p>
+</a><P><a name="6739">
+A part is a collection of one or more elements of the same type. Parts are useful for assigning attributes to multiple elements and for storing collected elements. A part can have several parts made of faces, edges, or vertices.<p>
+</a><P><ul><a name="6740">
+<li><strong>(CLICK-L)</strong> adds elements to newly created parts or existing parts.
+</a></li><P><a name="6741">
+<li><strong>(CLICK-M)</strong> removes currently selected elements from a part.
+</a></li><P><a name="6742">
+<li><strong>(CLICK-R)</strong> removes all <em>except</em> the chosen elements from a part.
+</a></li><P></ul><P><a name="6406">
+<h3> Aspect Ratio</h3>
+</a><a name="6407">
+<em>Spotlights with rectangular spot patterns</em><p>
+</a><P><a name="6408">
+Interactively updates the aspect ratio of the selected spotlight's spot pattern. This command is only available if the light's spot pattern has been changed to <strong>Rectangle</strong> ( by modifying the light in the Attributes Editor).<p>
+</a><P><a name="6412">
+ <P><img src="4ModifyingBodies.anc1.gif"><p>
+</a><a name="6413">
+<em>Figure 4.2  &#32; &#32;Left, original light; right, same light with modified aspect ratio
+</em></a><P><a name="3872">
+<h3> Axis Move</h3>
+</a><a name="3873">
+<em>Edges, faces, body, vertices</em><p>
+</a><P><a name="3874">
+Moves an object along a selected axis.<p>
+</a><P><a name="8428">
+<strong>(CLICK-L)</strong> to move the body along an axis you select from a menu, or <strong>(CLICK-R)</strong> to move the body away from another specified element.<p>
+</a><P><a name="8430">
+If you <strong>(CLICK-L)</strong> to move along a selected axis, a menu with the following choices is displayed:<p>
+</a><P><ul><a name="3875">
+<li><strong>This element's normal</strong> uses the normal of this element, going through the object's center.
+</a></li><P><a name="3876">
+<li><strong>Edge-Normal Perp</strong> uses an axis that is perpendicular to an edge and its normal. If you choose this axis, you select the segment along which to move the object with the mouse.
+</a></li><P><a name="3877">
+<li><strong>3-point Perp</strong> uses an axis that is perpendicular to a plane specified by selecting three points, selected in a clockwise fashion.
+</a></li><P><a name="3878">
+<li><strong>Select Normal</strong> uses an axis equal to the normal of a selected element:
+</a></li><P><ul>
+<BR><a name="3879">
+<li><strong>(CLICK-L)</strong> to use the normal of any vertex.
+</a><P><BR><a name="3880">
+<li><strong>(CLICK-M)</strong> to use the normal of any edge.
+</a><P><BR><a name="3881">
+<li><strong>(CLICK-R)</strong> to use the normal of any face.
+</a><P></ul>
+<a name="3882">
+<li><strong>Select a segment</strong> moves the object using the direction described by the selected segment.
+</a></li><P><a name="3883">
+<li><strong>Select element pair</strong> moves the object using the direction described by an imaginary line between any two selected points.
+</a></li><P><a name="3884">
+<li><strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> move the object along the global x, y, or z axes.
+</a></li><P><a name="3885">
+<li><strong>Camera</strong> moves the object in relation to the camera's current position:
+</a></li><P><ul>
+<BR><a name="3886">
+<li><strong>(CLICK-L)</strong> moves an object either right or left along the camera's view.
+</a><P><BR><a name="3887">
+<li><strong>(CLICK-M)</strong> moves the object up or down in relation to camera.
+</a><P><BR><a name="3888">
+<li><strong>(CLICK-R)</strong> moves the object directly along the camera's line of view.
+</a><P></ul>
+<a name="3889">
+<li><strong>Eyepoint to Object</strong> moves the object from its current position toward the eyepoint of the camera.
+</a></li><P><a name="3890">
+<li><strong>Type in Cartesian Direction</strong> using one of the following frames of reference:
+</a></li><P><ul>
+<BR><a name="3891">
+<li><strong>(CLICK-L)</strong> uses the object's local frame of reference.
+</a><P><BR><a name="3892">
+<li><strong>(CLICK-M)</strong> uses the global frame of reference.
+</a><P><BR><a name="3893">
+<li><strong>(CLICK-R)</strong> uses the frame of reference of a selected object.
+</a><P></ul>
+<a name="3894">
+<li>Type in Spherical Orientation lets you use Euler angles to set the direction of the axis move:
+</a></li><P><ul>
+<BR><a name="3895">
+<li><strong>(CLICK-L)</strong> uses the object's local frame of reference.
+</a><P><BR><a name="3896">
+<li><strong>(CLICK-M)</strong> uses the global frame of reference.
+</a><P><BR><a name="3897">
+<li><strong>(CLICK-R)</strong> uses the frame of reference of a selected object.
+</a><P></ul>
+<a name="3898">
+<li><strong>Last Chosen Axis</strong> moves the cube along the last axis used for any object.
+</a></li><P></ul><P><a name="6080">
+If you <strong>(CLICK-R)</strong> on Axis Move, you're asked to specify an element away from which the body should move.<p>
+</a><P><a name="8433">
+<h3> Axis Scale</h3>
+</a><a name="6081">
+<strong>Most element types</strong><p>
+</a><P><a name="6082">
+Lets you scale an element along a specified axis or radially scale outward from a specified axis.<p>
+</a><P><ul><a name="6083">
+<li><strong>(CLICK-L)</strong> scales an element along the axis selected from the pop-up menu that appears. Another pop-up menu then appears to let you select an origin to scale outward from. Select a point for the origin, then use the mouse to interactively scale the element. The element grows in size in the direction of the specified axis only.
+</a></li><P><a name="6087">
+ <P><img src="4ModifyingBodies.anc2.gif"><p>
+</a></ul><P><a name="6088">
+<em>Figure 4.3  &#32; &#32;Left, original cube; right, copy scaled on X-axis from object's midpoint
+</em></a><P><ul><a name="6089">
+<li><strong>(CLICK-M)</strong> radially scales the element outward from the axis specified from the pop-up menu that appears. Another pop-up menu then appears to let you select an origin (a point through which the axis passes), so that N-Geometry can position the axis in space. Select a point for the origin, then use the mouse to interactively scale the element. The element is scaled along all directions <em>except</em> along the specified axis.
+</a></li><P><a name="6093">
+ <P><img src="4ModifyingBodies.anc3.gif"><p>
+</a></ul><P><a name="6094">
+<em>Figure 4.4  &#32; &#32;Left, original cube; right, copy scaled (down) radially on X-axis from object's midpoint
+</em></a><P><a name="7454">
+<h3> Bevel</h3>
+</a><a name="7455">
+<em>Edges, faces, polyhedra, vertices</em><p>
+</a><P><a name="7456">
+Beveling an edge or vertex removes that edge or vertex and replaces it with a face at an angle between the two faces that shared that edge or vertex.<p>
+</a><P><a name="7460">
+ <P><img src="4ModifyingBodies.anc4.gif"><p>
+</a><a name="7462">
+<em>Figure 4.5  &#32; &#32;Cube with beveled edge. with beveled vertex, and beveled cube
+</em></a><P><a name="7463">
+Beveling a polyhedron bevels all its edges, or all edges that exceed a specified degree of acuteness.<p>
+</a><P><ul><a name="7464">
+<li><strong>(CLICK-R)</strong> bevels polyhedra only. Bevels only the hard edges of the polyhedron, the default degree of hardness being the current value of the object's hard-edge display parameter. (See the section <a href="6DisplayingObjects.html#4237">"Hard Edging," on page &#32;6-4</a>.)
+</a></li><P><a name="7471">
+ <P><img src="4ModifyingBodies.anc5.gif"><p>
+</a></ul><P><a name="7472">
+<em>Figure 4.6  &#32; &#32;Specifying bevel parameters
+</em></a><P><ul><ul>
+<BR><a name="7473">
+<li><strong>Bevel Width (along face) </strong>is the distance perpendicular to an edge at which to cut the adjoining face(s).
+</a><P><BR><a name="7474">
+<li><strong>Max Face Used-area Ratio</strong> affects faces and polyhedra. The maximum area of the face that can be used in beveling. This value should normally be less than 0.5 (or half the available face area) or it is possible that for smaller faces the bevels might overlap in the middle of the face, causing the face to be severely twisted.
+</a><P><BR><a name="7475">
+<li><strong>Cutoff hardness (degrees)</strong> appears only if the selected element is a polyhedron. This specifies the minimum angle (in degrees) between the normals of adjacent faces for which bevels are made. Edges shallower than the specified angle are <em>not</em> beveled.
+</a><P></ul>
+</ul><ul><a name="7476">
+<li><strong>(CTRL-L)</strong> lets you set the beveling parameters. The parameters depend on the type of element.
+</a></li><P></ul><P><a name="6583">
+<h3> Bless</h3>
+</a><a name="6584">
+<em>Bodies</em><p>
+</a><P><a name="6585">
+Verifies that all elements within an encoded polyhedron have been correctly connected. Errors are listed in the UNIX shell from which N-Geometry was started. Minor problems, such as an element's missing pointer, are corrected if other references to the element are located.<p>
+</a><P><a name="7263">
+<h3> Bridge</h3>
+</a><a name="8437">
+<em>Faces</em><p>
+</a><P><a name="7265">
+Creates a passage or tunnel between two faces of the same polyhedron or between two discrete polyhedra. To bridge two faces, <strong>(SHIFT-L)</strong> on the first face, then choose the <strong>Bridge</strong> operation, then select the second face using one of the following options:<p>
+</a><P><ul><a name="7267">
+<li><strong>(CLICK-L)</strong> selects another (non-adjacent) face to which to bridge/tunnel.
+</a></li><P><a name="7271">
+ <P><img src="4ModifyingBodies.anc6.gif"><p>
+</a></ul><P><a name="7273">
+<em>Figure 4.7  &#32; &#32;Cube with tunnel between inset faces on opposite sides
+</em></a><P><dl><dl><a name="7274">
+<dt>Separate faces on the concave portion of a polygon can also be bridged:</dt>
+</a><P><a name="7278">
+ <P><img src="4ModifyingBodies.anc7.gif"><p>
+</a></dl></dl><a name="7280">
+<em>Figure 4.8  &#32; &#32;Concave polyhedra with bridge across void
+</em></a><P><ul><a name="7281">
+<li><strong>(CTRL-L)</strong> inhibits body checking. Body checking ensures that the faces selected for bridging are on the same polyhedron. You should always use <strong>(CTRL-L)</strong> when creating a bridge between two discrete polyhedra.
+</a></li><P><dl><a name="7282">
+<dt>To create a bridge between faces on two discrete polyhedra:</dt>
+</a><P></dl></ul><P>
+<a name="7283">
+<STRONG>	 1.	 Make sure the objects are in their home position before bridging them:
+</STRONG>
+</a><P><dl><a name="7284">
+<dt>You can use <strong>Set Home </strong>(with <strong>objects</strong> selected on the element sensitivity menu) to reinitialize the matrix, making sure each object's transformed position is its home position. For this example, let's join faces on two separate cubes:</dt>
+</a><P><a name="7288">
+ <P><img src="4ModifyingBodies.anc8.gif"><p>
+</a></dl>
+<a name="7289">
+<em>Figure 4.9  &#32; &#32;Two discrete polyhedra
+</em></a><P>
+<a name="7290">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the first face you want to bridge, then <strong>(CTRL-L)</strong> on Bridge.
+</STRONG>
+</a><P><a name="7291">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the face you want to bridge to.
+</STRONG>
+</a><P><dl><a name="7292">
+<dt>The second object is bridged to the first:</dt>
+</a><P><a name="7296">
+ <P><img src="4ModifyingBodies.anc9.gif"><p>
+</a></dl>
+<a name="7297">
+<em>Figure 4.10  &#32; &#32;Two discrete polyhedra, bridged
+</em></a><P><dl><dl><a name="7298">
+<dt>If you select the cube and move it, you can see that the second cube still is separate:</dt>
+</a><P><a name="7302">
+ <P><img src="4ModifyingBodies.anc10.gif"><p>
+</a></dl></dl><a name="7303">
+<em>Figure 4.11  &#32; &#32;Bottom, first cube with bridged object; top, original second cube
+</em></a><P><ul><a name="7304">
+<li><strong>(CLICK-R)</strong> selects another (non-adjacent) face to which to bridge/tunnel, but triangularizes faces on the resulting bridge.
+</a></li><P><a name="7308">
+ <P><img src="4ModifyingBodies.anc11.gif"><p>
+</a></ul><P><a name="7309">
+<em>Figure 4.12  &#32; &#32;Two discrete polyhedra, with bridge faces triangularized
+</em></a><P><a name="6499">
+<h3> Brightness</h3>
+</a><a name="6500">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="10566">
+Interactively adjust the relative intensity (strength) of a light (in the same way that a 100 watt bulb is brighter than a 50 watt bulb).<p>
+</a><P><a name="10567">
+To adjust the intensity of a light interactively:<p>
+</a><P>
+<a name="10568">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10569">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the light, then <strong>(CLICK-L)</strong> on <strong>Intensity</strong>.
+</STRONG>
+</a><P><dl><a name="10570">
+<dt>Move the mouse left and right to adjust the hue of the light.</dt>
+</a><P></dl>
+<a name="10571">
+As you move the mouse, both the body and its emitted light update interactively. Note also that the lines for the light change to show its relative brightness:<p>
+</a><P><a name="10623">
+ <P><img src="4ModifyingBodies.anc12.gif"><p>
+</a><a name="10624">
+<em>Figure 4.13  &#32; &#32;Lights with different brightness settings; the longer lines on the light on the left indicates the light is brighter
+</em></a><P><a name="10630">
+For more information on lights, see the sections <a href="4ModifyingBodies1.html#6492">"Hue," on page &#32;4-41</a>, and <a href="4ModifyingBodies3.html#10476">"Saturation," on page &#32;4-79</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also adjust the brightness of the light using the Attributes Editor, or use <strong>(CTRL-L)</strong> on <strong>Brightness</strong> to set the light value numerically.</font></dd></dt></dl><P>
+<a name="6513">
+<h3> Change Sampling</h3>
+</a><a name="6514">
+<em>Bezier curves</em><p>
+</a><P><a name="6515">
+Changes the number of segments for display and when subdivided (useful when using bezier curves to make solids of rotation and contour solids). The two examples below show the effect of changing the sampling rate:<p>
+</a><P><a name="6519">
+ <P><img src="4ModifyingBodies.anc13.gif"><p>
+</a><a name="6520">
+<em>Figure 4.14  &#32; &#32;Top, Bezier curve segment with sampling rate of 11; bottom, same segment sampled at 5
+</em></a><P><a name="6902">
+<h3> Chip Off</h3>
+</a><a name="6903">
+<em>Faces, collections of faces</em><p>
+</a><P><a name="6904">
+Creates a new object from a selected face. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you select a collection of faces, individual objects are created for each selected face.</em></font></dd></dt></dl><P>
+<ul><a name="6906">
+<li><strong>(CLICK-L)</strong> chips off the face and then uses the mouse to move it relative to the x, y, and z axes.
+</a></li><P><a name="6907">
+<li><strong>(CLICK-M)</strong> chips off the face and then uses the mouse to move it relative to the screen.
+</a></li><P><a name="6908">
+<li><strong>(CLICK-R)</strong> chips off the face and then uses the mouse to move it relative to the face's normal.
+</a></li><P><a name="6912">
+ <P><img src="4ModifyingBodies.anc14.gif"><p>
+</a></ul><P><a name="6914">
+<em>Figure 4.15  &#32; &#32;Flat polyhedron chipped off one end of a cube
+</em></a><P><a name="6915">
+If you use <strong>Chip Off</strong> on a collection of faces, each face is a separate object, and can be manipulated independently as discrete objects. However, all the chipped off faces are initially grouped into a top level object. You can use the <strong>Restructure</strong> command if you want to move the individual chips up to top level objects.<p>
+</a><P><a name="6921">
+ <P><img src="4ModifyingBodies.anc15.gif"><p>
+</a><a name="6922">
+<em>Figure 4.16  &#32; &#32;Each face created from a collection with <strong>Chip Off</strong> is a unique object; here, with <strong>(CLICK-R)</strong> to move faces along face normals
+</em></a><P><a name="10649">
+Chipped off faces are grouped under the top level object "<strong>N Chips from Object</strong>" by default. Subobjects are named "<strong>Chip from Object, Face N</strong>".<p>
+</a><P><a name="6925">
+<h3> Chip Off Region</h3>
+</a><a name="6926">
+<em>A collection of faces</em><p>
+</a><P><a name="6927">
+This is similar to <strong>Chip Off</strong>, described above, except that the chipped off faces are treated as a single object:<p>
+</a><P><a name="6935">
+ <P><img src="4ModifyingBodies.anc16.gif"><p>
+</a><a name="6936">
+<em>Figure 4.17  &#32; &#32;Each face created from a collection with Chip Off is a unique object
+</em></a><P><a name="6937">
+Faces need not be touching to be chipped off as a region:<p>
+</a><P><a name="6946">
+ <P><img src="4ModifyingBodies.anc17.gif"><p>
+</a><a name="6947">
+<em>Figure 4.18  &#32; &#32;Each face created from a collection with Chip Off is a unique object
+</em></a><P><a name="6948">
+A chipped off region is named "<strong>Region of Original Object, N Faces</strong>" by default.<p>
+</a><P><a name="7571">
+<h3> Collapse</h3>
+</a><a name="7572">
+<em>Edges, faces, vertices, bones</em><p>
+</a><P><a name="7573">
+Takes the selected element and reduces it to a point. In the case of a vertex, the vertex and all its edges are eliminated and the gap is filled with a face.<p>
+</a><P><a name="7577">
+ <P><img src="4ModifyingBodies.anc18.gif"><p>
+</a><a name="7579">
+<em>Figure 4.19  &#32; &#32;From left, collapsed vertex, edge, and face
+</em></a><P><a name="10731">
+<h3> Color</h3>
+</a><a name="10732">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="10733">
+Interactively adjust the brightness, hue, and saturation of lights interactively. To adjust the intensity of a light interactively:<p>
+</a><P>
+<a name="10735">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10736">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the light, then <strong>(CLICK-L)</strong> on <strong>Color</strong>.
+</STRONG>
+</a><P><ul>
+<BR><a name="10737">
+<li>Move the mouse left and right to adjust the hue of the light.
+</a><P><BR><a name="10763">
+<li>Move the mouse up and down to adjust the brightness of the light.
+</a><P><BR><a name="10764">
+<li><strong>(HOLD-M)</strong> on the mouse to adjust the saturation.
+</a><P></ul>
+
+<a name="10749">
+For more information on each of these parameters, see the sections <a href="4ModifyingBodies.html#6499">"Brightness," on page &#32;4-9</a>, <a href="4ModifyingBodies1.html#6492">"Hue," on page &#32;4-41</a>, and <a href="4ModifyingBodies3.html#10476">"Saturation," on page &#32;4-79</a>.<p>
+</a><P><a name="7009">
+<h3> Combine</h3>
+</a><a name="7010">
+<em>Polyhedron</em><p>
+</a><P><a name="7011">
+Combines the selected collection of <em>bodies</em> into a single new object. Each of the original bodies combined is made a <strong>part</strong> in the newly created object, and can be referenced as a <em>part</em> with the <strong>Parts</strong> command.<p>
+</a><P><a name="9178">
+This option is extremely useful for combining objects into a single object before export to a 3D game console. Also, combined objects can be animated as a single object in N-Dynamics.<p>
+</a><P><a name="7023">
+ <P><img src="4ModifyingBodies.anc19.gif"><p>
+</a><a name="7024">
+<em>Figure 4.20  &#32; &#32;An object and its mirrored copy
+</em></a><P><a name="7025">
+To combine a several bodies into one object:<p>
+</a><P>
+<a name="7026">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on bodies in the element sensitivity menu
+</STRONG>
+</a><P><a name="7027">
+<STRONG>	2.	 Make a collection of the bodies you want to combine and <strong>(SHIFT-L)</strong>.
+</STRONG>
+</a><P><a name="7028">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Combine.
+</STRONG>
+</a><P><dl><a name="7029">
+<dt>A copy of each of the collected bodies is created (in the same locations as the originals) and combined into a new object.</dt>
+</a><P></dl>
+<a name="7125">
+<h3> Connect New</h3>
+</a><a name="7126">
+<em>Wires</em><p>
+</a><P><a name="7127">
+Extend an existing wire, either by adding segments to either end of the wire or connecting one wire to a point on another wire.<p>
+</a><P><ul><a name="7128">
+<li><strong>(CLICK-L)</strong> adds a new segment to the <em>end</em> of the selected wire.
+</a></li><P><a name="7129">
+<li><strong>(CLICK-M)</strong> adds a new segment to the <em>beginning</em> of the selected wire.
+</a></li><P><a name="7130">
+<li><strong>(CLICK-R)</strong> connects the existing wire to another wire.
+</a></li><P></ul><P><a name="7629">
+<h3> Continuity</h3>
+</a><a name="7630">
+<em>Bezier curve wire control points</em><p>
+</a><P><a name="7631">
+Lets you modify Bezier curves interactively and specify endpoint continuity constraints. Constraining the endpoints makes the endpoint line up with both of its neighboring points. <strong>Continuity</strong> is available on the <strong>Modify Element</strong> menu for interior control points only; the constraint is applied to the neighboring endpoint.<p>
+</a><P><a name="7632">
+Using this command makes the inner part of a curve more continuous. To change the continuity of a bezier curve:<p>
+</a><P>
+<a name="7633">
+<STRONG>	 1.	 Encode a wire.
+</STRONG>
+</a><P><a name="7634">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on segments from the sensitivity element menu.
+</STRONG>
+</a><P><a name="7635">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on an interior (non-end) segment.
+</STRONG>
+</a><P><a name="7636">
+<STRONG>	4.	 Choose Replace with Bezier.
+</STRONG>
+</a><P><a name="7637">
+<STRONG>	5.	 Select points from the sensitivity element menu.
+</STRONG>
+</a><P><a name="7638">
+<STRONG>	6.	 Move the mouse over the segment that you converted into a bezier curve.
+</STRONG>
+</a><P><dl><a name="7639">
+<dt>One or more control points now appear along the curve.</dt>
+</a><P></dl><a name="7640">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on one of the control points.
+</STRONG>
+</a><P><a name="7641">
+<STRONG>	8.	 Choose Move from the modify object menu.
+</STRONG>
+</a><P>
+<a name="7642">
+Moving the control point changes the shape of the bezier curve, but keeps the path smooth.<p>
+</a><P><a name="7646">
+<a href="4ModifyingBodies.html#7652">Figure 4.21</a> illustrates a wire containing a Bezier curve (the middle segment), with continuity applied to the lower vertex of the Bezier curve.<p>
+</a><P><a name="7650">
+ <P><img src="4ModifyingBodies.anc20.gif"><p>
+</a><a name="7652">
+<em>Figure 4.21  &#32; &#32;A Bezier curve with Continuity applied
+</em></a><P><a name="7653">
+Note that the path along the wire is more continuous, without the sharp angles, after applying the <strong>Continuity</strong> command.<p>
+</a><P><a name="7702">
+<h3> Convexify</h3>
+</a><a name="7703">
+<em>Faces, polyhedra</em><p>
+</a><P><a name="7704">
+Decomposes a face or all faces into convex polygons. (Some renderers require that there be no concave polygons on an object before it is rendered.)<p>
+</a><P><a name="7705">
+A concave face is one in which you can start a line, pass outside the polygon, then continue the straight line and return to the inside of the polygon:<p>
+</a><P><a name="7722">
+ <P><img src="4ModifyingBodies.anc21.gif"><p>
+</a><a name="7723">
+<em>Figure 4.22  &#32; Test for concave face
+</em></a><P><a name="7724">
+Note that this is not a test for a face being <em>planar</em> or <em>non-planar</em>, but <em>concave</em> or <em>convex</em>. Concave faces look as if someone has "taken a bite" out of their perimeter. <strong>Convexify</strong> cuts faces that are concave to make them convex:<p>
+</a><P><a name="7728">
+ <P><img src="4ModifyingBodies.anc22.gif"><p>
+</a><a name="7729">
+<em>Figure 4.23  &#32; &#32;Left, concave face (selected); right, selected face made convex with <strong>Convexify</strong>
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong><em>Convexify might subdivide a face in a manner you did not intend. If you plan to render a non-planar face that needs to be decomposed and you have a preference for how the face should be cut, it might be better to manually cut the face so that you can control how the face is rendered.</em></font></dd></dt></dl><P>
+<a name="7412">
+<h3> Coplanar</h3>
+</a><a name="7413">
+<em>Edges, faces, polyhedra</em><p>
+</a><P><a name="7414">
+Creates narrow faces on either side of any selected edge or along the edges of a selected polyhedra or face. These faces lie in the same plane as the faces they abut and are used to limit the shading interpolation to the region around the edge of the polyhedron when rendering.<p>
+</a><P><ul><a name="7415">
+<li><strong>(CLICK-L)</strong> displays a menu that lets you specify the size of the coplanars.
+</a></li><P><a name="7419">
+ <P><img src="4ModifyingBodies.anc23.gif"><p>
+</a></ul><P><a name="7420">
+<em>Figure 4.24  &#32; &#32;Specifying bevel parameters
+</em></a><P><ul><ul>
+<BR><a name="7421">
+<li><strong>Coplanar width</strong> is the width of the coplanar faces created.
+</a><P><BR><a name="7422">
+<li><strong>Max used-area ratio</strong> is the maximum area of the face that can be used in creating a coplanar plane. This value should normally be less than 0.5 (or half the available face area) or it is possible that for smaller faces the coplanar planes might overlap in the middle of the face, causing the face to be severely twisted.
+</a><P><BR><a name="7423">
+<li><strong>Name for new part</strong> lets you specify a new name for the generated faces created by the coplanar operation. This is particularly useful if you want to assign a different set of attributes to the <em>edges</em> of an object to change its final rendered appearance.
+</a><P><a name="7427">
+ <P><img src="4ModifyingBodies.anc24.gif"><p>
+</a></ul>
+</ul><a name="7429">
+<em>Figure 4.25  &#32; &#32;Original object and object with coplanared edges
+</em></a><P><ul><a name="7430">
+<li><strong>(CLICK-R)</strong> affects polyhedra only. Creates coplanars on the hard edges of a polyhedron based on the following menu:
+</a></li><P><a name="7434">
+ <P><img src="4ModifyingBodies.anc25.gif"><p>
+</a></ul><P><a name="7435">
+<em>Figure 4.26  &#32; &#32;Original object and object with coplanared edges
+</em></a><P><a name="7436">
+This menu is identical to that described above, except you can specify a <strong>Cutoff Hardness</strong> value. Any edge greater than the specified number of degrees is coplanared; edges flatter than the specified value are not coplanared:<p>
+</a><P><a name="7444">
+ <P><img src="4ModifyingBodies.anc26.gif"><p>
+</a><a name="7446">
+<em>Figure 4.27  &#32; &#32;Original object and object with hard edges coplanared
+</em></a><P><a name="6950">
+<h3> Copy</h3>
+</a><a name="6951">
+<em>Bodies</em><p>
+</a><P><a name="6952">
+Creates a geometrically discrete copy of the selected polyhedron. The copy becomes the body of the newly created object. <strong>Copy</strong> should be distinguished from <strong>Reinstance</strong>, which makes a new instance of the object but does not physically create a new body.<p>
+</a><P><ul><a name="6953">
+<li><strong>(CLICK-L)</strong> creates a copy of the object and moves it relative to the x, y, and z axes.
+</a></li><P><a name="6954">
+<li><strong>(CLICK-M)</strong> creates a copy of the object and moves it relative to the screen.
+</a></li><P><a name="6955">
+<li><strong>(CLICK-R)</strong> creates a copy and leaves it in the same location.
+</a></li><P><a name="6959">
+ <P><img src="4ModifyingBodies.anc27.gif"><p>
+</a></ul><P><a name="6961">
+<em>Figure 4.28  &#32; &#32;An object and its copy
+</em></a><P><a name="6768">
+<h3> Copy into Trajectory</h3>
+</a><a name="6769">
+<em>Wires</em><p>
+</a><P><a name="6770">
+Trajectories are paths that you can use in N-Dynamics to animate the movement of objects. <strong>Copy into Trajectory</strong> makes a trajectory by using the selected wire as the control wire for the newly generated trajectory:<p>
+</a><P>
+<a name="6771">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on a previously encoded wire.
+</STRONG>
+</a><P><a name="6772">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on copy into trajectory.
+</STRONG>
+</a><P><dl><a name="6773">
+<dt>The trajectory wire appears in the same location as the original, but is now a new, unique object; its shape is controlled by a control wire of the same shape as the original wire:</dt>
+</a><P><a name="6777">
+ <P><img src="4ModifyingBodies.anc28.gif"><p>
+</a></dl>
+<a name="6778">
+<em>Figure 4.29  &#32; &#32;Top, original wire; right, generated trajectory with control wire
+</em></a><P><dl><dl><a name="6779">
+<dt>To modify the shape of the trajectory, move points on the control wire.</dt>
+</a><P></dl></dl><a name="6781">
+<h3> Copy Into Wire</h3>
+</a><a name="6782">
+<em>Trajectories</em><p>
+</a><P><a name="6783">
+Makes a new wire, based on the selected trajectory. This is the companion operation to Copy into Trajectory; you can convert between the two states depending on what type of operation you want to perform.<p>
+</a><P><ul><a name="6784">
+<li><strong>(CLICK-L)</strong> makes a new wire from trajectory control geometry.
+</a></li><P><a name="6598">
+<li><strong>(CLICK-R)</strong> makes a new wire from the trajectory's displayed path.
+</a></li><P></ul><P><a name="7034">
+<h3> Copy, mirrored</h3>
+</a><a name="7036">
+<em>Polyhedra</em><p>
+</a><P><a name="8484">
+Mirrors the geometry of the body around a selected face, creating a new object whose body effectively doubles the geometry that of the original. The original object is retained, unlike the <strong>Mirror</strong> operation.<p>
+</a><P><a name="10910">
+A useful technique is to create half ot a model (e.g., the left half), then perform a <strong>Copy, mirrored</strong> operation around the face running down the side of the model. If your model is essentially symmetrical, you can mirror around a face and effectively cut your modeling time in half!<p>
+</a><P><ul><a name="7037">
+<li><strong>(CLICK-L)</strong> mirrors a new object around a selected face.
+</a></li><P><a name="7038">
+<li><strong>(CLICK-M)</strong> resembles <strong>(CLICK-L)</strong> except that if that face is nearly aligned with an axis (x, y, or z), the mirroring takes place as if that face were exactly aligned.
+</a></li><P><a name="7039">
+<li><strong>(CLICK-R)</strong> resembles <strong>(CLICK-L)</strong>, except it locates the seam at 0 on the mirroring axis.
+</a></li><P><a name="7052">
+ <P><img src="4ModifyingBodies.anc29.gif"><p>
+</a></ul><P><a name="7053">
+<em>Figure 4.30  &#32; &#32;An object and its mirrored copy
+</em></a><P><a name="6786">
+<h3> Cull Elements</h3>
+</a><a name="8490">
+<em>Polyhedra</em><p>
+</a><P><a name="6600">
+Cleans up a polyhedron. This command is particularly useful for cleaning up objects imported from other systems which may need to be cleaned up. If you <strong>(CLICK-L)</strong> on <strong>Cull Elements</strong>, the following menu opens:<p>
+</a><P><a name="6604">
+ <P><img src="4ModifyingBodies.anc30.gif"><p>
+</a><a name="6605">
+<em>Figure 4.31  &#32; &#32;Cull elements menu
+</em></a><P><a name="6606">
+<strong>(CLICK-L)</strong> on the anomolaies you want to search for:<p>
+</a><P><ul><a name="9181">
+<li><strong>Empty displacements </strong>removes displacements that reflect no changes.
+</a></li><P><a name="6607">
+<li><strong>Empty Parts</strong> removes named parts that contain no elements.
+</a></li><P><a name="6608">
+<li><strong>Small Faces</strong> collapses all faces of polyhedron smaller than a specified area.
+</a></li><P><a name="6609">
+<li><strong>Floating Faces</strong> removes faces from polyhedron that have no neighboring faces.
+</a></li><P><a name="6610">
+<li><strong>Dead Faces</strong> removes faces from polyhedron's database that have been killed.
+</a></li><P><a name="6611">
+<li><strong>Short Segments</strong> collapses all segments shorter than specified length.
+</a></li><P><a name="6612">
+<li><strong>Doubled Edges</strong> removes two sided faces by dissolving all edges sharing the same endpoints.
+</a></li><P><a name="6613">
+<li><strong>Soft Edges</strong> dissolves all edges separating faces that meet at less than the specified angle.
+</a></li><P><a name="6614">
+<li><strong>Isolated Vertices</strong> collapse all vertices shared by only two edges.
+</a></li><P><a name="6615">
+<li><strong>Coincident Points</strong> merges rear vertices (not necessarily connected by an edge) on all faces of polyhedron.
+</a></li><P><a name="6616">
+<li><strong>Spikes</strong> removes portions of all faces that have coincident edges.
+</a></li><P></ul><P><a name="7837">
+<h3> Cut</h3>
+</a><a name="8494">
+<em>Faces, segments</em><p>
+</a><P><a name="7839">
+Subdivides a face between any two vertices or cuts a wire into a smaller number of segments.<p>
+</a><P><a name="7840">
+For a face:<p>
+</a><P><ul><a name="7841">
+<li><strong>(CLICK-L)</strong> cuts the element in half between two selected points-<strong>(SHIFT-L)</strong> on a face, then select the two points to divide the face between.
+</a></li><P><a name="7845">
+ <P><img src="4ModifyingBodies.anc31.gif"><p>
+</a></ul><P><a name="7846">
+<em>Figure 4.32  &#32; &#32;Left, original cube; right, right face cut between two points
+</em></a><P><a name="7847">
+For a segment:<p>
+</a><P><ul><a name="7848">
+<li><strong>(CLICK-L)</strong> cuts the segment in half at the midpoint.
+</a></li><P><a name="7849">
+<li><strong>(CLICK-M)</strong> cuts the segment into thirds.
+</a></li><P><a name="7850">
+<li><strong>(CTRL-M)</strong> brings up a menu for dividing the segment into multiple pieces.
+</a></li><P><a name="7854">
+ <P><img src="4ModifyingBodies.anc32.gif"><p>
+</a></ul><P><a name="7855">
+<em>Figure 4.33  &#32; &#32;<strong>(CTRL-M)</strong> on <strong>Cut</strong> to divide a segment
+</em></a><P><ul><ul>
+<BR><a name="7856">
+<li><strong>Number</strong> of segments specifies how many pieces to cut the segment into.
+</a><P><BR><a name="7857">
+<li><strong>Special End Treatment</strong> specifies how to cut the ends of the wire and still make the specified number of segments.
+</a><P><ul>
+<BR><a name="7858">
+<li><strong>None</strong> divides the segment into the specified number of segments, each of equal length.
+</a><P><BR><a name="7859">
+<li><strong>Segment Ratio</strong> lets you specify the relationship between cut length and the segment's length. If you specify four segments, but a ratio of .333 for a 3" segment, the operation would cut the segment into thirds, then cut one of those segments again to create the requested number of cuts.
+</a><P><BR><a name="7860">
+<li><strong>Distance from Ends</strong> lets you specify how far from the each end the segment is to be cut; the remaining (inner) portion of the segment is cut into equal size pieces.
+</a><P></ul>
+<BR><a name="7861">
+<li><strong>Distance or Ratio</strong> specifies the distance or ratio used for <strong>Segment Ratio</strong> or <strong>Distance from Ends</strong>.
+</a><P></ul>
+</ul>
+<ul><a name="7862">
+<li><strong>(CLICK-R)</strong> cuts the segment at a location specified with the mouse. The cursor "locks" onto the selected segment; move the cursor to change the cursor's position, the <strong>(CLICK-L)</strong> to cut the segment, or <strong>(CLICK-R)</strong> to abandon the cut.
+</a></li><P><a name="7863">
+<li><strong>(CTRL-R)</strong> brings up a menu to numerically specify where to cut:
+</a></li><P><a name="7867">
+ <P><img src="4ModifyingBodies.anc33.gif"><p>
+</a></ul><P><a name="7869">
+<em>Figure 4.34  &#32; &#32;<strong>(CTRL-R)</strong> on <strong>Cut</strong> to divide a segment
+</em></a><P><ul><ul>
+<BR><a name="7870">
+<li><strong>Unit Spec</strong> lets you specify whether to make the cut as a ratio of the overall length of the segment or as an absolute length.
+</a><P><ul>
+<BR><a name="7871">
+<li><strong>Edge Ratio from Vtx</strong> means to use the value in Dist/Ratio as a ratio to use in cutting the segment.
+</a><P><BR><a name="7872">
+<li><strong>Distance from Vtx</strong> means to use the value in Dist/Ratio as an absolute distance (in global units) to use in cutting the segment.
+</a><P></ul>
+<BR><a name="7873">
+<li><strong>Dist/Ratio</strong> is the physical amount or ratio (see above) by which to cut the segment.
+</a><P><BR><a name="7874">
+<li><strong>Select Vtx &amp; Cut</strong> closes the dialog and puts you in point sensitivity mode; select the vertex on the segment from which the desired measurement is to be made.
+</a><P></ul>
+</ul><a name="7875">
+So if you were cutting a 10" segment, a <strong>Dist/Ratio</strong> of .5 would cut the segment in half if you chose <strong>Edge Ratio from Vtx</strong>, or .5" from the selected vertex if you chose <strong>Distance from Vtx</strong>.<p>
+</a><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3TransformObjects.html">[Prev]</a> <a href="4ModifyingBodies1.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 09:36:32 -->
+
+</body>
+</html>

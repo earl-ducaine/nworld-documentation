@@ -1,0 +1,608 @@
+<html><head><title>Lights</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Domains.html">[Prev]</a> <a href="ATPXFileFormat.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9999">
+<h1>Lights</h1>
+</a>
+<hr><p><a name="9539">
+ This chapter describes the different types of lights which you can create using N-Geometry and the Lights Editor itself. It also describes the parameters you can use to control the appearance and behavior of lights in your scene.<p>
+</a><a name="12415">
+ <P><img src="4Lights.anc.gif"><p>
+</a><a name="9551">
+<h2><HR> Creating Lights</h2>
+</a><a name="9966">
+N-Geometry provides you with several types of lights for illuminating shaded or rendered objects: <p>
+</a><P><ul><a name="9968">
+<li>ambient
+</a></li><P><a name="9970">
+<li>point
+</a></li><P><a name="9972">
+<li>infinite
+</a></li><P><a name="9974">
+<li>spot
+</a></li><P></ul><P><a name="9975">
+These lights, and their characteristics are described in more detail below.<p>
+</a><P><a name="9552">
+Initially, the view window contains a single default point light positioned at 100, 300, 150 (up and back) so that it illuminates all visible objects. <p>
+</a><P><a name="9554">
+You can create lights from the Attributes Editor and from N-Geometry.<p>
+</a><P><a name="11419">
+From N-Geometry:<p>
+</a><P><a name="9557">
+	 1.	 <strong>(CLICK-L)</strong> on New Object&gt;Light.<p>
+</a><a name="11440">
+From the Attributes Editor:<p>
+</a><P><a name="11441">
+	 1.	 <strong>(CLICK-L)</strong> on Lights in the Attributes Editor mode line.<strong></strong><p>
+</a><a name="11442">
+	2.	 <strong>(CLICK-L)</strong> on New in the LIghts File Operations section of the Lights Editor menu.<p>
+</a><a name="11429">
+ The new light parameters menu appears. Use this menu to specify the type and characteristics of your new light. This menu is described in detail in <a href="4Lights.html#10147">"Defining Light Parameters," on page &#32;4-10</a>.<p>
+</a><a name="9566">
+<h3> Light Types</h3>
+</a><a name="9567">
+N-Geometry creates the following types of lights:<p>
+</a><P><a name="9569">
+ Ambient<p>
+</a><a name="9570">
+Ambient lights do not have a location; rather, they simulate the infinite number of reflections of the ambient light in a typical room.<p>
+</a><P><a name="9572">
+ Point<p>
+</a><a name="9573">
+A point light is a "dimensionless" point in space that emits a light in all directions.<p>
+</a><P><a name="9574">
+ <strong>Note.</strong>	<em>If you place a point light inside a partially transparent object, you can make that object appear to glow.</em><p>
+</a><a name="9576">
+ Infinite<p>
+</a><a name="9577">
+An infinite light is similar to a star; it is essentially an infinite distance from any object in a scene, so all its rays strike an object at the perpendicular. These lights are useful for lighting only one side of objects in a scene (for example, a planet lit by a distant sun).<p>
+</a><P><a name="9579">
+ Spot<p>
+</a><a name="9580">
+A spot light emits light in a cone or pyramid shaped projection (depending on the shape of the spot pattern), from the tip of the light to the pattern described by the base of the light. You can adjust two projection at the base of the light; the inner shape shows the <em>umbra</em> (where light has 100% of its specified intensity), while the outer shape shows the <em>penumbra</em> (where the light gently falls off to zero for a soft edge). Spot parameters are discussed in detail in the section <a href="4Lights.html#10363">"Spot Attributes," on page &#32;4-18</a>.<p>
+</a><P><a name="9582">
+<h3> Selecting Light Sources</h3>
+</a><a name="9583">
+When manipulating light sources in N-Geometry, you must specify the type of object to be manipulated.<p>
+</a><P><ul><a name="9584">
+<li>For spot and point lights, select <strong>points</strong> in the element sensitivity menu.
+</a></li><P><a name="9585">
+<li>For infinite lights, select <strong>segments</strong> in the element sensitivity menu.
+</a></li><P><a name="9586">
+<li><em>All</em> lights can be selected through the Browser.
+</a></li><P></ul><P><a name="12514">
+<h2><HR> Assigning Lights and Light Groups</h2>
+</a><a name="10865">
+When you set up a scene for rendering, you must provide for lighting the scene. You do so by assigning a light group, or groups, to materials, which are in turn assigned to objects in the scene. Although you can create a light in Geometry, it will have no effect upon the rendered scene until it is placed in a light group and associated with a material.<p>
+</a><P><a name="10866">
+<h3> Default Lights</h3>
+</a><a name="9589">
+If N-Render encounters an material in the scene that has not been assigned a light, it uses a default light group (consisting of the default point light) to illuminate that object.<p>
+</a><P><a name="9590">
+ <strong>Note.</strong>	<em>This default light is not the default point light that is created when N-Geometry starts up. N-Render has a default point light "built-in" which is located on the Z-axis.</em><p>
+</a><a name="9591">
+If you really want an object to render black, assign a light to the light group assigned to the material assigned to that object and set its brightness to zero.<p>
+</a><P><a name="10695">
+<h2><HR> Editing Lights</h2>
+</a><a name="10011">
+To create new lights and light groups, or edit existing lights for each domain, <strong>(CLICK-L)</strong> on the <strong>Lights</strong> button on the Attributes Editor modes bar:<p>
+</a><P><a name="10022">
+ <P><img src="4Lights.anc1.gif"><p>
+</a><a name="10023">
+<em>Figure 4.1  &#32; &#32;The Light Editor
+</em></a><P><a name="12655">
+<h3> Editing Lights Interactively</h3>
+</a><a name="12656">
+Most light attributes can be modified interactively from the Attributes Editor; as you change the attribute for the light, the modified light is updated in the N-Geometry window. If you select a desktop configuration that shows both windows (e.g., if you <strong>(CLICK-L)</strong> on Attributes on the configuration bar), you can update an attribute in the Attributes Editor and see the effect immediately in the N-Geometry window.<p>
+</a><P><a name="12657">
+The following attributes can be modified <em>interactively</em>:<p>
+</a><P><ul><a name="12658">
+<li>The geometrical properties of the light
+</a></li><P><a name="12659">
+<li>Light characteristics which can be seen in the GL Shade domain (projection lights, for example, which are supported only in the Render domain, cannot be previewed interactively).
+</a></li><P></ul><P><a name="12660">
+Try this:<p>
+</a><P><a name="12661">
+	 1.	 <strong>(CLICK-L)</strong> on Lights.<p>
+</a><a name="12662">
+	2.	 <strong>(CLICK-L)</strong> on New.<p>
+</a><a name="12663">
+	3.	 <strong>(CLICK-L)</strong> on Spot.<p>
+</a><a name="12664">
+	4.	 Use the default values and <strong>(CLICK-L)</strong> on Make Light.<p>
+</a><a name="12665">
+ The light appears in the N-Geometry window.<p>
+</a><a name="12666">
+	5.	 <strong>(CLICK-L)</strong> on the color bar next to the <strong>Color</strong> attribute and select a new color.<p>
+</a><a name="12667">
+ The light changes color in the N-Geometry window.<p>
+</a><a name="12668">
+	6.	 <strong>(CLICK-L)</strong> on the <strong>Spot</strong> icon.<p>
+</a><a name="12669">
+	7.	 Change the <strong>Spot Pattern</strong> from <strong>Circle</strong> to <strong>Rectangle</strong>.<p>
+</a><a name="12670">
+ The spot pattern changes in the N-Geometry window.<p>
+</a><a name="12671">
+	8.	 Drag the slider for <strong>Spot Angle</strong> back and forth.<p>
+</a><a name="12672">
+ This lets you interactively change the width of the light's cone.<p>
+</a><a name="12673">
+	9.	 Drag the <strong>Falloff Angle</strong>, <strong>Aspect Ratio</strong>, and <strong>Radius</strong> sliders back and forth.<p>
+</a><a name="12674">
+Note that lights can also be directly manipulated in N-Geometry, as described in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="9594">
+<h3> Light Icons</h3>
+</a><a name="10217">
+Icons for lights currently loaded into memory appear in the icon bar of the Lights Editor menu. Each of the four types of light has a unique icon:<p>
+</a><P><a name="10218">
+ <P><img src="4Lights.anc2.gif"><p>
+</a><a name="10219">
+<em>Figure 4.2  &#32; &#32;Icons for different light types: spot, infinite, ambient, and point
+</em></a><P><a name="11038">
+These icon change in appearance to reflect the current attribute settings. For example, if you decrease a light's brightness, the light icon will dim. If ray tracing is toggled on for a light, a green line appears to indicate that ray tracing is active for the light. Similarly, if you project a map through a spot light, the icon is updated to show the projected map:<p>
+</a><P><a name="11039">
+ <P><img src="4Lights.anc3.gif"><p>
+</a><a name="11040">
+<em>Figure 4.3  &#32;Left, spot light icon; center, spot light with shadow on; right, spot light icon with shadow and projection map
+</em></a><P><a name="10216">
+<h3> Lights File Operations</h3>
+</a><a name="10087">
+Use these buttons to save and load lights to disk, create new lights or copy existing ones, delete, and rename lights.<p>
+</a><P><a name="12369">
+ New<p>
+</a><a name="12370">
+<strong>(CLICK-L)</strong> on <strong>New</strong> to create a new light. A dialog appears for you to use to specify parameters for your new light. These parameters are described in the next section, <a href="4Lights.html#10147">"Defining Light Parameters," on page &#32;4-10</a>.<p>
+</a><P><a name="10086">
+ Load<p>
+</a><a name="10094">
+<strong>(CLICK-L)</strong> on <strong>Load</strong> to load an existing light from a file on disk. The Geometry Read in New 3D-Object dialog box appears.<p>
+</a><P><a name="10104">
+ Save<p>
+</a><a name="10105">
+<strong>(CLICK-L)</strong> on <strong>Save</strong> to save the current light. The N-Geometry Write Object File dialog appears. To review saving objects using this dialog, refer to the N-Geometry Reference Guide.<p>
+</a><P><a name="10118">
+ Copy<p>
+</a><a name="10122">
+<strong>(CLICK-L)</strong> on <strong>Copy</strong> to copy the current light to a new light. The new light icon appears as the last icon in the icon bar.<p>
+</a><P><a name="10123">
+ Delete<p>
+</a><a name="10125">
+<strong>(CLICK-L)</strong> on <strong>Delete</strong> to delete the current light. A dialog box appears to confirm your desire to delete the light. <strong>(CLICK-L)</strong> on <strong>Yes</strong> to delete the light, <strong>No</strong> to abort the operation.<p>
+</a><P><a name="10130">
+ Rename<p>
+</a><a name="10131">
+<strong>(CLICK-L)</strong> on <strong>Rename </strong>to specify a new name for the current light. The Choose New Name dialog box appears.<p>
+</a><P><a name="10132">
+ <P><img src="4Lights.anc4.gif"><p>
+</a><a name="10133">
+<em>Figure 4.4  &#32; &#32;Renaming a light
+</em></a><P><ul><a name="10145">
+<li><strong>(CLICK-L)</strong> on <strong>Revert</strong> to undo changes to the name.
+</a></li><P><a name="10150">
+<li><strong>(CLICK-L)</strong> on<strong> Rename </strong>to rename the light.
+</a></li><P><a name="10151">
+<li><strong>(CLICK-L)</strong> on <strong>Abort</strong> to abort the operation.
+</a></li><P></ul><P><a name="10147">
+<h3> Defining Light Parameters</h3>
+</a><a name="9595">
+When you create a new light the Choose Parameters for New Light menu appears:<p>
+</a><P><a name="9599">
+ <P><img src="4Lights.anc5.gif"><p>
+</a><a name="9600">
+<em>Figure 4.5  &#32; &#32;Defining a new light
+</em></a><P><a name="9602">
+This menu is identical to that displayed by N-Geometry when using the <strong>GeoMenus&gt;File&gt;New Object&gt;Light</strong> command. Each of the four types of light has different parameters. In the following descriptions, the light types relevant to each topic are listed immediately below the heading.<p>
+</a><P><a name="10160">
+ Name<p>
+</a><a name="9603">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="9604">
+Specifies the name of the light object to be created from this menu. <p>
+</a><P><ul><a name="10165">
+<li><strong>(CLICK-L)</strong> in the field to edit the name.
+</a></li><P><a name="10166">
+<li><strong>(CLICK-M)</strong> in the field to clear it.
+</a></li><P><a name="9606">
+ <strong>Type</strong><p>
+</a></ul><P><a name="9607">
+Select the <em>type</em> of light to be created from this menu:<p>
+</a><P><ul><a name="9608">
+<li><strong>Ambient</strong> lights are sourceless lights that are uniformly distributed in all directions. They have no fixed position.
+</a></li><P><a name="9609">
+<li><strong>Point</strong> lights radiate uniformly from a point. The default position is 0,0,0.
+</a></li><P><a name="9610">
+<li><strong>Infinite</strong> lights are located at infinity and emit parallel light rays (much like a star, which is at an effectively infinite distance). You must specify a direction when creating an infinite light. The default direction is 0, 1, 0.
+</a></li><P><a name="9611">
+<li><strong>Spot</strong> lights are cone or pyramid shaped; you must specify the location and the aim point for the spot light, and the radius of its perimeter at the aim point (the wide part of the light).
+</a></li><P><a name="9613">
+ <strong>Reference Space</strong><p>
+</a></ul><P><a name="9614">
+<em>Point, infinite, and spot lights</em><p>
+</a><P><a name="9615">
+Specifies the type of coordinate system in which the light created from this menu will be located:<p>
+</a><P><a name="9616">
+&#183;	 <strong>Global</strong> selects the conventional global coordinate system in which objects normally exist.<p>
+</a><a name="9617">
+&#183;	 <strong>Camera</strong> selects a coordinate system that is centered with and aligned to the camera's current view. Lights specified in terms of the camera maintain a constant relationship to the camera, even if the camera moves. Camera space is left-handed (z axis is forward).<p>
+</a><a name="11771">
+ <strong>Note.</strong>	Camera lights are useful if you are creating an animation in which the light should shine from the camera's position (e.g., a train going through a tunnel).<p>
+</a><a name="9619">
+ <strong>Brightness</strong><p>
+</a><a name="9620">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="11767">
+Specifies the intensity of a light. The practical range is from 0 (least) to 1 (greatest). The actual range is unlimited in both the positive and negative directions. This flexibility can be helpful when you are illuminating dark objects; further, you can create negative lights, which subtract light from a scene. Use great care when specifying values greater than 1. In some cases, intensity values in the renderer might overflow, creating anomalous colors.<p>
+</a><P><a name="9624">
+ <strong>Color</strong><p>
+</a><a name="9625">
+<em>Ambient, point, globe, infinite, and spot lights</em><p>
+</a><P><a name="9626">
+Selects the color for the light using a palette.<p>
+</a><P><a name="9630">
+ <P><img src="4Lights.anc6.gif"><p>
+</a><a name="9631">
+<em>Figure 4.6  &#32; &#32;Selecting colors from the palette
+</em></a><P><a name="9632">
+To change the values displayed on the palette, <strong>(CLICK-L)</strong> on the <strong>Edit</strong> button. <strong>Pick</strong> lets you choose a color from the Paint canvas if N-Paint is currently loaded.<p>
+</a><P><a name="10881">
+ Location<p>
+</a><a name="10882">
+<em>Point and spot lights</em><p>
+</a><P><a name="10883">
+<strong>(CLICK-L)</strong> in this field for a pop-up menu listing choices for the location of the new light:<p>
+</a><P><a name="10180">
+ <P><img src="4Lights.anc7.gif"><p>
+</a><a name="12386">
+<em>Figure 4.7  &#32; &#32;Specifying a light's position
+</em></a><P><ul><a name="12388">
+<li><strong>(CLICK-L)</strong> on <strong>Type In Location</strong> if you wish to <em>manually</em> specify a 3D location. Type in the X, Y, and Z coordinate for the light in the dialog which appears. Otherwise, select one of the other options to position the light with some other logical position in N-Geometry.
+</a></li><P><a name="10890">
+ Aim Point<p>
+</a></ul><P><a name="10891">
+<em>Spot lights</em><p>
+</a><P><a name="10892">
+Sets the X, Y, and Z location for the spot light. The location and aim point values define the length of the light and its orientation. You specify a value for this location in the same way as for <strong>location</strong>.<p>
+</a><P><a name="10441">
+ Radius<p>
+</a><a name="10894">
+<em>Spot lights</em><p>
+</a><P><a name="10443">
+Sets the initial radius (from aim point to the edge of the light) of a spot light.<p>
+</a><P><a name="10445">
+ Shadowing<p>
+</a><a name="10896">
+<em>Spot lights</em><p>
+</a><P><a name="10447">
+Specifies whether or not the light should generate shadows.<p>
+</a><P><a name="10449">
+ Projecting<p>
+</a><a name="10898">
+<em>Spot lights</em><p>
+</a><P><a name="9657">
+Cause the spot light to project an image (much like a slide through a slide projector). The image to be projected is specified with the Parameters menu. <p>
+</a><P><a name="9658">
+ <strong>Note.</strong>	<em>Projection spot lights are supported only in the Render domain.</em><p>
+</a><a name="9660">
+ Direction<p>
+</a><a name="9661">
+<em>Infinite lights</em><p>
+</a><P><a name="9662">
+Specify the direction in which the infinite light is shining. If you <strong>(CLICK-L)</strong> on the text edit box, you can select the axis along which the light is aimed.<p>
+</a><P><a name="10172">
+ <strong>Group</strong><p>
+</a><a name="10173">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="10174">
+Specifies the initial group in which the light is placed. Light groups are arbitrary, named collections of lights which are used by N-Render as an attribute (you can optionally specify a light group when defining a material). Lights can belong to any number of groups.<p>
+</a><P><a name="10200">
+<strong>(CLICK-L)</strong> on this field, then select a light group from the pop-up menu which appears.<p>
+</a><P><a name="12393">
+Light groups are discussed in more detail starting in the section <a href="4Lights.html#11605">"The Light Group Editor," on page &#32;4-24</a>.<p>
+</a><P><a name="10169">
+<h2><HR> Defining Light Attributes</h2>
+</a><a name="9681">
+The appearance and effect of a light on a rendered scene is dependent upon the current domain and the type of light. Most parameters are similar for Point, Infinite, and Ambient lights for the four domains. However, spot lights are somewhat more complex, and offer a richer set of attributes. For this reason, they'll be discussed separately.<p>
+</a><P><a name="10209">
+Parameters for the current light are displayed in the Light Parameters section of the Light Editor menu:<p>
+</a><P><a name="10210">
+ <P><img src="4Lights.anc8.gif"><p>
+</a><a name="10211">
+<em>Figure 4.8  &#32; &#32;Light Parameters menu for a spot-light
+</em></a><P><a name="10203">
+Attributes for each parameter appear in the Light Parameters section of the Lights Editor menu.<p>
+</a><P><a name="10274">
+<h3> Shader Attributes</h3>
+</a><a name="10243">
+Shader attributes control the way in which the light is interpreted by the shader for the current domain.<p>
+</a><P><a name="10254">
+ Color<p>
+</a><a name="10255">
+Specifies the<strong> color</strong> for the light. <strong>(CLICK-L)</strong> on the color field.<p>
+</a><P><a name="10257">
+ Brightness<p>
+</a><a name="9683">
+Controls the intensity of the light. A lower number means a dimmer light.<p>
+</a><P><a name="10333">
+ Attenuation<p>
+</a><a name="10334">
+<em>Point and Spot lights</em><p>
+</a><P><a name="10905">
+Attenuation is the manner in which the brightness of a light drops as a function of distance from the light object. In the real world, the intensity of a light diminishes in proportion to the square of distance. In N&#183;World, you can rewrite the laws of physics to suit your own, specialized requirements. <p>
+</a><P><a name="10944">
+The distance a light travels is considered to be finite (the distance between the light and the aimpoint for a spot light, or the radius for a point light). Attenuation is expressed in terms of a percentage of this distance rather than in absolute terms.<p>
+</a><P><a name="10908">
+ <P><img src="4Lights.anc9.gif"><p>
+</a><a name="10910">
+<em>Figure 4.9  &#32; &#32;Attenuation
+</em></a><P><a name="10909">
+You can configure the brightness of a point or spot light to decline with distance away from the light. <p>
+</a><P><ul><a name="10339">
+<li><strong>% of no Falloff - </strong>The percent of the light distance for which there is no change in light intensity (labeled "A" in <a href="4Lights.html#10910">Figure 4.9</a>).
+</a></li><P><a name="10348">
+<li><strong>% of Linear -</strong> The percent of the light distance during which light intensity declines linearly (labeled "B" in <a href="4Lights.html#10910">Figure 4.9</a>, the curve at this point has a slope of 1).
+</a></li><P><a name="10349">
+<li><strong>% of Square - </strong>The percent of the light distance during which light intensity declines by the square of distance (labeled "C" in <a href="4Lights.html#10910">Figure 4.9</a>, the function which describes the curve at this point is quadratic). 
+</a></li><P><a name="10350">
+<li><strong>Radius</strong> is the radius of the light (the base of the cone in a spot light, or the actual radius of the light's effect for a point light)
+</a></li><P></ul><P><a name="10961">
+You can use any combination of attenuation attributes for a given light.<p>
+</a><P><a name="10351">
+ Raytrace?<p>
+</a><a name="10352">
+<em>Render domain only</em><p>
+</a><P><a name="10353">
+Toggles raytracing for the current light.<p>
+</a><P><ul><a name="10354">
+<li><strong>Shadow Color</strong> - The color for any shadows generated by the light.
+</a></li><P><a name="10355">
+<li><strong>Ray Displacement</strong> - The distance between the point at which a ray strikes a surface and the reflected ray leaves the surface. This is necessary to prevent situations where rays bounce back and forth along or loop around the same paths endlessly.
+</a></li><P><a name="10964">
+ <P><img src="4Lights.anc10.gif"><p>
+</a></ul><P><a name="10965">
+<em>Figure 4.10  &#32; &#32;Ray displacement. Left, no displacement; right, displacement
+</em></a><P><a name="9758">
+<h2><HR> Spot Light Parameters</h2>
+</a><a name="10362">
+Spot lights have several unique parameters, depending upon the current render domain. You can also control the position of the light and its orientation in N-Geometry. For more information on manipulating lights in N-Geometry, see the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="10363">
+<h3> Spot Attributes</h3>
+</a><a name="11861">
+<strong>(CLICK-L)</strong> on the <strong>Spot</strong> icon to specify attributes specific to the spot light.<p>
+</a><P><a name="10370">
+ Spot Pattern<p>
+</a><a name="10371">
+These options control the shape of the spot pattern. The spotlight icon changes in appearance to reflect the current spot pattern selection:<p>
+</a><P><ul><a name="10375">
+<li><strong>Circle</strong> - the base of the spotlight is circular.
+</a></li><P><a name="10376">
+<li><strong>Rectangle</strong> - the base of the spotlight is rectangular.
+</a></li><P><a name="10377">
+<li><strong>None</strong> - the base has no pattern.
+</a></li><P><a name="11996">
+ <P><img src="4Lights.anc11.gif"><p>
+</a></ul><P><a name="11997">
+<em>Figure 4.11  &#32; &#32;Spot pattern icons. Left, circular spot; center, rectangular spot; right, no spot
+</em></a><P><a name="11999">
+ Spot Angle<p>
+</a><a name="12000">
+Adjusts the spot angle for the selected spotlight:<p>
+</a><P><a name="10308">
+ <P><img src="4Lights.anc12.gif"><p>
+</a><a name="10309">
+<em>Figure 4.12  &#32; &#32;Left, original light; right, same light with enlarged spot angle
+</em></a><P><a name="10311">
+ Falloff Angle<p>
+</a><a name="10313">
+Changes the area where light falloff begins around the edges of this light's spot pattern. This operation is interactive:<p>
+</a><P><a name="10317">
+ <P><img src="4Lights.anc13.gif"><p>
+</a><a name="10318">
+<em>Figure 4.13  &#32; &#32;Left, original light; right, same light with modified falloff angle
+</em></a><P><a name="10319">
+Light within the inner portion of the spot pattern strikes an object at full intensity; falloff begins between the solid and dotted line in the spot pattern.<p>
+</a><P><a name="10321">
+ Aspect Ratio<p>
+</a><a name="10323">
+Interactively updates the aspect ratio of the selected spotlight's spot pattern. This works for both circular and rectangular spot patterns.<p>
+</a><P><a name="11968">
+ <P><img src="4Lights.anc14.gif"> <p>
+</a><a name="10328">
+<em>Figure 4.14  &#32; &#32;Left, original light; right, same light with modified aspect ratio
+</em></a><P><a name="10300">
+ Radius<p>
+</a><a name="10414">
+The radius of the light object (the sphere shaped object emitting the light).<p>
+</a><P><a name="11900">
+ <strong>Note.</strong>	This is not the radius of the spot pattern!<p>
+</a><a name="10415">
+<h3> Shadow Map Attributes</h3>
+</a><a name="10416">
+<em>Render domain only</em><p>
+</a><P><a name="11903">
+Shadow maps give you a high level of control over the quality and appearance of the shadows you use to light a scene.<p>
+</a><P><a name="10417">
+ Shadowing<p>
+</a><a name="11924">
+Specifies whether or not the spot light should cast a shadow.<p>
+</a><P><ul><a name="10418">
+<li><strong>Off</strong> - the light does not cast a shadow.
+</a></li><P><a name="10419">
+<li><strong>On </strong>- the light does cast a shadow.
+</a></li><P><a name="10420">
+<li><strong>Shadow Only</strong> - the light casts a shadow, but no light.
+</a></li><P><a name="12005">
+ <P><img src="4Lights.anc15.gif"> <p>
+</a></ul><P><a name="12006">
+<em>Figure 4.15  &#32; &#32;Left, spot light with shadowing off; right, spot light with shadowing on
+</em></a><P><a name="10421">
+ Opacity<p>
+</a><a name="10422">
+The opacity of the shadow. A higher value makes the shadow appear more solid. Shadows have a maximum opacity of 1.0 (solid black).<p>
+</a><P><a name="10423">
+ Static Map<p>
+</a><a name="11927">
+Static shadow maps can be used to significantly reduce render times in which the shadow information does not change. You can specify a static shadow map for lights whose position and relationship to other objects in the scene does not change.<p>
+</a><P><ul><a name="12102">
+<li><strong>Yes</strong> calculates the shadow map only for the first frame; the same shadow map is used for all subsequent frames. If you don't specify a particular static map, a default name for the static map image file is inserted into the <strong>Map Name</strong> field.
+</a></li><P><a name="11930">
+<li><strong>No</strong> forces a shadow map to be drawn (if required) at each frame. 
+</a></li><P><a name="10454">
+ Default Limits<p>
+</a></ul><P><a name="12060">
+The default limits specify the minimum and maximum size of the shadow map to be used when generating a shadow. Specifying larger maximum values produce more detailed shadows, but take longer to render.<p>
+</a><P><a name="12083">
+Finding a good range is a function of how much detail you need in a shadow, and may require several test renders. For example, if most of your shadows are being cast on objects that are a good distance from the camera, you could specify lower <strong>Min</strong> and <strong>Max</strong> values to speed up the render. If you need lots of detail, or the camera is close to the shadows, you may need a higher minimum value.<p>
+</a><P><a name="12052">
+ <P><img src="4Lights.anc16.gif"> <p>
+</a><a name="12053">
+<em>Figure 4.16  &#32; &#32;Left, shadow using shadow map size of min=32 and max=32; right, using defaults of 256 and 2650
+</em></a><P><a name="12108">
+ Sampling Limits and Jitter Limits<p>
+</a><a name="11002">
+These parameters control the overall quality of the shadow. Increasing the range for any of these values increases the quality of the shadow, but also increases the amount of time required to render the scene.<p>
+</a><P><a name="12122">
+ Projection<p>
+</a><a name="10470">
+You can specify an image through which the light is projected, much like a slide in a slide projector. <p>
+</a><P><a name="10471">
+ Map<p>
+</a><a name="10472">
+<strong>(CLICK-L)</strong> on this field to specify the image through which to project the light.<p>
+</a><P><a name="12167">
+ <P><img src="4Lights.anc17.gif"> <p>
+</a><a name="12168">
+<em>Figure 4.17  &#32; &#32;Left, normal spot light; right, with projection map
+</em></a><P><a name="10477">
+ Shader<p>
+</a><a name="10478">
+Determines the shader used to render the project map. <p>
+</a><P><ul><a name="10479">
+<li><strong>Point</strong> - Quickest, lowest quality.
+</a></li><P><a name="10480">
+<li><strong>Jitter</strong> - Medium speed, medium quality.
+</a></li><P><a name="10481">
+<li><strong>Summed</strong> - Slowest, highest quality.
+</a></li><P></ul><P><a name="11027">
+For a more detailed description of shader options and performance characteristics, see <a href="2Attributes.html#">"Shader," on page &#32;2-10</a>.<p>
+</a><P><a name="10482">
+ Map Opacity<p>
+</a><a name="10483">
+The opacity of the projected image.<p>
+</a><P><a name="10484">
+ Darkness<p>
+</a><a name="11603">
+A factor applied to the brightness of the applied map. The default is 1, which has no effect. A value less than one decreases brightness of the projected map; a value larger than one increases brightness.<p>
+</a><P><a name="11605">
+<h2><HR> The Light Group Editor</h2>
+</a><a name="11606">
+One of the parameters you define for a material is the <strong>Light Group</strong>. A light group consists of one or more N-Geometry lights. By assigning different light groups to different materials used to render a scene, you can make certain objects stand out more, or create other unique lighting effects.<p>
+</a><P><a name="9760">
+Suppose, for example, that you have a cube at the center of your scene that you want to be particularly bright. You could define two light groups-one for the cube and one for all the other objects in the scene. When you created the material for the cube, you'd specify the special light group, while for other materials used to render the rest of the scene, you could use the <em>default light group</em>.<p>
+</a><P><a name="12246">
+When you first add a light to N-Geometry, it is automatically assigned to the default light group. If you want all the objects in your scene to be equally affected by the lights you specify, you need not build any light groups; simply use the default light group for any of the materials you use to render the scene.<p>
+</a><P><a name="9761">
+ <strong>Note.</strong>	A light can belong to more than one light group.<p>
+</a><a name="9762">
+<strong>(CLICK-L)</strong> on<strong> Light Groups</strong> in the light editor mode line to manipulate light groups. The Light Group Editor appears:<p>
+</a><P><a name="10507">
+ <P><img src="4Lights.anc18.gif"><p>
+</a><a name="9771">
+<em>Figure 4.18  &#32; &#32;Light group editor
+</em></a><P><a name="12265">
+The lights currently loaded into N-Geometry are displayed in a list from top to bottom on the left side of the menu. The light groups are displayed across the top of the menu. To add or remove a light to or from a selected group, simply toggle the appropriate box.<p>
+</a><P><a name="12466">
+ <strong>Note.</strong>	A default point light exists in the event that you try to render with no lights specified. As soon as you create any light, the default light is turned off.<p>
+</a><a name="12467">
+<h3> Assigning Lights to Objects in a Scene</h3>
+</a><a name="12468">
+Lights, like materials, cannot be assigned directly to an object. Rather, you must create a material which is applied to an object; materials can specify a light group.<p>
+</a><P><a name="12298">
+There are four basic steps to making a light affect some objects in the scene but not others:<p>
+</a><P><a name="12294">
+	 1.	 Create the light.<p>
+</a><a name="12295">
+	2.	 Assign the light to a light group.<p>
+</a><a name="12296">
+	3.	 Assign the light group to a material.<p>
+</a><a name="12297">
+	4.	 Assign the material to your object.<p>
+</a><a name="12312">
+ Objects rendered with a material that specifies a particular light group are rendered using only the lights in that group; thus, it is possible to get objects in very close proximity with significantly different lighting characteristics.<p>
+</a><a name="9774">
+<h3> Light Group Commands</h3>
+</a><a name="12277">
+The following commands let you create, load, save, delete, and rename light groups.<p>
+</a><P><a name="12276">
+ New<p>
+</a><a name="10670">
+<strong>(CLICK-L)</strong> here to create a new light group. You are prompted to enter a directory and filename for the new group.<p>
+</a><P><a name="10671">
+ Load<p>
+</a><a name="10672">
+Load a previously saved light group.<p>
+</a><P><a name="12201">
+ Save<p>
+</a><a name="12204">
+Save one or more of the currently loaded light groups.<p>
+</a><P><a name="12202">
+ Delete<p>
+</a><a name="12212">
+Removes one or more of the currently loaded light groups <em>from memory</em>.<p>
+</a><P><a name="12221">
+ <strong>Note.</strong>	To remove a light group from disk, you must do so from a UNIX shell.<p>
+</a><a name="12203">
+ Rename<p>
+</a><a name="12225">
+Renames one or more of the currently loaded light groups <em>in memory</em>. You must re-save the light group for the new name to be saved to disk.<p>
+</a><P><a name="7249">
+<h2><HR> Mini-Tutorial 3: Creating a Light Group</h2>
+</a><a name="10700">
+It's easy to create a light group.<p>
+</a><P><a name="10705">
+	 1.	 Use the procedure detailed on <a href="4Lights.html#9557">page &#32;4-2</a> to create several lights.<p>
+</a><a name="10707">
+	2.	 <strong>(CLICK-L)</strong> on Light Groups to enter the Light Group Editor.<p>
+</a><a name="10710">
+	3.	 <strong>(CLICK-L)</strong> on New Group.<p>
+</a><a name="10711">
+ Enter a directory and filename for the light group in the dialog box that appears.<p>
+</a><a name="10714">
+	4.	 Enter a name for your new group, and <strong>(CLICK-L)</strong> on Do It.<p>
+</a><a name="10715">
+ You new group appears as a column in the light group editor display.<p>
+</a><a name="10716">
+ <P><img src="4Lights.anc19.gif"><p>
+</a><a name="10719">
+<em>Figure 4.19  &#32; &#32;New group in the light group editor display
+</em></a><P><a name="10718">
+ All the currently loaded lights are displayed along the left side of the light group editor. To add a light to a light group, <strong>(CLICK-L)</strong> on the gray square.<p>
+</a><a name="10724">
+	5.	 <strong>(CLICK-L)</strong> on Save.<p>
+</a><a name="10732">
+	6.	 <strong>(CLICK-L)</strong> on your new light groups, then <strong>(CLICK-L)</strong> on Do It.<p>
+</a><a name="10733">
+ Your new light group is saved to file. Light group files have the file extension <strong>.lg</strong>.<p>
+</a>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Domains.html">[Prev]</a> <a href="ATPXFileFormat.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:23 -->
+
+</body>
+</html>

@@ -1,0 +1,809 @@
+<html><head><title>File and Edit Menus</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects.html">[Prev]</a> <a href="2CreatingObjects2.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+<h1>File and Edit Menus (cont.)</h1> 
+<HR>
+<BR>
+<a name="25617">
+<h3> Creating Polyhedra Using Sketched Wires</h3>
+</a><a name="27175">
+A number of polyhedra can be generated using a technique called <em>sketching</em>. Sketching involves drawing one or more wires, and generating shapes in different ways using those wires. Each of the polyhedra described in this section use sketched wires.<p>
+</a><P><a name="27174">
+<h4> Solid of Rotation</h4>
+</a><a name="29619">
+<strong>File&gt;New Object&gt;solid of rotation </strong>builds a solid of rotation (sometimes referred to as a "lathe" operation).<p>
+</a><P><a name="25618">
+A solid of rotation is an object created by sketching the silhouette of the desired object from top to bottom, then sweeping that silhouette around either the vertical or horizontal axis to describe the object. <p>
+</a><P><a name="24324">
+ <P><img src="2CreatingObjects.anc35.gif"><p>
+</a><a name="24326">
+<em>Figure 2.35  &#32; &#32;Typical solid of rotation (created with wire shown at right)
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note!</strong>	The silhouette should lie entirely to one side of the axis of rotation so that the generated solid of rotation does not intersect itself.</font></dd></dt></dl><P>
+<a name="24328">
+<h4> Tube</h4>
+</a><a name="24329">
+<strong>File&gt;New Object&gt;tube</strong> builds a tube shaped object.<p>
+</a><P><a name="29613">
+A tube is a polyhedron created by sweeping a cross section along a path defined by a wire or sketched contour. The cross section can be automatically generated, radially symmetric (circular), drawn by hand, or derived from a pre-existing wire.<p>
+</a><P><a name="24333">
+ <P><img src="2CreatingObjects.anc36.gif"><p>
+</a><a name="24334">
+<em>Figure 2.36  &#32; &#32;Tube parameters
+</em></a><P><a name="24335">
+Note that these sketching parameters are the same ones used when creating a tube solid, lamina, or contour solid. The procedures for creating each of these types of objects appear below.<p>
+</a><P><ul><a name="24336">
+<li><strong>Circular</strong> automatically generates a round cross section for the tube.
+</a></li><P><a name="24340">
+ <P><img src="2CreatingObjects.anc37.gif"><p>
+</a></ul><P><a name="24342">
+<em>Figure 2.37  &#32; &#32;A wire (top) and a tube made with a circular cross-section
+</em></a><P><ul><a name="24343">
+<li><strong>Arbitrary</strong> gives you the option of sketching a cross section or using a previously created wire as the cross section.
+</a></li><P><dl><a name="24344">
+<dt>To create a tube with an arbitrary shape cross section, encode a second wire that you are going to move along the path.</dt>
+</a><P><a name="24352">
+ <P><img src="2CreatingObjects.anc38.gif"><p>
+</a></dl></ul><P><a name="24353">
+<em>Figure 2.38  &#32; &#32;A second wire encoded for use as the contour
+</em></a><P><dl><dl><a name="24354">
+<dt><strong>(CLICK-R)</strong> on Tube to select the path along which you want to pass the cross-section.</dt>
+</a><P><a name="24355">
+<dt>Then choose a cross section of type <strong>Arbitrary</strong> and specify that the cross section is to come from a <strong>Previous</strong> wire. <strong>(CLICK-L)</strong> in the <strong>C.S. object</strong> text box to select the cross section wire to move along the path wire:</dt>
+</a><P><a name="24359">
+ <P><img src="2CreatingObjects.anc39.gif"><p>
+</a></dl></dl><a name="24360">
+<em>Figure 2.39  &#32; &#32;The finished tube (with end faces selected to show the tube's shape)
+</em></a><P><a name="24362">
+<h4> Tube Solid</h4>
+</a><a name="24363">
+<strong>File&gt;New Object&gt;tube solid</strong> creates a tube solid, which resembles a tube in that a silhouette or <em>contour</em> is swept along a path, but instead of the contour being closed (creating a cross section), the whole swept area is enclosed by connecting the beginning and end of the path and creating top and bottom faces, like a contour solid. <p>
+</a><P><a name="29610">
+To build a tube solid, start by encoding the contour wire:<p>
+</a><P><a name="24367">
+ <P><img src="2CreatingObjects.anc40.gif"><p>
+</a><a name="24368">
+<em>Figure 2.40  &#32; &#32;The contour wire
+</em></a><P><a name="24369">
+Next, sketch the path wire. Make sure that the silhouette wire is perpendicular to the path wire. (If you sketch the wire, you can use <strong>Rotate</strong> to make it lie in the correct plane). Give the wires descriptive names (such as "silhouette" and "path") so you know which wire you are using when executing the solid:<p>
+</a><P><a name="24377">
+ <P><img src="2CreatingObjects.anc41.gif"><p>
+</a><a name="24378">
+<em>Figure 2.41  &#32; &#32;The contour and path wires
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The path wire should lie on a single plane; otherwise the generated top and bottom faces of the tube are likely to be twisted.</em></font></dd></dt></dl><P>
+<a name="24380">
+Next, <strong>(CLICK-R)</strong> on <strong>Tube Solid</strong>. You are prompted to select the path wire. In the dialog box that opens, choose <strong>Previous</strong>, then specify the contour wire to pass along the path in the <strong>Contour object</strong> text edit box.<p>
+</a><P><a name="24384">
+ <P><img src="2CreatingObjects.anc42.gif"><p>
+</a><a name="24385">
+ &#32; &#32;The tube solid parameter menu<p>
+</a><P><a name="24386">
+Imagine that the contour wire defines half of a shaper bit moving along a solid defined by the height of the contour wire:<p>
+</a><P><a name="24393">
+ <P><img src="2CreatingObjects.anc43.gif"><p>
+</a><a name="24394">
+ &#32; &#32;The contour wire moves along the path wire, much like a bit<p>
+</a><P><a name="24395">
+<strong>Contour Init Rot</strong> determines the initial angle or rotation at which the bit is "applied" (the default of 0 keeps the bit perpendicular). The resulting tube solid looks like this:<p>
+</a><P><a name="24399">
+ <P><img src="2CreatingObjects.anc44.gif"><p>
+</a><a name="24400">
+ &#32; &#32;The contour passes along the path wire; faces are created along the top and bottom of the path to create a tube solid<p>
+</a><P><a name="24402">
+<h4> Lamina</h4>
+</a><a name="24403">
+<strong>File&gt;New Object&gt;lamina </strong>sketches a contour, which is then made into a flat, double-sided polyhedron.<p>
+</a><P><a name="24407">
+ <P><img src="2CreatingObjects.anc45.gif"><p>
+</a><a name="24409">
+<em>Figure 2.42  &#32; &#32;Wire
+</em></a><P><a name="24413">
+ <P><img src="2CreatingObjects.anc46.gif"><p>
+</a><a name="24414">
+<em>Figure 2.43  &#32; &#32;Wire converted into lamina and extruded
+</em></a><P><a name="24416">
+<h4> Contour Solid</h4>
+</a><a name="24417">
+<strong>File&gt;New Object&gt;contour solid</strong> creates a contour solid polyhedron. A contour solid is created by scaling the cross section out to the contour. First create the path wire:<p>
+</a><P><a name="24421">
+ <P><img src="2CreatingObjects.anc47.gif"><p>
+</a><a name="24422">
+<em>Figure 2.44  &#32; &#32;How the contour and cross section combine to form a contour solid
+</em></a><P><a name="24423">
+Next, create the wire that you'll use as the contour solid. If you create it ahead of time, you'll need to rotate it so it's perpendicular to the path wire:<p>
+</a><P><a name="24427">
+ <P><img src="2CreatingObjects.anc48.gif"><p>
+</a><a name="24428">
+<em>Figure 2.45  &#32; &#32;Path and cross-section wires for contour solid
+</em></a><P><a name="24429">
+Next, <strong>(CLICK-R)</strong> on <strong>Contour Solid</strong>. You are prompted to select the path wire. In the dialog box that opens, choose <strong>Previous wire</strong>, then specify the cross section to pass along the path in the <strong>C.S. object</strong> text edit box.<p>
+</a><P><a name="24433">
+ <P><img src="2CreatingObjects.anc49.gif"><p>
+</a><a name="24434">
+<em>Figure 2.46  &#32; &#32;Contour solid menu parameters
+</em></a><P><a name="24435">
+<strong>(CLICK-L)</strong> on <strong>Make Solid</strong> to generate the final contour solid:<p>
+</a><P><a name="24439">
+ <P><img src="2CreatingObjects.anc50.gif"><p>
+</a><a name="24440">
+<em>Figure 2.47  &#32; &#32;Finished contour solid
+</em></a><P><a name="30378">
+<h4> Wires &amp; Trajectories</h4>
+</a><a name="30379">
+Wires and trajectories can be created by manually specifying, or <em>encoding</em>, the coordinates of each node on the object. <strong>(CLICK-L)</strong> on the <strong>wire</strong> or <strong>trajectory</strong> options of the <strong>New Object</strong> menu, depending on which type of element you want to create:<p>
+</a><P><ul><a name="30557">
+<li><strong>Wires</strong> are useful for building skeletons and defining the path of tubes and other similar polyhedra.
+</a></li><P><a name="30386">
+<li><strong>Trajectories</strong> are wires that are used as animation paths. In N-Dynamics, you can animate an object (or the camera) along trajectories.
+</a></li><P></ul><P><a name="30433">
+When encoding wires or trajectories, mouse clicks work as follows: 
+<P><Table Border="1">
+<dl>
+<a name="30390">
+<em>Table 2.3 <strong> &#32; &#32;Mouse behavior when encoding wires</strong>
+</em></a></dl>
+<tr><th align="left"><a name="30394">
+Mouse action
+</a><th align="left"><a name="30396">
+Description
+</a>
+<tr><td valign="top"><a name="30398">
+ <strong>(CLICK-L)</strong><p>
+</a><td valign="top"><a name="30400">
+ Creates a new point.<p>
+</a>
+<tr><td valign="top"><a name="30402">
+ <strong>(SHIFT-L)</strong><p>
+</a><td valign="top"><a name="30404">
+ Acts differently depending on the type of object being encoded:<p>
+</a><a name="30405">
+ For a <em>polyhedron</em>, it connects a line to the nearest old point (which is <br>highlighted).<p>
+</a><a name="30406">
+ For a <em>wire</em>, it undoes the last segment.<p>
+</a>
+<tr><td valign="top"><a name="30408">
+ <strong>(CTRL-L)</strong><p>
+</a><td valign="top"><a name="30410">
+ Creates a new control point for a nurb curve.<p>
+</a>
+<tr><td valign="top"><a name="30412">
+ <strong>(ALT-L)</strong><p>
+</a><td valign="top"><a name="30414">
+ Starts an arc.<p>
+</a>
+<tr><td valign="top"><a name="30416">
+ <strong>(HOLD-M)</strong><p>
+</a><td valign="top"><a name="30418">
+ Adjusts the location of the cursor in the z axis.<p>
+</a>
+<tr><td valign="top"><a name="30420">
+ <strong>(CLICK-R)</strong><p>
+</a><td valign="top"><a name="30422">
+ Acts differently on the type of object being encoded:<p>
+</a><a name="30423">
+ For a polyhedron, it closes the current face by creating an edge <br>between the last and first vertices.<p>
+</a><a name="30424">
+ For a wire, it finishes the operation.<p>
+</a>
+<tr><td valign="top"><a name="30426">
+ <strong>(SHIFT-R)</strong><p>
+</a><td valign="top"><a name="30428">
+ Displays the <strong>Encoding Options</strong> menu, which is how you exit from <br>encoding mode.<p>
+</a>
+<tr><td valign="top"><a name="30430">
+ <strong>(CTRL-R)</strong><p>
+</a><td valign="top"><a name="30432">
+ Halts encoding temporarily to let you execute one N-Geometry command before returning to encoding. (This is useful for moving the location of the camera.)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="30435">
+<h4> Encoding Options</h4>
+</a><a name="30436">
+To display the following menu of encoding options, <strong>(SHIFT-R)</strong> while encoding. (This menu comes up only after you have entered the sketch editor, described below.)<p>
+</a><P><a name="30440">
+ <P><img src="2CreatingObjects.anc51.gif"><p>
+</a><a name="30441">
+<em>Figure 2.48  &#32; &#32;Encoding Options menu
+</em></a><P><a name="30443">
+<h4> Cursor</h4>
+</a><a name="30444">
+Modifies the shape and characteristics of the cursor used when encoding:<p>
+</a><P><a name="30448">
+ <P><img src="2CreatingObjects.anc52.gif"><p>
+</a><a name="30449">
+<em>Figure 2.49  &#32; &#32;Setting cursor parameters
+</em></a><P><ul><a name="30450">
+<li><strong>Cursor type</strong> lets you specify the type of cursor you want to use:
+</a></li><P><ul>
+<BR><a name="30452">
+<li><strong>Crosshair</strong> selects a default crosshair cursor.
+</a><P><a name="30461">
+ <P><img src="2CreatingObjects.anc53.gif"><p>
+</a></ul>
+</ul><P><a name="30463">
+<em>Figure 2.50  &#32; &#32;Crosshair cursor
+</em></a><P><ul><ul>
+<BR><a name="30464">
+<li><strong>Locator box</strong> selects one of three alternate cursors, described below.
+</a><P><dl><a name="30465">
+<dt>The locator box cursor shows where the cursor is in three dimensional space by drawing a box to connect the cursor with the x, y and z axes. You can set the overlap length, analogous to the crosshair length and the box style. There are three types of locator boxes:<p>
+</a><P></dl><ul>
+<BR><a name="30470">
+<li><strong>3-arm </strong>locator box (shown in <a href="2CreatingObjects1.html#30500">Figure 2.52</a>) draws a line from the cursor to the intersection of each of the three planes:
+</a><P><a name="30477">
+ <P><img src="2CreatingObjects.anc54.gif"><p>
+</a></ul>
+</ul>
+</ul>
+<a name="30478">
+<em>Figure 2.51  &#32; &#32;3-arm locator
+</em></a><P><ul><ul><ul>
+<BR><a name="30480">
+<li><strong>Half box </strong>draws a box that defines the space between the current cursor position and the global origin:
+</a><P><a name="30498">
+ <P><img src="2CreatingObjects.anc55.gif"><p>
+</a></ul>
+</ul></ul><a name="30500">
+<em>Figure 2.52  &#32; &#32;Half-box locator
+</em></a><P><ul><ul><ul>
+<BR><a name="30502">
+<li><strong>Full box </strong>is similar to the half box locator, except that the path of the wire is shown from the last point on the wire to the cursor position:
+</a><P><a name="30520">
+ <P><img src="2CreatingObjects.anc56.gif"><p>
+</a></ul>
+</ul></ul><a name="30522">
+<em>Figure 2.53  &#32; &#32;Full-box locator
+</em></a><P><ul><a name="30523">
+<li><strong>Crosshair Len</strong> specifies the length of the three crosshairs.
+</a></li><P><a name="30524">
+<li><strong>Crosshair Gap</strong> sets the gap distance between the positive and negative arms of the cursor's axes.
+</a></li><P><a name="30525">
+<li><strong>Cursor speed</strong> sets the relative speed of the cursor (higher values move the cursor faster, with a default of 0.2).
+</a></li><P></ul><P><a name="30526">
+<h4> Quit</h4>
+</a><a name="30527">
+Ends the encoding session and returns to the top level of N-Geometry.<p>
+</a><P><a name="30528">
+<h4> Temporary Halt</h4>
+</a><a name="30529">
+Halts encoding for one command. (This is useful if for when you want to move the camera.)<p>
+</a><P><a name="30530">
+<h4> Zero</h4>
+</a><a name="30531">
+Resets the cursor position, depending on which mouse button you click:<p>
+</a><P><ul><ul>
+<BR><a name="30532">
+<li><strong>(CLICK-L)</strong> resets the cursor to x=0.
+</a><P><BR><a name="30533">
+<li><strong>(CLICK-M)</strong> resets the cursor to y=0.
+</a><P><BR><a name="30534">
+<li><strong>(CLICK-R)</strong> resets the cursor to z=0.
+</a><P></ul>
+</ul><a name="27181">
+<h4> Patch Body</h4>
+</a><a name="24443">
+Patch bodies are a way of representing shapes using splines rather than polyhedra. N-Geometry supports the creation of patch bodies using a "control" polyhedron object. To make changes to the patch body, you manipulate the original polyhedron, and the changes are automatically reflected in the patch body.<p>
+</a><P><a name="24444">
+Patch bodies are better at representing smoothed surfaces because it uses curves to describe a surface rather than polyhedra; and because patch bodies are described by curves, you can render an object at essentially any distance from the camera with no appreciable change in quality.<p>
+</a><P><a name="24445">
+To create a patch body:<p>
+</a><P>
+<a name="24446">
+<STRONG>	 1.	 Create a polyhedron (such as an octahedron).
+</STRONG>
+</a><P><dl><a name="24447">
+<dt>Because patch bodies work better for smoother objects, you may want to use the Smooth operation on any object for which you generate a patch body.</dt>
+</a><P><a name="24451">
+ <P><img src="2CreatingObjects.anc57.gif"><p>
+</a></dl>
+<a name="24452">
+<em>Figure 2.54  &#32; &#32;Smoothed octahedron
+</em></a><P>
+<a name="24453">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;New Object&gt;patch body.
+</STRONG>
+</a><P><dl><a name="24454">
+<dt>You are prompted to select the control object from a list of objects that currently exist in the scene.</dt>
+</a><P><a name="24455">
+<dt>The generated patch body approximates the shape of the polyhedron, but is a lighter gray (if you are using the default color scheme).</dt>
+</a><P><a name="24459">
+ <P><img src="2CreatingObjects.anc58.gif"><p>
+</a></dl>
+<a name="24460">
+<em>Figure 2.55  &#32; &#32;Patch body for octahedron
+</em></a><P><a name="24461">
+To change the shape of the patch body, you manipulate the controlling polyhedra (or other N-Geometry object).<p>
+</a><P><a name="24463">
+<h4> Grid</h4>
+</a><a name="24464">
+<strong>(CLICK-L)</strong> on <strong>File&gt;New Object&gt;grid</strong> brings up a Select Grid Parameters menu:<p>
+</a><P><a name="24468">
+ <P><img src="2CreatingObjects.anc59.gif"><p>
+</a><a name="24469">
+<em>Figure 2.56  &#32; &#32;Grid parameters menu
+</em></a><P><a name="27312">
+Parameters for generating a grid are shown below:<strong> 
+<P><Table Border="1">
+<dl>
+<a name="27229">
+<em>Table 2.4  &#32; &#32;Grid parameters
+</em></a></dl>
+<tr><th align="left"><a name="27235">
+<strong>Parameter</strong>
+</a><th align="left"><a name="27237">
+Type
+</a><th align="left"><a name="27239">
+Description
+</a>
+<tr><td valign="top"><a name="27241">
+ <strong>Name</strong><p>
+</a><td valign="top"><a name="27243">
+ <p>
+</a><td valign="top"><a name="27320">
+ The name of the grid object.<p>
+</a>
+<tr><td valign="top"><a name="27247">
+ <strong>Width &amp; Height</strong><p>
+</a><td valign="top"><a name="27249">
+ <p>
+</a><td valign="top"><a name="27324">
+ The overall dimensions of the grid, expressed in global units.<p>
+</a>
+<tr><td valign="top"><a name="27253">
+ <strong>Orientation</strong><p>
+</a><td valign="top"><a name="27255">
+ <p>
+</a><td valign="top"><a name="27328">
+ The axis to which the plane is perpendicular.<p>
+</a>
+<tr><td valign="top"><a name="27259">
+ <strong>Intervals</strong><p>
+</a><td valign="top"><a name="27261">
+ <p>
+</a><td valign="top"><a name="27332">
+ Number of faces the grid should be divided into on the given axis.<p>
+</a>
+<tr><td valign="top"><a name="27265">
+ <strong>Body type</strong><p>
+</a><td valign="top"><a name="27267">
+ <p>
+</a><td valign="top"><a name="27368">
+ Type of grid to generate.<p>
+</a>
+<tr><td valign="top"><a name="27271">
+ <p>
+</a><td valign="top"><a name="27273">
+ <strong>Polyhedron</strong><p>
+</a><td valign="top"><a name="27383">
+ Generates an object whose "front" or top side is divided into the specified number of faces. (The back side remains a single face unless manually cut.)<p>
+</a>
+<tr><td valign="top"><a name="27277">
+ <p>
+</a><td valign="top"><a name="27279">
+ <strong>Rectangular Mesh</strong><p>
+</a><td valign="top"><a name="27388">
+ Generates a mesh; that is, the apparent grid is actually a group of joined segments with no faces. This is much like a net.<p>
+</a><a name="27389">
+ The rectangular mesh grid looks like a polyhedral grid but has only nodes and segments, as does a wire. The grid has no faces and has a constant number of segments in either dimension. For example, if you cut one of its segments, a rectangular mesh grid automatically cuts all the other segments in that row in an identical fashion.<p>
+</a><a name="27390">
+ <strong>Note.</strong> &#32; &#32;<em>You can make a splined surface grid from a rectangular mesh by selecting the mesh, then choosing the Make Splined Surface command. (See <a href="4ModifyingBodies2.html#6834">"Make Splined Surface," on page &#32;4-60</a>.)</em><p>
+</a>
+<tr><td valign="top"><a name="27283">
+ <p>
+</a><td valign="top"><a name="27285">
+ <strong>NURBS Sheet</strong><p>
+</a><td valign="top"><a name="27398">
+ Generates a non-uniform rational B-spline (NURBS) mesh.<p>
+</a><a name="27399">
+ The mesh functions much as a control polyhedron when working with a patch body. NURBS sheets are useful in that the curved surface can be manipulated directly.<p>
+</a><a name="27400">
+ If you create a NURBS sheet, <strong>Degree</strong> specifies the method used to generate the splined surface (the lower the number specified, the more closely the spline surface follows the polyhedral surface):<p>
+</a><ul><a name="27401">
+<li>A degree of <strong>1</strong> causes the splined surface to match the polyhedral surface exactly, and is the most calculation intensive.
+</a></li><P><a name="27402">
+<li>A degree of <strong>2</strong> calculates the splined surface using a quadratic calculation. (This method requires at least 3 point on each side of the grid.)
+</a></li><P><a name="27403">
+<li>A degree of <strong>3</strong> calculates the splined surface using a bicubic calculation (This method requires at least 4 points on each side of the grid.)
+</a></li><P><a name="27407">
+ <P><img src="2CreatingObjects.anc5.gif"><p>
+</a></ul><P><a name="27409">
+<em>Figure 2.57  &#32; &#32; &#32; &#32;A polyhedral grid
+</em></a><P>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</strong><p>
+</a><P><a name="24498">
+<h4> Text</h4>
+</a><a name="24499">
+N-Geometry comes with a wide variety of pre-installed fonts from which you can generate 3D text characters.<p>
+</a><P><a name="24500">
+Selecting <strong>File&gt;New Object&gt;text</strong> brings up the Select 3D Text Parameters menu. If you don not have the Logo Utilities Item selected in the <strong>Utilities&gt;Preferences</strong> menu, only a subset of the items on the following menu will appear:<p>
+</a><P><a name="24507">
+ <P><img src="2CreatingObjects.anc60.gif"><p>
+</a><a name="24508">
+<em>Figure 2.58  &#32; &#32;3D text parameters menu
+</em></a><P><a name="28921">
+When you create a text string, N-Geometry creates a separate object for each character; each "character" object is automatically restructured under the "word" object. <p>
+</a><P><a name="29691">
+ <P><img src="2CreatingObjects.anc61.gif"><p>
+</a><a name="29692">
+<em>Figure 2.59  &#32; &#32;Structure for word object-each letter is a subobject under the word object
+</em></a><P><a name="29685">
+This gives you the ability to animate either the word <em>or</em> individual characters when animating in N-Dynamics. 
+<P><Table Border="1">
+<dl>
+<a name="28925">
+<em>Table 2.5  &#32; &#32;Text parameters
+</em></a></dl>
+<tr><th align="left"><a name="28931">
+Parameter
+</a><th align="left"><a name="28933">
+Subparameter
+</a><th align="left"><a name="28935">
+Description
+</a>
+<tr><td valign="top"><a name="28937">
+ <strong>Object Name</strong><p>
+</a><td valign="top"><a name="28939">
+ <strong></strong><p>
+</a><td valign="top"><a name="29051">
+ The top-level name of the text object.<p>
+</a>
+<tr><td valign="top"><a name="28943">
+ <strong>Characters</strong><p>
+</a><td valign="top"><a name="28945">
+ <strong></strong><p>
+</a><td valign="top"><a name="28947">
+ The characters to create. Each character is a separate body and is inferior to the top-level text object.<p>
+</a>
+<tr><td valign="top"><a name="28949">
+ <strong>Font</strong><p>
+</a><td valign="top"><a name="28951">
+ <strong></strong><p>
+</a><td valign="top"><a name="28953">
+ Character font. The default font is the first available loaded font, if any. <strong>(CLICK-L)</strong> and choose <strong>New</strong> to select the font to use when generating the text.<p>
+</a>
+<tr><td valign="top"><a name="28955">
+ <strong>Font Height</strong><p>
+</a><td valign="top"><a name="28957">
+ <strong></strong><p>
+</a><td valign="top"><a name="28959">
+ Specifies the font height (in global units).<p>
+</a>
+<tr><td valign="top"><a name="28961">
+ <strong>Kern chars?</strong><p>
+</a><td valign="top"><a name="28963">
+ <strong></strong><p>
+</a><td valign="top"><a name="28965">
+ Compensates for wide and narrow characters by setting extra space around wide characters and setting less space around narrow characters.<p>
+</a>
+<tr><td valign="top"><a name="28967">
+ <strong>Letter-spacing% </strong><p>
+</a><td valign="top"><a name="28969">
+ <strong></strong><p>
+</a><td valign="top"><a name="28971">
+ Adjust the amount of space between all characters as a percentage of the font height.<p>
+</a>
+<tr><td valign="top"><a name="28973">
+ <strong>Curve<br>Smoothness </strong><p>
+</a><td valign="top"><a name="28975">
+ <strong></strong><p>
+</a><td valign="top"><a name="28977">
+ The factor to determine subdivision of arcs along the edge of a letter<p>
+</a>
+<tr><td valign="top"><a name="28979">
+ <strong>Centered?</strong><p>
+</a><td valign="top"><a name="28981">
+ <strong></strong><p>
+</a><td valign="top"><a name="28983">
+ Centers the created text string around the object's center.<p>
+</a>
+<tr><td valign="top"><a name="28985">
+ <strong>Remove holes?</strong><p>
+</a><td valign="top"><a name="28987">
+ <strong></strong><p>
+</a><td valign="top"><a name="28992">
+ Automatically deholes any faces. See <a href="4ModifyingBodies1.html#6649">"Dehole," on page &#32;4-25</a> for more information.<p>
+</a>
+<tr><td valign="top"><a name="28994">
+ <strong>Extrude depth</strong><p>
+</a><td valign="top"><a name="28996">
+ <strong></strong><p>
+</a><td valign="top"><a name="28998">
+ The "depth" of the created text characters, expressed in global units.<p>
+</a>
+<tr><td valign="top"><a name="29000">
+ <strong>Bevel Width</strong><p>
+</a><td valign="top"><a name="29002">
+ <strong></strong><p>
+</a><td valign="top"><a name="29004">
+ Creates beveled letters. Selected edges (specified with <strong>Bevel which?</strong> below) are "sanded down"by the amount specified here (in global units). A higher value bevels the edge more.<p>
+</a>
+<tr><td valign="top"><a name="29006">
+ <strong> </strong><p>
+</a><td valign="top"><a name="29008">
+ <strong>Hardness</strong><p>
+</a><td valign="top"><a name="29010">
+ Specifies the hardness of edges to be selected (perpendicular edges have a hardness of 90 degrees. Higher values select edges closer to perpendicular.<p>
+</a>
+<tr><td valign="top"><a name="29012">
+ <strong></strong><p>
+</a><td valign="top"><a name="29014">
+ <strong>Bevel which?</strong><p>
+</a><td valign="top"><a name="29016">
+ Specifies which edges are beveled:<p>
+</a><a name="29017">
+ <strong>Front</strong> bevels only those edges on the front of the letter.<p>
+</a><a name="29018">
+ <strong>Back</strong> bevels only those edges on the back of the letter.<p>
+</a><a name="29019">
+ <strong>Both</strong> bevels edges on the front and back.<p>
+</a><a name="29020">
+ <strong>Any</strong> bevels edges on the front, back, and any edges created when the letter is extruded (if any new edges are created).<p>
+</a>
+<tr><td valign="top"><a name="29022">
+ <strong>Coplanar width</strong><p>
+</a><td valign="top"><a name="29024">
+ <strong></strong><p>
+</a><td valign="top"><a name="29026">
+ Create coplanars around the edges of the letter. The edges (specified below) are coplanared by the amount specified here (in global units).<p>
+</a>
+<tr><td valign="top"><a name="29028">
+ <strong></strong><p>
+</a><td valign="top"><a name="29030">
+ <strong>Hardness</strong><p>
+</a><td valign="top"><a name="29032">
+ Specifies the relative "harshness" of the coplanaring effect.<p>
+</a>
+<tr><td valign="top"><a name="29034">
+ <strong></strong><p>
+</a><td valign="top"><a name="29036">
+ <strong>Coplanar which?</strong><p>
+</a><td valign="top"><a name="29038">
+ Specifies which edges are coplanared:<p>
+</a><a name="29039">
+ <strong>Front</strong> creates coplanars along the edges on the front of the letter.<p>
+</a><a name="29040">
+ <strong>Back</strong> creates coplanars along the edges on the back of the letter.<p>
+</a><a name="29041">
+ <strong>Both</strong> creates coplanars along the edges on the front and back.<p>
+</a><a name="29042">
+ <strong>Bevels Only</strong> creates coplanars only on beveled edges.<p>
+</a><a name="29043">
+ <strong>Bevels &amp; Any</strong> creates coplanars on beveled, front, back, and any edges created with an extrude operation.<p>
+</a><a name="29044">
+ <strong>Any</strong> creates coplanars on any edges except those created as a result of the specified bevel.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="24539">
+Default generated characters are <em>laminae</em> and can be manipulated just like any other object. However, the number of operations you can use with faces with holes is limited. (Refer to the section <a href="ATroubleshooting.html#11365">"Faces with Holes," on page &#32;A-1</a>.)<p>
+</a><P><a name="24546">
+ <P><img src="2CreatingObjects.anc62.gif"><p>
+</a><a name="24547">
+<em>Figure 2.60  &#32; &#32;Some sample text
+</em></a><P><a name="24548">
+<h4> Image</h4>
+</a><a name="24549">
+The <strong>File&gt;New Object&gt;image</strong> command lets you create a wire or lamina by converting the outline of an <em>image</em> (or a matte channel) in N-Paint into an <em>object</em> in N-Geometry.<p>
+</a><P><a name="29061">
+To use this operation:<p>
+</a><P>
+<a name="26549">
+<STRONG>	 1.	 In N-Paint, make the image from which you want to generate the object(s) your current image.
+</STRONG>
+</a><P><a name="31479">
+ <P><img src="2CreatingObjects.anc63.gif"><p>
+</a>
+<a name="31480">
+<em>Figure 2.61  &#32; &#32;Make the image you want to generate the laminae from the current image
+</em></a><P>
+<a name="26560">
+<STRONG>	2.	 In N-Geometry, <strong>(CLICK-L)</strong> on File&gt;New Object&gt;Image.
+</STRONG>
+</a><P><dl><a name="29072">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="29079">
+ <P><img src="2CreatingObjects.anc64.gif"><p>
+</a></dl>
+<a name="29080">
+<em>Figure 2.62  &#32; &#32;Using an image to create an object
+</em></a><P>
+<a name="31497">
+<STRONG>	3.	 After selecting the parameters used to generate the laminae, <strong>(CLICK-L)</strong> on the <strong>Make Body</strong> button.
+</STRONG>
+</a><P><dl><a name="31498">
+<dt>(The parameters on this menu are described below.)</dt>
+</a><P><a name="31504">
+ <P><img src="2CreatingObjects.anc65.gif"><p>
+</a></dl>
+<a name="31505">
+<em>Figure 2.63  &#32; &#32;Objects resulting from image
+</em></a><P><a name="29092">
+The parameters in the <strong>Image</strong> dialog box are described in the table below: 
+<P><Table Border="1">
+<dl>
+<a name="29095">
+<em>Table 2.6  &#32; &#32;Parameters for generating objects from an image
+</em></a></dl>
+<tr><th align="left"><a name="29101">
+Parameter
+</a><th align="left"><a name="29103">
+Type
+</a><th align="left"><a name="29105">
+Description
+</a>
+<tr><td valign="top"><a name="29107">
+ <strong>Object Name</strong><p>
+</a><td valign="top"><a name="29109">
+ <p>
+</a><td valign="top"><a name="29111">
+ The name of the generated object.<p>
+</a>
+<tr><td valign="top"><a name="29113">
+ <strong>Source</strong><p>
+</a><td valign="top"><a name="29115">
+ <p>
+</a><td valign="top"><a name="29117">
+ Source for the generated object.<p>
+</a>
+<tr><td valign="top"><a name="29119">
+ <p>
+</a><td valign="top"><a name="29121">
+ <strong>Canvas</strong><p>
+</a><td valign="top"><a name="29123">
+ Uses the RGB channel of the currently selected image.<p>
+</a>
+<tr><td valign="top"><a name="29125">
+ <p>
+</a><td valign="top"><a name="29127">
+ <strong>Canvas Matte</strong><p>
+</a><td valign="top"><a name="29129">
+ Uses the matte channel of the currently selected image.<p>
+</a>
+<tr><td valign="top"><a name="29960">
+ Threshold<p>
+</a><td valign="top"><a name="29962">
+ <p>
+</a><td valign="top"><a name="29964">
+ The minimum value the pixel for the value to be used in generating the lamina or wire. Lower values will select more of the image.<p>
+</a>
+<tr><td valign="top"><a name="29131">
+ <strong>Min feature size</strong><p>
+</a><td valign="top"><a name="29133">
+ <p>
+</a><td valign="top"><a name="29252">
+ This option is useful if the image (or matte) contains "spots" or other small painted areas that would generate very small objects. Objects smaller than the specified size are not generated.<p>
+</a>
+<tr><td valign="top"><a name="29137">
+ <strong>Reduction <br>Flatness</strong><p>
+</a><td valign="top"><a name="29139">
+ <p>
+</a><td valign="top"><a name="29141">
+ How closely the shape of the generated outline will match the original (the value can be interpreted as maximum deviation from the raw data).<p>
+</a><a name="29811">
+ A larger number will allow more latitude for combining a lot of short segments into one longer segment.  This not only reduces the amount of data, making the result easier to select for editing, but since images are typically a little noisy anyway, also helps to smooth out the outline.<p>
+</a>
+<tr><td valign="top"><a name="29143">
+ <strong>Size</strong><p>
+</a><td valign="top"><a name="29145">
+ <p>
+</a><td valign="top"><a name="29147">
+ The size (in global units) that the object will be.<p>
+</a>
+<tr><td valign="top"><a name="29874">
+ <strong>Sizing Reference</strong><p>
+</a><td valign="top"><a name="29861">
+ <p>
+</a><td valign="top"><a name="29880">
+ What you use to determine how the object's size.  Either the object itself (after it has been extracted from the image), or the image boundary.<p>
+</a><a name="29881">
+ If you are doing several extractions from the same or related images that requires registration between the objects, the latter is the way to go.<p>
+</a>
+<tr><td valign="top"><a name="29865">
+ <p>
+</a><td valign="top"><a name="29867">
+ <strong>Object</strong><p>
+</a><td valign="top"><a name="29896">
+ Gives you an object exactly the size you requested, but at an unknown scale factor and offset.<p>
+</a>
+<tr><td valign="top"><a name="29149">
+ <strong></strong><p>
+</a><td valign="top"><a name="29151">
+ <strong>Image</strong><p>
+</a><td valign="top"><a name="29841">
+ Gives you a predictable scale factor but the object's size varies with its size in the image.<p>
+</a>
+<tr><td valign="top"><a name="29223">
+ <strong>Body Type</strong><p>
+</a><td valign="top"><a name="29225">
+ <p>
+</a><td valign="top"><a name="29227">
+ Whether the generated object should be a polyhedra (typically a lamina) or a series of connected wires.<p>
+</a>
+<tr><td valign="top"><a name="29217">
+ <p>
+</a><td valign="top"><a name="29219">
+ <strong>Polyhedron</strong><p>
+</a><td valign="top"><a name="29221">
+ Generates a polyhedron.<p>
+</a>
+<tr><td valign="top"><a name="29211">
+ <p>
+</a><td valign="top"><a name="29213">
+ <strong>Wire</strong><p>
+</a><td valign="top"><a name="29215">
+ Generates a wire.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="24551">
+<h4> Skeleton</h4>
+</a><a name="24552">
+<strong>(CLICK-L)</strong> on <strong>File&gt;New Object&gt;skeleton</strong> to create a skeleton primitive for use with the Skeletal Animation System (SAS). Skeletons let you animate attached objects (or "skins") using a wide variety of operations, or by using motion capture data, or both.<p>
+</a><P><a name="24556">
+ <P><img src="2CreatingObjects.anc66.gif"><p>
+</a><a name="24557">
+<em>Figure 2.64  &#32; &#32;A skeleton primitive
+</em></a><P><a name="24558">
+To create other skeleton primitives, <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;File&gt;New Object</strong>, then <strong>(CLICK-R)</strong> on <strong>Skeleton</strong>. The following types of skeletons can be generated:<p>
+</a><P><ul><a name="32282">
+<li>Horse skeleton
+</a></li><P><a name="32283">
+<li>Six legged skeleton (insect)
+</a></li><P><a name="32284">
+<li>Eight legged skeleton (spider)
+</a></li><P><a name="32285">
+<li>Hips (a good way to start a custom humanoid skeleton!)
+</a></li><P><a name="32292">
+ <P><img src="2CreatingObjects.ancA67.gif"><p>
+</a></ul><P><a name="32293">
+<em>Figure 2.65  &#32; &#32;New skeleton primitives; clockwise from upper left: hips, horse, eight-legged, and six-legged
+</em></a><P><a name="32276">
+For more information on using skeletons, see the <em>Skeletal Animation System Reference Guide</em> and the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects.html">[Prev]</a> <a href="2CreatingObjects2.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 08:11:44 -->
+
+</body>
+</html>

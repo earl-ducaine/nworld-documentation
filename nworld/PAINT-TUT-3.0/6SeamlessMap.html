@@ -1,0 +1,334 @@
+<html><head><title>Creating a Seamless Texture Map</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5BrushTextures.html">[Prev]</a> <a href="73dMapMode.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="10149">
+<h1>Creating a Seamless Texture Map</h1>
+</a>
+<hr><p><a name="10152">
+<h4> In this chapter you'll learn how to create a texture map that wraps around an object with no visible seams.</h4>
+</a><a name="10169">
+ <P><img src="6SeamlessMap.anc.gif"><p>
+</a><a name="10540">
+<h2><HR> In This Chapter</h2>
+</a><a name="10667">
+In this chapter, you'll learn a handy technique for creating a seamless texture map. Seamless texture maps are handy whenever you're applying textures to an object and don't want to necessarily use a product like N-Paint 3D to line up your textures at a mapper's seam.<p>
+</a><P><a name="10996">
+<h2><HR> The Problem</h2>
+</a><a name="10997">
+When a texture map wraps all the way around an object, it meets the edge of the mapper, and can create a "seam." For example, applying the texture map shown in <a href="6SeamlessMap.html#11000">Figure 6.1</a> to a sphere can result in problems like those shown in <a href="6SeamlessMap.html#11008">Figure 6.2</a>:<p>
+</a><P><a name="10999">
+ <P><img src="6SeamlessMap.anc1.gif"><p>
+</a><a name="11000">
+<em>Figure 6.1  &#32; &#32;A texture map
+</em></a><P><a name="10998">
+ <P><img src="6SeamlessMap.anc2.gif"><p>
+</a><a name="11008">
+<em>Figure 6.2  &#32; &#32;Sphere with texture map seam
+</em></a><P><a name="11031">
+By creating a seamless texture map, textures "line-up" wherever they happen to meet along the seam of a mapper. In the following examples, we'll create a seamless texture map and apply it to a simple geometric object, so you can easily see the effect. However, the principles we'll introduce apply to any texture mapping situation.<p>
+</a><P><a name="10687">
+<h2><HR> Create a Seamless Texture Map</h2>
+</a><a name="10265">
+Let's start by creating a new, blank canvas:<p>
+</a><P>
+<a name="10635">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Create New.
+</STRONG>
+</a><P><dl><a name="10271">
+<dt>The Create New image dialog box appears:</dt>
+</a><P><a name="10273">
+ <P><img src="6SeamlessMap.anc3.gif"><p>
+</a></dl>
+<a name="10289">
+<em>Figure 6.3  &#32; &#32;Creating a new image
+</em></a><P>
+<a name="10272">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> in the Width field.
+</STRONG>
+</a><P><dl><a name="10692">
+<dt>A numeric keypad appears. Use the keypad to set the canvas width to 512.</dt>
+</a><P></dl><a name="10305">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Height field, and set the height of the new image to 512.
+</STRONG>
+</a><P><a name="10799">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="10309">
+<dt>The new canvas appears in the Paint canvas window.</dt>
+</a><P></dl>
+<a name="10310">
+<h2><HR> Painting Your Map</h2>
+</a><a name="11297">
+Let's create the texture map:<p>
+</a><P>
+<a name="10728">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Quad Tool icon in the Tool Box menu
+</STRONG>
+</a><P><a name="10317">
+ <P><img src="6SeamlessMap.anc4.gif"><p>
+</a>
+<a name="10323">
+<em>Figure 6.4  &#32; &#32;The Quad Tool Icon
+</em></a><P><dl><dl><a name="10375">
+<dt>The Quad Tool parameters menu appears to the right of the tool box. </dt>
+</a><P><a name="10376">
+ <P><img src="6SeamlessMap.anc5.gif"><p>
+</a></dl></dl><a name="10377">
+<em>Figure 6.5  &#32; &#32;The Quad Tool Menu
+</em></a><P>
+<a name="10324">
+<STRONG>	6.	 <strong>(CLICK-L) </strong>on Outline.
+</STRONG>
+</a><P><dl><a name="10802">
+<dt>When <strong>Outline</strong> is on, two new parameter fields, <strong>Width</strong> and <strong>Soft</strong>, appear underneath the Outline toggle.</dt>
+</a><P></dl><a name="10386">
+<STRONG>	7.	 Edit the Width and Soft fields to match those shown in <a href="6SeamlessMap.html#10377">Figure 6.5</a>.
+</STRONG>
+</a><P><ul>
+<BR><a name="10390">
+<li>The <strong>Width</strong> parameter controls the width of the lines drawn by the quad tool in outline mode.
+</a><P><BR><a name="10394">
+<li>The <strong>Soft</strong> parameter controls the "softness" of the outlines drawn by the quad tool. A low value generates sharp edges, while a high value produces fuzzy outlines.
+</a><P></ul>
+<a name="10364">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on color, and select white<strong>.</strong>
+</STRONG>
+</a><P><a name="10406">
+<STRONG>	9.	 Use the quad tool to draw several intersecting polygons in the center of your canvas, like this:
+</STRONG>
+</a><P><dl><a name="10422">
+<dt>Your canvas should look something like <a href="6SeamlessMap.html#10424">Figure 6.6</a> when you're finished.</dt>
+</a><P><a name="10423">
+ <P><img src="6SeamlessMap.anc6.gif"><p>
+</a></dl>
+<a name="10424">
+<em>Figure 6.6  &#32; &#32;The finished canvas
+</em></a><P><dl><dl><a name="11352">
+<dt>DO NOT draw rectangles which intersect the edge of the canvas, like the ones in <a href="6SeamlessMap.html#11361">Figure 6.7</a></dt>
+</a><P><a name="11359">
+ <P><img src="6SeamlessMap.anc7.gif"><p>
+</a></dl></dl><a name="11361">
+<em>Figure 6.7  &#32; &#32;DON'T draw off the edge of the canvas
+</em></a><P><a name="10434">
+<h3> Shifting the Image</h3>
+</a><a name="11362">
+The next step in creating the seamless texture map is to "shift" the image on the canvas.<p>
+</a><P>
+<a name="10568">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Ink&gt;Shift
+</STRONG>
+</a><P><dl><a name="10803">
+<dt>The Shift ink parameters menu appears:</dt>
+</a><P><a name="10804">
+ <P><img src="6SeamlessMap.anc8.gif"><p>
+</a></dl>
+<a name="10805">
+<em>Figure 6.8  &#32; &#32;Shift t ink parameters
+</em></a><P><dl><dl><a name="10436">
+<dt>The Shift ink will moves the image horizontally and vertically based on the offsets you specify. The part of the image "pushed off" the edge "wraps around" to the other side.</dt>
+</a><P></dl></dl>
+<a name="10435">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the X field, and enter a value equal to half the width of your map.
+</STRONG>
+</a><P><dl><a name="10437">
+<dt>In this case, because our map is 512 x 512 pixels, enter a value of 256. Repeat the procedure for the Y field.</dt>
+</a><P><a name="10817">
+<dt>(The offset of 256 pixels is arbitrary. You can offset it any amount and achieve the same result.)</dt>
+</a><P></dl><a name="11055">
+<STRONG>	12.	 Make sure that Outline is turned off in Quad tool parameters menu.
+</STRONG>
+</a><P><dl><a name="11056">
+<dt>If necessary, <strong>(CLICK-L)</strong> on the outline toggle switch.</dt>
+</a><P></dl><a name="11053">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Do Full Canvas to shift the image.
+</STRONG>
+</a><P><dl><a name="10445">
+<dt>After you've shifted it, your canvas should resemble the one in <a href="6SeamlessMap.html#10439">Figure 6.9</a>.</dt>
+</a><P><a name="10438">
+ <P><img src="6SeamlessMap.anc9.gif"><p>
+</a></dl>
+<a name="10439">
+<em>Figure 6.9  &#32; &#32;The shifted canvas
+</em></a><P>
+<a name="10455">
+<STRONG>	14.	 Using the Quad Tool, fill in the gaps in your image.
+</STRONG>
+</a><P><dl><a name="10470">
+<dt><a href="6SeamlessMap.html#10466">Figure 6.10</a> shows what your image should look like after you've filled in the gaps revealed by the shift operation.</dt>
+</a><P><a name="10465">
+ <P><img src="6SeamlessMap.anc10.gif"><p>
+</a></dl>
+<a name="10466">
+<em>Figure 6.10  &#32; &#32;Filling in the gaps in your image
+</em></a><P><dl><dl><a name="10818">
+<dt>You may want to shift the image one last time, (say, by a different number of pixels) to check for remaining gaps. In fact, you can shift the image as many times as you like in order to ensure that there are no gaps left in the image-as long as you don't draw over the edge of the image, your map will be seamless.</dt>
+</a><P></dl></dl>
+<a name="10652">
+<STRONG>	15.	 Save your image.
+</STRONG>
+</a><P><dl><a name="11396">
+<dt>Give it an easy to recognize name, like this:</dt>
+</a><P><dl><a name="11397">
+<dt><code>seamless.rgb</code><p>
+</a><P></dl></dl>
+<a name="10639">
+<h3> Apply the Texture to an Object</h3>
+</a><a name="11385">
+Now, you need to create an object in N-Geometry that will use the texture. (This procedure is described in more detail in the <em>N-Geometry Tutorial</em>.)<p>
+</a><P>
+<a name="10863">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on New Object&gt;Sphere in the GeoMenus.
+</STRONG>
+</a><P><a name="10865">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on New Object&gt;Mapper in the GeoMenus.
+</STRONG>
+</a><P><dl><a name="10866">
+<dt>Make the mapper a spherical mapper, and select the new sphere as the bounds source for the mapper.</dt>
+</a><P></dl><a name="10868">
+<STRONG>	18.	 Open the Browser.
+</STRONG>
+</a><P><dl><a name="10869">
+<dt>The browser shows all objects with their assigned mappers, materials, and other attributes.</dt>
+</a><P><a name="10870">
+<dt>Each object appears in the browser as a <strong>node</strong>. If <strong>Icons</strong> is selected, then objects like lights and materials are represented by icons. Otherwise, objects are listed by name:</dt>
+</a><P><a name="10878">
+ <P><img src="6SeamlessMap.anc11.gif"><p>
+</a></dl>
+<a name="10879">
+<em>Figure 6.11  &#32; &#32;The Nichimen Browser
+</em></a><P><a name="10881">
+<h3> Attach the Mapper to the Sphere</h3>
+</a>
+<a name="10882">
+<STRONG>	19.	 <strong>(CLICK-R)</strong> with the cursor over the Sphere node in the Browser.
+</STRONG>
+</a><P><dl><a name="10883">
+<dt>A menu of operations appropriate to the Sphere appears:</dt>
+</a><P><a name="10887">
+ <P><img src="6SeamlessMap.anc12.gif"><p>
+</a></dl>
+<a name="10888">
+<em>Figure 6.12  &#32; &#32;Operations for the Sphere object
+</em></a><P>
+<a name="10890">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Assign Mapper.
+</STRONG>
+</a><P><dl><a name="10891">
+<dt>A pop-up menu of mappers currently loaded into N-World appears, similar to this one:</dt>
+</a><P><a name="10895">
+ <P><img src="6SeamlessMap.anc13.gif"><p>
+</a></dl>
+<a name="10896">
+<em>Figure 6.13  &#32; &#32;Available mappers pop-up menu
+</em></a><P>
+<a name="10901">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on the mapper you created in step <a href="6SeamlessMap.html#10865">17</a>.
+</STRONG>
+</a><P><dl><a name="10902">
+<dt>The mapper is now associated with the sphere.</dt>
+</a><P></dl>
+<a name="10903">
+<h3> Create a Material</h3>
+</a><a name="10904">
+For this example, we'll create a simple material using the texture map that we just created. Then we'll apply that material to our sphere.<p>
+</a><P>
+<a name="10905">
+<STRONG>	22.	 Open the Attributes Editor
+</STRONG>
+</a><P><a name="10907">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on Materials.
+</STRONG>
+</a><P><a name="10908">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on New.
+</STRONG>
+</a><P><a name="10913">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on Texture in the Material Parameters section of the menu.
+</STRONG>
+</a><P><a name="10914">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on Map.
+</STRONG>
+</a><P><dl><a name="10915">
+<dt>Use the Choose File dialog box to select the following file:</dt>
+</a><P><dl><a name="11100">
+<dt><code>seamless.rgb</code><p>
+</a><P></dl></dl><a name="11403">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on Save to save the material.
+</STRONG>
+</a><P><dl><a name="11404">
+<dt>Give it a name like <strong>seamless</strong>.</dt>
+</a><P></dl>
+<a name="10919">
+<h3> Apply the New Material to the Object</h3>
+</a>
+<a name="10921">
+<STRONG>	28.	 In the Browser, <strong>(CLICK-R)</strong> on the Sphere object.
+</STRONG>
+</a><P><dl><a name="10922">
+<dt>The operations menu appears.</dt>
+</a><P></dl><a name="10923">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="10924">
+<dt>A menu appears listing all materials currently loaded into memory.</dt>
+</a><P><a name="10965">
+ <P><img src="6SeamlessMap.anc14.gif"><p>
+</a></dl>
+<a name="10966">
+<em>Figure 6.14  &#32; &#32;Choose Material menu
+</em></a><P>
+<a name="10932">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on the material you created in steps <a href="6SeamlessMap.html#10907">23</a> through <a href="6SeamlessMap.html#11403">27</a>.
+</STRONG>
+</a><P><dl><a name="10933">
+<dt>The Assign Mappers dialog box appears:</dt>
+</a><P><a name="10937">
+ <P><img src="6SeamlessMap.anc15.gif"><p>
+</a></dl>
+<a name="10938">
+<em>Figure 6.15  &#32; &#32;The Assign Mappers dialog
+</em></a><P><dl><dl><a name="10939">
+<dt>An icon for your texture map appears in this dialog above a field which specifies the mapper for that texture. This field should show the name of the mapper you assigned to the sphere in step <a href="6SeamlessMap.html#10890">20</a>. If it does not, <strong>(CLICK-L)</strong> on the field and select the appropriate mapper from the pop-up menu which appears.</dt>
+</a><P></dl></dl>
+<a name="10995">
+<STRONG>	31.	 When you've assigned you mapper, <strong>(CLICK-L) </strong>on Done.
+</STRONG>
+</a><P><dl><a name="10989">
+<dt>The appearance of the sphere node in the browser changes to reflect the new material attached to it. </dt>
+</a><P></dl><a name="10981">
+<STRONG>	32.	 <strong>(CLICK-L) </strong>on Redisplay in the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="10992">
+<dt>Your new, textured sphere should appear in the Geometry window:</dt>
+</a><P><a name="11414">
+ <P><img src="6SeamlessMap.anc16.gif"><p>
+</a></dl>
+<a name="11409">
+<em>Figure 6.16  &#32; &#32;The sphere with a seamless texture map
+</em></a><P><a name="10860">
+<h2><HR> Congratulations!</h2>
+</a><a name="10500">
+You've now created a seamless texture map and applied it to an object. While we used a simple sphere in this example, the concept applies to any object where you have a texture seam. Note also that you can use N-Paint 3D as a way to paint out texture seams, as described later in this tutorial.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5BrushTextures.html">[Prev]</a> <a href="73dMapMode.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 09:58:33 -->
+
+</body>
+</html>

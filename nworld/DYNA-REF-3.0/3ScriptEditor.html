@@ -1,0 +1,1626 @@
+<html><head><title>Using the Script Editor</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Interface.html">[Prev]</a> <a href="4CurveEditor.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="17700">
+<h1>Using the Script Editor</h1>
+</a>
+<hr><p><a name="11571">
+<h4> In this chapter you'll learn how to use the Script Editor to create, modify, and organize your scripts. You'll also learn how to build hierarchical scripts, and how to work with operations and curves.</h4>
+</a><a name="20012">
+ <P><img src="3ScriptEditor.anc.gif"><p>
+</a><a name="17701">
+<h2><HR> What is a Script?</h2>
+</a><a name="12298">
+A script is a series of instructions. It says what should be done, and in what sequence. While you could create an animation manually, loading in background images, posing characters, moving characters, and rendering frames <em>by hand</em>, it's easier to set up a <em>script</em> to do the work for you.<p>
+</a><P><a name="12326">
+The instructions in a script can execute operations in different modules in N&#183;World. For example, you could load and manipulate images in N-Paint, animate skeletons created in N-Geometry, and render each frame by calling N-Render.<p>
+</a><P><a name="15196">
+<h3> Channels, Operations, and Curves</h3>
+</a><a name="15254">
+A script is divided up into units called <em>channels</em>. Channels are arranged hierarchically, and are executed from top to bottom for each frame in the script.<p>
+</a><P><a name="15283">
+A channel may contain either an operation or a dynamic value.<p>
+</a><P><ul><a name="15284">
+<li>An operation does something to an object or an image; for example, rotating an object, writing out an image, or writing animation data are all operations.
+</a></li><P><a name="15285">
+<li>A curve channel contains data of some kind, typically a value, pose, or camera view; for example, a curve channel can specify how much an object should rotate, a pose for a skeleton at a given frame, or a saved camera view.
+</a></li><P></ul><P><a name="18094">
+<h3> Script Hierarchy</h3>
+</a><a name="18095">
+Scripts are arranged hierarchically; that is, you can create channels that contain other channels, so that several channels can be grouped together logically. This is useful if you want to turn off a portion of a script or skip over part of a script using some of N-Dynamics' basic functions (as described in the <em>N-Dynamics Tutorial</em>).<p>
+</a><P><a name="18096">
+A channel can <em>contain</em> one or more other channels; in such a case, the containing channel is called the <em>parent</em> channel, and the contained channels are called its <em>children</em>. Contained channels are also called <em>subchannels</em> or <em>subactions</em>.<p>
+</a><P><a name="15263">
+ <P><img src="3ScriptEditor.anc1.gif"><p>
+</a><a name="15264">
+<em>Figure 3.1  &#32; &#32;Channels in a script
+</em></a><P><a name="12273">
+<h2><HR> Building a Basic Script</h2>
+</a><a name="12329">
+Building scripts is an iterative process; you build a basic version of the script, animate it, then 'll adjust and animate again until the script does exactly what you want it to do.<p>
+</a><P><a name="12360">
+To show this process, let's build a simple script, one that rotates a tetrahedron around its own axis.<p>
+</a><P>
+<a name="12374">
+<STRONG>	 1.	 In N-Geometry, <strong>(CLICK-L)</strong> on <strong>File&gt;New Object&gt;Tetrahedron</strong>.
+</STRONG>
+</a><P><a name="12377">
+<STRONG>	2.	 In N-Dynamics, <strong>(CLICK-L)</strong> on the File&gt;Create New Script.
+</STRONG>
+</a><P><dl><a name="18152">
+<dt>Call it "rotate_object".</dt>
+</a><P><a name="18156">
+ <P><img src="3ScriptEditor.anc2.gif"><p>
+</a></dl>
+<a name="18157">
+<em>Figure 3.2  &#32; &#32;Specifying a script name
+</em></a><P>
+<a name="18158">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><a name="18159">
+<STRONG>	4.	 Drag the slider to specify three channels for the new script:
+</STRONG>
+</a><P><a name="18164">
+ <P><img src="3ScriptEditor.anc3.gif"><p>
+</a>
+<a name="18165">
+<em>Figure 3.3  &#32; &#32;Specifying the number of channels
+</em></a><P><a name="12499">
+ <P><img src="3ScriptEditor.anc4.gif"><p>
+</a><a name="12494">
+<em>Figure 3.4  &#32; &#32;Script with three parallel subactions
+</em></a><P><dl><dl><a name="12505">
+<dt>The script now contains three subactions-each of the blue blocks represents a different instruction.</dt>
+</a><P></dl></dl>
+<a name="12537">
+<STRONG>	5.	 Move the mouse over the first Make Visible channel (the one at the top of the script) and <strong>(CLICK-M)</strong>.
+</STRONG>
+</a><P><dl><a name="12532">
+<dt>The <strong>Edit Action Properties</strong> dialog box is displayed, as shown in <a href="3ScriptEditor.html#12660">Figure 3.5</a>:</dt>
+</a><P><a name="12548">
+ <P><img src="3ScriptEditor.anc5.gif"><p>
+</a></dl>
+<a name="12660">
+<em>Figure 3.5  &#32; &#32;Edit Action Properties dialog box
+</em></a><P><dl><dl><a name="12542">
+<dt>We decided early on that we wanted to rotate the tetrahedron, so let's assign the proper operation to this channel.</dt>
+</a><P></dl></dl>
+<a name="12575">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the text box next to Operation.
+</STRONG>
+</a><P><dl><a name="12579">
+<dt>The operation class menu appears:</dt>
+</a><P><a name="12580">
+ <P><img src="3ScriptEditor.anc6.gif"><p>
+</a></dl>
+<a name="12659">
+<em>Figure 3.6  &#32; &#32;Operation class menu
+</em></a><P><dl><dl><a name="12435">
+<dt>Operations are divided into modules (which roughly correspond to modules in N&#183;World); modules are further divided into <em>operation classes</em>. For example, the <strong>Geometry</strong> module contains the <strong>Camera</strong> operation class. When we specify an operation, we'll use notation that reads like "<strong>(CLICK-L)</strong> on the <strong>Geometry&gt;Camera</strong> operation."</dt>
+</a><P><a name="12636">
+<dt>Each operation class has a number of operations associated with it, which you can look at by clicking on the operation class. All operations are described in detail later in this manual except for those in the <strong>Skeletal Animation</strong> operation class, which are described in the <em>Skeletal Animation System Reference Manual</em>.</dt>
+</a><P></dl></dl>
+<a name="12639">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Geometry&gt;Rotation.
+</STRONG>
+</a><P><dl><a name="12640">
+<dt>The menu of "rotation" type operations is displayed:</dt>
+</a><P><a name="12655">
+ <P><img src="3ScriptEditor.anc7.gif"><p>
+</a></dl>
+<a name="12652">
+<em>Figure 3.7  &#32; &#32;Rotation operation class
+</em></a><P>
+<a name="12658">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on X Rotate.
+</STRONG>
+</a><P><dl><a name="12664">
+<dt>The <strong>Edit Action Properties</strong> dialog box changes, depending on the parameters N-Dynamics needs to perform the operation. For a rotation around the X axis, N-Dynamics wants you to specify the following information:</dt>
+</a><P><a name="12673">
+ <P><img src="3ScriptEditor.anc8.gif"><p>
+</a></dl>
+<a name="12674">
+<em>Figure 3.8  &#32; &#32;X Rotate parameters
+</em></a><P><dl><dl><a name="12696">
+<dt>To rotate an object, you must specify what object is to be specified (<strong>Object</strong>), whether the rotation should take place around the object's local axis (<strong>Local?</strong>) or the global center, and how much it should be rotated (<strong>Angle</strong>).</dt>
+</a><P></dl></dl>
+<a name="12697">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the text box next to Object.
+</STRONG>
+</a><P><dl><a name="12698">
+<dt>A list of the objects loaded into N-Geometry is currently displayed:</dt>
+</a><P><a name="12688">
+ <P><img src="3ScriptEditor.anc9.gif"><p>
+</a></dl>
+<a name="12689">
+<em>Figure 3.9  &#32; &#32;Choosing an object
+</em></a><P>
+<a name="12683">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the object you want to animate.
+</STRONG>
+</a><P><dl><a name="12702">
+<dt>In this case, choose the Tetrahedron.</dt>
+</a><P></dl><a name="12703">
+<STRONG>	11.	 Choose the frame of reference for the rotation.
+</STRONG>
+</a><P><dl><a name="12707">
+<dt>In this case, let's rotate the object around its local X axis, so make sure <strong>Yes</strong> is selected. We'll specify how much we want to rotate the tetrahedron in one of the steps below.</dt>
+</a><P></dl><a name="12716">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Do It in the Edit Action Properties dialog box.
+</STRONG>
+</a><P><dl><a name="12717">
+<dt>You'll see that the first channel in the script now looks different:</dt>
+</a><P><a name="12722">
+ <P><img src="3ScriptEditor.anc10.gif"><p>
+</a></dl>
+<a name="12723">
+<em>Figure 3.10  &#32; &#32;X Rotate action (with curve channel)
+</em></a><P><dl><dl><a name="18283">
+<dt>The grey box, which has an inverted triangle in the upper right corner, is a <em>curve </em>channel. The label for the channel says [ANGLE], which tells you what the curve is controlling, and [LINEAR], which describes the type of curve used for the operation.</dt>
+</a><P></dl></dl>
+<a name="18288">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on the gray area of the curve channel.
+</STRONG>
+</a><P><dl><a name="18289">
+<dt>This opens up the curve channel so that you can look at how it regulates the operation:</dt>
+</a><P><a name="12745">
+ <P><img src="3ScriptEditor.anc11.gif"><p>
+</a></dl>
+<a name="12746">
+<em>Figure 3.11  &#32; &#32;Viewing curve data
+</em></a><P>
+<a name="12740">
+<STRONG>	14.	 <strong>(CLICK-M)</strong> on the curve channel to edit the curve.
+</STRONG>
+</a><P><dl><a name="12755">
+<dt>The <strong>Edit Curve Properties</strong> dialog box appears:</dt>
+</a><P><a name="12761">
+ <P><img src="3ScriptEditor.anc12.gif"><p>
+</a></dl>
+<a name="12762">
+<em>Figure 3.12  &#32; &#32;The Edit Curve Properties dialog box
+</em></a><P><dl><dl><a name="12771">
+<dt>This dialog box lets you select the type of curve you want to use to animate the object (<strong>Curve Type</strong>). You set the start and end value for the curve (<strong>Start Value</strong> and <strong>End Value</strong>) here, and have the option of changing the minimum and maximum values that can be displayed in the channel (<strong>Min Plot Value</strong> and <strong>Max Plot Value</strong>).</dt>
+</a><P></dl></dl>
+<a name="12777">
+<STRONG>	15.	 Set <strong>Start and End </strong>values of 0.0 to 360.0 respectively, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="12796">
+<dt>The curve now looks like this:</dt>
+</a><P><a name="12788">
+ <P><img src="3ScriptEditor.anc13.gif"><p>
+</a></dl>
+<a name="12789">
+<em>Figure 3.13  &#32; &#32;Modified curve
+</em></a><P><dl><dl><a name="12798">
+<dt>As the script executes from left to right, the angle at which the cube is rotated increases from 0 (its starting position) to 360 (its ending position).</dt>
+</a><P></dl></dl>
+<a name="12756">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Animate button in the Script Editor.
+</STRONG>
+</a><P><dl><a name="12814">
+<dt>N-Dynamics brings the N-Geometry window to the front, and animates the rotation of the tetrahedron around its own X axis. The animation process generates a one-bit recording which you can playback (as described in the section <a href="2Interface.html#10954">"Animate," on page &#32;2-29</a> and <a href="2Interface.html#10955">"Playback," on page &#32;2-32</a>).</dt>
+</a><P></dl><a name="12823">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on Playback.
+</STRONG>
+</a><P><dl><a name="12826">
+<dt>For playback, N-Dynamics brings the Nichimen Playback window to the front, and plays back the black-and-white recording in real time.</dt>
+</a><P></dl><a name="12859">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Save Script</strong>. 
+</STRONG>
+</a><P><dl><a name="18334">
+<dt>To save your script and the referenced objects, make sure <strong>Yes</strong> is selected for each element you want to save under the <strong>Save</strong> column:</dt>
+</a><P><a name="12870">
+ <P><img src="3ScriptEditor.anc14.gif"><p>
+</a></dl>
+<a name="12871">
+<em>Figure 3.14  &#32; &#32;Saving a script and its objects
+</em></a><P><a name="12887">
+You've now created a basic script which can be retrieved or modified and updated at a later time.<p>
+</a><P><a name="12853">
+<h3> Modifying a Script</h3>
+</a><a name="12854">
+Now that you've looked at the recording of your script, you might decide you want to add some more operations. Suppose for example, that you want to rotate the cube around its Z axis too. How do you do that?<p>
+</a><P>
+<a name="12891">
+<STRONG>	19.	 <strong>(CLICK-M)</strong> on the second channel in the script "rotate-object."
+</STRONG>
+</a><P><a name="12893">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on <strong>Geometry&gt;Rotation&gt;Z Rotate</strong>.
+</STRONG>
+</a><P><a name="12905">
+ <P><img src="3ScriptEditor.anc15.gif"><p>
+</a>
+<a name="12906">
+<em>Figure 3.15  &#32; &#32;Z Rotate parameters
+</em></a><P><dl><dl><a name="12900">
+<dt>Choose the tetrahedron and make it rotate around its local axis.</dt>
+</a><P></dl></dl>
+<a name="12899">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="12916">
+<dt>The name of the second channel changes to Z Rotate Tetrahedron.</dt>
+</a><P></dl><a name="12915">
+<STRONG>	22.	 Edit the curve channel, as you did for the [ANGLE] value above.
+</STRONG>
+</a><P><dl><a name="12980">
+<dt>This time, specify start and end value of 0 and 45.</dt>
+</a><P></dl><a name="12892">
+<STRONG>	23.	 Animate the script again.
+</STRONG>
+</a><P><dl><a name="12925">
+<dt>The tetrahedron now rotates in <em>two</em> directions; around its local X axis, and around its local Z axis.</dt>
+</a><P></dl>
+<a name="13659">
+<h3> Parallel vs. Sequential Subactions</h3>
+</a><a name="13660">
+In the script "rotate_object" we rotated an object around two axes at the same time. What if you want to do one action, then another, and make sure that the two are tied together so that one always starts when the other ends?<p>
+</a><P><a name="14296">
+Sequential subactions are good for animating an action that you want to recur several times over the duration of the script. You might, for example, create several sequential subactions, each of which contains a walk cycle. By adding several sequential subactions, you could copy the cycle to each subaction and have the character in your animation walk over its entire length.<p>
+</a><P><a name="16090">
+Sequential subactions are also good if you have several operations that you want to take place one right after another. Since the sequential subactions share a cue, dragging the cue left or right does not affect the sequence; it may stretch the channels, but the shared cue ensures that when the first action ends, the second begins.<p>
+</a><P><a name="12992">
+<h3> Channel Order</h3>
+</a><a name="12999">
+As mentioned earlier, the order in which channels are arranged in your script is almost always significant.<p>
+</a><P><a name="13001">
+Some operations, like <strong>Render</strong> or <strong>Save Canvas to File</strong> typically appear at the bottom of the script; you want to render a scene after you've moved all the objects, or save the paint canvas after you've done all the paint operations you're going to do to a scene.<p>
+</a><P><a name="16104">
+The <strong>Update Skeleton</strong> operation, for example, should appear below other operations that animate the skeleton.<p>
+</a><P><a name="16101">
+Notes on individual operations, and any special placement considerations for those operations, are included in <a href="5Operations.html#32120">"Dynamic Operations," on page &#32;5-1</a>.<p>
+</a><P><a name="13000">
+<h4> Rotation Order</h4>
+</a><a name="13190">
+Channel order is also significant in simpler operations, such as rotations-while the object ends up in the same position, the "path" it takes to get there can be quite different. Let's see how, using our script "rotate_object."<p>
+</a><P>
+<a name="13016">
+<STRONG>	 1.	 Make sure the script "rotate_object" is loaded into the action editor.
+</STRONG>
+</a><P><dl><a name="13020">
+<dt>There should be three channels in the script: X Rotate Tetrahedron, Z Rotate Tetrahedron, and a third, <strong>Make Visible</strong> channel.</dt>
+</a><P></dl><a name="13025">
+<STRONG>	2.	 In N-Geometry, <strong>(CLICK-L)</strong> on objects on the element sensitvity menu, then <strong>(SHIFT-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><a name="18356">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Home 
+</STRONG>
+</a><P><dl><a name="18360">
+<dt>This clears the transformation matrix of the tetrahedron, returning it to its home position.</dt>
+</a><P></dl><a name="18375">
+<STRONG>	4.	 In N-Geometry, <strong>(CLICK-L)</strong> on points on the element sensitvity menu, then <strong>(SHIFT-L)</strong> on the vertex at the top of the tetrahedron.
+</STRONG>
+</a><P><a name="18376">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="18377">
+<dt>Move the vertex at the top of the tetrahedron out and slightly to one side:</dt>
+</a><P><a name="13126">
+ <P><img src="3ScriptEditor.anc16.gif"><p>
+</a></dl>
+<a name="13127">
+<em>Figure 3.16  &#32; &#32;Original and modified tetrahedron
+</em></a><P><dl><dl><a name="13119">
+<dt>The effect of changing rotation order is easier to see on asymmetrical objects. Because you are changing the shape of the object, and not its name, you don't need to update your script.</dt>
+</a><P></dl></dl>
+<a name="13101">
+<STRONG>	6.	 Animate the script.
+</STRONG>
+</a><P><a name="13026">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="13153">
+ <P><img src="3ScriptEditor.anc17.gif"><p>
+</a>
+<a name="13154">
+<em>Figure 3.17  &#32; &#32;Rotating the tetrahedron X before Z, frame 15 of 30
+</em></a><P>
+<a name="13027">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Save Current Recording (to Memory).
+</STRONG>
+</a><P><dl><a name="13028">
+<dt>Name this recording "XbeforeZ".</dt>
+</a><P></dl><a name="13031">
+<STRONG>	9.	 <strong>(CLICK-R)</strong> on the title bar.
+</STRONG>
+</a><P><dl><a name="13034">
+<dt>The Script Operations menu appears:</dt>
+</a><P><a name="13040">
+ <P><img src="3ScriptEditor.anc18.gif"><p>
+</a></dl>
+<a name="13041">
+<em>Figure 3.18  &#32; &#32;The Script operations menu
+</em></a><P><dl><dl><a name="13035">
+<dt>These operations let you manipulate the script hierarchy (adding channels, moving channels), modify time parameters for the script, open or close channels, and other miscellaneous tasks. All the commands on this menu are described in more detail in the section <a href="3ScriptEditor.html#11596">"The Script Operations &amp; Action Operations Menus," on page &#32;3-37</a>.</dt>
+</a><P></dl></dl>
+<a name="13051">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Reorder.
+</STRONG>
+</a><P><dl><a name="13052">
+<dt>The <strong>Reorder Channels</strong> menu appears, displaying a list of all channels in the script:</dt>
+</a><P><a name="13058">
+ <P><img src="3ScriptEditor.anc19.gif"><p>
+</a></dl>
+<a name="13059">
+<em>Figure 3.19  &#32; &#32;Reorder subchannels
+</em></a><P><dl><dl><a name="13053">
+<dt>To reorder the channels in a script, <strong>(CLICK-L)</strong> and hold down the mouse on the channel you want to move-the text turns red. Then, drag the channel up or down to its new position.</dt>
+</a><P></dl></dl>
+<a name="13068">
+<STRONG>	11.	 Move the Z Rotate Tetrahedron to the top of the script.
+</STRONG>
+</a><P><dl><a name="13069">
+<dt>As you drag the channel either up or down, the other channels "shuffle" to accommodate the moved channel.</dt>
+</a><P></dl><a name="13070">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="13071">
+<dt>The script editor updates itself automatically to reflect the new order you've specified.</dt>
+</a><P><a name="18405">
+ <P><img src="3ScriptEditor.anc20.gif"><p>
+</a></dl>
+<a name="18406">
+<em>Figure 3.20  &#32; &#32;Reordered channels
+</em></a><P>
+<a name="13072">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Animate.
+</STRONG>
+</a><P><dl><a name="13073">
+<dt>Did you see the difference? Because the order in which objects are rotated is significant, moving one channel in front of the other has a visible effect on your script.</dt>
+</a><P></dl><a name="13077">
+<STRONG>	14.	 <strong>(CLICK-R)</strong> on Playback.
+</STRONG>
+</a><P><a name="13078">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Save Current Recording (to Memory).
+</STRONG>
+</a><P><dl><a name="13079">
+<dt>Name this recording "ZbeforeX".</dt>
+</a><P><a name="13142">
+ <P><img src="3ScriptEditor.anc21.gif"><p>
+</a></dl>
+<a name="13143">
+<em>Figure 3.21  &#32; &#32;Rotating the tetrahedron Z before X, frame 15 of 30
+</em></a><P>
+<a name="13086">
+<STRONG>	16.	 <strong>(CLICK-R)</strong> on Playback, then <strong>(CLICK-L)</strong> on Play any Recording.
+</STRONG>
+</a><P><dl><a name="13088">
+<dt>First, play the recording XbeforeZ, then play ZbeforeX. Seeing the two close together makes it easier to see the difference.</dt>
+</a><P></dl><a name="13182">
+<STRONG>	17.	 Save your script using the File button.
+</STRONG>
+</a><P>
+<a name="13173">
+<h4> Unused Channels in Scripts</h4>
+</a><a name="13015">
+If you've followed the examples in this chapter so far, the bottom channel in your script "rotate_object" is unused. A channel is unused if it doesn't make reference to an object. You may want to have several unused channels in your script as you're building it, but it's a good idea for clarity's sake to remove any unused channels before saving the final version of the script.<p>
+</a><P><a name="13201">
+<h4> Activating and Deactivating Channels</h4>
+</a><a name="13204">
+If you want to <em>temporarily</em> turn off channels in a script, but don't want to necessarily delete it from your script, you can <em>deactivate</em> that channel. If the script is animated, the animation is calculated as if the channel weren't there.<p>
+</a><P><a name="13208">
+Try this exercise to see how deactivating a channel works:<p>
+</a><P>
+<a name="13211">
+<STRONG>	 1.	 Make sure the script "rotate_object" is loaded.
+</STRONG>
+</a><P><a name="13248">
+<STRONG>	2.	 Move the cursor over the channel Z Rotate Tetrahedron.
+</STRONG>
+</a><P><a name="13212">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><dl><a name="13267">
+<dt>The Action Operations menu appears:</dt>
+</a><P><a name="13223">
+ <P><img src="3ScriptEditor.anc22.gif"><p>
+</a></dl>
+<a name="13224">
+<em>Figure 3.22  &#32; &#32;The Action Operations menu
+</em></a><P><a name="13268">
+All the commands on this menu are described in more detail in the section <a href="3ScriptEditor.html#11596">"The Script Operations &amp; Action Operations Menus," on page &#32;3-37</a>.<p>
+</a><P>
+<a name="13218">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Deactivate.
+</STRONG>
+</a><P><dl><a name="13231">
+<dt>In the script editor, the text in the deactivated channel turns <em>black</em>. (This command changes to <strong>Activate this Action</strong> if you <strong>(CLICK-R)</strong> on a deactivated channel.)</dt>
+</a><P></dl><a name="13237">
+<STRONG>	5.	 Animate the script.
+</STRONG>
+</a><P><dl><a name="13251">
+<dt>The X rotation is animated, but not the Z rotation.</dt>
+</a><P></dl>
+<a name="13252">
+Turning channels on or off is a powerful way of debugging scripts. You can turn channels on or off, reanimate, and repeat the process until you locate the source of any problems you might be having. There is no limit to the number of channels that can be active or inactive in a script.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can also use the hot key "a" to activate or deactivate a channel. Move the cursor over the channel and press the "a" key on the keyboard.</em></font></dd></dt></dl><P>
+<a name="18560">
+<h2><HR> Basic Channel Operations</h2>
+</a><a name="18561">
+There are a number of channel operations you'll perform over and over when working with scripts, whether the channel is an action or a curve.<p>
+</a><P><a name="13951">
+<h4> Opening a Channel</h4>
+</a><a name="13691">
+"Opening" a channel means displaying any subchannels that it might contain in the script editor. For example, if a channel contains an action, you can open it to see the type of curve used by that channel (if it uses a dynamic value).<p>
+</a><P><a name="13968">
+To open a channel:<p>
+</a><P>
+<a name="13949">
+<STRONG>	 1.	 Make sure the script is open.
+</STRONG>
+</a><P><dl><a name="14055">
+<dt>The channel contains lower level channels if there is a box in the upper left corner.</dt>
+</a><P></dl><a name="13950">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> anywhere on the channel.
+</STRONG>
+</a><P><dl><a name="18461">
+<dt>If the black triangle is solid, it indicates that the channel contains subchannels.</dt>
+</a><P><a name="14086">
+<dt>Dynamic operations and parent channels have a black rectangle in the upper right corner. (If you <strong>(CLICK-R)</strong> on this box, the channel "zooms" to fill the entire Script Editor.</dt>
+</a><P><a name="13977">
+ <P><img src="3ScriptEditor.anc23.gif"><p>
+</a></dl>
+<a name="13978">
+<em>Figure 3.23  &#32; &#32;Top, a closed channel; middle, opened channel, right opened curve
+</em></a><P><a name="13681">
+<h4> Closing a Channel</h4>
+</a><a name="13699">
+To close a channel, <strong>(CLICK-L)</strong> on it. <p>
+</a><P><a name="14101">
+If you <strong>(CLICK-L)</strong> on a close box for a parent channel, N-Dynamics remembers the state of any children channels. If, for example, you close an action, but don't close its curve, the next time you open the action, the curve will still be open.<p>
+</a><P><a name="14122">
+<h4> Closing Multiple Levels</h4>
+</a><a name="14148">
+As you add more hierarchical complexity to your scripts, you may wish to quickly determine "how deep" you are down the hierarchy. If you are zoomed in on a channel, the color-coded boxes on the title bar indicate your relative depth (from the top level) in the script.<p>
+</a><P><a name="14151">
+To go up to a higher level:<p>
+</a><P>
+<a name="14157">
+<STRONG>	 1.	 While in the lower level channel, move the cursor over the title bar.
+</STRONG>
+</a><P><dl><a name="14165">
+<dt>Note that there are several boxes on its left end:</dt>
+</a><P><a name="14132">
+ <P><img src="3ScriptEditor.anc24.gif"><p>
+</a></dl>
+<a name="14133">
+<em>Figure 3.24  &#32; &#32;Script depth; the current channel is four levels deep
+</em></a><P><ul><a name="14182">
+<li>A new box is added to the title bar for each "level" down you go in the script. 
+</a></li><P><a name="17148">
+<li>To go back up to a specific level, <strong>(CLICK-L)</strong> on the appropriate level box. For example, to go back up to the second level, <strong>(CLICK-L)</strong> on the second colored box from the left.
+</a></li><P><a name="17149">
+<li>To go back up one level, <strong>(CLICK-L)</strong> on the title bar.
+</a></li><P></ul><P><a name="14125">
+<h4> Copying a Channel</h4>
+</a><a name="14193">
+If you create a channel that contains several subchannels, then find that you want to create the same channel (and set of subchannels) again, you can copy the channel.<p>
+</a><P><a name="13705">
+To copy the contents of one channel to another:<p>
+</a><P>
+<a name="14202">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the channel you want to copy.
+</STRONG>
+</a><P><a name="14209">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Remember.
+</STRONG>
+</a><P><a name="14222">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the channel you want to copy the remembered channel into.
+</STRONG>
+</a><P><a name="18525">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on Move Here.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can also use the hot keys for remembering an element (".") and pasting it ("c").</em></font></dd></dt></dl><P>
+<a name="13707">
+<h4> Deleting a Channel</h4>
+</a><a name="14234">
+Deleting a channel removes it <em>and any subchannels it contains</em> from the script.<p>
+</a><P><a name="13708">
+To delete a channel:<p>
+</a><P>
+<a name="14261">
+<STRONG>	 1.	 Move the cursor over the channel you want to delete.
+</STRONG>
+</a><P><a name="14262">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel, then <strong>(CLICK-L)</strong> on Delete.
+</STRONG>
+</a><P><dl><a name="14242">
+<dt>To remove a channel but <em>none</em> of its subchannels (effectively raising the subchannels in the script hierarchy), see the section <a href="3ScriptEditor.html#18783">"Dissolve," on page &#32;3-41</a>.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The hot key combination </em><strong>(SHIFT-D)</strong><em> deletes an element (either a channel or a cue).</em></font></dd></dt></dl><P>
+<a name="14241">
+<h4> Cutting a Channel</h4>
+</a><a name="13955">
+This operation is available on sequential subactions only. Cutting a sequential subaction creates additional subactions in the same channel (the equivalent, basically, of having specified a larger number of sequential subactions when originally creating them). To cut a sequential subaction:<p>
+</a><P>
+<a name="14300">
+<STRONG>	 1.	 Move the cursor over the channel you want to cut.
+</STRONG>
+</a><P><a name="14301">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Cut this Action to cut the channel in half.
+</STRONG>
+</a><P>
+<a name="15681">
+<h4> Resizing a Channel</h4>
+</a><a name="15682">
+To change the length of a channel:<p>
+</a><P>
+<a name="15689">
+<STRONG>	 1.	 Move the mouse over the beginning or end of the channel.
+</STRONG>
+</a><P><dl><a name="15690">
+<dt>When the mouse is over the cue, a white box appears around the cue.</dt>
+</a><P></dl><a name="15696">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> and drag the cue left or right.
+</STRONG>
+</a><P><dl><a name="15697">
+<dt>If the channel you're resizing is a curve, any data is stretched or shrunk proportionately as well. </dt>
+</a><P><a name="18549">
+<dt>The positions of any cues in the curve channel are also affected by resizing the channel, unless those cues are <em>frozen</em>. See the section <a href="3ScriptEditor.html#11619">"Set Freeze," on page &#32;3-56</a> to learn how to freeze cues.</dt>
+</a><P></dl>
+<a name="13692">
+<h4> Editing Properties of a Channel</h4>
+</a><a name="13956">
+To edit the properties of either a curve or an operation:<p>
+</a><P>
+<a name="13957">
+<STRONG>	 1.	 Move the mouse over the channel.
+</STRONG>
+</a><P><a name="13958">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the channel.
+</STRONG>
+</a><P><ul>
+<BR><a name="13959">
+<li>If the channel contains an action, the Edit Action properties menu is displayed. 
+</a><P><BR><a name="13962">
+<li>If the channel contains a curve, the Edit Curve properties is displayed.
+</a><P></ul>
+
+<a name="13357">
+<h2><HR> Cues</h2>
+</a><a name="14484">
+There are cues in every channel; by definition, every channel has a cue at its beginning and end; curve channels sometimes have additional cues in between. They occur at a specified given time within the script and (optionally) contain some value.<p>
+</a><P><a name="17204">
+A cue might represent some numeric value in a curve (for an action like <strong>X Rotate</strong>), a camera view (for an action like <strong>Set Camera View</strong>) or a skeletal pose (for an action like <strong>Animate Pose to Pose</strong>).<p>
+</a><P><a name="14532">
+ <P><img src="3ScriptEditor.anc25.gif"><p>
+</a><a name="14533">
+<em>Figure 3.25  &#32; &#32;Cues in a data channel
+</em></a><P><a name="14474">
+<em>Every</em> channel has a cue at its beginning and end (so they can be resized).<p>
+</a><P><a name="14626">
+Sequential subactions (by definition) share a common cue:<p>
+</a><P><a name="14597">
+ <P><img src="3ScriptEditor.anc26.gif"><p>
+</a><a name="17302">
+<em>Figure 3.26  &#32; &#32;Cues in sequential subactions
+</em></a><P><a name="17303">
+If you move a cue shared by two sequential subactions, both actions are affected.<p>
+</a><P><a name="17304">
+<h3> Editing a Cue</h3>
+</a><a name="14568">
+You can perform operations on cues (using the Cue Operations menu) or change the value for the cue (using the Cue Parameters menu).<p>
+</a><P><a name="14454">
+To edit a cue:<p>
+</a><P><a name="14455">
+Move the mouse cursor over a cue, then use the appropriate mouse button for the type of operation you want to perform:<p>
+</a><P><ul><a name="14457">
+<li><strong>(CLICK-L)</strong> to drag the cue left or right in time by moving the mouse. (Note that every channel has a cue at the beginning and end, so that you can resize it by dragging the cues at either end.)
+</a></li><P><a name="14458">
+<li><strong>(CLICK-M)</strong> displays the Edit Cue Parameters menu (described below).
+</a></li><P><a name="14459">
+<li><strong>(CLICK-R)</strong> displays Cue Operations menu (described below).
+</a></li><P></ul><P><a name="13800">
+<h4> The Adjust Parameter Value Menu</h4>
+</a><a name="14466">
+The <strong>Adjust Parameter Value</strong> lets you set the value for a cue; however, because a cue can represent a number of different things (such as a value, a pose, a camera view, or a color) the parameters you can set in the menu change depending on the type of action the data channel is associated with. <p>
+</a><P><ul><a name="15376">
+<li>If the cue represents a simple value, the cue can be moved in the curve editor.
+</a></li><P><a name="15378">
+<li>If the cue represents a complex value (such as a pose or a camera view) the cue <em>can't</em> be moved in the curve editor.
+</a></li><P></ul><P><a name="14698">
+<h4> Editing Cues that Represent Simple Values</h4>
+</a><a name="14736">
+If the cue represents a simple value, you can <strong>(CLICK-M)</strong> on the cue to set a new value. A curve channel created for an X Rotate operation, for example, represents a simple value-an angle-that can be modified over the length of the script.<p>
+</a><P><a name="14668">
+ <P><img src="3ScriptEditor.anc27.gif"><p>
+</a><a name="14669">
+<em>Figure 3.27  &#32; &#32;The Cue Operations for a cue in a curve data channel
+</em></a><P><a name="14705">
+<h4> Editing Cues that Represent Complex Values</h4>
+</a><a name="14737">
+Other cues, however, represent complex values; a cue used to mark a skeletal pose, for example, indicates that all the bones on the selected skeleton should be rotated and lengthened to a named state at a certain time in the script. Including separate curve channels for all x, y, and z rotation, and length for every bone would be impractical, so the pose is represented by a single cue. However, because that cue represents multiple values, editing its value in the curve editor wouldn't make sense.<p>
+</a><P><a name="20555">
+If you <strong>(CLICK-M)</strong> on a cue that represents a complex value, such as a skeletal pose, you're prompted to select which pose should occur at that point in time:<p>
+</a><P><a name="14703">
+ <P><img src="3ScriptEditor.anc28.gif"><p>
+</a><a name="14680">
+<em>Figure 3.28  &#32; &#32;The Cue Operations menu for an Animate Pose to Pose action
+</em></a><P><a name="14738">
+Similarly, a Camera View is a complex value; it contains an x, y, and z location for the camera, as well as rotations along each axis. Again, the complex value is represented by a single cue. If you <strong>(CLICK-M)</strong> on a cue to select a camera view, you're prompted to select either the current view in the N-Geometry window or a saved view:<p>
+</a><P><a name="14688">
+ <P><img src="3ScriptEditor.anc29.gif"><p>
+</a><a name="14689">
+<em>Figure 3.29  &#32; &#32;The Cue Operations menu for a Set Camera View action
+</em></a><P><a name="15448">
+Cue properties may still be assigned to a cue that represents a complex value; for example, you may want to specify a type of curve treatment for a cue (such as a slow-in) when animating toward a skeletal pose. See the section <a href="3ScriptEditor.html#19525">"Edit Properties," on page &#32;3-31</a> for more about cue properties.<p>
+</a><P><a name="15452">
+Remember, the cue type can vary depending on the type of action the cue is associated with; the menu displays all the information you'll need to update the cue appropriately.<p>
+</a><P><a name="20792">
+ <p>
+</a><a name="15453">
+<h3> The Cue Operations Menu</h3>
+</a><a name="14462">
+While the Edit Cue Parameters menu lets you change the value for a cue, the Cue Operations menu lets you perform more "physical" operations on a cue (such as setting its position numerically, copying its value, or deleting the cue).<p>
+</a><P><a name="14756">
+To display the menu of cue operations, <strong>(CLICK-R)</strong> on a cue:<p>
+</a><P><a name="13803">
+ <P><img src="3ScriptEditor.anc30.gif"><p>
+</a><a name="13804">
+<em>Figure 3.30  &#32; &#32;The Cue Operations menu
+</em></a><P><a name="14743">
+Each item on the Cue Operations menu is described below: <p>
+</a><P><a name="14438">
+<h4> Delete</h4>
+</a><a name="14390">
+Removes the cue from the channel.<p>
+</a><P><a name="19508">
+<h4> Detach from Marker</h4>
+</a><a name="19509">
+If the cue is currently linked to a marker, this command "detaches" the cue.<p>
+</a><P><a name="14786">
+<h4> Edit Value</h4>
+</a><a name="14407">
+This is identical to using <strong>(CLICK-M)</strong> on a cue. Choosing this command displays the menu described in <a href="3ScriptEditor.html#13800">"The Adjust Parameter Value Menu," on page &#32;3-24</a>. <p>
+</a><P><a name="19559">
+<h4> Edit Concurrent Cues</h4>
+</a><a name="19560">
+This is identical to using <strong>(CLICK-R)</strong> on a marker. Choosing this command displays the menu described in <a href="3ScriptEditor.html#18764">"Edit Concurrent Cues," on page &#32;3-50</a>. <p>
+</a><P><a name="14345">
+<h4> Freeze/Unfreeze</h4>
+</a><a name="14853">
+If you want a cue to be permanently frozen in time, (you want the value, pose, or view associated with that curve to happen a set number of seconds into the animation) you can freeze the cue. Once a cue is frozen, it will not move, regardless of any stretching or shrinking you might perform on the channel:<p>
+</a><P><a name="14862">
+ <P><img src="3ScriptEditor.anc31.gif"><p>
+</a><a name="14863">
+<em>Figure 3.31  &#32; &#32;Frozen cue
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You cannot freeze a cue linked to a marker.</font></dd></dt></dl><P>
+<a name="14855">
+<h4> Link to Marker</h4>
+</a><a name="14405">
+Links the selected cue to a marker on the marker track. Moving the marker affects the position of any cue tied to the marker.<p>
+</a><P><a name="14923">
+Try the following mini-tutorial to see how the could be used:<p>
+</a><P>
+<a name="14908">
+<STRONG>	 1.	 Open an action that contains several parallel curves.
+</STRONG>
+</a><P><a name="14909">
+<STRONG>	2.	 Add a marker track to the action's channel.
+</STRONG>
+</a><P><dl><a name="14910">
+<dt><strong>(CLICK-R)</strong> on the action and choose <strong>Add Marker Track</strong> from the Action Operations menu.</dt>
+</a><P></dl><a name="14914">
+<STRONG>	3.	 <strong>(CTRL-L)</strong> on the marker track to turn on color coding of markers and associated cues.
+</STRONG>
+</a><P><dl><a name="14928">
+<dt>Color coding is on if a colored box appears around markers on the marker track.</dt>
+</a><P></dl><a name="14920">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the marker track to add a new marker.
+</STRONG>
+</a><P><dl><a name="14929">
+<dt>This adds a marker without adding any additional cues.</dt>
+</a><P></dl><a name="14921">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on the new marker and choose Remember this Marker.
+</STRONG>
+</a><P><a name="14922">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on a cue and choose Link to Remembered Marker.
+</STRONG>
+</a><P><dl><a name="14925">
+<dt>You may want to repeat this step several times with different cues </dt>
+</a><P></dl><a name="14924">
+<STRONG>	7.	 Slide the marker to the left and right.
+</STRONG>
+</a><P><dl><a name="14942">
+<dt>The associated cues move in relation to the position of the new marker. Linking multiple cues to a marker is useful if you want to move several cues at once. </dt>
+</a><P><a name="14954">
+<dt>A cue does not have to be directly lined up with a marker to be tied to it; any cue in the channel can be associated with a marker.</dt>
+</a><P><a name="14968">
+ <P><img src="3ScriptEditor.anc32.gif"><p>
+</a></dl>
+<a name="14969">
+<em>Figure 3.32  &#32; &#32;Move several cues at once by linking them to a marker
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>There are hot keys for remembering a marker (".") and linking a cue to the remembered marker ("L").</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	You can <strong>(CTRL-L)</strong> on a marker track to display linked markers in a color coded mode. Each marker is assigned a color, and any cues linked to that marker appear in the same color in the <strong>Script Editor</strong>.</font></dd></dt></dl><P>
+<a name="19639">
+You may also want to refer to the section <a href="5Operations.html#24813">"Move, Scale and Rotate [Linked]," on page &#32;5-56</a> for more on linking cues to markers.<p>
+</a><P><a name="14347">
+<h4> Remember</h4>
+</a><a name="14394">
+Remembers both the time and value associated with the selected cue. You can copy the save value or saved time to another cue using the <strong>Use Remembered Value</strong> or <strong>Use Remembered Time</strong> commands, described below.<p>
+</a><P><a name="14348">
+<h4> Set Time</h4>
+</a><a name="14396">
+Specify the time (in either seconds or frames) at which this cue should fall.<p>
+</a><P><a name="14357">
+<h4> Use Remembered Value</h4>
+</a><a name="15074">
+Copies the value remembered with the last <strong>Remember </strong>command to the currently selected cue.<p>
+</a><P><a name="15083">
+ <P><img src="3ScriptEditor.anc33.gif"><p>
+</a><a name="15084">
+<em>Figure 3.33  &#32; &#32;Copying values from one cue to another
+</em></a><P><a name="15109">
+Remembered values can be copied between channels.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>There are hot keys for remembering a cue (".") and pasting its value ("c").</em></font></dd></dt></dl><P>
+<a name="15076">
+<h4> Use Remembered Time</h4>
+</a><a name="15143">
+Moves the selected cue to the position of the cue remembered with the last <strong>Remember </strong>operation:<p>
+</a><P><a name="15123">
+ <P><img src="3ScriptEditor.anc34.gif"><p>
+</a><a name="15124">
+<em>Figure 3.34  &#32; &#32;The Edit Cue Properties menu
+</em></a><P><a name="14398">
+Cue times can be copied between any two cues.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>There are hot keys for remembering a cue (".") and pasting its time ("w") (for "when").</em></font></dd></dt></dl><P>
+<a name="19525">
+<h4> Edit Properties</h4>
+</a><a name="19526">
+Displays the appropriate <strong>Edit Cue Values</strong> menu. Editing a cue in a conic spline curve for a simply <strong>Y Rotate</strong> action, for example, displays the following menu:<p>
+</a><P><a name="19530">
+ <P><img src="3ScriptEditor.anc35.gif"><p>
+</a><a name="19531">
+<em>Figure 3.35  &#32; &#32;The Edit Cue Properties menu
+</em></a><P><a name="19532">
+You can specify a new angle of rotation, <em>as well as</em> new bias, continuity, and tension values for the cue.<p>
+</a><P><a name="12438">
+<h2><HR> Time</h2>
+</a><a name="12439">
+Time runs from left to right in the script editor; frame 1 at the left side, up to the final frame in the script at the right. The time line indicates:<p>
+</a><P><ul><a name="15506">
+<li>The portion of the script visible in the script editor.
+</a></li><P><a name="15507">
+<li>The portion of the script that will be animated by the Animate command.
+</a></li><P></ul><P><a name="15517">
+<h3> Changing the Length of a Script</h3>
+</a><a name="15511">
+To change the overall length (number of frames) in a script:<p>
+</a><P>
+<a name="15536">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the script length box.
+</STRONG>
+</a><P><a name="19837">
+ <P><img src="3ScriptEditor.anc36.gif"><p>
+</a>
+<a name="19838">
+<em>Figure 3.36  &#32; &#32;Script length box
+</em></a><P>
+<a name="15537">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Change Script Length.
+</STRONG>
+</a><P><dl><a name="15538">
+<dt>The following menu appears:</dt>
+</a><P><a name="15529">
+ <P><img src="3ScriptEditor.anc37.gif"><p>
+</a></dl>
+<a name="15530">
+<em>Figure 3.37  &#32; &#32;Changing the length of a script
+</em></a><P>
+<a name="15524">
+<STRONG>	3.	 Enter a new length for the script, using seconds or frames.
+</STRONG>
+</a><P><a name="15539">
+<STRONG>	4.	 Specify whether subchannels should be stretched to the new script length.
+</STRONG>
+</a><P><dl><a name="15542">
+<dt>When you change the length of a script, you need to specify how subchannels should be treated:</dt>
+</a><P></dl><ul>
+<BR><a name="15543">
+<li><strong>Yes</strong> stretches or shrinks any channels proportionately to the new script length.
+</a><P><BR><a name="15546">
+<li><strong>No</strong> adjusts the length of the script, but does not stretch or shrink any subchannels.
+</a><P><ul>
+<BR><a name="15550">
+<li>If you <em>stretch</em> a script with this option, extra working space is added beyond the end of the old script.
+</a><P><BR><a name="15551">
+<li>If you <em>cut</em> a script, any channels that extended beyond the new cutoff point are cut; any information that existed beyond the cutoff point is lost.
+</a><P></ul>
+</ul>
+
+<a name="13718">
+<h3> The Time Line and Animation Line</h3>
+</a><a name="13720">
+The time line and animation lines run across the bottom of the script editor, as shown in <a href="2Interface.html#10960">Figure 2.1</a>:<p>
+</a><P><a name="15586">
+ <P><img src="3ScriptEditor.anc38.gif"><p>
+</a><a name="15587">
+<em>Figure 3.38  &#32; &#32;The frame range area (including the time line)
+</em></a><P><ul><a name="15561">
+<li>The <strong>Time Line</strong> indicates the portion of the script that is currently visible in the script editor window.
+</a></li><P><a name="15562">
+<li>The <strong>Animation Line</strong> indicates the portion of the script that is animated if you use the <strong>Animate</strong> or <strong>Playback</strong> buttons.
+</a></li><P></ul><P><a name="15575">
+The first and last frame of the currently visible portion of the script are shown in the frame range area.<p>
+</a><P><a name="15560">
+<h4> Viewing Part of a Script-Setting the Time Line</h4>
+</a><a name="15563">
+The red line across the bottom of the script window determines how much of the script is visible in the script editor window at any one time.<p>
+</a><P><ul><a name="13721">
+<li><strong>(DRAG-L)</strong> moves the red line back and forth (similar to sliding a channel).
+</a></li><P><a name="13722">
+<li><strong>(DRAG-M)</strong> increases or decreases the size of the red line. If you want to expand the time line to fit the entire length of the script, <strong>(DRAG-M)</strong> to the right so that the red bar expands to fit the entire script.
+</a></li><P><a name="15626">
+<li><strong>(DRAG-R)</strong> moves either the start or end of the red line (similar to moving a beginning or end cue on a channel).
+</a></li><P><a name="17256">
+<li><strong>(CTRL-R)</strong> displays a menu to set the frame range numerically.
+</a></li><P><a name="15644">
+ <P><img src="3ScriptEditor.anc39.gif"><p>
+</a></ul><P><a name="15645">
+<em>Figure 3.39  &#32; &#32;The red line indicates the currently visible portion of the script
+</em></a><P><a name="15628">
+The beginning and ending frame number for the visible area of the script are also updated when you manipulate the time line.<p>
+</a><P><a name="13729">
+<h4> Animating Part of a Script-Setting the Animation Line</h4>
+</a><a name="15489">
+The thin white line that runs across the time line is the <em>animation line</em>. It marks the part of the script that will be animated using the <strong>Animate</strong> button at the bottom of the script editor. To modify the animation line, <strong>(CLICK-L)</strong> on the frame range box next to the <strong>Playback</strong> button at the bottom of the script editor. The following menu is displayed:<p>
+</a><P><a name="19912">
+ <P><img src="3ScriptEditor.anc40.gif"><p>
+</a><a name="19913">
+<em>Figure 3.40  &#32; &#32;Frame operations
+</em></a><P>
+<a name="19919">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Change Active Frames.
+</STRONG>
+</a><P><dl><a name="19920">
+<dt>The following dalog box is displayed:</dt>
+</a><P><a name="19926">
+ <P><img src="3ScriptEditor.anc41.gif"><p>
+</a></dl>
+<a name="19927">
+<em>Figure 3.41  &#32; &#32;Specifying frames to be animated
+</em></a><P>
+<a name="19921">
+<STRONG>	2.	 Enter the range of frames that you want to animate.
+</STRONG>
+</a><P><dl><a name="19931">
+<dt>In the example above, we specified frames 10 through 30. The white Animation Line is updated in the frame range area of the Script Editor:</dt>
+</a><P><a name="19936">
+ <P><img src="3ScriptEditor.anc42.gif"><p>
+</a></dl>
+<a name="19937">
+<em>Figure 3.42  &#32; &#32;Frame operations
+</em></a><P><a name="11596">
+<h2><HR> The Script Operations &amp; Action Operations Menus</h2>
+</a><a name="11692">
+The <strong>Script Operations</strong> menu lets you work with the entire script; changes you make using this menu affect the whole script or all channels in the script, rather than a single channel. (The script itself can be considered a high-level parent channel, since it contains all other subchannels in the script.)<p>
+</a><P><a name="16485">
+For that reason, you may notice that this menu is very similar to the <strong>Action Operations</strong> menu; this section describes the menus on both commands, since there is a good deal of overlap between the two.<p>
+</a><P><a name="18582">
+To display these menus, <strong>(CLICK-R)</strong> on either the title bar (for the Script Operations menu) or a channel (for the Action Operations menu). After each command, a line indicating what type of channel the command can be performed on is included (script, any channel, action, curve, etc.).<p>
+</a><P><a name="18578">
+The <strong>Curve Operations</strong> menu is described in more detail in <a href="4CurveEditor.html#15856">Chapter &#32;, "Working with Curves." &#32;</a><p>
+</a><P><a name="12423">
+ <P><img src="3ScriptEditor.anc43.gif"><p>
+</a><a name="12424">
+<em>Figure 3.43  &#32; &#32;Left, Script Operations menu; right, Action Operations menu
+</em></a><P><a name="11607">
+<h3> Hierarchy</h3>
+</a><a name="11663">
+The hierarchy commands let you add, move, or reorder channels in a script. They are tools to let you organize your work.<p>
+</a><P><a name="18605">
+<h4> Add</h4>
+</a><a name="18606">
+<em>Scripts, actions</em><p>
+</a><P><a name="18607">
+Lets you add parallel subactions to a channel or script. <strong>(CLICK-L)</strong> on <strong>Add</strong> to display a menu of options for adding the channels:<p>
+</a><P><a name="18611">
+ <P><img src="3ScriptEditor.anc44.gif"><p>
+</a><a name="18612">
+<em>Figure 3.44  &#32; &#32;Adding parallel subactions
+</em></a><P><a name="18613">
+Parallel subactions are typically used to control simultaneous, independent motion of several different types. For example, an object that spins while crossing the screen requires at least two parallel subactions: one to specify horizontal motion for crossing the screen, and another to specify rotation to give the object its spin.<p>
+</a><P><a name="18614">
+You can add a single action in parallel with the existing subaction(s) or you can add several subactions. When adding several subactions, you have the following options:<p>
+</a><P><ul><a name="18615">
+<li>You can have their start and end times concurrent with their superior (that is, they start at 0% and end at 100% of the superior).
+</a></li><P><a name="18616">
+<li>You can stagger their start times.
+</a></li><P><a name="18617">
+<li>You can stagger their end times.
+</a></li><P><a name="18618">
+<li>You can stagger both their start and end times.
+</a></li><P></ul><P><a name="18619">
+By default, actions with staggered start and/or end times are placed evenly within the parent channel.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The hot key ("s") can be used to insert parallel subactions to either the script or an action.</em></font></dd></dt></dl><P>
+<a name="18627">
+<h4> Add One</h4>
+</a><a name="18628">
+Adds a single subaction at the bottom of the script. The script matches the length of the script.<p>
+</a><P><a name="18644">
+ <P><img src="3ScriptEditor.anc45.gif"><p>
+</a><a name="18645">
+<em>Figure 3.45  &#32; &#32;Adding a single subaction
+</em></a><P><a name="18646">
+<h4> Add Several</h4>
+</a><a name="18647">
+Add any number of full length subactions to the bottom of the script. You specify the number of subactions you want to add using a slider.<p>
+</a><P><a name="18668">
+ <P><img src="3ScriptEditor.anc46.gif"><p>
+</a><a name="18669">
+<em>Figure 3.46  &#32; &#32;Adding several subactions
+</em></a><P><a name="18670">
+<h4> Add Several (Staggered Starts)</h4>
+</a><a name="18671">
+Adds any number of subactions, with staggered starts. The first added subaction is the same length as the script; each subsequent channel is progressively shorter.<p>
+</a><P><a name="18698">
+ <P><img src="3ScriptEditor.anc47.gif"><p>
+</a><a name="18699">
+<em>Figure 3.47  &#32; &#32;Adding subactions with staggered starts
+</em></a><P><a name="18700">
+<h4> Add Several (Staggered Ends)</h4>
+</a><a name="18701">
+Adds any number of subactions, with staggered ends. The first added subaction is the shortest; each below it is progressively longer until the final added channel, which is the length of the script.<p>
+</a><P><a name="18728">
+ <P><img src="3ScriptEditor.anc48.gif"><p>
+</a><a name="18729">
+<em>Figure 3.48  &#32; &#32;Adding subactions with staggered ends
+</em></a><P><a name="18730">
+<h4> Add Several (Staggered Durations)</h4>
+</a><a name="18731">
+Adds any number of subactions, each of the same length, equally spaced over the length of the script.<p>
+</a><P><a name="18753">
+ <P><img src="3ScriptEditor.anc49.gif"><p>
+</a><a name="18754">
+<em>Figure 3.49  &#32; &#32;Adding subactions with staggered ends
+</em></a><P><a name="18761">
+<h4> Delete</h4>
+</a><a name="18762">
+<em>Any channel</em><p>
+</a><P><a name="18763">
+Deletes the selected channel and any subchannels.<p>
+</a><P><a name="18783">
+<h4> Dissolve</h4>
+</a><a name="18784">
+<em>Channels with subchannels only</em><p>
+</a><P><a name="18785">
+Deletes the selected action, but does not affect any subchannels of that action. You could use this to delete an action but leave its associated curve channel.<p>
+</a><P><a name="18792">
+<h4> Empty</h4>
+</a><a name="18793">
+<em>Scripts, channels</em><p>
+</a><P><ul><a name="18794">
+<li>If performed on a <em>script</em>, this removes any channels in the script.
+</a></li><P><a name="18795">
+<li>If performed on a <em>channel</em>, any subchannels are deleted and the operation type for the action is set to <strong>None</strong>.
+</a></li><P></ul><P><a name="18811">
+<h4> Insert Parent</h4>
+</a><a name="18812">
+<em>Any channel</em><p>
+</a><P><a name="18813">
+Inserts a parent channel above the selected channel. Inserting parent channels above an existing channel lets you group operations together into larger "chunks" that can be moved, turned on or off, or deleted altogether. The original "child" channel is moved down accordingly in the script hierarchy.<p>
+</a><P><a name="18814">
+To insert a parent channel around an existing channel:<p>
+</a><P>
+<a name="18815">
+<STRONG>	 1.	 Move the mouse over the channel you want to Insert a Parent above.
+</STRONG>
+</a><P><a name="18816">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><a name="18820">
+ <P><img src="3ScriptEditor.anc50.gif"><p>
+</a>
+<a name="18821">
+<em>Figure 3.50  &#32; &#32;Original channel...
+</em></a><P>
+<a name="18822">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Insert Parent.
+</STRONG>
+</a><P><dl><a name="18823">
+<dt>The new parent channel appears around the selected channel:</dt>
+</a><P><a name="18827">
+ <P><img src="3ScriptEditor.anc51.gif"><p>
+</a></dl>
+<a name="18828">
+<em>Figure 3.51  &#32; &#32;...and with parent channel inserted (given the name Parent Channel)
+</em></a><P><a name="18858">
+You might, for example, move all translation actions inside a parent channel and name it "translations" or move all your render actions inside a single render parent channel. You could then turn off all operations in the selected channel simply by deactivating the parent channel.<p>
+</a><P><a name="18861">
+<h4> Move Here</h4>
+</a><a name="18862">
+<em>Scripts, any channel</em><p>
+</a><P><a name="18837">
+Copies the channel or script last remembered (with the <strong>Remember </strong>command) <em>into</em> the channel under the cursor. To move a channel:<p>
+</a><P>
+<a name="18838">
+<STRONG>	 1.	 Move the mouse over the channel you want to move.
+</STRONG>
+</a><P><a name="18839">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><dl><a name="18840">
+<dt>Let's assume that in the script below, we wanted to move channel 2 inside of channel 1:</dt>
+</a><P><a name="18844">
+ <P><img src="3ScriptEditor.anc52.gif"><p>
+</a></dl>
+<a name="18845">
+<em>Figure 3.52  &#32; &#32;Before the move
+</em></a><P>
+<a name="18846">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Remember.
+</STRONG>
+</a><P><a name="18847">
+<STRONG>	4.	 Move the mouse over the channel you want to copy the channel into.
+</STRONG>
+</a><P><a name="18848">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><a name="18849">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Move Here.
+</STRONG>
+</a><P><dl><a name="18876">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="18883">
+ <P><img src="3ScriptEditor.anc53.gif"><p>
+</a></dl>
+<a name="18884">
+<em>Figure 3.53  &#32; &#32;Confirming a channel move
+</em></a><P>
+<a name="18888">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="18891">
+<dt>The channel is inserted into the target channel.</dt>
+</a><P><a name="18853">
+ <P><img src="3ScriptEditor.anc54.gif"><p>
+</a></dl>
+<a name="18854">
+<em>Figure 3.54  &#32; &#32;After moving channel 2 inside of channel 1
+</em></a><P><a name="18898">
+<h4> Replace</h4>
+</a><a name="18962">
+The <strong>Replace</strong> commands let you replace a channel with some remembered element...a copy of another channel, a curve channel, or a variable.<p>
+</a><P><a name="18971">
+ <P><img src="3ScriptEditor.anc55.gif"><p>
+</a><a name="18972">
+<em>Figure 3.55  &#32; &#32;Replace commands
+</em></a><P><a name="18965">
+<h4> Replace with Copy</h4>
+</a><a name="18899">
+<em>Any action</em><p>
+</a><P><a name="18900">
+Replaces the channel under the mouse with the action last remembered using the <strong>Remember </strong>command.<p>
+</a><P><a name="18902">
+<h4> Replace with Curve</h4>
+</a><a name="18903">
+<em>Any action</em><p>
+</a><P><a name="18904">
+Replaces the channel under the mouse with a curve channel. Any subchannels under the selected action are deleted.<p>
+</a><P><a name="18906">
+<h4> Replace with Variable</h4>
+</a><a name="18907">
+<em>Any channel</em><p>
+</a><P><a name="18908">
+Variables can be used with the N-Dynamic Basic Functions operation class (discussed in the section <a href="5Operations.html#8227">"Basic Functions," on page &#32;5-9</a>). The use of variables is described in more detail in the <em>N-Dynamics Tutorial</em>.<p>
+</a><P><a name="19013">
+Typically, you'll use this command to replace a curve channel under an operation with a variable defined by another channel, so that dynamics of the two actions are tied.<p>
+</a><P><a name="18912">
+To replace an action with a variable:<p>
+</a><P>
+<a name="18913">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the channel that will return the variable being used, and enter the variable name to the Channel Variable field.
+</STRONG>
+</a><P><dl><a name="19045">
+<dt>If you're using the value from another curve, make sure to assign the variable to the curve channel, and not its parent.</dt>
+</a><P><a name="19041">
+ <P><img src="3ScriptEditor.anc56.gif"><p>
+</a></dl>
+<a name="19042">
+<em>Figure 3.56  &#32; &#32;Specifying a variable name
+</em></a><P><dl><dl><a name="19044">
+<dt>For this example, we assigned the curve channel for the <strong>Scale Octahedron</strong> channel a variable name of "var-name".</dt>
+</a><P></dl></dl>
+<a name="19033">
+<STRONG>	2.	 Move the mouse over the channel you want to replace with a variable.
+</STRONG>
+</a><P><dl><a name="19028">
+<dt>Suppose that in the script shown in <a href="3ScriptEditor.html#19024">Figure 3.57</a> we wanted to replace the curve channel for the <strong>Y Rotate Octahedron</strong> operation with the same dynamic value used for the <strong>Scale Octahedron</strong> operation, so that the scaling and rotating were linked:</dt>
+</a><P><a name="19023">
+ <P><img src="3ScriptEditor.anc57.gif"><p>
+</a></dl>
+<a name="19024">
+<em>Figure 3.57  &#32; &#32;Before using Replace with Variable
+</em></a><P>
+<a name="18914">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><a name="18915">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Replace with Variable.
+</STRONG>
+</a><P><dl><a name="18916">
+<dt>Enter the variable you want to use in the dialog box that appears:</dt>
+</a><P><a name="18921">
+ <P><img src="3ScriptEditor.anc58.gif"><p>
+</a></dl>
+<a name="18922">
+<em>Figure 3.58  &#32; &#32;Specifying a variable name
+</em></a><P><dl><dl><a name="18923">
+<dt>The channel operation is changed to <strong>Get Variable Value</strong>, using the variable value specified in the dialog box above:</dt>
+</a><P><a name="19056">
+ <P><img src="3ScriptEditor.anc59.gif"><p>
+</a></dl></dl><a name="19057">
+<em>Figure 3.59  &#32; &#32;After replacing a channel with a variable
+</em></a><P><a name="19067">
+<h4> Replace with Sequential Curves</h4>
+</a><a name="19068">
+<em>Any curve channel</em><p>
+</a><P><a name="19069">
+Inserts a parent channel (named Sequential Curves) around the selected curve channel (of type Return Value). Sequential curves must be contained in a parent channel.<p>
+</a><P>
+<a name="19076">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on a curve to display the following menu:
+</STRONG>
+</a><P><a name="19085">
+ <P><img src="3ScriptEditor.anc60.gif"><p>
+</a>
+<a name="19086">
+<em>Figure 3.60  &#32; &#32;Replacing a curve with sequential curves
+</em></a><P>
+<a name="19077">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Replace with Sequential Curves.
+</STRONG>
+</a><P><dl><a name="19114">
+<dt>The following prompt appears:</dt>
+</a><P><a name="19097">
+ <P><img src="3ScriptEditor.anc61.gif"><p>
+</a></dl>
+<a name="19098">
+<em>Figure 3.61  &#32; &#32;Confirming replacement of curve with sequential curves
+</em></a><P>
+<a name="19129">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Yes to create the proper structure for sequential curves.
+</STRONG>
+</a><P><dl><a name="19132">
+<dt>A parent channel is inserted around the selected curve. The channel has a type of <strong>Return Value</strong>, which returns the value for the curves contained in the channel.</dt>
+</a><P><a name="19120">
+ <P><img src="3ScriptEditor.anc62.gif"><p>
+</a></dl>
+<a name="19121">
+<em>Figure 3.62  &#32; &#32;Proper script structure to support sequential curves
+</em></a><P><a name="19142">
+ <p>
+</a><a name="20803">
+<h4> Add Marker Track</h4>
+</a><a name="19143">
+<em>Scripts, actions</em><p>
+</a><P><a name="19144">
+A marker track is a special kind of channel that runs along the bottom of the selected channel or script. Marker tracks let you tie several cues in different channels to a single marker-moving the marker moves all the cues simultaneously.<p>
+</a><P><a name="19146">
+You might, for example, want to add a marker track to a script that both rotates and scales an object. If you added a marker track to the script, you could insert cues in both channels that were linked to the same marker, effectively tying a given rotation and scaling action together in time.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Linked cues need not be directly over the marker to which they are tied.</font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	Cues can be attached to only one marker at a time.</font></dd></dt></dl><P>
+<a name="19149">
+To add a marker track:<p>
+</a><P>
+<a name="19150">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the script or channel.
+</STRONG>
+</a><P><dl><a name="19258">
+<dt>A narrow channel appears at the bottom of the selected channel, with a small triangle at the beginning and end of the channel.</dt>
+</a><P><a name="19268">
+ <P><img src="3ScriptEditor.anc63.gif"><p>
+</a></dl>
+<a name="19269">
+<em>Figure 3.63  &#32; &#32;Adding a marker track
+</em></a><P><dl><dl><a name="19261">
+<dt>For an example of how to use markers, see the section <a href="3ScriptEditor.html#14855">"Link to Marker," on page &#32;3-27</a>. Marker tracks are also described in the <em>N-Dynamics Tutorial</em>.</dt>
+</a><P></dl></dl><a name="19159">
+<h4> Adding a Marker with Cues</h4>
+</a><a name="19160">
+This is useful if you want to add cues to a channel or channels, then tie them to the marker:<p>
+</a><P>
+<a name="19161">
+<STRONG>	 1.	 Move the mouse over the marker track.
+</STRONG>
+</a><P><a name="19162">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the track.
+</STRONG>
+</a><P><dl><a name="19163">
+<dt>Cues are added to all curve channels inside the channel (even if they are at a lower point in the hierarchy.</dt>
+</a><P><a name="19360">
+ <P><img src="3ScriptEditor.anc64.gif"><p>
+</a></dl>
+<a name="19361">
+<em>Figure 3.64  &#32; &#32;Adding a marker and linked cues
+</em></a><P><a name="19165">
+<h4> Adding a Marker without Cues</h4>
+</a><a name="19166">
+This is useful if you already have several cues that you want to link together:<p>
+</a><P>
+<a name="19167">
+<STRONG>	 1.	 Move the mouse over the marker track.
+</STRONG>
+</a><P><a name="19168">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the track.
+</STRONG>
+</a><P><dl><a name="19171">
+<dt>A marker is added to the track, but no new cues are created. See the section <a href="3ScriptEditor.html#14855">"Link to Marker," on page &#32;3-27</a> to see how to link existing cues to a marker.</dt>
+</a><P><a name="19380">
+ <P><img src="3ScriptEditor.anc65.gif"><p>
+</a></dl>
+<a name="19381">
+<em>Figure 3.65  &#32; &#32;Adding a marker and linked cues
+</em></a><P><a name="19174">
+<h4> Moving a Marker</h4>
+</a><a name="19175">
+To move a marker (and its linked cues):<p>
+</a><P>
+<a name="19176">
+<STRONG>	 1.	 Move the mouse over the selected marker.
+</STRONG>
+</a><P><a name="19177">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> and drag the mouse left or right.
+</STRONG>
+</a><P><dl><a name="19178">
+<dt>Note that any cues tied to the marker move at the same time.</dt>
+</a><P></dl>
+<a name="19180">
+<h4> Marker Operations</h4>
+</a><a name="19420">
+To display a list of operations that can be performed on a marker, <strong>(CLICK-R)</strong> on a marker. The following menu is displayed:<p>
+</a><P><a name="19433">
+ <P><img src="3ScriptEditor.anc66.gif"><p>
+</a><a name="19434">
+<em>Figure 3.66  &#32; &#32;Marker operations
+</em></a><P><a name="19419">
+<h4> Delete this Marker</h4>
+</a><a name="19497">
+<em>Marker</em><p>
+</a><P><a name="19181">
+To delete a marker:<p>
+</a><P>
+<a name="19182">
+<STRONG>	 1.	 Move the mouse over the selected marker.
+</STRONG>
+</a><P><a name="19183">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the marker.
+</STRONG>
+</a><P><dl><a name="19184">
+<dt>From the menu that appears, select <strong>Delete this Marker</strong>.</dt>
+</a><P></dl>
+<a name="18764">
+<h4> Edit Concurrent Cues</h4>
+</a><a name="19495">
+<em>Marker</em><p>
+</a><P><a name="19444">
+This operation lets you edit the value of all cues that occur at the same time as this marker. If you choose this option, associated cues are highlighted, and sliders appear in any channels for which concurrent cues exist:<p>
+</a><P><a name="19470">
+ <P><img src="3ScriptEditor.anc67.gif"><p>
+</a><a name="19471">
+<em>Figure 3.67  &#32; &#32;Editing concurrent cues
+</em></a><P><a name="19479">
+To change the value for any <p>
+</a><P><ul><a name="19460">
+<li><strong>(DRAG-L)</strong> on the slider in any channel for which you wish to change the value
+</a></li><P><a name="19487">
+<li><strong>(SHIFT-L)</strong> on the slider and drag to change the cue value and continuously update the N-Geometry window
+</a></li><P><a name="19488">
+<li><strong>(CLICK-M)</strong> to display the <strong>Adjust Parameter Value</strong> menu
+</a></li><P><a name="19491">
+<li><strong>(CLICK-R)</strong> to display a menu of cue operations
+</a></li><P></ul><P><a name="19412">
+<h4> Remember this Marker</h4>
+</a><a name="19492">
+<em>Marker</em><p>
+</a><P><a name="19493">
+N-Dynamics remembers both the time and value in the selected marker.<p>
+</a><P><a name="19413">
+<h4> Use Remembered Time</h4>
+</a><a name="19957">
+<em>Marker</em><p>
+</a><P><a name="19981">
+You must have used the <strong>Remember</strong> command to use this command on a marker. After remembering the time associated with a marker, use this command to copy the time to cues in similar channels.<p>
+</a><P><a name="19414">
+<h4> Use Remembered Values</h4>
+</a><a name="19960">
+<em>Marker</em><p>
+</a><P><a name="19961">
+You must have used the <strong>Remember</strong> command to use this command on a marker. After remembering the values associated with a marker, use this command to copy the values to cues in similar channels.<p>
+</a><P><a name="20668">
+<h4> Add Others</h4>
+</a><a name="20699">
+The operations in this class add other types of elements to a script, as described below.<p>
+</a><P><a name="20698">
+<h4> Add Others&gt;Sequential Actions</h4>
+</a><a name="20669">
+<em>Script, actions</em><p>
+</a><P><a name="20670">
+Motions defined in sequential subactions follow one another; they are executed from left to right. The cues between sequential subactions are shared so that one ends at exactly the same time another begins. This means that the cue's parameter value is the same at the end of one sequence as it is at the beginning of the next. (Although the cues between the new subsequences can be moved as required.)<p>
+</a><P><a name="20679">
+<h4> Add Others&gt;Parallel Curves</h4>
+</a><a name="20680">
+<em>Scripts, actions</em><p>
+</a><P><a name="20681">
+Adds a parallel channel, containing a curve, at the bottom of the selected script or action.<p>
+</a><P><a name="20705">
+<h4> Add Others&gt;Derived Curve</h4>
+</a><a name="20706">
+<em>Scripts, actions</em><p>
+</a><P><a name="20707">
+Derived curves are created based on values found in other curves within the channel. Suppose, for example, that you want to create a curve by multiplying the values in two other curves; that third curve is a derived curve.<p>
+</a><P><a name="20708">
+To see an example of a derived curve:<p>
+</a><P>
+<a name="20709">
+<STRONG>	 1.	 Create a sample script.
+</STRONG>
+</a><P><a name="20710">
+<STRONG>	2.	 Add a channel of type Dynamics&gt;Basic Functions&gt;Multiply.
+</STRONG>
+</a><P><dl><a name="20711">
+<dt>The <strong>Multiply</strong> channel opens with two curve channels.</dt>
+</a><P></dl><a name="20712">
+<STRONG>	3.	 Edit the first curve channel so that it starts at 0 and ends at 1.
+</STRONG>
+</a><P><a name="20713">
+<STRONG>	4.	 Edit the second curve channel so that it starts at 1 and ends at 0.
+</STRONG>
+</a><P><dl><a name="20714">
+<dt>The script editor should look something like this:</dt>
+</a><P><a name="20718">
+ <P><img src="3ScriptEditor.anc68.gif"><p>
+</a></dl>
+<a name="20719">
+<em>Figure 3.68  &#32; &#32;Adding a derived curve
+</em></a><P>
+<a name="20720">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on the multiply channel.
+</STRONG>
+</a><P><a name="20721">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Add Others&gt;Derived Curve</strong>.
+</STRONG>
+</a><P><dl><a name="20722">
+<dt>A derived curve appears below the other two curves, within the multiply channel:</dt>
+</a><P><a name="20726">
+ <P><img src="3ScriptEditor.anc69.gif"><p>
+</a></dl>
+<a name="20727">
+<em>Figure 3.69  &#32; &#32;The derived curve is added below the other curve channels
+</em></a><P>
+<a name="20728">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on the derived curve channel, then <strong>(CLICK-L)</strong> on Recompute Derived Curve.
+</STRONG>
+</a><P><a name="20729">
+<STRONG>	8.	 Open the derived curve channel.
+</STRONG>
+</a><P><dl><a name="20730">
+<dt>It should look something like this:</dt>
+</a><P><a name="20734">
+ <P><img src="3ScriptEditor.anc70.gif"><p>
+</a></dl>
+<a name="20735">
+<em>Figure 3.70  &#32; &#32;The resulting derived curve
+</em></a><P><dl><dl><a name="20736">
+<dt>The derived curve can now be copied to other curve channels, or inserted into another parent channel.</dt>
+</a><P></dl></dl><a name="20737">
+Note that derived curves can be generated by a number of Basic Function operations (such as add, divide, multiply, subtract) and others; if you modify the value in any of the curve channels from which the value in the derived curve is generated, you must use the <strong>Recompute Derived Curve</strong> command to update its shape.<p>
+</a><P><a name="20738">
+Note also that you can modify the channels used to generate the derived curve, then choose <strong>Recompute Derived Curve</strong> again. If you delete any of the channels used to generate a derived curve, it can no longer be generated; for that reason, you may want to <em>deactivate</em> a curve (using the Curve Operations menu) rather than <em>delete</em> it altogether.<p>
+</a><P><a name="20644">
+<h4> Add Others&gt;Imported Curve</h4>
+</a><a name="20645">
+<em>Scripts, actions</em><p>
+</a><P><a name="20646">
+Loads previously saved curve data into the selected channel.<p>
+</a><P><a name="20650">
+ <P><img src="3ScriptEditor.anc71.gif"><p>
+</a><a name="20651">
+<em>Figure 3.71  &#32; &#32;Adding an imported curve
+</em></a><P><ul><a name="20652">
+<li><strong>Directory</strong> is the directory in which the curve data is stored.
+</a></li><P><a name="20653">
+<li><strong>Name</strong> is the name of the file containing the curve data.
+</a></li><P><a name="20654">
+<li><strong>Frame</strong> specifies how many frames of curve data are in the file.
+</a></li><P><a name="20655">
+<li><strong>Channels</strong> specifies how many channels of curve data are in the file.
+</a></li><P><a name="20656">
+<li><strong>Header </strong>specifies whether or not the curve data file has a header line on it.
+</a></li><P></ul><P><a name="20657">
+A sample curve data file might like this:<p>
+</a><P><a name="20658">
+<code><pre>Description: X-Rotation Y-Rotation Z-Rotation<p>
+</code></pre></a><a name="20659">
+<code><pre>1.0,1.1,1.2<p>
+</code></pre></a><a name="20660">
+<code><pre>1.2,1.3,1.4<p>
+</code></pre></a><a name="20661">
+<code><pre>1.4,1.5,1.6<p>
+</code></pre></a><a name="20662">
+<code><pre>1.6,1.7,1.8<p>
+</code></pre></a><a name="20663">
+This file has a header (the descriptive line at the top), four frames (or rows) of data, and three channels (for each rotation, x, y, and z). <p>
+</a><P><a name="20742">
+<h4> Add Others&gt;Sequential Curves</h4>
+</a><a name="20743">
+<em>Scripts, actions</em><p>
+</a><P><a name="20744">
+Adds one or more sequential curves inside of a channel.<p>
+</a><P><a name="11613">
+<h4> Cut</h4>
+</a><a name="13319">
+<em>Sequential subactions</em><p>
+</a><P><a name="15994">
+Cuts the selected subaction half, making two smaller subactions. This command is useful for adding subactions to the same level in the script.<p>
+</a><P><a name="16784">
+<h3> Time</h3>
+</a><a name="11654">
+The commands in this section of the menu let you manipulate parts of the script (and the script itself) with relationship to time.<p>
+</a><P><a name="20749">
+<h4> Slide</h4>
+</a><a name="20750">
+<em>Actions, curves</em><p>
+</a><P><a name="20751">
+Sliding an action moves the entire channel left or right.<p>
+</a><P><a name="11618">
+<h4> Extend Curves</h4>
+</a><a name="16276">
+<em>Scripts, actions</em><p>
+</a><P><a name="11652">
+Extend each curve in the selected channel so that it matches the length of the parent channel. The curve is extended by adding another cue at the end of the channel with the same value as the previous end cue:<p>
+</a><P><a name="17333">
+ <P><img src="3ScriptEditor.anc73.gif"><p>
+</a><a name="17334">
+<em>Figure 3.72  &#32; &#32;Top, original curve; bottom, after extending
+</em></a><P><a name="16272">
+If you choose this operation for a script, all curves in all channels are extended; if you use it on a single channel, only the curves in the selected channel are extended.<p>
+</a><P><a name="16279">
+When you choose this command, the following menu is displayed:<p>
+</a><P><a name="16287">
+ <P><img src="3ScriptEditor.anc74.gif"><p>
+</a><a name="16288">
+<em>Figure 3.73  &#32; &#32;Extending curves
+</em></a><P><ul><a name="16282">
+<li><strong>Extend Start</strong> extends any affected curve channels so that its start matches the start point of its parent channel.
+</a></li><P><a name="16294">
+<li><strong>Extend End</strong> extends any affected curve channels so that its end matches the end point of its parent channel.
+</a></li><P><a name="16297">
+<li><strong>Extend Both</strong> extends the beginning and end of the curve channel.
+</a></li><P></ul><P><a name="11619">
+<h4> Set Freeze</h4>
+</a><a name="16336">
+<em>Scripts, actions, curves</em><p>
+</a><P><a name="11651">
+Freezes or unfreezes the cues. Resizing channels or adjusting the script length has no effect on the position of frozen cues.<p>
+</a><P><a name="16332">
+When you freeze cues, they are highlighted in a light blue color; unfrozen cues are black.<p>
+</a><P><ul><a name="16337">
+<li>For a curve channel, all cues in the channel are frozen.
+</a></li><P><a name="16348">
+<li>For an action or a script, the following menu is displayed:
+</a></li><P><a name="16359">
+ <P><img src="3ScriptEditor.anc75.gif"><p>
+</a></ul><P><a name="16360">
+<em>Figure 3.74  &#32; &#32;Freezing or unfreezing cues in an action or script
+</em></a><P><a name="16366">
+You can freeze or unfreeze the cues in only the selected channel or for all subchannels in the selected channel as well.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The hot keys "f" and "F" can be used to freeze and unfreeze cues respectively.</em></font></dd></dt></dl><P>
+<a name="11620">
+<h4> Set Timeline</h4>
+</a><a name="11650">
+<em>Scripts, actions</em><p>
+</a><P><a name="16367">
+Changes the timeline to fit the amount of time contained in the current channel. To set the timeline:<p>
+</a><P>
+<a name="16388">
+<STRONG>	 1.	 Move the cursor over the channel to set the timeline from.
+</STRONG>
+</a><P><a name="16389">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><dl><a name="16390">
+<dt>The timeline is adjusted so that only the portion of the script defined by the selected channel is displayed in the script editor. This command is useful if you only want to see the portion of the script that takes place while the selected channel is active.</dt>
+</a><P></dl>
+<a name="16374">
+To return to viewing your entire script, <strong>(CLICK-R)</strong> on the title bar and select this command again.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The hot key "T" can be used to fit </em></font></dd></dt></dl><P>
+<a name="17450">
+<em>the timeline to the selected channel.</em><p>
+</a><P><a name="11629">
+<h3> Other Script Operations</h3>
+</a><a name="11645">
+The last section of the Script Operations menu contains operations that aren't necessarily associated with the hierarchy, time, or display of a script.<p>
+</a><P><a name="11630">
+<h4> Activate/Deactivate</h4>
+</a><a name="16562">
+<em>Scripts</em><p>
+</a><P><a name="13548">
+Activate/Deactivate this Action toggles the status of the selected channel. You can tell whether a channel is active or inactive by looking at the color of the text in the channel:<p>
+</a><P><ul><a name="13549">
+<li>The text in active channels is <em>white</em>.
+</a></li><P><a name="13550">
+<li>The text in inactive channels is <em>black</em>.
+</a></li><P></ul><P><a name="11637">
+See the section <a href="3ScriptEditor.html#13201">"Activating and Deactivating Channels," on page &#32;3-17</a> for more about making channels active or inactive.<p>
+</a><P><a name="20779">
+<h4> Remember</h4>
+</a><a name="20780">
+<em>Scripts, actions</em><p>
+</a><P><a name="20781">
+When copying an action from one channel to another, you need to "remember" it. This command copies the action into memory. See the section <a href="3ScriptEditor.html#18861">"Move Here," on page &#32;3-42</a>.<p>
+</a><P><a name="11631">
+<h4> Recompute Derived Curve</h4>
+</a><a name="17002">
+<em>Actions containing derived curves, curves</em><p>
+</a><P><a name="17005">
+Forces the selected derived curve to be recomputed. You can choose this command by clicking on either the channel containing the derived curve, or directly on the derived curve.<p>
+</a><P><a name="17016">
+For more information on <em>how</em> to use derived curves, see the section <a href="3ScriptEditor.html#20705">"Add Others&gt;Derived Curve," on page &#32;3-52</a>.<p>
+</a><P><a name="11632">
+<h4> Set All Operations</h4>
+</a><a name="16580">
+<em>Scripts, actions</em><p>
+</a><P><a name="11639">
+Assigns an action to all the subactions of the selected action. This is useful, for example, if you have created several subactions (either parallel or sequential) that you want to do the same thing.<p>
+</a><P><a name="16611">
+To assign an operation:<p>
+</a><P>
+<a name="16612">
+<STRONG>	 1.	 Move the cursor over the action whose subactions you want to set.
+</STRONG>
+</a><P><a name="16613">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel.
+</STRONG>
+</a><P><a name="16614">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Set Subaction Operations.
+</STRONG>
+</a><P><dl><a name="16615">
+<dt>The Select Operation Class menu appears. Choose the operation class, then the operation you want to assign to any subchannels.</dt>
+</a><P></dl>
+<a name="16627">
+If any of the subactions being replaced have subactions inside of them, you are also prompted to specify whether or not subchannels should be replaced with the specified action.<p>
+</a><P><a name="20756">
+<h4> Untrace All</h4>
+</a><a name="20757">
+<em>Scripts, actions</em><p>
+</a><P><a name="20761">
+As described on <a href="5Operations.html#23717">page &#32;5-4</a>, you can trace the current value of a given channel, watching its progress in the LISP listener window.<p>
+</a><P><a name="20762">
+This command turns off all tracing for either the selected action or script.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Interface.html">[Prev]</a> <a href="4CurveEditor.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 10:32:36 -->
+
+</body>
+</html>

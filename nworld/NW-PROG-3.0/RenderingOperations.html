@@ -1,0 +1,797 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="ExpObjData.html">[Prev]</a> <a href="ExtendingDynamics.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11787">
+This chapter provides a basic overview of attributes, materials, attribute domains, and attribute values. It explains how:<p>
+</a><P><ul><a name="10999">
+<li>the rendering process works
+</a></li><P><a name="11011">
+<li>attribute values are derived for objects and face parts
+</a></li><P><a name="11009">
+<li>to define new attribute domains
+</a></li><P><a name="11003">
+<li>to define attributes for your new domain
+</a></li><P><a name="11018">
+<li>to create materials and assign them to objects
+</a></li><P><a name="11019">
+<li>to manipulate attributes and materials programmatically
+</a></li><P></ul><P><a name="11023">
+The file new-domain.lisp, located in <code>/usr/local/ngc/src</code>, contains a complete definition of a new domain. Reviewing this code will help you to understand many of the concepts presented in this section.<p>
+</a><P><a name="10998">
+<h2><HR> A Conceptual Overview of Rendering</h2>
+</a><a name="7533">
+Rendering is the process of melding geometrical data and attributes of an object (such as surface texture data, opacity, etc.) into a finished scene. Rendering is accomplished by software packages collectively referred to as renderers. Renderers operate on data which is derived from the geometry and attributes of objects in a scene, and then parsed by an interpreter. <a href="RenderingOperations.html#7472">Figure 9.1</a> provides a conceptual view of the rendering process.<p>
+</a><P><a name="7559">
+ <P><img src="RenderingOperations.anc.gif"><p>
+</a><a name="7472">
+<em>Figure 9.1  &#32; &#32;The Rendering Process.
+</em></a><P><a name="7575">
+<h2><HR> Attributes</h2>
+</a><a name="7583">
+Attributes are variables which control some aspect of the appearance of an object in a final, rendered scene. Examples of attributes include opacity, reflectivity, and color. In addition, you can define your own attributes to meet your particular rendering needs. <p>
+</a><P><a name="7584">
+<h3> Attribute Domains</h3>
+</a><a name="7585">
+An attribute domain is a set of attributes which are defined for a particular renderer. Different attribute domains are designed to accommodate different rendering requirements. Examples of attribute domains include GL Shade, which is designed to make optimal use of the internal rendering hardware of SGI workstations, and the render domain, which is for use with N-Render.<p>
+</a><P><a name="7592">
+<h3> Attribute Domain Hierarchy</h3>
+</a><a name="7593">
+Attribute domains are instances of CLOS classes. As a result, a hierarchy of domains can be constructed, with domains at lower points in the hierarchy inheriting attributes from domains at higher levels. The N&#183;World domain hierarchy is based on the <em>Basic Domain</em>. Beneath this is the render domain, which is in turn followed by various domains defined for specific renderers (<a href="RenderingOperations.html#7606">Figure 9.2</a> illustrates this basic hierarchy).<p>
+</a><P><a name="11040">
+ <P><img src="RenderingOperations.anc1.gif"><p>
+</a><a name="7606">
+<em>Figure 9.2  &#32; &#32;N&#183;World attribute domain hierarchy.
+</em></a><P><a name="7653">
+Inheritance means that any attribute defined for the <code>:render</code> domain is automatically defined for any domain which declares itself to "depend" on <code>:render</code>. You can define your own domains to include domains beginning at any level. <p>
+</a><P><a name="11586">
+Suites of attribute values, called <em>materials</em>, can be defined as well. Materials can also be inherited. For example, you may find many objects in a scene which share many basic attributes, such as pieces of furniture made of wood. You could define a basic material for these wooden items, then apply it to each piece of furniture. Then, if you decide to change some aspect of your wood material, these changes will automatically be reflected on all of the objects which have the wood material. You might also define another material, say, walnut, which shares all of the basic attributes of the wood material, but differs in a few subtle respects, like color or the depth of a grain bump map.<p>
+</a><P><a name="7410">
+<h2><HR> Attribute Values for Bodies</h2>
+</a><a name="10894">
+An interpreter must determine, or derive, attribute values for objects in a scene. This is accomplished by traversing attribute hierarchies on objects in a scene. For a given attribute on a given body, the interpreter first determines whether its value has been set specifically for that body. Only attributes which are object-settable can have values defined on a particular object. In the domains which are defined for N&#183;World, only mappers and a base-material are object settable, but you can define any attribute in your domains to be object-settable.<p>
+</a><P><a name="10924">
+Next, materials assigned to the body are examined. The hierarchy of materials is traversed until either a locally set value is encountered, or until the default value for the top level material (or base material) is reached. If no base material is assigned, then the value is obtained from the domain defaults. <p>
+</a><P><a name="10927">
+<h3> Attribute Values for Face Parts</h3>
+</a><a name="10928">
+Attribute values for face parts are derived somewhat differently than for bodies. If no explicit attribute values have been assigned for a face part, then it inherits attribute values from the material of its parent object. However, if even a single attribute value is set explicitly for a face part, then all attribute values for that part revert to the values defined in the face parts base material. If no base material is defined, domain defaults are used. This can result in parts having dramatically different appearances than the objects they're associated with. You can avoid this complication by assigning the material of the object as the base attribute of the face part. Then, when a face part attribute value is set explicitly and the other values in the domain revert to default, the default value is obtained from the base material, which is in turn the material of the face parts object.<p>
+</a><P><a name="10903">
+<h3> Surface Contexts</h3>
+</a><a name="10934">
+The above traversal path is relatively straightforward for terminal objects. However, it is often the case that a single body will be referenced by numerous objects. How, then, to determine which materials to use to derive attribute values? The solution is provided by a device called a surface-context. A surface context is defined by a BDI and a render domain. For a given render domain, there is only one context for each bdi, and thus for each object. This relationship provides a way of pinpointing a specific object and domain from which to derive attribute values.<p>
+</a><P><a name="10943">
+<h3> Derived Attribute Values: an Example</h3>
+</a><a name="10944">
+Consider the following simplified example:<p>
+</a><P><a name="10945">
+ <P><img src="RenderingOperations.anc2.gif"><p>
+</a><a name="10933">
+If MAT1 is assigned to the body, then the value of the color attribute is red, since that attribute is set locally. The value of brightness is not set, so it's value is determined by the MAT 1s base material, MAT 3. For set 3, the value is 0.5, so the value of brightness for MAT 1 is also 0.5. If MAT 2 is assigned to the body, then the value of color is blue, but brightness and opacity values are derived from the domain defaults. <p>
+</a><P><a name="10983">
+If MAT 3 is assigned to the face part, then all other attribute values revert to domain defaults, so color = grey and opacity = 0.75. However, if MAT 1 is assigned as the base material for the face part, then the value for color is red (inherited from MAT 2), the value for brightness is 0.5 (inherited from MAT 3), and only the value of opacity is inherited from the domain defaults.<p>
+</a><P><a name="10985">
+<h2><HR> Defining Attributes and Attribute Domains</h2>
+</a><a name="12200">
+Defining an attribute domain is relatively straightforward. Since domains are CLOS classes, many elements of the declaration should be familiar. Define your new domains with <code><a ATTR:DEFINE-ATTRIBUTE-DOMAIN>ATTR:DEFINE-ATTRIBUTE-DOMAIN</code>, using the generalized form:<p>
+</a><P><a name="12202">
+<code><pre>(ATTR:DEFINE-ATTRIBUTE-DOMAIN domain-name &amp;KEY depends-on if-exists pretty-name domain-properties)<p>
+</code></pre></a><a name="8037">
+<a href="RenderingOperations.html#8037">Table 9.1</a> describes the properties which you can define for your new domains: 
+<P><Table Border="1">
+<dl>
+<a name="8041">
+<em>Table 9.1 <strong></strong> &#32; &#32;Domain Instantiation Parameters
+</em></a></dl>
+<tr><th align="left"><a name="8045">
+Parameter
+</a><th align="left"><a name="8137">
+Options
+</a><th align="left"><a name="8047">
+Description
+</a>
+<tr><td valign="top"><a name="8049">
+ :depends-on<p>
+</a><td valign="top"><a name="8139">
+ :domain-name<p>
+</a><td valign="top"><a name="8051">
+ Defines precedence list. Your new domain will inherit attributes from this domain and all of its superiors.<p>
+</a>
+<tr><td colspan=1 rowspan=4><a name="8053">
+ :if-exists<p>
+</a><td valign="top"><a name="8141">
+ :skip<p>
+</a><td valign="top"><a name="8055">
+ If the domain already exists, skip redefining it<p>
+</a>
+<tr><td valign="top"><a name="9774">
+ :error<p>
+</a><td valign="top"><a name="9776">
+ :If the domain exists, respond with an error<p>
+</a>
+<tr><td valign="top"><a name="9768">
+ :warn<p>
+</a><td valign="top"><a name="9770">
+ If domain exists, warn user with confirm menu. User can redefine domain by <strong>(CLICK-L)</strong> on Yes<p>
+</a>
+<tr><td valign="top"><a name="9762">
+ :ask<p>
+</a><td valign="top"><a name="9764">
+ If domain exists, ask user to confirm redefinition<p>
+</a>
+<tr><td valign="top"><a name="8057">
+ :pretty-name<p>
+</a><td valign="top"><a name="8143">
+ string<p>
+</a><td valign="top"><a name="8059">
+ The name as it will appear on buttons defined for the Materials Editor window.<p>
+</a>
+<tr><td valign="top"><a name="8061">
+ :domain-properties<p>
+</a><td valign="top"><a name="8145">
+ (list)<p>
+</a><td valign="top"><a name="8063">
+ Miscellaneous properties<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="7832">
+The <code>:domain-properties</code> slot serves as a sort of catch-all for any properties you care to define. Potential examples include:<p>
+</a><P><ul><a name="8218">
+<li><code>:default-map-directory</code> - A default directory for texture maps.
+</a></li><P><a name="8220">
+<li><code>:default-map-type</code> - A default filetype for texture maps.
+</a></li><P><a name="8221">
+<li><code>:default-machine-type</code> - A default for the machine your applications are most likely to encounter.
+</a></li><P></ul><P><a name="8258">
+<h4> Example</h4>
+</a><a name="8259">
+The following code defines the sample domain:<p>
+</a><P><a name="8260">
+<code><pre>(attr:define-attribute-domain :SAMPLE<p>
+</code></pre></a><a name="8262">
+<code><pre>                  :pretty-name "Sample"<p>
+</code></pre></a><a name="8263">
+<code><pre>                  :depends-on :render<p>
+</code></pre></a><a name="8264">
+<code><pre>                  :domain-properties <p>
+</code></pre></a><a name="8265">
+<code><pre>                  `(:default-map-directory "/usr/local/"<p>
+</code></pre></a><a name="8266">
+<code><pre>                    :default-map-type :RGB<p>
+</code></pre></a><a name="8267">
+<code><pre>                    :default-machine-type :MAC))<p>
+</code></pre></a><a name="8289">
+<h3> Defining Attributes</h3>
+</a><a name="8290">
+Attributes are defined with<a ATTR:DEFINE-NAMED-ATTRIBUTE> <code>ATTR:DEFINE-NAMED-ATTRIBUTE</code>, which has the following general form:<p>
+</a><P><a name="8294">
+<code><pre>(ATTR:DEFINE-NAMED-ATTRIBUTE attribute-id &amp;KEY name domain value-type element-types<br>	default-value documentation properties)<p>
+</code></pre></a><a name="8389">
+ 
+<P><Table Border="1">
+<dl>
+<a name="8583">
+<em>Table 9.2  &#32; &#32;Attribute instantiation parameters
+</em></a></dl>
+<tr><th align="left"><a name="8589">
+Parameter
+</a><th align="left"><a name="8591">
+Options
+</a><th align="left"><a name="8593">
+Description
+</a>
+<tr><td valign="top"><a name="8595">
+ :pretty-name<p>
+</a><td valign="top"><a name="8597">
+ string<p>
+</a><td valign="top"><a name="8599">
+ The name of the attribute, nicely formatted.<p>
+</a>
+<tr><td valign="top"><a name="8601">
+ :domain<p>
+</a><td valign="top"><a name="8603">
+ domain-id<p>
+</a><td valign="top"><a name="8605">
+ The domain with which the attribute is associated.<p>
+</a>
+<tr><td valign="top"><a name="8613">
+ :element-type<p>
+</a><td valign="top"><a name="8615">
+ 3d:surface<p>
+</a><a name="11200">
+ 3d:surface-object<p>
+</a><a name="11201">
+ 3d:light-mixin<p>
+</a><td valign="top"><a name="8617">
+ The class which can be attributed with this attribute<p>
+</a>
+<tr><td valign="top"><a name="8619">
+ :default-value<p>
+</a><td valign="top"><a name="8621">
+ value<p>
+</a><td valign="top"><a name="8623">
+ An appropriate value which serves as the default value for this attribute<p>
+</a>
+<tr><td valign="top"><a name="8631">
+ :documentation<p>
+</a><td valign="top"><a name="8633">
+ string<p>
+</a><td valign="top"><a name="8635">
+ Documentation for the attribute<p>
+</a>
+<tr><td valign="top"><a name="8625">
+ :properties<p>
+</a><td valign="top"><a name="8627">
+ list<p>
+</a><td valign="top"><a name="8629">
+ Miscellaneous properties for the attribute<p>
+</a>
+<tr><td valign="top"><a name="9816">
+ <p>
+</a><td valign="top"><a name="9818">
+ :alias<p>
+</a><td valign="top"><a name="9820">
+ An alias id for finding the attribute, e.g. :opacity<p>
+</a>
+<tr><td valign="top"><a name="9810">
+ <p>
+</a><td valign="top"><a name="9812">
+ :class<p>
+</a><td valign="top"><a name="9814">
+ The class used by dynamics to display the attributes for animation<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<a href="RenderingOperations.html#8389">Table 9.2</a> details the properties you can specify for each domain you define:<p>
+</a><P><a name="8390">
+<h4> Example</h4>
+</a><a name="8883">
+Now we'll use <code>ATTR:DEFINE-NAMED-ATTRIBUTE</code> to define two attributes, :blivet and :foo, for our new :sample domain.<p>
+</a><P><a name="8884">
+<code><pre>(ATTR:DEFINE-NAMED-ATTRIBUTE :blivet<p>
+</code></pre></a><a name="8886">
+<code><pre>     :domain :SAMPLE<p>
+</code></pre></a><a name="8887">
+<code><pre>     :documentation "A new attribute, called blivet"<p>
+</code></pre></a><a name="8888">
+<code><pre>     :element-types `(3d::surface 3d::surface-object))<p>
+</code></pre></a><a name="8892">
+Blivet is a light-group attribute. Now, we'll define a color attribute, foo:<p>
+</a><P><a name="8893">
+<code><pre>(attr:define-named-attribute :foo<p>
+</code></pre></a><a name="8895">
+<code><pre>			:domain :SAMPLE<p>
+</code></pre></a><a name="8896">
+<code><pre>			:documentation "A new attribute, called blivet"<p>
+</code></pre></a><a name="8897">
+<code><pre>			:element-types `(3d:surface 3d:surface-object)<p>
+</code></pre></a><a name="8898">
+<code><pre>			:default-value (gi:make-rgb-color 0.5 0.5 0.5))<p>
+</code></pre></a><a name="11207">
+<h4> An Attribute Definition Macro</h4>
+</a><a name="11208">
+Because the attributes you're defining share many properties, you can define a macro to simplify and streamline the attribute definition process. In addition, by including the domain name in the name of the macro, you can provide a clear link in your code between the attributes you're defining and the domain you're defining them for. Here's an example attribute definition macro:<p>
+</a><P><a name="11209">
+<code><pre>(defmacro DEF-SAMPLE-ATTRIBUTE (id &amp;rest props)<p>
+</code></pre></a><a name="11211">
+<code><pre>  (unless (getf props :domain)<p>
+</code></pre></a><a name="11212">
+<code><pre>    (setf (getf props :domain) :sample))<p>
+</code></pre></a><a name="11213">
+<code><pre>  (if (member :conditions props)<p>
+</code></pre></a><a name="11214">
+<code><pre>      \Q(<a attr:define-attribute-parameter>attr:define-attribute-parameter ,id<p>
+</code></pre></a><a name="11215">
+<code><pre>	 			:element-types  `(3d:surface 3d:surface-object)<p>
+</code></pre></a><a name="11216">
+<code><pre>	 			,@props)<p>
+</code></pre></a><a name="11217">
+<code><pre>      \Q(attr:define-named-attribute ,id<p>
+</code></pre></a><a name="11218">
+<code><pre>				 :element-types  `(<a 3d:surface>3d:surface<a 3d:surface-objec><a RA:MAKE-ATTRIBUTES-WINDOW>U 3d:surface-object)<p>
+</code></pre></a><a name="11219">
+<code><pre>				 ,@props)))<p>
+</code></pre></a><a name="10332">
+<h4> Understanding Element-Types</h4>
+</a><a name="8651">
+An attributes element-type determines which parts of a model or scene can be attributed by a given attribute. These include surfaces (<code>3d::surface</code>), surface-objects (<code>3d:surface-object</code>), lights (<code>3d:light-mixin</code>)<code>. </code>Generally, if you want your attributes to apply to geometry objects, use 3d:surface-object.<p>
+</a><P><a name="11790">
+<h2><HR> Adding Your Domain to the Materials Editor</h2>
+</a><a name="8658">
+<a href="RenderingOperations.html#8919">Figure 9.3</a> details the anatomy of the Materials Editor window. This figure shows the Materials Editor with the <code>:sample</code> domain as the current domain. The examples we'll be presenting will result in menus that look like those in <a href="RenderingOperations.html#8919">Figure 9.3</a>.<p>
+</a><P><a name="8918">
+ <P><img src="RenderingOperations.anc3.gif"><p>
+</a><a name="8919">
+<em>Figure 9.3  &#32; &#32;Anatomy of the Materials Editor window
+</em></a><P><a name="10812">
+If you wish for users to be able to interactively set attribute values for attributes in your new domain, you'll need to add your new domain to the Materials Editor window. As a side-effect to the<code> attr:define-attribute-domain</code> function, a toggle-field button is automatically created in the Materials Editor for your new domain. Before you can view it, though, you'll have to recreate the Materials Editor window.<p>
+</a><P>
+<a name="7858">
+<STRONG>	 1.	 If it is open, close the Materials Editor
+</STRONG>
+</a><P><a name="7859">
+<STRONG>	2.	 Create a new Materials Editor window with <code>RA:MAKE-ATTRIBUTES-WINDOW </code>function.
+</STRONG>
+</a><P><a name="7860">
+<code><pre>(RA:MAKE-ATTRIBUTES-WI<a RA:MAKE-ATTRIBUTES-WINDOW>NDOW)<p>
+</code></pre></a>
+<a name="7862">
+Lisp returns some housekeeping details about the window it just created:<p>
+</a><P><a name="7864">
+<code><pre>#&lt;MULTIPROCESSING:PROCESS attributes wait for events @ #x198e3002&gt;<p>
+</code></pre></a><a name="7863">
+<code><pre>:INTERNAL<p>
+</code></pre></a><a name="7868">
+<a href="RenderingOperations.html#7870">Figure 9.4</a> details the location and appearance of the new button.<p>
+</a><P><a name="7869">
+ <P><img src="RenderingOperations.anc4.gif"><p>
+</a><a name="7870">
+<em>Figure 9.4  &#32; &#32;The Sample Domain Button in the Materials Editor.
+</em></a><P><a name="8754">
+<h3> Creating Attributes Editor Menus</h3>
+</a><a name="8755">
+The menus for defined attribute domains are created when the Materials Editor window is created. The function which creates this window<code> (ra:make-attributes-window)</code> calls several generic functions which define and create the attribute fields themselves. You'll have to write your own methods for these generic functions which apply to your own attribute domain. <a href="RenderingOperations.html#8755">Table 9.3</a> lists these generic functions and summarizes their effects: 
+<P><Table Border="1">
+<dl>
+<a name="8837">
+<em>Table 9.3  &#32; &#32;Generic functions called by ra:make-attributes-window
+</em></a></dl>
+<tr><th align="left"><a name="8841">
+Function 
+</a><th align="left"><a name="8843">
+Description
+</a>
+<tr><td valign="top"><a name="8845">
+ ra:make-attributes-menu-for-domain<p>
+</a><td valign="top"><a name="8847">
+ A function which creates the fields for a domain in the Materials Editor.<p>
+</a>
+<tr><td valign="top"><a name="8849">
+ ra:make-render-parameter-fields<p>
+</a><td valign="top"><a name="8851">
+ Creates fields which appear when you <strong>(CLICK-L)</strong> on defaults.<p>
+</a>
+<tr><td valign="top"><a name="8903">
+ ra:save-preferences-file<p>
+</a><td valign="top"><a name="8905">
+ Defines function which allows for saving domain preferences to a file (usually in the .ngc directory)<p>
+</a>
+<tr><td valign="top"><a name="8939">
+ ra:make-command-fields<p>
+</a><td valign="top"><a name="8941">
+ Defines command fields which appear at the base of the Materials Editor window.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="8915">
+<h3> Defining the Parameters Menu</h3>
+</a><a name="8916">
+The parameters menu appears when you <strong>(CLICK-L)</strong> on the defaults button at the bottom of the Materials Editor window (<a href="RenderingOperations.html#8919">Figure 9.3</a>). Although this field is optional, it provides a convenient way for users to manipulate important attribute domain parameters such as default directories and default values for variables.<p>
+</a><P><a name="8988">
+You define render parameters by defining a method to the <code>RA:MAKE-RENDER-PARAMETER-FIELDS</code> generic function:<p>
+</a><P><a name="8989">
+<code><pre>	(<a RA:MAKE-RENDER-PARAMETER-FIELDS>RA:MAKE-RENDER-PARAMETER-FIELDS ((domain (eq :domain-id)<p>
+</code></pre></a><a name="8990">
+<code><pre>(ui:make-container-field<p>
+</code></pre></a><a name="8991">
+<code><pre>		(list<p>
+</code></pre></a><a name="11244">
+<code><pre>			(<em>your field definitions</em>)))))<p>
+</code></pre></a><a name="11246">
+For example, let's define a parameter field for the :sample domain which allows users to specify a default directory for map files:<p>
+</a><P><a name="9011">
+<code><pre>			(defmethod MAKE-RENDER-PARAMETER-FIELDS ((self (eql :SAMPLE)))<p>
+</code></pre></a><a name="9013">
+<code><pre>				(ui:make-container-field<p>
+</code></pre></a><a name="9014">
+<code><pre>					 (list<p>
+</code></pre></a><a name="9015">
+<code><pre>						 (ui:make-directory-field :outer-label " Default Map Directory"<p>
+</code></pre></a><a name="9016">
+<code><pre>							:choose-with-pop-up t<p>
+</code></pre></a><a name="9017">
+<code><pre>							:width (- *attributes-window-width* *attributes-label-width* 6)<p>
+</code></pre></a><a name="9018">
+<code><pre>							:property-list `(:resize-for-window t)<p>
+</code></pre></a><a name="9019">
+<code><pre>							:value-object (ui:make-variable `*nichimen-map-dir*)))<p>
+</code></pre></a><a name="11256">
+<code><pre>				:equalize-label-sizes-p t))<p>
+</code></pre></a><a name="9175">
+The resulting pop-up menu looks like the one in <a href="RenderingOperations.html#9177">Figure 9.5</a><p>
+</a><P><a name="9176">
+ <P><img src="RenderingOperations.anc5.gif"><p>
+</a><a name="9177">
+<em>Figure 9.5  &#32; &#32;The defaults pop-up menu
+</em></a><P><a name="11635">
+<h3> Creating Attribute Fields</h3>
+</a><a name="11636">
+Attribute fields have a slightly different structure than ordinary fields, in that they are defined within a special type of container called an attribute-source-field. <p>
+</a><P><a name="11649">
+ <P><img src="RenderingOperations.anc6.gif"><p>
+</a><a name="11650">
+<em>Figure 9.6  &#32; &#32;An attribute-source-field
+</em></a><P><a name="11651">
+The attribute-source field describes the state of the attributes value, whether it is locally set, inherited, or set from defaults. In addition, if an attributes value is changed during a session with the Materials Editor, the attribute-source-variable is set to changed.<p>
+</a><P><a name="11652">
+The value object for an attribute-source field itself is created for a given attribute with <code>RA:ATTR-SOURCE-VARIABLE</code>:<p>
+</a><P><a name="11653">
+<code><pre>(<a RA:ATTR-SOURCE-VARIABLE attribute-id>RA:ATTR-SOURCE-VARIABLE <em>attribute-id</em>)<p>
+</code></pre></a><a name="11654">
+Value objects for attribute-value fields are created using <code>RA:ATTR-VARIABLE</code>:<p>
+</a><P><a name="11655">
+<code><pre>(RA:ATTR-VARIABLE <em>attribute-id</em>)<p>
+</code></pre></a><a name="11656">
+When you define your attribute fields for the Materials Editor, you wrap them inside a <code>RA:MAKE-ATTRIBUTE-SOURCE-FIELD</code> form, e.g.:<p>
+</a><P><a name="11657">
+<code><pre>(<a RA:MAKE-ATTRIBUTE-SOURCE-FIELD>RA:MAKE-ATTRIBUTE-SOURCE-FIELD attribute-id<br>(<em>field-definition</em>)<p>
+</code></pre></a><a name="11659">
+<code><pre>		:attr-source-variable attribute-id)<p>
+</code></pre></a><a name="11633">
+You define your attribute fields in a function, which is in turn called by <code>RA:MAKE-ATTRIBUTES-MENU-FOR-DOMAIN</code>. In this example, we'll define fields for our two attributes:<p>
+</a><P><a name="9209">
+<code><pre>(defmethod make-sample-fields ()<p>
+</code></pre></a><a name="9211">
+<code><pre>  (let ((mbf-width 100))<p>
+</code></pre></a><a name="9212">
+<code><pre>    (ui:make-container-field<p>
+</code></pre></a><a name="9213">
+<code><pre>     (list<p>
+</code></pre></a><a name="9214">
+<code><pre>      (make-attribute-source-field<p>
+</code></pre></a><a name="9215">
+<code><pre>       (ui:make-color-field<p>
+</code></pre></a><a name="9216">
+<code><pre>        :outer-label "Foo"<p>
+</code></pre></a><a name="9217">
+<code><pre>        :value-object (attr-variable :foo))<p>
+</code></pre></a><a name="9219">
+<code><pre>       :value-object (attr-source-variable :foo))<p>
+</code></pre></a><a name="9221">
+<code><pre>      (make-attribute-source-field<p>
+</code></pre></a><a name="9222">
+<code><pre>       (ui:make-slider-field<p>
+</code></pre></a><a name="9223">
+<code><pre>        :numeric-type `(float 0.0 2.0 2)<p>
+</code></pre></a><a name="9224">
+<code><pre>        :outer-label "Blivet"<p>
+</code></pre></a><a name="9225">
+<code><pre>        :value-object (attr-variable :blivet)<p>
+</code></pre></a><a name="9226">
+<code><pre>        :redraw-on-select-p t)<p>
+</code></pre></a><a name="9228">
+<code><pre>       :value-object (attr-source-variable :blivet)))<p>
+</code></pre></a><a name="9231">
+<code><pre>  :width *attributes-window-width*<p>
+</code></pre></a><a name="9232">
+<code><pre>  :height (- <a *attributes-window-height*>*attributes-window-height* 450)<p>
+</code></pre></a><a name="9233">
+<code><pre>  :equalize-label-sizes-p t<p>
+</code></pre></a><a name="9234">
+<code><pre>  :resizable-p t)))<p>
+</code></pre></a><a name="11684">
+The key differences between attribute fields and typical UI fields are:<p>
+</a><P><ul><a name="11685">
+<li>You must define your attribute fields within a <code>ui:make-attribute-source-field</code> form.
+</a></li><P><a name="11691">
+<li>Value objects for attributes are created with <code>ra:attr-source-variable</code>, and not with <code>ui:make-variable</code>.
+</a></li><P><a name="11692">
+<li>Attribute source variable value objects are created with <code>attr:attr-source-variable</code>.
+</a></li><P></ul><P><a name="11682">
+<h3> Defining Command Fields</h3>
+</a><a name="9359">
+Command fields are buttons which respond to user input (such as a <strong>(CLICK-L)</strong> by executing a select-method. You can design command fields to serve any purpose, but you'll typically need to define at least one command field which will call your interpreter function when a user is ready to export or render an image. You define command fields for the Materials Window in much the same way you do in other contexts, with the exception that you do so within a method, and not as part of the field definition function. <p>
+</a><P><a name="9362">
+In this example, we've described an "Export" button. The select-method for this button, <code>export-function-name</code>, equates to the interpreter you wish to use for your domain:<p>
+</a><P><a name="9363">
+<code><pre>		(defmethod MAKE-COMMAND-FIELDS ((domain (eql :sample)))<p>
+</code></pre></a><a name="9365">
+<code><pre>			(list<p>
+</code></pre></a><a name="9366">
+<code><pre>				(ui:make-command-field `<em>export-function-name</em> <p>
+</code></pre></a><a name="9406">
+<code><pre>					:label "Export"<p>
+</code></pre></a><a name="9407">
+<code><pre>					:documentation "L: Export the current object, after applying current<br>									attributes. M: Export the current object"<p>
+</code></pre></a><a name="9379">
+<code><pre>					:expose-test (ui:var-test `*current-attribute-domain-symbol* :sample)<p>
+</code></pre></a><a name="9380">
+<code><pre>					:width 80<p>
+</code></pre></a><a name="9531">
+<code><pre>					:height 23<p>
+</code></pre></a><a name="9532">
+<code><pre>					:justification :center)))<p>
+</code></pre></a><a name="10852">
+<h3> Saving Parameters to a Preference File</h3>
+</a><a name="10853">
+If you wish your users to be able to save their domain preferences to a file, you must provide a way for them to do so. Generally, domain preferences are stored in the .ngc subdirectory of the users home directory:<p>
+</a><P><a name="10854">
+<code><pre>~{user}/.ngc/{domain-name}-preferences.lisp<p>
+</code></pre></a><a name="10855">
+To provide a way for users to save their default settings, define a method for the save-preferences-file generic function. You can use this method as a select-method for the "Save Preferences" button. Here's an example for the sample domain, which save to a file in the .ngc directory called sample-preferences.lisp:<p>
+</a><P><a name="10856">
+<code><pre>(defparameter *sample-map-dir* "<em>directory-name</em>"<p>
+</code></pre></a><a name="10857">
+<code><pre>(<a defmethod save-preferences-file>defmethod save-preferences-file ((domain (eql :SAMPLE))) <p>
+</code></pre></a><a name="10858">
+<code><pre>		(with-open-file (stream<p>
+</code></pre></a><a name="10859">
+<code><pre>						"~/.ngc/sample-preferences.lisp"<p>
+</code></pre></a><a name="10860">
+<code><pre>						:direction :output<p>
+</code></pre></a><a name="10861">
+<code><pre>						:if-does-not-exist :create<p>
+</code></pre></a><a name="10862">
+<code><pre>						:if-exists :new-version)<p>
+</code></pre></a><a name="11666">
+<code><pre>		(format stream "(*sample-map-dir* \"~a\"")<p>
+</code></pre></a><a name="11667">
+<code><pre>		))<p>
+</code></pre></a><a name="8878">
+<h2><HR> Manipulating Attributes, Sets, and Domains</h2>
+</a><a name="7462">
+You can use the Materials Editor to modify attributes, or you can manipulate attribute values programmatically.<p>
+</a><P><a name="7902">
+<h3> Retrieving Attribute Domains</h3>
+</a><a name="7903">
+There are several functions you can use which return the name of currently defined attribute domains. <p>
+</a><P><a name="7905">
+<h4> Finding a specific domain</h4>
+</a><a name="7899">
+You can find a specific domain with the <code><a ATTR:FIND-DOMAIN>ATTR:FIND-DOMAIN</code>. You must specify the name of a domain as an argument to this function:<p>
+</a><P><a name="7915">
+<code><pre><code>(ATTR:FIND-DOMAIN </code>domain-name<code> &amp;OPTIONAL </code><em>if-not-found<br></em><code>		</code><em>error-string</em><code>)</code><p>
+</code></pre></a><a name="11919">
+For example, to find the :sample domain:<p>
+</a><P><a name="7911">
+<code><pre>(attr:find-domain :sample)<p>
+</code></pre></a><a name="11920">
+which returns:<p>
+</a><P><a name="7907">
+<code><pre>#&lt;DOMAIN :sample&gt;<p>
+</code></pre></a><a name="7897">
+<h4> Returning the Current Domain</h4>
+</a><a name="7898">
+<code><a ATTR:CURRENT-DOMAIN>ATTR:CURRENT-DOMAIN</code> returns the name of the current attribute domain:<p>
+</a><P><a name="7935">
+<code><pre>(ATTR:CURRENT-DOMAIN)<p>
+</code></pre></a><a name="7937">
+Which returns:<p>
+</a><P><a name="7938">
+<code><pre>#&lt;DOMAIN :sample&gt;<p>
+</code></pre></a><a name="9965">
+The current attribute domain is also bound to the <code><a attr:*current-attribute-domain*>attr:*current-attribute-domain*</code> variable.<p>
+</a><P><a name="12221">
+You can also obtain the current attribute domain id with <code><a ATTR:CURRENT-DOMAIN-ID>ATTR:CURRENT-DOMAIN-ID</code>:<p>
+</a><P><a name="12222">
+<code><pre>(ATTR:CURRENT-DOMAIN-ID)<p>
+</code></pre></a><a name="12223">
+which returns the current domain id, i.e.,<p>
+</a><P><a name="12224">
+<code><pre>:GL<p>
+</code></pre></a><a name="7941">
+<h4> Changing the Current Domain</h4>
+</a><a name="7942">
+You can select a new domain to be the current domain by clicking on its button in the Current Material section of the Materials Editor menu. You can also use<code><a ATTR:MAKE-ATTRIBUTE-DOMAIN-CURRENT>ATTR:MAKE-ATTRIBUTE-DOMAIN-CURRENT</code> to achieve the same effect:<p>
+</a><P><a name="7943">
+<code><pre>(ATTR:MAKE-ATTRIBUTE-DOMAIN-CURRENT defined-domain)<p>
+</code></pre></a><a name="7949">
+<h3> Retrieving materials</h3>
+</a><a name="7950">
+<code><a ATTR:DEFINED-ATTRIBUTE-SETS-LIST>ATTR:DEFINED-ATTRIBUTE-SETS-LIST</code> returns a list of all currently defined materials:<p>
+</a><P><a name="7955">
+<code><pre>(ATTR:DEFINED-ATTRIBUTE-SETS-LIST &amp;OPTIONAL domains)<p>
+</code></pre></a><a name="7957">
+returns a list like this:<p>
+</a><P><a name="7960">
+<code><pre>(#&lt;ATTRIBUTE-SET "Test-material" 419348634&gt;<p>
+</code></pre></a><a name="7958">
+<code><pre> #&lt;ATTRIBUTE-SET "initial-attributes" 316703242&gt;<p>
+</code></pre></a><a name="7975">
+<code><pre>#&lt;ATTRIBUTE-SET "material-1" 318025290&gt;)<p>
+</code></pre></a><a name="7983">
+<h4> Retrieving a Specific material</h4>
+</a><a name="7961">
+Given the list generated by <code>attr:defined-attribute-sets-list,</code> <code><a ATTR:FIND-ATTRIBUTE-SET-IN-LIST>ATTR::FIND-ATTRIBUTE-SET-IN-LIST</code> returns a specific material:<p>
+</a><P><a name="7986">
+<code><pre>(FIND-ATTRIBUTE-SET-IN-LIST <br>		(attr:defined-attribute-sets-list) <em>set-name</em>)<p>
+</code></pre></a><a name="7990">
+If the set does not exist, Lisp returns NIL.<p>
+</a><P><a name="10052">
+<code>ATTR:MENU-CHOOSE-MATERIAL</code> creates a handy pop-up menu, from which you can select an material:<p>
+</a><P><a name="10053">
+<code><pre>(<a ATTR:MENU-CHOOSE-ATTRIBUTE-SET>ATTR:MENU-CHOOSE-MATERIAL)<p>
+</code></pre></a><a name="10056">
+Creates a pop-up menu like this one:<p>
+</a><P><a name="10057">
+ <P><img src="RenderingOperations.anc7.gif"><p>
+</a><a name="10058">
+<em>Figure 9.7  &#32; &#32;Pop up menu generated by <code>attr:menu-choose-attribute-set</code>.
+</em></a><P><a name="12005">
+<strong>(CLICK-L</strong>) on an material to return that set,e.g:<p>
+</a><P><a name="12006">
+<code><pre>#&lt;ATTRIBUTE-SET "Material-B" 419335370&gt;<p>
+</code></pre></a><a name="12007">
+<code><pre>#&lt;EXITING-MENU-ITEM-FIELD "Material-B" 3114534252&gt;<p>
+</code></pre></a><a name="10074">
+<code><pre>#(UI:MOUSE-BUTTON :LEFT 0)<p>
+</code></pre></a><a name="7981">
+<h4> Retrieving the Current material</h4>
+</a><a name="7962">
+<code>RA:CURRENT-ATTRIBUTE-SET</code> returns the current material:<p>
+</a><P><a name="7967">
+<code><pre>(<a RA:CURRENT-ATTRIBUTE-SET>RA:CURRENT-ATTRIBUTE-SET)<p>
+</code></pre></a><a name="7969">
+Returns an material, e.g.:<p>
+</a><P><a name="7970">
+<code><pre>#&lt;ATTRIBUTE-SET "material-1" 318025290&gt;<p>
+</code></pre></a><a name="11309">
+The current material is also bound to a global variable, <code><a RA:*CURRENT-ATTRIBUTE-SET*>RA:*CURRENT-ATTRIBUTE-SET*</code><p>
+</a><P><a name="7991">
+<h2><HR> Defining materials</h2>
+</a><a name="9975">
+You can define materials interactively in the Materials Editor, or use <code><a ATTR:DEFINE-ATTRIBUTE-SET>ATTR:DEFINE-ATTRIBUTE-SET</code> to do so programmatically:<p>
+</a><P><a name="10034">
+<code><pre>(ATTR:DEFINE-ATTRIBUTE-SET									:name <em>set-name</em><p>
+</code></pre></a><a name="10044">
+<code><pre>									:domain <em>domain-id</em>)<p>
+</code></pre></a><a name="10043">
+For example, to define an material called A-Material in the :sample domain:<p>
+</a><P><a name="10036">
+<code><pre>(attr:define-attribute-set :name "A-Material" :domain :sample)<p>
+</code></pre></a><a name="10051">
+<h4> Retrieving and Setting Attribute Values</h4>
+</a><a name="10077">
+An material context is basically analogous to an attribute domain. <code><a ATTR:GET-ATTRIBUTE-SET-CONTEXT>ATTR:GET-ATTRIBUTE-SET-CONTEXT</code> returns the context for a given domain:<p>
+</a><P><a name="10086">
+<code><pre>	(attr:get-attribute-set-context (attr:find-domain <em>domain-id </em>))<p>
+</code></pre></a><a name="10087">
+This function returns a context, e.g.,<p>
+</a><P><a name="10088">
+<code><pre>#&lt;ATTRIBUTE-SET-CONTEXT :SAMPLE domain. 419339842<p>
+</code></pre></a><a name="12055">
+The value of a given attribute depends on whether its value is set locally, or is inherited from another material. A value calculated for a given attribute across the entire hierarchy of materials is called a <em>derived-value</em>. Given a material, an attribute, and an material context, you can obtain the derived value for an attribute with <code><a ATTR:DERIVED-ATTRIBUTE-VALUE>ATTR:DERIVED-ATTRIBUTE-VALUE</code>:<p>
+</a><P><a name="12056">
+<code><pre>(ATTR:DERIVED-ATTRIBUTE-VALUE attribute-set att-name<p>
+</code></pre></a><a name="12235">
+<code><pre>att-set-context)<p>
+</code></pre></a><a name="12236">
+For example, to determine the value of the attribute foo in the material we defined above ("A-Material"), evaluate a form like this one:<p>
+</a><P><a name="10106">
+<code><pre>(attr:derived-attribute-value <p>
+</code></pre></a><a name="10107">
+<code><pre>		(attr:menu-choose-attribute-set) :foo <p>
+</code></pre></a><a name="10108">
+<code><pre>			(attr:get-attribute-set-context<p>
+</code></pre></a><a name="10109">
+<code><pre>				(attr:find-domain :sample)))<p>
+</code></pre></a><a name="10112">
+Lisp returns a series of printed expressions like this:<p>
+</a><P><a name="10115">
+<code><pre>#&lt;rgb-color: r=50% g=100% b=0%&gt;<p>
+</code></pre></a><a name="10117">
+<code><pre>NIL<p>
+</code></pre></a><a name="10118">
+<code><pre>(#&lt;ATTRIBUTE-SET "Material-A" 317756314&gt;)<p>
+</code></pre></a><a name="10119">
+<code><pre>:EXPLICIT<p>
+</code></pre></a><a name="10105">
+The first value is the value of the attribute itself. Because Foo is a color-attribute the returned value is an rgb-color<p>
+</a><P><a name="10167">
+The second value, NIL, indicates that the attribute is defined in a material, and not for an object. If the attribute is object-settable, then this line will show which objects were traversed to obtain the attribute value.<p>
+</a><P><a name="10165">
+The third value, a list, contains all of the materials from which this attribute inherits values. Because Material-A does not inherit from any other materials, this list contains only one item (Material-A).<p>
+</a><P><a name="10168">
+The fourth value, :EXPLICIT, indicates that the value for Foo has been set to a value other than the default value. If the attribute-value is not set at any point in the hierarchy, this value is :DEFAULT.<p>
+</a><P><a name="10202">
+For example, let's assume another material, Material-B, has been defined which inherits from Material-A. Evaluating the above form (and selecting Material-B from the pop-up) returns this data:<p>
+</a><P><a name="10203">
+<code><pre>#&lt;rgb-color: r=50% g=100% b=0%&gt;<p>
+</code></pre></a><a name="10205">
+<code><pre>NIL<p>
+</code></pre></a><a name="10206">
+<code><pre>(#&lt;ATTRIBUTE-SET "Material-B" 429660178&gt;<p>
+</code></pre></a><a name="10214">
+<code><pre>#&lt;ATTRIBUTE-SET "Material-A" 429608850&gt;)<p>
+</code></pre></a><a name="10207">
+<code><pre>:EXPLICIT<p>
+</code></pre></a><a name="10215">
+The third item, the attribute-set list, shows all of the materials in the hierarchy from which Material-B inherits values.<p>
+</a><P><a name="10177">
+<h4> Deriving A Local Attribute Value</h4>
+</a><a name="10014">
+Local attribute values are values for attributes in specific materials. Local attribute values ignore inheritance from other materials. This property means that you'll use local-attribute-values to set attribute-values programmatically, since it's the only way you can be sure that your changes will affect the attribute you intended, and not an attribute at another point in the hierarchy.<p>
+</a><P><a name="10015">
+<code><a ATTR:LOCAL-ATTRIBUTE-VALUE>ATTR:LOCAL-ATTRIBUTE-VALUE</code> returns the local value of an attribute, given an material, an attribute, and an material context:<p>
+</a><P><a name="10184">
+<code><pre>(ATTR:LOCAL-ATTRIBUTE-VALUE attribute-set attribute-id<br>			attribute-set-context<em>)</em><p>
+</code></pre></a><a name="10194">
+For example, to get the local value of Foo for Material A, evaluate a form like this one:<p>
+</a><P><a name="10183">
+<code><pre>(local-attribute-value (menu-choose-attribute-set) :foo (get-attribute-set-context (find-domain :sample)))<p>
+</code></pre></a><a name="10195">
+Lisp returns only the local value, and T, indicating that the function executed successfully:<p>
+</a><P><a name="10196">
+<code><pre>#&lt;rgb-color: r=50% g=100% b=0%&gt;<p>
+</code></pre></a><a name="10198">
+<code><pre>T<p>
+</code></pre></a><a name="10199">
+<h4> Changing a Local Attribute Value</h4>
+</a><a name="12075">
+You can change local attribute values by adding a setf form and a new value to this form. For example, to specify a new color for foo, use a form like:<p>
+</a><P><a name="10011">
+<code><pre>(setf (local-attribute-value (menu-choose-attribute-set)<p>
+</code></pre></a><a name="10218">
+<code><pre>		:foo (get-attribute-set-context (find-domain :sample)))<p>
+</code></pre></a><a name="10219">
+<code><pre>		(gi:make-rgb-color 1.0 1.0 .5))<p>
+</code></pre></a><a name="10838">
+<h3> Which Objects have Attributes</h3>
+</a><a name="10839">
+With certain exceptions, attributes are defined for bodies and face parts of objects. Certain attributes are object-settable, which means they can be defined for objects. Examples include the base-material and the various mappers. Bodies and face parts can have different materials, which means that care must be taken during the interpretation process to ensure that the correct material is applied.<p>
+</a><P><a name="10836">
+<h4> Assigning a Base material to an Object</h4>
+</a><a name="10229">
+You can assign a base material to an object with the <code>:base-attribute-set</code> keyword argument to the <code>ATTR:LOCAL-ATTRIBUTE-VALUE</code> function. You must provide this function with a body, a surface-context, and an material.<p>
+</a><P><a name="10237">
+Let's assume we've created an object in the geometry frame, and bound that object to ?. To get the body, we use the <code>3d:obod</code> function:<p>
+</a><P><a name="10240">
+<code><pre>(setf body (3d:obod ?))<p>
+</code></pre></a><a name="10241">
+Getting the surface-context requires that we have a bdi and an attribute domain. We've already learned how to retrieve an attribute domain, and we can get the bdi with the <code>3d:obdi</code> function:<p>
+</a><P><a name="10247">
+<code><pre>(setf bdi (3d:obdi ?))<p>
+</code></pre></a><a name="10032">
+Given the bdi and an attribute domain, we can retrieve the surface context with <code>3d:get-surface-context</code>:<p>
+</a><P><a name="10252">
+<code><pre>(setq context (<a 3d:get-surface-context>3d:get-surface-context bdi<p>
+</code></pre></a><a name="10264">
+<code><pre>						(attr:find-domain :sample)))<p>
+</code></pre></a><a name="10269">
+Finally, given all of these value, we can manipulate local attribute values:<p>
+</a><P><a name="10249">
+<code><pre>(setf (local-attribute-value body :base-attribute-set context)(menu-choose-attribute-set))<p>
+</code></pre></a><a name="10005">
+<h4> Deriving Object Attributes</h4>
+</a><a name="10025">
+When an material is assigned to an object, you can derive attribute values for that object, given the body, the surface context, and the domain.<p>
+</a><P><a name="10026">
+<code><pre>(derived-attribute-value body :foo context :domain (attr:find-domain :sample))<p>
+</code></pre></a>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="ExpObjData.html">[Prev]</a> <a href="ExtendingDynamics.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:21:05 -->
+
+</body>
+</html>

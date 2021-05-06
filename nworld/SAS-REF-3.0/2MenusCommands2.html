@@ -1,0 +1,991 @@
+<html><head><title>Skeletons in N-Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands1.html">[Prev]</a> <a href="2MenusCommands3.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+<h1>Skeletons in N-Geometry (cont.)</h1>  
+<a name="29599">
+<h3> IK Move Single</h3>
+</a><a name="29608">
+<em>Joints</em><p>
+</a><P><a name="30557">
+<strong>IK Move SIngle</strong> is the simplest IK operation of all-it affects only the bone immediately above the selected joint.<p>
+</a><P><a name="30558">
+Here's the basic concept:<p>
+</a><P><ul><a name="30559">
+<li>pick the joint you want to move, then reposition it in 3D space using the IK set defined for the joint
+</a></li><P></ul><P><a name="30560">
+Try this:<p>
+</a><P>
+<a name="30561">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="30562">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="30563">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the right ankle joint.
+</STRONG>
+</a><P><a name="30564">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="30565">
+<dt>The IK Set dialog box appears. Make the following changes to the IK Set for the right ankle joint:</dt>
+</a><P></dl><ul>
+<BR><a name="30566">
+<li>Turn off X, Y, and Z rotations for the TopHip
+</a><P><BR><a name="30567">
+<li>Turn off Y and Z rotations for the RightFemur
+</a><P></ul>
+<dl><a name="30568">
+<dt>When you're done, the IK Set should look like this:</dt>
+</a><P><a name="30573">
+ <P><img src="2MenusCommands.anc50.gif"><p>
+</a></dl>
+<a name="30574">
+<em>Figure 2.50  &#32; &#32;Defining an IK Set for an IK Move Root operation
+</em></a><P>
+<a name="30575">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK Set.
+</STRONG>
+</a><P><a name="30576">
+<STRONG>	6.	 Enter a name for the IK Set in the dialog box that appears and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><a name="30577">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the right ankle joint, then <strong>(CLICK-L)</strong> on IK Move Single.
+</STRONG>
+</a><P><dl><a name="30578">
+<dt>Move the mouse to pose the skeleton. Note that only the right tibia moves when you move the mouse:</dt>
+</a><P><a name="30586">
+ <P><img src="2MenusCommands.anc51.gif"><p>
+</a></dl>
+<a name="30587">
+<em>Figure 2.51  &#32; &#32;<strong>IK Move Single </strong>using right ankle joint
+</em></a><P><a name="29600">
+<h3> IK Move thru Root</h3>
+</a><a name="29611">
+<em>Joints</em><p>
+</a><P><a name="30604">
+<strong>IK Move thru Root</strong> has some similarities to <strong>IK Move Root</strong>, in that one joint is pinned and the root changes position; however, with this operation, you are moving a second joint rather than the root itself.<p>
+</a><P><a name="30605">
+Here's the basic concept:<p>
+</a><P><ul><a name="30606">
+<li>"pin down" one or more joints (not the root) on the skeleton
+</a></li><P><a name="30607">
+<li>use the mouse to pick a joint on the other side of the root, then move that joint, trying to keep any pinned joints as close to their original positions as possible (while paying attention to the DOF limits in place for the skeleton).
+</a></li><P></ul><P><a name="30608">
+Try this:<p>
+</a><P>
+<a name="30609">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="30610">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="30611">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the right ankle joint.
+</STRONG>
+</a><P><a name="30612">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on IK Move thru Root.
+</STRONG>
+</a><P><dl><a name="30613">
+<dt>The IK Set dialog box appears. Make the following changes to the IK set for the right ankle joint:</dt>
+</a><P></dl><ul>
+<BR><a name="30614">
+<li>Turn off X, Y, and Z rotations for the TopHip
+</a><P></ul>
+<dl><a name="30615">
+<dt>When you're done, the IK Set should look like this:</dt>
+</a><P><a name="30620">
+ <P><img src="2MenusCommands.anc52.gif"><p>
+</a></dl>
+<a name="30621">
+<em>Figure 2.52  &#32; &#32;Sample IK Set for an <strong>IK Move thru Root</strong> operation
+</em></a><P>
+<a name="30622">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK Set.
+</STRONG>
+</a><P><a name="30623">
+<STRONG>	6.	 Enter a name for the IK Set in the dialog box that appears and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="30625">
+<dt>N-Geometry goes into point-collect mode.</dt>
+</a><P></dl><a name="30627">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on a joint on the other side of the root.
+</STRONG>
+</a><P><dl><a name="30628">
+<dt>For this example, <strong>(CLICK-L)</strong> on the left wrist joint.</dt>
+</a><P></dl><a name="30629">
+<STRONG>	8.	 <strong>(CLICK-R)</strong> to end the collection of joints.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If no IK Set has been defined for the joint selected in step <a href="2MenusCommands2.html#30627">7</a>, the IK Set dialog box will be displayed for you. Enter an appropriate IK Set for the joint, then continue on.</font></dd></dt><dl><a name="30634">
+<dt>Drag the mouse around, both left to right and up and down.</dt>
+</a><P><a name="30651">
+ <P><img src="2MenusCommands.anc53.gif"><p>
+</a></dl></dl><P>
+<a name="30653">
+<em>Figure 2.53  &#32; &#32;Two poses made from the same skeleton using <strong>IK Move thru Root</strong>. A selected joint is pinned (in this case the left wrist) while a second joint is moved using IK (in this case the right ankle)
+</em></a><P><dl><dl><a name="30654">
+<dt>Note that the left wrist joint stay pinned, while your mouse controls position of the right ankle. (<a href="2MenusCommands2.html#30653">Figure 2.53</a> shows the same skeleton posed in two positions using this operation.)</dt>
+</a><P></dl></dl><a name="30658">
+<h4> Other Notes on IK Move thru Root</h4>
+</a><ul><a name="30659">
+<li><strong>(CLICK-M)</strong> on <strong>IK Move thru Root</strong> to pose the skeleton using the Relax method.
+</a></li><P></ul><P><a name="29601">
+<h3> IK Rotate Root</h3>
+</a><a name="29614">
+<em>Joints</em><p>
+</a><P><a name="30675">
+The <strong>IK Rotate Root</strong> operation lets you freely rotate the root around a fixed joint (or set of joints) on the skeleton.<p>
+</a><P><a name="30676">
+Here's the basic concept:<p>
+</a><P><ul><a name="30677">
+<li>"pin down" one or more joints on the skeleton
+</a></li><P><a name="30678">
+<li>rotate the root around that joint (or joints), trying to keep the pinned joints as close to their original positions as possible (while paying attention to the DOF limits in place for the skeleton)
+</a></li><P></ul><P><a name="30679">
+Try this:<p>
+</a><P>
+<a name="30680">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="30681">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="30682">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the right ankle joint.
+</STRONG>
+</a><P><a name="30683">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="30684">
+<dt>The IK Set dialog box appears. Make the following changes to the IK Set for the right ankle joint:</dt>
+</a><P></dl><ul>
+<BR><a name="30685">
+<li>Turn off X, Y, and Z rotations for the TopHip
+</a><P></ul>
+<dl><a name="30686">
+<dt>When you're done, the IK Set should look like this:</dt>
+</a><P><a name="30691">
+ <P><img src="2MenusCommands.anc54.gif"><p>
+</a></dl>
+<a name="30692">
+<em>Figure 2.54  &#32; &#32;Sample IK Set for an <strong>IK Rotate Root</strong> operation
+</em></a><P>
+<a name="30693">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK Set.
+</STRONG>
+</a><P><a name="30694">
+<STRONG>	6.	 Enter a name for the IK Set in the dialog box that appears and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><a name="30695">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the right ankle joint, then <strong>(CLICK-R)</strong> on IK Rotate Root.
+</STRONG>
+</a><P><dl><a name="30696">
+<dt>Drag the mouse right to pose the skeleton as shown below. In this example, we're rotating the root primarily around the Y axis:</dt>
+</a><P><a name="30712">
+ <P><img src="2MenusCommands.anc55.gif"><p>
+</a></dl>
+<a name="30713">
+<em>Figure 2.55  &#32; &#32;Left, original skeleton; right, <strong>IK Rotate Root</strong> pinning right ankle joint and rotating primarily around Y axis
+</em></a><P><dl><dl><a name="30717">
+<dt>The joint(s) that you "pinned" in step <a href="2MenusCommands3.html#30836">7</a> (the right ankle in the example above) remain as close as possible to their pinned position. </dt>
+</a><P><a name="34814">
+<dt>Try pinning both of the wrist joints down and rotating the root!</dt>
+</a><P></dl></dl><a name="30718">
+<h4> Other Notes on IK Rotate Root</h4>
+</a><ul><a name="30719">
+<li><strong>(CLICK-M)</strong> on <strong>IK Rotate Root</strong> to pose the skeleton using the Relax method.
+</a></li><P><a name="30720">
+<li><strong>(CLICK-R)</strong> on <strong>IK Rotate Root</strong> if you want the fixed joint (the ankle in our example above) to move a little when posing the skeleton. This variable is called <em>elasticity</em>.
+</a></li><P><dl><a name="30721">
+<dt>Use the slider that pops up to set the flexibility to a value between 0 (totally fixed) and 1 (very flexible).</dt>
+</a><P></dl></ul><P><a name="32526">
+<h3> IK Set</h3>
+</a><a name="32527">
+<em>Joints</em><p>
+</a><P><a name="32528">
+The set of rules that determine how an IK move is performed for a joint is called an <em>IK set</em>. An IK set specifies which bones can move in which directions to complete a specified IK move.<p>
+</a><P><a name="32529">
+IK moves can be performed interactively in N-Geometry, or using any of the IK move operations in N-Dynamics, as described in <a href="3DynamicsOperations.html#167">Chapter &#32;3, "pwd." &#32;</a><p>
+</a><P><a name="32533">
+This command performs the following operations:<p>
+</a><P><ul><a name="32534">
+<li>Edit an existing IK set for the selected joint.
+</a></li><P><a name="32535">
+<li>Create an IK set for the selected joint.
+</a></li><P><a name="32536">
+<li>Rename or delete a IK set for the selected joint.
+</a></li><P></ul><P><a name="32538">
+<h4> Editing an IK Set</h4>
+</a><a name="32539">
+To edit an existing IK set:<p>
+</a><P>
+<a name="32540">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="32541">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="32542">
+<dt>A list of IK sets associated with the joint is displayed:</dt>
+</a><P><a name="32546">
+ <P><img src="2MenusCommands.anc56.gif"><p>
+</a></dl>
+<a name="32547">
+<em>Figure 2.56  &#32; &#32;Choosing an IK set to edit
+</em></a><P>
+<a name="32548">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the IK set you want to edit.
+</STRONG>
+</a><P><dl><a name="32549">
+<dt>The selected IK set is displayed:</dt>
+</a><P><a name="32553">
+ <P><img src="2MenusCommands.anc57.gif"><p>
+</a></dl>
+<a name="32554">
+<em>Figure 2.57  &#32; &#32;Editing an IK set
+</em></a><P><dl><dl><a name="32555">
+<dt>Turn rotations on and off for the bones contained in the IK set.</dt>
+</a><P></dl></dl>
+<a name="32556">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Done to save the IK set.
+</STRONG>
+</a><P>
+<a name="32558">
+<h4> Creating an IK Set</h4>
+</a><a name="32559">
+To create an IK set for a joint:<p>
+</a><P>
+<a name="32560">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="32561">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="32562">
+<dt>The degrees of freedom in effect for the selected joint are displayed:</dt>
+</a><P><a name="32566">
+ <P><img src="2MenusCommands.anc58.gif"><p>
+</a></dl>
+<a name="32567">
+<em>Figure 2.58  &#32; &#32;Defining an IK set
+</em></a><P><dl><dl><a name="32568">
+<dt>In this example, for a wrist joint, a list of bones all the way back to the root is displayed.</dt>
+</a><P></dl></dl>
+<a name="32569">
+<STRONG>	3.	 Specify which directions each bone in that chain can rotate when an IK move is performed with the selected joint.
+</STRONG>
+</a><P><a name="32570">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Done and enter the name of the IK set in the dialog box that appears.
+</STRONG>
+</a><P><dl><a name="32571">
+<dt>By default, the name contains the name of the joint:</dt>
+</a><P><a name="32575">
+ <P><img src="2MenusCommands.anc59.gif"><p>
+</a></dl>
+<a name="32576">
+<em>Figure 2.59  &#32; &#32;Naming an IK set
+</em></a><P><dl><dl><a name="32577">
+<dt>You can specify multiple IK sets for the same joint; you select which IK set to use when performing an IK move (as described in the sections <a href="2MenusCommands1.html#28600">"IK Move," on page &#32;2-39</a>, <a href="2MenusCommands1.html#29280">"IK Move 2D," on page &#32;2-40</a>, and elsewhere).</dt>
+</a><P></dl></dl>
+<a name="32584">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK set.
+</STRONG>
+</a><P>
+<a name="32585">
+<h4> Renaming or Deleting an IK Set</h4>
+</a><a name="32586">
+To delete or rename a saved IK set:<p>
+</a><P>
+<a name="32587">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint with which the IK set is associated.
+</STRONG>
+</a><P><a name="32588">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="32589">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="32593">
+ <P><img src="2MenusCommands.anc60.gif"><p>
+</a></dl>
+<a name="32594">
+<em>Figure 2.60  &#32; &#32;Deleting or renaming a pose
+</em></a><P><a name="32596">
+<h4> Renaming an IK Set</h4>
+</a><a name="32597">
+Displays a list of IK sets saved for the joint. <strong>(CLICK-L)</strong> on the IK set you want to rename, then change that name in the dialog box that appears.<p>
+</a><P><a name="32599">
+<h4> Deleting a IK Set</h4>
+</a><a name="32600">
+Displays a list of saved IK sets.<p>
+</a><P><a name="32602">
+<h4> Selecting a IK Set</h4>
+</a><a name="32603">
+Displays a list of IK sets saved for the joint. <strong>(CLICK-L)</strong> on the IK set you want to use.<p>
+</a><P><a name="28687">
+<h3> Joint Identification</h3>
+</a><a name="29298">
+<em>Joints</em><p>
+</a><P><a name="28688">
+Define which set of predefined DOF limits are used to govern movement of the selected joint.<p>
+</a><P><a name="28689">
+To define a joint as a particular type of joint:<p>
+</a><P>
+<a name="28690">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="28691">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Joint Identification.
+</STRONG>
+</a><P><dl><a name="28692">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="28696">
+ <P><img src="2MenusCommands.anc61.gif"><p>
+</a></dl>
+<a name="28697">
+<em>Figure 2.61  &#32; &#32;Assigning a predefined joint ID
+</em></a><P>
+<a name="31688">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the type of joint you want the selected joint to act like.
+</STRONG>
+</a><P><dl><a name="31689">
+<dt>The following prompt is displayed:</dt>
+</a><P><a name="31693">
+ <P><img src="2MenusCommands.anc62.gif"><p>
+</a></dl>
+<a name="31694">
+<em>Figure 2.62  &#32; &#32;Setting DOF limits based on the joint ID assignment
+</em></a><P><ul><ul>
+<BR><a name="31695">
+<li><strong>Yes</strong> assigns the appropriate DOF limits to the joint. You can view these limits using the <strong>DOF Editor</strong> by looking at the bone below the joint.
+</a><P><BR><a name="31696">
+<li><strong>No</strong> uses the existing DOF limits.
+</a><P></ul>
+</ul><a name="28698">
+The DOF limits for each Joint ID are shown in <a href="2MenusCommands2.html#28698">Table 2.1</a>: 
+<P><Table Border="1">
+<dl>
+<a name="31278">
+<em>Table 2.1 <strong> &#32; &#32;Default IK constraints</strong>
+</em></a></dl>
+<tr><th align="left"><a name="31292">
+Joint<br>ID
+</a><th align="left"><a name="31294">
+Min <br>X
+</a><th align="left"><a name="31296">
+Max<br>X
+</a><th align="left"><a name="31298">
+Min <br>Y
+</a><th align="left"><a name="31300">
+Max <br>Y
+</a><th align="left"><a name="31302">
+Min <br>Z
+</a><th align="left"><a name="31304">
+Max <br>Z
+</a>
+<tr><td valign="top"><a name="31306">
+ None<p>
+</a><td valign="top"><a name="31308">
+ 0<p>
+</a><td valign="top"><a name="31310">
+ 0<p>
+</a><td valign="top"><a name="31312">
+ 0<p>
+</a><td valign="top"><a name="31314">
+ 0<p>
+</a><td valign="top"><a name="31316">
+ 0<p>
+</a><td valign="top"><a name="31318">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="31320">
+ Spine<p>
+</a><td valign="top"><a name="31322">
+ -10<p>
+</a><td valign="top"><a name="31324">
+ 10<p>
+</a><td valign="top"><a name="31326">
+ -7<p>
+</a><td valign="top"><a name="31328">
+ 7<p>
+</a><td valign="top"><a name="31330">
+ -7<p>
+</a><td valign="top"><a name="31332">
+ 7<p>
+</a>
+<tr><td valign="top"><a name="31334">
+ Neck<p>
+</a><td valign="top"><a name="31336">
+ -15<p>
+</a><td valign="top"><a name="31338">
+ 37<p>
+</a><td valign="top"><a name="31340">
+ -80<p>
+</a><td valign="top"><a name="31342">
+ 80<p>
+</a><td valign="top"><a name="31344">
+ -15<p>
+</a><td valign="top"><a name="31346">
+ 15<p>
+</a>
+<tr><td valign="top"><a name="31510">
+ Jaw<p>
+</a><td valign="top"><a name="31512">
+ -5<p>
+</a><td valign="top"><a name="31514">
+ 40<p>
+</a><td valign="top"><a name="31516">
+ 0<p>
+</a><td valign="top"><a name="31518">
+ 0<p>
+</a><td valign="top"><a name="31520">
+ 0<p>
+</a><td valign="top"><a name="31522">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="31597">
+ Shoulder<p>
+</a><td valign="top"><a name="31599">
+ -15<p>
+</a><td valign="top"><a name="31601">
+ 90<p>
+</a><td valign="top"><a name="31603">
+ -15<p>
+</a><td valign="top"><a name="31605">
+ 120<p>
+</a><td valign="top"><a name="31607">
+ -90<p>
+</a><td valign="top"><a name="31609">
+ 90<p>
+</a>
+<tr><td valign="top"><a name="31625">
+ Elbow<p>
+</a><td valign="top"><a name="31627">
+ -150<p>
+</a><td valign="top"><a name="31629">
+ 0<p>
+</a><td valign="top"><a name="31631">
+ 0<p>
+</a><td valign="top"><a name="31633">
+ 0<p>
+</a><td valign="top"><a name="31635">
+ 0<p>
+</a><td valign="top"><a name="31637">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="31541">
+ Wrist<p>
+</a><td valign="top"><a name="31655">
+ -10<p>
+</a><td valign="top"><a name="31657">
+ 90<p>
+</a><td valign="top"><a name="31659">
+ -50<p>
+</a><td valign="top"><a name="31661">
+ 50<p>
+</a><td valign="top"><a name="31663">
+ -20<p>
+</a><td valign="top"><a name="31665">
+ 20<p>
+</a>
+<tr><td valign="top"><a name="31555">
+ Knuckle<p>
+</a><td valign="top"><a name="31557">
+ -10<p>
+</a><td valign="top"><a name="31559">
+ 10<p>
+</a><td valign="top"><a name="31561">
+ 0<p>
+</a><td valign="top"><a name="31563">
+ 0<p>
+</a><td valign="top"><a name="31565">
+ -10<p>
+</a><td valign="top"><a name="31567">
+ 90<p>
+</a>
+<tr><td valign="top"><a name="31569">
+ Finger<p>
+</a><td valign="top"><a name="31571">
+ 0<p>
+</a><td valign="top"><a name="31573">
+ 0<p>
+</a><td valign="top"><a name="31575">
+ 0<p>
+</a><td valign="top"><a name="31577">
+ 0<p>
+</a><td valign="top"><a name="31579">
+ 0<p>
+</a><td valign="top"><a name="31581">
+ 60<p>
+</a>
+<tr><td valign="top"><a name="31583">
+ Hip<p>
+</a><td valign="top"><a name="31585">
+ -120<p>
+</a><td valign="top"><a name="31587">
+ 10<p>
+</a><td valign="top"><a name="31589">
+ -75<p>
+</a><td valign="top"><a name="31591">
+ 10<p>
+</a><td valign="top"><a name="31593">
+ -45<p>
+</a><td valign="top"><a name="31595">
+ 5<p>
+</a>
+<tr><td valign="top"><a name="31362">
+ Knee<p>
+</a><td valign="top"><a name="31364">
+ 0<p>
+</a><td valign="top"><a name="31366">
+ 150<p>
+</a><td valign="top"><a name="31368">
+ 0<p>
+</a><td valign="top"><a name="31370">
+ 0<p>
+</a><td valign="top"><a name="31372">
+ 0<p>
+</a><td valign="top"><a name="31374">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="31376">
+ Ankle<p>
+</a><td valign="top"><a name="31667">
+ -30<p>
+</a><td valign="top"><a name="31669">
+ 60<p>
+</a><td valign="top"><a name="31671">
+ -20<p>
+</a><td valign="top"><a name="31673">
+ 20<p>
+</a><td valign="top"><a name="31675">
+ -10<p>
+</a><td valign="top"><a name="31677">
+ 10<p>
+</a>
+<tr><td valign="top"><a name="31390">
+ Heel<p>
+</a><td valign="top"><a name="31392">
+ -10<p>
+</a><td valign="top"><a name="31394">
+ 90<p>
+</a><td valign="top"><a name="31396">
+ -50<p>
+</a><td valign="top"><a name="31398">
+ 50<p>
+</a><td valign="top"><a name="31400">
+ -20<p>
+</a><td valign="top"><a name="31402">
+ 20<p>
+</a>
+<tr><td valign="top"><a name="31404">
+ Ball of Foot<p>
+</a><td valign="top"><a name="31406">
+ -10<p>
+</a><td valign="top"><a name="31408">
+ 80<p>
+</a><td valign="top"><a name="31410">
+ 0<p>
+</a><td valign="top"><a name="31412">
+ 0<p>
+</a><td valign="top"><a name="31414">
+ 0<p>
+</a><td valign="top"><a name="31416">
+ 0<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If a joint can be identified as either the "right" or "left" of that type, the rotations may be reversed. Those shown above are for a "right" joint. As mentioned earlier, the SAS assumes a +Z orientation of the skeleton.</font></dd></dt></dl><P>
+<a name="31849">
+<h3> Lock Bone</h3>
+</a><a name="29304">
+<em>Bones</em><p>
+</a><P><a name="28047">
+Groups bones together so that several <em>sibling</em> bones (e.g., fingers on a hand) can be moved in unison by manipulating only one bone. Sibling bones are bones attached to the same superior joint.<p>
+</a><P><a name="28048">
+You might select the middle finger bone on a hand and lock it to the ring finger. You could then move both fingers by moving only the ring finger.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>In the default skeleton primitive created in N-Geometry, the chest, hip, feet, and heel bones are locked.</em></font></dd></dt></dl><P>
+<a name="28051">
+<h4> Locking a Bone</h4>
+</a><a name="28052">
+To lock one bone to another:<p>
+</a><P>
+<a name="28053">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the first bone.
+</STRONG>
+</a><P><dl><a name="28054">
+<dt>A dialog box appears, displaying a list of sibling bones:</dt>
+</a><P><a name="28058">
+ <P><img src="2MenusCommands.anc63.gif"><p>
+</a></dl>
+<a name="28059">
+<em>Figure 2.63  &#32; &#32;List of sibling bones
+</em></a><P>
+<a name="28060">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the bone you want to lock this bone to.
+</STRONG>
+</a><P>
+<a name="28062">
+<h4> Unlocking a Bone</h4>
+</a><a name="28063">
+To unlock a bone:<p>
+</a><P>
+<a name="28064">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to unlock.
+</STRONG>
+</a><P><a name="28065">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Lock Bone to unlock the bone.
+</STRONG>
+</a><P><dl><a name="28066">
+<dt>The bone is unlocked from any other bone that it may have been locked to.</dt>
+</a><P></dl>
+<a name="26286">
+<h3> Make Attached Objects</h3>
+</a><a name="29570">
+<em>Skeletons</em><p>
+</a><P><a name="30746">
+The <strong>Make Attached Objects</strong> command lets you attach a set of polyhedra to the skeleton you want to animate. This is particularly useful for testing an animation without attaching objects by hand.<p>
+</a><P><a name="30747">
+However, if you plan on using attached objects for your animation, it's also an easy way to get started-objects are attached to the correct bone, and can be modified to make a completely unique correction.<p>
+</a><P><a name="30748">
+Try this:<p>
+</a><P>
+<a name="30749">
+<STRONG>	 1.	 Load the following skeleton:
+</STRONG>
+</a><P><dl><dl><a name="30750">
+<dt><code>/usr/local/ngc/demo/acclaim/acclaim_walk_man.asf</code><p>
+</a><P></dl></dl><dl><a name="30751">
+<dt>The skeleton appears in the N-Geometry window.</dt>
+</a><P></dl><a name="30752">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="30753">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Make Attached Objects.
+</STRONG>
+</a><P><dl><a name="30754">
+<dt>The following prompt appears:</dt>
+</a><P><a name="30758">
+ <P><img src="2MenusCommands.anc64.gif"><p>
+</a></dl></dl><a name="30759">
+<em>Figure 2.64  &#32; &#32; Make Attached Objects?
+</em></a><P>
+<a name="30760">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="30761">
+<dt>Individual polyhedra are created and attached to each bone on the skeleton. Your skeleton should now look something like this:</dt>
+</a><P><a name="30765">
+ <P><img src="2MenusCommands.anc65.gif"><p>
+</a></dl>
+<a name="30766">
+<em>Figure 2.65  &#32; &#32;The Make Attached Objects command attaches polyhedra to each bone
+</em></a><P><a name="30767">
+The objects are automatically restructured into a top level object called <strong>skeleton attached Objects</strong>,<strong> </strong>where <strong>skeleton</strong> is the name of the skeleton to which the objects are attached. Individual polyhedra are subobjects under the top level object.<p>
+</a><P><a name="30768">
+<h4> Modifying Attached Objects</h4>
+</a><a name="30769">
+Once you've attached the objects, you could simply use the tools in N-Geometry to add complexity to the objects in order to create a character.<p>
+</a><P><a name="30770">
+You can make any topological changes to the attached object. In <a href="2MenusCommands2.html#29571">Figure 2.66</a>, we scaled some of the faces at different joint and pulled out some additional detail around the head to create something of our own:<p>
+</a><P><a name="30777">
+ <P><img src="2MenusCommands.anc66.gif"><p>
+</a><a name="29571">
+<em>Figure 2.66  &#32; &#32;You can modify attached objects to create a unique character
+</em></a><P><a name="29569">
+<h3> Make Skin Parts</h3>
+</a><a name="29310">
+<em>Skeletons</em><p>
+</a><P><a name="26287">
+Performs the following "skin part" operations:<p>
+</a><P><ul><a name="26288">
+<li>Create default skin parts for the skeleton from the currently attached skin.
+</a></li><P><a name="26289">
+<li>Create default hard parts for the skeleton from the currently attached skin.
+</a></li><P><a name="26290">
+<li>Clear all skin parts from the skeleton.
+</a></li><P></ul><P><a name="26291">
+Skin parts are created by associating an object with a skeleton as a skin, then dividing that skin into "parts" based on their proximity to bones on the skeleton. When the skeleton is animated, the skin parts behave based on the transformation of the bone it's attached to.<p>
+</a><P><a name="26292">
+You'll be most likely to use this operation if you are defining your own skin parts on a model; for example, you might decide that you want to replace the skin parts you've created manually with the defaults (in which case you can <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong>. If you want to clear the skin parts that have been assigned (but not detach the skin from the skeleton) you can <strong>(CLICK-R)</strong>. See the section on autoskinning in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="26294">
+<h4> Create Default Skin Parts</h4>
+</a><a name="26295">
+To create default skin parts for attached skins:<p>
+</a><P>
+<a name="26296">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26297">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Make Skin Parts.
+</STRONG>
+</a><P><dl><a name="26298">
+<dt>This makes skin parts that are hard when the bone rotates, but soft when the bone is twisted or scaled.</dt>
+</a><P></dl>
+<a name="26300">
+<h4> Create Default Hard Skin Parts</h4>
+</a><a name="26301">
+To create default hard skin parts for attached skins:<p>
+</a><P>
+<a name="26302">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26303">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Make Skin Parts.
+</STRONG>
+</a><P><dl><a name="26304">
+<dt>This makes skin parts that are hard when the bone is rotated, twisted, or scaled.</dt>
+</a><P></dl>
+<a name="26306">
+<h4> Clear All Skin Parts</h4>
+</a><a name="26307">
+To clear any skin parts that have been assigned to the skeleton:<p>
+</a><P>
+<a name="26308">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26309">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Make Skin Parts.
+</STRONG>
+</a><P><dl><a name="26310">
+<dt>This clears the bones of any skin parts from the attached skins, but leaves the skins attached.</dt>
+</a><P></dl>
+<a name="34490">
+<h3> Move</h3>
+</a><a name="34491">
+<em>Skeletons</em><p>
+</a><P><a name="34492">
+To move the skeleton freely:<p>
+</a><P>
+<a name="34493">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P>
+<ul><a name="34494">
+<li><strong>(CLICK-L)</strong> on <strong>Move</strong> to move the skeleton using the major axes
+</a></li><P><a name="34500">
+<li><strong>(CLICK-M)</strong> on <strong>Move</strong> to move the skeleton relative to screen.
+</a></li><P></ul><P><a name="34495">
+For a more complete description of the <strong>Move</strong> command, see the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="26078">
+<h3> Motion Transform</h3>
+</a><a name="29790">
+<em>Skeletons</em><p>
+</a><P><a name="29793">
+This operation lets you transform the motion capture data captured for one skeleton so that it can be used to animate a second skeleton of different orientation and/or dimensions.<p>
+</a><P>
+<a name="29794">
+<STRONG>	 1.	 Read in the skeleton for the motion capture file you want to animate.
+</STRONG>
+</a><P><a name="29798">
+ <P><img src="2MenusCommands.anc67.gif"><p>
+</a>
+<a name="29799">
+<em>Figure 2.67  &#32; &#32;Read in the skeleton from the motion capture file you want to animate
+</em></a><P>
+<a name="29800">
+<STRONG>	2.	 Read in the skin you want to animate.
+</STRONG>
+</a><P><a name="29801">
+<STRONG>	3.	 Align the hips of the skin with the root of the skeleton.
+</STRONG>
+</a><P><a name="29809">
+ <P><img src="2MenusCommands.anc68.gif"><p>
+</a>
+<a name="29810">
+<em>Figure 2.68  &#32; &#32;Move the skin so that its hips are aligned with the skeleton's root
+</em></a><P>
+<a name="29812">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the skin, then <strong>(CLICK-L)</strong> an Make Displacement.
+</STRONG>
+</a><P><dl><a name="29813">
+<dt>Make an <strong>Absolute</strong> displacement on the skin and call it "Base".</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Moving the root of the skeleton out of the global origin will likely cause unwanted behavior when interpolating the motion data. If it is necessary to move the skeleton away from global zero, you should do so in a dynamics transform-root channel.)</em></font></dd></dt></dl><P>
+
+<a name="29815">
+<STRONG>	5.	 Using N-Geometry's skeletal operations, modify the skeleton so that it fits your skin.
+</STRONG>
+</a><P><dl><a name="29816">
+<dt>Use the various rotate and scaling commands, or the browser, to match the skeleton to the skin.</dt>
+</a><P><a name="29820">
+ <P><img src="2MenusCommands.anc69.gif"><p>
+</a></dl>
+<a name="29821">
+<em>Figure 2.69  &#32; &#32;Align the skeleton with the skin
+</em></a><P>
+<a name="29822">
+<STRONG>	6.	 Save a new base state for the modified skeleton.
+</STRONG>
+</a><P><dl><a name="29823">
+<dt><strong>(SHIFT-L)</strong> on the skeleton, then <strong>(CLICK-L)</strong> on <strong>Base</strong>. Use the same name for the base state of the skeleton that you used for the skin in step <a href="2MenusCommands2.html#29812">4</a>.</dt>
+</a><P><a name="29830">
+ <P><img src="2MenusCommands.anc70.gif"><p>
+</a></dl>
+<a name="29831">
+<em>Figure 2.70  &#32; &#32;Save the base state for the skeleton
+</em></a><P><dl><dl><a name="29832">
+<dt><strong>(CLICK-L)</strong> on the <strong>Done</strong> button to save the base state.</dt>
+</a><P></dl></dl><a name="29833">
+Now that you have aligned the skin and posed the skeleton to match it, you can perform the motion transform procedure on the altered skeleton.<p>
+</a><P>
+<a name="29834">
+<STRONG>	7.	 Rename your altered skeleton with a distinct name. 
+</STRONG>
+</a><P><ul>
+<BR><a name="29835">
+<li><strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;Rename</strong>.
+</a><P><BR><a name="29836">
+<li><strong>(CLICK-L)</strong> on the skeleton.
+</a><P><BR><a name="29837">
+<li>Enter a new name for the skeleton in the dialog box that appears
+</a><P><a name="29841">
+ <P><img src="2MenusCommands.anc71.gif"><p>
+</a></ul>
+
+<a name="29842">
+<em>Figure 2.71  &#32; &#32;Rename the skeleton
+</em></a><P><a name="29843">
+At this point, you have two elements in memory:<p>
+</a><P><ul><a name="29844">
+<li>The skin
+</a></li><P><a name="29845">
+<li>The altered skeleton
+</a></li><P></ul><P><a name="29846">
+To complete the transform, you must reread the original skeleton back into N-Geometry:<p>
+</a><P>
+<a name="29847">
+<STRONG>	8.	 Reread the original skeleton from the motion capture file.
+</STRONG>
+</a><P><dl><a name="29848">
+<dt>You should see both skeletons in the N-Geometry window:</dt>
+</a><P><a name="29852">
+ <P><img src="2MenusCommands.anc72.gif"><p>
+</a></dl>
+<a name="29853">
+<em>Figure 2.72  &#32; &#32;Original and altered skeleton
+</em></a><P>
+<a name="29854">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the altered skeleton, then <strong>(CLICK-L)</strong> on <strong>Motion Transform</strong>.
+</STRONG>
+</a><P><a name="29861">
+<STRONG>	10.	 Select the original (unaltered) skeleton from the object list that appears. 
+</STRONG>
+</a><P><dl><a name="29862">
+<dt>You're next asked if you want to select a bone on which to base the transformation of the translation data.</dt>
+</a><P><a name="29866">
+ <P><img src="2MenusCommands.anc73.gif"><p>
+</a></dl>
+<a name="29867">
+<em>Figure 2.73  &#32; &#32;Choosing a bone to compare translation
+</em></a><P>
+<a name="29868">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><a name="29869">
+<STRONG>	12.	 You're next prompted to select the bone on the altered skeleton that the translations should be based on.
+</STRONG>
+</a><P>
+<ul><a name="29870">
+<li>For a walk cycle, select a femur.
+</a></li><P><a name="29871">
+<li>For motion data in which the arms generate the movement (e.g., swinging from vine to vine), select an upper arm.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you are doing a Motion Transform from one skeleton to another skeleton, try to keep the bones which you are dependent on for the motion transform in close proportion to the bones in the original skeleton. You can still scale the skeleton (e.g., to copy the motion from a man to a dwarf), but don't change the proportion of the bone to the overall skeleton.<br><br>For example, if you are doing a walk cycle and do not want any slippage or Y translation, try to keep the bones of the legs in the altered skeleton proportionate to the bones of the legs in the original skeleton. If you need more consistency in the motion of the arms, then keep the upper arm bones proportionate.<br><br>In general, avoid using any Scaling operations on just the bone being used on the motion transform.</em></font></dd></dt></dl><P>
+<a name="29873">
+Once you've completed the transform:<p>
+</a><P>
+<a name="29874">
+<STRONG>	13.	 Create an N-Dynamics script with at least two channels:
+</STRONG>
+</a><P><ul>
+<BR><a name="29875">
+<li><strong>Read Acclaim Data</strong> or <strong>Read Biovision Data</strong>
+</a><P><BR><a name="29876">
+<li><strong>Update Skeleton</strong>
+</a><P></ul>
+<a name="29877">
+<STRONG>	14.	 Edit the Read Motion Data channel.
+</STRONG>
+</a><P><dl><a name="29878">
+<dt>If you're working with an Acclaim skeleton, use <strong>Read Acclaim Data</strong>, and complete it like this:</dt>
+</a><P><a name="29882">
+ <P><img src="2MenusCommands.anc74.gif"><p>
+</a></dl>
+<a name="29883">
+<em>Figure 2.74  &#32; &#32;Using Acclaim data
+</em></a><P><ul><ul>
+<BR><a name="29884">
+<li>For <strong>Skeleton</strong>, specify the altered skeleton
+</a><P><BR><a name="29885">
+<li>For the <strong>.asf</strong> file, specify the original skeleton.
+</a><P><BR><a name="29886">
+<li>For the <strong>.amc</strong> file, choose the motion file.
+</a><P></ul>
+<dl><a name="29887">
+<dt>If you're working with a Biovision skeleton, use <strong>Read Biovision Data</strong>, and complete it like this:</dt>
+</a><P><a name="29891">
+ <P><img src="2MenusCommands.anc75.gif"><p>
+</a></dl></ul><a name="29892">
+<em>Figure 2.75  &#32; &#32;Using Biovision data
+</em></a><P><ul><ul>
+<BR><a name="29893">
+<li>For <strong>Skeleton</strong>, specify the altered skeleton
+</a><P><BR><a name="29894">
+<li>For the <strong>.bvh</strong> file, choose the motion file.
+</a><P></ul>
+</ul>
+<a name="29895">
+<STRONG>	15.	 Edit the Update Skeleton channel.
+</STRONG>
+</a><P><dl><a name="29896">
+<dt>In the Update Skeleton channel, make sure you select the altered skeleton:</dt>
+</a><P><a name="29900">
+ <P><img src="2MenusCommands.anc76.gif"><p>
+</a></dl>
+<a name="29901">
+<em>Figure 2.76  &#32; &#32;Select the altered skeleton in the Update Skeleton channel
+</em></a><P>
+<a name="29902">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Animate button to animate your script.
+</STRONG>
+</a><P>
+<a name="29903">
+After testing the motion transform on the new skeleton, you can proceed to skin the skeleton as described in the <em>Skeletal Animation System Tutorial Guide</em>.<p>
+</a><P><a name="29904">
+<h4> Notes on Using Motion Transform</h4>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Moving the root of the skeleton out of the global origin will likely cause unwanted behavior when interpolating the motion data. If it is necessary to move the skeleton away from global zero, you should do so in a dynamics transform-root channel.</em></font></dd></dt></dl><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands1.html">[Prev]</a> <a href="2MenusCommands3.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 10:50:17 -->
+
+</body>
+</html>

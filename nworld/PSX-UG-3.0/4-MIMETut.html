@@ -1,0 +1,384 @@
+<html><head><title>MIME: Using Motion Capture Data</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3-ActionEditor.html">[Prev]</a> <a href="5-MIME+MotionTut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="21165">
+<h1>MIME: Using Motion Capture Data</h1>
+</a>
+<hr><p><a name="21311">
+One of the fastest ways to obtain realistic motion animation is to use motion capture data to drive the movement of your objects. This section describes how you can combine the realism of motion capture animation and MIME technology to create stunning animations on the Sony PlayStation.<p>
+</a><P><a name="16096">
+<h2><HR> Animating with Motion Capture Data</h2>
+</a><a name="21708">
+Charecter animations in MIME format are subject to the following constraints:<p>
+</a><P><ul><a name="21709">
+<li><strong>Objects </strong>must be a single skin which is a single terminal object. The skin can have parts, but cannot have subobjects. The skin is attached to a skeleton which is animated using a motion capture file.
+</a></li><P><a name="20431">
+<li><strong>Displacements</strong> can be layered over motion capture data; however, these displacements are not associated with a button on the game controller as described in <a href="3-ActionEditor.html#21168">"MIME: Using Displacements," on page &#32;3-1</a>.
+</a></li><P><a name="20433">
+<li><strong>Attributes</strong> must defined in the SonyPSX domain.
+</a></li><P></ul><P><a name="20485">
+The MIME format is an appropriate choice for animating sequences where displacements are required, but which are otherwise "static." For example, if you wanted to animate a character performing a spinning back kick with appropriate muscle bulging, you'd attach a single skin model (with displacements) to a skeleton, animate the model by attaching a motion capture file to the skeleton, use PlayStation Express to convert the script, then export the animation to the Sony PlayStation.<p>
+</a><P><a name="20908">
+If you are using motion capture data from suppliers like Acclaim and BioVision, you can animate a "skin" using that data and send the entire animation sequence over to the PlayStation.<p>
+</a><P><a name="20486">
+<h4> Creating the Animation</h4>
+</a><a name="21324">
+<a href="4-MIMETut.html#20494">Figure 4.1</a> is shows the basic workflow for the process of MIME skeletal animation.<p>
+</a><P><a name="20493">
+ <P><img src="4-MIME+MotionTut.anc.gif"><p>
+</a><a name="20494">
+<em>Figure 4.1  &#32; &#32;Creating a MIME animation using motion capture data
+</em></a><P><a name="20000">
+By the time you're ready to send your data to the PlayStation, the single skin object should have been attached to the skeleton and animated. <p>
+</a><P><a name="20017">
+<h4> Loading the Sample Script</h4>
+</a>
+<a name="20018">
+<STRONG>	 1.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="20019">
+<STRONG>	2.	 For this tutorial, load the following script from N-Dynamics:
+</STRONG>
+</a><P><a name="20006">
+<code><pre>/usr/local/ngc/demo/psx/psx-motion-tutorial.script<p>
+</code></pre></a><dl><a name="20025">
+<dt>This script contains an N-Geometry model attached to a skeleton that is animated with an Acclaim motion capture file. </dt>
+</a><P></dl>
+<a name="20041">
+<h4> Analyzing the Script</h4>
+</a><a name="20044">
+There are four channels in the script:<p>
+</a><P><ul><a name="20062">
+<li>The <strong>Set View</strong> channel positions the camera. We positioned the camera back, up, and to the right of the global origin.
+</a></li><P><a name="20063">
+<li>The <strong>Read Acclaim Data</strong> reads a motion capture file and specifies the skeleton that file should animate. 
+</a></li><P><a name="21656">
+<li>The <strong>Update Skeleton</strong> channel applies the motion capture data to the skeleton and updates the position of the skeleton in the N-Geometry window. Note that there are four "sections" in the Update Skeleton operation:
+</a></li><P><ul>
+<BR><a name="20071">
+<li>The <strong>Skeleton</strong> section specifies the skeleton you are updating and whether or not the skeleton should be visible. You'll probably want to hide the skeleton, so make sure that <strong>Visible</strong> is set to <strong>No</strong>.
+</a><P><BR><a name="20072">
+<li>The <strong>Skins</strong> section specifies whether the skins attached to the skeleton should be updated, and whether or not any displacements saved with that skin should be animated.
+</a><P><dl><a name="20114">
+<dt>Since we're really animating the skins, we'll set <strong>Update?</strong> to <strong>Yes</strong>.<p>
+</a><P></dl><BR><a name="20073">
+<li>The <strong>Root Transformations</strong> section specifies whether the various types of transformations (translate, rotate, or scale) should be applied to the skeleton.
+</a><P></ul>
+</ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The </em><strong>Translate</strong><em> option </em>must<em> be set to </em><strong>No</strong><em> when sending a motion-based MIME animation to the Sony PlayStation.</em></font></dd></dt><ul>
+<BR><a name="20091">
+<li>The <strong>Motion Editing</strong> section is designed for modifying motion capture data, and isn't used in this animation.
+</a><P></ul>
+</dl><P>
+<ul><a name="20092">
+<li>The <strong>MIME Animation </strong>channel sets the keyframes at which subactions are created with PlayStation Express.
+</a></li><P><dl><a name="20121">
+<dt>A keyframe is a "snapshot" of the object's position at that point in the animation; the PlayStation animates the skeleton and its attached skin between those keyposes using a linear interpolation method (much like N-Geometry used when animating between relative displacements), as described in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P><a name="21483">
+<dt>In this sample script, we've already inserted a number of cues over the length of the channel; we can add more cues later if necessary.</dt>
+</a><P></dl></ul><P><a name="20064">
+<h4> Animating the Script</h4>
+</a>
+<a name="19976">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Animate button.
+</STRONG>
+</a><P><dl><a name="20104">
+<dt>The skeleton and skin are animated in the N-Geometry window. The cat walks across the N-Geometry window.</dt>
+</a><P></dl>
+<a name="20109">
+<h4> Playback your Animation</h4>
+</a>
+<a name="20110">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Playback button.
+</STRONG>
+</a><P><dl><a name="20111">
+<dt>Your animation is played back in real time in the playback window.</dt>
+</a><P></dl>
+<a name="20124">
+<h4> Open the Vector Editor</h4>
+</a>
+<a name="20125">
+<STRONG>	5.	 Open the Vector Editor.
+</STRONG>
+</a><P><a name="20129">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Create New MIME Object.
+</STRONG>
+</a><P><a name="20130">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the skin attached to the skeleton.
+</STRONG>
+</a><P><dl><a name="20136">
+<dt>This creates a new MIME object for PlayStation Express to work with.</dt>
+</a><P></dl><a name="20137">
+<STRONG>	8.	 Close the Vector Editor.
+</STRONG>
+</a><P>
+<a name="20142">
+<h4> Open the Action Editor</h4>
+</a>
+<a name="20143">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Action Generate under the Dyna menu.
+</STRONG>
+</a><P><dl><a name="20144">
+<dt>A dialog box similar to the one below appears:</dt>
+</a><P><a name="20145">
+ <P><img src="4-MIME+MotionTut.anc2.gif"><p>
+</a></dl>
+<a name="20149">
+<em>Figure 4.2  &#32; &#32;Converting the animation into an action
+</em></a><P>
+<a name="20154">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on OK to convert the script.
+</STRONG>
+</a><P><dl><a name="20155">
+<dt>This does not affect your N-Dynamics script.</dt>
+</a><P></dl>
+<a name="20156">
+The Dynamics script is animated again; this time, however, the script is only animated at the frames where cues were inserted in the MIME Animation channel of the script. For each of those keyframes, a subaction is created in the Action Editor.<p>
+</a><P><a name="20177">
+<h4> Reanimating with PlayStation Express</h4>
+</a>
+<a name="20178">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Animate Action under the Animate menu.
+</STRONG>
+</a><P><dl><a name="20179">
+<dt>The action reanimates, this time using the vector and wave information as "keyframes" to position the skeleton and skin.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can stop the animation by clicking on the </em><strong>ABORT</strong><em> button in the Action Editor.</em></font></dd></dt></dl><P>
+<a name="20185">
+<h4> Adding Keyframes</h4>
+</a><a name="20189">
+If you look at the individual subactions in the Action Editor, you can see the vector, or "pose" saved for the skin at each specified keyframe. As mentioned above, the PlayStation animates the skeleton between keyframes using a linear interpolation method (much like relative displacements), as described in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="20206">
+Linear interpolation between keyframes can cause skins to deform in ways you might not intuitively expect; because every vertex moves from its position at one keyframe to its position at the next, you can get "squashing" effects, particularly in limbs that are rotating.<p>
+</a><P><a name="20209">
+If you see any of this unwanted behavior, you can add keyframes to the section of the animation where it is happening. Look at the example below:<p>
+</a><P><a name="20219">
+ <P><img src="4-MIME+MotionTut.anc3.gif"><p>
+</a><a name="20220">
+<em>Figure 4.3  &#32; &#32;With linear displacements, vertices move from one keyframe to the next ina linear path, sometimes producing "squashing" effects
+</em></a><P><a name="20214">
+If you add more keyframes, the interpolation is still linear, but the change in position is not so drastic, and your animation appears smoother:<p>
+</a><P><a name="20265">
+ <P><img src="4-MIME+MotionTut.anc4.gif"><p>
+</a><a name="20266">
+<em>Figure 4.4  &#32; &#32;Adding more keyframes takes more "slices" from the motion capture file, making the animation more closely resemble the original
+</em></a><P><a name="20288">
+To add more keyframes:<p>
+</a><P>
+<a name="20289">
+<STRONG>	12.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="20290">
+<STRONG>	13.	 Open the MIME Animation channel.
+</STRONG>
+</a><P><a name="20291">
+<STRONG>	14.	 Add cues where you want them in the curve channel inside the MIME Animation channel.
+</STRONG>
+</a><P><dl><a name="20294">
+<dt>You can use the "s" hot key to add the cues at the position of the mouse.</dt>
+</a><P></dl><a name="20298">
+<STRONG>	15.	 Open the Action Editor.
+</STRONG>
+</a><P><a name="20299">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Action Regenerate under Dyna.
+</STRONG>
+</a><P><dl><a name="20301">
+<dt>Action Regenerate rereads the N-Dynamics script, deletes the old action, and converts the N-Dynamics script into a new action.</dt>
+</a><P></dl><a name="20308">
+<STRONG>	17.	 Choose the action you want to regenerate from the list of actions that appears.
+</STRONG>
+</a><P><a name="20356">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on OK when asked if you want to delete the old action:
+</STRONG>
+</a><P><a name="20309">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on OK when prompted if you want to convert the N-Dynamics script again.
+</STRONG>
+</a><P><dl><a name="21510">
+<dt>The Action Editor creates a new set of subactions; again, animating the script only at the position of keyframe cues in the Action Editor channel of the N-Dynamics script.</dt>
+</a><P><a name="20378">
+<dt>Scroll up and down in the Action Editor to review each of the subactions:</dt>
+</a><P><a name="21518">
+ <P><img src="4-MIME+MotionTut.anc5.gif"><p>
+</a></dl>
+<a name="21519">
+<em>Figure 4.5  &#32; &#32;The first four subactions in our MIME animation example
+</em></a><P><a name="20379">
+<h4> Reanimate &amp; Playback</h4>
+</a><a name="20380">
+Now, reanimate using the newly created keyframes.<p>
+</a><P>
+<a name="20381">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Animate Action under Animate.
+</STRONG>
+</a><P><dl><a name="20382">
+<dt>The Action Editor animates the character using the vector and wave data in the newly created subactions.</dt>
+</a><P></dl><a name="20385">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Playback under Animate.
+</STRONG>
+</a><P><dl><a name="20386">
+<dt>The animation plays back in the Action Editor playback window.</dt>
+</a><P></dl>
+<a name="20387">
+You can repeat this process as many times as needed, adding keyframes, removing others, and using Action Regenerate to rebuild your animation until it looks just right.<p>
+</a><P><a name="20950">
+<h4> Setting up the PC to Receive the Animation Data</h4>
+</a>
+<a name="21583">
+<STRONG>	22.	 On the PC, execute the following commands to start the PSX software.
+</STRONG>
+</a><P><a name="21584">
+<code><pre>cd c:\psx<p>
+</code></pre></a><a name="21585">
+<code><pre>psx<p>
+</code></pre></a><dl><a name="21586">
+<dt>When the software starts, a list of datasets that can be animated is displayed.</dt>
+</a><P></dl><a name="21581">
+<STRONG>	23.	 Type "n" to create a new dataset.
+</STRONG>
+</a><P><a name="20956">
+<STRONG>	24.	 Enter the name for the new dataset at the prompt:
+</STRONG>
+</a><P><a name="20957">
+<code><pre>DATASET: cube-test<p>
+</code></pre></a><a name="20958">
+<STRONG>	25.	 Press <strong>RETURN</strong> and the dataset is added to the list of MIME objects.
+</STRONG>
+</a><P><a name="20959">
+<STRONG>	26.	 Locate the new dataset's number in the list of datasets and enter it at the prompt, followed by <strong>RETURN</strong>.
+</STRONG>
+</a><P><dl><a name="20960">
+<dt>The following commands are displayed:</dt>
+</a><P></dl><a name="20961">
+<code><pre>Current DATASET: cube-test<p>
+</code></pre></a><a name="20962">
+<code><pre>1) Execute MIME-DATASET<p>
+</code></pre></a><a name="20963">
+<code><pre>2) Execute 		MIME-DATASET with WAVE-file<p>
+</code></pre></a><a name="20964">
+<code><pre>3) Playback TOD file<p>
+</code></pre></a><a name="20965">
+<code><pre>4) link/filt<p>
+</code></pre></a><a name="20966">
+<code><pre>5) Recv. files<p>
+</code></pre></a><a name="20967">
+<code><pre>6) QUIT<p>
+</code></pre></a><a name="20968">
+<code><pre>Please Input Number:<p>
+</code></pre></a><a name="20969">
+<STRONG>	27.	 Press "5" to Receive the Files.
+</STRONG>
+</a><P><dl><a name="21591">
+<dt>This command starts the PC telnet application, and places the PC in FTP Server mode, where it can receive data sent over from the SGI.</dt>
+</a><P></dl>
+<a name="20971">
+<h4> Sending Data to the PlayStation</h4>
+</a><a name="21597">
+We're ready to send the animation and MIME object data to the PC from the SGI.<p>
+</a><P>
+<a name="21598">
+<STRONG>	28.	 In The Action Editor, <strong>(CLICK-L)</strong> on Convert&gt;Convert and Send Action.
+</STRONG>
+</a><P><dl><a name="21599">
+<dt><strong>(CLICK-L) </strong>on the action you want to convert from the pop-up menu which appears:</dt>
+</a><P><a name="21603">
+ <P><img src="4-MIME+MotionTut.ancA5.gif"><p>
+</a></dl>
+<a name="21604">
+<em>Figure 4.6  &#32; &#32;Select an action to convert and send to the PC
+</em></a><P>
+<a name="21605">
+<STRONG>	29.	 In the dialog which appears, enter a directory for the Action Editor to write temporary files.
+</STRONG>
+</a><P><dl><a name="21606">
+<dt>During the conversion process, the Action Editor writes several temporary files to the specified directory. It's a good idea to specify the /tmp directory, or a subdirectory of /tmp, so that these temporary files will be deleted the next time you reboot your SGI.</dt>
+</a><P><a name="21610">
+ <P><img src="4-MIME+MotionTut.anc6.gif"><p>
+</a></dl>
+<a name="21611">
+<em>Figure 4.7  &#32; &#32;Choose a directory for temporary files
+</em></a><P>
+<a name="21612">
+<STRONG>	30.	 When you <strong>(CLICK-L)</strong> on Done, the data are sent to the PC.
+</STRONG>
+</a><P><dl><a name="21613">
+<dt>Files are sent to the Action Editor Host specified in the N-Dynamics Options menu. When all the files have been sent the following prompt is displayed on the PC:</dt>
+</a><P></dl><a name="21614">
+<code><pre>Finished sending data.<p>
+</code></pre></a><dl><a name="21615">
+<dt>(For more information about what files are written with the <strong>Convert and Send Action</strong> command, see <a href="6-TOD+TextTut.html#18735">"Convert and Send Action," on page &#32;6-8</a>. Other convert options are also described in the section<a href="6-TOD+TextTut.html#16406">"Convert," on page &#32;6-8</a>.)</dt>
+</a><P></dl><a name="21622">
+<STRONG>	31.	 Press ESC on the PC to exit from FTP server mode.
+</STRONG>
+</a><P><dl><a name="21623">
+<dt>The PSX menu appears again on the PC.</dt>
+</a><P></dl>
+<a name="20984">
+<h4> Animating the MIME Object </h4>
+</a>
+<a name="20985">
+<STRONG>	32.	 Press "4" to convert the .rsd file into a .tmd file.
+</STRONG>
+</a><P><dl><a name="20986">
+<dt>This is the format required for the PSX development kit.</dt>
+</a><P></dl><a name="20987">
+<STRONG>	33.	 Press "2" to animate the MIME object using the Wave data you created.
+</STRONG>
+</a><P>
+<a name="20989">
+<h4> Exiting the PSX Program</h4>
+</a>
+<a name="20990">
+<STRONG>	34.	 <strong>Press "6" to exit from the current animation.</strong>
+</STRONG>
+</a><P><a name="20991">
+<STRONG>	35.	 <strong>Press "Q" to exit completely from the PSX software.</strong>
+</STRONG>
+</a><P>
+<a name="20310">
+<h4> Saving your Work</h4>
+</a><a name="19854">
+Make sure to save both the N-Dynamics script and the Action Editor data.<p>
+</a><P><a name="19858">
+<h4> Saving your N-Dynamics Script</h4>
+</a>
+<a name="19859">
+<STRONG>	36.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="21635">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on File&gt;Save Script.
+</STRONG>
+</a><P><dl><a name="21636">
+<dt>Specify the directory in which you want to save your script and any objects it may reference. For more on saving scripts, see the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="19789">
+<h4> Saving the Action Editor Data</h4>
+</a>
+<a name="19790">
+<STRONG>	38.	 Open the Vector Editor, <strong>(CLICK-L)</strong> on Group&gt;Save Group.
+</STRONG>
+</a><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3-ActionEditor.html">[Prev]</a> <a href="5-MIME+MotionTut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:21 -->
+
+</body>
+</html>

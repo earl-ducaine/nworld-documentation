@@ -1,0 +1,638 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="LispFundamentals.html">[Prev]</a> <a href="DefForeignFunctions.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="32515">
+N&#183;World is fully extensible, so you can develop your own extensions to the original source code. The N&#183;World Developers Kit includes Franz Allegro Common Lisp (ACL), and Xemacs, industry standard tools for developing object oriented LISP code. This chapter describes:<p>
+</a><P><ul><a name="32516">
+<li>How to start N&#183;World from within Xemacs
+</a></li><P><a name="32517">
+<li>How to edit and compile code
+</a></li><P><a name="32518">
+<li>How to store and use the plug-ins you create
+</a></li><P></ul><P><a name="32520">
+To develop in the N&#183;World environment, you should be familiar with ACL and CLOS (Common Lisp Object System). This chapter is not intended to teach you to program using LISP, nor to teach you to use Xemacs.<p>
+</a><P><a name="32524">
+<h2><HR> Getting Started</h2>
+</a><a name="32525">
+LISP extensions to N&#183;World are edited and compiled using Xemacs. To begin editing new LISP code:<p>
+</a><P>
+<a name="32527">
+<STRONG>	 1.	 Launch Xemacs.
+</STRONG>
+</a><P><dl><a name="32528">
+<dt>The exact procedure for launching Xemacs is dependent on how your system is configured. For more information, consult the documentation which came with your Lisp development tools. </dt>
+</a><P></dl><a name="32530">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on ACLfile&gt;Run/Restart Common Lisp.
+</STRONG>
+</a><P><dl><a name="32531">
+<dt>This loads and starts Lisp.</dt>
+</a><P></dl><a name="32532">
+<STRONG>	3.	 Specify a buffer.
+</STRONG>
+</a><P><dl><a name="32533">
+<dt>In general, choose the default buffer: </dt>
+</a><P></dl><a name="32534">
+<code><pre>(default *common-Lisp*)<p>
+</code></pre></a><a name="32536">
+<STRONG>	4.	 Specify a UNIX host.
+</STRONG>
+</a><P><dl><a name="48194">
+<dt>By default, the host is the machine where Xemacs is running.</dt>
+</a><P></dl><a name="32538">
+<STRONG>	5.	 Specify a Process Directory.
+</STRONG>
+</a><P><dl><a name="32539">
+<dt>This is essentially a default directory. </dt>
+</a><P></dl><a name="32541">
+<STRONG>	6.	 Specify an image to load.
+</STRONG>
+</a><P><dl><a name="32542">
+<dt>Type the path and filename of the image you want to load into the current buffer. To load N&#183;World, type its path and filename as it is installed on your system. The default pathname used during installation is:</dt>
+</a><P></dl><a name="32543">
+<code><pre>/usr/local/ngc/bin/nworld-3-0-0<p>
+</code></pre></a><dl><a name="47980">
+<dt>The filename may be different on your system, depending upon which version of N&#183;World is installed on your system.</dt>
+</a><P></dl><a name="47977">
+<STRONG>	7.	 Specify any image arguments.
+</STRONG>
+</a><P><dl><a name="32546">
+<dt>Accept the default argument, <code>debug t</code>. This instructs Xemacs to provide you with a listener, or interactive prompt from which you can evaluate Lisp forms.</dt>
+</a><P></dl>
+<a name="32673">
+You're now ready to code your extensions and enhancements to N&#183;World. <p>
+</a><P><a name="32674">
+<h2><HR> Using Xemacs</h2>
+</a><a name="32688">
+Xemacs is fully extensible, and Franz has taken advantage of this by adding a host of tools for creating Lisp code. These include facilities for compiling and debugging code, as well as for inspecting Lisp objects. Xemacs has excellent online documentation, and there are a number of excellent third-party references available as well.<p>
+</a><P><a name="32690">
+<h3> Extending Xemacs</h3>
+</a><a name="48027">
+You can use emacs Lisp (a non-ANSI dialect of Lisp) to extend Xemacs in several ways, including adding new key bindings, adding new menu commands. Extensions to Xemacs are stored in files with the extension .el. The N&#183;World Developers Kit includes two such files: nworld-emacs-std.el and nworld-site-init.el<p>
+</a><P><a name="48030">
+<h3> The Xemacs Window</h3>
+</a><a name="32617">
+ <P><img src="NWorldDevoEnvironment.anc.gif"><p>
+</a><a name="32619">
+<em>Figure 3.1  &#32; &#32;The Xemacs window.
+</em></a><P><a name="32623">
+<a href="NWorldDevoEnvironment.html#32619">Figure 3.1</a> illustrates the major features of the Xemacs windowing system. When you enter text in a window, you are modifying a buffer. You can display several buffers at any given moment, but you can only enter text into a single buffer at a time. <p>
+</a><P><a name="32682">
+<h3> Basic Commands and Key Bindings</h3>
+</a><a name="32678">
+You issue Xemacs commands by pressing key-combinations, or by selecting items from the pull-down menus in the menu bar. <a href="NWorldDevoEnvironment.html#32678">Table 3.1</a> summarizes some of the important Xemacs window and buffer manipulation key bindings. 
+<P><Table Border="1">
+<dl>
+<a name="47346">
+<em>Table 3.1 <strong> &#32; &#32;Xemacs keybindings for manipulating windows and buffers.</strong>
+</em></a></dl>
+<tr><th align="left"><a name="32634">
+Key Binding
+</a><th align="left"><a name="32636">
+Function
+</a>
+<tr><td valign="top"><a name="32638">
+ (C-x k)<p>
+</a><td valign="top"><a name="32640">
+ Kill buffer. Unsaved changes are lost.<p>
+</a>
+<tr><td valign="top"><a name="32642">
+  (C-x <em>n</em>)<p>
+</a><td valign="top"><a name="32644">
+ Show <em>n</em> windows<p>
+</a>
+<tr><td valign="top"><a name="32646">
+ (C-X B)<p>
+</a><td valign="top"><a name="32648">
+ Switch to buffer<p>
+</a>
+<tr><td valign="top"><a name="32650">
+ (C-X C-B)<p>
+</a><td valign="top"><a name="32652">
+ Switch to buffer with a hypertext list of available buffers.<p>
+</a>
+<tr><td valign="top"><a name="32654">
+ (C-X S)<p>
+</a><td valign="top"><a name="32656">
+ Save buffer to file<p>
+</a>
+<tr><td valign="top"><a name="32658">
+ (C-X C-w)<p>
+</a><td valign="top"><a name="32660">
+ Save buffer to different filename<p>
+</a>
+<tr><td valign="top"><a name="32662">
+ (C-X c-F)<p>
+</a><td valign="top"><a name="32664">
+ Open file<p>
+</a>
+<tr><td valign="top"><a name="48541">
+ (C-x 0)<p>
+</a><td valign="top"><a name="48543">
+ Hide a buffer<p>
+</a>
+<tr><td valign="top"><a name="48527">
+ (C-M-x)<p>
+</a><td valign="top"><a name="48529">
+ Compile a Lisp form<p>
+</a>
+<tr><td valign="top"><a name="48577">
+ (C-c C-b)<p>
+</a><td valign="top"><a name="48579">
+ Compile a Lisp buffer<p>
+</a>
+<tr><td valign="top"><a name="48581">
+ (M-x shell)<p>
+</a><td valign="top"><a name="48583">
+ Open a UNIX shell<p>
+</a>
+<tr><td valign="top"><a name="48523">
+ (M-Sh-a)<p>
+</a><td valign="top"><a name="48525">
+ Get arguments for a function<p>
+</a>
+<tr><td valign="top"><a name="48588">
+ (M-.)<p>
+</a><td valign="top"><a name="48590">
+ "Meta-dot", find source code for a function.<p>
+</a>
+<tr><td colspan=2 rowspan=1><a name="48399">
+ Keys: <strong>C</strong>=control, <strong>M</strong>=Meta (Alt), <strong>Sh</strong>=Shift<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="32665">
+There are many more useful Xemacs key bindings. To obtain a complete list of these:<p>
+</a><P>
+<a name="32666">
+<STRONG>	 1.	 Select Help/List Key Bindings from the Xemacs menu bar
+</STRONG>
+</a><P><dl><a name="48233">
+<dt>You can also type the corresponding key binding, <strong>(C-H B)</strong>.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note</strong>:	<em>In Xemacs notation, M refers to the Meta key, which is usually mapped to the ALT key on SGI keyboards. Xemacs key bindings are case sensitive. For example, M-C and M-c are not equivalent. The first is "Meta-Shift-c", and the second merely "Meta-c".</em></font></dd></dt></dl><P>
+<a name="32698">
+<h2><HR> Creating Code</h2>
+</a><a name="32704">
+There are two primary ways of entering code in Lisp:<p>
+</a><P><ul><a name="32705">
+<li>Directly into the Lisp listener
+</a></li><P><a name="32706">
+<li>In a text buffer
+</a></li><P></ul><P><a name="32707">
+<h3> Entering Code in the Lisp Listener</h3>
+</a><a name="33166">
+Code entered in the Lisp listerner is evaluated right away. For example, if you type in a Lisp form which defines a function and then press return, that function is interpreted and integrated with the current Lisp image.<p>
+</a><P><a name="32708">
+<h3> Entering Code in a Buffer</h3>
+</a><a name="33165">
+You can also type your forms into a buffer, which you can save to a file. This is how you should enter code you wish to save for later use. You can edit an existing file, or create a new file. <p>
+</a><P><a name="32709">
+To edit an existing file:<p>
+</a><P>
+<a name="32710">
+<STRONG>	 1.	 Type (C-X C-F), or choose File&gt;Open from the Xemacs menu.
+</STRONG>
+</a><P><dl><a name="32711">
+<dt>Xemacs will prompt you in the minibuffer for a filename.</dt>
+</a><P></dl><a name="32712">
+<STRONG>	2.	 Enter the name of the file you wish to edit.
+</STRONG>
+</a><P><dl><a name="32713">
+<dt>You can type the first few letters of a path or filename, then use the tab key to complete the name. If more than one path or filename matches the partial name you typed in, Xemacs provides a list of possible completions in a temporary buffer. <strong>(CLICK-L)</strong> on the directory or filename you want.</dt>
+</a><P><a name="32717">
+ <P><img src="NWorldDevoEnvironment.anc1.gif"><p>
+</a></dl>
+<a name="32718">
+<em>Figure 3.2  &#32; &#32;Completing File Names
+</em></a><P>
+<a name="32719">
+<STRONG>	3.	 To create a new file, enter a filename which does not correspond to an existing file.
+</STRONG>
+</a><P><dl><a name="32720">
+<dt>Xemacs creates a buffer with the name you specify. The new file is actually created when you first save the buffer.</dt>
+</a><P></dl>
+<a name="32722">
+<h3> Saving Your Work</h3>
+</a><a name="32723">
+Occasionally, you'll want to save your work. To save your work to a file:<p>
+</a><P>
+<a name="32724">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Save As.
+</STRONG>
+</a><P><dl><a name="48593">
+<dt>(you can also use the <strong>C-X C-W</strong> key binding.)</dt>
+</a><P><a name="32725">
+<dt>Xemacs will prompt you to enter a path and filename.</dt>
+</a><P></dl><a name="32727">
+<STRONG>	2.	 Type in a path and filename for your file.
+</STRONG>
+</a><P><dl><a name="32728">
+<dt>For example, to save your code in your home directory, type:</dt>
+</a><P></dl><a name="32729">
+<code><pre>~/MyLisp.lisp<p>
+</code></pre></a>
+<a name="32730">
+<h4> Where to Save Your Source Code</h4>
+</a><a name="32731">
+Xemacs and ACL have no preferences about where you store your source code. However, you must store your code in the default source code directory to make use of the Compile Plugin extension to Xemacs provided with your development kit. This default directory for source code is<p>
+</a><P><a name="32732">
+<code><pre>/usr/local/ngc/src/plugin<p>
+</code></pre></a><a name="32750">
+<h4> Xemacs Modes</h4>
+</a><a name="32751">
+Xemacs has several different editing modes which allow you to optimize the editing environment for each task. When you are writing Lisp code, you'll want to be sure that Xemacs knows to invoke Lisp mode whenever you open a Lisp file for editing. To ensure that Xemacs opens your Lisp files in Lisp mode, include a mode line at the top of your file.<p>
+</a><P>
+<a name="48602">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on NGC&gt;Mode Line&gt;Update Mode Line
+</STRONG>
+</a><P><dl><a name="48273">
+<dt>A Lisp mode line looks like this:</dt>
+</a><P></dl><a name="48274">
+<code><pre>;;; -*- Mode: Common-Lisp; Package: USER; -*-<p>
+</code></pre></a>
+<a name="48266">
+Your mode lines will look very much like this line, except that you may wish to specify a different package. For more information on packages, see <a href="LispFundamentals.html#28749">"Packages," on page &#32;2-3</a>.<p>
+</a><P><a name="32759">
+<h4> Finding a Function, Method, or Macro</h4>
+</a><a name="32760">
+You can search a Lisp image for defined functions, methods, or macros whose names contain all or part of a search string that you specify. For example, if you wanted to obtain a listing of functions whose names contained "mom", you would type the following at the lisp prompt:<p>
+</a><P><a name="32761">
+<code><pre>USER(17): (aprop</a>os `mom)<p>
+</code></pre></a><dl><a name="32762">
+<dt>and Lisp returns all the symbols which contain "mom"</dt>
+</a><P></dl><a name="32763">
+<code><pre>GEOMETRY::*MAX-MOM-OBJECTS* value: 40<p>
+</code></pre></a><a name="32764">
+<code><pre>GEOMETRY::MAX-MOM-HEIGHT [function] (&amp;OPTIONAL N-OBJECTS)<p>
+</code></pre></a><a name="32765">
+You can refine your search to a single package by including the package name after a colon:<p>
+</a><P><a name="32766">
+<code><pre>USER(18): (apropos `mom :3d)<p>
+</code></pre></a><a name="32767">
+<h4> Getting the Argument List of a Function</h4>
+</a><a name="32768">
+Often, you'll want to see which arguments a function requires. You can use the Xemacs key binding <strong>(M-SHIFT-A)</strong> to return the argument list for a function. Xemacs prompts you to enter a function, method, or macro name in the minibuffer area at the bottom of the screen <p>
+</a><P><a name="32786">
+ <P><img src="NWorldDevoEnvironment.anc2.gif"><p>
+</a><a name="32788">
+<em>Figure 3.3  &#32; &#32;Getting the Arguments for a Function.
+</em></a><P><a name="32789">
+If the cursor is in a Lisp form near a function name, Xemacs will offer that function as the default. This situation is illustrated in <a href="NWorldDevoEnvironment.html#32788">Figure 3.3</a>. You can obtain the arguments of a different function by typing in it's name in the minibuffer window.<p>
+</a><P><a name="32793">
+<h4> Getting the Source Code of a Function</h4>
+</a><a name="32794">
+Whey you're working with Lisp, you'll frequently want to review the source code for the functions, methods, and macros you encounter. The Xemacs key-combination <strong>(M-.)</strong> (spoken as "Meta-dot") will find the source code file for a given function, and open that file in a new buffer. Just position the cursor over the function name and press <strong>(M-.)</strong>. You can also press <strong>(M-.)</strong> and then type a function name into the mini-buffer.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong>Source code is only available for functions which you have defined and compiled. You cannot access Nichimen source code using <strong>(M-.)</strong>. However, Nichimen Graphics will provide source code in some circumstances upon request. Contact Nichimen Graphics Customer Support for more information.</font></dd></dt></dl><P>
+<a name="47833">
+<h3> Object Oriented Programming Tools</h3>
+</a><a name="32808">
+N&#183;World code is object-oriented. ACL provides several powerful tools for examining and navigating through the N&#183;World class hierarchy. These tools are part of the ACL composer. To use them, you must launch the composer from within Xemacs.<p>
+</a><P><a name="32558">
+<h4> Using the Window Inspector</h4>
+</a><a name="32813">
+The Lisp Window Inspector provides an powerful tool for inspecting Lisp classes and other objects. You can find out about superclasses, subclasses, instance slots, and methods, as well as many other attributes. For example, let's say you wanted to learn how to retrieve the coordinates of a point. You can inspect the point class, find the slot which holds coordinate values and the corresponding accessor function. <p>
+</a><P><a name="32814">
+To use the Window Inspector:<p>
+</a><P>
+<a name="32815">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Composer&gt;Start Composer in the ACL main menu.
+</STRONG>
+</a><P><a name="33150">
+<STRONG>	2.	 Select CLOS&gt;Inspect Class from the Composer menu
+</STRONG>
+</a><P><dl><a name="32816">
+<dt>Lisp prompts you in the mini-buffer to enter the name of a class</dt>
+</a><P></dl><a name="32817">
+<STRONG>	3.	 Type in the name of the class you wish to inspect, followed by Enter.
+</STRONG>
+</a><P><dl><a name="32818">
+<dt>The window inspector for that class (in this case, <code>3d:point</code>) appears:</dt>
+</a><P><a name="32829">
+ <P><img src="NWorldDevoEnvironment.anc3.gif"><p>
+</a></dl>
+<a name="32831">
+<em>Figure 3.4  &#32; &#32;The ACL Window Inspector
+</em></a><P><dl><dl><a name="32832">
+<dt>The items in the window are hyperlinks which lead to greater detail about each item. (<strong>CLICK-L)</strong> on an item to inspect it more closely.</dt>
+</a><P><a name="32833">
+<dt>Coordinates looks like a likely slot where we might find a reader function for coordinates. <strong>(CLICK-L)</strong> on the slot listing to inspect it.</dt>
+</a><P><a name="32834">
+<dt>A new window appears, detailing the coordinates slot of class Locus..</dt>
+</a><P><a name="32842">
+ <P><img src="NWorldDevoEnvironment.anc4.gif"><p>
+</a></dl></dl><a name="32843">
+<em>Figure 3.5  &#32; &#32;Window Inspector window for class Locus
+</em></a><P><a name="32844">
+Generally speaking, <code>3d:locus-coordinates</code> will return coordinates for any object which has the coordinates slot. The Window Inspector is described in more detail in the <em>Allegro Composer Development Environment User Guide</em>.<p>
+</a><P><a name="32855">
+<h2><HR> Compiling Your Code</h2>
+</a><a name="32856">
+You can compile Lisp forms in four basic ways with Xemacs. <p>
+</a><P><ul><a name="32857">
+<li>Compile a single form.
+</a></li><P><a name="32859">
+<li>Compile a buffer.
+</a></li><P><a name="32860">
+<li>Compile to a .fasl file.
+</a></li><P><a name="48306">
+<li>Compile directly to a plug-in
+</a></li><P></ul><P><a name="48309">
+Compiling a buffer compiles forms in that buffer and adds them to the current Lisp world. It provides a way to compile code and add it to the current Lisp world without compiling and loading a file. If you are running N&#183;World as the current Lisp world, then any forms you compile in this manner will be added to N&#183;World, allowing for quick and easy testing of code on-the-fly. <p>
+</a><P><a name="32864">
+<h3> Compiling Individual Forms</h3>
+</a><a name="32865">
+You can compile individual forms from the Lisp listener or within a buffer. Just place the cursor within the form and type <strong>(M-</strong><strong>Sh</strong><strong>-X)</strong>. Forms compiled in this fashion remain in the current world until redefined, or until you exit Lisp. If you want to save a form which you have compiled, you'll need to include it in a file and save it to disk.<p>
+</a><P><a name="32866">
+<h3> Compiling a Buffer</h3>
+</a>
+<a name="32867">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Compile&gt;Other&gt;Buffer from Xemacs' ACLfile menu.
+</STRONG>
+</a><P><dl><a name="32868">
+<dt>This command compiles the current buffer, and adds any definitions it contains to the current Lisp world. You can also use the<strong> C-c C-b</strong> keybinding.</dt>
+</a><P></dl>
+<a name="32869">
+Forms compiled in this fashion exist for the duration of the current Lisp session, or until they are redefined by another compile. <p>
+</a><P><a name="32870">
+<h3> Compiling to a File</h3>
+</a><a name="32871">
+You can compile your Lisp code directly to a .fasl file. This file can be loaded into a Lisp image, or loaded with N&#183;World as a plug-in. To compile a buffer to a file:<p>
+</a><P>
+<a name="32872">
+<STRONG>	 1.	 Select ACLfile&gt;Compile File from the Xemacs menu.
+</STRONG>
+</a><P><a name="32873">
+<STRONG>	2.	 Enter a file name for the source file in the minibuffer.
+</STRONG>
+</a><P>
+<a name="32876">
+You can compile your source code directly to a plugin, provided that you store your source code in the default plugin source code directory:<p>
+</a><P><a name="32877">
+<code><pre>/usr/local/ngc/src/plugin.<p>
+</code></pre></a><a name="33042">
+<h2><HR> Using the Debugger</h2>
+</a><a name="33043">
+The ACL debugger is a complex and powerful tool. This section is intended to provide only a brief of overview of this powerful tool, as well as some of the more commonly used debugging commands. To use the debugger effectively we recommend a careful reading of Chapter 5 in the <em>Allegro Common Lisp User Guide</em>.<p>
+</a><P><a name="33044">
+The debugger and debugging commands are integrated with the ACL top level. As a result, debugging commands are always available. There is no need to launch or invoke the debugger. <p>
+</a><P><a name="33045">
+<h3> Break Levels</h3>
+</a><a name="33046">
+Interaction with Lisp takes the form of a read-eval-print loop: Lisp reads input, evaluates it, and prints any returned values. When an error occurs, Lisp enters a <em>break-level,</em> which is a new read-eval-print loop. The current break level is displayed as part of the Lisp prompt, as shown in <a href="NWorldDevoEnvironment.html#33070">Figure 3.6</a><p>
+</a><P><a name="33068">
+ <P><img src="NWorldDevoEnvironment.anc5.gif"><p>
+</a><a name="33070">
+<em>Figure 3.6  &#32; &#32;The Debugger Prompt
+</em></a><P><a name="33071">
+<h3> Moving Through Break Levels</h3>
+</a><a name="33072">
+When you find yourself in a break level, you can either execute debugger commands to try and resolve the error, or execute one of several commands to move between read-eval-print loops.  
+<P><Table Border="1">
+<dl>
+<a name="47380">
+<em>Table 2  &#32; &#32;Debugger commands (type at the Lisp prompt)
+</em></a></dl>
+<tr><td valign="top"><a name="33079">
+Command
+</a><td valign="top"><a name="33081">
+Effect
+</a>
+<tr><td valign="top"><a name="33083">
+ <code>:reset</code><p>
+</a><td valign="top"><a name="33085">
+ Returns to the top-level read-eval loop.<p>
+</a>
+<tr><td valign="top"><a name="33087">
+ <code>:pop n</code><p>
+</a><td valign="top"><a name="33089">
+ Pops up to the specified level. Default value of n is 1. <p>
+</a>
+<tr><td valign="top"><a name="33091">
+ <code>:cont n</code><p>
+</a><td valign="top"><a name="33093">
+ Restarts evaluation with the action specified in the continuation options list. Default value of n is 1.<p>
+</a>
+<tr><td valign="top"><a name="48078">
+ <code>:zoom :verbose</code><p>
+</a><td valign="top"><a name="48080">
+ Provides a detailed listing of read-eval-print loops in frame stack, with values of arguments.<p>
+</a>
+<tr><td valign="top"><a name="33095">
+ <code>:error</code><p>
+</a><td valign="top"><a name="33097">
+ Reprints error message and continuation options (if any) for the current break level.<p>
+</a>
+<tr><td valign="top"><a name="48341">
+ :dn<p>
+</a><td valign="top"><a name="48343">
+ Move down one level in the current evaluation stack<p>
+</a>
+<tr><td valign="top"><a name="48337">
+ :up<p>
+</a><td valign="top"><a name="48339">
+ Move up one level in the current evaluation stack.<p>
+</a>
+<tr><td valign="top"><a name="48333">
+ :curr<p>
+</a><td valign="top"><a name="48335">
+ Return the current form being evaluated.<p>
+</a>
+<tr><td valign="top"><a name="48329">
+ :ed<p>
+</a><td valign="top"><a name="48331">
+ Allows you to edit the function or symbol definition in the current break level.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="33098">
+Generally, <code>:reset</code> will break you out of any error and return you to the top-level.<p>
+</a><P><a name="48606">
+<h3> Debugging and Multiprocessing</h3>
+</a><a name="33099">
+Allegro Common Lisp supports multiprocessing. If you are using multiprocessing, you'll want to take care when debugging code that the commands you type are being sent to the correct process. The process in which commands are typed is called the <em>listener process</em>, and the process which is being debugged is called the <em>focus</em>s<em>ed process</em>.  
+<P><Table Border="1">
+<dl>
+<a name="47408">
+<em>Table 3  &#32; &#32;Process management commands
+</em></a></dl>
+<tr><th align="left"><a name="33106">
+Command
+</a><th align="left"><a name="33108">
+Effect
+</a>
+<tr><td valign="top"><a name="33110">
+ <code>:process</code><p>
+</a><td valign="top"><a name="33112">
+ Lists current processes<p>
+</a>
+<tr><td valign="top"><a name="33114">
+ <code>:focus process</code><p>
+</a><td valign="top"><a name="33116">
+ Shifts focus to the specified process. If no process is specified, returns current focussed process<p>
+</a>
+<tr><td valign="top"><a name="33118">
+ <code>:kill process</code><p>
+</a><td valign="top"><a name="33120">
+ Kills specified process(es).<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="33121">
+We strongly recommend that you read and understand Chapter 5 in the <em>Allegro Common Lisp User's Guide</em>.<p>
+</a><P><a name="33040">
+<h2><HR> Working with Plug-Ins</h2>
+</a><a name="32945">
+Once you've compiled and saved your code, you're ready to make it available for use in N-World. You do this by creating plugin files. <em>Plug-ins</em> are .fasl files containing code intended to add well-defined new functionality to N&#183;World.<p>
+</a><P><a name="32956">
+<h3> Storing Your Plug-ins</h3>
+</a><a name="32957">
+Although plug-ins in the default directory are automatically loaded when N&#183;World loads, you may wish to consider storing your code in a separate subdirectory. Doing so will protect your code from being overwritten if you install a new version of N&#183;World in the future. <p>
+</a><P><a name="32958">
+For example, you might create a subdirectory under the plug-in directory:<p>
+</a><P><a name="48380">
+<code><pre>/usr/local/ngc/plugin/ourplugins<p>
+</code></pre></a><a name="33014">
+<h3> Using Your Plug-ins</h3>
+</a><a name="32962">
+N&#183;World loads patches and plug-ins in the following order at start-up:<p>
+</a><P>
+<a name="32963">
+<STRONG>	 1.	 Files in the default patch directory.
+</STRONG>
+</a><P><a name="32964">
+<STRONG>	2.	 Files in the default plug-in directory.
+</STRONG>
+</a><P><a name="32965">
+<STRONG>	3.	 Files specified in the .clinit.cl file in N&#183;World's home directory.
+</STRONG>
+</a><P><a name="32966">
+<STRONG>	4.	 Files specified in the .clinit.cl file in the user's home directory.
+</STRONG>
+</a><P>
+<a name="32968">
+The .clinit.cl file can contain instructions for N&#183;World to load plug-ins in certain directories. As a result, you can specify that a given plug-in be loaded:<p>
+</a><P><ul><a name="32969">
+<li>Every time N&#183;world loads
+</a></li><P><a name="32970">
+<li>When a specific type of user loads N&#183;World
+</a></li><P><a name="32971">
+<li>When a specific user loads N&#183;World
+</a></li><P></ul><P><a name="33175">
+<h4> Default Plug-in Directories</h4>
+</a><a name="33176">
+When N&#183;World loads, .fasl files located in the default patch and plug-ins directories are loaded automatically. <p>
+</a><P><a name="33177">
+The default patch and plug-in directory paths are:<p>
+</a><P><ul><a name="33179">
+<li><code>/usr/local/ngc/plugin</code>
+</a></li><P><a name="33181">
+<li><code>/usr/local/ngc/patch/nworld-3-0-x</code>
+</a></li><P><dl><a name="33182">
+<dt>(The filename on your system may be different depending on which version of N&#183;World you have.)</dt>
+</a><P></dl></ul><P><a name="32972">
+<h4> Loading Plug-ins Every Time N&#183;World Loads</h4>
+</a><a name="32974">
+To load specific plug-ins every time N&#183;World loads:<p>
+</a><P>
+<a name="32975">
+<STRONG>	 1.	 Place all plug-ins you want to load in a single subdirectory.
+</STRONG>
+</a><P><dl><a name="32976">
+<dt>Create a subdirectory you will use as your default plug-in directory. For example:</dt>
+</a><P><dl><a name="32977">
+<dt><code>/usr/local/ngc/plugin/ourplugins</code><p>
+</a><P></dl></dl><a name="32978">
+<STRONG>	2.	 Edit the .clinit.cl file in the N&#183;World home directory.
+</STRONG>
+</a><P><dl><a name="32979">
+<dt>The default location for this file is:</dt>
+</a><P><dl><a name="32980">
+<dt><code>/usr/local/ngc/bin/.clinit.cl</code><p>
+</a><P></dl></dl>
+<ul><a name="32981">
+<li>To load all plug-ins in this directory, include a line in the .clinit.cl file like this one:
+</a></li><P><dl><dl><a name="32982">
+<dt><code>(load-plugins "/usr/local/ngc/plugin/ourplugins/")</code><p>
+</a><P></dl></dl><a name="32983">
+<li>To load a single plug-in in this directory, include a line in the .clinit.cl file like the one below.
+</a></li><P><dl><a name="32984">
+<dt><code>(load "/usr/local/ngc/plugin/ourplugins/aplugin.fasl")</code></dt>
+</a><P></dl></ul><P><a name="32986">
+<h4> Loading Plug-ins in Specific Situations</h4>
+</a><a name="32987">
+You can configure individual user's .clinit.cl files to load only those plug-ins stored in specific directories. Doing so can help to reduce the overall amount of code loaded into memory when N&#183;World executes. <p>
+</a><P><a name="32988">
+To load user-specific plug-ins:<p>
+</a><P>
+<a name="32989">
+<STRONG>	 1.	 Place user-specific plug-ins in the appropriate directory.
+</STRONG>
+</a><P><dl><a name="32990">
+<dt>You might develop a set of animation tools which you'll save in one subdirectory, and a set of development tools you'll save in a separate directory.</dt>
+</a><P></dl><a name="32991">
+<code><pre>/usr/local/ngc/plugin/ourplugins/animation/<p>
+</code></pre></a><a name="32992">
+<code><pre>/usr/local/ngc/plugin/ourplugins/devo<p>
+</code></pre></a><a name="32993">
+<STRONG>	2.	 Edit the .clinit.cl file in the user's home directory.
+</STRONG>
+</a><P><dl><a name="32994">
+<dt>If this file does not exist, you will have to create it.</dt>
+</a><P></dl><ul>
+<BR><a name="32995">
+<li>To load all plug-ins in this directory, include a line like:
+</a><P></ul>
+<a name="32996">
+<code><pre><code>						(load-plugins "/usr/local/ngc/plugin/ourplugins/animation/" )</code><p>
+</code></pre></a><ul>
+<BR><a name="32997">
+<li>To load specific plug-ins in this directory, include a line like:
+</a><P></ul>
+<a name="32998">
+<code><pre><code>						(</a>load "/usr/local/ngc/plugin/ourplugins/animation/aplugin.fasl")</code><p>
+</code></pre></a>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Plug-ins loaded after N&#183;World's standard plug-ins and patches can redefine Lisp symbols present in these files. This may have the effect of disabling patches distributed by Nichimen Graphics.</em></font></dd></dt></dl><P>
+<a name="32909">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="LispFundamentals.html">[Prev]</a> <a href="DefForeignFunctions.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:41:09 -->
+
+</body>
+</html>

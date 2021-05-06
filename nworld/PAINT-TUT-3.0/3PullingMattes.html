@@ -1,0 +1,510 @@
+<html><head><title>Pulling Mattes</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2UsingInks.html">[Prev]</a> <a href="4CompositingImages.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="10623">
+<h1>Pulling Mattes</h1>
+</a>
+<hr><p><a name="10624">
+<h4> Mattes provide you with the ability to precisely control how color is applied to your images. In this chapter, you'll learn how to pull, save, and load mattes.</h4>
+</a><a name="12327">
+ <P><img src="3PullingMattes.anc.gif"><p>
+</a><a name="12328">
+<h2><HR> In this Chapter</h2>
+</a><a name="12329">
+This chapter will teach you:<p>
+</a><P><ul><a name="11407">
+<li>How to pull a matte using an RGB chroma key
+</a></li><P><a name="11408">
+<li>How to pull a matte using an IHS chroma key
+</a></li><P><a name="11409">
+<li>How to manipulate a matte to facilitate compositing images without matte lines
+</a></li><P><a name="11417">
+<li>How to use the Pan/Zoom tool
+</a></li><P><a name="11419">
+<li>How to use an IHS matte in conjunction with the IHS Recolor ink to reduce image intensities
+</a></li><P><a name="11418">
+<li>How to save a matte to a file
+</a></li><P><a name="11410">
+<li>How to load a matte on top of an existing image
+</a></li><P><a name="11444">
+<li>How to manipulate the appearance of the matte
+</a></li><P></ul><P><a name="11399">
+<h2><HR> Matte Basics</h2>
+</a><a name="10628">
+The fourth channel in a four channel image has a special function. Commonly referred to as the "alpha" or "matte" channel, the matte channel can be used much like a paper matte used by an airbrush artist. <p>
+</a><P><a name="12495">
+Unlike a traditional matte, however, a digital matte can allow a percentage of ink through to the image. The matte serves as a multiplier for inks applied to the RGB channels. In other words, if you apply an ink to the canvas through a matte which is 50% opaque, the strength of the ink is multiplied by .5, which means it will be applied to the canvas at half-strength. A matte with an opacity of 100% prevents <em>any</em> ink from being applied to the image.<p>
+</a><P><a name="11676">
+Additionally, the opacity of the matte can vary from one part of the image to another (so, for example, you could protect one side more than another). <p>
+</a><P><a name="12494">
+For example, in <a href="3PullingMattes.html#11640">Figure 3.1</a>, the circle was drawn with white ink across three zones of matte opacity. The top third of the image has no matte (or a matte with 0% opacity). The middle third has a matte which is 50% opaque, and as a result the RGB values of the white ink are halved. The bottom third has a 100% opaque matte, so no ink was applied to this area.<p>
+</a><P><a name="11639">
+ <P><img src="3PullingMattes.anc1.gif"><p>
+</a><a name="11640">
+<em>Figure 3.1  &#32; &#32;Matte opacity demonstrated
+</em></a><P><a name="12524">
+<h3> Painting onto the Matte Channel</h3>
+</a><a name="10636">
+You can use N-Paint tools to define mattes by painting directly onto the matte channel. When you paint on the matte channel, the opacity of the matte that is generated is a function of the Red component of the color of the ink you are using. So, for example, painting on the matte with white (RGB 1.0 1.0 1.0) results in a matte which is 100% opaque. Painting with black (RGB 0.0 0.0 0.0) results an 0% opacity. Using a grey like RGB 0.5 0.5 0.5 results in a matte of 50% opacity.<p>
+</a><P><a name="11505">
+In addition to defining mattes by painting on them, N-Paint includes several powerful tools for using image attributes to create complex mattes. You can define mattes based on a range of RGB colors, or on the relative intensity, hue, and saturation of colors in an image. The RGB and IHS color models are each optimized for different conditions; which one you use depends on the nature of the image you're working with, and the effect you're trying to achieve.<p>
+</a><P><a name="10650">
+Mattes can also be defined based on areas of high contrast in an image (also called an "edge matte" or "edge detect" matte).<p>
+</a><P><a name="10629">
+To save the matte channel of an image you must save that image to a 4 component image file format, such as RGBA, TPX , or 4 component TIFF. (File formats such as RGB store only three channels of information.) To save mattes for use with RGB images, you must save the matte to a separate file and load both when editing the image in N-Paint.<p>
+</a><P><a name="11459">
+<h2><HR> Pull a Matte Using a Chroma Key</h2>
+</a><a name="11514">
+The concept behind an RGB matte is relatively simple: you define a range of colors which are completely protected from being painted on, and optionally an additional range of colors which are protected to a lesser degree. The fact that portions of a digital matte can be more or less opaque than others is the key to understanding and using them effectively.<p>
+</a><P><a name="11515">
+The range that is absolutely protected is the <em>hard range</em>. The hard range is defined relative to a starting color, called the seed-color. The <em>soft range</em> defines an additional area of the color spectrum over which the opacity of the matte drops from 100% to 0%.<p>
+</a><P><a name="10675">
+ <P><img src="3PullingMattes.anc2.gif"><p>
+</a><a name="10676">
+<em>Figure 3.2  &#32; &#32;Creating mattes using the Chroma Key model
+</em></a><P><a name="10670">
+Mattes with no soft range have extremely sharp edges. Including a soft range provides for a certain blending of the matte effect around the edges of color areas in an image.<p>
+</a><P><a name="11471">
+To pull a matte using a chroma key:<p>
+</a><P>
+<a name="11559">
+<STRONG>	 1.	 Load the following image:
+</STRONG>
+</a><P><dl><a name="11563">
+<dt><code>/usr/local/ngc/demo/images/BLUE-SKY.tpx</code></dt>
+</a><P></dl><a name="11564">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Quad Tool in the Tool Box.
+</STRONG>
+</a><P><a name="10929">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Ink field.
+</STRONG>
+</a><P><dl><a name="10775">
+<dt>The Select Ink menu appears:</dt>
+</a><P><a name="10779">
+ <P><img src="3PullingMattes.anc3.gif"><p>
+</a></dl>
+<a name="10780">
+<em>Figure 3.3  &#32; &#32;The Select Ink menu
+</em></a><P>
+<a name="10784">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Chroma Key.
+</STRONG>
+</a><P><dl><a name="10796">
+<dt>The parameters menu for the Chroma Key ink appears:</dt>
+</a><P><a name="10797">
+ <P><img src="3PullingMattes.anc4.gif"><p>
+</a></dl>
+<a name="10798">
+<em>Figure 3.4  &#32; &#32;The Chroma Key ink parameters menu
+</em></a><P>
+<a name="10786">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the RGB button in the Ink parameters section.
+</STRONG>
+</a><P><a name="10812">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Color.
+</STRONG>
+</a><P><dl><a name="10839">
+<dt>A color picker appears.</dt>
+</a><P></dl><a name="11587">
+<STRONG>	7.	 Move the color picker to the center of a cloudy area, and <strong>(CLICK-L).</strong>
+</STRONG>
+</a><P><dl><a name="11591">
+<dt>The color in the color picker will serve as the seed color for our matte.</dt>
+</a><P></dl><a name="10838">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Edit.
+</STRONG>
+</a><P><dl><a name="10813">
+<dt>The Edit Chroma Key pop-up menu appears:</dt>
+</a><P><a name="10824">
+ <P><img src="3PullingMattes.anc5.gif"><p>
+</a></dl>
+<a name="10825">
+<em>Figure 3.5  &#32; &#32;The Edit Chroma Key pop-up menu
+</em></a><P>
+<a name="10847">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Visible Canvas.
+</STRONG>
+</a><P>
+<ul><a name="11571">
+<li><strong>Visible Canvas</strong> means that all of the color information in the image will be used to generate the matte.
+</a></li><P><a name="11574">
+<li><strong>Visible Canvas (De-Rez)</strong> means that only the color information in a low-resolution version of the image will be used.
+</a></li><P><a name="11577">
+<li><strong>Visible Canvas SubRegion</strong> lets you use the color information in a portion of the image to generate the chroma key.
+</a></li><P><dl><a name="10831">
+<dt>The Chroma Key menu appears:</dt>
+</a><P><a name="10832">
+ <P><img src="3PullingMattes.anc6.gif"><p>
+</a></dl></ul><P><a name="10833">
+<em>Figure 3.6  &#32; &#32;The Chroma Key menu
+</em></a><P><a name="10785">
+The seed color defines the starting point for the matte. Only those pixels in your image which exactly match your seed color will be covered by the matte (and colored red) on the paint canvas. <p>
+</a><P><a name="11937">
+Depending on the seed color you selected, the area covered by the matte at this point may be quite small. You can expand the hard area covered by the matte interactively with the color picker, or both the hard and soft areas with the sliders in the edit Chroma Key mode.<p>
+</a><P>
+<a name="10848">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> near the edge of a cloud with the color picker.
+</STRONG>
+</a><P><dl><a name="10853">
+<dt>The matte, colored red, expands to cover all pixels with colors between your seed color and the new color you just picked. A significant portion of the white, cloudy areas should now be covered by the matte.</dt>
+</a><P><a name="10900">
+<dt>If your selection results in a matte that is too large, you can undo your last selection with a <strong>(CLICK-L)</strong> on Undo.</dt>
+</a><P></dl><a name="10897">
+<STRONG>	11.	 <strong>(DRAG-L)</strong> the Extra slider to change the Hard range more precisely.
+</STRONG>
+</a><P><dl><a name="10903">
+<dt>Moving the slider to the right increases the hard range of your matte. You can see the area of red covered by the matte increase in size on the canvas.</dt>
+</a><P></dl><a name="10907">
+<STRONG>	12.	 <strong>(DRAG-L)</strong> the Soft slider to adjust the soft range of your matte.
+</STRONG>
+</a><P><dl><a name="10908">
+<dt>Moving the slider to the right increases the soft-range. Experiment with these parameters by adjusting them to several different values.</dt>
+</a><P></dl><a name="10913">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Exit when the matte looks right.
+</STRONG>
+</a><P><dl><a name="11611">
+<dt>Remember that you are just defining the parameters for the matte in Edit mode. You must still execute a shape operation in order to actually create the matte.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	To create the matte, you must ensure that the matte is in Add mode. Entering the Chroma Key edit mode automatically toggles the matte to Add and View modes. However, if these modes are not toggled, you may have to toggle them. <strong>(CLICK-L) </strong>on the appropriate buttons in the Matte Modes section of the menu.</font></dd></dt></dl><P>
+
+<a name="11091">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Do Full Canvas in the Quad Tool parameters section.
+</STRONG>
+</a><P><dl><a name="10939">
+<dt>That's all there is to it! If your matte does not appear, make sure that <strong>Add</strong> and <strong>View</strong> are toggled on in the Matte Modes section of the menu, then <strong>(CLICK-L) </strong>on <strong>Repeat</strong>.</dt>
+</a><P></dl>
+<a name="11300">
+<h3> Touching up the Matte</h3>
+</a><a name="11301">
+You may find when you pull a matte that it contains small blemishes. Fortunately, you can paint on the matte just as you can with normal paint tools. To touch up the matte:<p>
+</a><P>
+<a name="11427">
+<STRONG>	 1.	 Make sure the matte is in Add and View mode.
+</STRONG>
+</a><P><dl><a name="11438">
+<dt>If necessary, (<strong>CLICK-L)</strong> on the Add and View buttons in the matte modes section of the menu.</dt>
+</a><P></dl><a name="11429">
+<STRONG>	2.	 Select the round brush and the color ink. 
+</STRONG>
+</a><P><dl><a name="11326">
+<dt>Select white as your color, and paint over any blemishes you see on the matte.</dt>
+</a><P><a name="11623">
+<dt>Remember that the Red value of the color you're painting on the matte with determines the opacity of the matte. So, black (RGB 0.0 0.0 0.0) creates a completely transparent matte, while white (RGB 1.0 1.0 1.0) creates a completely opaque matte.</dt>
+</a><P><a name="11632">
+<dt>Other colors create matte of varying opacity. For example, a grey with RGB values 0.7 0.8 0.6 creates matte which is 70% opaque.</dt>
+</a><P></dl>
+<a name="11335">
+<h3> Using the Pan/Zoom Tool</h3>
+</a><a name="11339">
+Often you'll need to zoom in on your image while you're touching up the matte. You can use the Pan Zoom tool to change your view of the image.<p>
+</a><P><a name="11340">
+To zoom in on part of the image:<p>
+</a><P>
+<a name="11341">
+<STRONG>	 1.	 <strong>(CLICK-L) </strong>on the Pan/Zoom tool in the Tool Box.
+</STRONG>
+</a><P><a name="11351">
+ <P><img src="3PullingMattes.anc7.gif"><p>
+</a>
+<a name="11352">
+<em>Figure 3.7  &#32; &#32;The Pan/Zoom Tool Icon
+</em></a><P><dl><dl><a name="11361">
+<dt>The Pan/Zoom tool parameters menu appears:</dt>
+</a><P><a name="11362">
+ <P><img src="3PullingMattes.anc8.gif"><p>
+</a></dl></dl><a name="11363">
+<em>Figure 3.8  &#32; &#32;Pan/Zoom tool parameters
+</em></a><P>
+<a name="11368">
+<STRONG>	2.	 (<strong>CLICK-L)</strong> on Magnified to zoom in on a specific area.
+</STRONG>
+</a><P><dl><a name="11369">
+<dt>N-Paint prompts you to draw a rectangle on the screen. After you draw the rectangle, N-Paint expands the area within that rectangle to cover the entire canvas.</dt>
+</a><P><a name="11370">
+ <P><img src="3PullingMattes.anc9.gif"><p>
+</a></dl>
+<a name="11371">
+<em>Figure 3.9  &#32; &#32;Using the Magnify command
+</em></a><P>
+<a name="11381">
+<STRONG>	3.	 To return to normal scale, (<strong>CLICK-L)</strong> on 1:1
+</STRONG>
+</a><P><dl><a name="11681">
+<dt>You can also hit the "x" hot key.</dt>
+</a><P></dl>
+<a name="11682">
+<h3> Other Zoom Modes</h3>
+</a><ul><a name="11683">
+<li><strong>Letterbox</strong> zooms out so that the image can be displayed in the physical dimensions of the Paint canvas. <strong>(CLICK-L)</strong> on letterbox, or use the "l" hot key.
+</a></li><P><a name="11687">
+<li><strong>Zoom in</strong> zooms in by a factor of two on an area of the image centered on the center of the image. You can <strong>(CLICK-L) </strong>on <strong>Zoom In</strong>, or use the "z" hot key.
+</a></li><P><a name="11697">
+<li><strong>Zoom Out</strong> zooms out by a factor or two from the center of the image. <strong>(CLICK-L) </strong>on Zoom Out or use the <strong>(SHIFT-Z)</strong> hotkey.
+</a></li><P></ul><P><a name="11382">
+<h4> Panning</h4>
+</a><a name="11383">
+To pan around the image, select the Pan/Zoom tool, then (<strong>CLICK-L) </strong>on a point and drag the mouse. The image will move with the mouse. <p>
+</a><P><a name="10943">
+<h2><HR> Saving the Matte</h2>
+</a><a name="10944">
+You can asve mattes indepandantly of the images from which they are derived.<p>
+</a><P><a name="10948">
+To save the matte channel to a file separately from the image:<p>
+</a><P>
+<a name="10949">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Save Matte.
+</STRONG>
+</a><P><dl><a name="10950">
+<dt>The Save Matte dialog appears:</dt>
+</a><P><a name="11079">
+ <P><img src="3PullingMattes.anc10.gif"><p>
+</a></dl>
+<a name="11080">
+<em>Figure 3.10  &#32; &#32;The Save Matte dialog
+</em></a><P><dl><dl><a name="11085">
+<dt>Use this dialog to specify a path and filename for your matte image. You can save the image to File, Memory, or Both. Saving a matte to memory is useful if you are creating a matte for temporary use, but which you do not need to save. </dt>
+</a><P></dl></dl>
+<a name="10954">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Both.
+</STRONG>
+</a><P><a name="10951">
+<STRONG>	3.	 If you wish, <strong>(CLICK-L)</strong> on the directory field to specify a new directory in which to save your matte image file.
+</STRONG>
+</a><P><a name="10962">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Name field. Enter a name for your matte image file.
+</STRONG>
+</a><P><dl><a name="10952">
+<dt>When saving mattes separately, it makes sense to name them in a way that associates them with the image they were derived from. In this case, something like BLUE-SKY-MATTE might be a good filename.</dt>
+</a><P></dl><a name="10958">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the matte to a file.
+</STRONG>
+</a><P>
+<a name="11092">
+<h2><HR> Pulling and Using Intensity Mattes</h2>
+</a><a name="11093">
+Where a Chroma Key ink pulls a matte based on RGB color values, an intensity matte pulls a matte based on Intensity, Hue, or Saturation values. You can pull an IHS matte based on any one of these parameters, all of them, or any combination of them. <p>
+</a><P><a name="11094">
+A primary use of IHS mattes is finding areas of images with intensities too high for display on various video devices. You can pull a matte to find these areas of intensity, then use an IHS recolor ink to scale down the intensity values of the offending areas.<p>
+</a><P><a name="11095">
+<h3> Pulling an Intensity Matte</h3>
+</a>
+<a name="11096">
+<STRONG>	 1.	 Reload the following image:
+</STRONG>
+</a><P><dl><a name="11724">
+<dt><code>/usr/local/ngc/demo/images/<a BLUE-SKY.tpx>BLUE-SKY.tpx</code></dt>
+</a><P><a name="11728">
+<dt>If this image is already loaded, you can <strong>(CLICK-L) </strong>on File:&gt;Revert instead. This will reload the image from disk.</dt>
+</a><P></dl><a name="11105">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Add and View in the Matte modes section of the menu.
+</STRONG>
+</a><P><a name="11108">
+<STRONG>	3.	 Select the Quad Tool and the Chroma Key ink.
+</STRONG>
+</a><P><a name="11106">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the IHS button In the Chroma Key parameters section of the menu.
+</STRONG>
+</a><P><a name="11107">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the color field, then use the color picker to pick a color from a bright area of one of the clouds.
+</STRONG>
+</a><P><a name="11109">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Edit.
+</STRONG>
+</a><P><dl><a name="11110">
+<dt>The IHS Chroma Key edit menu appears:</dt>
+</a><P><a name="11111">
+ <P><img src="3PullingMattes.anc11.gif"><p>
+</a></dl>
+<a name="11112">
+<em>Figure 3.11  &#32; &#32;The IHS chroma key edit menu
+</em></a><P>
+<a name="11121">
+<STRONG>	7.	 Use the clicker to select a color from an area near, but not yet covered by the existing matte.
+</STRONG>
+</a><P><dl><a name="11733">
+<dt>This process is exactly the same as the one we used to edit the RGB matte previously on <a href="3PullingMattes.html#10838">page &#32;3-5</a>.</dt>
+</a><P></dl><a name="11737">
+<STRONG>	8.	 When you're happy with the matte, <strong>(CLICK-L)</strong> on Exit.
+</STRONG>
+</a><P><dl><a name="11739">
+<dt>Remember, this step only sets up the parameters for the matte. You'll actually create the matte with a shape operation in the next step.</dt>
+</a><P></dl><a name="11738">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Do Full Canvas.
+</STRONG>
+</a><P>
+<a name="11125">
+<h3> Using the Intensity Matte</h3>
+</a><a name="11126">
+We'll use the intensity matte to reduce the intensity of the clouds a little. First, though, we'll need to reverse the matte. <p>
+</a><P>
+<a name="11127">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the Rev button in the matte modes section.
+</STRONG>
+</a><P><dl><a name="11128">
+<dt>Now we'll be able to recolor the clouds.</dt>
+</a><P></dl><a name="11129">
+<STRONG>	11.	 Select the Quad tool and the IHS Recolor ink.
+</STRONG>
+</a><P><dl><a name="11148">
+<dt>The IHS Recolor parameters menu appears:</dt>
+</a><P><a name="11152">
+ <P><img src="3PullingMattes.anc12.gif"><p>
+</a></dl>
+<a name="11153">
+<em>Figure 3.12  &#32; &#32;IHS Recolor parameters
+</em></a><P>
+<a name="11158">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the Int and Scale buttons.
+</STRONG>
+</a><P><dl><a name="11159">
+<dt>By selecting <strong>Int</strong>, we work only on the intensity component of the image, without modifying its hue or saturation.</dt>
+</a><P></dl><a name="11160">
+<STRONG>	13.	 Enter a value of 0.9 in the Scale field.
+</STRONG>
+</a><P><dl><a name="11161">
+<dt>This value is the scaling factor by which the intensity values will be reduced or increased. A value over 1 results in more intense colors, while a value less than one results in less intense colors.</dt>
+</a><P></dl><a name="11165">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Use in the matte modes section.
+</STRONG>
+</a><P><a name="11166">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Do Full Canvas.
+</STRONG>
+</a><P><dl><a name="11167">
+<dt>The intensity values for any unprotected pixels are multiplied by .9, essentially making these areas of the image less bright. You can repeat the application of the IHS Recolor ink to reduce the intensity again, or use the Set or Scale options to alter the intensity component.</dt>
+</a><P></dl>
+<a name="11173">
+<h2><HR> Manipulating the Matte</h2>
+</a><a name="11177">
+You can add to the matte, or manipulate it just like any other element in an N-Paint image. You can also change the way in which the matte is displayed, to make it more or less conspicuous on the canvas. We'll run through a few simple examples to familiarize you with the matte controls.<p>
+</a><P>
+<a name="11178">
+<STRONG>	 1.	 Load the following image:
+</STRONG>
+</a><P><dl><a name="11751">
+<dt><code>/usr/local/ngc/demo/images/<a hero-scaled.rgba>hero-scaled.rgba</code></dt>
+</a><P></dl><a name="11182">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on View in the matte modes section of the menu.
+</STRONG>
+</a><P><dl><a name="11189">
+<dt>The matte appears in its default mode, which is a shade of red set to 70% transparency.</dt>
+</a><P></dl><a name="11193">
+<STRONG>	3.	 (CLICK-L) on the Display button in the matte modes section of the menu.
+</STRONG>
+</a><P><dl><a name="11194">
+<dt>The Matte display modes pop-up menu appears:</dt>
+</a><P><a name="11195">
+ <P><img src="3PullingMattes.anc13.gif"><p>
+</a></dl>
+<a name="11196">
+<em>Figure 3.13  &#32; &#32;Matte display modes
+</em></a><P>
+<a name="11201">
+<STRONG>	4.	 (CLICK-L) on Make Opaque.
+</STRONG>
+</a><P><dl><a name="11204">
+<dt>The image is now displayed as a greyscale image. Areas not covered by the matte are black. The matte is shown in shades of grey which are relative to the opacity of the matte. In the example below, the matte is 100% opaque, so it appears white. This mode is useful if you want to get a good overall feel for the shape of the matte without the distraction of the underlying image.</dt>
+</a><P><a name="11205">
+ <P><img src="3PullingMattes.anc14.gif"><p>
+</a></dl>
+<a name="11206">
+<em>Figure 3.14  &#32; &#32;Left, Opaque matte display; Right, normal , ransparent matte display
+</em></a><P>
+<a name="11774">
+<STRONG>	5.	 (CLICK-L) on Make Transparent to restore the normal matte display mode.
+</STRONG>
+</a><P>
+<a name="11775">
+You can also change the color for the matte display. You may want to change the matte color if you're working on an image that is primarily red. In this case, a blue or green matte might be easier to see.<p>
+</a><P>
+<a name="11777">
+<STRONG>	6.	 (CLICK-L) on Set Color.
+</STRONG>
+</a><P><dl><a name="11220">
+<dt>The Matte Display Color pop-up menu appears.</dt>
+</a><P></dl>
+<ul><a name="11242">
+<li>(<strong>CLICK-L) </strong>on Red, Green, or Blue to select one of these colors as the matte display color
+</a></li><P><a name="11243">
+<li>(<strong>CLICK-L) </strong>on Select Color to choose a color for the matte display.
+</a></li><P></ul><P><a name="11244">
+You can also set the display transparency of the matte. <p>
+</a><P>
+<a name="11783">
+<STRONG>	 1.	 (<strong>CLICK-L) </strong>on Set Transparency, and adjust the slider to change the transparency of the matte.
+</STRONG>
+</a><P><dl><a name="11788">
+<dt>Remember that this affects only the <em>display</em> opacity of the matte, not its opacity to inks.</dt>
+</a><P></dl>
+<a name="11712">
+<h2><HR> Opening a Matte</h2>
+</a><a name="11713">
+Once you've save a matte, you can load it again at any point in the future. To load a matte:<p>
+</a><P>
+<a name="11714">
+<STRONG>	 1.	 Open the Nichimen Browser.
+</STRONG>
+</a><P><a name="11805">
+<STRONG>	2.	 <strong>(CLICK-L) </strong>on Files.
+</STRONG>
+</a><P><dl><a name="11806">
+<dt>A list of files in the current directory appears, like the one in <a href="3PullingMattes.html#11831">Figure 3.15</a>.</dt>
+</a><P><a name="11830">
+ <P><img src="3PullingMattes.anc15.gif"><p>
+</a></dl>
+<a name="11831">
+<em>Figure 3.15  &#32; &#32;Browser for files
+</em></a><P>
+<a name="11807">
+<STRONG>	3.	 <strong>(CLICK-R) </strong>on your matte file.
+</STRONG>
+</a><P><dl><a name="11808">
+<dt>The Browser operations menu appears:</dt>
+</a><P><a name="11809">
+ <P><img src="3PullingMattes.anc16.gif"><p>
+</a></dl>
+<a name="11810">
+<em>Figure 3.16  &#32; &#32;Browser operations for image files
+</em></a><P>
+<a name="11819">
+<STRONG>	4.	 <strong>(CLICK-L) </strong>on <strong>Load</strong>.
+</STRONG>
+</a><P><a name="11820">
+<STRONG>	5.	 <strong>(CLICK-R) </strong>on the File: field in the paint menu.
+</STRONG>
+</a><P><dl><a name="11821">
+<dt>A list of images loaded into memory appears. You can load a matte from any of these images.</dt>
+</a><P></dl><a name="11822">
+<STRONG>	6.	 <strong>(CLICK-L) </strong>on the image you opened in the Browser in step <a href="3PullingMattes.html#10784">4</a>.
+</STRONG>
+</a><P><dl><a name="11873">
+<dt>Your matte is loaded into the matte channel of the current image.</dt>
+</a><P></dl>
+<a name="11895">
+<h2><HR> Congratulations!</h2>
+</a><a name="11896">
+You've learned how to pull mattes using RGB and IHS chroma keys. You've also learned how to touch up, save, load, and change the appearance of mattes in your images. With these simple techniques, you can create a large variety of different types of mattes for use with your images.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2UsingInks.html">[Prev]</a> <a href="4CompositingImages.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 21:32:56 -->
+
+</body>
+</html>

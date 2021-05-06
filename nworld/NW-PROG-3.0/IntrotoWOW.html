@@ -1,0 +1,358 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="LispFundamentals.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="30182">
+Welcome to Nichimen's Wide Open World (WOW), a new world of convenience, simplicity, and power for game developers. Open means just that: there are no arbitrary API boundaries to keep you from doing what you want with your data. You can use WOW to drive any N&#183;World operation, or create your own. For example, you can:<p>
+</a><P><ul><a name="30931">
+<li>Define your own Dynamics operations, which are executed once for each frame in an N-Dynamics operation.
+</a></li><P><a name="30932">
+<li>Define your own N-Geometry Editor Operations, and add them to the N-Geometry menus.
+</a></li><P><a name="30933">
+<li>Design your own attribute domains, and add them to the Attributes Editor.
+</a></li><P><a name="30934">
+<li>Define foreign functions to integrate your existing C functions with Lisp.
+</a></li><P></ul><P><a name="30936">
+and much, much more, as we shall see.<p>
+</a><P><a name="30337">
+<h2><HR> Opening the Door</h2>
+</a><a name="30202">
+The next few examples will show you how to manipulate objects in the N&#183;World environment, and provide a little instant gratification. <p>
+</a><P>
+<a name="30211">
+<STRONG>	 1.	 Launch Xemacs.
+</STRONG>
+</a><P><dl><a name="30213">
+<dt>The exact procedure for doing this depends on how your system is set up. In general, if Xemacs is installed on your system, you can launch it by entering the following command at any UNIX prompt.</dt>
+</a><P></dl><a name="30341">
+<code><pre>xemacs &amp;<p>
+</code></pre></a><dl><a name="30340">
+<dt>Xemacs is a powerful, interactive Lisp code editor. Running N&#183;World from within Xemacs places many development tools and utilities at your disposal.</dt>
+</a><P><a name="30544">
+<dt>When Xemacs finishes loading, you'll see a window that looks like this:</dt>
+</a><P><a name="30545">
+ <P><img src="IntrotoWOW.anc.gif"><p>
+</a></dl>
+<a name="30546">
+<em>Figure 1.1  &#32; &#32;The Xemacs window
+</em></a><P><a name="30596">
+We'll explain in detail what all these parts are later. For now, focus on:<p>
+</a><P><ul><a name="30597">
+<li>The cursor, which you'll be moving between these two locations:
+</a></li><P><ul>
+<BR><a name="30630">
+<li>The Lisp Prompt - where you'll enter Lisp code.
+</a><P><BR><a name="30598">
+<li>The Minibuffer line - where you'll enter Xemacs commands.
+</a><P></ul>
+</ul><P>
+<a name="30216">
+<STRONG>	2.	 When Xemacs is loaded, <strong>(CLICK-L)</strong> on NGC&gt;Run N-World.
+</STRONG>
+</a><P><dl><a name="30217">
+<dt>This menu operation loads and runs N-World. </dt>
+</a><P><a name="30212">
+<dt>For our first example, we'll need a Geometry object to manipulate, so let's create one.</dt>
+</a><P></dl><a name="30203">
+<STRONG>	3.	 In the GeoMenus, <strong>(CLICK-L)</strong> on New Object&gt;Tetrahedron.
+</STRONG>
+</a><P><a name="30210">
+<STRONG>	4.	 In N-Geometry, <strong>(CLICK-L)</strong> on the bodies in the sensitivity bar.
+</STRONG>
+</a><P><a name="30369">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><a name="30218">
+<STRONG>	6.	 At the Xemacs Lisp prompt, type 3d:?, followed by <strong>ENTER.</strong>
+</STRONG>
+</a><P><a name="30219">
+<code><pre>USER(1): 3d:?<p>
+</code></pre></a><dl><a name="30223">
+<dt>Lisp returns something like this:</dt>
+</a><P></dl><a name="30224">
+<code><pre>#&lt;POLYHEDRON 7&gt;<p>
+</code></pre></a><dl><a name="30225">
+<dt>This is the actual Lisp data structure which defines the body of your tetrahedron. In WOW, the special variable 3d:? is always bound to the last item selected in the Geometry window. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Typing something into the Lisp listener and pressing Return is called <em>evaluation</em>. When we say to <em>evaluate</em> something, that's what we mean.</font></dd></dt></dl><P>
+
+<a name="30226">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Face in the element sensitivity bar in the Geometry window.
+</STRONG>
+</a><P><a name="30227">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on a face in your tetrahedron.
+</STRONG>
+</a><P><a name="30228">
+<STRONG>	9.	 At the Lisp prompt, evaluate <code>3d:?</code> again.
+</STRONG>
+</a><P><dl><a name="30229">
+<dt>Now Lisp returns a symbol for the face you selected, something like </dt>
+</a><P></dl><a name="30230">
+<code><pre>#&lt;FACE 1&gt;<p>
+</code></pre></a><dl><a name="30231">
+<dt>The 3d:? variable is now bound to this face, because it is the most recently selected N-Geometry element.</dt>
+</a><P></dl><a name="30232">
+<STRONG>	10.	 At the Lisp prompt, evaluate 3d:??.
+</STRONG>
+</a><P><a name="30233">
+<code><pre>USER(3): 3d:??<p>
+</code></pre></a><dl><a name="30234">
+<dt>The special variable 3d:?? is bound to the second most recently selected element. In this case, it is bound to the polyhedron we selected in <a href="IntrotoWOW.html#30369">step 5</a>:</dt>
+</a><P></dl><a name="30375">
+<code><pre>#&lt;POLYHEDRON 7&gt;<p>
+</code></pre></a><a name="30236">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Edge in the element sensitivity bar in the Geometry window.
+</STRONG>
+</a><P><dl><a name="30237">
+<dt>Evaluate 3d:? again. Lisp returns a symbol for the edge you selected, something like:</dt>
+</a><P></dl><a name="30241">
+<code><pre>&lt;EDGE 7&gt;<p>
+</code></pre></a><a name="30242">
+<STRONG>	12.	 Evaluate 3d:??? at the Lisp prompt.
+</STRONG>
+</a><P><a name="30243">
+<code><pre>USER (4): 3d:???<p>
+</code></pre></a><dl><a name="30244">
+<dt>The special variable <code>3d:???</code> is bound to the third most recently selected object in the World. In this case, it's bound to the polyhedron itself. <code>3d:??</code> is now bound to the face we selected in <a href="IntrotoWOW.html#30228">step 9</a>.</dt>
+</a><P></dl>
+<a name="30249">
+Now we know how to reference objects using Lisp. This is what Wide Open World is all about. The special variables <code>3d:?</code>, <code>3d:??</code>, and <code>3d:???</code> provide a simple and easy-to-use bridge between what you can see in the Geometry window and Lisp.<p>
+</a><P><a name="30252">
+But the simple names returned by evaluating 3d:? don't really provide us with very much information. These labels are intended to serve mainly as tags, or stand-ins for the objects they represent. They aren't very interesting or useful in and of themselves. To find out more about an object, we'll have to use a Lisp function.<p>
+</a><P>
+<a name="30256">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Tetrahedron again.
+</STRONG>
+</a><P><dl><a name="30257">
+<dt>This binds the tetrahedron to 3d:<a ><a 3d:?>?.</dt>
+</a><P></dl><a name="30258">
+<STRONG>	2.	 At the Lisp prompt, evaluate <code>(describe 3d:?)</code>.
+</STRONG>
+</a><P><dl><a name="30259">
+<dt>Lisp returns a detailed description of the tetrahedron, something like this:</dt>
+</a><P></dl><a name="30263">
+<code><pre>#&lt;POLYHEDRON 7&gt; is an instance of #&lt;STANDARD-CLASS POLYHEDRON&gt;:<p>
+</code></pre></a><a name="30386">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="30387">
+<code><pre>  PROPERTY-LIST 					(DRAWBLOCKS<p>
+</code></pre></a><a name="30460">
+<code><pre>	(#&lt;GL-DRAWSELF-DRAWBLOCK for #&lt;POLYHEDRON 9&gt;&gt;) SISTERS T HISTORY #&lt;BODY-HISTORY<br>							@#x189f967a&gt; VERSION (101 9))<p>
+</code></pre></a><a name="30390">
+<code><pre>	 &#32; &#32; &#32;ATTRIBUTE-PLIST  &#32; &#32; &#32;NIL<p>
+</code></pre></a><a name="30391">
+<code><pre>	 &#32; &#32; &#32;SISTERS  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;(#&lt;BDI (Tetrahedron) @ #x189fafda&gt;)<p>
+</code></pre></a><a name="30392">
+<code><pre> &#32; &#32; &#32;SOURCE-FILE  &#32; &#32; &#32; &#32; &#32; &#32; &#32;NIL<p>
+</code></pre></a><a name="30393">
+<code><pre> &#32; &#32; &#32;FLAGS  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;167343104<p>
+</code></pre></a><a name="30394">
+<code><pre> &#32; &#32; &#32;SERIAL-NUMBER  &#32; &#32; &#32; &#32; &#32;9<p>
+</code></pre></a><a name="30395">
+<code><pre> &#32; &#32; &#32;PROPERTY-CACHE  &#32; &#32; &#32;#(2041<p>
+</code></pre></a><a name="30396">
+<code><pre> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;#(NIL #(-8.164966 -3.3333335 -4.714045)<p>
+</code></pre></a><a name="30397">
+<code><pre> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;#(8.164966 10.0 9.42809) NIL NIL NIL<br>	 &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;NIL NIL NIL NIL))<p>
+</code></pre></a><a name="30399">
+<code><pre> &#32; &#32;PARTS  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;NIL<p>
+</code></pre></a><a name="30400">
+<code><pre> &#32; &#32;STANDIN-BODIES  &#32; &#32; &#32; &#32; &#32;((:DEFAULT #&lt;POLYHEDRON 10&gt; NIL))<p>
+</code></pre></a><a name="30401">
+<code><pre> &#32; &#32;CURRENT-STANDIN  &#32; &#32; &#32; &#32;:DEFAULT<p>
+</code></pre></a><a name="30402">
+<code><pre> &#32; &#32;FACE-RING-BASE  &#32; &#32; &#32; &#32; &#32;#&lt;RING-BASE (FACE)&gt;<p>
+</code></pre></a><a name="30403">
+<code><pre> &#32; &#32;SEGMENT-RING-BASE  &#32; &#32;#&lt;RING-BASE (EDGE)&gt;<p>
+</code></pre></a><a name="31182">
+<code><pre> &#32; &#32;POINT-RING-BASE  &#32; &#32; &#32; &#32;#&lt;RING-BASE (VERTEX)&gt;<p>
+</code></pre></a><a name="31213">
+<code><pre>#&lt;POLYHEDRON 9&gt;<p>
+</code></pre></a>
+<a name="30900">
+Where <em>we</em> see a tetrahedron in the Geometry window, <em>Lisp</em> sees the data structures that define the tetrahedron. You can also see how this data is organized within the computer. For example, the last section of the description details things like the <em>face-ring-base</em> and <em>element-ring-base</em>. These are integral parts of the winged-edge database structure used by N&#183;World to manage geometrical information, which we'll examine in greater detail later.<p>
+</a><P><a name="30270">
+<code>Describe</code> is a <em>function</em>. Most functions perform operations on one or more arguments (often shortened to <em>args</em> by lazy UNIX developers). An <em>argument</em> is data supplied to a function when it is called. In this example, the special variable ? was supplied as an argument to the describe function. Together, the function and its arguments comprise a <em>form</em>. In Lisp, forms are enclosed between parentheses.<p>
+</a><P><a name="30537">
+<h2><HR> Defining Your Own Functions</h2>
+</a><a name="30538">
+Functions are what you'll use to travel through the Wide Open World. The language you'll speak there is Common Lisp, the only ANSI approved object oriented programming language. Lisp has a large vocabulary of built-in functions, which you can use to build functions of your own. For example:<p>
+</a><P>
+<a name="30640">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><dl><a name="30642">
+<dt><code>3d:?</code> now refers to the tetrahedron. In WOW, we say that 3d:? is <em>bound</em> to it.</dt>
+</a><P></dl><a name="31217">
+<STRONG>	2.	 Type the following at the Lisp prompt:
+</STRONG>
+</a><P><a name="31218">
+<code><pre>(loop for faces in (<a collect-my-faces>collect-my-faces 3d:?) do (<a extrude>extrude faces)(<a move-out>move-out faces 5.0))<p>
+</code></pre></a>
+<a name="30541">
+A quick check in the Geometry window reveals that all the faces in the tetrahedron have been extruded.<p>
+</a><P><a name="30664">
+By typing the Lisp form in <a href="IntrotoWOW.html#31217">step 2</a>, you've created your own function by combining several Lisp functions. Typing in forms directly at the Lisp prompt works well for things you only want to do once. If you want to use this function again, you'll need some way of saving it. You can do this with a Xemacs buffer.<p>
+</a><P><a name="30674">
+<h2><HR> Using Buffers</h2>
+</a><a name="30675">
+A Xemacs buffer is basically a workspace where you can work on your Lisp code. To create one:<p>
+</a><P>
+<a name="30676">
+<STRONG>	 1.	 Type <strong>(CTRL-X CTRL-F)</strong>. 
+</STRONG>
+</a><P><a name="30680">
+<STRONG>	2.	 Type mybuffer.lisp on the minibuffer line.
+</STRONG>
+</a><P><a name="31262">
+ <P><img src="IntrotoWOW.anc1.gif"><p>
+</a>
+<a name="31263">
+<em>Figure 1.2  &#32; &#32;Creating a buffer
+</em></a><P><a name="30684">
+Now you're facing a blank screen. This is a buffer. Because you used .lisp as the extender for the name of the buffer, Xemacs knows to treat the text in the buffer as Lisp code. For example, type the following in the buffer:<p>
+</a><P><a name="30686">
+<code><pre>(in-package "3D")<p>
+</code></pre></a><a name="30723">
+<code><pre>(defun my-extrude (body)<p>
+</code></pre></a><a name="30688">
+<code><pre>  (le::loop+ for faces in (collect-my-faces body) do<p>
+</code></pre></a><a name="30689">
+<code><pre>             (extrude faces)(move-out faces 5.0)))<p>
+</code></pre></a><a name="30710">
+Notice that Xemacs automatically:<p>
+</a><P><ul><a name="30711">
+<li>Indents your code
+</a></li><P><a name="30712">
+<li>Highlights the name of your new function in red
+</a></li><P><a name="30719">
+<li>Blinks the current level of parentheses
+</a></li><P><dl><a name="30720">
+<dt>(huh? Put the cursor just to the right of the last parenthesis in the function. The first parenthesis is blinking! If it's not, then your parentheses aren't balanced. This little feature is extremely useful when you're writing Lisp code.)</dt>
+</a><P></dl></ul><P>
+<a name="30692">
+<STRONG>	3.	 When you've typed in the function, type<strong> ALT-CTRL-X</strong>.
+</STRONG>
+</a><P><dl><a name="30693">
+<dt>This key combination compiles the current form. Now, your new function, MY-EXTRUDE, is available for use at the Lisp prompt. Let's try it:</dt>
+</a><P></dl><a name="30724">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Buffers&gt;*common lisp* in the Xemacs menus.
+</STRONG>
+</a><P><a name="30863">
+<STRONG>	5.	 Type :pa 3D at the Lisp prompt.
+</STRONG>
+</a><P><dl><a name="30864">
+<dt>In WOW, functions are organized into packages. To use one, you need to be in the correct package (Actually, there's more to it than this, but only a little. Packages are described in more detail in <a href="LispFundamentals.html#28749">"Packages," on page &#32;2-3</a>).</dt>
+</a><P></dl><a name="30725">
+<STRONG>	6.	 At the Lisp prompt, type (my-extrude).
+</STRONG>
+</a><P><dl><a name="30726">
+<dt>Well, this isn't going to work. If you enter the function without any arguments, Lisp complains:</dt>
+</a><P></dl><a name="30728">
+<code><pre>Error: MY-EXTRUDE got 0 args, wanted 1 arg.<p>
+</code></pre></a><a name="30730">
+<code><pre>  [condition type: PROGRAM-ERROR]<p>
+</code></pre></a>
+<a name="30727">
+Why? Because we didn't give the function the argument it wanted, which is a body to work on. Plus, now there's an annoying numeral 1 in brackets to the left of the Lisp prompt. This 1 indicates that an error has occurred. We'll learn more about what it represents and how it relates to debugging programs later on. For now, type :reset at the Lisp prompt. This clears all errors.<p>
+</a><P><a name="30731">
+<h3> Finding Arguments</h3>
+</a><a name="30732">
+What if we can't remember what arguments<code>(my-extrude)</code>requires? Well, it's simple enough, really.<p>
+</a><P>
+<a name="30733">
+<STRONG>	 1.	 At the Lisp prompt, type <code>(my-extrude)</code>, but don't press <strong>ENTER.</strong>
+</STRONG>
+</a><P><a name="30735">
+<STRONG>	2.	 With the cursor just to the right of the function, type CTRL-SHIFT-A.
+</STRONG>
+</a><P><dl><a name="30741">
+<dt>Lisp asks you a question on the minibuffer line:</dt>
+</a><P></dl><a name="30745">
+<code><pre>Arglist for: (default my-extrude)<p>
+</code></pre></a><a name="30746">
+<STRONG>	3.	 Since this is the function we want args for, press<strong> ENTER</strong>.
+</STRONG>
+</a><P><dl><a name="30742">
+<dt>Lisp responds with the argument list for (my-extrude):</dt>
+</a><P></dl><a name="30747">
+<code><pre>MY-EXTRUDE's arglist: (BODY)<p>
+</code></pre></a>
+<dl>
+<dt><dd><font color=dd000><strong>Note.	</strong>This brings up an interesting point. The fact that we named our argument BODY, as opposed to, say, 68-CAMARO, helps us to know what it is that the function requires.</font></dd></dt><dl><a name="30753">
+<dt>So we know that for the function to work properly, we have to feed it a body. Let's try it again:</dt>
+</a><P></dl></dl><P>
+
+<a name="30751">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the tetrahedron in the Geometry window.
+</STRONG>
+</a><P><a name="30752">
+<STRONG>	2.	 At the Lisp prompt, type (my-extrude ?).
+</STRONG>
+</a><P><dl><a name="30744">
+<dt>This time the function should perform as advertised.</dt>
+</a><P></dl>
+<a name="30769">
+<h3> Saving your New Function</h3>
+</a><a name="30770">
+OK, so now we've defined, compiled, and used our first function. Let's save it so we can have it bronzed when we really strike it rich in the game development industry.<p>
+</a><P><a name="30771">
+To save a buffer to a file:<p>
+</a><P>
+<a name="30772">
+<STRONG>	 1.	 Switch to the buffer you want to save.
+</STRONG>
+</a><P><a name="30773">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on File&gt;Save in the Xemacs menu.
+</STRONG>
+</a><P><dl><a name="30921">
+<dt>Xemacs will save the buffer to a file with the same name as the buffer.</dt>
+</a><P></dl>
+<a name="30272">
+<h2><HR> Welcome to the Wide Open World!</h2>
+</a><a name="30777">
+Well, here we are only on page 7, and we've already:<p>
+</a><P><ul><a name="30273">
+<li>accessed a Geometry object using Lisp
+</a></li><P><a name="30274">
+<li>bound objects to variables
+</a></li><P><a name="30275">
+<li>evaluated a function
+</a></li><P><a name="30276">
+<li>dissected an object, and looked at its internal structure
+</a></li><P><a name="30778">
+<li>created our own function in a buffer
+</a></li><P><a name="30782">
+<li>compiled our own function
+</a></li><P><a name="30783">
+<li>evaluated our own function
+</a></li><P><a name="30784">
+<li>made a mistake and learned how to recover
+</a></li><P><a name="30785">
+<li>got the argument list for our own function
+</a></li><P></ul><P><a name="30277">
+Who says programming is hard?? And in WOW, it's not.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="LispFundamentals.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:38:46 -->
+
+</body>
+</html>

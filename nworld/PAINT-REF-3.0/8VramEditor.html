@@ -1,0 +1,414 @@
+<html><head><title>The VRAM Editor</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="7ColorReduction.html">[Prev]</a> <a href="93DPaintMode.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="14961">
+<h1>The VRAM Editor</h1>
+</a>
+<hr><p><a name="15692">
+<h4> N-Paints VRAM editor allows you to quickly and easily transform image files into .TIM files for use on the Sony Play Station. The VRAM Editor also provides a way for you to manage VRAM memory in the PlayStation, making the most of this platforms resources. </h4>
+</a><a name="15775">
+<h2><HR> In this Chapter</h2>
+</a><a name="15776">
+In this chapter, we'll cover<p>
+</a><P><ul><a name="15698">
+<li>Sony PSX VRAM structure
+</a></li><P><a name="15699">
+<li>Image tile parameters
+</a></li><P><a name="15700">
+<li>Using the VRAM editor
+</a></li><P></ul><P><a name="15783">
+<h2><HR> What is the VRAM Editor?</h2>
+</a><a name="16277">
+The VRAM Editor performs two essential tasks:<p>
+</a><P><ul><a name="16284">
+<li>Conversion of image files to Sony TIM format.
+</a></li><P><a name="16285">
+<li>Placement of TIM images in the Sony Playstation VRAM.
+</a></li><P></ul><P><a name="16286">
+You load images into the VRAM Editor, then use its features to ensure that these images are placed as efficiently as possible in VRAM. When you have placed your images in VRAM, you can save them out to TIM format. <p>
+</a><P><a name="16276">
+<h2><HR> Sony PlayStation (PSX) VRAM</h2>
+</a><a name="14973">
+The VRAM Editor Canvas is a graphical representation of the PlayStation's Video Ram. <p>
+</a><P><a name="14976">
+ <P><img src="8VramEditor.anc.gif"><p>
+</a><a name="14977">
+<em>Figure 8.1  &#32; &#32;The VRAM Editor Canvas
+</em></a><P><a name="15031">
+<h4> Display Area</h4>
+</a><a name="15032">
+The Display Area represents the VRAM occupied by the PSX's display buffers. Its dimensions reflect the horizontal and vertical resolution (in pixels) of images displayed on a TV by the PSX. Because the PSX uses double buffering, the display area represents the memory consumed by both the front and back buffers. Therefore, although the width of the display area reflects the horizontal resolution of displayed images, the actual vertical resolution of displayed images is half the vertical dimension of the display area.<p>
+</a><P><a name="15044">
+ <P><img src="8VramEditor.anc1.gif"><p>
+</a><a name="15045">
+<em>Figure 8.2  &#32; &#32;Double Buffers in the Display Area
+</em></a><P><a name="15082">
+<h4> Changing the Size of the Display Area</h4>
+</a><a name="15382">
+To change the size of the display area, <strong>(CLICK-L)</strong> on the display area. The Resize Display Area pop-up menu appears.<p>
+</a><P><a name="15383">
+ <P><img src="8VramEditor.anc2.gif"><p>
+</a><a name="15387">
+<em>Figure 8.3  &#32; &#32;The Resize Display Area pop-up menu
+</em></a><P><a name="15398">
+To choose a new value for width, <strong>(CLICK-L)</strong> on one of the button in the pop-up menu.<p>
+</a><P><a name="15423">
+<h4> Image Tiles</h4>
+</a><a name="15087">
+Image tiles are representations of the TIM images themselves. The size of the tile in the VRAM Editor canvas is proportional to the amount of VRAM required to store the image. VRAM requirements are determined by two factors:<p>
+</a><P><ul><a name="15092">
+<li>The physical size (number of pixels) of the image
+</a></li><P><a name="15093">
+<li>The color depth of the image, or number of bits required to describe each pixel
+</a></li><P></ul><P><a name="16266">
+<h4> Color Depth, Image Size, and VRAM Requirements</h4>
+</a><a name="15101">
+PSX VRAM addresses are 16 bits in size. Thus, each pixel in a 16-bit image occupies an entire VRAM address, while two 8-bit pixels (or 4 4-bit pixels) can be accommodated in a single address. Thus, you can reduce the amount of VRAM space required to store an image by 50% by reducing color depth from 16 to 8 bits.<p>
+</a><P><a name="15110">
+In much the same way, reducing the absolute number of pixels in an image (its linear dimensions) also reduces the amount of VRAM required to store it. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong> 	Although you can reduce image dimensions using the VRAM Editor, this may result in unpredictable distortion. We recommend that your final images be 256x256 pixels or smaller before you bring them into the VRAM Editor.</font></dd></dt></dl><P>
+<a name="15491">
+<h4> Texture Pages</h4>
+</a><a name="15492">
+Texture pages are the logical divisions on the PSX's VRAM. A texture page consists of 16,384 VRAM addresses arranged in a 64x256 array. Each address in turn accommodates 16 bits. <p>
+</a><P><a name="15489">
+<h4> Image Tile Placement Rules</h4>
+</a><a name="15441">
+Two rules govern the behavior of images stored in PSX texture pages. <p>
+</a><P><ul><a name="15442">
+<li>Image tiles cannot overlap
+</a></li><P><a name="16273">
+<li>Images cannot be larger than 256x256 pixels
+</a></li><P><dl><a name="15443">
+<dt>N-Paint's VRAM Editor will offer you an opportunity to reduce in size images you try to import which are larger than the PSX maximum.</dt>
+</a><P></dl><a name="15444">
+<li>An image cannot occupy more than 4 texture pages.
+</a></li><P><dl><a name="15445">
+<dt>For example, a 256x256 16-bit image consumes four texture pages of VRAM. It must be located carefully, however, so that it does not occupy part of a fifth page.</dt>
+</a><P></dl></ul><P><a name="16272">
+The VRAM Editor will not allow you to place a tile in an illegal position. When you are moving tiles around on the VRAM Editor canvas, the border of the tile will change color to reflect the legality of the current position.<p>
+</a><P><ul><a name="16274">
+<li>A <strong>Blue</strong> border indicates that a tile is legally placed.
+</a></li><P><a name="16275">
+<li>A <strong>Red</strong> border indicates that a tile is illegally placed.
+</a></li><P><a name="15484">
+ <P><img src="8VramEditor.anc3.gif"><p>
+</a></ul><P><a name="15118">
+<em>Figure 8.4  &#32; &#32;256 x 256 texture map. Left, legal placement; Right, illegal placement over portions of five pages
+</em></a><P><a name="15108">
+<h4> Color Lookup Tables (CLUTs)</h4>
+</a><a name="15177">
+16-bit images have direct color, meaning that color information for each pixel is stored with that pixel in each VRAM address. Color information for 4- and 8-bit images, however, is stored in a separate Color Lookup Table (CLUT). A CLUT is the reduced color-palette generated during the color reduction process. CLUTs must be stored in VRAM, usually in the area "beneath" the display buffers. However, you can store as many CLUTs as you have space in VRAM.<p>
+</a><P><a name="15184">
+<h2><HR> Workflow with the VRAM Editor</h2>
+</a><a name="16325">
+The VRAM canvas represents 1MB of VRAM. When you place tiles and CLUTs on the VRAM Canvas, you are creating a VRAM <em>layout</em>. A layout is nothing more than an index which shows the source images for each tile, their location in VRAM, and a few other parameters. <a href="8VramEditor.html#16333">Figure 8.5</a> is a schematic representation of workflow wi th the VRAM Editor.<p>
+</a><P><a name="16330">
+ <P><img src="8VramEditor.anc4.gif"><p>
+</a><a name="16333">
+<em>Figure 8.5  &#32; &#32;Workflow with the VRAM Editor
+</em></a><P><a name="16371">
+<em>Source Images</em> are loaded into the VRAM Editor. Source Images can be full-color (16-bit), in which case there is no palette associated with them. However, color mapped images can also be loaded into the VRAM Editor. <em>Color mapped</em> images have an associated <em>palette</em> (CLUT), which contains color definitions. Many images can reference a single CLUT. You can create color mapped images from full color images using N-Paint's Color Reduction tool.<p>
+</a><P><a name="16375">
+Once images are loaded into the VRAM Editor, you must place them onto the VRAM Canvas. For color mapped images, you must also place their associated CLUTs in VRAM. Once you've arranged the image tiles on the canvas, you must save the images to disk in TIM format. You must also save the VRAM configuration to disk if you want to use or edit it in the future. The VRAM configuration is saved to disk as a layout file. TIM images and layout files are saved to the same directory. A given directory can only contain a single layout. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Because a directory can only contain a single layout file, it's a good idea to name your directories in a way which reflects the nature of the layout they contain, e.g., GameLevel1, GameLevel2, etc.</font></dd></dt></dl><P>
+<a name="16382">
+TIM files store their own addresses in VRAM as part of the file. They also keep track of which CLUT they are associated with and where it is stored in VRAM.<p>
+</a><P><a name="15188">
+<h3> Using the VRAM Editor</h3>
+</a><a name="16389">
+You control the VRAM editor through the VRAM Editor menu:<p>
+</a><P><a name="15189">
+ <P><img src="8VramEditor.anc5.gif"><p>
+</a><a name="15190">
+<em>Figure 8.6  &#32; &#32;The VRAM Editor menu
+</em></a><P><a name="15109">
+Images which have been loaded into the VRAM Editor are listed in the VRAM Editor menus. The name of the source image is listed in the leftmost field; the fields to the right show VRAM parameters such as size, color depth, location in VRAM, associated CLUT, etc. These are described in detail below. <p>
+</a><P><a name="16068">
+The buttons and other controls on the right side of the VRAM Editor menu let you manage and manipulate image tiles. You'll use these commands to open image files, load them on to the VRAM Editor canvas, and control the manner in which they are positioned in VRAM. These commands are discussed in the next section. <p>
+</a><P><a name="16025">
+<h3> Image Tile Parameters</h3>
+</a><a name="16026">
+The largest section of the VRAM Editor menu is devoted to displaying image source file names and their VRAM parameters.<p>
+</a><P><a name="16027">
+<h4> Image Name</h4>
+</a><a name="16028">
+The <strong>Image Name</strong> field contain specifies the original source image for a tile.<p>
+</a><P><ul><a name="16076">
+<li><strong>(CLICK-L)</strong> on this field to <em>select</em> an image. 
+</a></li><P><dl><a name="16404">
+<dt>In many circumstances, you must first select an image or images before you can perform certain operations on them.</dt>
+</a><P><a name="16403">
+<dt>To select more than one image at once, <strong>(SHIFT-L)</strong> on the name fields for the images you want to select.</dt>
+</a><P><a name="16557">
+<dt>Alternatively, you can <strong>(CLICK-L)</strong> on an image tile on the VRAM Editor Canvas to select it.</dt>
+</a><P></dl><a name="16079">
+<li><strong>(CLICK-R)</strong> on this field to perform various operations on the image. When you <strong>(CLICK-R)</strong> on the image, the following pop-up menu appears:
+</a></li><P><a name="16080">
+ <P><img src="8VramEditor.anc6.gif"><p>
+</a></ul><P><a name="16081">
+<em>Figure 8.7  &#32; &#32;VRAM Editor Image Operations pop-up menu
+</em></a><P><ul><ul>
+<BR><a name="16090">
+<li><strong>(CLICK-L)</strong> on <strong>Paint image</strong> to send the image to the N-Paint canvas and enter Tools mode.
+</a><P><BR><a name="16091">
+<li><strong>(CLICK-L)</strong> on <strong>Color Reduction</strong> to send the image to the Color Reduction canvas and enter Color Reduction mode.
+</a><P><BR><a name="16092">
+<li><strong>(CLICK-L)</strong> on <strong>Remove</strong> to remove an image from the VRAM Editor Canvas and menus.
+</a><P><BR><a name="16675">
+<li><strong>(CLICK-L)</strong> on <strong>Export to TIM</strong> to export the image in TIM format to the current directory.
+</a><P><BR><a name="16676">
+<li><strong>(CLICK-L)</strong> on <strong>Save Image</strong> to save the <em>source</em> image.
+</a><P></ul>
+</ul><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	You can <em>(CLICK-R)</em> on any image tile in the VRAM Editor canvas and get the same pop-up menu.</font></dd></dt></dl><P>
+<a name="16071">
+<h4> Size</h4>
+</a><a name="16411">
+The first size field in the tile parameters menu shows the size of the source image in bytes.<p>
+</a><P><a name="16410">
+<h4> Palette Name</h4>
+</a><a name="16093">
+The name of the current palette associated with the image. When you load a color-mapped image, the associated palette is automatically loaded. When you load a full-color image, no palette is loaded. <p>
+</a><P><a name="16415">
+<h4> Selecting Another Palette</h4>
+</a><a name="16414">
+You can assign another palette to an image, selecting from among those loaded into memory. For example, if you created a composite palette using Color Reduction, you'll want to make sure that all your TIM files which will be generated reference the same palette. To reference another palette:<p>
+</a><P><ul><a name="16094">
+<li><strong>(CLICK-L)</strong> on the <strong>Palette Name</strong> field, and select a palette from the pop-up menu which appears. You may also select <strong>None</strong>.
+</a></li><P><a name="16683">
+ <P><img src="8VramEditor.ancA7.gif"><p>
+</a></ul><P><a name="16690">
+<em>Figure 8.8  &#32; &#32;Palette operations pop-up menu
+</em></a><P><a name="16029">
+<h4> Size</h4>
+</a><a name="16418">
+The second size field refers to the color-depth of the image (the number of bits used by each pixel to record color information).<p>
+</a><P><ul><a name="16038">
+<li>15-bit images have <strong>direct color</strong> and <strong>no CLUT</strong>.
+</a></li><P><a name="16039">
+<li>4 and 8-bit images have CLUTs.
+</a></li><P></ul><P><a name="16041">
+<h4> Changing Bit Depth</h4>
+</a><a name="16105">
+If you wish to change the Bit Depth of an image, you must send the image to Color Reduction. To do so:<p>
+</a><P>
+<a name="16106">
+<STRONG>	 1.	 <strong>(CLICK-R) </strong>on the Image Name field.
+</STRONG>
+</a><P><a name="16107">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Color Reduction.
+</STRONG>
+</a><P>
+<a name="16048">
+<h4> W/H</h4>
+</a><a name="16049">
+These values are the width and height of the TIM image. TIM images are limited to 256x256 pixels. If you attempt to load an image which is larger than this limit, the VRAM Editor will offer you the opportunity to reduce the image to the maximum allowable size:<p>
+</a><P><a name="16053">
+ <P><img src="8VramEditor.anc7.gif"><p>
+</a><a name="16054">
+<em>Figure 8.9  &#32; &#32;Confirm auto-resize of source image
+</em></a><P><a name="16120">
+You can change the Width or Height of your images. To do so, <strong>(CLICK-L)</strong> on the Width or Height field and enter a new value. <p>
+</a><P><dl>
+<dt><dd><font color=dd000>Note:	Use caution when changing image dimensions in this manner, as changes to the dimensions of your images might have unpredictable effects on the appearance of the image. You may wish to consider sending the image to the Paint canvas and using the Scale or Crop commands to change the dimensions of your images.</font></dd></dt></dl><P>
+<a name="16112">
+<h4> Location</h4>
+</a><a name="16113">
+The first VRAM address occupied by the image. VRAM addresses are specified as cartesian (X,Y) coordinates, beginning with (0.0) in the upper left hand corner of the VRAM Editor Canvas and extending to 1024x512 in the lower right hand corner.<p>
+</a><P><ul><a name="16114">
+<li><strong>(CLICK-L)</strong> on the W or H field to manually edit these values.
+</a></li><P><a name="16115">
+<li>You can also change the memory location of an image tile by dragging it to it's new position. While you're moving an image tile around the VRAM Canvas, the color of the tile's border will change depending on the legality of its position.
+</a></li><P><ul>
+<BR><a name="16309">
+<li>A <strong>red</strong> border indicates that the tile is not in a legal position. 
+</a><P><BR><a name="16310">
+<li>A <strong>blue</strong> border indicates that the tile is in a legal position.
+</a><P></ul>
+</ul><P><a name="16110">
+<h4> Pal. Loc.</h4>
+</a><a name="16056">
+These values are the coordinates of the VRAM address for the CLUT associated with the image file. <p>
+</a><P><a name="16059">
+<h4> Trans</h4>
+</a><a name="16060">
+When toggled on, this option instructs the PSX to display black backgrounds as transparent.<p>
+</a><P><a name="16061">
+<h4> Lock</h4>
+</a><a name="16062">
+When a tile is locked, it's VRAM address cannot be changed, even when you use the <strong>Fit Tiles</strong> command.<p>
+</a><P><a name="16064">
+<h4> Placed</h4>
+</a><a name="16134">
+When <strong>Placed</strong> is toggled, the image is placed on the VRAM canvas. Images appear on the canvas as image tiles. The area of a tile is directly proportional to the amount of VRAM it occupies.<p>
+</a><P><a name="16019">
+<h2><HR> Vram Editor File Operations</h2>
+</a><a name="16759">
+The VRAM Editor Canvas represents a single<em> layout</em>. A layout usually corresponds to a logical division in your game, such as a game level. From the perspective of the VRAM Editor, a layoutlayout is nothing more than a list of source images, their corresponding TIM files, and a few parameters. Once you have created a layout by loading and placing image tiles on the VRAM Canvas, you'll want to save this configuration to that you can work with it again. You can save layouts to disk as <em>layout files</em>. There can only be one layout file per directory. Layout files are always named <strong>VRAM.layout.</strong><p>
+</a><P><a name="16462">
+<h3> Specifying the TIM Directory</h3>
+</a><a name="16463">
+A given directory can only contain a single layout. You must select a directory to be the <em>current TIM directory</em>. A layout file and all TIM files are then written to this directory. <p>
+</a><P><a name="16469">
+To specify the current directory:<p>
+</a><P><ul><a name="16470">
+<li><strong>(CLICK-L)</strong> on the Directory field at the top of the VRAM Editor file operations menu, and enter a new directory name.
+</a></li><P><a name="16477">
+<li><strong>(CLICK-R)</strong> on the Directory field to use a standard N-Paint Choose Directory pop-up to choose or specify a directory.
+</a></li><P></ul><P><a name="16461">
+<h3> Managing Images, TIM Files, and layouts</h3>
+</a><a name="15223">
+Loading images into the VRAM Editor is very similar to loading images anywhere else in N-Paint. Any images which you have loaded in other modules of N-Paint (such as Color Reduction or from the Tools Menu) are available for you to use in the VRAM Editor. You can also open image files directly from disk. <p>
+</a><P><a name="16522">
+You manage images with the Image Operations menu. To see the Image Operations menu, <strong>(CLICK-L)</strong> on the <strong>file</strong> field.<p>
+</a><P><a name="15824">
+ <P><img src="8VramEditor.anc8.gif"><p>
+</a><a name="15825">
+<em>Figure 8.10  &#32; &#32;VRAM Editor Library controls
+</em></a><P><ul><a name="16533">
+<li><strong>Select</strong> lets you to select an image from among those loaded into memory.
+</a></li><P><a name="16534">
+<li><strong>Open</strong> lets you open and load an image from a file on disk.
+</a></li><P><a name="16537">
+<li><strong>Browse</strong> lets you use a browser to select images. You can use browsers to display image icons, allowing you to select images by appearance rather than by name.
+</a></li><P><dl><a name="16539">
+<dt>To display icons in a browser, <strong>(CLICK-L)</strong> on Options&gt;Icons.</dt>
+</a><P></dl><a name="16538">
+<li><strong>Revert</strong> reloads the <em>selected</em> image from disk, undoing any changes that have been made to the image since it was last saved.
+</a></li><P><a name="16560">
+<li><strong>Save</strong> lets you save the selected <em>source</em> image to disk.
+</a></li><P><a name="16561">
+<li><strong>Save As</strong> lets you save the selected <em>source</em> image to another filename.
+</a></li><P><a name="16569">
+<li><strong>Save Many</strong> lets you save any or all of the <em>source</em> images currently loaded into the VRAM Editor. Selecting this option brings up a dialog box like the one in <a href="8VramEditor.html#16571">Figure 8.11</a>.
+</a></li><P><a name="16570">
+ <P><img src="8VramEditor.anc9.gif"><p>
+</a></ul><P><a name="16571">
+<em>Figure 8.11  &#32; &#32;The Save Many dialog box
+</em></a><P><dl><dl><a name="16590">
+<dt>You can change the name, directory, or file format of any of the images listed in the dialog.</dt>
+</a><P></dl></dl><ul><a name="16591">
+<li><strong>Rename</strong> lets you rename the selected source image.
+</a></li><P><a name="16592">
+<li><strong>Copy</strong> lets you copy the selected source image to a new file.
+</a></li><P><a name="16593">
+<li><strong>Delete</strong> removes the selected source image from the VRAM Editor menus, and removes it from memory.
+</a></li><P><a name="16594">
+<li><strong>New Layout </strong>allows you to create a new layout. <strong>(CLICK-L)</strong> on New Layout, then use the Choose Directory dialog which appears to select a new current TIM directory. <strong></strong>
+</a></li><P><a name="16708">
+<li><strong>Save Layout </strong>saves the current layout to the current layout directory.
+</a></li><P><a name="16595">
+<li><strong>Load</strong> <strong>Layout</strong> lets you load a layout from disk.
+</a></li><P><a name="16599">
+<li><strong>Export Selected </strong>saves selected images to TIM format.
+</a></li><P><a name="16717">
+<li><strong>Export All</strong> saves all images in the VRAM Editor to TIM format.
+</a></li><P></ul><P><a name="15256">
+<h4> Sort Images By</h4>
+</a><a name="16157">
+When you <strong>(CLICK-L)</strong> on this field, the Sort Method pop-up menu appears. <strong>(CLICK-L)</strong> on a method to select it and sort the images on the VRAM Editor menu.<p>
+</a><P><a name="16162">
+ <P><img src="8VramEditor.anc10.gif"><p>
+</a><a name="16163">
+<em>Figure 8.12  &#32; &#32; &#32;Sort Method pop-up menu
+</em></a><P><ul><a name="16168">
+<li><strong>Image Name</strong> sorts images alphabetically by name.
+</a></li><P><a name="16169">
+<li><strong>Palette Name</strong> sorts images by their palette name.
+</a></li><P><a name="16170">
+<li><strong>Palette Size</strong> sorts images by the size of their palette.
+</a></li><P><a name="16171">
+<li><strong>Width</strong> sorts images in least to greatest order by width.
+</a></li><P><a name="16172">
+<li><strong>Height</strong> sorts images in least to greatest order by height.
+</a></li><P><a name="16178">
+<li><strong>Tile X</strong> sorts images in least to greatest order by their VRAM X coordinate.
+</a></li><P><a name="16185">
+<li><strong>Tile Y</strong> sorts images in least to greatest order by their VRAM Y coordinate.
+</a></li><P><a name="16190">
+<li><strong>CLUT X</strong> sorts images in least to greatest order by their CLUTs VRAM X coordinate.
+</a></li><P><a name="16191">
+<li><strong>CLUT Y</strong> sorts images in least to greatest order by their CLUTs VRAM Y coordinate.
+</a></li><P><a name="16193">
+<li><strong>Transparency</strong> sorts images by the state of their transparency toggle. Transparent images are listed first.
+</a></li><P><a name="16192">
+<li><strong>Locked</strong> sorts images with Locked images first.
+</a></li><P><a name="16194">
+<li><strong>Placed</strong> sorts images, with Placed images first.
+</a></li><P><a name="16198">
+<li><strong>Selected</strong> sorts images, with selected images first.
+</a></li><P><dl><a name="16603">
+<dt><strong>(CLICK-L)</strong> on <strong>Abort</strong> to exit this menu without sorting the images.</dt>
+</a><P></dl></ul><P><a name="16181">
+<h4> Layout</h4>
+</a><a name="16608">
+The layout is the arrangement of TIM files in VRAM. You can save this arrangement to memory.<p>
+</a><P><ul><a name="16202">
+<li><strong>(CLICK-L)</strong> on <strong>Save</strong> to save the current VRAM layout to memory.
+</a></li><P><a name="16203">
+<li><strong>(CLICK-L)</strong> on <strong>Restore</strong> to restore the VRAM layout to the last saved configuration.
+</a></li><P></ul><P><a name="16204">
+<h4> TIles</h4>
+</a><a name="16611">
+The three <strong>Tiles</strong> commands allow you to place image tiles on the canvas, and arrange them in the most compact arrangement possible using a best-fit algorithm.<p>
+</a><P><a name="16225">
+<h4> Placing Tiles in VRAM</h4>
+</a><ul><a name="16226">
+<li><strong>(CLICK-L)</strong> on <strong>Place</strong> to place all <em>unplaced</em> tiles in VRAM.
+</a></li><P><a name="16227">
+<li><strong>(CLICK-M)</strong> on <strong>Place</strong> to place all <em>selected</em> tiles in VRAM.
+</a></li><P></ul><P><a name="16631">
+You can also place and unplace tiles with a <strong>(CLICK-L)</strong> on the Placed? toggle at the right end of the VRAM Editor menu.<strong></strong><p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:	</strong>Placing a tile in VRAM toggles that tiles Placed field. </font></dd></dt></dl><P>
+<a name="16621">
+<h4> Removing Tiles from VRAM</h4>
+</a><ul><a name="16622">
+<li><strong>(CLICK-L)</strong> on <strong>Unplace</strong> to remove all <em>unlocked</em> tiles from the VRAM Editor Canvas.
+</a></li><P><a name="16623">
+<li><strong>(CLICK-M)</strong> on <strong>Unplace</strong> to remove <em>selected </em>tiles<em> </em>which are not locked from the VRAM Editor Canvas.
+</a></li><P></ul><P><a name="16228">
+<h4> Init.</h4>
+</a><a name="16229">
+<strong>(CLICK-L)</strong> on <strong>Init.</strong> to remove all tiles from the VRAM Editor. You might use Init. when you finish one layout and want to reset the VRAM Editor to begin working on another.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Init not only removes tiles from the VRAM canvas, but also removes them from the VRAM Editor menu! </font></dd></dt></dl><P>
+<a name="16230">
+<h4> VRAM Editor Setup Parmeters</h4>
+</a><a name="16721">
+The following parameters can be modified in the N-Paint Setup menu. To reach the Setup menu, <strong>(CLICK-L)</strong> on the Setup button in the N-Paint modes bar.<strong></strong><p>
+</a><P><a name="16720">
+<h4> Stop at failure?</h4>
+</a><a name="16231">
+When this option is toggled, the VRAM Editor will return an error message when it is unable to place a tile using the Best Fit algorithm. Otherwise, the offending tile will not be placed, but no error message will appear.<p>
+</a><P><a name="16232">
+<h4> Use Dos filename?</h4>
+</a><a name="16233">
+When this option is toggled, TIM file names are truncated to eight characters in accordance with DOS file name requirements. For example, <code>CharacterSprite.lbm</code> will end up as <code>Characte.TIM</code>.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="7ColorReduction.html">[Prev]</a> <a href="93DPaintMode.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/27/96 11:31:58 -->
+
+</body>
+</html>

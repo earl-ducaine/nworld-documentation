@@ -1,0 +1,244 @@
+<html><head><title>The Action Editor</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5-MIME+MotionTut.html">[Prev]</a> <a href="7-PSX-domain.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="18874">
+<h1>The Action Editor</h1>
+</a>
+<hr><p><a name="19013">
+The Action Editor is used to create new <em>actions</em>, based on vectors created in the Vector Editor. An action contains both vector and wave information in a format usable by the Sony PlayStation.<p>
+</a><P><a name="18877">
+<h2><HR> Using the Action Editor</h2>
+</a><a name="18055">
+Actions are created, edited, and saved in the following window:<p>
+</a><P><a name="16339">
+ <P><img src="6-ActionEditor.anc.gif"><p>
+</a><a name="16343">
+<em>Figure 6.1  &#32; &#32;Action Editor showing multiple Subactions and Waves
+</em></a><P><ul><a name="18108">
+<li>The name, length, and sampling rate of the <strong>current action</strong> is displayed in the first test box.
+</a></li><P><a name="18112">
+<li>The <strong>current frame</strong> being animated is displayed in the second text box when you choose the <strong>Animate Action</strong> command.
+</a></li><P><a name="18113">
+<li>The <strong>ABORT</strong> button is active only when you are animating an action.
+</a></li><P><a name="18114">
+<li>The <strong>base vector</strong> shows the vector that other relative vectors for the action are based on.
+</a></li><P><a name="18115">
+<li>The remainder of the window (when occupied) is filled with <strong>subactions</strong>-vectors and their accompanying waves, which, when animated, constitute a single action.
+</a></li><P></ul><P><a name="16347">
+<h4> Action</h4>
+</a><a name="16348">
+<h4> Select Action</h4>
+</a><a name="16349">
+Select the action you want to work with (more than one action can be associated with a MIME object).<p>
+</a><P><a name="16350">
+<h4> Create Action</h4>
+</a><a name="16351">
+Create a new action, specifying its name, length, and number of frames.<p>
+</a><P><a name="16357">
+<h4> Edit Action Parameters</h4>
+</a><a name="16358">
+Modify the name, length, or number of frames for the selected action.<p>
+</a><P><a name="16361">
+<h4> Delete Action</h4>
+</a><a name="16362">
+Deletes an action from memory.<p>
+</a><P><a name="16363">
+<h4> SubAction</h4>
+</a><a name="16364">
+<h4> Create Subaction</h4>
+</a><a name="18421">
+Adds a subaction to the current action.<p>
+</a><P><a name="18564">
+When you <strong>(CLICK-L)</strong> on this command, you're first prompted to select the vector for the new subaction, then a wave.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can select any wave to create the subaction, then edit it later in the curve editor; the curve editor is described in detail in the </em>N-Dynamics Reference Guide.</font></dd></dt></dl><P>
+<a name="18440">
+<h4> Delete Subaction</h4>
+</a><a name="18441">
+Deletes the selected subaction from the its parent action.<p>
+</a><P><a name="18442">
+<h4> Reorder Subaction</h4>
+</a><a name="16371">
+Reorder the subactions associated with the selected action. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This order does not affect animation, just the order of display.</em></font></dd></dt></dl><P>
+<a name="16372">
+<h4> Wave</h4>
+</a><a name="18133">
+Because waves are saved independently from vectors, they can be moved, copied, and edited just like vectors. They can be copied between subactions or even shared by different subactions.<p>
+</a><P><a name="16374">
+ <P><img src="6-ActionEditor.anc1.gif"><p>
+</a><a name="16378">
+<em>Figure 6.2  &#32; &#32;Waves are edited using the same curve editor in N-Dynamics
+</em></a><P><a name="18180">
+<h4> Create Wave</h4>
+</a><a name="18157">
+Creates a new wave.<p>
+</a><P><a name="18161">
+When you <strong>(CLICK-L)</strong> on this command, you're first prompted to enter a name for the new wave.<p>
+</a><P><a name="18171">
+After you specify a name, the curve editor is displayed; the curve editor is described in detail in the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P><a name="16379">
+<h4> Rename Wave</h4>
+</a><a name="16380">
+Renames a wave.<p>
+</a><P><a name="18193">
+When you <strong>(CLICK-L)</strong> on this command, you're first prompted to select the wave you want to rename from the list of waves associated with the current action.<p>
+</a><P><a name="18194">
+Enter the new name for the wave in the dialog box that appears and <strong>(CLICK-L)</strong> on <strong>OK</strong>.<p>
+</a><P><a name="16381">
+<h4> Edit Wave</h4>
+</a><a name="18208">
+Edits the data for the selected wave.<p>
+</a><P><a name="18218">
+When you <strong>(CLICK-L)</strong> on this command, you're first prompted to select the wave you want to edit from the list of waves associated with the current action.<p>
+</a><P><a name="18226">
+After you select a wave, the curve editor is displayed; the curve editor is described in detail in the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P><a name="16383">
+<h4> Delete Wave</h4>
+</a><a name="16384">
+Deletes the selected wave.<p>
+</a><P><a name="18244">
+When you <strong>(CLICK-L)</strong> on this command, you're first prompted to select the wave you want to delete from the list of waves associated with the current action.<p>
+</a><P><a name="18245">
+A dialog box appears, asking you to confirm that the wave should be deleted; <strong>(CLICK-L)</strong> on <strong>OK</strong> to delete the wave.<p>
+</a><P><a name="16385">
+<h4> Read Other Wave</h4>
+</a><a name="16386">
+Loads a wave previously saved to disk.<p>
+</a><P><a name="18270">
+ <P><img src="6-ActionEditor.anc2.gif"><p>
+</a><a name="18271">
+<em>Figure 6.3  &#32; &#32;Reading a wave from disk
+</em></a><P><a name="18279">
+Once a wave has been loaded, it can be assigned to a vector by choosing it from the pop-up bar directly over the wave:<p>
+</a><P><a name="18284">
+ <P><img src="6-ActionEditor.anc3.gif"><p>
+</a><a name="18285">
+<em>Figure 6.4  &#32; &#32;Selecting another wave for a vector
+</em></a><P><a name="18280">
+A list of waves associated with the current action is displayed; choose the new wave from that list.<p>
+</a><P><a name="16387">
+<h4> Merge Waves</h4>
+</a><a name="16388">
+Combines two waves into a single wave.<p>
+</a><P><a name="18312">
+The two waves are added, so values above the specified max will be clipped:<p>
+</a><P><a name="18324">
+ <P><img src="6-ActionEditor.anc4.gif"><p>
+</a><a name="18325">
+<em>Figure 6.5  &#32; &#32;Merging two waves and using that wave in a third subaction
+</em></a><P><a name="18313">
+<h4> Redisplay</h4>
+</a><a name="18314">
+Selects the redisplay mode for the subactions in the Action Editor.<p>
+</a><P><a name="16391">
+<h4> Redisplay</h4>
+</a><a name="16392">
+Refresh the display of subactions in the Action Editor.<p>
+</a><P><a name="16393">
+<h4> Auto Redisplay On</h4>
+</a><a name="16394">
+Refresh the display of subactions in the Action Editor automatically when some modification is made (such as the modification of a wave).<p>
+</a><P><a name="16395">
+<h4> Auto Redisplay Off</h4>
+</a><a name="16396">
+Do not refresh the display of subactions, even if some event occurs that would change the appearance of the subactions. Select <strong>Redisplay</strong> if you want to refresh the display.<p>
+</a><P><a name="16397">
+<h4> Animate</h4>
+</a><a name="17820">
+<h4> Animate Action</h4>
+</a><a name="18488">
+Animate the action in the N-Geometry window. The animation is based on the vectors and waves in the active subactions associated with this action.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Subactions can be turned on or off using the check boxes next to each in the Action Editor. Inactive subactions are not used in generating the animation.</em></font></dd></dt></dl><P>
+<a name="18496">
+A one-bit recording is made each time the action is animated by capturing the contents of the N-Geometry window.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The N-Geometry window must be open for the one-bit recording to be created.</em></font></dd></dt></dl><P>
+<a name="17822">
+<h4> Playback</h4>
+</a><a name="16401">
+Plays the one-bit recording from the last animation.<p>
+</a><P><a name="16402">
+<h4> Playback Loop</h4>
+</a><a name="17837">
+Plays the one-bit recording from the last animation repeatedly.<p>
+</a><P><a name="16406">
+<h4> Convert</h4>
+</a><a name="16407">
+<h4> Convert Action</h4>
+</a><a name="16408">
+Writes the following files for the current action:<p>
+</a><P><ul><a name="18625">
+<li>.dat (action description file)
+</a></li><P><a name="18717">
+<li>.rsd files (one for each vector in the action)
+</a></li><P><a name="18718">
+<li>.wave (wave data file for each wave)
+</a></li><P></ul><P><a name="16415">
+<h4> Convert Action (FlayPolygon)</h4>
+</a><a name="18725">
+Similar to <strong>Convert Action</strong>, except that the RSD files have the single normal polygon format.<p>
+</a><P><a name="16417">
+<h4> Convert Action (Wave Only)</h4>
+</a><a name="18628">
+Writes out only the .wave files for the action.<p>
+</a><P><a name="18735">
+<h4> Convert and Send Action</h4>
+</a><a name="18736">
+Writes the following files for the current action, then automatically FTPs the appropriate files to the host specified in the <strong>Modes</strong> menu of N-Dynamics:<p>
+</a><P><ul><a name="18737">
+<li>.dat (action description file
+</a></li><P><a name="18738">
+<li>.rsd files (one for each vector in the action)
+</a></li><P><a name="18739">
+<li>.wave (wave data file for each wave)
+</a></li><P></ul><P><a name="18740">
+<h4> Convert and Send Action (Flay Polygon)</h4>
+</a><a name="18741">
+Similar to <strong>Convert and Send Action</strong>, except that the RSD files have the single normal polygon format.<p>
+</a><P><a name="16419">
+<h4> Dyna</h4>
+</a><a name="16420">
+<h4> Action Generate</h4>
+</a><a name="18649">
+Creates a new action, converts the cues (keyframes) in N-Dynamics into their component vector and wave forms, and associates those vectors and waves with that action. The Action Editor automatically generates waves which interpolate the change in shape between vectors. <p>
+</a><P><a name="17863">
+The action is given the same name as the script.<p>
+</a><P><a name="16424">
+<h4> Action Regenerate</h4>
+</a><a name="18377">
+Updates the current action. This command is identical to Action Generate, except that instead of creating a new action, all vector and wave information is deleted from the current action, then is rebuilt, reflecting any changes you may have made to the N-Dynamics script used to generate this action.<p>
+</a><P><a name="18376">
+<h4> Wave Regenerate</h4>
+</a><a name="16425">
+When you change the position of a keyframe in the N-Dynamics script, use this command to recalculate the wave data for the action without changing the vector data.<p>
+</a><P><a name="16428">
+<h4> Vector Regenerate</h4>
+</a><a name="17911">
+When you change a value for a cue in the N-Dynamics script, use this command to recalculate the vector data for the action without changing the wave data.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5-MIME+MotionTut.html">[Prev]</a> <a href="7-PSX-domain.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:26 -->
+
+</body>
+</html>

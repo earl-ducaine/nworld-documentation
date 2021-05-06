@@ -1,0 +1,182 @@
+<html><head><title>Object Display</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5ViewingObjects.html">[Prev]</a> <a href="7Utilities.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="3740">
+<h1>Object Display</h1>
+</a>
+<hr><p><a name="3442">
+The <strong>Object Display</strong> menu allows you to define how objects are displayed in the N-Geometry window.<p>
+</a><P><a name="2605">
+ <P><img src="6DisplayingObjects.anc.gif"><p>
+</a><a name="2765">
+<em>Figure 6.1  &#32; &#32;Object Display menu
+</em></a><P><a name="4331">
+The commands on this menu are described later in this chapter in alphabetical order.<p>
+</a><P><a name="2606">
+<h3> Changing Display Parameters for a Single Object</h3>
+</a><a name="3864">
+When you click on most operations in the <strong>Object Display</strong> section of the menu, N-Geometry displays a menu of all existing objects. If you want to toggle a display parameter for one object, <strong>(CLICK-L)</strong> on the appropriate <strong>Object Display</strong> operation.<p>
+</a><P><a name="3844">
+For example, suppose you had a cube and a sphere object in your scene, and wanted to display the sphere in shaded mode. If you were to <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;Object Display&gt;Shading</strong>, you'd get a menu that looked like this:<p>
+</a><P><a name="3852">
+ <P><img src="6DisplayingObjects.anc1.gif"><p>
+</a><a name="3853">
+<em>Figure 6.2  &#32; &#32;Select the object you want to shade
+</em></a><P><a name="3836">
+Note that the <strong>Cube</strong> and <strong>Sphere</strong> objects are gray; this means that they are currently not shaded.<p>
+</a><P><a name="3885">
+If you wanted to make the sphere shaded, you would <strong>(CLICK-L)</strong> on <strong>Sphere</strong>, and the object would be shaded:<p>
+</a><P><a name="3925">
+ <P><img src="6DisplayingObjects.anc2.gif"><p>
+</a><a name="3926">
+<em>Figure 6.3  &#32; &#32;The selected object is shaded in the N-Geometry window
+</em></a><P><a name="3920">
+If an object is already shaded (or visible, sensitive, etc.) it appears in black text in the object list:<p>
+</a><P><a name="3903">
+ <P><img src="6DisplayingObjects.anc3.gif"><p>
+</a><a name="3904">
+<em>Figure 6.4  &#32; &#32;Objects with the selected parameter turned on appear in <strong>black</strong> text in an object list
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Using the item <strong>All Objects</strong> at the top of the object list affects all objects loaded into N-Geometry.</font></dd></dt></dl><P>
+<a name="3983">
+<h3> Changing Display Parameters for Several Objects</h3>
+</a><a name="3951">
+If you want to set a display parameter for several objects (e.g., shade several objects at once), <strong>(CLICK-R)</strong> on the operation.<p>
+</a><P><a name="3965">
+For example, if you wanted to toggle the sensitivity of several objects at once, you would <strong>(CLICK-R)</strong> on <strong>Sensitivity</strong>. An object list would appear:<p>
+</a><P><a name="3971">
+ <P><img src="6DisplayingObjects.anc4.gif"><p>
+</a><a name="3972">
+<em>Figure 6.5  &#32; &#32;Objects with the selected parameter turned on appear in <strong>black</strong> text in an object list
+</em></a><P><a name="2618">
+As above, you should <strong>(CLICK-L)</strong> on an object to toggle its state. Objects listed in black have the selected parameter (e.g., they are shaded, or visible). Once the selection of objects has been made, <strong>(CLICK-L)</strong> on <strong>Do It</strong> to make your changes.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also collect several objects in N-Geometry and use the Utilities portion of the object menu to change the display parameters of several objects at once.</font></dd></dt></dl><P>
+<a name="4222">
+<h4> Backfacing</h4>
+</a><a name="4226">
+If turned on, displays only the faces that are facing toward the camera. (See <a href="6DisplayingObjects.html#4234">Figure 6.6</a>.) N-Geometry knows which way a face is oriented by the order of the vertices in that face. <p>
+</a><P><ul><a name="4227">
+<li><strong>(CLICK-L)</strong> and <strong>(CLICK-M)</strong> sets backfacing display for a single object.
+</a></li><P><a name="4228">
+<li><strong>(CLICK-R)</strong> sets backfacing display for several objects.
+</a></li><P><a name="4232">
+ <P><img src="6DisplayingObjects.anc5.gif"><p>
+</a></ul><P><a name="4234">
+<em>Figure 6.6  &#32; &#32;Left, backfacing off; right, backfacing on
+</em></a><P><a name="4237">
+<h4> Hard Edging</h4>
+</a><a name="4239">
+The <strong>Hard Edging</strong> command <em>displays</em> the boundaries of faces when faces meet at an angle <em>greater</em> than a specified amount, that is, at hard edges. This option is useful when animating (with N-Dynamics) if you want to turn off the display of edges with edges harder than the specified value.<p>
+</a><P><a name="4243">
+<a href="6DisplayingObjects.html#4249">Figure 6.7</a> shows an object in its original state, and with hard edging turned on to reduce the number of displayed edges:<p>
+</a><P><a name="4247">
+ <P><img src="6DisplayingObjects.anc6.gif"><p>
+</a><a name="4249">
+<em>Figure 6.7  &#32; &#32;Left, original object; right, with hard edging of 10 degrees
+</em></a><P><a name="4289">
+<h4> Local Axes</h4>
+</a><a name="4291">
+The <strong>Local Axes</strong> command toggles the display labeled local axes of terminal objects. Displaying local axes makes it easy to see where an object's origin is (see <a href="6DisplayingObjects.html#4311">Figure 6.8</a>.) This feature makes it easier to visualize transformations, many of which are relative to the local axes.<p>
+</a><P><ul><a name="4295">
+<li><strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> displays an object's local axes. 
+</a></li><P><a name="4296">
+<li><strong>(CLICK-R)</strong> displays local axes of several selected objects from the pop-up menu. You can turn off the local axes display for an object by deselecting the object in the pop-up menu. 
+</a></li><P><a name="4309">
+ <P><img src="6DisplayingObjects.anc7.gif"><p>
+</a></ul><P><a name="4311">
+<em>Figure 6.8  &#32; &#32;Displaying local axes makes it easy to see how a transform operation will work
+</em></a><P><a name="4312">
+In addition, the local axes are displayed <em>regardless</em> of which element type you have selected: points, segments, bodies, or objects.<p>
+</a><P><a name="4251">
+<h4> Normals</h4>
+</a><a name="4252">
+<em>Vertices, edges, faces</em><p>
+</a><P><a name="4253">
+Toggles the display of normals for points, edges, faces-after clicking on the command, you are prompted to select the object whose normals you wish to display.<p>
+</a><P><ul><a name="4254">
+<li><strong>(CLICK-L)</strong> to display an object's vertex normals. A <em>vertex normal</em> is based on the angle of all edges that define it.
+</a></li><P><a name="4255">
+<li><strong>(CLICK-M)</strong> to display an object's edge normals. An <em>edge normal</em> is based on the angle of the two faces that define it.
+</a></li><P><a name="4256">
+<li><strong>(CLICK-R)</strong> to display an object's face normals. A <em>face normal</em> is perpendicular to the face itself. (For a non-planar face, the normal is the average of all the point normals on the face.)
+</a></li><P><a name="4260">
+ <P><img src="6DisplayingObjects.anc8.gif"><p>
+</a></ul><P><a name="4261">
+<em>Figure 6.9  &#32; &#32;Left, cube with point normals displayed; middle, edge normals; right, face normals
+</em></a><P><a name="4263">
+<h4> Points</h4>
+</a><a name="4265">
+The <strong>Points</strong> command shows the object with all its nodes, or points, displayed as dots. (See <a href="6DisplayingObjects.html#4275">Figure 6.10</a>.) This type of presentation is especially useful with wires or with objects that have many vertices with only two adjacent edges, which might appear to blend together if the angle between them is fairly small.<p>
+</a><P><a name="4269">
+The size of the displayed points is defined by the parameters defined in <strong>Utilities&gt;Preferences&gt;Objects&gt;Point Display Radius</strong>.<p>
+</a><P><a name="4273">
+ <P><img src="6DisplayingObjects.anc9.gif"><p>
+</a><a name="4275">
+<em>Figure 6.10  &#32; &#32;Example of point display
+</em></a><P><a name="4281">
+<h4> Sensitivity</h4>
+</a><a name="4282">
+You can specify mouse sensitivity by object. This capability enables you to use background objects for reference without making it difficult to select elements on the object you are actively using. (In addition, bounding boxes are by default not mouse-sensitive.)<p>
+</a><P><ul><a name="4283">
+<li><strong>(CLICK-L)</strong> turns off a single object's mouse sensitivity.
+</a></li><P><a name="4284">
+<li><strong>(CLICK-R)</strong> turns off mouse sensitivity for several objects. You can turn mouse sensitivity back on for one or more objects the same way; just click on the object names so that they are highlighted in the menu.
+</a></li><P></ul><P><a name="4210">
+<h4> Shading</h4>
+</a><a name="4212">
+The <strong>Shading</strong> command displays the objects as smooth shaded.<p>
+</a><P><a name="4216">
+ <P><img src="6DisplayingObjects.anc10.gif"><p>
+</a><a name="4217">
+<em>Figure 6.11  &#32; &#32;Original and shaded object
+</em></a><P><a name="4320">
+<h4> Stand-ins</h4>
+</a><a name="4322">
+The <strong>Stand-ins</strong> command displays a "substitute" box instead of the object itself whenever you move the camera or transform the object.<p>
+</a><P><a name="4323">
+The substitute is essentially a bounding box which encompasses the object. The use of substitute boxes greatly increases the speed with which camera movements and transformations for more complicated objects are performed, because fewer lines need to be drawn.<p>
+</a><P><ul><a name="4324">
+<li><strong>(CLICK-L)</strong> assigns a stand-in to a selected object.
+</a></li><P><a name="4325">
+<li><strong>(CLICK-M)</strong> specifies your own stand-in substitute. The default is a box.
+</a></li><P><a name="4326">
+<li><strong>(CLICK-R)</strong> assigns stand-ins to several objects.
+</a></li><P></ul><P><a name="4327">
+If you want any objects for which stand-ins are assigned to always display as a stand-in, see the section <a href="5ViewingObjects.html#3103">"Sticky Standin Bodies," on page &#32;5-4</a>.<p>
+</a><P><a name="2622">
+<h4> Visibility</h4>
+</a><a name="2624">
+The <strong>Visibility</strong> command determines what objects can be seen in the view window. <p>
+</a><P><ul><a name="2626">
+<li><strong>(CLICK-L)</strong> displays a menu of all defined objects. Selecting an object makes that object visible and makes all other objects invisible.
+</a></li><P><a name="2628">
+<li><strong>(CLICK-M)</strong> makes all objects invisible.
+</a></li><P><a name="2630">
+<li><strong>(CLICK-R)</strong> also displays a menu that lists all defined objects. However, this menu allows you to set the visibility of several or all objects. 
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>An object that has been marked visible is not visible when it is not within the camera's field of view. </em></font></dd></dt></dl><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5ViewingObjects.html">[Prev]</a> <a href="7Utilities.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 11:24:35 -->
+
+</body>
+</html>

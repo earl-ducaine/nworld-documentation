@@ -1,0 +1,1344 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="RenderingOperations.html">[Prev]</a> <a href="LoopPaths.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="24110">
+N&#183;World is completely extensible. This means that you can define operations for inclusion in the N&#183;World interface which behave in exactly the same fashion as those features which are built in. For example, you can add Geometry Editor Menu items to the N-Geometry interface. You can also define Dynamics Operations, which are executed on a frame-by-frame basis by N-Dynamics. <p>
+</a><P><a name="22388">
+<h2><HR> Extending Dynamics</h2>
+</a><a name="24111">
+<h3> The Dynamics Philosophy</h3>
+</a><a name="21255">
+Dynamics operates on a relatively simple philosophy. Users define actions, which are then executed sequentially over time. When you define your own dynamics operation, you create code which is also executed on a frame by frame basis. You'll also need to integrate your new operation with the Dynamics menu, and provide ways for users to manipulate the parameters which control your new operation.<p>
+</a><P><a name="21275">
+<h3> Inheritance, Dynamic, and Static Values</h3>
+</a><a name="21276">
+One of the most useful attributes of Dynamics is the ability to program action along curves. A curve essentially provides a way of changing a parameter over time. Parameters whose values change over time are <em>dynamic</em>. Conversely, parameters whose values do not change are <em>static</em>. Within dynamics, the value of a given parameter might be determined explicitly for that parameter, in which case the value is said to be <em>local</em>. However, values can also be <em>inherited</em> from higher-level channels. <p>
+</a><P><a name="21260">
+<h2><HR> Dynamics Operations</h2>
+</a><a name="23335">
+In the following discussion, we'll be making use of a dynamic operation we defined called Random Transform. The listing for this operation appears below. and can also be found in <code>/usr/local/ngc/demo/src/random-mvmt.lisp</code>.<p>
+</a><P><a name="23259">
+<h3> Preparing To Define Dynamics Operations</h3>
+</a><a name="23260">
+The basic steps in creating a dynamics operation are:<p>
+</a><P>
+<a name="23261">
+<STRONG>	 1.	 Define your Dynamics Operation function.
+</STRONG>
+</a><P><dl><a name="23262">
+<dt>Dynamics Operations parameters serve as local variables within the function that defines the operation. Therefore, defining and debugging the operative code of your new operation is necessary before you can know which parameters you'll need to get from the user.</dt>
+</a><P><a name="23263">
+<dt>In our example, the operative code consists of three functions:</dt>
+</a><P></dl><ul>
+<BR><a name="23264">
+<li><code>RANDOM-NEG</code>, which randomly returns 1 or -1.
+</a><P><BR><a name="23265">
+<li><code>CLEAN-RANGE</code>, which returns either the argument passed it, or 1 if the argument is <code>nil</code> or <code>0</code>.
+</a><P><BR><a name="23266">
+<li><code>RANDOM-TRANSFORM</code>, which creates a random transformation and applies it to an object.
+</a><P></ul>
+<a name="23267">
+<STRONG>	2.	 Define the parameters you'll need for your new function
+</STRONG>
+</a><P><dl><a name="23268">
+<dt>Users will interact with the Dynamics menus to specify values for these parameters. Parameter fields are built on classes, which can be predefined (built-in to Dynamics), or defined by you. These classes control the types of values the fields can accommodate, and also control the behavior of the fields. for example, some types are designed to return N-Geometry objects, others Ftriplets, strings, numbers, color objects, etc.</dt>
+</a><P><a name="23284">
+<dt>Our example has five parameters:</dt>
+</a><P></dl><ul>
+<BR><a name="23269">
+<li><code>OBJECT</code> - the object to randomly move.
+</a><P><BR><a name="23270">
+<li><code>WHICH-AXES</code> - allows the user to specify all axes, or one axis.
+</a><P><BR><a name="23271">
+<li><code>AXES</code> - when which-axes is not "all", then this field is exposed. It's used to specify an axis to restrict the random movement to.
+</a><P><BR><a name="23272">
+<li><code>RANGE</code> - The maximum displacement along any one axis per frame.
+</a><P><BR><a name="23273">
+<li><code>HOME</code> - When Yes, the object is returned to it's home position at the beginning of each frame.
+</a><P></ul>
+<a name="23276">
+<STRONG>	3.	 Define the Dynamics Operation
+</STRONG>
+</a><P>
+<a name="21268">
+The definition defines several overall parameters of the operation itself, including its class, its name as it will appear on the Dynamics menus, and which applications it is associated with (its universe). The parameters section defines the fields <p>
+</a><P><a name="23287">
+Here's the listing for Random Transform. It causes the selected object to move randomly within limits defined by its parameters:<p>
+</a><P><a name="22604">
+<code><pre>;;; -*- Mode: Common-Lisp; Package: DYNAMICS; -*-<p>
+</code></pre></a><a name="22606">
+<code><pre><p>
+</code></pre></a><a name="22607">
+<code><pre>(in-package :geometry)<p>
+</code></pre></a><a name="22608">
+<code><pre><p>
+</code></pre></a><a name="22609">
+<code><pre><em>:======================================================================</em><p>
+</code></pre></a><a name="22610">
+<code><pre><em>;     Functions used in the Dynamic Operation</em><p>
+</code></pre></a><a name="22611">
+<code><pre><em>;======================================================================</em><p>
+</code></pre></a><a name="24497">
+<code><pre><em>;;;random-neg returns either 1 or -1, randomly</em><p>
+</code></pre></a><a name="22614">
+<code><pre><p>
+</code></pre></a><a name="22615">
+<code><pre>(defun random-neg ()<p>
+</code></pre></a><a name="22616">
+<code><pre>  (if (eq 1 (random 2))<p>
+</code></pre></a><a name="22617">
+<code><pre>               -1<p>
+</code></pre></a><a name="22618">
+<code><pre>               1))<p>
+</code></pre></a><a name="22619">
+<code><pre><p>
+</code></pre></a><a name="22620">
+<code><pre>(defun clean-range (range)<p>
+</code></pre></a><a name="22621">
+<code><pre>  (cond ((or (eq range nil)<p>
+</code></pre></a><a name="22622">
+<code><pre>             (eq range 0))<p>
+</code></pre></a><a name="22623">
+<code><pre>         1)<p>
+</code></pre></a><a name="22624">
+<code><pre>        (t range)<p>
+</code></pre></a><a name="22625">
+<code><pre>        )) <p>
+</code></pre></a><a name="22627">
+<code><pre>    <p>
+</code></pre></a><a name="22628">
+<code><pre><em>; Random transform generates a temporary transformation matrix (temp-matrix)</em><p>
+</code></pre></a><a name="22629">
+<code><pre><em>; then alters that matrix.  The :move argument to alter-3d-matrix requires 3 args</em><p>
+</code></pre></a><a name="22630">
+<code><pre><em>; which are displacements along each axis. The displacements themselves are calculated <br>; with respect to the value specified for range in the Dynamics parameters menu.</em><p>
+</code></pre></a><a name="22632">
+<code><pre><em>; If home is "YES", then the object is returned to its home position before the altered<br>; matrix is applied to the object, resulting in the object "hovering" around it's home<br>; position. Otherwise, there are no constraints other than RANGE on the possible position<br>; of the object.</em><p>
+</code></pre></a><a name="22635">
+<code><pre><p>
+</code></pre></a><a name="22636">
+<code><pre>(defun random-transform (object home x-range y-range z-range)<p>
+</code></pre></a><a name="22637">
+<code><pre>  (3d::using-transform-matrix ((temp-matrix))<p>
+</code></pre></a><a name="22638">
+<code><pre>    (let (<p>
+</code></pre></a><a name="22639">
+<code><pre><p>
+</code></pre></a><a name="22640">
+<code><pre><em>;;; These forms set the value of each range to:</em><p>
+</code></pre></a><a name="22641">
+<code><pre><em>;;; 1 if it is 0 originally</em><p>
+</code></pre></a><a name="22642">
+<code><pre><em>;;; the original value multiplied by 1 or -1 returned by (random-neg)</em><p>
+</code></pre></a><a name="22643">
+<code><pre>          <p>
+</code></pre></a><a name="22644">
+<code><pre>          (x (* (random-neg) (clean-range x-range)))<p>
+</code></pre></a><a name="22645">
+<code><pre>          (y (* (random-neg) (clean-range y-range)))<p>
+</code></pre></a><a name="22646">
+<code><pre>          (z (* (random-neg) (clean-range z-range)))<p>
+</code></pre></a><a name="22647">
+<code><pre>          )<p>
+</code></pre></a><a name="22648">
+<code><pre><em>;;; alter the temporary matrix by moving it along each axis by the values we just <br>;;; generated</em><p>
+</code></pre></a><a name="22649">
+<code><pre>      <p>
+</code></pre></a><a name="22650">
+<code><pre>      (3d::alter-3d-matrix temp-matrix<p>
+</code></pre></a><a name="22651">
+<code><pre>                           :move (3d::make-ftriplet! x y z))<p>
+</code></pre></a><a name="22652">
+<code><pre><p>
+</code></pre></a><a name="22653">
+<code><pre><em>;;; If home is YES, then move the object back to its home position      </em><p>
+</code></pre></a><a name="22654">
+<code><pre><p>
+</code></pre></a><a name="23391">
+<code><pre>	(if (string-equal home "YES")<p>
+</code></pre></a><a name="22655">
+<code><pre>          (3d::initialize-transformation object))<p>
+</code></pre></a><a name="22656">
+<code><pre>      <p>
+</code></pre></a><a name="22657">
+<code><pre><em>;;; Then, apply the modified transformation matrix to the object      </em><p>
+</code></pre></a><a name="22658">
+<code><pre><p>
+</code></pre></a><a name="23398">
+<code><pre>	(3d::transform object temp-matrix))))<p>
+</code></pre></a><a name="22659">
+<code><pre>  <p>
+</code></pre></a><a name="22660">
+<code><pre>(in-package :dynamics)<p>
+</code></pre></a><a name="22661">
+<code><pre><p>
+</code></pre></a><a name="22690">
+<code><pre><em>;======================================================================</em><p>
+</code></pre></a><a name="22691">
+<code><pre><em>;      Creating the Dynamics class</em><p>
+</code></pre></a><a name="22692">
+<code><pre><em>;          This function creates a class listing in the Dynamics Operation menu.</em><p>
+</code></pre></a><a name="22693">
+<code><pre><em>;======================================================================</em><p>
+</code></pre></a><a name="22694">
+<code><pre><p>
+</code></pre></a><a name="22695">
+<code><pre>(def-dynamic-operation-class 3d::random<p>
+</code></pre></a><a name="22697">
+<code><pre>    "randomness"<p>
+</code></pre></a><a name="22698">
+<code><pre>    "Operations to introduce a little chaos into your scripts"<p>
+</code></pre></a><a name="22699">
+<code><pre>    :geometry<p>
+</code></pre></a><a name="22700">
+<code><pre>    :dynageometry)<p>
+</code></pre></a><a name="22701">
+<code><pre><p>
+</code></pre></a><a name="22702">
+<code><pre><em>;;======================================================================</em><p>
+</code></pre></a><a name="22704">
+<code><pre><em>;;;		The dynamic operation itself.</em><p>
+</code></pre></a><a name="22705">
+<code><pre><em>;;======================================================================</em><p>
+</code></pre></a><a name="23415">
+<code><pre><p>
+</code></pre></a><a name="22706">
+<code><pre>(dyna::define-dynamic-operation (random-transform<p>
+</code></pre></a><a name="22707">
+<code><pre>				 :class 3d::random<p>
+</code></pre></a><a name="22708">
+<code><pre>				 :universe :dynageometry<p>
+</code></pre></a><a name="22709">
+<code><pre>				 :pretty-name-string "Random Movement"<p>
+</code></pre></a><a name="22710">
+<code><pre>				 :documentation<p>
+</code></pre></a><a name="22711">
+<code><pre>				 "Record animation data for export")<p>
+</code></pre></a><a name="22712">
+<code><pre>    <p>
+</code></pre></a><a name="22713">
+<code><pre>    ((object              `dyna::object<p>
+</code></pre></a><a name="22714">
+<code><pre>                            :prompt "Object"<p>
+</code></pre></a><a name="22715">
+<code><pre>                            :documentation "Select object for randomization")<p>
+</code></pre></a><a name="22716">
+<code><pre><p>
+</code></pre></a><a name="22717">
+<code><pre>     (which-axes           `dyna::symbol<p>
+</code></pre></a><a name="22718">
+<code><pre>                           :prompt "Axes?"<p>
+</code></pre></a><a name="22719">
+<code><pre>                           :default :all<p>
+</code></pre></a><a name="22720">
+<code><pre>                           :field-type `ui::multiple-choice-field<p>
+</code></pre></a><a name="22721">
+<code><pre>                           :field-args<p>
+</code></pre></a><a name="22722">
+<code><pre>                           `(:subfield-info `((:label "All" :on-value :all)<p>
+</code></pre></a><a name="22723">
+<code><pre>                                              (:label "Choose" :on-value :choose))<p>
+</code></pre></a><a name="22724">
+<code><pre>                             :reformat-on-select t)<p>
+</code></pre></a><a name="22725">
+<code><pre>                           :documentation "Select axes for movement"<p>
+</code></pre></a><a name="22726">
+<code><pre>                           )<p>
+</code></pre></a><a name="22727">
+<code><pre><p>
+</code></pre></a><a name="22728">
+<code><pre>     (axes                `dyna::symbol<p>
+</code></pre></a><a name="22729">
+<code><pre>                          :prompt "Choose Axes"<p>
+</code></pre></a><a name="22730">
+<code><pre>                          :default :x<p>
+</code></pre></a><a name="22731">
+<code><pre>                          :field-type `ui::multiple-choice-field<p>
+</code></pre></a><a name="22732">
+<code><pre>                          :field-args<p>
+</code></pre></a><a name="22733">
+<code><pre>                          `(:subfield-info `((:label "X" :on-value :x)<p>
+</code></pre></a><a name="22734">
+<code><pre>                                             (:label "Y" :on-value :y)<p>
+</code></pre></a><a name="22735">
+<code><pre>                                             (:label "Z" :on-value :z))<p>
+</code></pre></a><a name="22736">
+<code><pre>                            :reformat-on-select t)<p>
+</code></pre></a><a name="22737">
+<code><pre>                          :expose-test (dyna::action-test :which-axes `(:choose))<p>
+</code></pre></a><a name="22738">
+<code><pre>                          )<p>
+</code></pre></a><a name="22739">
+<code><pre>     <p>
+</code></pre></a><a name="22740">
+<code><pre>                           <p>
+</code></pre></a><a name="22741">
+<code><pre>     (range                `3d::factor<p>
+</code></pre></a><a name="22742">
+<code><pre>                           :dynamic-p t<p>
+</code></pre></a><a name="22743">
+<code><pre>                           :prompt "Range"<p>
+</code></pre></a><a name="22744">
+<code><pre>                           :documentation "Enter range for position to vary by")<p>
+</code></pre></a><a name="22745">
+<code><pre>     (home                 `dyna::yes-or-no<p>
+</code></pre></a><a name="22746">
+<code><pre>                           :prompt "Home?"<p>
+</code></pre></a><a name="22747">
+<code><pre>                           :default :no<p>
+</code></pre></a><a name="22748">
+<code><pre>                           :documentation "Reinitialize transform for each frame?")<p>
+</code></pre></a><a name="22749">
+<code><pre>     )<p>
+</code></pre></a><a name="22750">
+<code><pre>  (format t "axes: ~a which axes: ~a~% " axes which-axes)<p>
+</code></pre></a><a name="22751">
+<code><pre> <p>
+</code></pre></a><a name="22752">
+<code><pre>  (cond (			(string-equal which-axes "ALL") <p>
+</code></pre></a><a name="22787">
+<code><pre>			(3d::random-transform object home range range range)) <p>
+</code></pre></a><a name="22753">
+<code><pre>        ((string-equal axes "x") (3d::random-transform object home range nil nil))<p>
+</code></pre></a><a name="22754">
+<code><pre>        ((string-equal axes "y") (3d::random-transform object home nil range nil))<p>
+</code></pre></a><a name="22755">
+<code><pre>        (t (3d::random-transform object home nil nil range)))<p>
+</code></pre></a><a name="22756">
+<code><pre>  <p>
+</code></pre></a><a name="22757">
+<code><pre>  (if (and *last-frame-p*<p>
+</code></pre></a><a name="22758">
+<code><pre>           (string-equal home "YES"))<p>
+</code></pre></a><a name="22759">
+<code><pre>      (3d::initialize-transformation object)))<p>
+</code></pre></a><a name="21284">
+<h3> Anatomy of a Dynamics Operation</h3>
+</a><a name="21285">
+When users specify operations for dynamics channels, the first thing which appears is the operations class menu. Selecting an operation class results in a menu of operations, as shown in <a href="ExtendingDynamics.html#21287">Figure 10.1</a>.<p>
+</a><P><a name="21286">
+ <P><img src="ExtendingDynamics.anc1.gif"><p>
+</a><a name="21287">
+<em>Figure 10.1  &#32; &#32;Dynamics Select Operation Class &amp; Select Operation Menu
+</em></a><P><a name="23291">
+These are not classes in the normal CLOS sense, instead, they serve an organizational function within the Dynamics menus. You can add your operations to existing classes, or add your own.<p>
+</a><P><a name="23288">
+Choosing an operation adds a channel with that operation to the current script.<p>
+</a><P><a name="22802">
+<h3> Defining Dynamics Operations Classes</h3>
+</a><a name="21357">
+You can define a new class of Dynamics Operation with <code>DYNA:DEF-DYNAMIC-OPERATION-CLASS</code> macro, which has the following general form:<p>
+</a><P><a name="22417">
+<code><pre>	<a (dyna:def-dynamic-operation-class symbol-for-class pretty name documentation category universe)>(dyna:def-dynamic-operation-class symbol-for-class pretty name documentation category<br>			universe)<p>
+</code></pre></a><a name="21378">
+In our example, a class called randomness is defined:<p>
+</a><P><a name="22811">
+<code><pre>(def-dynamic-operation-class 3d::random<p>
+</code></pre></a><a name="22813">
+<code><pre>    "randomness"<p>
+</code></pre></a><a name="22814">
+<code><pre>    "Operations to introduce a little chaos into your<br>			scripts"<p>
+</code></pre></a><a name="22815">
+<code><pre>    :geometry<p>
+</code></pre></a><a name="22816">
+<code><pre>    :dynageometry)<p>
+</code></pre></a><a name="21394">
+Because Lisp is a dynamic environment, your new class will be available in the Dynamics menus as soon as you compile your code.<p>
+</a><P><a name="23772">
+<h4> Dyn<a dynamic operations:finding dynamics classes>amics Classes Utilities</h4>
+</a><a name="23773">
+The global variable <code><a DYNA::*KNOWN-OPERATION-CLASSES* variable>dyna::*known-operation-classes*</code> is a list of all currently defined Dynamics Operations classes. Describing a class yields all the information you're likely to need to add an operation to that class. For example, <p>
+</a><P><a name="23774">
+<code><pre>(describe (first dyna::*known-operation-class*))<p>
+</code></pre></a><a name="23775">
+returns<p>
+</a><P><a name="23783">
+<code><pre>#&lt;DYNAMIC-OPERATION-CLASS @ #x126b7fe2&gt; is a structure of type DYNAMIC-OPERATION CLASS. <br>				It has these slots:<p>
+</code></pre></a><a name="23778">
+<code><pre>				 NAME-SYMBOL        :BASIC-FUNCTIONS<p>
+</code></pre></a><a name="23779">
+<code><pre>				 PRETTY-NAME-STRING  "Basic Functions"<p>
+</code></pre></a><a name="23780">
+<code><pre>				 MOUSE-DOC-LINE     "Menu of basic programming operations."<p>
+</code></pre></a><a name="23781">
+<code><pre>				 CATEGORY           :DYNAMICS<p>
+</code></pre></a><a name="23782">
+<code><pre>				 UNIVERSES          :DYNALISP<p>
+</code></pre></a><a name="23785">
+You can find a specific class using <code><a DYNA::FIND-DYNAMIC-OPERATION-CLASS>DYNA::FIND-DYNAMIC-OPERATION-CLASS. </code>So, to find the random class we defined in our example:<p>
+</a><P><a name="23789">
+<code><pre>(<a dyna::find-dynamic-operation-class)>dyna::find-dynamic-operation-class `random)<p>
+</code></pre></a><a name="23790">
+which returns:<p>
+</a><P><a name="23791">
+<code><pre>#S(DYNAMIC-OPERATION-CLASS							:NAME-SYMBOL RANDOM :PRETTY-NAME-STRING "randomness"<p>
+</code></pre></a><a name="23793">
+<code><pre>							:MOUSE-DOC-LINE "Operations to introduce a little chaos into<br>								your scripts" <br>							:CATEGORY :GEOMETRY<p>
+</code></pre></a><a name="23794">
+<code><pre>							:UNIVERSES :DYNAGEOMETRY)<p>
+</code></pre></a><a name="23776">
+(assuming, of course, that you've compiled that operation). Of course, you can use <code>dyna::*known-operation-classes*</code> to find the name symbol for any defined class.<p>
+</a><P><a name="23066">
+<h4> Controlling Input with Parameters</h4>
+</a><a name="23221">
+You'll use parameter fields to provide a way for users to interact with your dynamic operations. Each field type is designed to bind a variable to an object of a specific type. Field-types map to Dynamics parameter classes (this time we mean classes in the CLOS sense). There are many built in parameter classes, and you can also define your own.<p>
+</a><P><a name="23441">
+To define a parameter field type, you need to define a class and a field-type for the parameter type. N-Dynamics parameter types map directly to UI field types, and accept many of the same parameters as UI field types. In this example, we'll define a new class which allows users to select more than one object:<p>
+</a><P><a name="23442">
+<code><pre>(defclass 3D-OBJECTS-FIELD (ui::object-field)<p>
+</code></pre></a><a name="23443">
+<code><pre>    ()<p>
+</code></pre></a><a name="23444">
+<code><pre>	 ( 	:default-initargs <p>
+</code></pre></a><a name="23446">
+<code><pre>		:documentation (ui::make-three-part-who-line "L: Choose 3D objects.")))<p>
+</code></pre></a><a name="23447">
+<code><pre><p>
+</code></pre></a><a name="23857">
+<code><pre>;; <p>
+</code></pre></a><a name="23448">
+<code><pre>(defmethod UI::SELECT-METHOD((self 3D-OBJECTS-FIELD) mx my buttons)<p>
+</code></pre></a><a name="23449">
+<code><pre>  (declare (ignore mx my buttons))<p>
+</code></pre></a><a name="23450">
+<code><pre>  (let ((val (rest (3d::choose-objects t))))<p>
+</code></pre></a><a name="23451">
+<code><pre>    (when val <p>
+</code></pre></a><a name="23452">
+<code><pre>      (setf (ui::field-value self) val)<p>
+</code></pre></a><a name="23453">
+<code><pre>      (dolist (obj val)<p>
+</code></pre></a><a name="23454">
+<code><pre>        (dyna::register-3d-object obj))  ; defined below until 3d obs are ext obs<p>
+</code></pre></a><a name="23455">
+<code><pre>      (ui::draw-field self)<p>
+</code></pre></a><a name="23456">
+<code><pre>      (ui::make-visible self)<p>
+</code></pre></a><a name="23457">
+<code><pre>      )<p>
+</code></pre></a><a name="23458">
+<code><pre>  ))<p>
+</code></pre></a><a name="23428">
+Once your parameter classes are defined, you can map field-types to your classes with <code>DYNA:DEFINE-FIELD-TYPE</code>:<p>
+</a><P><a name="23320">
+<code><pre>(<a DYNA:DEFINE-FIELD-TYPE>DYNA:DEFINE-FIELD-TYPE (field-type class-type &amp;OPTIONAL<br>		field-init-args)<p>
+</code></pre></a><a name="23472">
+So for our <code>choose-objects</code> class:<p>
+</a><P><a name="23475">
+(define-field-type `3d-objects-field `3d-objects)<p>
+</a><P><a name="23307">
+To use the new type in a Dynamic Operation definition, refer to it by it's short name, <code>`3d::objects</code>. For example:<p>
+</a><P><a name="23490">
+<code><pre>(objects					`3d-objects<p>
+</code></pre></a><a name="23491">
+<code><pre>					:prompt "Object"<p>
+</code></pre></a><a name="23494">
+<code><pre>					:documentation "Select an Objects"<p>
+</code></pre></a><a name="23220">
+<h4> Built-in Dynamics Parameter Field Types</h4>
+</a><a name="21630">
+N-Dynamics includes many predefined field types, summarized in <a href="ExtendingDynamics.html#23212">Table 10.1</a>. <a href="ExtendingDynamics.html#23075">Figure 10.2</a> and <a href="ExtendingDynamics.html#23084">Figure 10.3</a> show how each field looks.<p>
+</a><P><a name="23212">
+  
+<P><Table Border="1">
+<dl>
+<a name="22901">
+<em>Table 10.1 <strong></strong> &#32; &#32; &#32; &#32;Dynamics field types
+</em></a></dl>
+<tr><th align="left"><a name="22905">
+Dynamics Field Type
+</a><th align="left"><a name="22907">
+Comments
+</a><th align="left"><a name="23003">
+Returns
+</a>
+<tr><td valign="top"><a name="22909">
+ `symbol<p>
+</a><td valign="top"><a name="22911">
+ Returns a symbol or a string<p>
+</a><td valign="top"><a name="23005">
+ A string<p>
+</a>
+<tr><td valign="top"><a name="22913">
+ `yes-or-no<p>
+</a><td valign="top"><a name="22915">
+ Creates two buttons, labelled "Yes" and "No". <p>
+</a><td valign="top"><a name="23007">
+ A string, either "YES" or "NO"<p>
+</a>
+<tr><td valign="top"><a name="22917">
+ `object<p>
+</a><td valign="top"><a name="22919">
+ Holds Geometry objects<p>
+</a><td valign="top"><a name="23009">
+ An object<p>
+</a>
+<tr><td valign="top"><a name="22929">
+ `attribute-set<p>
+</a><td valign="top"><a name="22931">
+ Produces a pop-up listing of all currently defined materials.<p>
+</a><td valign="top"><a name="23015">
+ A material.<p>
+</a>
+<tr><td valign="top"><a name="22933">
+ `light-object<p>
+</a><td valign="top"><a name="22935">
+ Produces a pop-up listing of all lights currently loaded into Geometry<p>
+</a><td valign="top"><a name="23017">
+ A light object<p>
+</a>
+<tr><td valign="top"><a name="22941">
+ `trajectory-object<p>
+</a><td valign="top"><a name="22943">
+ Produces a pop-up list of all trajectory objects loaded into geometry<p>
+</a><td valign="top"><a name="23021">
+ A trajectory object<p>
+</a>
+<tr><td valign="top"><a name="22945">
+ `3d::angle<p>
+</a><td valign="top"><a name="22947">
+ Accommodates an angle<p>
+</a><td valign="top"><a name="23023">
+ A single float<p>
+</a>
+<tr><td valign="top"><a name="22949">
+ `3d::factor<p>
+</a><td valign="top"><a name="22951">
+ Accommodates a factor<p>
+</a><td valign="top"><a name="23025">
+ A single float<p>
+</a>
+<tr><td valign="top"><a name="22953">
+ `3d::displacement<p>
+</a><td valign="top"><a name="22955">
+ Accommodates a defined displacement<p>
+</a><td valign="top"><a name="23027">
+ An object of type locus-state<p>
+</a>
+<tr><td valign="top"><a name="22961">
+ `spot-light-object<p>
+</a><td valign="top"><a name="22963">
+ Produces a pop-up list of spot-lights loaded into geometry<p>
+</a><td valign="top"><a name="23031">
+ A spot-light object.<p>
+</a>
+<tr><td valign="top"><a name="22969">
+ `3d::skeleton<p>
+</a><td valign="top"><a name="22971">
+ Produces a pop-up list of skeleton objects loaded into Geometry<p>
+</a><td valign="top"><a name="23035">
+ A skeleton object<p>
+</a>
+<tr><td valign="top"><a name="22977">
+ transformation<p>
+</a><td valign="top"><a name="22979">
+ Accommodates a transformation value.<p>
+</a><td valign="top"><a name="23039">
+ Returns a transformation value.<p>
+</a>
+<tr><td valign="top"><a name="22981">
+ `color<p>
+</a><td valign="top"><a name="22983">
+ Produces a color-editor pop-up menu<p>
+</a><td valign="top"><a name="23041">
+ An object of type RGB-COLOR<p>
+</a>
+<tr><td valign="top"><a name="23106">
+ `numeric-inheritable-property<p>
+</a><td valign="top"><a name="23108">
+ Accommodates a number<p>
+</a><td valign="top"><a name="23110">
+ A number<p>
+</a>
+<tr><td valign="top"><a name="23112">
+ `3d::ftriplet<p>
+</a><td valign="top"><a name="23114">
+ Accepts (requires) three numbers<p>
+</a><td valign="top"><a name="23116">
+ An ftriplet<p>
+</a>
+<tr><td valign="top"><a name="23118">
+ `3d::fquad<p>
+</a><td valign="top"><a name="23120">
+ Accepts (requires) four numbers<p>
+</a><td valign="top"><a name="23122">
+ An fjord<p>
+</a>
+<tr><td valign="top"><a name="23124">
+ `3d::quaternion<p>
+</a><td valign="top"><a name="23126">
+ Accepts (requires) four numbers<p>
+</a><td valign="top"><a name="23128">
+ A quaternion<p>
+</a>
+<tr><td valign="top"><a name="23130">
+ `3d::axis-for-object<p>
+</a><td valign="top"><a name="23132">
+ Accepts (requires) three numbers<p>
+</a><td valign="top"><a name="23134">
+ A list of the three numbers (c.f. ftriplet)<p>
+</a>
+<tr><td valign="top"><a name="23136">
+ `3d::xyz-triplet<p>
+</a><td valign="top"><a name="23138">
+ Accepts (requires) three numbers<p>
+</a><td valign="top"><a name="23140">
+ A list of three numbers<p>
+</a>
+<tr><td valign="top"><a name="23142">
+ `doublet<p>
+</a><td valign="top"><a name="23144">
+ Accepts two numbers. If only one is entered, the second value defaults to the first.<p>
+</a><td valign="top"><a name="23146">
+ A list of two numbers.<p>
+</a>
+<tr><td valign="top"><a name="23154">
+ `attribute-domain<p>
+</a><td valign="top"><a name="23156">
+ Produces a pop-up list of attribute domains<p>
+</a><td valign="top"><a name="23158">
+ An attribute domain.<p>
+</a>
+<tr><td valign="top"><a name="22985">
+ `string<p>
+</a><td valign="top"><a name="22987">
+ Accepts a string<p>
+</a><td valign="top"><a name="23043">
+ A string (simple-array character).<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="22866">
+ <P><img src="ExtendingApplications.anc1.gif"><p>
+</a><a name="23075">
+<em>Figure 10.2  &#32; &#32;N-Dynamics Field types
+</em></a><P><a name="23083">
+ <P><img src="ExtendingApplications.anc2.gif"><p>
+</a><a name="23084">
+<em>Figure 10.3  &#32; &#32;More N-Dynamics field types
+</em></a><P><a name="21725">
+<h4> Setting Parameter Type Defaults</h4>
+</a><a name="21726">
+You can define global defaults for all parameters of a given type with <code>DYNA:DEFINE-GLOBAL-DEFAULT-FOR-TYPE</code>. For example, the following form sets up a default of 0.0 for all instances of parameter type numeric-inheritable-property.<p>
+</a><P><a name="21727">
+<code><pre>				(<a (define-global-default-for-type)>define-global-default-for-type numeric-inheritable-property 0.0)<p>
+</code></pre></a><a name="21731">
+<h4> Parameter Type Slider Defaults</h4>
+</a><a name="21732">
+Many parameters can be modified using a special dialog, the Dynamics Slider (<a href="ExtendingDynamics.html#21738">Figure 10.4</a>).<p>
+</a><P><a name="21733">
+ <P><img src="ExtendingDynamics.anc3.gif"><p>
+</a><a name="21738">
+<em>Figure 10.4  &#32; &#32;The Dynamics slider
+</em></a><P><a name="21734">
+You can define default parameters for slider dialogs used to edit parameters for your operations. These parameters are defined as keyword arguments to <code>DYNA:DEFINE-SLIDER-PARAMETERS-FOR-TYPE</code>, which has the following general form:<p>
+</a><P><a name="21830">
+<code><pre>(DYNA:DEFINE-SL<a DEFINE-SLIDER-PARAMETERS-FOR-TYPE function>IDER-PARAMETERS-FOR-TYPE type &amp;REST plist)<p>
+</code></pre></a><a name="21831">
+Dynamics sliders have six default parameters, summarized in <a href="ExtendingDynamics.html#21831">Table 10.2</a> 
+<P><Table Border="1">
+<dl>
+<a name="21803">
+<em>Table 10.2  &#32; &#32;Dynamics slider parameters
+</em></a></dl>
+<tr><th align="left"><a name="21807">
+Parameter
+</a><th align="left"><a name="21809">
+Description
+</a>
+<tr><td valign="top"><a name="21811">
+ :min-value<p>
+</a><td valign="top"><a name="21813">
+ The absolute minimum value possible for the slider.<p>
+</a>
+<tr><td valign="top"><a name="21815">
+ :max-value<p>
+</a><td valign="top"><a name="21817">
+ The absolute maximum value possible for the slider<p>
+</a>
+<tr><td valign="top"><a name="21819">
+ :low-offset<p>
+</a><td valign="top"><a name="21821">
+ The minimum value to be displayed by the slider by default<p>
+</a>
+<tr><td valign="top"><a name="21823">
+ :high-offset<p>
+</a><td valign="top"><a name="21825">
+ The maximum value to be displayed by the slider by default<p>
+</a>
+<tr><td valign="top"><a name="21827">
+ :digits<p>
+</a><td valign="top"><a name="21829">
+ The precision of the value contained by the slider<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="21729">
+The slider can express an absolute range of values limited by<code> :min-value</code> and <code>:max-value</code>. When it first appears, the slider may be configured to show only a subset of this absolute range, as specified by <code>:low-offset</code> and <code>:high-offset</code>.<p>
+</a><P><a name="21864">
+<h3> Defining Parameters</h3>
+</a><a name="21868">
+Once you've defined types, fields, and slider defaults for your parameters, you need to define parameter properties (parameter parameters, if you will). These are defined within the<code> dyna:define-dynamic-operation</code> form with the parameters themselves. Parameter properties are summarized in <a href="ExtendingDynamics.html#21868">Table 10.3</a>. 
+<P><Table Border="1">
+<dl>
+<a name="21880">
+<em>Table 10.3  &#32; &#32;Parameter properties
+</em></a></dl>
+<tr><th align="left"><a name="21886">
+Property
+</a><th align="left"><a name="21888">
+Options
+</a><th align="left"><a name="21890">
+Description
+</a>
+<tr><td valign="top"><a name="21892">
+ :make-visible<p>
+</a><td valign="top"><a name="21894">
+ t or NIL<p>
+</a><td valign="top"><a name="21896">
+ If t, ensures that an object is visible before executing operation<p>
+</a>
+<tr><td valign="top"><a name="21898">
+ :initialize-transformation<p>
+</a><td valign="top"><a name="21900">
+ t or NIL<p>
+</a><td valign="top"><a name="21902">
+ If t, initializes object transformation matrix before executing operation<p>
+</a>
+<tr><td valign="top"><a name="21904">
+ :dynamic-p<p>
+</a><td valign="top"><a name="21906">
+ t nil<p>
+</a><td valign="top"><a name="21908">
+ If specified, the parameter can be dynamic, or change over time. Otherwise, value remains constant over the length of a script. Values of dynamic properties can be set with curves.<p>
+</a>
+<tr><td valign="top"><a name="21910">
+ :dynamic-default<p>
+</a><td valign="top"><a name="21912">
+ :static<p>
+</a><td valign="top"><a name="21914">
+ If specified, the value <em>can</em> be dynamic, but is constant by default.<p>
+</a>
+<tr><td valign="top"><a name="21916">
+ :documentation<p>
+</a><td valign="top"><a name="21918">
+ &lt;string&gt;<p>
+</a><td valign="top"><a name="21920">
+ A string explaining the parameter which appears on the mouse doc line<p>
+</a>
+<tr><td valign="top"><a name="21985">
+ :default<p>
+</a><td valign="top"><a name="21987">
+ &lt;value&gt;<p>
+</a><td valign="top"><a name="21989">
+ A default value for the parameter<p>
+</a>
+<tr><td valign="top"><a name="22033">
+ :nil-ok-p<p>
+</a><td valign="top"><a name="22035">
+ t<p>
+</a><td valign="top"><a name="22037">
+ If t, then the parameter can be undefined (nil).<p>
+</a>
+<tr><td valign="top"><a name="22119">
+ :field-type<p>
+</a><td valign="top"><a name="22121">
+ &lt;field-type&gt;<p>
+</a><td valign="top"><a name="22123">
+ The UI field type, if not specified with dyna:define-field-type.<p>
+</a>
+<tr><td valign="top"><a name="22596">
+ :expose-test<p>
+</a><td valign="top"><a name="22598">
+ function or lambda list<p>
+</a><td valign="top"><a name="22600">
+ The expose test determines whether a field will be made visible in the menu or not, based on the return value of the function or lambda list.<p>
+</a>
+<tr><td valign="top"><a name="22113">
+ :field-args<p>
+</a><td valign="top"><a name="22115">
+ &lt;args&gt;<p>
+</a><td valign="top"><a name="22117">
+ Arguments appropriate to :field-type, if specified.<p>
+</a>
+<tr><td valign="top"><a name="22027">
+ :prompt<p>
+</a><td valign="top"><a name="22029">
+ &lt;string&gt;<p>
+</a><td valign="top"><a name="22031">
+ A label for the parameter in the Edit Action Properties menu. If not specified, the parameter name will appear as the label<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="21876">
+For example, a typical parameter definition might look something like this:<p>
+</a><P><a name="22072">
+<code><pre>(number 	'numeric-inheritable-property<p>
+</code></pre></a><a name="22157">
+<code><pre>		     :prompt    "Number"<p>
+</code></pre></a><a name="22158">
+<code><pre>		     :nil-ok-p  t<p>
+</code></pre></a><a name="22159">
+<code><pre>		     :dynamic-p t)<p>
+</code></pre></a><a name="22073">
+This parameter definition results in a field in the Edit Action Properties menu like the one in <a href="ExtendingDynamics.html#22078">Figure 10.5</a>.<p>
+</a><P><a name="22076">
+ <P><img src="ExtendingDynamics.anc4.gif"><p>
+</a><a name="22078">
+<em>Figure 10.5  &#32; &#32;Example parameter field
+</em></a><P><a name="22107">
+There is no value field in this example, because the parameter is defined as dynamic. However, a <strong>(click-r)</strong> on the source field brings up a pop-up menu which will allow the user to change to source of this parameter. Obviously, if <code>:dynamic-p t</code> is not specified, then the parameter cannot be dynamic under any circumstances.<p>
+</a><P><a name="22144">
+Earlier we defined a global default for numeric-inheritable-property, 0.0. You can override this default for a specific parameter with the <code>:default</code> keyword argument, e.g.<p>
+</a><P><a name="22152">
+<code><pre>(number 'numeric-inheritable-property<p>
+</code></pre></a><a name="22161">
+<code><pre>	     :prompt    "Number"<p>
+</code></pre></a><a name="22162">
+<code><pre>	     :nil-ok-p  t<p>
+</code></pre></a><a name="22170">
+<code><pre>		:default 1.0<p>
+</code></pre></a><a name="22164">
+<code><pre>		:dynamic-p t)<p>
+</code></pre></a><a name="22171">
+In much the same way, specifying <code>:dynamic-default :static</code> means that the parameter can be dynamic, but is static by default. For example,<p>
+</a><P><a name="22174">
+<code><pre>(number 'numeric-inheritable-property<p>
+</code></pre></a><a name="22177">
+<code><pre>		:prompt    "Number"<p>
+</code></pre></a><a name="22178">
+<code><pre>		:nil-ok-p  t<p>
+</code></pre></a><a name="22179">
+<code><pre>		:default 1.0<p>
+</code></pre></a><a name="22180">
+<code><pre>		:dynamic-p t<p>
+</code></pre></a><a name="22187">
+<code><pre>		:dynamic-default :static)<p>
+</code></pre></a><a name="22293">
+<h3> Controlling Progr<a dynamics operations:controlling program flow>am Flow</h3>
+</a><a name="23630">
+There are several utilities you can use to manage the behavior of your Dynamics operations. For example, in Random Transform we used the <code>*last-frame-p*</code> predicate, which returns <code>t</code> when an animation reaches the last frame. Other predicates are listed in <a href="ExtendingDynamics.html#23631">Table 10.4</a>.<p>
+</a><P><a name="23631">
+  
+<P><Table Border="1">
+<dl>
+<a name="24124">
+<em>Table 10.4  &#32; &#32;Dynamics Predicates and Variables
+</em></a></dl>
+<tr><th align="left"><a name="24128">
+Symbol
+</a><th align="left"><a name="24130">
+Function
+</a>
+<tr><td valign="top"><a name="24132">
+ <code><a *first-frame-p*>*first-frame-p*</code><p>
+</a><td valign="top"><a name="24134">
+ Returns t when first frame is the current frame.<p>
+</a>
+<tr><td valign="top"><a name="24136">
+ <code><a *last-frame-p*>*last-frame-p* </code><p>
+</a><td valign="top"><a name="24138">
+ Returns t when the last frame is the current frame.<p>
+</a>
+<tr><td valign="top"><a name="24140">
+ <code><a *animating-p>*animating-p*</code><p>
+</a><td valign="top"><a name="24142">
+ t when an animation is underway.<p>
+</a>
+<tr><td valign="top"><a name="24144">
+ <code><a *initial-frame*>*initial-frame*</code><p>
+</a><td valign="top"><a name="24146">
+ The initial frame of a script<p>
+</a>
+<tr><td valign="top"><a name="24148">
+ <code><a *selected-time*>*selected-time*</code><p>
+</a><td valign="top"><a name="24150">
+ The position in time of the recording cursor on the timeline<p>
+</a>
+<tr><td valign="top"><a name="24152">
+ <code>*<a default-frame-rate*>default-frame-rate*</code><p>
+</a><td valign="top"><a name="24154">
+ The default frame rate<p>
+</a>
+<tr><td valign="top"><a name="24156">
+ <code><a *current-time*>*current-time*</code><p>
+</a><td valign="top"><a name="24158">
+ The current time in a script<p>
+</a>
+<tr><td valign="top"><a name="24160">
+ <code><a *current-frame-number*>*current-frame-number*</code><p>
+</a><td valign="top"><a name="24162">
+ The current frame number<p>
+</a>
+<tr><td valign="top"><a name="24164">
+ <code><a *last-animated-frame*>*last-animated-frame*</code><p>
+</a><td valign="top"><a name="24166">
+ The preceding frame animated.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="24170">
+<h2><HR> Extending Geometry</h2>
+</a><a name="24508">
+The N-Geometry window is basically a 3D object editor. When you <strong>(SHIFT-L)</strong> on on element in the N-Geometry editor, the menus which appear are specialized for the selected element. For example, transformation options never appear when you've selected a segment, and cut is an inappropriate choice for an object. These specialized menus and their behavior are defined with edmethods.<p>
+</a><P><a name="24174">
+<h2><HR> Understanding Editor Methods</h2>
+</a><a name="24175">
+The N-Geometry 3D object editor is completely extensible. You extend the editor by defining new methods called <em>edmethods</em>, and adding them to the Geometry editor menus. Because edmethods are specialized on Geoclasses, they automatically appear in the editor menus when the user has selected an object or element of an object relevant to the method.<p>
+</a><P><a name="24176">
+The basic steps in defining a new edmethod are:<p>
+</a><P><ul><a name="24177">
+<li>Determine which Geoclasses the method should be specialized for
+</a></li><P><a name="24178">
+<li>Determine which Editor Menu category the operation belongs in
+</a></li><P><a name="24179">
+<li>Define the Editor menu item
+</a></li><P><a name="24180">
+<li>Define the Edmethod
+</a></li><P></ul><P><a name="24182">
+<h3> GeoClasses</h3>
+</a><a name="24526">
+Every Geometry element class, polyhedra, segments, vertices, etc., has GEOCLASS as its metaclass. Slots in the GEOCLASS determine (among other things) whether a given class can be edited in the Geometry window. Classes having geoclass as their metaclass are defined using <code>(defgeoclass)</code>. <p>
+</a><P><a name="24529">
+<code>(defgeocla<a (defgeoclass (name superclasses slots &rest options))>ss (name superclasses slots &amp;rest options))</code><p>
+</a><P><a name="24530">
+With the exception of the options, all the arguments to <code>defgeoclass</code> are the same as for <code>defclass</code>. Some of the more important options are:<p>
+</a><P><ul><a name="24188">
+<li><code>:BODIABLE-P</code> - a boolean, the default for which is NIL. When T, instances of a geoclass can be treated by geometry as bodies. For example, point-lights and vertices are both zero-dimensional elements. Each has LOCUS as a common superclass. Point-lights are defined with <code>:bodiable-p t</code>, so they can be treated as bodies in the Editor window. Vertices, on the other hand, are defined with <code>:bodiable-p nil</code>, so they can only be a component of a body, never a body themselves.
+</a></li><P><a name="24190">
+<li><code>:EDITABLE-P</code> - A boolean, the default for which is nil. If <code>:editable-p </code>is t, then Geometry creates the appropriate menus for editing the class instances, otherwise no editing is possible. For example, the class <code>vertex</code> is defined with <code>:editable-p t</code>, so a menu is available to edit instances of vertex.
+</a></li><P></ul><P><a name="24191">
+For example, we can create a subclass of vertex called my-vertex, which is not editable:<p>
+</a><P><a name="24192">
+<code><pre>(defgeoclass MY-VERTEX (vertex)<p>
+</code></pre></a><a name="24193">
+<code><pre>  ()<p>
+</code></pre></a><a name="24194">
+<code><pre>  (:editable-p nil)<p>
+</code></pre></a><a name="24195">
+<code><pre>)<p>
+</code></pre></a><a name="24196">
+However, because <code>my-vertex</code> is a subclass of <code>vertex</code>, I can make all of the editing operations available for <code>vertex</code> available to <code>my-vertex</code> by setting <code>editable-p</code> to <code>t</code>.<p>
+</a><P><a name="24197">
+If a geoclass itself contains elements which are themselves editable, these can be specified as a list with the <code>:editable-elements</code> option. For example, polyhedron is defined with <code>(:editable elements vertex edge face)</code>.<p>
+</a><P><a name="24199">
+<h3> Geoclass Utilities</h3>
+</a><a name="24201">
+<code>(FIND-<a (find-geoclass)>GEOCLASS (SYMBOL &amp;OPTIONAL (ERRORP T))</code><p>
+</a><P><dl><dl><a name="24202">
+<dt>This function has the same functionality as <code>(find-class)</code> but is restricted to geoclasses. For example, to find the geoclass skeleton:</dt>
+</a><P></dl><a name="24203">
+<code><pre>(find-geoclass `skeleton)<p>
+</code></pre></a></dl><a name="24204">
+which returns<p>
+</a><P><a name="24205">
+<code><pre>#&lt;GEOCLASS SKELETON&gt;<p>
+</code></pre></a><a name="24207">
+<code>(BODIABL<a (bodiable-geoclasses)>E-GEOCLASSES())</code><p>
+</a><P><dl><dl><a name="24208">
+<dt>This function returns a list of all geoclasses for which <code>:bodiable-p</code> is <code>t</code>.</dt>
+</a><P></dl></dl><a name="24210">
+<code>(EDITABLE-GEOCLA<a (editable-geoclasses)>SSES ())</code><p>
+</a><P><dl><dl><a name="24211">
+<dt>This function returns a list of all editable geoclasses (those for which <code>:editable-p</code> is <code>t</code>).</dt>
+</a><P></dl></dl><a name="24213">
+<h3> The Editor Menu Interface</h3>
+</a><a name="24214">
+Operations in the Geometry editor menus are divided into logical groups called <code>edcategories</code>. Operations themselves are represented by ed-menu-items.<p>
+</a><P><a name="24226">
+ <P><img src="ExtendingApplications.anc5.gif"><p>
+</a><a name="24227">
+<em>Figure 10.6  &#32; &#32;Geometry Editor menus
+</em></a><P><a name="24229">
+Ed-categories are constructed with <code><a (DEF-EDCATEGORY)>DEF-EDCATEGORY</code>:<p>
+</a><P><a name="24231">
+<code>(DEF-EDCATEGORY (NAME &amp;OPTIONAL PRETTY-NAME DOCUMENTATION))</code><p>
+</a><P><ul><a name="24232">
+<li><code>name</code> - a symbol.
+</a></li><P><a name="24233">
+<li><code>pretty-name</code> - a string which more accurately describes the category. Default is a string built from <code>name</code>.
+</a></li><P><a name="24234">
+<li><code>documentation</code> - a string, this documentation does NOT appear in the mouse doc window. It's strictly for documenting your edmethod code.
+</a></li><P></ul><P><a name="24236">
+Available ed-categories are:<p>
+</a><P><a name="24237">
+<code><pre>:TRANSFORM <p>
+</code></pre></a><a name="24238">
+<code><pre>:DISPLACEMENT <p>
+</code></pre></a><a name="24239">
+<code><pre>:GEOMETRIC <p>
+</code></pre></a><a name="24240">
+<code><pre>:EXTRUSION <p>
+</code></pre></a><a name="24241">
+<code><pre>:SUBDIVISION <p>
+</code></pre></a><a name="24242">
+<code><pre>:TOPOLOGIC <p>
+</code></pre></a><a name="24243">
+<code><pre>:GENERATOR <p>
+</code></pre></a><a name="24244">
+<code><pre>:SELECTOR <p>
+</code></pre></a><a name="24245">
+<code><pre>:FIXUP <p>
+</code></pre></a><a name="24246">
+<code><pre>:MISCELLANEOUS <p>
+</code></pre></a><a name="24248">
+<h4> Editor Menu Items (edmenu-items)</h4>
+</a><a name="24249">
+The operations themselves are represented by <code>edmenu-items</code>. An <code>edmenu-item</code> corresponds to one item in the Editor menus. In other words, the various CUT operations (for wires, faces, segments, etc.) are all represented by a single edmenu-item. <p>
+</a><P><a name="24251">
+Use <code><a (DEF-EDMENU-ITEM)>DEF-EDMENU-ITEM </code>to define a new edmenu-item:<p>
+</a><P><a name="24252">
+<code><pre><code>(def-edmenu-item (name category menu-item-name <br>							&amp;optional insert-point)</code><p>
+</code></pre></a><ul><a name="24253">
+<li><code>name</code> - a symbol.
+</a></li><P><a name="24254">
+<li><code>category</code> - a category name. 
+</a></li><P><a name="24255">
+<li><code>menu-item-name</code> - a string, the default is a string derived from <code>name</code>.
+</a></li><P><a name="24256">
+<li><code>insert-point</code> - an edmenu-item after which to insert the new edmenu-item.
+</a></li><P></ul><P><a name="24258">
+<h4> Edmenu-item Utilities</h4>
+</a><a name="24260">
+<code>(<a (FIND-EDMENU-ITEM)>FIND-EDMENU-ITEM (SYMBOL &amp;OPTIONAL (ERRORP T)))</code><p>
+</a><P><a name="24261">
+Returns an edmenu-item, given a symbol which evaluates to an edmenu item. For example, <p>
+</a><P><a name="24262">
+<code>3D(22): (find-edmenu-item `cut)</code><p>
+</a><P><a name="24263">
+<code>#&lt;EDMENU-ITEM CUT&gt;</code><p>
+</a><P><a name="24265">
+<code>(F<a (FIND-EDMENU-ITEM-BY-MENU-ITEM-NAME)>IND-EDMENU-ITEM-BY-MENU-ITEM-NAME (NAME)</code><p>
+</a><P><a name="24266">
+Returns an edmenu-item, given the name-string of the item. For example, to find the edmenu-item for Axis Move:<p>
+</a><P><a name="24267">
+<code>3D(23):(find-edmenu-item-by-menu-item-name "Axis Move")</code><p>
+</a><P><a name="24268">
+<code>#&lt;EDMENU-ITEM AXIS-MOVE&gt;</code><p>
+</a><P><a name="24270">
+<h2><HR> Defining Editor Methods (edmethods)</h2>
+</a><a name="24271">
+Now that we know how to integrate our new methods with the Geometry Editor interface, we're ready to actually create a usable edmethod. Of course, we use <code>DEFEDMETHOD</code> to do so:<p>
+</a><P><a name="24273">
+<code><pre>(defedmethod <a (defedmethod name arglist ((edmenu-item handler &optional mouse-button include-classes exclude-classes) &rest options) &body body)>name arglist ((edmenu-item handler &amp;optional <br>		mouse-button include-classes exclude-classes) &amp;rest<br>		options) &amp;body body)<p>
+</code></pre></a><ul><a name="24274">
+<li><code>name</code> - the name of the method.
+</a></li><P><a name="24275">
+<li><code>arglist</code> - the argument list to the method. Usually <code>bdis&amp;elements</code> (see below).
+</a></li><P><a name="24276">
+<li><code>edmenu-item</code> - the edmenu-item to associate with the new method.
+</a></li><P><a name="24277">
+<li><code>mouse-button</code> - a mouse button to associate with the method. By default, the left mouse button. You can overload methods by specifying different mouse-buttons for similar operations.
+</a></li><P><a name="24278">
+<li><code>include-classes</code> - a list of classes for which the method will be available.
+</a></li><P><a name="24279">
+<li>exclude-classes - a list of classes for which the method will never be available.
+</a></li><P></ul><P><a name="24280">
+So, for example, to define a new editor method called MY-CUT:<p>
+</a><P><a name="24281">
+<code><pre>(defedmethod MY-CUT (bdis&amp;elements)<p>
+</code></pre></a><a name="24282">
+<code><pre>		((my-cut my-cut L))<p>
+</code></pre></a><a name="24283">
+<code><pre>		"An example defmethod"<p>
+</code></pre></a><a name="24284">
+The string at the end of the form is a documentation string, and will appear on the mouse doc line when the cursor is over the edmenu-item linked to this method.<p>
+</a><P><a name="24286">
+<h3> Understanding bdis&amp;elements</h3>
+</a><a name="24287">
+Nearly all editor methods accept a list of bdis and elements associated with the currently selected elements. Parsing this list allows for a method to determine which objects and bodies to operate on, and helps you to detect situations (such as elements selected from two different bodies) where your method may not be appropriate. <p>
+</a><P><a name="24289">
+The <code>(get-selected-el-alist *camera*)</code> function returns the bdis&amp;elements list for selected elements. The list is sorted in bdi order. For example, if I select two faces from two objects in the geometry window:<p>
+</a><P><a name="24293">
+ <P><img src="ExtendingApplications.anc6.gif"><p>
+</a><a name="24294">
+<em>Figure 10.7  &#32; &#32;Two faces selected from two objects
+</em></a><P><a name="24295">
+then evaluate <code><a (get-selected-el-alist *camera*)>(get-selected-el-alist *camera*)</code>:<p>
+</a><P><a name="24296">
+<code>3D(23): (get-selected-el-alist *camera*)</code><p>
+</a><P><a name="24297">
+<code>((#&lt;BDI (Octahedron) @ #x196ccf0a&gt; #&lt;FACE 1&gt; #&lt;FACE 5&gt;)</code><p>
+</a><P><a name="24298">
+<code> (#&lt;BDI (Cube) @ #x196c5832&gt; #&lt;FACE 3&gt; #&lt;FACE 1&gt;))</code><p>
+</a><P><a name="24299">
+<h4> Using the bdis&amp;elements List</h4>
+</a><a name="24300">
+The following code demonstrates how to use the bdis&amp;elements list to check the element list passed to your method. In this case, the <code>loop-applying-operation</code> form looks through the list to determine whether or not multiple faces have been selected:<p>
+</a><P><a name="24301">
+<code><pre>(when (loop-applying-operation (bdis&amp;elements `cut-face bdi) (op el elist)<p>
+</code></pre></a><a name="24302">
+<code><pre>			(:prefer-compound-op t<p>
+</code></pre></a><a name="24303">
+<code><pre>				:extra-args    ((cdr (assoc bdi seglist)))<p>
+</code></pre></a><a name="24304">
+<code><pre>				:return-vals   (newf newe)<p>
+</code></pre></a><a name="24305">
+<code><pre>				:post-op-forms (setq 						*modified-faces* (append elist newf)<p>
+</code></pre></a><a name="24306">
+<code><pre>										*modified-edges* (append (collect-my-segments elist)<p>
+</code></pre></a><a name="24307">
+<code><pre>                                                                 newe))))<p>
+</code></pre></a><a name="24308">
+<code><pre>            (unlock-elements self nil)<p>
+</code></pre></a><a name="24309">
+<code><pre>            `cut-face)<p>
+</code></pre></a><a name="24311">
+<h3> A Sample Edmethod</h3>
+</a><a name="24312">
+The following is a complete example edmethod, specialized for a face. The method accepts a numeric argument, then divides the selected face into the specified number of faces.<p>
+</a><P><a name="24313">
+<code><pre>(DEF-EDMENU-ITEM MULTI-CUT-FACE<p>
+</code></pre></a><a name="24314">
+<code><pre>    (:subdivision :main) "Multi-Cut")<p>
+</code></pre></a><a name="24315">
+<code><pre><p>
+</code></pre></a><a name="24316">
+<code><pre>    <p>
+</code></pre></a><a name="24317">
+<code><pre>    <p>
+</code></pre></a><a name="24318">
+<code><pre><p>
+</code></pre></a><a name="24319">
+<code><pre>(defedmethod ED-MULTI-CUT-FACE (bdis&amp;elements)<p>
+</code></pre></a><a name="24320">
+<code><pre><p>
+</code></pre></a><a name="24321">
+<code><pre>  ((multi-cut-face multi-cut-face L ))<p>
+</code></pre></a><a name="24322">
+<code><pre>  "Make multiple division of face between edges"<p>
+</code></pre></a><a name="24323">
+<code><pre>  <p>
+</code></pre></a><a name="24324">
+<code><pre>  (with-slots (cached-elements) self<p>
+</code></pre></a><a name="24325">
+<code><pre>			(let* (		(el      cached-elements)<p>
+</code></pre></a><a name="24326">
+<code><pre>					(seglist 			(sel-elements<p>
+</code></pre></a><a name="24327">
+<code><pre>								(select-n-elements self 2 `edge el nil "to cut between.")))<p>
+</code></pre></a><a name="24328">
+<code><pre>					(pt1     (first seglist))<p>
+</code></pre></a><a name="24329">
+<code><pre>					(pt2     (second seglist))<p>
+</code></pre></a><a name="24330">
+<code><pre>					(n       4)<p>
+</code></pre></a><a name="24331">
+<code><pre>					)<p>
+</code></pre></a><a name="24332">
+<code><pre>          (declare (special n))<p>
+</code></pre></a><a name="24333">
+<code><pre><p>
+</code></pre></a><a name="24334">
+<code><pre>          (unless (or (&lt; (length seglist) 2) (eq pt1 pt2))<p>
+</code></pre></a><a name="24335">
+<code><pre><p>
+</code></pre></a><a name="24336">
+<code><pre>            (3d-cvv-choose "Number of faces" `((n "# of Faces?" :integer)))<p>
+</code></pre></a><a name="24337">
+<code><pre><p>
+</code></pre></a><a name="24338">
+<code><pre>            (funcall-with-history #'multi-cut-face el seglist n) t)))<p>
+</code></pre></a><a name="24339">
+<code><pre>  )<p>
+</code></pre></a><a name="24340">
+<code><pre>(defmethod MULTI-CUT-FACE ((self face) segments n)<p>
+</code></pre></a><a name="24341">
+<code><pre>(<p>
+</code></pre></a><a name="24342">
+<code><pre>		.......Your implementation here.....<p>
+</code></pre></a><a name="24343">
+<code><pre>)<p>
+</code></pre></a><a name="24344">
+<h2><HR> Geometry User Interface Utilities</h2>
+</a><a name="24345">
+N-Geometry has a specialized suite of user-interface tools. Known as cvv forms, these tools provide powerful and flexible tools for you to use when interacting with the user via your edmethods. In the above example, we used (<code>3d-cvv-choose</code>), which produces a dialog box like this:<p>
+</a><P><a name="24349">
+ <P><img src="ExtendingApplications.anc7.gif"><p>
+</a><a name="24350">
+<em>Figure 10.8  &#32; &#32;3d-cvv-choose dialog box
+</em></a><P><a name="24351">
+CVV UI tools are built on the basic UI toolkit, but offer an enhanced level of encapsulation. For example, in this example, the <code>:integer</code> keyword defines the type of the field. No need to create a number field within a root window. Though by no means exhaustive, the following list shows some of the more useful types returnable with 3d-cvv-choose. Remember that the value returned by the interface element of a 3d-cvv-choose dialog is bound to a variable, not returned by the function. The CVV function itself returns several values, the first of which is either <code>:exit</code> (when the user clicks on Do It), or <code>:abort</code> (when the user clicks on Abort). 
+<P><Table Border="1">
+<dl>
+<a name="24354">
+<em>Table 10.5  &#32; &#32;3D-CVV-CHOOSE types
+</em></a></dl>
+<tr><th align="left"><a name="24358">
+Argument
+</a><th align="left"><a name="24360">
+Comments
+</a>
+<tr><td valign="top"><a name="24362">
+ BOUNDS-SOURCE-FOR-MAPPERS<p>
+</a><td valign="top"><a name="24364">
+ Creates choose-object dialog, labelled appropriately<p>
+</a>
+<tr><td valign="top"><a name="24366">
+ WIRE-OBJ<p>
+</a><td valign="top"><a name="24368">
+ Creates choose-object dialog. <p>
+</a>
+<tr><td valign="top"><a name="24370">
+ GEO-OBJECTS<p>
+</a><td valign="top"><a name="24372">
+ Creates choose-objects dialog<p>
+</a>
+<tr><td valign="top"><a name="24374">
+ TERMINAL-OBJECT<p>
+</a><td valign="top"><a name="24376">
+ Creates choose-objects dialog, limits display to terminal objects<p>
+</a>
+<tr><td valign="top"><a name="24378">
+ GEO-OBJECT<p>
+</a><td valign="top"><a name="24380">
+ Creates choose-object dialog, any geo-object legal<p>
+</a>
+<tr><td valign="top"><a name="24382">
+ LIGHT-OBJECT<p>
+</a><td valign="top"><a name="24384">
+ Creates pop-up list of light-objects<p>
+</a>
+<tr><td valign="top"><a name="24386">
+ LIGHT-GROUP<p>
+</a><td valign="top"><a name="24388">
+ Creates a pop-up list of light-groups<p>
+</a>
+<tr><td valign="top"><a name="24390">
+ AXIS<p>
+</a><td valign="top"><a name="24392">
+ Creates a choose-axis pop-up menu<p>
+</a>
+<tr><td valign="top"><a name="24394">
+ IMAGE-TYPE<p>
+</a><td valign="top"><a name="24396">
+ Requires specialization, e.g. :image-type :rgb<p>
+</a>
+<tr><td valign="top"><a name="24398">
+ LIGHT-GROUP-PATHNAME<p>
+</a><td valign="top"><a name="24400">
+ Creates a choose-light-group pop-up, returns pathname to selected group.<p>
+</a>
+<tr><td valign="top"><a name="24402">
+ PALETTE-COLOR<p>
+</a><td valign="top"><a name="24404">
+ Creates a color-palette, returns the selected color.<p>
+</a>
+<tr><td valign="top"><a name="24406">
+ FILE-NAME<p>
+</a><td valign="top"><a name="24408">
+ Creates a text-field.<p>
+</a>
+<tr><td valign="top"><a name="24410">
+ PROJECT<p>
+</a><td valign="top"><a name="24412">
+ Creates an N&#183;World choose project or directory pop-up.<p>
+</a>
+<tr><td valign="top"><a name="24414">
+ FLOATING-TRIPLET<p>
+</a><td valign="top"><a name="24416">
+ Accepts and returns an ftriplet<p>
+</a>
+<tr><td valign="top"><a name="24418">
+ FLOATING-DOUBLET<p>
+</a><td valign="top"><a name="24420">
+ Accepts an fdoublet<p>
+</a>
+<tr><td valign="top"><a name="24422">
+ SLIDER<p>
+</a><td valign="top"><a name="24424">
+ Creates a slider. <p>
+</a>
+<tr><td valign="top"><a name="24426">
+ KEYPAD-NUMBER<p>
+</a><td valign="top"><a name="24428">
+ Creates a numeric keypad.<p>
+</a>
+<tr><td valign="top"><a name="24430">
+ INVERTED-CHECK-MARK<p>
+</a><td valign="top"><a name="24432">
+ Creates checkmark field, sets variable to NIL when checked, T when not checked (hence "inverted")<p>
+</a>
+<tr><td valign="top"><a name="24434">
+ CHECK-MARK<p>
+</a><td valign="top"><a name="24436">
+ Creates checkmark-field, sets variable to T when checked.<p>
+</a>
+<tr><td valign="top"><a name="24438">
+ REVERSE-SWITCH<p>
+</a><td valign="top"><a name="24440">
+ Creates an on-off toggle field, with ON first. Returns T when ON selected.<p>
+</a>
+<tr><td valign="top"><a name="24442">
+ SWITCH<p>
+</a><td valign="top"><a name="24444">
+ Creates an on-off toggle field, with OFF first. Returns T when OFF is selected.<p>
+</a>
+<tr><td valign="top"><a name="24446">
+ BOOLEAN<p>
+</a><td valign="top"><a name="24448">
+ Creates yes-no toggle field. Returns T when yes selected.<p>
+</a>
+<tr><td valign="top"><a name="24450">
+ STRING<p>
+</a><td valign="top"><a name="24452">
+ Accepts a string.<p>
+</a>
+<tr><td valign="top"><a name="24454">
+ NO-SELECT<p>
+</a><td valign="top"><a name="24456">
+ No selection. Use for alerts, confirms, etc. Does not bind variable, but returns T when Do-It selected, nil<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="24457">
+<code><pre><p>
+</code></pre></a>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="RenderingOperations.html">[Prev]</a> <a href="LoopPaths.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:25:43 -->
+
+</body>
+</html>

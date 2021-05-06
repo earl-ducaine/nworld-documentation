@@ -1,0 +1,668 @@
+<html><head><title>Skeletons in N-Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="1Glossary.html">[Prev]</a> <a href="2MenusCommands1.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="25500">
+<h1>Skeletons in N-Geometry</h1>
+</a>
+<hr><p><a name="32747">
+<h4> This chapter describes the menu commands in N-Geometry used to manipulate skins and skeletons. </h4>
+</a><a name="32842">
+ <P><img src="2MenusCommands.anc.gif"><p>
+</a><a name="25935">
+<h2><HR> In this Chapter</h2>
+</a><a name="25936">
+This chapter discusses the following topics:<p>
+</a><P><ul><a name="25120">
+<li>creating skeletons
+</a></li><P><a name="25958">
+<li>saving and loading skeletons
+</a></li><P><a name="25957">
+<li>skeletal operations in N-Geometry
+</a></li><P></ul><P><a name="25941">
+For each operation, the types of elements upon which it can be performed are listed (skeletons, bones, and/or joints). If the operation functions differently for different element types, those variations are also described.<p>
+</a><P><a name="10424">
+<h2><HR> Adding a Skeleton Primitive</h2>
+</a><a name="16262">
+<h3> Creating a Skeleton Primitive</h3>
+</a><a name="16270">
+N-Geometry can generate a skeleton primitive. To add a skeleton to your current scene:<p>
+</a><P>
+<a name="16275">
+<STRONG>	1.	 <strong>(CLICK-R)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="16276">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Main.
+</STRONG>
+</a><P><a name="16277">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Add New Object.
+</STRONG>
+</a><P><a name="16278">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Create.
+</STRONG>
+</a><P><a name="16279">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Skeleton.
+</STRONG>
+</a><P>
+<a name="16267">
+The skeleton is generated at the global center, using the basic Biovision bone names, and with certain logical joint IDs and degrees of freedom (DOF) already applied (e.g., forearms and tibias are limited to movement around their own X axis). The DOF limits for the skeleton can be modified using the DOF editor, which is described later in this chapter.<p>
+</a><P><a name="16432">
+<h3> Creating a Custom Skeleton</h3>
+</a><a name="18182">
+An entire chapter in the <em>Skeletal Animation System Tutorial</em> is devoted to building your own custom skeletons. The general process for building a skeleton is as follows:<p>
+</a><P><ul><a name="30135">
+<li>encode one or more wires to be used as bones on the skeleton in their approximately correct positions
+</a></li><P><a name="30136">
+<li>convert the "primary" wire (e.g., the chest) into a bone
+</a></li><P><a name="30139">
+<li>connect the other wires to the "primary" bone, automatically converting them into bones in the process
+</a></li><P></ul><P><a name="30144">
+After creating the basic structure of the skeleton, you can improve the skeleton by doing some of the following:<p>
+</a><P><ul><a name="30149">
+<li>changing bone length, cutting bones, flipping bones
+</a></li><P><a name="30153">
+<li>assign joint IDs to joints (important if you're using IK operations) and set DOF limits for the entire skeleton
+</a></li><P><a name="30170">
+<li>create IK paths for different joints
+</a></li><P></ul><P><a name="18181">
+<h2><HR> Saving and Loading Skeletons</h2>
+</a><a name="30205">
+Skeletons are saved and loaded just like other objects in N-Geometry. However, because skeletons have additional characteristics above and beyond polyhedra and other body types, there are some differences. For example, a skeleton can have attached "skins" or "objects" that require special attention when saving the skeleton (i.e., should be read back in when loading the skeleton).<p>
+</a><P><a name="30237">
+<h3> Saving a Skeleton</h3>
+</a><a name="30238">
+What gets saved with a skeleton saved in the <strong>.geo</strong> format?<p>
+</a><P><ul><a name="30239">
+<li>The skeleton object
+</a></li><P><a name="30240">
+<li>Rotation order for the skeleton object
+</a></li><P><a name="30241">
+<li>Rotation order, bone length, DOF Limits, and IK Sets (if any) for each bone
+</a></li><P><a name="30242">
+<li>Poses
+</a></li><P><a name="30243">
+<li>A reference to any skins
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If an attached skin has not been saved when you save the skeleton, you are asked if you want to save the skin.</em></font></dd></dt></dl><P>
+<a name="30245">
+<h3> Saving a Skin</h3>
+</a><a name="30246">
+Skins are saved like other polyhedra, regardless of whether the skin is saved explicitly, or as a result of saving the skeleton to which it is assigned. The following elements are saved with a skin saved in the <strong>.geo</strong> format:<p>
+</a><P><ul><a name="30247">
+<li>The skin object
+</a></li><P><a name="30298">
+<li>Skin part descriptions
+</a></li><P><a name="30248">
+<li>Soft and hard part descriptions
+</a></li><P><a name="30250">
+<li>List of displacements
+</a></li><P><a name="30251">
+<li>List of skin displacements
+</a></li><P></ul><P><a name="30206">
+<h3> Saving Attached Objects</h3>
+</a><a name="34711">
+Attached objects, too, are saved like other polyhedra in N-Geometry, with one exception; if they are attached to a skeleton, a reference is saved to that skeleton. That means that when you read an attached object back into N-Geometry, the skeleton to which it was attached is also read in.<p>
+</a><P><a name="34701">
+<h3> Loading a Skeleton</h3>
+</a><a name="30197">
+You can load a skeleton either explicitly (using N-Geometry), or by reading in a script that uses that skeleton. When you load a skeleton any assigned skins are also read in.<p>
+</a><P><a name="30909">
+Any of the elements described in the section above, <a href="2MenusCommands1.html#32628">"Saving a Skeleton," on page &#32;2-4</a> are read in with a skeleton. Note that some skeletons, especially those supplied by motion capture vendors, may contain presets for one or more of these elements.<p>
+</a><P><a name="23210">
+<h2><HR> Modifying Elements of a Skeleton</h2>
+</a><a name="23211">
+You can work with the entire skeleton, with bones (or collections of bones), or with joints (or collections of joints). You specify which type of element you want to modify by selecting the appropriate element type on the element sensitivity menu at the top of the N-Geometry menu:<p>
+</a><P><ul><a name="34092">
+<li>to work with a skeleton, <strong>(CLICK-L)</strong> on <strong>bodies</strong>
+</a></li><P><a name="34093">
+<li>to work with bone, <strong>(CLICK-L)</strong> on <strong>segments</strong>
+</a></li><P><a name="34095">
+<li>to work with joints, <strong>(CLICK-L)</strong> on <strong>joints</strong>
+</a></li><P></ul><P><a name="34106">
+<h3> Highlighting and Selecting Skeletons, Bones, or Joints</h3>
+</a><a name="34110">
+After you have selected the type of element you want to work with, move the mouse over the skeleton. As the cursor moves over the skeleton (or bone or joint), it is highlighted in <em>green</em>. Selected elements are highlighted in <em>red</em>. If you <strong>(SHIFT-L)</strong> on this element, one of the menus in <a href="2MenusCommands.html#23216">Figure 2.1</a> is displayed.<p>
+</a><P><a name="23215">
+ <P><img src="2MenusCommands.anc1.gif"><p>
+</a><a name="23216">
+<em>Figure 2.1  &#32; &#32;Left, modifying a skeleton; middle, modifying a bone; right, modifying a joint. Notice that the element being modified is displayed at the top of the menu
+</em></a><P><a name="28397">
+<h3> Add </h3>
+</a><a name="28994">
+<em>Joints</em><p>
+</a><P><a name="34842">
+Adds bones to the selected joint by encoding their end points in 3D space.<p>
+</a><P><a name="34844">
+<h4> Adding Bones by Encoding Points</h4>
+</a><a name="34845">
+To add a bone:<p>
+</a><P>
+<a name="28404">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint you want to add the bone to.
+</STRONG>
+</a><P><a name="28405">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><dl><a name="28406">
+<dt>The cursor changes to a cross-hair.</dt>
+</a><P></dl><a name="28407">
+<STRONG>	3.	 Move the cursor and <strong>(CLICK-L)</strong> where you want the segment to end.
+</STRONG>
+</a><P><dl><a name="28408">
+<dt>You can add <em>multiple</em> segments; move the cursor and <strong>(CLICK-L)</strong> at each point that defines a bone:</dt>
+</a><P><a name="28417">
+ <P><img src="2MenusCommands.anc2.gif"><p>
+</a></dl>
+<a name="28418">
+<em>Figure 2.2  &#32; &#32;Adding a bone to a joint
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The axes for the added bone are assigned using the best guess that SAS can make. You may have to use the </em><strong>Align/Rotate Axes</strong><em> command on individual bones to properly align their axes.</em></font></dd></dt></dl><P>
+
+<a name="28420">
+<STRONG>	4.	 When you're done adding segments, <strong>(CLICK-R)</strong>.
+</STRONG>
+</a><P><dl><a name="28421">
+<dt>This exits from "encoding" mode, creates the bone, and draws the bone frame around the bone.</dt>
+</a><P></dl>
+<a name="28423">
+<h3> Append</h3>
+</a><a name="34253">
+<h4> Adding Bones by Appending Wires</h4>
+</a><a name="28424">
+If you want to append a set of bones to a joint using a wire you've already encoded as a guide:<p>
+</a><P>
+<a name="28425">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint you want to add the wire/bone to.
+</STRONG>
+</a><P><a name="28426">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Append.
+</STRONG>
+</a><P><a name="28427">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the wire you want to append to the joint.
+</STRONG>
+</a><P><a name="28435">
+ <P><img src="2MenusCommands.anc3.gif"><p>
+</a>
+<a name="28436">
+<em>Figure 2.3  &#32; &#32;Adding a wire to a joint as a bone (or bones)
+</em></a><P><dl><dl><a name="28437">
+<dt>If the end of the wire and the joint to which it is being attached are not aligned in 3D space, an intervening bone is created automatically to fill the gap.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The wire used as a "guide" still exists after appending the bone.</font></dd></dt></dl><P>
+<a name="34260">
+<h4> Appending a Copy of an Existing Limb to a Joint</h4>
+</a><a name="34270">
+You can <strong>(CLICK-M)</strong> on <strong>Append</strong> to make copies of limbs on one part of a skeleton to another part of the skeleton. You can use this command, for example, to create multiple similar limbs on the same side of a skeleton.<p>
+</a><P><a name="34271">
+Try this:<p>
+</a><P>
+<a name="34272">
+<STRONG>	 1.	 Create a backbone for a spider skeleton.
+</STRONG>
+</a><P><a name="34276">
+ <P><img src="2MenusCommands.anc4.gif"><p>
+</a>
+<a name="34277">
+<em>Figure 2.4  &#32; &#32;Create the backbone for the spider
+</em></a><P>
+<a name="34278">
+<STRONG>	2.	 Create one leg for the spider.
+</STRONG>
+</a><P><dl><a name="34279">
+<dt>Assign any joint IDs (using the <strong>Joint Identification</strong> command), or set DOF limits for the various joints using the DOF Editor.</dt>
+</a><P><a name="34283">
+ <P><img src="2MenusCommands.anc5.gif"><p>
+</a></dl>
+<a name="34284">
+<em>Figure 2.5  &#32; &#32;Create one leg for the spider
+</em></a><P>
+<a name="34285">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the joint you want to connect a limb to.
+</STRONG>
+</a><P><a name="34318">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on append.
+</STRONG>
+</a><P><dl><a name="34323">
+<dt><strong>(CLICK-L)</strong> on the segment that is at the start of the limb you want to attach. A copy of the limb is created and attached to the selected joint, as shown in <a href="2MenusCommands.html#34297">Figure 2.6</a>:</dt>
+</a><P><a name="34295">
+ <P><img src="2MenusCommands.anc6.gif"><p>
+</a></dl>
+<a name="34297">
+<em>Figure 2.6  &#32; &#32;Copying the limb
+</em></a><P>
+<a name="34298">
+<STRONG>	5.	 Repeat the process for the other legs on that side.
+</STRONG>
+</a><P><dl><a name="34299">
+<dt>The segments on the leg stay selected until you create a new collection.</dt>
+</a><P><a name="34303">
+ <P><img src="2MenusCommands.anc7.gif"><p>
+</a></dl>
+<a name="34304">
+<em>Figure 2.7  &#32; &#32;All legs copied for the same side
+</em></a><P><a name="34305">
+This is easy way to reduce the overall time spent on setting up a quality skeleton. If you have several limbs that all work alike, you can simply copy that limb rather than recreate it again from scratch.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Limits are not mirrored; if you are working with opposite sides, you'll need to copy a limb from both sides of the object, then attach the appropriate copy.</font></dd></dt></dl><P>
+<a name="34261">
+<h4> Appending a Skeleton to a Joint</h4>
+</a><a name="34342">
+You can append an entire skeleton to a joint if you <strong>(CLICK-R)</strong> on the <strong>Append</strong> command. You select the joint where you want to attach the skeleton, then select a second skeleton to be attached. This adds geometry to the first skeleton.<p>
+</a><P><a name="34343">
+Suppose you wanted to add an insect leg you created earlier to the shoulder joint of a humanoid skeleton to create an "insect man." Rather than create the additional limb from scratch, you could use the <strong>Disconnect Limb </strong>command, as described in the section <a href="2MenusCommands1.html#26212">"Disconnect Limb," on page &#32;2-28</a>, to make a copy of the limb from another skeleton. (You could, of course, also create the limb from scratch.)<p>
+</a><P><a name="34347">
+Try this:<p>
+</a><P>
+<a name="34348">
+<STRONG>	 1.	 Create or load the first skeleton.
+</STRONG>
+</a><P><a name="34352">
+ <P><img src="2MenusCommands.anc8.gif"><p>
+</a>
+<a name="34353">
+<em>Figure 2.8  &#32; &#32;The skeleton to which you want to attach another skeleton
+</em></a><P>
+<a name="34354">
+<STRONG>	2.	 Create or load the skeleton to attach.
+</STRONG>
+</a><P><a name="34358">
+ <P><img src="2MenusCommands.anc9.gif"><p>
+</a>
+<a name="34359">
+<em>Figure 2.9  &#32; &#32;The skeleton to attach
+</em></a><P>
+<a name="34360">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the joint of the first skeleton where you want to attach the second skeleton.
+</STRONG>
+</a><P><dl><a name="34361">
+<dt>In this case, we'll <strong>(CLICK-L) </strong>on the shoulder joint. </dt>
+</a><P></dl>
+<a name="34362">
+N-Geometry goes into body select mode, waiting for you to <strong>(CLICK-L)</strong> on the skeleton you want to attach.<p>
+</a><P>
+<a name="34363">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the skeleton you want to attach.
+</STRONG>
+</a><P><dl><a name="34364">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="34368">
+ <P><img src="2MenusCommands.anc10.gif"><p>
+</a></dl>
+<a name="34369">
+<em>Figure 2.10  &#32; &#32;A dialog box asks what should happen with the skeleton being attached
+</em></a><P><ul><ul>
+<BR><a name="34370">
+<li><strong>(CLICK-L)</strong> on <strong>Yes</strong> if you want to delete (from memory) the limb being attached
+</a><P><BR><a name="34371">
+<li><strong>(CLICK-L)</strong> on <strong>No</strong> if you want to make a copy and attach the copy
+</a><P></ul>
+<dl><a name="34372">
+<dt>The skeleton is attached, creating a more complex skeleton:</dt>
+</a><P><a name="34376">
+ <P><img src="2MenusCommands.anc11.gif"><p>
+</a></dl></ul><a name="34377">
+<em>Figure 2.11  &#32; &#32;The skeleton to which you want to attach another skeleton
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The second skeleton is attached at its root.</font></dd></dt></dl><P>
+<a name="27643">
+<h3> Align/Rotate Axes</h3>
+</a><a name="28999">
+<em>Bones</em><p>
+</a><P><a name="27644">
+Reorient the local axes of the selected bone, either explicitly or by comparing it to a neighboring bone.<p>
+</a><P><a name="27645">
+The skeleton must be in its base state for you to modify any local bone axes. If you change any axes, you must save a new base state or reset the skeleton to its original base state before you can perform any other operations on the skeleton. If you try to rotate the axes on a bone when the skeleton is not in its base position, the following warning is displayed:<p>
+</a><P><a name="27649">
+ <P><img src="2MenusCommands.anc12.gif"><p>
+</a><a name="27650">
+<em>Figure 2.12  &#32; &#32;The skeleton must be in its base position to rotate the axes of any bone
+</em></a><P><a name="27651">
+Typically, if you import a skeleton from a vendor such as Acclaim or BioVision, the axes are already aligned with the bone. However, if you build a skeleton from wires, it's probable that at least some of the bones will have axes that are not properly oriented to the bone to which they belong.<p>
+</a><P><a name="27653">
+You might want to change the bone direction so that you can cause bones to "mirror" the movement of their counterparts on the other side of the skeleton.<p>
+</a><P><a name="27656">
+<h4> Aligning the Bone with its Superior</h4>
+</a><ul><a name="27657">
+<li><strong>(CLICK-L)</strong> on <strong>Align/Rotate Axes</strong> displays a menu which shows the selected bone's current bone direction and that of its superior (closer to the root). To change which axis is aligned with the bone, choose that axis from the menu:
+</a></li><P><a name="27661">
+ <P><img src="2MenusCommands.anc13.gif"><p>
+</a></ul><P><a name="27662">
+<em>Figure 2.13  &#32; &#32;Defining a bone's direction
+</em></a><P><dl><dl><a name="27663">
+<dt>The selected bone's direction and that of its superior is shown at the top of the menu. To change the bone direction, <strong>(CLICK-L)</strong> on the axis you want oriented along the length of the bone, and </dt>
+</a><P></dl></dl><a name="27665">
+<h4> Aligning a Bone with its Inferior</h4>
+</a><ul><a name="27666">
+<li><strong>(CLICK-M)</strong> on <strong>Align/Rotate Axes</strong> aligns the local bone axes with those of its immediate inferior bone (further from the root).
+</a></li><P></ul><P><a name="27668">
+<h4> Rotating a Bone Along its Bone Axis</h4>
+</a><ul><a name="27669">
+<li><strong>(CLICK-R)</strong> on <strong>Align/Rotate Axes</strong> rotates the bone around the axis that runs along the length of the bone (also referred to as the <em>twist axis</em>).
+</a></li><P></ul><P><a name="27674">
+<h3> Attach</h3>
+</a><a name="29005">
+<em>Skeletons, bones</em><p>
+</a><P><a name="27675">
+Select an object to attach to the selected bone. Attaching an object to a single bone lets you move an object (like a hat or a sword) by moving a bone (like the head or hand) without changing the attached object's topology. <p>
+</a><P><a name="27684">
+To attach an object to a bone:<p>
+</a><P>
+<a name="27685">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to attach the object to.
+</STRONG>
+</a><P><a name="27686">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Attach Object.
+</STRONG>
+</a><P><dl><a name="27687">
+<dt>A list of known objects is displayed.</dt>
+</a><P></dl><a name="27688">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the object you want to attach to the bone.
+</STRONG>
+</a><P><dl><a name="34485">
+<dt>You're asked if you want to make the object's current position its new home position.</dt>
+</a><P></dl><a name="27695">
+<STRONG>	4.	 Typically, you'll <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="27696">
+<dt>This resets the origin of the object to the global center (so that its transformation matrix matches the skeleton's), and ensures that the object is moved appropriately when the bone its attached to is moved.</dt>
+</a><P><a name="27697">
+<dt>If the centers of the two objects are close enough, and the transformation matrix for the attached object should not be changed, <strong>(CLICK-L)</strong> on <strong>No</strong>.</dt>
+</a><P></dl>
+<a name="34488">
+For additional information on attaching object hierarchies to bones, to collections of bones, or to a skeleton, see the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="27699">
+<h4> Detaching an Object from a Bone</h4>
+</a><a name="27700">
+To detach an object from a bone:<p>
+</a><P>
+<a name="27701">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to detach an object from.
+</STRONG>
+</a><P><a name="27702">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Attach Object.
+</STRONG>
+</a><P><dl><a name="27703">
+<dt>A list of objects attached to the bone is displayed.</dt>
+</a><P><a name="27707">
+ <P><img src="2MenusCommands.anc14.gif"><p>
+</a></dl>
+<a name="27708">
+<em>Figure 2.14  &#32; &#32;Selecting an object to detach from a bone
+</em></a><P>
+<a name="27709">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the object you want to detach from the bone.
+</STRONG>
+</a><P>
+<a name="29623">
+<h3> Axis Move</h3>
+</a><a name="34136">
+<em>Skeletons</em><p>
+</a><P><a name="34137">
+To move the skeleton along a selected axis:<p>
+</a><P>
+<a name="34141">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="34142">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="34143">
+<dt>N-Geometry presents a list of axes along which the object can be moved. For a description of this menu, see the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="34133">
+<h3> Axis Scale</h3>
+</a><a name="29011">
+<em>Skeletons</em><p>
+</a><P><a name="26007">
+To scale the skeleton along a selected axis:<p>
+</a><P>
+<a name="26008">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26009">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Axis Scale.
+</STRONG>
+</a><P><dl><a name="26010">
+<dt>N-Geometry presents a list of axes along which the object can be scaled. For a description of this menu, see the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="26012">
+<h3> Base</h3>
+</a><a name="29019">
+<em>Skeletons</em><p>
+</a><P><a name="26013">
+For a skeleton and its attached skins:<p>
+</a><P><ul><a name="26014">
+<li>Define a base state
+</a></li><P><a name="26015">
+<li>Return the skeleton to its base state
+</a></li><P><a name="26016">
+<li>Rename or delete a saved base state
+</a></li><P></ul><P><a name="26017">
+You can optionally update only the skeleton (leaving the skins in their current position).<p>
+</a><P><a name="26018">
+The base state is similar to an absolute displacement (described in the <em>N-Geometry Reference Guide</em>). Skeletal poses are measured from this state, as are any skin displacements you may define.<p>
+</a><P><a name="26020">
+<h4> Initializing a Skeleton to its Base State</h4>
+</a><a name="26021">
+To initialize a skeleton to its base state:<p>
+</a><P>
+<a name="26022">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26023">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="26024">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="26028">
+ <P><img src="2MenusCommands.anc15.gif"><p>
+</a></dl>
+<a name="26029">
+<em>Figure 2.15  &#32; &#32;Initializing a skeleton
+</em></a><P><ul><a name="26030">
+<li><strong>Initialize Transform Too</strong> determines whether the transformation matrix is reinitialized to <em>its</em> base state.
+</a></li><P><dl><a name="26031">
+<dt>If no base state has been defined, for the selected skeleton, you are asked if you want to make the current position the base position:</dt>
+</a><P><a name="26035">
+ <P><img src="2MenusCommands.anc16.gif"><p>
+</a></dl></ul><P><a name="26036">
+<em>Figure 2.16  &#32; &#32;Initializing a skeleton with no base state
+</em></a><P><a name="26037">
+If you <strong>(SHIFT-L)</strong> on this command, only the skeleton itself is initialized; the skins attached to the skeleton remain in their current position.<p>
+</a><P><a name="26039">
+<h4> Saving the Skeleton's Current Position as its Base State</h4>
+</a><a name="26040">
+To save the skeleton's current position as the base state:<p>
+</a><P>
+<a name="26041">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26042">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="26043">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="26047">
+ <P><img src="2MenusCommands.anc17.gif"><p>
+</a></dl>
+<a name="26048">
+<em>Figure 2.17  &#32; &#32;Saving a base state for a skeleton
+</em></a><P><ul><a name="26049">
+<li><strong>New Name</strong> is the name for the base state. Typically, a base state is named "<strong>base</strong>". If you save multiple base states for the same skeleton, old base states are renamed <strong>old-Base (n)</strong>.
+</a></li><P><a name="26050">
+<li><strong>Rotate Local Axes?</strong> by default should be set to <strong>Yes</strong>. Set this to no only if you want to save a new base state without rotating the local axes.
+</a></li><P></ul><P><a name="26051">
+<h4> Renaming, Deleting, or Selecting a Base State</h4>
+</a><a name="26052">
+To rename or delete a save based state for a skeleton:<p>
+</a><P>
+<a name="26053">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26054">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="26055">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="26059">
+ <P><img src="2MenusCommands.anc18.gif"><p>
+</a></dl>
+<a name="26060">
+<em>Figure 2.18  &#32; &#32;Rename, delete, or select a base state
+</em></a><P><a name="26062">
+<h4> Renaming a Base State</h4>
+</a><a name="26063">
+Displays a list of base states saved for the skeleton. <strong>(CLICK-L)</strong> on the base state you want to rename, then change that name in the dialog box that appears.<p>
+</a><P><a name="26065">
+<h4> Deleting a Base State</h4>
+</a><a name="26066">
+Displays a list of saved base states. After selecting the base state to delete, you're asked to confirm this choice.<p>
+</a><P><a name="26068">
+<h4> Selecting a Base State</h4>
+</a><a name="26069">
+Select displays a list of saved base states. <strong>(CLICK-L)</strong> on the base state you wish to move the skeleton to.<p>
+</a><P><a name="28442">
+<h3> Bone</h3>
+</a><a name="29025">
+<em>Joints</em><p>
+</a><P><a name="28443">
+Selects either the superior or inferior bone of the selected joint.<p>
+</a><P><a name="28445">
+<h4> Selecting the Bone Above this Joint</h4>
+</a><a name="28446">
+To select the bone superior to this joint (the bone closer to the root):<p>
+</a><P>
+<a name="28447">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="28448">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Bone.
+</STRONG>
+</a><P><dl><a name="28449">
+<dt>Segments is highlighted in the sensitivity element menu and the superior bone is selected.</dt>
+</a><P></dl>
+<a name="28451">
+<h4> Selecting the Bone Below this Joint</h4>
+</a><a name="28452">
+To select the bone inferior to this joint (the bone further from the root):<p>
+</a><P>
+<a name="28453">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="28454">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Bone.
+</STRONG>
+</a><P><dl><a name="28455">
+<dt>Segments is highlighted in the sensitivity element menu and the inferior bone is selected.</dt>
+</a><P></dl>
+<a name="34159">
+<h3> Bone Display/Axes</h3>
+</a><a name="34160">
+<em>Skeletons, bones</em><p>
+</a><P><a name="34161">
+The <strong>Display Bone</strong> command controls the following aspects of a skeleton:<p>
+</a><P><ul><a name="34162">
+<li>toggles fixed vs. rotating bone axes
+</a></li><P><a name="34163">
+<li>toggles the display of the bone axes for selected bones
+</a></li><P><a name="34164">
+<li>toggles the display of the bone frame for selected bones
+</a></li><P></ul><P><a name="34182">
+<h4> Toggling Bone Axis Display</h4>
+</a><a name="34183">
+<em>Skeletons, bones</em><p>
+</a><P><a name="34184">
+The bone axes are the local axes (displayed in red, yellow, and green) at the superior joint of each bone.<p>
+</a><P><a name="34185">
+To toggle the display of bone axes:<p>
+</a><P>
+<a name="34186">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose bone axes you want to hide or show.
+</STRONG>
+</a><P><a name="34187">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Display Bone.
+</STRONG>
+</a><P><dl><a name="34188">
+<dt>The axes for the selected bone(s) are made visible or invisible (depending on their current status).</dt>
+</a><P><a name="34192">
+ <P><img src="2MenusCommands.anc19.gif"><p>
+</a></dl>
+<a name="34193">
+<em>Figure 2.19  &#32; &#32;Left, bone axes visible; right, bone axes off
+</em></a><P><a name="34195">
+<h4> Toggling Bone Frame Display</h4>
+</a><a name="34196">
+The bone frames are the blue lines which "frame" each bone. If the bone frame is turned off, you can see the wire upon which the bone is based.<p>
+</a><P><a name="34197">
+To toggle the display of bone frame:<p>
+</a><P>
+<a name="34198">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose bone frame you want to hide or show.
+</STRONG>
+</a><P><a name="34199">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Display Bone.
+</STRONG>
+</a><P><dl><a name="34200">
+<dt>The frames for the selected bone(s) are made visible or invisible (depending on their current status).</dt>
+</a><P><a name="34204">
+ <P><img src="2MenusCommands.anc20.gif"><p>
+</a></dl>
+<a name="34205">
+<em>Figure 2.20  &#32; &#32;Left, bone frame visible; right, bone frame off
+</em></a><P><a name="34402">
+<h4> Fixed vs. Rotating Bone Axes</h4>
+</a><a name="34403">
+<em>Skeletons</em><p>
+</a><P><a name="34404">
+Some artist prefer for the axes to remain fixed when posing the skeletons; SAS allows both working methods.<p>
+</a><P><a name="34416">
+ <P><img src="2MenusCommands.anc21.gif"><p>
+</a><a name="34417">
+<em>Figure 2.21  &#32; &#32;Left, bone axes following bone; right, bone axes fixed
+</em></a><P><a name="26338">
+<h3> Check Skin</h3>
+</a><a name="29030">
+<em>Skeletons</em><p>
+</a><P><a name="26339">
+Displays a list of skin vertices that belong to more than one skin (for example, a vertex assigned to a default part then reassigned to a soft part). Vertices on a given skin should be assigned to only one part, as the effect when animating is additive; if two bones are driving a vertex, the vertex is translated by <em>adding</em> the rotations &amp; displacements of both bones, not averaging them.<p>
+</a><P><a name="26340">
+To see a list of vertices shared by more than one skin part:<p>
+</a><P>
+<a name="26341">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26342">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Check Skin.
+</STRONG>
+</a><P><dl><a name="26343">
+<dt>A dialog box listing the vertices that are shared by more than one skin is displayed:</dt>
+</a><P><a name="26347">
+ <P><img src="2MenusCommands.anc22.gif"><p>
+</a></dl>
+<a name="26348">
+<em>Figure 2.22  &#32; &#32;Showing which vertices are shared by more than one skin part
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The displayed points are also selected in the N-Geometry window.</em></font></dd></dt></dl><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="1Glossary.html">[Prev]</a> <a href="2MenusCommands1.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 10:50:17 -->
+
+</body>
+</html>

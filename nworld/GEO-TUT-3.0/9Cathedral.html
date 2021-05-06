@@ -1,0 +1,664 @@
+<html><head><title>Cathedral</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8Text.html">[Prev]</a> <a href="10SelectingAndParts.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Cathedral</h1>
+</a>
+<hr><p><a name="14046">
+<h4> In this chapter you'll learn how to create a lamina from a wire, manipulate and edit wire segments, use multiple extrude, and mirror large sections of a building.</h4>
+</a><a name="9046">
+ <P><img src="9Cathedral.anc.gif"><p>
+</a><a name="8408">
+<p>
+</a><P><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="14055">
+You'll learn about the following techniques and commands:<p>
+</a><P><ul><a name="11413">
+<li>Using the sketch editor and building a lamina
+</a></li><P><a name="8410">
+<li>Flatten
+</a></li><P><a name="13815">
+<li>Mirror
+</a></li><P><a name="13820">
+<li>Merge Region
+</a></li><P><a name="13817">
+<li>Multiple Extrude
+</a></li><P></ul><P><a name="11910">
+<h2><HR> Sketching the Wire</h2>
+</a><a name="11916">
+A lamina is a flat, two-sided polygon which can have any number of edges.<p>
+</a><P><a name="11921">
+To build a lamina, you first sketch a wire to define the contour (perimeter) of the lamina, then make a polyhedron based on that wire's shape.<p>
+</a><P>
+<a name="11438">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Lamina.
+</STRONG>
+</a><P><dl><a name="11932">
+<dt>We call the process of drawing wires "sketching " or "encoding." N-Geometry has a special sketch editor devoted just to drawing wires. Before you begin sketching, however, you need to specify your sketching parameters in the dialog box that appears:</dt>
+</a><P><a name="11428">
+ <P><img src="9Cathedral.anc1.gif"><p>
+</a></dl>
+<a name="11441">
+<em>Figure 9.1  &#32; &#32;Setting your sketch parameters
+</em></a><P><a name="11964">
+Each of these parameters is described in detail in the <em>N-Geometry Reference Guide</em>. For now, change the following parameters:<p>
+</a><P>
+<a name="11457">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Mouse Grid (x).
+</STRONG>
+</a><P><ul>
+<BR><a name="11980">
+<li>Enter a new value of 1 and press <strong>RETURN</strong>.
+</a><P><BR><a name="11981">
+<li>Repeat the process for (y) and (z)
+</a><P></ul>
+<dl><a name="11982">
+<dt>This constrains wire segments to a 1-unit grid in all three directions.</dt>
+</a><P><a name="11989">
+ <P><img src="9Cathedral.anc2.gif"><p>
+</a></dl>
+<a name="11990">
+<em>Figure 9.2  &#32; &#32;Change the grid parameters
+</em></a><P>
+<a name="11466">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Set Sketch Parameters button.
+</STRONG>
+</a><P><dl><a name="12006">
+<dt>The Sketch Editor opens in the N-Geometry window. The target shape for the wire is shown in <a href="9Cathedral.html#12073">Figure 9.3</a>:</dt>
+</a><P><a name="12072">
+ <P><img src="9Cathedral.anc3.gif"><p>
+</a></dl>
+<a name="12073">
+<em>Figure 9.3  &#32; &#32;The finished wire-refer back here if you need to
+</em></a><P>
+<a name="12222">
+<STRONG>	4.	 Move the cursor straight up the Y axis and <strong>(CLICK-L)</strong> to start encoding the wire.
+</STRONG>
+</a><P><dl><a name="12225">
+<dt>Drag the mouse, then <strong>(CLICK-L)</strong> at each point until you've created the overhang for the top level roof. The distance between points 2-3, 3-4, and 4-5 should be one grid unit:</dt>
+</a><P><a name="12014">
+ <P><img src="9Cathedral.anc4.gif"><p>
+</a></dl>
+<a name="12015">
+<em>Figure 9.4  &#32; &#32;Starting the wire
+</em></a><P><a name="12235">
+Part of planning out a good lamina is determining where you should add segments for later. Under the roof's overhang, make three one-unit segments-later, we'll bridge through the middle segment to make some windows in our structure.<p>
+</a><P>
+<a name="12234">
+<STRONG>	5.	 Add two more one-unit segments going straight down.
+</STRONG>
+</a><P><dl><a name="12578">
+<dt>then repeat the entire process to create both levels of the roof.</dt>
+</a><P><a name="12128">
+ <P><img src="9Cathedral.anc5.gif"><p>
+</a></dl>
+<a name="12129">
+<em>Figure 9.5  &#32; &#32;Adding another roof &#32; &#32;
+</em></a><P><a name="12138">
+<h3> Starting an Arc</h3>
+</a>
+<a name="12009">
+<STRONG>	6.	 Now, <strong>(ALT-L)</strong> and move the mouse straight down.
+</STRONG>
+</a><P><dl><a name="12528">
+<dt>As you move the mouse, a circle appears, using the segment from the last sketched point to the cursor's current position as the radius.</dt>
+</a><P><a name="12532">
+<dt>We're interested in the portion of the circle's edge, or arc, that leads from the last sketched point.</dt>
+</a><P><a name="12157">
+ <P><img src="9Cathedral.anc6.gif"><p>
+</a></dl>
+<a name="12158">
+<em>Figure 9.6  &#32; &#32;Defining the arc
+</em></a><P>
+<a name="12182">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> when the arc is the right size.
+</STRONG>
+</a><P><a name="12643">
+<STRONG>	8.	 Now, drag the mouse and <strong>(CLICK-L)</strong> at the point along the circle that you want drawn.
+</STRONG>
+</a><P><a name="12649">
+ <P><img src="9Cathedral.anc7.gif"><p>
+</a>
+<a name="12183">
+<em>Figure 9.7  &#32; &#32;Completing the arc
+</em></a><P><a name="12663">
+The finished arc should look like this:<p>
+</a><P><a name="12211">
+ <P><img src="9Cathedral.anc8.gif"><p>
+</a><a name="12212">
+<em>Figure 9.8  &#32; &#32;Completed arc
+</em></a><P><a name="12664">
+Now start the bottom of the cloister:<p>
+</a><P>
+<a name="12668">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> and drag one unit to the right, then <strong>(CLICK-L)</strong> again.
+</STRONG>
+</a><P><a name="12268">
+ <P><img src="9Cathedral.anc9.gif"><p>
+</a>
+<a name="12269">
+<em>Figure 9.9  &#32; &#32;Start of the cloister
+</em></a><P>
+<a name="12298">
+<STRONG>	10.	 Now, <strong>(ALT-L)</strong> to start a new arc.
+</STRONG>
+</a><P><dl><a name="12299">
+<dt>Drag the mouse right one unit, creating a preview of a two-unit circle:</dt>
+</a><P><a name="12294">
+ <P><img src="9Cathedral.anc10.gif"><p>
+</a></dl>
+<a name="12295">
+<em>Figure 9.10  &#32; &#32;Preview the circle
+</em></a><P>
+<a name="12671">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> to define the arc, then continue to drag to the left. <strong>(CLICK-L)</strong> at the point of the circle straight across from where you started:
+</STRONG>
+</a><P><a name="12324">
+ <P><img src="9Cathedral.anc11.gif"><p>
+</a>
+<a name="12325">
+<em>Figure 9.11  &#32; &#32;Use the arc tool to create a semi-circle
+</em></a><P><a name="12674">
+Now, using the skills you've learned so far, continue sketching the wire until it looks like that in <a href="9Cathedral.html#13139">Figure 9.12</a>:<p>
+</a><P><a name="13138">
+ <P><img src="9Cathedral.anc12.gif"><p>
+</a><a name="13139">
+<em>Figure 9.12  &#32; &#32;Adding a vertex here will let us extrude a column later on
+</em></a><P><a name="12690">
+Make sure that the vertical portions are divided into three one-unit segments so that we can bridge through them properly when the lamina's been extruded.<p>
+</a><P><a name="12430">
+ <P><img src="9Cathedral.anc13.gif"><p>
+</a><a name="12431">
+<em>Figure 9.13  &#32; &#32;
+</em></a><P>
+<a name="12139">
+<STRONG>	12.	 Now, <strong>(ALT-L)</strong> to start our last arc.
+</STRONG>
+</a><P><dl><a name="12434">
+<dt>Drag the mouse right one unit and <strong>(CLICK-L)</strong>, then drag up one unit to complete the arc.</dt>
+</a><P><a name="12476">
+ <P><img src="9Cathedral.anc14.gif"><p>
+</a></dl>
+<a name="12477">
+<em>Figure 9.14  &#32; &#32;Defining the final arc
+</em></a><P>
+<a name="12520">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> to complete the arc.
+</STRONG>
+</a><P><a name="12713">
+ <P><img src="9Cathedral.anc15.gif"><p>
+</a>
+<a name="12521">
+<em>Figure 9.15  &#32; &#32;The completed sketch
+</em></a><P><a name="12798">
+<h4> If You Make a Mistake While Sketching</h4>
+</a><a name="12799">
+To undo the last segment that you sketched, <strong>(SHIFT-L)</strong> on the sketch editor This undoes the previous segment on the wire-you can undo all the way back to the beginning of the wire.<p>
+</a><P>
+<a name="12446">
+<STRONG>	14.	 <strong>(CLICK-R)</strong> when you are finished.
+</STRONG>
+</a><P><dl><a name="12729">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="12767">
+ <P><img src="9Cathedral.anc16.gif"><p>
+</a></dl>
+<a name="12768">
+<em>Figure 9.16  &#32; &#32;Choose Wire Only
+</em></a><P>
+<a name="12779">
+<STRONG>	15.	 Enter a name like "cathedral" for the wire in the dialog box that appears:
+</STRONG>
+</a><P><a name="12785">
+ <P><img src="9Cathedral.anc17.gif"><p>
+</a>
+<a name="12786">
+<em>Figure 9.17  &#32; &#32;Name the wire
+</em></a><P><a name="12817">
+<h2><HR> Fixing the Wire</h2>
+</a><a name="12856">
+Now when you look at the wire, you can probably see how we're going to use it. It looks like the side view of a cathedral that was cut right down the middle along the z-axis. <p>
+</a><P><a name="12864">
+Later, we'll use the mirror command to create the "right" half of the cathedral, but to do so, we need to ensure that the face we're going to mirror from is perpendicular to the ground.<p>
+</a><P><a name="12867">
+Look at the top of the wire:<p>
+</a><P><a name="12873">
+ <P><img src="9Cathedral.anc18.gif"><p>
+</a><a name="12874">
+<em>Figure 9.18  &#32; &#32;Adjusting the wire to build a good lamina
+</em></a><P><a name="12868">
+Note that the two ends of the wire are not aligned. Since this section of the wire will create the face that we're going to "mirror" on, they need to be aligned:<p>
+</a><P>
+<a name="12887">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12890">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on the point at the top of the arc:
+</STRONG>
+</a><P><a name="12926">
+ <P><img src="9Cathedral.anc19.gif"><p>
+</a>
+<a name="12927">
+<em>Figure 9.19  &#32; &#32;Choose the vertex you want to align
+</em></a><P>
+<a name="12917">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><dl><a name="12938">
+<dt><strong>Flatten</strong> "aligns" the selected element (in this case a point) with some other element, along a specified axis. In this case we want to move the selected vertex so that it lines up with the vertex that starts the lamina along the X axis.</dt>
+</a><P><a name="12952">
+<dt>When you use <strong>Flatten</strong>, you're prompted to first specify the axis for the operation:</dt>
+</a><P><a name="12968">
+ <P><img src="9Cathedral.anc20.gif"><p>
+</a></dl>
+<a name="12969">
+<em>Figure 9.20  &#32; &#32;Choose the axis for the flatten operation
+</em></a><P>
+<a name="12959">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on X.
+</STRONG>
+</a><P>
+<a name="12975">
+Now, when you move the cursor over the N-Geometry window, you're in point-select mode.<p>
+</a><P>
+<a name="12976">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the node at the beginning of the wire:
+</STRONG>
+</a><P><a name="12986">
+ <P><img src="9Cathedral.anc21.gif"><p>
+</a>
+<a name="12987">
+<em>Figure 9.21  &#32; &#32;Align the vertex using the vertex indicated
+</em></a><P><a name="13012">
+The lower node is "flattened" so that it lies in the same X plane as the target point:<p>
+</a><P><a name="13005">
+ <P><img src="9Cathedral.anc22.gif"><p>
+</a><a name="13006">
+<em>Figure 9.22  &#32; &#32;Adjusting the wire to build a good lamina
+</em></a><P><a name="12855">
+<h2><HR> Making the Lamina</h2>
+</a><a name="12821">
+Now you have the wire from which to create your lamina. A lamina is a two sided ("flat") polygon that uses the contour of the wire as an outline to describe its shape.<p>
+</a><P>
+<a name="12826">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="12830">
+<STRONG>	22.	 This time, <strong>(CLICK-R)</strong> on Lamina.
+</STRONG>
+</a><P><dl><a name="12831">
+<dt>If you <strong>(CLICK-L)</strong> you get sent to the sketch editor; <strong>(CLICK-R)</strong> lets you make a lamina from a wire you've already sketched.</dt>
+</a><P></dl><a name="12832">
+<STRONG>	23.	 Choose the wire "cathedral" from the object list that appears.
+</STRONG>
+</a><P><a name="12838">
+ <P><img src="9Cathedral.anc23.gif"><p>
+</a>
+<a name="12839">
+<em>Figure 9.23  &#32; &#32;Choose the wire you created in step <a href="9Cathedral.html#12779">15</a>
+</em></a><P>
+<a name="12854">
+<STRONG>	24.	 A dialog box appears, asking for additional parameters to be used in creating the lamina.
+</STRONG>
+</a><P><a name="12849">
+ <P><img src="9Cathedral.anc24.gif"><p>
+</a>
+<a name="12850">
+<em>Figure 9.24  &#32; &#32;Name the wire
+</em></a><P><dl><dl><a name="13077">
+<dt>For now, use the defaults and <strong>(CLICK-L)</strong> on the Make Lamina button.</dt>
+</a><P><a name="13044">
+<dt>The lamina is created and given the name "Lamina."</dt>
+</a><P></dl></dl>
+<a name="12833">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Visibility&gt;Lamina.
+</STRONG>
+</a><P><dl><a name="13034">
+<dt>This makes the Lamina the only visible object in the scene. <strong>(CLICK-L)</strong> on the front face to select it:</dt>
+</a><P><a name="13087">
+ <P><img src="9Cathedral.anc25.gif"><p>
+</a></dl>
+<a name="13088">
+<em>Figure 9.25  &#32; &#32;The completed lamina
+</em></a><P><a name="12827">
+<h2><HR> Building the Cathedral</h2>
+</a><a name="13047">
+Now we can get down to business. We can build the cathedral using some of the same techniques we used in building the mansion earlier, plus some new techniques.<p>
+</a><P>
+<a name="13050">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="13051">
+<STRONG>	27.	 <strong>(SHIFT-L)</strong> on the front face of the lamina, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="13062">
+<dt>Extrude the face out so your object looks like this:</dt>
+</a><P><a name="13100">
+ <P><img src="9Cathedral.anc26.gif"><p>
+</a></dl>
+<a name="13101">
+<em>Figure 9.26  &#32; &#32;Extrude the face
+</em></a><P><a name="13057">
+Now, move the camera so that you're looking at the bottom and right sides of the lamina:<p>
+</a><P><a name="13183">
+ <P><img src="9Cathedral.anc27.gif"><p>
+</a><a name="13184">
+<em>Figure 9.27  &#32; &#32;Reaping the benefits of planning
+</em></a><P><a name="13178">
+Reposition the camera again, so that can see the faces along the bottom of the object.<p>
+</a><P>
+<a name="13211">
+<STRONG>	28.	 Collect the following faces:
+</STRONG>
+</a><P><a name="13224">
+ <P><img src="9Cathedral.anc28.gif"><p>
+</a>
+<a name="13225">
+<em>Figure 9.28  &#32; &#32;Collecting faces where we want to add columns
+</em></a><P>
+<a name="13216">
+<STRONG>	29.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="13246">
+<dt>Specify an Inset Width of 0.2.</dt>
+</a><P><a name="13242">
+ <P><img src="9Cathedral.anc29.gif"><p>
+</a></dl>
+<a name="13243">
+<em>Figure 9.29  &#32; &#32;Inset the faces
+</em></a><P>
+<a name="13234">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on the Inset button.
+</STRONG>
+</a><P><dl><a name="13256">
+<dt>The faces are inset by the specified amount:</dt>
+</a><P><a name="13265">
+ <P><img src="9Cathedral.anc30.gif"><p>
+</a></dl>
+<a name="14083">
+<em>Figure 9.30  &#32; &#32;Inset faces
+</em></a><P>
+<a name="14084">
+<STRONG>	31.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="13278">
+<dt>Extrude the faces slightly downward and <strong>(CLICK-L)</strong>.</dt>
+</a><P><a name="13289">
+ <P><img src="9Cathedral.anc31.gif"><p>
+</a></dl>
+<a name="13290">
+<em>Figure 9.31  &#32; &#32;Extrude the faces
+</em></a><P><a name="13281">
+Now, since we want all the columns to "line up" with our ground plane, let's use the Flatten command again.<p>
+</a><P>
+<a name="13257">
+<STRONG>	32.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="13302">
+<STRONG>	33.	 When prompted, choose the Y axis.
+</STRONG>
+</a><P><dl><a name="13303">
+<dt>Like before, N-Geometry goes into point select mode. <strong>(CLICK-L)</strong> on a point at the base of the main column:</dt>
+</a><P><a name="13309">
+ <P><img src="9Cathedral.anc32.gif"><p>
+</a></dl>
+<a name="13310">
+<em>Figure 9.32  &#32; &#32;Extrude the faces
+</em></a><P><dl><dl><a name="13338">
+<dt>The columns "flatten" along the Y axis to the main column:</dt>
+</a><P><a name="13345">
+ <P><img src="9Cathedral.anc33.gif"><p>
+</a></dl></dl><a name="13346">
+<em>Figure 9.33  &#32; &#32;The columns are now aligned
+</em></a><P><a name="13327">
+<h3> Turning the Object into a "Building Block"</h3>
+</a><a name="13356">
+The object of this section is to make the object into a section that can be mirrored over and over to create a larger building. With that in mind, let's continue making our "building block:"<p>
+</a><P>
+<a name="13361">
+<STRONG>	34.	 Collect the two large faces on the sides of the object.
+</STRONG>
+</a><P><a name="13372">
+ <P><img src="9Cathedral.anc34.gif"><p>
+</a>
+<a name="13373">
+<em>Figure 9.34  &#32; &#32;Collect the faces shown on both sides of the object
+</em></a><P>
+<a name="13396">
+<STRONG>	35.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><a name="13405">
+ <P><img src="9Cathedral.anc35.gif"><p>
+</a>
+<a name="13406">
+<em>Figure 9.35  &#32; &#32;Extrude the faces
+</em></a><P><a name="13362">
+<h3> Making some Windows</h3>
+</a><a name="13416">
+Now, let's use the <strong>Bridge</strong> command to add some simple windows to our structure:<p>
+</a><P>
+<a name="13421">
+<STRONG>	36.	 <strong>(SHIFT-L)</strong> on the face shown below:
+</STRONG>
+</a><P><a name="13428">
+ <P><img src="9Cathedral.anc36.gif"><p>
+</a>
+<a name="13429">
+<em>Figure 9.36  &#32; &#32;Selecting a face to Bridge for a window
+</em></a><P><dl><dl><a name="13422">
+<dt>Remember the three one-unit segments we created when we sketched the wire? Each segment produces a face when extruded, so now it's easy to make our window.</dt>
+</a><P></dl></dl>
+<a name="13444">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on the Bridge command.
+</STRONG>
+</a><P><a name="13447">
+<STRONG>	38.	 Move the camera so that you can see the back of the same part of the object.
+</STRONG>
+</a><P><a name="13453">
+<STRONG>	39.	 <strong>(CLICK-L)</strong> on the corresponding face on the back of the object to complete the Bridge operation.
+</STRONG>
+</a><P><a name="13466">
+ <P><img src="9Cathedral.anc37.gif"><p>
+</a>
+<a name="13467">
+<em>Figure 9.37  &#32; &#32;Bridge through to the back of the object to create a window
+</em></a><P><dl><dl><a name="13457">
+<dt><strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;Shading&gt;Lamina</strong> if you want to get a better view of what the Bridge operation did:</dt>
+</a><P><a name="13485">
+ <P><img src="9Cathedral.anc38.gif"><p>
+</a></dl></dl><a name="13486">
+<em>Figure 9.38  &#32; &#32;Shading helps you see the effects of the Bridge operation
+</em></a><P><a name="13480">
+Now, repeat the Bridge operation to add a window to the middle level of the cathedral:<p>
+</a><P><a name="13515">
+ <P><img src="9Cathedral.anc39.gif"><p>
+</a><a name="13516">
+<em>Figure 9.39  &#32; &#32;Bridge another window in the middle level
+</em></a><P><a name="13524">
+<h3> Mirroring</h3>
+</a><a name="13525">
+Now let's <strong>Mirror</strong> this part of the cathedral.<p>
+</a><P>
+<a name="13530">
+<STRONG>	40.	 Move the camera so you're looking at the top inside portion of the object and collect the three faces shown in <a href="9Cathedral.html#13541">Figure 9.40</a>:
+</STRONG>
+</a><P><a name="13540">
+ <P><img src="9Cathedral.anc40.gif"><p>
+</a>
+<a name="13541">
+<em>Figure 9.40  &#32; &#32;Collect the faces shown
+</em></a><P><a name="13551">
+The <strong>Mirror</strong> operation "mirrors" an object's geometry around a single selected face; so while we could select one of these three faces around which to mirror, we'd have "extra" geometry along the "seam." We need to make these three faces into one face.<p>
+</a><P>
+<a name="13556">
+<STRONG>	41.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="13557">
+<STRONG>	42.	 <strong>(CLICK-L)</strong> on Merge Region.
+</STRONG>
+</a><P><dl><a name="13558">
+<dt>The faces are combined into one face.</dt>
+</a><P><a name="13563">
+ <P><img src="9Cathedral.anc41.gif"><p>
+</a></dl>
+<a name="13564">
+<em>Figure 9.41  &#32; &#32;Merge Region makes a collection of faces into one face
+</em></a><P>
+<a name="13533">
+<STRONG>	43.	 Move the camera back out, but keep it aimed at the new single face.
+</STRONG>
+</a><P><a name="13577">
+<STRONG>	44.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="13576">
+<STRONG>	45.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><dl><a name="13580">
+<dt>N-Geometry goes into face-collect mode.</dt>
+</a><P></dl><a name="13581">
+<STRONG>	46.	 <strong>(CLICK-L)</strong> on the new face.
+</STRONG>
+</a><P><dl><a name="13510">
+<dt>The object mirrors around the selected face.</dt>
+</a><P><a name="13590">
+ <P><img src="9Cathedral.anc42.gif"><p>
+</a></dl>
+<a name="13591">
+<em>Figure 9.42  &#32; &#32;The completed building block
+</em></a><P>
+<a name="13597">
+<STRONG>	47.	 <strong>(SHIFT-L)</strong> on the object again.
+</STRONG>
+</a><P><a name="13600">
+<STRONG>	48.	 <strong>(CLICK-L)</strong> on Mirror again, this time selecting the large face pointing along the Z axis.
+</STRONG>
+</a><P><a name="13615">
+ <P><img src="9Cathedral.anc43.gif"><p>
+</a>
+<a name="13616">
+<em>Figure 9.43  &#32; &#32;Mirror the block around one end
+</em></a><P>
+<a name="13622">
+<STRONG>	49.	 Mirror the object two more times, each time selecting the large face pointing along the Z axis.
+</STRONG>
+</a><P><a name="13643">
+ <P><img src="9Cathedral.anc44.gif"><p>
+</a>
+<a name="13644">
+<em>Figure 9.44  &#32; &#32;The completed hallway
+</em></a><P>
+<a name="13653">
+<STRONG>	50.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Shading&gt;Lamina to get a better view of your work.
+</STRONG>
+</a><P><a name="13661">
+ <P><img src="9Cathedral.anc45.gif"><p>
+</a>
+<a name="13662">
+<em>Figure 9.45  &#32; &#32;Shaded hallway
+</em></a><P><a name="13638">
+There you have it! A complete three dimensional structure based on a well-planned sketched wire. As always, planning your objects ahead of time makes it easier to get the results you want in as few steps as possible.<p>
+</a><P><a name="13585">
+<h2><HR> The Advanced Cathedral</h2>
+</a><a name="13671">
+Here are some optional additions you can make to your cathedral.<p>
+</a><P>
+<a name="13672">
+<STRONG>	51.	 <strong>(CLICK-L)</strong> on faces on the elements sensitivity menu.
+</STRONG>
+</a><P><a name="13675">
+<STRONG>	52.	 <strong>(SHIFT-L)</strong> on the face at the end of the hall, then <strong>(CLICK-L)</strong> on Multiple Extrude.
+</STRONG>
+</a><P><dl><a name="13677">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="13686">
+ <P><img src="9Cathedral.anc46.gif"><p>
+</a></dl>
+<a name="13687">
+<em>Figure 9.46  &#32; &#32;The Multiple Extrude dialog box
+</em></a><P><a name="13695">
+The <strong>Multiple Extrude</strong> operation lets you extrude a face one or more times, optionally combining other operations on the face with each iteration. This operation is described in more detail in a later tutorial.<p>
+</a><P>
+<a name="13681">
+<STRONG>	53.	 <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><a name="13698">
+<STRONG>	54.	 <strong>(CLICK-L)</strong> on Extend.
+</STRONG>
+</a><P><dl><a name="13704">
+<dt>Enter a value of 50 in the <strong>dist</strong> text edit box.</dt>
+</a><P></dl><a name="13699">
+<STRONG>	55.	 <strong>(CLICK-L)</strong> on Add again.
+</STRONG>
+</a><P><a name="13700">
+<STRONG>	56.	 <strong>(CLICK-L)</strong> on Rotate.
+</STRONG>
+</a><P><dl><a name="13705">
+<dt>Enter a value of 45 in the <strong>angle</strong> text edit box.</dt>
+</a><P><a name="13710">
+ <P><img src="9Cathedral.anc47.gif"><p>
+</a></dl>
+<a name="13711">
+<em>Figure 9.47  &#32; &#32;Extruding and rotating with the Multiple Extrude operation
+</em></a><P>
+<a name="13733">
+<STRONG>	57.	 Leave the rest of the parameters at their default value and <strong>(CLICK-L)</strong> on the Extrude button.
+</STRONG>
+</a><P><dl><a name="13736">
+<dt>The selected face is extruded and rotated:</dt>
+</a><P><a name="13742">
+ <P><img src="9Cathedral.anc48.gif"><p>
+</a></dl>
+<a name="13743">
+<em>Figure 9.48  &#32; &#32;The extruded face
+</em></a><P>
+<a name="13737">
+<STRONG>	58.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="13751">
+<STRONG>	59.	 <strong>(SHIFT-L)</strong> on the cathedral, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><a name="13752">
+<STRONG>	60.	 Again, <strong>(CLICK-L)</strong> on the face at the end of the object.
+</STRONG>
+</a><P><a name="13767">
+ <P><img src="9Cathedral.anc49.gif"><p>
+</a>
+<a name="13768">
+<em>Figure 9.49  &#32; &#32;The completed cathedral
+</em></a><P><a name="13762">
+For a final view, you might want to turn shading for the object back on:<p>
+</a><P><a name="13782">
+ <P><img src="9Cathedral.anc50.gif"><p>
+</a><a name="13783">
+<em>Figure 9.50  &#32; &#32;The completed cathedral, shaded
+</em></a><P><a name="13777">
+You might want to use some of the skills you've learned so far to pull up towers, add doors, and so forth, to the cathedral.<p>
+</a><P><a name="13792">
+<h2><HR> Congratulations</h2>
+</a><a name="13793">
+You've now completed a fairly complex structure starting with a single well-planned wire. The techniques you learned in this chapter can be used in creating any object with an irregular contour, whether it be a building or a shard of glass.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="8Text.html">[Prev]</a> <a href="10SelectingAndParts.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 11:52:46 -->
+
+</body>
+</html>

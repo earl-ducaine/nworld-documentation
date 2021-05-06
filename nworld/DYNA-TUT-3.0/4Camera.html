@@ -1,0 +1,505 @@
+<html><head><title>Animating the Camera</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Objects.html">[Prev]</a> <a href="5Attributes.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="10022">
+<h1>Animating the Camera</h1>
+</a>
+<hr><p><a name="10736">
+<h4> In this chapter you'll learn how to animate the camera in N-Dynamics. You'll also learn how to animate between saved views and how to move both the camera and other objects along trajectories.</h4>
+</a><a name="10743">
+ <P><img src="4Camera.anc.gif"><p>
+</a><a name="10738">
+<h2><HR> In this Chapter</h2>
+</a><a name="9582">
+You'll learn how to:<p>
+</a><P><ul><a name="9583">
+<li>animate between views
+</a></li><P><a name="10027">
+<li>animate an object along a trajectory
+</a></li><P><a name="9584">
+<li>animate the camera along a trajectory
+</a></li><P><a name="9589">
+<li>make the camera follow an object
+</a></li><P></ul><P><a name="9639">
+In N-Geometry, the camera is an object, which means it can be rotated and moved around just like any other object.<p>
+</a><P><a name="9642">
+The techniques described in this chapter show you how to animate the camera between different views, or along paths called <em>trajectories</em>.<p>
+</a><P><a name="9595">
+<h2><HR> Animating between Views</h2>
+</a><a name="9634">
+Animating between saved views is a quick way to give some life to an animation.<p>
+</a><P><a name="9670">
+Try the following:<p>
+</a><P>
+<a name="9671">
+<STRONG>	 1.	 Load the following object:
+</STRONG>
+</a><P><dl><a name="9672">
+<dt><code>/usr/local/ngc/demo/objects/arches.geo</code></dt>
+</a><P><a name="9677">
+<dt>The object looks like this:</dt>
+</a><P><a name="9678">
+ <P><img src="4Camera.anc1.gif"><p>
+</a></dl>
+<a name="9682">
+<em>Figure 4.1  &#32; &#32;Arches
+</em></a><P><dl><dl><a name="9673">
+<dt>The arches will give you a nice sense of motion, especially if you save views that take you under the arches.</dt>
+</a><P></dl></dl>
+<a name="9676">
+<STRONG>	2.	 Create a new script in N-Dynamics with two channels.
+</STRONG>
+</a><P><dl><a name="9691">
+<dt>Give the new script a descriptive name, something like <strong>BASIC-CAMERA</strong>.</dt>
+</a><P></dl><a name="9684">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the first channel to select an operation.
+</STRONG>
+</a><P><a name="9687">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Geometry&gt;Camera&gt;Set View</strong>.
+</STRONG>
+</a><P><dl><a name="9696">
+<dt>This creates a curve channel by default, where you can insert cues. Your script should look like this:</dt>
+</a><P><a name="9705">
+ <P><img src="4Camera.anc2.gif"><p>
+</a></dl>
+<a name="9706">
+<em>Figure 4.2  &#32; &#32;Opening the <strong>Set View</strong> channel
+</em></a><P>
+<a name="9700">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the cue at the beginning of the <strong>[VIEWER]</strong> curve channel.
+</STRONG>
+</a><P><dl><a name="9713">
+<dt>The following menu appears:</dt>
+</a><P><a name="9719">
+ <P><img src="4Camera.anc3.gif"><p>
+</a></dl>
+<a name="9720">
+<em>Figure 4.3  &#32; &#32;Selecting a view
+</em></a><P><dl><dl><a name="9712">
+<dt>Each cue in a Set View channel describes a camera view. You can either copy the current view from the N-Geometry window, or copy a previously saved view into the cue.</dt>
+</a><P></dl></dl>
+<a name="9735">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Current View</strong>.
+</STRONG>
+</a><P><dl><a name="9744">
+<dt>This makes the current view the "starting point" for the camera.</dt>
+</a><P><a name="9699">
+<dt>Now, <strong>(CLICK-M)</strong> on the N-Geometry window and move the camera to a new location-it doesn't really matter where, just enough so that you can tell you're viewing the scene from a different view.</dt>
+</a><P></dl><a name="9749">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the cue at the end of the <strong>[VIEWER]</strong> channel, then <strong>(CLICK-L)</strong> on <strong>Current View</strong> again.
+</STRONG>
+</a><P><dl><a name="9754">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="9764">
+ <P><img src="4Camera.anc4.gif"><p>
+</a></dl>
+<a name="9765">
+<em>Figure 4.4  &#32; &#32;Set View operation with two cues (views) specified
+</em></a><P><dl><dl><a name="9759">
+<dt>The actual shape of the curve may be different, depending on where you put the camera.</dt>
+</a><P></dl></dl>
+<a name="9758">
+<STRONG>	8.	 <strong>(CLICK-M)</strong> on the <strong>Make Visible</strong> channel.
+</STRONG>
+</a><P><a name="9755">
+<STRONG>	9.	 Make the <strong>"arches</strong>" object visible.
+</STRONG>
+</a><P><a name="9750">
+<STRONG>	10.	 Animate and playback the script.
+</STRONG>
+</a><P><dl><a name="9753">
+<dt>The camera swings from its original position to the second view you saved over the course of 30 frames.</dt>
+</a><P></dl><a name="9783">
+<STRONG>	11.	 Change the script length to 90.
+</STRONG>
+</a><P><dl><a name="9784">
+<dt><strong>(CLICK-L)</strong> on the frame range box at the bottom right of the script editor and select <strong>Change Script Length</strong>.</dt>
+</a><P></dl><a name="9688">
+<STRONG>	12.	 Move the cursor over the <strong>[VIEWER]</strong> channel at frame 30 and press the "s" hot key to insert a cue.
+</STRONG>
+</a><P><a name="9785">
+<STRONG>	13.	 Move the camera again.
+</STRONG>
+</a><P><dl><a name="9791">
+<dt>When the camera is in its new position, <strong>(CLICK-M)</strong> on the new cue and select <strong>Current View</strong>.</dt>
+</a><P></dl><a name="9796">
+<STRONG>	14.	 Animate and playback the script.
+</STRONG>
+</a><P><dl><a name="9797">
+<dt>This time, the camera moves from its initial position (specified in the initial cue), to the one specified at the second cue, then to its final position (specified in the end cue). You can add as many cues as you want to control camera positions this way.</dt>
+</a><P></dl>
+<a name="9806">
+<h3> Changing Curve Type</h3>
+</a><a name="9807">
+If the transition between view is too abrupt, you can change the curve type for the operation.<p>
+</a><P>
+<a name="9811">
+<STRONG>	15.	 <strong>(CLICK-M)</strong> on the curve channel.
+</STRONG>
+</a><P><a name="9829">
+ <P><img src="4Camera.anc5.gif"><p>
+</a>
+<a name="9830">
+<em>Figure 4.5  &#32; &#32;Linear curve
+</em></a><P>
+<a name="9812">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on <strong>Curve type</strong>.
+</STRONG>
+</a><P><a name="9819">
+ <P><img src="4Camera.anc6.gif"><p>
+</a>
+<a name="9820">
+<em>Figure 4.6  &#32; &#32;Selecting a curve type
+</em></a><P><dl><dl><a name="9853">
+<dt>These curve types are described in more detail in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl></dl>
+<a name="9813">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on <strong>Slow In/Out</strong>.
+</STRONG>
+</a><P><a name="9838">
+ <P><img src="4Camera.anc7.gif"><p>
+</a>
+<a name="9839">
+<em>Figure 4.7  &#32; &#32;Slow In/Out curve
+</em></a><P><dl><dl><a name="9857">
+<dt>Note how the shape of the curve changes. By changing the curve type, you can change how smooth the camera motion is from cue to cue.</dt>
+</a><P></dl></dl><a name="9858">
+<h3> Using Saved Views</h3>
+</a><a name="9859">
+In addition to positioning the camera and copying that position into a cue interactively, you can save different camera positions, called <em>views</em>, in N-Geometry.<p>
+</a><P><a name="9906">
+To use a saved view:<p>
+</a><P>
+<a name="9907">
+<STRONG>	 1.	 In N-Geometry, move the camera into the position you want to use.
+</STRONG>
+</a><P><a name="9913">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on <strong>GeoMenus&gt;Views</strong>.
+</STRONG>
+</a><P><dl><a name="9920">
+<dt>The camera's current position appears in a dialog box:</dt>
+</a><P><a name="9927">
+ <P><img src="4Camera.anc8.gif"><p>
+</a></dl>
+<a name="9928">
+<em>Figure 4.8  &#32; &#32;Saving a camera view
+</em></a><P><dl><dl><a name="9921">
+<dt>You can give the view a descriptive name (e.g., <strong>under-arch</strong>), or use the supplied default, which describes the position numerically.</dt>
+</a><P></dl></dl>
+<a name="10923">
+<STRONG>	3.	 Enter a descriptive name, then <strong>(CLICK-L)</strong> on <strong>Set Name &amp; Save</strong>.
+</STRONG>
+</a><P><a name="9936">
+<STRONG>	4.	 In your N-Dynamics script, <strong>(CLICK-M)</strong> on a cue containing a view.
+</STRONG>
+</a><P><a name="9939">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Saved View</strong>.
+</STRONG>
+</a><P><dl><a name="9940">
+<dt>A menu of currently saved views is displayed:</dt>
+</a><P><a name="9946">
+ <P><img src="4Camera.anc9.gif"><p>
+</a></dl>
+<a name="9947">
+<em>Figure 4.9  &#32; &#32;Selecting a saved camera view
+</em></a><P>
+<a name="9952">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the camera view you want to use at this cue.
+</STRONG>
+</a><P>
+<a name="9941">
+Some animators prefer to create a series of views, then experiment with different transitions, while others prefer to work interactively. There is no "preferred" method, and both achieve the same effect.<p>
+</a><P><a name="9967">
+<h4> Saving Camera Views to File</h4>
+</a><a name="10017">
+	Named views can be saved just like any other element in N-Geometry using the <strong>GeoMenus&gt;Save</strong> command. To save a view:<p>
+</a><P>
+<a name="10930">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>Camera View</strong> at the top of the object list displayed when selecting what to save:
+</STRONG>
+</a><P><a name="10010">
+ <P><img src="4Camera.anc10.gif"><p>
+</a>
+<a name="10011">
+<em>Figure 4.10  &#32; &#32;Saving a camera view
+</em></a><P>
+<a name="10018">
+<STRONG>	2.	 Select the camera view to save, and give it a name in the dialog box that appears.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Views copied into cues are saved with the N-Dynamics script.</font></dd></dt></dl><P>
+<a name="9922">
+<h2><HR> Animating Along a Trajectory</h2>
+</a><a name="9632">
+In some cases, you may have a specific path in mind that you want the camera to follow. If that's the case, you want to use a <em>trajectory</em> to guide the camera.<p>
+</a><P><a name="10030">
+To create a trajectory:<p>
+</a><P>
+<a name="10038">
+<STRONG>	 1.	 <strong>(CLICK-L) </strong>on <strong>GeoMenus&gt;New Object</strong>.
+</STRONG>
+</a><P><a name="10058">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on <strong>trajectory</strong>.
+</STRONG>
+</a><P><dl><a name="10175">
+<dt>Trajectories are curved wires that are created in 3D space. For now, the shape and orientation of your trajectory isn't important. <strong>(CLICK-L)</strong> to start the trajectory, then <strong>(CLICK-L)</strong> again at each control point, then <strong>(CLICK-R)</strong> to end the shape.</dt>
+</a><P><a name="10178">
+<dt>Your trajectory might look like this:</dt>
+</a><P><a name="10162">
+ <P><img src="4Camera.anc11.gif"><p>
+</a></dl>
+<a name="10163">
+<em>Figure 4.11  &#32; &#32;An arbitrary trajectory
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you want to create a trajectory around existing objects, adjust your camera view, <strong>(CLICK-M) </strong>on <strong>trajectory</strong>, and set <strong>Clear Viewer</strong> to <strong>No</strong>. This lets you draw a trajectory around your existing objects on a single plane.</font></dd></dt><dl><a name="10075">
+<dt>	Trajectories have a definite beginning and end. When you animate along a trajectory, objects move from the beginning to the end of the wire (or some portion thereof). To check which end is which, <strong>(SHIFT-L)</strong> on a vertex at one end of the trajectory. The starting node is node number 1, and is shown as such in the N-Geometry window, as shown in <a href="4Camera.html#10097">Figure 4.12</a>.</dt>
+</a><P><a name="10096">
+ <P><img src="4Camera.anc12.gif"><p>
+</a></dl></dl><P>
+<a name="10097">
+<em>Figure 4.12  &#32; &#32;Displaying info for a selected node
+</em></a><P><a name="9603">
+<h3> Animating an Object Along a Trajectory</h3>
+</a><a name="10071">
+You can animate any object along a trajectory, <em>including the camera</em>. However, let's animate a regular polyhedra first so you can get the hang of things; then we'll show you how to animate the camera along a trajectory in your N-Dynamics script.<p>
+</a><P><a name="10135">
+Add an object in N-Geometry:<p>
+</a><P>
+<a name="10120">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Octahedron</strong>.
+</STRONG>
+</a><P><a name="10136">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the octahedron and <strong>(CLICK-L)</strong> on <strong>Scale</strong>.
+</STRONG>
+</a><P><dl><a name="10147">
+<dt>Make the tetrahedron tiny in relationship to the trajectory.</dt>
+</a><P><a name="10155">
+ <P><img src="4Camera.anc13.gif"><p>
+</a></dl>
+<a name="10156">
+<em>Figure 4.13  &#32; &#32;The trajectory and the tetrahedron
+</em></a><P><a name="10186">
+Create a new script in N-Dynamics with two channels.<p>
+</a><P>
+<a name="10219">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the first channel.
+</STRONG>
+</a><P><a name="10225">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Trajectories&gt;Fly Along Trajectory</strong>.
+</STRONG>
+</a><P><a name="10230">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on <strong>Object</strong> field and pick the <strong>Octahedron</strong>.
+</STRONG>
+</a><P><a name="10236">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the <strong>Trajectory</strong> field and pick the trajectory you added in step <a href="4Camera.html#9676">2</a>.
+</STRONG>
+</a><P><dl><a name="10289">
+<dt>Your parameters should look something like this:</dt>
+</a><P><a name="10293">
+ <P><img src="4Camera.anc14.gif"><p>
+</a></dl>
+<a name="10294">
+<em>Figure 4.14  &#32; &#32;Parameters for the Move Along Trajectory operation
+</em></a><P><dl><dl><a name="10295">
+<dt>The other parameters on this dialog box are described in more detail in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P></dl></dl>
+<a name="10247">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the curve channel under the <strong>Move Along Trajectory</strong>.
+</STRONG>
+</a><P><dl><a name="10248">
+<dt>Make sure the operation has a start value of <strong>0</strong> and an end value of <strong>1</strong>. (This specifies that the object will start at the <em>beginning</em> of the trajectory and go all the way to the <em>end</em>.)</dt>
+</a><P><a name="10300">
+ <P><img src="4Camera.anc15.gif"><p>
+</a></dl>
+<a name="10301">
+<em>Figure 4.15  &#32; &#32;Curve parameters
+</em></a><P>
+<a name="10264">
+<STRONG>	10.	 <strong>(CLICK-M)</strong> on the second channel, then <strong>(CLICK-L)</strong> on <strong>Visibility&gt;Make Visible&gt;Trajectory</strong>.
+</STRONG>
+</a><P><dl><a name="10316">
+<dt>For now, we want the trajectory to be visible when we animate the object along it.</dt>
+</a><P></dl><a name="10306">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10305">
+<dt>The tetrahedron moves along the trajectory, as shown in <a href="4Camera.html#10324">Figure 4.16</a>:</dt>
+</a><P><a name="10323">
+ <P><img src="4Camera.anc16.gif"><p>
+</a></dl>
+<a name="10324">
+<em>Figure 4.16  &#32; &#32;Animating the octahedron along the trajectory
+</em></a><P><a name="10228">
+The object moves along the trajectory, but doesn't "orient" itself to the trajectory. That's because there are three different operations for animating along a trajectory:<p>
+</a><P><ul><a name="10341">
+<li><strong>Move Along Trajectory</strong>
+</a></li><P><dl><a name="10344">
+<dt>This operation translates an object along the trajectory, with no rotations.</dt>
+</a><P></dl><a name="10342">
+<li><strong>Fly Along Trajectory</strong>
+</a></li><P><dl><a name="10347">
+<dt>This operation translates an object along the trajectory, with controllable Z axis rotation for the object.</dt>
+</a><P></dl><a name="10343">
+<li><strong>Orient Along Trajectory</strong>
+</a></li><P><dl><a name="10349">
+<dt>This operation translates an object along the trajectory, aligning the object's Z axis with the Z axis of a line tangent to the trajectory at that point.</dt>
+</a><P></dl></ul><P><a name="10220">
+The operation you select depends on the effect you're trying to create. For more detailed descriptions of each of these operations, see the <em>N-Dynamics Reference Guide</em>.<p>
+</a><P><a name="10222">
+<h3> Flying the Camera Along the Trajectory</h3>
+</a><a name="10368">
+As we mentioned earlier, the camera can be animated just like any other object in N&#183;World. Let's try animating the camera along the same trajectory as the octahedron:<p>
+</a><P>
+<a name="10385">
+<STRONG>	12.	 Add another channel to the script, then <strong>(CLICK-M)</strong> on the channel to open it.
+</STRONG>
+</a><P><a name="10391">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Trajectories&gt;Fly Along Trajectory</strong>.
+</STRONG>
+</a><P><a name="10392">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the <strong>Object</strong> field.
+</STRONG>
+</a><P><dl><a name="10401">
+<dt>In the object list, the camera is displayed as a special object that can be animated.</dt>
+</a><P><a name="10412">
+ <P><img src="4Camera.anc17.gif"><p>
+</a></dl>
+<a name="10414">
+<em>Figure 4.17  &#32; &#32;Selecting the camera as the object to animate
+</em></a><P>
+<a name="10439">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on <strong>Camera</strong>.
+</STRONG>
+</a><P><dl><a name="10994">
+<dt>The camera appears as the object to be animated in the parameters for the operation:</dt>
+</a><P><a name="10424">
+ <P><img src="4Camera.anc18.gif"><p>
+</a></dl>
+<a name="10426">
+<em>Figure 4.18  &#32; &#32;Parameters for animating the camera
+</em></a><P>
+<a name="10379">
+<STRONG>	16.	 Reorder the channels in the script so that the Make Visible Trajectory is first.
+</STRONG>
+</a><P><dl><a name="10448">
+<dt>Your script should look something like this:</dt>
+</a><P><a name="10453">
+ <P><img src="4Camera.anc19.gif"><p>
+</a></dl>
+<a name="10455">
+<em>Figure 4.19  &#32; &#32;Reorder the script channels
+</em></a><P><a name="10469">
+Remember that scripts are executed from top to bottom; that means that given this channel order, at each frame, the following things happen:<p>
+</a><P><ul><a name="10483">
+<li>the trajectory is made visible
+</a></li><P><a name="10474">
+<li>the octahedron moves along the trajectory
+</a></li><P><a name="10475">
+<li>the camera moves along the trajectory
+</a></li><P></ul><P>
+<a name="10150">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="10488">
+<dt>The camera takes you for a "roller coaster" ride along the trajectory; the octahedron and the camera are both animated along the trajectory.</dt>
+</a><P><a name="10565">
+ <P><img src="4Camera.anc20.gif"><p>
+</a></dl>
+<a name="10566">
+<em>Figure 4.20  &#32; &#32;Animating the camera
+</em></a><P><a name="10492">
+<h4> Controlling Position Along the Trajectory</h4>
+</a><a name="10493">
+Suppose, however, that we want to make the camera follow the object along the trajectory. You might, for example, be using this technique to make a camera follow a helicopter through a complex cityscape. How do you set up the offset?<p>
+</a><P>
+<a name="10491">
+<STRONG>	18.	 <strong>(CLICK-M)</strong> on the curve channel of the <strong>Octahedron Fly Along Trajectory</strong> operation.
+</STRONG>
+</a><P><dl><a name="10055">
+<dt>Set the start value to <strong>.2</strong> and the end value to <strong>1</strong>.</dt>
+</a><P></dl><a name="10505">
+<STRONG>	19.	 <strong>(CLICK-M)</strong> on the curve channel of the <strong>CAMERA Fly Along Trajectory</strong> operation.
+</STRONG>
+</a><P><dl><a name="10506">
+<dt>Set the start value to <strong>0</strong> and the end value to <strong>.8</strong></dt>
+</a><P></dl><a name="10540">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in N-Dynamics.
+</STRONG>
+</a><P><a name="10581">
+ <P><img src="4Camera.anc21.gif"><p>
+</a>
+<a name="10582">
+<em>Figure 4.21  &#32; &#32;The same animation, with the camera following the object
+</em></a><P><dl><dl><a name="10542">
+<dt>Changing the start and end values as described above makes the octahedron start its path 20% of the way along the wire and go all the way to the end. The camera, on the other hand, starts its flight at the beginning of the wire and ends 80% of the way along the length of the trajectory. This 20% gap creates space between the two objects.</dt>
+</a><P></dl></dl><a name="9600">
+<h3> Making the Camera Follow the Object</h3>
+</a><a name="10374">
+As you can see in <a href="4Camera.html#10582">Figure 4.21</a>, however, while the camera is following the same path as the object, it's hit and miss as to whether the camera is pointing at the object.<p>
+</a><P><a name="10608">
+We can fix that by adding one more operation to the script:<p>
+</a><P>
+<a name="10609">
+<STRONG>	21.	 Add another channel to the script.
+</STRONG>
+</a><P><a name="10610">
+<STRONG>	22.	 <strong>(CLICK-M) </strong>to open the channel.
+</STRONG>
+</a><P><a name="10613">
+<STRONG>	23.	 <strong>(CLICK-L) </strong>on the <strong>Operations&gt;Camera&gt;Set Aimpoint to Object Center</strong>.
+</STRONG>
+</a><P><dl><a name="10648">
+<dt><strong>(CLICK-L) </strong>on <strong>Object</strong> and select the object you want to follow:</dt>
+</a><P><a name="10633">
+ <P><img src="4Camera.anc22.gif"><p>
+</a></dl>
+<a name="10634">
+<em>Figure 4.22  &#32; &#32;Aim the camera at the object you're following
+</em></a><P>
+<a name="10655">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in N-Dynamics.
+</STRONG>
+</a><P><a name="10659">
+ <P><img src="4Camera.anc23.gif"><p>
+</a>
+<a name="10661">
+<em>Figure 4.23  &#32; &#32;The same animation, with the camera aimed at the object
+</em></a><P><a name="10671">
+As mentioned earlier, you can use this technique to make a camera follow an object through any environment. Trajectories, like wires, can be extended (using the <strong>Connect New</strong> command in N-Geometry) or reshaped using any of the modifications that apply to this element type.<p>
+</a><P><a name="10729">
+After you've tested the flight path with a simple object, you can load in a more complex object, then go back into the individual channels and select the newer object to use for the animation.<p>
+</a><P><a name="10681">
+Your finished project might look something like this:<p>
+</a><P><a name="10694">
+ <P><img src="4Camera.anc24.gif"><p>
+</a><a name="10695">
+<em>Figure 4.24  &#32; &#32;Trajectories are great for animating through an existing environment
+</em></a><P><a name="10684">
+<h2><HR> Congratulations!</h2>
+</a><a name="10705">
+You've now learned to animate between saved views, and to animate both objects and the camera along trajectories. With these two simple techniques, you should be able to control the positioning of the camera for just about any animation you want to create.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3Objects.html">[Prev]</a> <a href="5Attributes.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 14:41:20 -->
+
+</body>
+</html>

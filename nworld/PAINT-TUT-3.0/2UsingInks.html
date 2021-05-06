@@ -1,0 +1,652 @@
+<html><head><title>Working with Images</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1FirstImage.html">[Prev]</a> <a href="3PullingMattes.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="13940">
+<h1>Working with Images</h1>
+</a>
+<hr><p><a name="13941">
+<h4> In this chapter we'll expand our familiarity with different types of inks, and look at N-Paint's powerful brushes. We'll also learn how to pull and use an RGB matte.</h4>
+</a><a name="14473">
+ <P><img src="2UsingInks.anc.gif"><p>
+</a><a name="13942">
+<h2><HR> In this Chapter</h2>
+</a><a name="13943">
+We'll be using the image we created in the last lesson. In this chapter, we'll introduce:<p>
+</a><P><ul><a name="15214">
+<li>Using the Brush tool
+</a></li><P><a name="15219">
+<li>Using brush textures
+</a></li><P><a name="15220">
+<li>Using brush shadow effects
+</a></li><P><a name="15388">
+<li>Creating and saving a custom Tool Box
+</a></li><P><a name="15221">
+<li>Using the Blur ink
+</a></li><P><a name="15222">
+<li>Applying ink through a texture
+</a></li><P><a name="15223">
+<li>Using the matte backup channel
+</a></li><P><a name="15225">
+<li>Pulling a chroma key matte
+</a></li><P><a name="15224">
+<li>Saving a matte
+</a></li><P></ul><P><a name="13953">
+<h3> Before you Start</h3>
+</a><a name="14085">
+We'll be using the image we modified in the last lesson, so load the image onto the canvas.<p>
+</a><P><a name="14672">
+<h2><HR> Using the Brush</h2>
+</a><a name="14679">
+Our first task will be to add some detail to the rocks in the background of the hero. We'll do this by using some shadow and texture effects with the Brush.<p>
+</a><P>
+<a name="14678">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the <strong>Brush</strong> icon in the Tool Box.
+</STRONG>
+</a><P><a name="14680">
+ <P><img src="2UsingInks.anc1.gif"><p>
+</a>
+<a name="14681">
+<em>Figure 2.1  &#32; &#32;The Brush icon
+</em></a><P><dl><dl><a name="14695">
+<dt>The Brush parameters appear in the Tool Parameters section of the menu</dt>
+</a><P><a name="14697">
+ <P><img src="2UsingInks.anc2.gif"><p>
+</a></dl></dl><a name="14701">
+<em>Figure 2.2  &#32; &#32;Brush parameters
+</em></a><P><ul><a name="14698">
+<li><strong>Size</strong> controls the radius of the brush, in pixels.
+</a></li><P><a name="14708">
+<li><strong>Opacity</strong> controls the transparency of the ink you apply. A higher value makes the ink more opaque.
+</a></li><P><dl><a name="15442">
+<dt>When you're using filter inks, this value determines the relative strength of the ink applied through the brush. For example, with the Smear ink, a higher value would produce a more noticeable smearing effect.</dt>
+</a><P></dl><a name="15420">
+<li><strong>Hard</strong> controls the edges of the brush. A lower value produces a softer edge.
+</a></li><P><a name="15421">
+<li><strong>Brush</strong> is a preview area which shows how the Brush will appear given the current parameters. Change the Brush parameters and watch how the preview brush is updated.
+</a></li><P></ul><P><a name="14713">
+Set your Brush parameters to roughly match those in <a href="2UsingInks.html#14701">Figure 2.2</a>.<p>
+</a><P>
+<a name="14087">
+<STRONG>	2.	 Select the Color ink, and make white the current color.
+</STRONG>
+</a><P><a name="14718">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Use Texture</strong> in the Texture options portion of the menu.
+</STRONG>
+</a><P><dl><a name="14719">
+<dt>When you toggle Use Texture several new parameters appear:</dt>
+</a><P><a name="14720">
+ <P><img src="2UsingInks.anc3.gif"><p>
+</a></dl>
+<a name="14721">
+<em>Figure 2.3  &#32; &#32;Texture parameters
+</em></a><P><ul><a name="14726">
+<li><strong>Image</strong> specifies an image to use to generate the brush texture.
+</a></li><P><a name="15445">
+<li><strong>Offset</strong> determines whether the brush texture is dragged, tiled, or projected randomly through the brush.
+</a></li><P></ul><P>
+<a name="14727">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Image</strong> and select tex-fragment from the pop-up menu that appears.
+</STRONG>
+</a><P><a name="14728">
+<STRONG>	5.	 In the Drawing Options portion of the menu, <strong>(CLICK-L)</strong> on <strong>Shadow</strong> to toggle shadowing.
+</STRONG>
+</a><P><dl><a name="14729">
+<dt>Shadows are one of the most powerful features of N-Paint brushes. You can use shadows to create realistic 3D textures for your images.</dt>
+</a><P></dl><a name="14735">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Set</strong> button next to Shadow in the Drawing Options section of the menu.
+</STRONG>
+</a><P><dl><a name="14736">
+<dt>The Shadow Parameters dialog appears:</dt>
+</a><P><a name="14737">
+ <P><img src="2UsingInks.anc4.gif"><p>
+</a></dl>
+<a name="14738">
+<em>Figure 2.4  &#32; &#32;Shadow Parameters
+</em></a><P><a name="14088">
+Shadow effects are designed to simulate the interaction of light on 3D surfaces in a scene.<p>
+</a><P><a name="15473">
+Shadows have two primary components, the Shadow and the Highlight. The Shadow Angle is the direction from which the simulated light is "shining." Distance controls the thickness of the highlight or shadow. Use a larger number for distance to simulate more relief in the surface.<p>
+</a><P><a name="15450">
+ <P><img src="2UsingInks.anc5.gif"><p>
+</a><a name="15451">
+<em>Figure 2.5  &#32; &#32;Shadows created using a direction of NW-&gt;SE
+</em></a><P>
+<a name="14743">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on <strong>Highlight</strong> and select a red-tan color.
+</STRONG>
+</a><P><dl><a name="14751">
+<dt>We'll use this color to show some highlights in the rocks behind the hero.</dt>
+</a><P></dl><a name="14756">
+<STRONG>	8.	 Set <strong>Distance</strong> for the <strong>Shadow</strong> to 2, for the <strong>Highlight</strong> to 1.
+</STRONG>
+</a><P><dl><a name="15511">
+<dt>These are purely arbitrary values, but they do simulate somewhat deeper shadows than if the Shadow and Highlight values were equal.</dt>
+</a><P></dl><a name="14744">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on<strong> Do It</strong>.
+</STRONG>
+</a><P><a name="14745">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Use</strong> in the Matte section of the Commands menu.
+</STRONG>
+</a><P><a name="14763">
+<STRONG>	11.	 Paint on the canvas.
+</STRONG>
+</a><P><dl><a name="14760">
+<dt>Experiment with using different parameters to create different shadowing effects. Load different textures and experiment with these as well.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Generally, you'll want to paint with darker colors on the canvas first, and follow with lighter colors, in the same way that you'd apply highlights to an image after you had finished painting it.</font></dd></dt><dl><a name="14746">
+<dt><a href="2UsingInks.html#15451">Figure 2.5</a> shows what our image looks like after using our round brush with texture and shadow effects to make the stones in the background look a little more three-dimensional.</dt>
+</a><P><a name="14767">
+ <P><img src="2UsingInks.anc6.gif"><p>
+</a></dl></dl><P>
+<a name="14768">
+<em>Figure 2.6  &#32; &#32;The hero with background
+</em></a><P><a name="14766">
+<h2><HR> Saving your Shadow Brush</h2>
+</a><a name="15310">
+Now that you've created a shadow brush you really like, let's save it so that we can use it again in the future! Tool Boxes, like images and color palettes, are N-Paint elements which can be saved to disk and reused at time.<p>
+</a><P>
+<a name="15311">
+<STRONG>	12.	 With your custom Brush selected, <strong>(CLICK-L)</strong> on the custom Tool Box toggle.
+</STRONG>
+</a><P><a name="15312">
+ <P><img src="2UsingInks.anc7.gif"><p>
+</a>
+<a name="15313">
+<em>Figure 2.7  &#32; &#32;The custom Tool Box toggle
+</em></a><P><dl><dl><a name="15322">
+<dt>The current custom Tool Box appears. It's empty now, but we're going to add our new brush.</dt>
+</a><P><a name="15323">
+ <P><img src="2UsingInks.anc8.gif"><p>
+</a></dl></dl><a name="15324">
+<em>Figure 2.8  &#32; &#32;Empty custom Tool Box
+</em></a><P>
+<a name="15336">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on one of the empty tool slots.
+</STRONG>
+</a><P><dl><a name="15348">
+<dt>A dialog appears, which you can use to name your brush. Give it a name that is short, but which also gives some idea of the appearance and function of the tool.</dt>
+</a><P><a name="15349">
+ <P><img src="2UsingInks.anc9.gif"><p>
+</a></dl>
+<a name="15350">
+<em>Figure 2.9  &#32; &#32;Naming your custom tool
+</em></a><P><dl><dl><a name="15358">
+<dt>After you've named your tool, <strong>(CLICK-L) </strong>on <strong>Done</strong>.</dt>
+</a><P></dl></dl><a name="15359">
+Your new tool appears in the custom Tool Box.<p>
+</a><P><a name="15360">
+ <P><img src="2UsingInks.anc10.gif"><p>
+</a><a name="15361">
+<em>Figure 2.10  &#32; &#32;Custom tool with your tool
+</em></a><P><a name="15366">
+<h3> Saving your Custom Tool Box</h3>
+</a><a name="15367">
+To save your custom Tool Box to disk for use later:<p>
+</a><P>
+<a name="15370">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the magenta tinted Tool Box field (see <a href="2UsingInks.html#15361">Figure 2.10</a>).
+</STRONG>
+</a><P><dl><a name="15379">
+<dt>The Tool Box file operations menu appears.</dt>
+</a><P><a name="17085">
+ <P><img src="2UsingInks.anc11.gif"><p>
+</a></dl>
+<a name="17086">
+<em>Figure 2.11  &#32; &#32;Tool Box menu
+</em></a><P>
+<a name="15380">
+<STRONG>	15.	 <strong>(CLICK-L) </strong>on <strong>Save</strong>, and enter a directory and filename for your Tool Box.
+</STRONG>
+</a><P>
+<a name="15383">
+To load a Tool Box, all you need to do is <strong>(CLICK-L)</strong> on the Tool Box field, then <strong>(CLICK-L) </strong>on Open. Then, choose the path and filename for your Tool Box, just as you do when opening an image.<p>
+</a><P><a name="14804">
+<h2><HR> Blurring the Background</h2>
+</a><a name="14780">
+Now that we've increased the visual complexity of the background, let's use a blur effect to introduce the illusion of depth into the image.<p>
+</a><P>
+<a name="14781">
+<STRONG>	16.	 Select the Polygon tool and the Blur ink.
+</STRONG>
+</a><P><dl><a name="14782">
+<dt>Leave the Blur ink parameters at their default values. Make sure the Polygon tool is not in outline mode.</dt>
+</a><P></dl><a name="14783">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the <strong>Texture</strong> field In the Texture Options portion of the Paint menu.
+</STRONG>
+</a><P><dl><a name="14784">
+<dt>A pop-up menu appears, listing your texture options.</dt>
+</a><P></dl><a name="14785">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on Gradient in the pop-up menu to select it.
+</STRONG>
+</a><P><dl><a name="14788">
+<dt>The Gradient parameters menu appears:</dt>
+</a><P><a name="14790">
+ <P><img src="2UsingInks.anc12.gif"><p>
+</a></dl>
+<a name="14791">
+<em>Figure 2.12  &#32; &#32;Gradient Texture parameters
+</em></a><P><dl><dl><a name="14789">
+<dt>Using a gradient texture applies the ink through the shape an additional "local" matte. If you apply ink through a texture, both the specified texture and the alpha channel of the image (if <strong>Use</strong> is turned on) affect how much ink is applied to the canvas.</dt>
+</a><P></dl></dl>
+<a name="14799">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the <P><img src="2UsingInks.anc13.gif"> button to choose a horizontal gradient.
+</STRONG>
+</a><P><dl><a name="14821">
+<dt>The <strong>Left</strong> and <strong>Right</strong> parameters control how steep the gradient is from one end to the other. For example, setting Left to 1.0 and right to 0.0 means the ink will be applied at 100% on the left, then fall off down to 0% on the right.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Make sure that you have turned off any shadowing effects before applying the blur ink. If you don't, a "shadow" will appear around the area you blurred.</font></dd></dt></dl><P>
+
+<a name="14823">
+<STRONG>	20.	 Using the Polygon tool, outline the section of rocks on the right side of the road.
+</STRONG>
+</a><P><dl><a name="14824">
+<dt>Be sure that the matte is in <strong>Use</strong> mode.</dt>
+</a><P><a name="14831">
+<dt>When you <strong>(CLICK-M)</strong> to end the polygon, N-Paint will apply the blur effect to the rocks on the right hand side of the trail. If the blur is not visible enough, try selecting a 7x7 blur in the Blur ink parameters and redoing the shape operation.</dt>
+</a><P></dl><a name="14837">
+<STRONG>	21.	 If you wish, repeat the process for the rocks on the left side of the trail.
+</STRONG>
+</a><P><dl><a name="14838">
+<dt>To get the same effect, though, reverse the direction of the gradient by setting <strong>Left</strong> to 0.0 and <strong>Right</strong> to 1.0.</dt>
+</a><P></dl>
+<a name="14832">
+<h2><HR> Pulling a Chroma Key Matte</h2>
+</a><a name="14833">
+Now we're going to apply a gradient ink to the sky behind the warrior. Our hope is to simulate the last moment of deep evening twilight just before the blackness of night descends entirely. To do this, we'll have to extend the matte to cover everything in the image except for the black sky.<p>
+</a><P><a name="14836">
+In our current image, the matte covers just the character, and is very handy for painting in the background. We could replace this matte with our new sky matte, but then we'd have to recreate it later if we wanted to do anymore work to the backgrounds around the hero. <p>
+</a><P><a name="14848">
+Fortunately in N-Paint you can save a copy of the current matte to memory (or disk), change the matte, then reload the original matte at some point in the future. In face, mattes and RGB components can be loaded and saved completely independently.<p>
+</a><P><a name="15576">
+The Backup matte is essentially just a space for you to store this backup matte image. You can swap two mattes between the current image and the backup matte image, illustrated schematically in <a href="2UsingInks.html#15578">Figure 2.13</a>.<p>
+</a><P><a name="15577">
+ <P><img src="2UsingInks.anc14.gif"><p>
+</a><a name="15578">
+<em>Figure 2.13  &#32; &#32;N-Paint reserves a special area for a backup matte
+</em></a><P>
+<a name="14849">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on <strong>Backup</strong> in the Matte section of the commands menu.
+</STRONG>
+</a><P><a name="14860">
+ <P><img src="2UsingInks.anc15.gif"><p>
+</a>
+<a name="14861">
+<em>Figure 2.14  &#32; &#32;The matte controls
+</em></a><P><dl><dl><a name="14870">
+<dt>A pop-up menu of matte backup options appears:</dt>
+</a><P><a name="14871">
+ <P><img src="2UsingInks.anc16.gif"><p>
+</a></dl></dl><a name="14872">
+<em>Figure 2.15  &#32; &#32;Matte backup operations
+</em></a><P>
+<a name="14881">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on <strong>Save to Backup</strong>.
+</STRONG>
+</a><P><dl><a name="14882">
+<dt>N-Paint will ask you to confirm your action. <strong>(CLICK-L)</strong> on Yes.</dt>
+</a><P></dl>
+<a name="14883">
+Now that we've saved the matte that protects our character, we're ready to create our new matte.<p>
+</a><P>
+<a name="14884">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on <strong>Add</strong> and <strong>View</strong> in the Matte modes menu.
+</STRONG>
+</a><P><a name="14885">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on the Quad tool icon in the Tool Box
+</STRONG>
+</a><P><a name="14886">
+ <P><img src="2UsingInks.anc17.gif"><p>
+</a>
+<a name="14887">
+<em>Figure 2.16  &#32; &#32;Quad tool icon
+</em></a><P>
+<a name="14822">
+<STRONG>	26.	 Select the Chroma Key ink.
+</STRONG>
+</a><P><dl><a name="14898">
+<dt>The Chroma Key parameters appear in the ink parameters section of the menu:</dt>
+</a><P><a name="14899">
+ <P><img src="2UsingInks.anc18.gif"><p>
+</a></dl>
+<a name="14900">
+<em>Figure 2.17  &#32; &#32;Chroma Key parameters
+</em></a><P>
+<a name="14905">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on <strong>RGB</strong>
+</STRONG>
+</a><P><dl><a name="14906">
+<dt>You can pull a matte based on the RGB values of the image, or on the Intensity, Hue, and Saturation values. We'll pull an RGB matte now, but IHS mattes are covered in <a href="3PullingMattes.html#11095">"Pulling an Intensity Matte," on page &#32;3-11</a>.</dt>
+</a><P></dl>
+<a name="14919">
+The concept behind an RGB matte is relatively simple: you define a range of colors which are completely protected from being painted on, and optionally an additional range which are protected to a lesser degree. The fact that portions of a digital matte can be more or less opaque than others is the key to understanding digital mattes.<p>
+</a><P><a name="15646">
+The range that is absolutely protected is the <em>hard range</em>. The hard range is defined relative to a starting color, called the seed-color. The <em>soft range</em> defines an additional area of the color spectrum over which the opacity of the matte drops from 100% to 0%.<p>
+</a><P><a name="14954">
+ <P><img src="2UsingInks.anc19.gif"><p>
+</a><a name="14955">
+<em>Figure 2.18  &#32; &#32;How Chroma Keys work
+</em></a><P>
+<a name="14964">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on the <strong>Color</strong> field in the Chroma Key ink parameters menu.
+</STRONG>
+</a><P><dl><a name="14968">
+<dt>This color will serve as the seed color for our RGB matte. A color picker appears over the canvas.</dt>
+</a><P></dl><a name="14971">
+<STRONG>	29.	 Use the color picker to pick the black sky behind the hero.
+</STRONG>
+</a><P><a name="14977">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on <strong>Do Full Canvas</strong>.
+</STRONG>
+</a><P><dl><a name="14978">
+<dt>The new matte should appear on the canvas, covering the black sky. Of course, this is exactly the reverse of what we need, since we want to paint on the sky and protect the rest of the canvas.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If you don't see your matte, it's usually because you either don't have matte in Add and View mode, or because you didn't <strong>(CLICK-L)</strong> on Do Full Canvas. Also make sure you're not in Outline mode.</font></dd></dt></dl><P>
+
+<a name="14997">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on the <strong>Rev</strong> button in the Matte section of the menu.
+</STRONG>
+</a><P><a name="15008">
+ <P><img src="2UsingInks.anc20.gif"><p>
+</a>
+<a name="15009">
+<em>Figure 2.19  &#32; &#32;Location of the Matte Reverse button
+</em></a><P><dl><dl><a name="14999">
+<dt>This reverses the matte; the open and protected areas are swapped.</dt>
+</a><P><a name="17182">
+<dt>Aaah. That's better. Now we can paint on the sky to our heart's content with no worries about altering the rest of our image.</dt>
+</a><P></dl></dl><a name="14089">
+<h2><HR> Adding the Twilight</h2>
+</a><a name="15022">
+We'll use the gradient ink again to add the twilight to our scene.<p>
+</a><P>
+<a name="15023">
+<STRONG>	32.	 Select the Fill tool from the Tool Box.
+</STRONG>
+</a><P><a name="15024">
+<STRONG>	33.	 Select the Gradient 2 ink.
+</STRONG>
+</a><P><dl><a name="15025">
+<dt>Set up the Gradient ink to be a vertical gradient. Select Black for the top color and a deep blue for the bottom color.</dt>
+</a><P><a name="15027">
+<dt>If you can't find a shade of blue that looks right, you can use the Color Editor to adjust the Intensity, Hue, and Saturation of one of the blues on the palette to suit your tastes.</dt>
+</a><P><a name="15030">
+ <P><img src="2UsingInks.anc21.gif"><p>
+</a></dl>
+<a name="15031">
+<em>Figure 2.20  &#32; &#32;The Color Editor
+</em></a><P>
+<a name="15021">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on <strong>Use</strong> and <strong>View</strong> in the Matte modes section of the menu.
+</STRONG>
+</a><P><dl><a name="15046">
+<dt>If you forget and leave the matte in Add mode, the gradient will be applied to the matte. Should this happen, just <strong>(CLICK-L)</strong> on Undo, select the appropriate matte mode, and <strong>(CLICK-L)</strong> on Redo.</dt>
+</a><P></dl><a name="15045">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> with the Fill tool on the sky.
+</STRONG>
+</a><P><dl><a name="15050">
+<dt>The Gradient ink is applied over the unprotected area of the image.</dt>
+</a><P><a name="15053">
+ <P><img src="2UsingInks.anc22.gif"><p>
+</a></dl>
+<a name="15054">
+<em>Figure 2.21  &#32; &#32;The image with the twilight applied
+</em></a><P><a name="15060">
+The matte we just created might prove useful in the future, so we'll save it to file. Later we can load it back into our image if we need to.<p>
+</a><P>
+<a name="15068">
+<STRONG>	36.	 <strong>(CLICK-L)</strong> on <strong>File:&gt;Save Matte</strong>
+</STRONG>
+</a><P><dl><a name="15073">
+<dt>The Save Matte dialog appears:</dt>
+</a><P><a name="15074">
+ <P><img src="2UsingInks.anc23.gif"><p>
+</a></dl>
+<a name="15075">
+<em>Figure 2.22  &#32; &#32;The Save Matte dialog
+</em></a><P><dl><dl><a name="15080">
+<dt>Specify a path and filename for the matte image. You can save mattes to memory, to a file on disk, or to both. In this case, <strong>(CLICK-L)</strong> on <strong>Both</strong>.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000>Note:	You cannot save images to the /usr/local/ngc/demo/images directory or any other subdirectory of /usr/local/ngc. Be sure to specify a directory for which you have the necessary write permissions!!</font></dd></dt></dl><P>
+
+<a name="16775">
+<STRONG>	37.	 Save your image.
+</STRONG>
+</a><P>
+<a name="14358">
+<h2><HR> Congratulations!</h2>
+</a><a name="14359">
+You've unlocked the power of N-Paint. There's no way we can outline all the different combinations of brushes, tools, and inks, to say nothing of the different effects you can get by manipulating tool and ink parameters. All that's really important is that you understand that you can apply any ink to the canvas through any tool. <p>
+</a><P><a name="15927">
+But just to be helpful, here are brief descriptions of each ink. For more complete descriptions, consult the <em>N-Paint Reference Guide</em>. 
+<P><Table Border="1">
+<dl>
+<a name="16016">
+<em>Table 2.1 <strong></strong><em> &#32; &#32;Ink types</em>
+</em></a></dl>
+<tr><th align="left"><a name="16022">
+Family
+</a><th align="left"><a name="16024">
+Ink
+</a><th align="left"><a name="16026">
+Description
+</a>
+<tr><td colspan=1 rowspan=5><a name="16028">
+ <strong>Brush</strong><p>
+</a><td valign="top"><a name="16219">
+ <strong>Color</strong><p>
+</a><td valign="top"><a name="16221">
+ Applies color to the canvas. You pick the color from a color palette.<p>
+</a>
+<tr><td valign="top"><a name="16036">
+ <strong>Pattern</strong><p>
+</a><td valign="top"><a name="16237">
+ Applies a repeating pattern to the image. Usually used with the cutout brush.<p>
+</a>
+<tr><td valign="top"><a name="16042">
+ <strong>Smear</strong><p>
+</a><td valign="top"><a name="16044">
+ Smears the colors under the brush.<p>
+</a>
+<tr><td valign="top"><a name="16048">
+ <strong>Vapor</strong><p>
+</a><td valign="top"><a name="16050">
+ Moves pixels away from or toward the center of the brush.<p>
+</a>
+<tr><td valign="top"><a name="16054">
+ <strong>Reveal</strong><p>
+</a><td valign="top"><a name="16056">
+ "Scrapes" away paint from the foreground image to reveal a background image.<p>
+</a>
+<tr><td colspan=1 rowspan=3><a name="16058">
+ <strong>Color</strong><p>
+</a><td valign="top"><a name="16060">
+ <strong>Gradient 2</strong><p>
+</a><td valign="top"><a name="16062">
+ Applies a two color gradient to the image.<p>
+</a>
+<tr><td valign="top"><a name="16066">
+ <strong>Gradient 4</strong><p>
+</a><td valign="top"><a name="16302">
+ Applies a four color gradient to the image.<p>
+</a>
+<tr><td valign="top"><a name="16072">
+ <strong>Multi Grad</strong><p>
+</a><td valign="top"><a name="16074">
+ Applies a gradient of up to 12 colors to the image. Instead of picking individual colors for this ink, you select a an entire palette row (which you can customize).<p>
+</a>
+<tr><td colspan=1 rowspan=7><a name="16076">
+ <strong>Recolor</strong><p>
+</a><td valign="top"><a name="16078">
+ <strong>IHS Recolor</strong><p>
+</a><td valign="top"><a name="16318">
+ Modifies colors already in an image by changing their intensity, hue, or saturation values.<p>
+</a>
+<tr><td valign="top"><a name="16084">
+ <strong>RGB Recolor</strong> <p>
+</a><td valign="top"><a name="16327">
+ Modifies colors already in an image by changing their RGB values.<p>
+</a>
+<tr><td valign="top"><a name="16090">
+ <strong>Equalize</strong><p>
+</a><td valign="top"><a name="16092">
+ Equalizes contrast across the areas where it is applied. This can be effective for correcting washed out or very dark images.<p>
+</a>
+<tr><td valign="top"><a name="16096">
+ <strong>Posterize</strong><p>
+</a><td valign="top"><a name="16346">
+  Reduces the number of colors in the area to which its applied.<p>
+</a>
+<tr><td valign="top"><a name="16102">
+ <strong>Colorize</strong><p>
+</a><td valign="top"><a name="16355">
+ Assign colors to grayscale values in grayscale images.<p>
+</a>
+<tr><td valign="top"><a name="16108">
+ <strong>Randomize</strong><p>
+</a><td valign="top"><a name="16365">
+ Adds an adjustable amount of noise to an image; useful for creating a "grainy" effect.<p>
+</a>
+<tr><td valign="top"><a name="16114">
+ <strong>Swap RGBA</strong><p>
+</a><td valign="top"><a name="16375">
+ Swap the components of one channel with those of another channel. <p>
+</a>
+<tr><td colspan=1 rowspan=9><a name="16118">
+ <strong>Filter</strong><p>
+</a><td valign="top"><a name="16120">
+ <strong>Blur</strong><p>
+</a><td valign="top"><a name="16397">
+ Blurs the area to which it is applied. <p>
+</a>
+<tr><td valign="top"><a name="16126">
+ <strong>Sharpen</strong><p>
+</a><td valign="top"><a name="16407">
+ Sharpens edges and generally makes the picture look more in focus.<p>
+</a>
+<tr><td valign="top"><a name="16132">
+ <strong>Shrink</strong><p>
+</a><td valign="top"><a name="16134">
+ Reduces the size of bright areas of the picture.<p>
+</a>
+<tr><td valign="top"><a name="16138">
+ <strong>Expand</strong><p>
+</a><td valign="top"><a name="16429">
+ Increases the size of bright areas of the picture.<p>
+</a>
+<tr><td valign="top"><a name="16144">
+ <strong>Despeckle</strong><p>
+</a><td valign="top"><a name="16146">
+ A noise filter, eliminates speckles and other noise from the area to which it's applied.<p>
+</a>
+<tr><td valign="top"><a name="16150">
+ <strong>Mosaic</strong><p>
+</a><td valign="top"><a name="16152">
+ Pixelates the area under the brush. The "cell" size for each pixel can be specified in both the X and Y directions.<p>
+</a>
+<tr><td valign="top"><a name="16156">
+ <strong>Fields</strong><p>
+</a><td valign="top"><a name="16158">
+ Filter images destined for video, specifying odd or even fields.<p>
+</a>
+<tr><td valign="top"><a name="16162">
+ <strong>Scatter</strong><p>
+</a><td valign="top"><a name="16164">
+ Displaces pixels both vertically andhorizontally to create "streaking" effects in the image<p>
+</a>
+<tr><td valign="top"><a name="16168">
+ <strong>Distort</strong><p>
+</a><td valign="top"><a name="16481">
+ Distorts an image without smearing it.<p>
+</a>
+<tr><td colspan=1 rowspan=3><a name="16172">
+ <strong>Composite</strong><p>
+</a><td valign="top"><a name="16174">
+ <strong>Reveal</strong> <strong>image</strong><p>
+</a><td valign="top"><a name="16176">
+ Wipe away part of one image, pulling through an image on a layer below.<p>
+</a>
+<tr><td valign="top"><a name="16180">
+ <strong>Scale</strong> <strong>image</strong><p>
+</a><td valign="top"><a name="16509">
+ Copies an image into the target shape, scaling it at the same time.<p>
+</a>
+<tr><td valign="top"><a name="16186">
+ <strong>Warp Image</strong><p>
+</a><td valign="top"><a name="16518">
+ Same as Scale Image, except that you can change the shape of the revealed image. For example, you can warp a rectangular image into an irregular polygon shape.<p>
+</a>
+<tr><td colspan=1 rowspan=2><a name="16190">
+ <strong>Chroma<br>Key</strong><p>
+</a><td valign="top"><a name="16192">
+ <strong>Chroma Key</strong><p>
+</a><td valign="top"><a name="16194">
+ Create a matte based on the image's RGB or IHS values.<p>
+</a>
+<tr><td valign="top"><a name="16198">
+ <strong>Edge Key</strong><p>
+</a><td valign="top"><a name="16200">
+ Create a matte using an edge detection filter (along edges of high contrast in an image).<p>
+</a>
+<tr><td colspan=1 rowspan=4><a name="16202">
+ <strong>Move<br>Pixels</strong><p>
+</a><td valign="top"><a name="16204">
+ <strong>Shift</strong><p>
+</a><td valign="top"><a name="16590">
+ This ink rubberstamps pixels from one area of an image to another. You can specify the offset numerically or graphically.<p>
+</a>
+<tr><td valign="top"><a name="16582">
+ <strong>Flip</strong><p>
+</a><td valign="top"><a name="16600">
+ Use this area to invert or rotate an area of the image.<p>
+</a>
+<tr><td valign="top"><a name="16576">
+ <strong>Mirror</strong><p>
+</a><td valign="top"><a name="16610">
+ Creates a mirror image of one half the area under a shape to the other half. This is a handy ink for creating reflections.<p>
+</a>
+<tr><td valign="top"><a name="16570">
+ <strong>Magnify</strong><p>
+</a><td valign="top"><a name="16620">
+ Creates a "blowup" of the area to which it's applied, as if you had "zoomed in" on the area. The magnification scale can be set manually.<p>
+</a>
+<tr><td valign="top"><a name="16562">
+ <strong>Special</strong><p>
+</a><td valign="top"><a name="16564">
+ <strong>Emboss</strong><p>
+</a><td valign="top"><a name="16566">
+ Creates the illusion of "raising" an area of the image by creating a drop shadow/3D effect.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1FirstImage.html">[Prev]</a> <a href="3PullingMattes.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 10:17:45 -->
+
+</body>
+</html>

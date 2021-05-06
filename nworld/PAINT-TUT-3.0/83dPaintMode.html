@@ -1,0 +1,492 @@
+<html><head><title>N-Paint 3D: 3D Mode</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="73dMapMode.html">[Prev]</a> <a href="92DAnimation.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6580">
+<h1>N-Paint 3D: 3D Mode</h1>
+</a>
+<hr><p><a name="6625">
+<h4> Using 3D mode, you can paint directly on objects in the Geometry window. </h4>
+</a><a name="6692">
+ <P><img src="83dPaintMode.anc.gif"><p>
+</a><a name="1221">
+<h2><HR> In this Chapter</h2>
+</a><a name="4967">
+You'll learn how to:<p>
+</a><P><ul><a name="4971">
+<li>Prepare an object for painting in 3D mode
+</a></li><P><a name="4972">
+<li>Paint directly onto an object
+</a></li><P><a name="4975">
+<li>Save your work
+</a></li><P></ul><P><a name="4976">
+<h2><HR> 3D Mode</h2>
+</a><a name="4979">
+While map mode unfolds the geometry of a face, collection of faces, or an entire object and shows them as an overlay on a paint canvas, 3D mode lets you paint directly onto the surface of an object.<p>
+</a><P><a name="4983">
+You paint on the object in a special window called the 3D Paint canvas; in this chapter we'll use a sample object and show how to paint on the different maps of the object.<p>
+</a><P><a name="6037">
+<h2><HR> Before You Begin</h2>
+</a><a name="6058">
+To paint on an object in 3D mode, you must <em>triangulate</em> it first. However, since you may not want to triangulate your original object, you have two options when using N-Paint 3D:<p>
+</a><P><a name="6221">
+<h4> Method #1-Make a Copy of the Object</h4>
+</a><a name="6222">
+If you want to make sure that you don't accidentally save a triangulated version of your object:<p>
+</a><P><ul><a name="6223">
+<li>Assign mappers and maps to your object
+</a></li><P><a name="6224">
+<li>Save the object
+</a></li><P><a name="6225">
+<li>Make a copy of the object
+</a></li><P><a name="6226">
+<li>Triangulate the copy
+</a></li><P><a name="6227">
+<li>Paint on the copy (which points to the same maps as the original)
+</a></li><P><a name="6228">
+<li>Save the modified maps
+</a></li><P><a name="6229">
+<li>Discard the copy
+</a></li><P><a name="6230">
+<li>Reread the original object, which now points to the updated maps
+</a></li><P></ul><P><a name="6231">
+Remember that you are actually painting on the <em>maps</em>, not the <em>object itself</em>.<p>
+</a><P><a name="6062">
+<h4> Method #2-Triangulate the Object but Don't Save It</h4>
+</a><a name="6238">
+If you don't want to bother with saving an extra copy of the object:<p>
+</a><P><ul><a name="6215">
+<li>Assign mappers and maps to your object
+</a></li><P><a name="6160">
+<li>Save the object
+</a></li><P><a name="6157">
+<li>Triangulate the object
+</a></li><P><a name="6078">
+<li>Paint it
+</a></li><P><a name="6081">
+<li>Save the modified maps
+</a></li><P><a name="6084">
+<li>Discard the object
+</a></li><P><a name="6165">
+<li>Reread the original object, which now points to the updated maps
+</a></li><P></ul><P><a name="6156">
+When you read your original (untriangulated) version, the maps painted on the triangulated version should fit on the object just as they did on the triangulated version. Remember that you are actually painting on the <em>maps</em>, not the <em>object itself</em>.<p>
+</a><P><a name="6120">
+<h2><HR> Getting Started</h2>
+</a><a name="5000">
+For this tutorial, we're going to use a sample object (a clown's head) to show the 3D mode of N-Paint 3D. To prepare this object ahead of time, we did the following:<p>
+</a><P><ul><a name="5088">
+<li>Attached mappers (a spherical mapper to the entire head and a spherical mapper to the nose part).
+</a></li><P><a name="5101">
+<li>Created materials with texture maps in the Attributes Editor.
+</a></li><P><a name="6742">
+<li>Assigned these materials to the object using the Browser.
+</a></li><P><a name="5102">
+<li>Saved the object.
+</a></li><P></ul><P><a name="5083">
+		The object has no special characteristics that a typical object you might design yourself would not have.<p>
+</a><P><a name="5015">
+To load in the prepared clown head:<p>
+</a><P>
+<a name="5062">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Open in the GeoMenus.
+</STRONG>
+</a><P><dl><a name="5067">
+<dt>In the dialog box that appears, load in the following object:</dt>
+</a><P><dl><a name="5068">
+<dt><code>/usr/local/ngc/demo/objects/C<a clown_Group.geo>lown_Group.geo</code><p>
+</a><P></dl><a name="5881">
+<dt>Reading in objects is described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl><a name="5066">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Read in Object button.
+</STRONG>
+</a><P><dl><a name="5072">
+<dt>The clown appears in the Nichimen Geometry window:</dt>
+</a><P><a name="5073">
+ <P><img src="83dPaintMode.anc1.gif"><p>
+</a></dl>
+<a name="5080">
+<em>Figure 8.1  &#32; &#32;The prepared clown head
+</em></a><P><a name="6252">
+<h3> Triangulating the Object</h3>
+</a><a name="6267">
+Remember that we've already assigned the map and mappers to the non-triangulated version of the clown head; when we paint on the triangulated version, remember that we're actually updating the maps (which are used by both versions). This means that the next time you read in the non-triangulated version of the clown head, the maps will be applied automatically through the specified mappers.<p>
+</a><P>
+<a name="6253">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu in the Nichimen Geometry window.
+</STRONG>
+</a><P><a name="6254">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the clown head.
+</STRONG>
+</a><P><a name="6255">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Triangulate command.
+</STRONG>
+</a><P><dl><a name="6256">
+<dt>The triangulate command cuts faces into triangles, but is necessary in order to paint on the surface of the object. Your triangulated clown head should look something like this:</dt>
+</a><P><a name="6260">
+ <P><img src="83dPaintMode.anc2.gif"><p>
+</a></dl>
+<a name="6261">
+<em>Figure 8.2  &#32; &#32;Triangulated clown head
+</em></a><P><dl><dl><a name="6262">
+<dt>Note that the mappers are still in place. Also, if you examine the parts for the object, you'll see that the parts are <em>preserved</em> when a triangulation is performed.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Because triangulating the object creates more faces on the object, you may find it useful to use the Stand-Ins command from the GeoMenus to create a stand-in for the object while moving the camera.</em></font></dd></dt></dl><P>
+<a name="6279">
+<h3> Using Orthographic Mode</h3>
+</a><a name="6280">
+When using N-Paint 3D in 3D mode, you should display your model in orthographic mode. To enter orthographic mode in N-Geometry, press the "o" hot key.<p>
+</a><P><a name="6264">
+You're now ready to begin painting on the surface of the object.<p>
+</a><P><a name="5161">
+<h2><HR> Painting on the Object</h2>
+</a><a name="5162">
+You paint on the object just as if it were a statue sitting on your workbench. You can reposition the camera (or the object) to any position you want, which is particularly useful if you're performing detail work on a discrete part of an object.<p>
+</a><P><a name="5179">
+<h4> Moving the Camera</h4>
+</a><a name="5267">
+The object is copied to the Nichimen 3D-Paint Canvas using its position in the Nichimen Geometry window; position the object so that the part you want to paint on is visible.<p>
+</a><P>
+<a name="5180">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on an open area of the Nichimen Geometry window.
+</STRONG>
+</a><P><dl><a name="5184">
+<dt>The camera is "engaged" and can be moved as described in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl><a name="5188">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> when you have the desired view of the object you want to paint on.
+</STRONG>
+</a><P>
+<a name="5199">
+<h4> Painting on the Object</h4>
+</a><a name="5294">
+In 3D mode, the object is "copied" into a new window, the <strong>Nichimen 3D-Paint Canvas</strong>. The view of the object in this window is identical to the view you set up in the Nichimen Geometry window.<p>
+</a><P>
+<a name="5293">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Shading in the GeoMenus and choose the clown head group.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The shaded version of the object must be visible in the Nichimen Geometry window. If you select an unshaded object to send to the 3D Paint canvas, only the object will be invisible.</em></font></dd></dt></dl><P>
+
+<a name="5298">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="5202">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the clown head.
+</STRONG>
+</a><P><a name="5203">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the 3D button in the 3D Paint section of the menu.
+</STRONG>
+</a><P><a name="5208">
+ <P><img src="83dPaintMode.anc3.gif"><p>
+</a>
+<a name="5209">
+<em>Figure 8.3  &#32; &#32;The 3D button
+</em></a><P><dl><dl><a name="5204">
+<dt>The selected object is displayed in the 3D-Paint Canvas:</dt>
+</a><P><a name="5287">
+ <P><img src="83dPaintMode.anc4.gif"><p>
+</a></dl></dl><a name="5288">
+<em>Figure 8.4  &#32; &#32;The Nichimen 3D Paint Canvas window
+</em></a><P>
+<a name="5189">
+<STRONG>	7.	 Choose a simple tool from the Nichimen Paint menu.
+</STRONG>
+</a><P><dl><a name="5224">
+<dt>Let's start with something simple like the round brush with a red color ink.</dt>
+</a><P></dl><a name="5227">
+<STRONG>	8.	 Draw several strokes across the clown's cheeks.
+</STRONG>
+</a><P><dl><a name="5233">
+<dt>Try something like this:</dt>
+</a><P><a name="5345">
+ <P><img src="83dPaintMode.anc5.gif"><p>
+</a></dl>
+<a name="5346">
+<em>Figure 8.5  &#32; &#32;Painting on the clown
+</em></a><P><dl><dl><a name="5340">
+<dt>Continue painting on the clown until you've finished the changes you want to make.</dt>
+</a><P></dl></dl><a name="5360">
+<h4> Saving Changes to the Maps in Memory</h4>
+</a><a name="5369">
+You need to save changes to the maps in memory <em>before</em>:<p>
+</a><P><ul><a name="5854">
+<li>you change the position of the camera in the geometry window
+</a></li><P></ul><P><a name="5870">
+or<p>
+</a><P><ul><a name="5857">
+<li>you change modes (e.g. from 3D mode to Map mode)
+</a></li><P></ul><P><a name="5865">
+To update the maps in memory you use the <strong>Update Maps</strong> button:<p>
+</a><P><a name="5381">
+ <P><img src="83dPaintMode.anc6.gif"><p>
+</a><a name="5382">
+<em>Figure 8.6  &#32; &#32;Update the maps (in memory) before changing the view
+</em></a><P><a name="5475">
+You can update all the maps associated with the object, or just those applied to selected parts, as described in the sections below.<p>
+</a><P><a name="5398">
+<h4> Updating All Maps</h4>
+</a><a name="5401">
+If you've painted over a number of parts, and want to save all the maps that may have been affected:<p>
+</a><P>
+<a name="5407">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Update Maps button.
+</STRONG>
+</a><P><dl><a name="5409">
+<dt>If you choose this option, all maps associated with the selected object are updated <em>in memory</em>. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You should update maps whenever you change modes (e.g., from 3D to map mode, or when you make the Geometry window active to change the views). (If you have only modified selected maps, see the section <a href="83dPaintMode.html#5370">"Updating Selected Maps," on page &#32;8-10</a>.</em></font></dd></dt><dl><a name="5416">
+<dt>If you try to change modes without updating the maps, the following warning is displayed:</dt>
+</a><P><a name="5429">
+ <P><img src="83dPaintMode.anc7.gif"><p>
+</a></dl></dl><P>
+<a name="5430">
+<em>Figure 8.7  &#32; &#32;Save your changes before changing modes!
+</em></a><P><dl><dl><a name="5421">
+<dt>If you choose to change modes without updating, any changes made to the maps (since the last time they were saved to memory) will be lost.</dt>
+</a><P></dl></dl><a name="5370">
+<h4> Updating Selected Maps</h4>
+</a><a name="5049">
+If you have only been working on a particular section of the object, and want to save only the maps that are associated with selected parts:<p>
+</a><P>
+<a name="5481">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the Update Maps button.
+</STRONG>
+</a><P><dl><a name="5501">
+<dt>A list of face parts that have been defined for the object appears:</dt>
+</a><P><a name="5509">
+ <P><img src="83dPaintMode.anc8.gif"><p>
+</a></dl>
+<a name="5510">
+<em>Figure 8.8  &#32; &#32;Selecting parts whose maps you want to save (to memory)
+</em></a><P>
+<a name="5502">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the part (or parts) whose map(s) you want to save.
+</STRONG>
+</a><P><dl><a name="5523">
+<dt>If, for example, you were painting only on the clown's teeth, you would <strong>(CLICK-L)</strong> on the part "teeth."</dt>
+</a><P><a name="5528">
+<dt>N-Paint 3D would check to see which maps were associated with the part teeth, and update that map in memory. </dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Only maps associated with the selected part(s) would be updated; once the mode change was completed, changes to other maps would be lost.</em></font></dd></dt></dl><P>
+<a name="5486">
+<h3> Reloading Maps</h3>
+</a><a name="5539">
+If you begin painting on an object but decide halfway through the session that you want to restart with the maps saved on disk:<p>
+</a><P>
+<a name="5553">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the File field in the Commands section of the Paint menu.
+</STRONG>
+</a><P><dl><a name="5582">
+<dt>The following menu appears:</dt>
+</a><P><a name="5594">
+ <P><img src="83dPaintMode.anc9.gif"><p>
+</a></dl>
+<a name="5595">
+<em>Figure 8.9  &#32; &#32;Reloading maps from disk
+</em></a><P>
+<a name="5583">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Reload Maps.
+</STRONG>
+</a><P><dl><a name="5608">
+<dt>A list of maps currently in memory is displayed.</dt>
+</a><P><a name="5619">
+ <P><img src="83dPaintMode.anc10.gif"><p>
+</a></dl>
+<a name="5620">
+<em>Figure 8.10  &#32; &#32;List of maps currently loaded into memory
+</em></a><P>
+<a name="5631">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the maps you want to reload, then <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P>
+<a name="5614">
+The selected maps are reloaded into memory and the object display is updated in the Nichimen 3D Paint Canvas window.<p>
+</a><P><a name="5584">
+<h3> Saving Changes to Disk</h3>
+</a><a name="5537">
+Once you're happy with the changes you've made to the object's maps, you can save any or all loaded maps back to disk:<p>
+</a><P>
+<a name="5645">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the FIle field in the Commands section of the Paint menu.
+</STRONG>
+</a><P><dl><a name="5668">
+<dt>The following menu appears:</dt>
+</a><P><a name="5672">
+ <P><img src="83dPaintMode.anc11.gif"><p>
+</a></dl>
+<a name="5673">
+<em>Figure 8.11  &#32; &#32;Saving maps from disk
+</em></a><P>
+<a name="5700">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Save Maps
+</STRONG>
+</a><P><dl><a name="6753">
+<dt>A list of maps that have been modified is displayed:</dt>
+</a><P><a name="5688">
+ <P><img src="83dPaintMode.anc12.gif"><p>
+</a></dl>
+<a name="5689">
+<em>Figure 8.12  &#32; &#32;List of maps currently loaded into memory
+</em></a><P>
+<a name="5697">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the maps you want to save to disk, then <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P>
+<a name="5649">
+<h3> Working with Parts</h3>
+</a><a name="5703">
+You can work with parts of an object in 3D mode just as you can in Map mode.<p>
+</a><P><a name="5811">
+<h4> Painting on Selected Faces</h4>
+</a><a name="5821">
+To paint on a group of faces not necessarily grouped into a part:<p>
+</a><P>
+<a name="5831">
+<STRONG>	 1.	 Collect the faces in the Nichimen Geometry window.
+</STRONG>
+</a><P><a name="5834">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the 3D button.
+</STRONG>
+</a><P><dl><a name="5835">
+<dt>The selected faces are assigned to the <strong>3D-Paint selected</strong> part and the selected object is copied to the 3D Paint Canvas window. Suppose, for example, that we collect a group of faces between the clown's eyes:</dt>
+</a><P><a name="5922">
+ <P><img src="83dPaintMode.anc13.gif"><p>
+</a></dl>
+<a name="5923">
+<em>Figure 8.13  &#32; &#32;Selecting faces from which to create a matte
+</em></a><P><dl><dl><a name="5941">
+<dt>The selected faces are copied into the matte channel.</dt>
+</a><P></dl></dl>
+<a name="5917">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the View button under the Matte section of the Nichimen Paint menu to view the matte in the 3D Paint Canvas window.
+</STRONG>
+</a><P><a name="5953">
+ <P><img src="83dPaintMode.anc14.gif"><p>
+</a>
+<a name="5954">
+<em>Figure 8.14  &#32; &#32;Selected faces are copied into the matte channel
+</em></a><P>
+<a name="5838">
+<STRONG>	4.	 The matte channel can be used to protect the selected faces.
+</STRONG>
+</a><P><dl><a name="5974">
+<dt><strong>(CLICK-L)</strong> on the <strong>Use</strong> button in the <strong>Matte</strong> section to use the matte as it exists; <strong>(CLICK-L)</strong> on the Rev button if you want to reverse the matte (change which faces are protected and vice-versa).</dt>
+</a><P></dl>
+<a name="5990">
+The selected faces are copied into the <strong>3D-Paint selected</strong> part whenever you <strong>(CLICK-L)</strong> on the <strong>3D</strong> button, so they can be easily reselected from N-Paint 3D.<p>
+</a><P><a name="5716">
+<h4> Toggling Visibility of Face Parts</h4>
+</a><a name="5730">
+If you want to make only selected parts of the model visible:<p>
+</a><P>
+<a name="5733">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the Part Select button.
+</STRONG>
+</a><P><dl><a name="5736">
+<dt>A list of parts on the selected object is displayed:</dt>
+</a><P><a name="5748">
+ <P><img src="83dPaintMode.anc15.gif"><p>
+</a></dl>
+<a name="5749">
+<em>Figure 8.15  &#32; &#32;Parts associated with the object
+</em></a><P>
+<a name="5768">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the parts you want to be visible in the Nichimen 3D Paint Canvas window.
+</STRONG>
+</a><P><dl><a name="5769">
+<dt>In this case, we chose only the head, so that the teeth and the nose are hidden from view:</dt>
+</a><P><a name="5759">
+ <P><img src="83dPaintMode.anc16.gif"><p>
+</a></dl>
+<a name="5760">
+<em>Figure 8.16  &#32; &#32;Only the selected parts are displayed
+</em></a><P><dl><dl><a name="5737">
+<dt>Now, when you paint, only the visible parts are updated.</dt>
+</a><P><a name="5844">
+<dt>This option is handy for painting on parts of an object that are obscured by other parts; for example, if you want to paint around the upper lip (which is normally obscured by the nose), you can make the nose invisible and paint directly onto the head part of the clown.</dt>
+</a><P></dl></dl><a name="5717">
+<h4> Making the Entire Object Visible</h4>
+</a><a name="5718">
+To make the entire object visible, <strong>(CLICK-R)</strong> on the <strong>Part Select</strong> button.<p>
+</a><P><a name="5787">
+<h3> Partially Obscured Faces</h3>
+</a><a name="5788">
+By default, for 3D paint to paint onto a face, the face must be <em>completely</em> visible; that is, it cannot be even partially obscured by another part of the model. <p>
+</a><P><a name="6318">
+If you want to save changes you have made to a partially obscured face, you must <strong>(SHIFT-L)</strong> or <strong>(SHIFT-M)</strong> on the <strong>Update Maps</strong> button.<p>
+</a><P><a name="6323">
+<h3> Add Shading to Texture Maps</h3>
+</a><a name="6373">
+If you like the appearance of the object based on the current lighting of the N-Geometry scene, you can "pre-shade" the texture map.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This operation pre-shades only the </em>visible<em> portions of any texture maps.</em></font></dd></dt></dl><P>
+<a name="6447">
+To shade a texture map in 3D mode:<p>
+</a><P>
+<a name="6448">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the File field in the Commands section of the Commands menu.
+</STRONG>
+</a><P><a name="6449">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Add Shading to Texture Maps as shown below.
+</STRONG>
+</a><P><a name="6329">
+ <P><img src="83dPaintMode.anc17.gif"><p>
+</a>
+<a name="6330">
+<em>Figure 8.17  &#32; &#32;Shading texture maps
+</em></a><P><a name="6395">
+When you add shading to the texture maps, the object displayed on the 3D canvas gets darker, because you are darkening the maps, then displaying the object using those (now darker) maps.<p>
+</a><P><a name="6487">
+If you want to view an object using pre-shaded maps without any additional shading effect from lights in N-Geometry, you can use the <strong>Disable Lights</strong> command described in the next paragraph.<p>
+</a><P><a name="6337">
+<h3> Enable/Disable Lights</h3>
+</a><a name="6348">
+When painting on an object in 3D mode, you have the option of turning the lights in the scene on or off. <p>
+</a><P><ul><a name="6398">
+<li>If you use <strong>Disable Lights</strong>, the maps are projected onto the object in the 3D Canvas with no shadows (that is, using none of the light information from N-Geometry). The maps appear as they would in N-Paint.
+</a></li><P><a name="6414">
+<li>If you use <strong>Enable Lights</strong>, the maps are shaded. The maps appear as they would if displayed in the N-Geometry window in shaded mode using GL Shade.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Enable/Disable Lights is strictly a display feature. Maps are affected in the same way, regardless of how this parameter is set.</em></font></dd></dt></dl><P>
+<a name="6411">
+To toggle lights on and off in 3D mode:<p>
+</a><P>
+<a name="6678">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the File field in the Commands section of the Commands menu.
+</STRONG>
+</a><P><a name="6357">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Enable/Disable Lights as shown below.
+</STRONG>
+</a><P><dl><a name="6360">
+<dt>The label on this button toggles based on its current state:</dt>
+</a><P><a name="6341">
+ <P><img src="83dPaintMode.anc18.gif"><p>
+</a></dl>
+<a name="6338">
+<em>Figure 8.18  &#32; &#32;Toggling lights
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="73dMapMode.html">[Prev]</a> <a href="92DAnimation.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 22:35:55 -->
+
+</body>
+</html>

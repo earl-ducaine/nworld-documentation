@@ -1,0 +1,789 @@
+<html><head><title>Skeletons in N-Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands2.html">[Prev]</a> <a href="3DynamicsOperations.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+<h1> Skeletons in N-Geometry (cont.)</h1> 
+<a name="29789">
+<h3> Pose</h3>
+</a><a name="29313">
+<em>Skeletons</em><p>
+</a><P><a name="26079">
+For a skeleton and its attached skins:<p>
+</a><P><ul><a name="26080">
+<li>Move the skeleton to a saved pose
+</a></li><P><a name="26081">
+<li>Save the skeleton's current position as a pose
+</a></li><P><a name="26082">
+<li>Rename or delete a saved pose
+</a></li><P><dl><a name="26083">
+<dt>A pose is similar to a relative displacement (described in the <em>N-Geometry Reference Guide</em>). Poses are based on the saved base state for the skeleton. </dt>
+</a><P><a name="26084">
+<dt>Poses contain all the DOF differences from the skeleton's base state and lengths, and <em>may</em> contain the root translations and rotations.</dt>
+</a><P><a name="26085">
+<dt>Skeletons are animated using poses in N-Dynamics using the <strong>Animate Multiple Poses</strong>, <strong>Animate Pose</strong>, or <strong>Animate Pose to Pose</strong> operations, described in <a href="3DynamicsOperations.html#167">Chapter &#32;3</a> of this guide.</dt>
+</a><P></dl></ul><P><a name="26090">
+<h4> Moving the Skeleton to a Saved Pose</h4>
+</a><a name="26091">
+To move the skeleton to a saved pose:<p>
+</a><P>
+<a name="26092">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26093">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="26094">
+<dt>A menu with any saved poses for the skeleton is displayed:</dt>
+</a><P><a name="26098">
+ <P><img src="2MenusCommands.anc77.gif"><p>
+</a></dl>
+<a name="26099">
+<em>Figure 2.77  &#32; &#32;Moving the skeleton to a selected pose
+</em></a><P>
+<a name="26100">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the pose you want to move the skeleton toward.
+</STRONG>
+</a><P><a name="26101">
+<STRONG>	4.	 Move the mouse left to right to animate the skeleton toward the selected pose.
+</STRONG>
+</a><P>
+<a name="26102">
+<strong>(SHIFT-L)</strong> animates the skeleton to the selected pose but does not update the attached skins.<p>
+</a><P><a name="26104">
+<h4> Saving the Skeleton's Current Position as a Pose</h4>
+</a><a name="26105">
+To save the skeleton in its current state as a pose:<p>
+</a><P>
+<a name="26106">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26107">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Pose.
+</STRONG>
+</a><P><a name="26108">
+<STRONG>	3.	 Enter the name of the pose in the dialog box that is displayed:
+</STRONG>
+</a><P><a name="26112">
+ <P><img src="2MenusCommands.anc78.gif"><p>
+</a>
+<a name="26113">
+<em>Figure 2.78  &#32; &#32;Naming a saved pose
+</em></a><P><ul><a name="26114">
+<li><strong>Pose Name</strong> is the name for the pose.
+</a></li><P><a name="26115">
+<li><strong>Root Rotations too?</strong> specifies whether or not to save root rotations.
+</a></li><P><a name="26116">
+<li><strong>Root Translations too?</strong> specifies whether or not to save root translations.
+</a></li><P></ul><P><a name="26117">
+<strong>(SHIFT-L)</strong> animates the skeleton to the selected pose but does not update the attached skins.<p>
+</a><P><a name="26118">
+<h4> Rename or Delete a Pose</h4>
+</a><a name="26119">
+To delete or rename a saved pose:<p>
+</a><P>
+<a name="26120">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="26121">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="26122">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="26126">
+ <P><img src="2MenusCommands.anc79.gif"><p>
+</a></dl>
+<a name="26127">
+<em>Figure 2.79  &#32; &#32;Deleting or renaming a pose
+</em></a><P><a name="26129">
+<h4> Renaming a Pose</h4>
+</a><a name="26130">
+Displays a list of poses saved for the skeleton. <strong>(CLICK-L)</strong> on the pose you want to rename, then change that name in the dialog box that appears.<p>
+</a><P><a name="26132">
+<h4> Deleting a Pose</h4>
+</a><a name="26133">
+Displays a list of saved poses. After selecting the pose to delete, you're asked to confirm this choice.<p>
+</a><P><a name="23219">
+<h3> Position</h3>
+</a><a name="29321">
+<em>Skeletons</em><p>
+</a><P><a name="23220">
+Lets you select a point at which to place the root of the skeleton.<p>
+</a><P><a name="23221">
+To reposition the skeleton:<p>
+</a><P>
+<a name="23222">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the Skeleton.
+</STRONG>
+</a><P><a name="23223">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Position.
+</STRONG>
+</a><P><dl><a name="23224">
+<dt>The cursor in the N-Geometry menu changes so that only points can be selected.</dt>
+</a><P></dl><a name="23225">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the point where you want to center the skeleton (or <strong>(CLICK-R)</strong> to abort).
+</STRONG>
+</a><P><dl><a name="23226">
+<dt>The skeleton changes to its new position.</dt>
+</a><P></dl>
+<a name="28084">
+<h3> Rename</h3>
+</a><a name="29338">
+<em>Bones, joints</em><p>
+</a><P><a name="28085">
+Renames the selected element.<p>
+</a><P><a name="28086">
+To rename a bone or joint:<p>
+</a><P>
+<a name="28087">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the element you want to rename.
+</STRONG>
+</a><P><a name="28088">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Rename.
+</STRONG>
+</a><P><dl><a name="28089">
+<dt>Enter the new name for the element in the dialog box that appears.</dt>
+</a><P><a name="28090">
+<dt>If more than one element has been collected when this command is invoked, you are asked to rename each bone sequentially.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you want to rename an entire skeleton, <strong>(SHIFT-L)</strong> on the skeleton object and choose <strong>Rename</strong>, or use the <strong>Rename</strong> command on the GeoMenus.</font></dd></dt></dl><P>
+<a name="34511">
+<h3> Rotate</h3>
+</a><a name="34512">
+<em>Skeletons</em><p>
+</a><P><a name="34513">
+To rotate the entire skeleton in 3D space:<p>
+</a><P>
+<a name="34514">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P>
+<ul><a name="34515">
+<li><strong>(CLICK-L)</strong> on Rotate the skeleton around the major axes
+</a></li><P><a name="34516">
+<li><strong>(CLICK-M)</strong> on Rotate the skeleton around a specified axis.
+</a></li><P><a name="34546">
+<li><strong>(CLICK-R)</strong> on Rotate for more options on specifying an axis around which to rotate the skeleton.
+</a></li><P></ul><P><a name="34517">
+For a more complete description of the <strong>Rotate </strong>command, see the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="28091">
+<h3> Rotate/Twist</h3>
+</a><a name="29347">
+<em>Bones</em><p>
+</a><P><a name="28092">
+Rotates or twists the bone, optionally taking into account any DOF limits you have defined for the bone.<p>
+</a><P><a name="28093">
+For example, if you <strong>(CLICK-M)</strong> to rotate a bone aligned with its local Y axis, the bone would only twist according to the DOF limits defined for that bone. If you attempt to move a bone in a completely restricted plane, a dialog appears telling you this move is restricted.<p>
+</a><P><a name="28095">
+<h4> Rotating a Bone around its Local Axes</h4>
+</a><ul><a name="28096">
+<li><strong>(CLICK-L)</strong> on <strong>Rotate/Twist</strong> rotates or twists the bone, taking into account the DOF limits defined for the bone in the DOF editor. The bone rotates around its own local axes, (i.e., left-right controls rotation around the X axis, up-down controls rotation around the Y axis, and <strong>(HOLD-M)</strong> controls rotation around the Z axis).
+</a></li><P></ul><P><a name="28098">
+<h4> Twisting a Bone around the Bone Direction Axis</h4>
+</a><ul><a name="28099">
+<li><strong>(CLICK-M)</strong> twists the bone around the local axis which follows the bone itself. (Typically, at least one axis is aligned lengthwise with the bone.)
+</a></li><P></ul><P><a name="28101">
+<h4> Rotating a Bone (translated)</h4>
+</a><ul><a name="28102">
+<li><strong>(CLICK-R)</strong> lets you move the bone more intuitively; N-Geometry takes into account the local rotation axis of the bone and translates the mouse movement correctly so that moving the mouse left to right rotates the bone in one plane, moving it forward and back rotates it in another, and <strong>(HOLD-M)</strong> always rotates the bone around the axis it is aligned with locally.
+</a></li><P><dl><a name="28103">
+<dt>Even if you change the alignment of the local bone axis, the bone rotates in the same manner relative to the global axis.</dt>
+</a><P><a name="28113">
+<dt>In <a href="2MenusCommands3.html#28121">Figure 2.80</a>, <a href="2MenusCommands3.html#28129">Figure 2.81</a>, and <a href="2MenusCommands3.html#28142">Figure 2.82</a>, we rotated the chest bone using <strong>(CLICK-R)</strong> on <strong>Rotate/Twist</strong>. Using this rotate produces the same results even if you change the orientation of the local bone axes (e.g., with the <strong>Align/Rotate Axes</strong> command).</dt>
+</a><P><a name="28119">
+ <P><img src="2MenusCommands.anc80.gif"><p>
+</a></dl></ul><P><a name="28121">
+<em>Figure 2.80  &#32; &#32;Moving the mouse left/right moves the bone in one plane
+</em></a><P><a name="28127">
+ <P><img src="2MenusCommands.anc81.gif"><p>
+</a><a name="28129">
+<em>Figure 2.81  &#32; &#32;Moving the mouse forward and back moves skeleton in the plane perpendicular to moving it left and right
+</em></a><P><a name="28140">
+ <P><img src="2MenusCommands.anc82.gif"><p>
+</a><a name="28142">
+<em>Figure 2.82  &#32; &#32;<strong>(HOLD-M)</strong> rotates a bone around its local bone direction axis 
+</em></a><P><a name="28143">
+(The actual directions may be slightly different depending on the bone's directional axis, but the effects are similar.)<p>
+</a><P><a name="23229">
+<h3> Scale</h3>
+</a><a name="29353">
+<em>Skeletons</em><p>
+</a><P><a name="23230">
+Scale the skeleton using one of a number of available methods. If you have questions about how a particular method works, save your work and try scaling a skeleton with some of the various options.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you want to scale the skeleton and keep the root in its current position, use </em><strong>Scale around an Arbitrary Vertex</strong><em> and choose the root.</em></font></dd></dt></dl><P>
+<a name="23232">
+<h4> Scale Uniformly around Individual Midpoints</h4>
+</a><a name="23233">
+To scale the skeleton uniformly:<p>
+</a><P>
+<a name="23234">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="23235">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="23236">
+<dt>The skeleton is scaled uniformly in all three directions.</dt>
+</a><P></dl>
+<a name="23238">
+<h4> Scale around an Arbitrary Vertex</h4>
+</a><a name="23239">
+To scale the skeleton around an arbitrary vertex:<p>
+</a><P>
+<a name="23240">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="23241">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Scale.
+</STRONG>
+</a><P><a name="23242">
+<STRONG>	3.	 Select a point (usually on the skeleton) around which to scale the entire skeleton. 
+</STRONG>
+</a><P><dl><a name="23243">
+<dt>That point appears to be "locked" and the skeleton scales around it.</dt>
+</a><P></dl>
+<a name="23245">
+<h4> Scaling around a Selected Element</h4>
+</a><a name="23246">
+To scale the skeleton around a selected element:<p>
+</a><P>
+<a name="23247">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="23248">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="23249">
+<dt>N-Geometry presents a menu that lets you specify how you want to scale the skeleton. For a description of each of the options on the scaling menu, see the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="28148">
+<h3> Scale Axis</h3>
+</a><a name="29358">
+<em>Bones</em><p>
+</a><P><a name="28149">
+This command scales the local axis on a bone. This operation is useful on a complicated skeleton, where there are a large number of axes near each other and you want to make the axis for one bone (or several bones) stand out from the others.<p>
+</a><P><ul><a name="28150">
+<li><strong>(CLICK-L)</strong> scales the local bone axes for the currently selected bone.
+</a></li><P><a name="28162">
+ <P><img src="2MenusCommands.anc83.gif"><p>
+</a></ul><P><a name="28163">
+<em>Figure 2.83  &#32; &#32;Scaling the bone's local axis
+</em></a><P><a name="28165">
+<h3> Scale Bone</h3>
+</a><a name="29367">
+<em>Bones</em><p>
+</a><P><a name="28166">
+Scales the selected bone.<p>
+</a><P><ul><a name="28167">
+<li><strong>(CLICK-L)</strong> stretches or shortens the bone, ignoring the DOF limits (if any) for the selected bones.
+</a></li><P><a name="28168">
+<li><strong>(SHIFT-L)</strong> stretches or shortens the bone, paying attention to the DOF limits.
+</a></li><P></ul><P><a name="28268">
+<h3> Select Attachments</h3>
+</a><a name="34568">
+<em>Skeletons, bones</em><p>
+</a><P><a name="34617">
+This command selects any attached objects associated with the currently selected bone or skeleton.<p>
+</a><P>
+<a name="34618">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone (or skeleton) whose attached objects you want to see.
+</STRONG>
+</a><P><a name="34619">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Select Attachments.
+</STRONG>
+</a><P><dl><a name="34622">
+<dt>The object or (objects) attached to the bone are selected in the N-Geometry window:</dt>
+</a><P><a name="34626">
+ <P><img src="2MenusCommands.anc84.gif"><p>
+</a></dl>
+<a name="34627">
+<em>Figure 2.84  &#32; &#32;Selecting Attachments
+</em></a><P><a name="34663">
+If you have <em>multiple</em> objects attached to a bone or skeleton, you can use <strong>(CTRL-*)</strong> on the <strong>Select Attachments</strong> command to display a menu of attached objects. On that menu, highlight any objects you want to select.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Objects can also be selected using the Browser.</font></dd></dt></dl><P>
+<a name="34567">
+<h3> Select Elements</h3>
+</a><a name="29372">
+<em>Skeletons</em><p>
+</a><P><a name="28269">
+Collects the specified points or segments in the selected body. <p>
+</a><P><a name="28270">
+If you use <strong>(CTRL-L)</strong>, you can enter a LISP form which lets you specify which elements to select, (e.g., all elements with the <strong>:shoulder</strong> ID).<p>
+</a><P><a name="28272">
+<h4> Selecting the Points on a Skeleton</h4>
+</a><a name="28273">
+To select the points of the currently selected skeleton:<p>
+</a><P>
+<a name="28274">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="28275">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="28276">
+<dt>All points on the skeleton are highlighted.</dt>
+</a><P></dl>
+<a name="28278">
+<h4> Selecting the Bones on a Skeleton</h4>
+</a><a name="28279">
+To select the segments of the currently selected skeleton:<p>
+</a><P>
+<a name="28280">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="28281">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="28282">
+<dt>All segments on the skeleton are highlighted.</dt>
+</a><P></dl>
+<a name="34464">
+<h3> Select Joint</h3>
+</a><a name="34465">
+<em>Bones</em><p>
+</a><P><a name="34466">
+Selects the inferior or superior <em>joint</em> of the selected bone. <p>
+</a><P><a name="34468">
+<h4> Selecting the Inferior Joint of the Bone</h4>
+</a><a name="34469">
+To select the inferior joint of the bone (further from the root):<p>
+</a><P>
+<a name="34470">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose inferior joint you want to select.
+</STRONG>
+</a><P><a name="34471">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Joint.
+</STRONG>
+</a><P><dl><a name="34472">
+<dt>Points is highlighted in the sensitivity element menu and the inferior joint of the bone is selected.</dt>
+</a><P></dl>
+<a name="34474">
+<h4> Selecting the Superior Joint of the Bone</h4>
+</a><a name="34475">
+To select the superior joint of the bone (closer to the root):<p>
+</a><P>
+<a name="34476">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose superior joint you want to select.
+</STRONG>
+</a><P><a name="34477">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Joint.
+</STRONG>
+</a><P><dl><a name="34478">
+<dt>Points is highlighted in the sensitivity element menu and the superior joint of the bone is selected.</dt>
+</a><P></dl>
+<a name="28287">
+<h3> Select Skins</h3>
+</a><a name="34573">
+<em>Skeletons, bones</em><p>
+</a><P><a name="34574">
+This command highlights the vertices on any skins associated with the currently selected bone or skeleton.<p>
+</a><P>
+<a name="34578">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone (or skeleton) whose skin parts you want to see.
+</STRONG>
+</a><P><ul>
+<BR><a name="34581">
+<li><strong>(CLICK-L)</strong> on Select Skins to display hard and soft parts
+</a><P><BR><a name="34586">
+<li><strong>(CLICK-M)</strong> on Select Skins to display hard parts only
+</a><P><BR><a name="34588">
+<li><strong>(CLICK-R)</strong> on Select Skins to display soft parts only
+</a><P></ul>
+
+<a name="34575">
+The vertices in the selected parts are highlighted in the N-Geometry window:<p>
+</a><P><a name="34604">
+ <P><img src="2MenusCommands.anc85.gif"><p>
+</a><a name="34605">
+<em>Figure 2.85  &#32; &#32;Selecting skin parts
+</em></a><P><a name="34572">
+<h3> Skin</h3>
+</a><a name="29377">
+<em>Skeletons</em><p>
+</a><P><a name="28288">
+Performs the following "skinning" operations:<p>
+</a><P><ul><a name="28289">
+<li>Attach a skin to the selected skeleton
+</a></li><P><a name="28290">
+<li>Detach a skin from the selected skeleton
+</a></li><P><a name="28291">
+<li>Show (select) the skins attached to the selected skeleton
+</a></li><P></ul><P><a name="28293">
+<h4> Attaching a Skin to a Skeleton</h4>
+</a><a name="28294">
+To attach a skin to a skeleton:<p>
+</a><P>
+<a name="28295">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton you want to attach a skin to.
+</STRONG>
+</a><P><a name="28296">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Skin.
+</STRONG>
+</a><P><dl><a name="28297">
+<dt>A list of objects in the current N-Geometry scene is displayed.</dt>
+</a><P></dl><a name="28299">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the object you want to attach as the skin.
+</STRONG>
+</a><P><dl><a name="28300">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="28304">
+ <P><img src="2MenusCommands.anc86.gif"><p>
+</a></dl>
+<a name="28305">
+<em>Figure 2.86  &#32; &#32;Making skin parts
+</em></a><P><ul><ul>
+<BR><a name="28306">
+<li><strong>Yes</strong> lets you make default skin parts (see the dialog box below).
+</a><P><BR><a name="28307">
+<li><strong>No</strong> attaches the skin to the skeleton, but does not divide the skin into individual parts. This is useful if you have defined your own skin parts on a skin, and know which bones you want each skin part associated with. See the <em>Skeletal Animation System Tutorial</em> for more information on making your own skin parts.
+</a><P></ul>
+</ul>
+<a name="28311">
+<STRONG>	4.	 If you chose Yes in step <a href="2MenusCommands3.html#28299">3</a>, the following dialog box is displayed:
+</STRONG>
+</a><P><a name="28315">
+ <P><img src="2MenusCommands.anc87.gif"><p>
+</a>
+<a name="28316">
+<em>Figure 2.87  &#32; &#32;How to make skin parts
+</em></a><P><ul><ul>
+<BR><a name="28317">
+<li><strong>Make Default Skin Parts</strong> makes skin parts that are hard when the bone rotates, but soft when the bone is twisted or scaled.
+</a><P><BR><a name="28318">
+<li><strong>Make Hard Skin Parts Only</strong> makes skin parts that are hard when the bone is rotated, twisted, or scaled.
+</a><P></ul>
+</ul><a name="28319">
+Now, when you move the skeleton, the skin updates accordingly. See the <em>Skeletal Animation System Tutorial</em> for more information on assigning skin parts.<p>
+</a><P><a name="28321">
+<h4> Detaching a Skin from a Skeleton</h4>
+</a><a name="28322">
+To detach a skin from the currently selected skeleton:<p>
+</a><P>
+<a name="28323">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton you want to detach a skin from.
+</STRONG>
+</a><P><a name="28324">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Skin.
+</STRONG>
+</a><P><dl><a name="28325">
+<dt>A list of skins attached to the skeleton is displayed.</dt>
+</a><P></dl><a name="28326">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the skin you want to detach.
+</STRONG>
+</a><P><a name="28327">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="28328">
+<dt>The skin is detached from the skeleton.</dt>
+</a><P></dl>
+<a name="28340">
+<h3> Skin Displacement</h3>
+</a><a name="29392">
+<em>Skeletons, bones</em><p>
+</a><P><a name="28172">
+Skin displacements are "secondary" displacements-changes that occur in the skin's shape, but which are not necessarily related to skeletal motion (such as the flexing of a muscle when a limb is rotated).<p>
+</a><P><a name="28173">
+(Creating skin displacements is described briefly below, in the section describing saving skin displacements.)<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Skin displacements are associated with the movement of a single bone about a single DOF.</em></font></dd></dt></dl><P>
+<a name="28176">
+<h4> Editing an Existing Skin Displacement</h4>
+</a><ul><a name="28177">
+<li><strong>(CLICK-L)</strong> to edit an existing skin displacement. This opens a list of skin displacements saved on the selected bone:
+</a></li><P><a name="28181">
+ <P><img src="2MenusCommands.anc88.gif"><p>
+</a></ul><P><a name="28182">
+<em>Figure 2.88  &#32; &#32;Choosing a skin displacement to edit
+</em></a><P><dl><dl><a name="28183">
+<dt><strong>(CLICK-L)</strong> on the skin displacement you want to edit. A dialog box similar to that shown below opens:</dt>
+</a><P><a name="28187">
+ <P><img src="2MenusCommands.anc89.gif"><p>
+</a></dl></dl><a name="28188">
+<em>Figure 2.89  &#32; &#32;Editing a skin displacement
+</em></a><P><ul><a name="28189">
+<li><strong>Rotation Range Limit</strong> specifies the angle at which the full displacement occurs (remember, skin displacements are in a single plane).
+</a></li><P><a name="28190">
+<li><strong>Exponent</strong> is the exponent value that determines how quickly the skin moves toward the saved skin displacement. A lower value makes the skin change to the target shape more quickly.
+</a></li><P><a name="28191">
+<li><strong>Clip</strong> and <strong>Scale</strong> determine how the skin displacement behaves once you go beyond the specified <strong>Rotation Range Limit</strong>. If you animate the flexing of a bicep, and define the skin displacement with the forearm flexed at 60&#176;. What happens if you go beyond 60&#176;?
+</a></li><P><ul>
+<BR><a name="28192">
+<li><strong>Clip</strong> stops the skin displacement at its full value, even if you rotated the arm beyond 60&#176;-the muscle reaches its maximum size and stops.
+</a><P><BR><a name="28193">
+<li><strong>Scale</strong> extrapolates the skin displacement, so that the bicep continues to swell when you rotate the upper arm past 60&#176;.
+</a><P></ul>
+</ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You must have defined at least one skin displacement for this command to be used.</em></font></dd></dt></dl><P>
+<a name="28196">
+<h4> Creating a Skin Displacement and Linking it to a Bone's Position</h4>
+</a><ul><a name="28197">
+<li><strong>(CLICK-M)</strong> links the current shape of the skin to the bone's current rotation. The basis steps in creating a skin displacement are as follows:
+</a></li><P></ul><P>
+<a name="28198">
+<STRONG>	 1.	 Rotate a single bone in a single axis.
+</STRONG>
+</a><P><dl><a name="28199">
+<dt>Use the <strong>XYZ Rotate</strong> command to make sure you rotate the bone in only a single direction-if you try to make a skin displacement for a bone that has been rotated in more than one direction, an error message is displayed.</dt>
+</a><P></dl><a name="28200">
+<STRONG>	2.	 Modify the skin so that it looks like it should when the bone is rotated to its current position.
+</STRONG>
+</a><P><a name="28201">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the bone you want to associate the skin displacement with.
+</STRONG>
+</a><P><dl><a name="28202">
+<dt>This is typically the bone <em>below</em> the joint; for example, if you're defining a skin displacement for the bicep, that displacement should be saved with the forearm, since its X rotation <strong>causes</strong> the displacement.</dt>
+</a><P></dl><a name="28203">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on Skin Displacement.
+</STRONG>
+</a><P><dl><a name="28204">
+<dt>Enter the name of the skin displacement in the dialog box that appears.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If the selected bone has been rotated in more than one plane (when compared to the base position of the skeleton), an error message is displayed. Skin displacements can only be associated with a bone that has moved in a single axis.</em></font></dd></dt><dl><a name="28206">
+<dt>Now, when you rotate the bone, the skin is displaced toward the saved skin displacement.</dt>
+</a><P></dl></dl><P>
+<a name="28207">
+<h4> Renaming or Deleting a Skin Displacement</h4>
+</a><ul><a name="28208">
+<li><strong>(CLICK-R)</strong> lets you rename or delete a skin displacement you have already created. The following menu is displayed:
+</a></li><P><a name="28212">
+ <P><img src="2MenusCommands.anc90.gif"><p>
+</a></ul><P><a name="28213">
+<em>Figure 2.90  &#32; &#32;Choose whether to rename or delete
+</em></a><P><a name="28215">
+<h4> Renaming a Skin Displacement</h4>
+</a><a name="28216">
+If you <strong>(CLICK-L)</strong> on <strong>Rename</strong>, a list of any skin displacements saved with the bone is displayed:<p>
+</a><P><a name="28220">
+ <P><img src="2MenusCommands.anc91.gif"><p>
+</a><a name="28221">
+<em>Figure 2.91  &#32; &#32;Skin displacement list
+</em></a><P><a name="28222">
+<strong>(CLICK-L)</strong> on the displacement you want to rename, then enter the new name for the displacement in the dialog box that appears.<p>
+</a><P><a name="28224">
+<h4> Deleting a Skin Displacement</h4>
+</a><a name="28225">
+If you <strong>(CLICK-L)</strong> on <strong>Delete</strong>, a list of any skin displacements saved with the bone is displayed:<p>
+</a><P><a name="28229">
+ <P><img src="2MenusCommands.anc92.gif"><p>
+</a><a name="28230">
+<em>Figure 2.92  &#32; &#32;Skin displacement list
+</em></a><P><a name="28231">
+<strong>(CLICK-L)</strong> on a displacement to delete it or on <strong>Abort</strong> if you change your mind.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Although skin displacements are associated with a particular bone, this command can also be used if you've forgotten which bone a skin displacement was associated with.</font></dd></dt></dl><P>
+<a name="28234">
+<h3> Skin Update</h3>
+</a><a name="29404">
+<em>Skeletons, bones, joints</em><p>
+</a><P><a name="28235">
+Sets how skins are updated when the selected element is moved. To define the skin update mode for an element, <strong>(SHIFT-L)</strong> on the element, then <strong>(CLICK-L)</strong> on <strong>Skin Update</strong>. Depending on the element type selected, one of the following menus is displayed:<p>
+</a><P><a name="28239">
+ <P><img src="2MenusCommands.anc93.gif"><p>
+</a><a name="28240">
+<em>Figure 2.93  &#32; &#32;Selecting a skin update mode: Follow while moving, follow without displacements, snap to element after moving
+</em></a><P><a name="28241">
+<h4> Follow Elements</h4>
+</a><a name="28242">
+Updates the skins <em>interactively</em> as you move the element (also taking into account any skin displacements that have been defined). <p>
+</a><P><a name="29455">
+This is the slowest <strong>Skin Update</strong> mode, but the most accurate (if you want to see how displacements will be layered on top of bone driven animation).<p>
+</a><P><a name="28243">
+<h4> Follow Elements without Displacements</h4>
+</a><a name="28244">
+Updates the skins interactively as well, but ignores any skin displacements that have been defined until the bone is in its new position. Similar to the method above, but doesn't animate displacements. <p>
+</a><P><a name="29468">
+This <strong>Skin Update</strong> mode is faster than the follow elements mode. Use this mode if you aren't using any skin displacements.<p>
+</a><P><a name="28245">
+<h4> Snap to Bone(s)</h4>
+</a><a name="28246">
+Reposition the skeleton, bone, or joint without updating the skin; when you complete the reposing, the skin "snaps" to the new position. <p>
+</a><P><a name="29474">
+This is the fastest <strong>Skin Update</strong> mode. Use this mode if you are working with very large skins where you need quick response.<p>
+</a><P><a name="28248">
+<h3> Soft Influence</h3>
+</a><a name="29479">
+<em>Bones</em><p>
+</a><P><a name="28249">
+After you assign a soft part to a skeleton, you may change the function which calculates the soft influence for that soft part. The soft influence specifies how the soft skin part is "deformed." This is the amount of inferior vs. superior influence on the soft part.<p>
+</a><P><a name="28250">
+The default is a sinusoidal treatment, which has an equal falloff of influence in both directions (0 is superior and 1 is inferior).<p>
+</a><P><a name="28252">
+<h4> Recalculating the Soft Influence for a Bone</h4>
+</a><a name="28253">
+To recalculate the soft influence for a bone:<p>
+</a><P>
+<a name="28254">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone to which you have assigned a soft part.
+</STRONG>
+</a><P><a name="28255">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Soft Influence.
+</STRONG>
+</a><P><dl><a name="28256">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="28260">
+ <P><img src="2MenusCommands.anc94.gif"><p>
+</a></dl>
+<a name="28261">
+<em>Figure 2.94  &#32; &#32;Calculating the soft influence for a bone
+</em></a><P><ul><a name="28262">
+<li><strong>Sinusoid</strong> is the default treatment, as described above.
+</a></li><P><a name="28263">
+<li><strong>Slow In and Out</strong>, <strong>Slow In</strong>, and <strong>Slow Out</strong> are similar to sinusoidal treatment, except that additional exponents are provided to control the severity of the curve.
+</a></li><P></ul><P><a name="28359">
+<h3> Traverse</h3>
+</a><a name="29484">
+<em>Bones, joints</em><p>
+</a><P><a name="28360">
+Traverse up or down the skeleton, toward or away from the root, selecting the next element of the currently selected type.<p>
+</a><P><a name="29490">
+This is useful if you are working in a very tight space, with multiple small bones.<p>
+</a><P><a name="28362">
+<h4> Selecting an Element's Inferior</h4>
+</a><a name="28363">
+To select an element's inferior (the element further from the root):<p>
+</a><P>
+<a name="28364">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the element whose inferior you want to select.
+</STRONG>
+</a><P><a name="28365">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Traverse.
+</STRONG>
+</a><P><dl><a name="28366">
+<dt>The element directly below the selected element (in relationship to the root) is selected.</dt>
+</a><P></dl>
+<a name="28368">
+<h4> Selecting an Element's Superior</h4>
+</a><a name="28369">
+To select an element's superior (the element closer to the root):<p>
+</a><P>
+<a name="28370">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the element whose superior you want to select.
+</STRONG>
+</a><P><a name="28371">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Traverse.
+</STRONG>
+</a><P><dl><a name="28372">
+<dt>The element directly above the selected element (in relationship to the root) is selected.</dt>
+</a><P></dl>
+<a name="28374">
+<h4> Selecting the Element at the Top of a Limb</h4>
+</a><a name="28375">
+To select the element at the top (beginning) of the limb for the currently selected element:<p>
+</a><P>
+<a name="28376">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the element you want to trace back to the root.
+</STRONG>
+</a><P><a name="28377">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Traverse.
+</STRONG>
+</a><P><dl><a name="28378">
+<dt>The element at the top of the limb (attached to the root) is selected.</dt>
+</a><P></dl>
+<a name="28383">
+<h3> XYZ IK Rotate Root</h3>
+</a><a name="29619">
+<em>Joints</em><p>
+</a><P><a name="30815">
+The <strong>XYZ IK Rotate Root</strong> operation is similar to the <strong>IK Rotate Root</strong> operation, with the exception that rotation occurs around a single axis (X, Y, or Z).<p>
+</a><P><a name="30816">
+Here's the basic concept:<p>
+</a><P><ul><a name="30817">
+<li>"pin down" one or more joints on the skeleton
+</a></li><P><a name="30818">
+<li>rotate the root around a selected axis (X, Y, or Z), trying to keep the pinned joints as close to their original positions as possible (while paying attention to the DOF limits in place for the skeleton)
+</a></li><P></ul><P><a name="30819">
+Try this:<p>
+</a><P>
+<a name="30820">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="30821">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="30822">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the right ankle joint.
+</STRONG>
+</a><P><a name="30823">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="30824">
+<dt>The IK Set dialog box appears. Make the following changes to the IK Set for the right ankle joint:</dt>
+</a><P></dl><ul>
+<BR><a name="30825">
+<li>Turn off X, Y, and Z rotations for the TopHip
+</a><P></ul>
+<dl><a name="30826">
+<dt>When you're done, the IK Set should look like this:</dt>
+</a><P><a name="30831">
+ <P><img src="2MenusCommands.anc95.gif"><p>
+</a></dl>
+<a name="30832">
+<em>Figure 2.95  &#32; &#32;Defining an IK Set for an <strong>XYZ IK Rotate Root</strong> operation
+</em></a><P>
+<a name="30833">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK Set.
+</STRONG>
+</a><P><a name="30834">
+<STRONG>	6.	 Enter a name for the IK Set in the dialog box that appears and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><a name="30836">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the right ankle joint, then <strong>(CLICK-R)</strong> on XYZ IK Rotate thru Root.
+</STRONG>
+</a><P><dl><a name="30837">
+<dt>Drag the mouse right to pose the skeleton as shown below. In this example, we're rotating the root around the Z axis:</dt>
+</a><P><a name="30846">
+ <P><img src="2MenusCommands.anc96.gif"><p>
+</a></dl>
+<a name="30847">
+<em>Figure 2.96  &#32; &#32;Left, original skeleton; right, <strong>XYZ IK Rotate Root</strong> using right ankle joint
+</em></a><P><dl><dl><a name="30851">
+<dt>The joint(s) that you "pinned" in step <a href="2MenusCommands3.html#30836">7</a> (the right ankle in the example above) remain as close as possible to their pinned position. In addition, note that the root stays in its position as well.</dt>
+</a><P></dl></dl><a name="30852">
+<h4> Other Notes on XYZ IK Rotate Root</h4>
+</a><a name="30853">
+If you want the root to move when you execute the operation, hold down the <strong>SHIFT</strong> key when selecting the axis around which to rotate the root in step <a href="2MenusCommands3.html#30836">7</a>.<p>
+</a><P><a name="30857">
+For example, if you <strong>(SHIFT-R)</strong> on <strong>XYZ IK Rotate thru Root</strong>, the root translates around the Z axis while the pinned joints (in this case, the right ankle) stay in place:<p>
+</a><P><a name="30866">
+ <P><img src="2MenusCommands.anc97.gif"><p>
+</a><a name="30867">
+<em>Figure 2.97  &#32; &#32;Left, original skeleton; right, <strong>(SHIFT-R)</strong> on <strong>XYZ IK Rotate Root</strong> using right ankle joint (allowing translation of root)
+</em></a><P><a name="29616">
+<h3> XYZ Rotate</h3>
+</a><a name="29529">
+<em>Bones</em><p>
+</a><P><a name="28384">
+Rotates the bone around the specified local axis of the bone. If you've already attached a skin to the skeleton, the skin is updated too. (If you hold down the <strong>SHIFT</strong> key, you can rotate the bone without affecting any attached skin.)<p>
+</a><P><ul><a name="28385">
+<li><strong>(CLICK-L)</strong> rotates the bone about its own X-axis.
+</a></li><P><a name="28386">
+<li><strong>(CLICK-M)</strong> rotates the bone about its own Y-axis.
+</a></li><P><a name="28387">
+<li><strong>(CLICK-R)</strong> rotates the bone about its own Z-axis.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you have created an IK set for a bone that prohibits movement in a plane, the bone does not move in that direction. For example, if you have prohibited movement in the X direction of the upper arm bone, then attempt to rotate that bone around its own X axis, nothing happens.</em></font></dd></dt></dl><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands2.html">[Prev]</a> <a href="3DynamicsOperations.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 10:50:17 -->
+
+</body>
+</html>

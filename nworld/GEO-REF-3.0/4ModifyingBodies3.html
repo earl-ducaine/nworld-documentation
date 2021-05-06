@@ -1,0 +1,665 @@
+      <p>
+<html><head><title>Working with Bodies</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies2.html">[Prev]</a> <a href="5ViewingObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+<h1>Working with Bodies (cont.) </h1>
+ 
+<a name="7098">
+<h3> Replace with Bezier</h3>
+</a><a name="7099">
+<em>Wire segments</em><p>
+</a><P><a name="7100">
+Lets you replace segments of wires with Bezier curves. Bezier curves are cubic curves that pass between two endpoints and approximate the locations of two interior nodes called control points. When you click on <strong>Replace with Bezier</strong>, N-Geometry adds two control points to the segment. You can then move the control points and the segment will curve to follow the new control point location, leaving the segment's endpoints in their original position. Once you replace a segment with a Bezier curve, you can replace the curve with a segment again by using <strong>Replace with Segment</strong>.<p>
+</a><P><a name="7101">
+To convert a segment:<p>
+</a><P>
+<a name="7102">
+<STRONG>	 1.	 Create a wire.
+</STRONG>
+</a><P><a name="7103">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the middle segment.
+</STRONG>
+</a><P><a name="7104">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Replace with Bezier.
+</STRONG>
+</a><P><a name="7108">
+ <P><img src="4ModifyingBodies.anc103.gif"><p>
+</a>
+<a name="7110">
+<em>Figure 4.105  &#32; &#32;Multi-segment wire
+</em></a><P>
+<a name="7111">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the lower control point.
+</STRONG>
+</a><P><dl><a name="7112">
+<dt>When you first convert the segment to a Bezier segment, the control points are right along the wire.</dt>
+</a><P></dl><a name="7113">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Move.
+</STRONG>
+</a><P><dl><a name="7114">
+<dt>As you move the control point back and forth, the position of the control points are shown with a set of thin, orange lines.</dt>
+</a><P><a name="7118">
+ <P><img src="4ModifyingBodies.anc104.gif"><p>
+</a></dl>
+<a name="7120">
+<em>Figure 4.106  &#32; &#32;Multi-segment wire; the middle segment has been converted into a Bezier segment, and the lower control point moved down to bend the curve
+</em></a><P><a name="7085">
+<h3> Replace with Bspline</h3>
+</a><a name="7086">
+<em>Wire segments</em><p>
+</a><P><a name="7087">
+Replace arc and Bezier curves with segments. To use this feature, simply select the arc or curve and then <strong>(CLICK-L)</strong> on <strong>Replace with Bspline</strong> in the Modify Element menu.<p>
+</a><P><a name="7064">
+<h3> Replace with Wire</h3>
+</a><a name="7065">
+<em>End wire segments</em><p>
+</a><P><a name="7066">
+<strong>Replace with Wire</strong> replaces the selected segment with another wire (effectively joining the two into one wire).<p>
+</a><P><a name="7067">
+In the example below:<p>
+</a><P>
+<a name="7068">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bottom segment of the top wire.
+</STRONG>
+</a><P><a name="7069">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Replace with Wire.
+</STRONG>
+</a><P><a name="7070">
+<STRONG>	3.	 Choose the bottom wire from the list of objects.
+</STRONG>
+</a><P><a name="7075">
+ <P><img src="4ModifyingBodies.anc105.gif"><p>
+</a>
+<a name="7076">
+<em>Figure 4.107  &#32; &#32;Left, two separate wires; right, the resulting joined wire
+</em></a><P><a name="8153">
+<h3> Reverse</h3>
+</a><a name="8154">
+<em>Wires</em><p>
+</a><P><a name="8155">
+Reverse the direction of a wire. Reversing a wire changes the direction of each segment so that the starting point becomes the ending point, and vice versa.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The </em><strong>Reverse</strong><em> command is particularly useful for changing the direction of a trajectory that you want to animate an object along in N-Dynamics.</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	<strong>Reverse</strong><em> doesn't change the shape of the wire or reorder it's segments; it only reverses the designated "beginning" and "end."</em></font></dd></dt></dl><P>
+<a name="6125">
+<h3> Rotate</h3>
+</a><a name="6126">
+<em>Edges, faces, polyhedra, vertices</em><p>
+</a><P><a name="6127">
+Rotates the element around global axes passing through a selected center.<p>
+</a><P><ul><a name="6128">
+<li><strong>(CLICK-L)</strong> rotates around the element's normal through the element's midpoint.
+</a></li><P><a name="6132">
+ <P><img src="4ModifyingBodies.anc106.gif"><p>
+</a></ul><P><a name="6133">
+<em>Figure 4.108  &#32; &#32;Left, original cube; right, copy rotated around its own Y-axis
+</em></a><P><ul><a name="6134">
+<li><strong>(CLICK-M)</strong> rotates the element around the selected axis (the axis menu described is described in detail for the section <a href="4ModifyingBodies.html#3872">"Axis Move," on page &#32;4-3</a>).
+</a></li><P><a name="6142">
+ <P><img src="4ModifyingBodies.anc107.gif"><p>
+</a></ul><P><a name="6143">
+<em>Figure 4.109  &#32; &#32;Left, original cube; right, copy with selected face rotated around global-Z axis
+</em></a><P><ul><a name="6144">
+<li><strong>(CLICK-R)</strong> lets you select an axis about which the element is to be rotated; you are also prompted to select which element the object is to be rotated around. The selectable axes are identical to those described for the operation <a href="4ModifyingBodies.html#3872">"Axis Move," on page &#32;4-3</a> and the selectable elements the same as those described for <a href="4ModifyingBodies2.html#3901">"Position," on page &#32;4-72</a>.
+</a></li><P></ul><P><a name="6484">
+<h3> Rotate Normal</h3>
+</a><a name="9557">
+<em>Vertices of a polyhedron</em><p>
+</a><P><a name="10408">
+Interactively adjusts the orientation of the normal for a selected vertex. This lets you adjust the apparent position of any light striking an object, since lighting is based on the relationship between a vertex's normal and the angle at which light strikes the area around that vertex.<p>
+</a><P><a name="10427">
+While you can rotate the normal of an object displayed in wire frame mode, the effect is much more visible if you turn on <strong>Shading</strong> for the object. <p>
+</a><P><a name="10445">
+This feature can be used, for example, to tweak the appearance of a pre-lit object being sent to a 3D game system.<p>
+</a><P><a name="10433">
+To rotate a vertex's normal:<p>
+</a><P>
+<a name="10473">
+<STRONG>	 1.	 Assign a material to the object.
+</STRONG>
+</a><P><a name="10498">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10501">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the vertext whose normal you want to move.
+</STRONG>
+</a><P><dl><a name="10502">
+<dt>You might, for example, want to tone down how directly the light appears to be striking the front of an object.</dt>
+</a><P></dl><a name="10495">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Rotate Normal</strong> and move the mouse.
+</STRONG>
+</a><P><a name="10482">
+ <P><img src="4ModifyingBodies.anc108.gif"><p>
+</a>
+<a name="10483">
+<em>Figure 4.110  &#32; &#32;Left, original dodecahedron; right, after rotating the normal of the vertex shown
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	To revert the normal to its original orientation, <strong>(SHIFT-L)</strong> on the vertex, then <strong>(CLICK-M)</strong> on <strong>Rotate Normal</strong>.</font></dd></dt></dl><P>
+<a name="10476">
+<h3> Saturation</h3>
+</a><a name="6485">
+<em>Ambient, point, infinite, and spot lights</em><p>
+</a><P><a name="6486">
+Interactively adjusts the saturation (purity) of a light's color. For example, pure blue has a high saturation. As saturation decreases, pure blue becomes a pastel blue before turning to a gray.<p>
+</a><P><a name="10667">
+To adjust the saturation of a light interactively:<p>
+</a><P>
+<a name="10668">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="10669">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the light, then <strong>(CLICK-L)</strong> on <strong>Saturation</strong>.
+</STRONG>
+</a><P><dl><a name="10670">
+<dt>Move the mouse left and right to adjust the saturation of the light.</dt>
+</a><P></dl>
+<a name="10671">
+As you move the mouse, both the body and its emitted light update interactively. Note that as the light becomes less saturated, it turns to gray.<p>
+</a><P><a name="10682">
+For more information on lights, see the sections <a href="4ModifyingBodies1.html#6492">"Hue," on page &#32;4-41</a>, and <a href="4ModifyingBodies.html#6499">"Brightness," on page &#32;4-9</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also adjust the saturation of the light using the Attributes Editor, or use <strong>(CTRL-L)</strong> on <strong>Saturation </strong>to set the light value numerically.</font></dd></dt></dl><P>
+<a name="3946">
+<h3> Scale</h3>
+</a><a name="3947">
+<em>Edges, faces, polyhedra, vertices</em><p>
+</a><P><a name="3948">
+Scales an element relative to its geometric center or relative to any arbitrary vertex.<p>
+</a><P><ul><a name="3949">
+<li><strong>(CLICK-L)</strong> scales the element relative to its midpoint.
+</a></li><P><a name="3950">
+<li><strong>(CLICK-M)</strong> scales the element relative to a selected vertex.
+</a></li><P><a name="3953">
+<li><strong>(CLICK-R)</strong> lets you choose a scaling center with the same options shown in <a href="4ModifyingBodies2.html#3936">Figure 4.103</a>.
+</a></li><P><a name="3958">
+ <P><img src="4ModifyingBodies.anc109.gif"><p>
+</a></ul><P><a name="3959">
+<em>Figure 4.111  &#32; &#32;Original object and scaled copy
+</em></a><P><a name="6729">
+<h3> Select Edge Loop</h3>
+</a><a name="6730">
+<em>Edges, edge collections</em><p>
+</a><P><a name="9157">
+Collect edges and edge collections that are lined up in a single path (e.g., across a grid) or in a loop (e.g., around a solid of rotation). The collection stops when it encounters a vertex with three edges (such as the edge of a grid) or with five or more edges (such as a vertex that branches into a "Y").<p>
+</a><P><a name="9095">
+This item is useful for selecting all the elements around an object that might otherwise be difficult to collect.<p>
+</a><P><a name="8635">
+ <P><img src="4ModifyingBodies.anc110.gif"><p>
+</a><a name="8636">
+<em>Figure 4.112  &#32; &#32;Selecting an edge loop
+</em></a><P><a name="9102">
+You can then manipulate the selected elements just as if you had collected them manually; additionally, once you have a collection of segments, you may want to use <strong>Select Elements</strong> to collect the points before performing another operation:<p>
+</a><P><a name="9119">
+ <P><img src="4ModifyingBodies.anc111.gif"><p>
+</a><a name="9120">
+<em>Figure 4.113  &#32; &#32;Left, collected elements; right, selected elements modified with <strong>Scale</strong>
+</em></a><P><a name="6703">
+<h3> Select Elements</h3>
+</a><a name="6704">
+<em>All element types</em><p>
+</a><P><a name="6705">
+Select all neighboring or otherwise related elements of a single type.<p>
+</a><P><ul><a name="6706">
+<li><strong>(CLICK-L)</strong> selects all <em>points</em> of the selected element.
+</a></li><P><a name="6707">
+<li><strong>(CLICK-M)</strong> selects all <em>segments</em> of the selected element.
+</a></li><P><a name="6708">
+<li><strong>(CLICK-R)</strong> selects all <em>faces</em> of the selected element.
+</a></li><P></ul><P><a name="6710">
+<h3> Select Face</h3>
+</a><a name="6711">
+<em>Edges</em><p>
+</a><P><ul><a name="6712">
+<li><strong>(CLICK-L)</strong> selects the face to the <em>left</em> of the specified edge.
+</a></li><P><a name="9034">
+<li><strong>(CLICK-M)</strong> selects faces with two or more edges of the face selected.
+</a></li><P><a name="6713">
+<li><strong>(CLICK-R)</strong> selects the face to the <em>right</em> of the specified edge.
+</a></li><P></ul><P><a name="6715">
+Note that because this operation selects faces based on their "rightness" or "leftness" that it may be helpful to turn on <strong>Highlight Head</strong> for <strong>Segment Highlighting</strong> in the <strong>Utilities&gt;Preferences </strong>menu.<p>
+</a><P><a name="6717">
+<h3> Select Shared Edges</h3>
+</a><a name="6718">
+<em>A collection of faces</em><p>
+</a><P><a name="6719">
+Selects those edges which are shared by two or more contiguous faces in a collection.<p>
+</a><P><a name="6461">
+<h3> Set Direction</h3>
+</a><a name="6462">
+<em>Infinite lights</em><p>
+</a><P><a name="6463">
+Set the light direction (where it's pointing) using numeric xyz coordinates.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>This command appears under the </em><strong>Other Geometric</strong><em> operations portion of the modify operations menu.</em></font></dd></dt></dl><P>
+<a name="8329">
+<h3> Set Light View</h3>
+</a><a name="8330">
+<em>Spotlights</em><p>
+</a><P><a name="8331">
+Interactively positions the light as if the light itself were the camera's viewpoint. The light moves just like the camera.<p>
+</a><P>
+<a name="8332">
+<STRONG>	 1.	 With Points sensitive in the Elements sensitivity menu, select the light.
+</STRONG>
+</a><P><dl><a name="8333">
+<dt>The camera view is set to the light's; it is aimed toward the light's aimpoint.</dt>
+</a><P></dl><a name="8334">
+<STRONG>	2.	 Move the mouse until the portion of the scene you want to illuminate with the light is in the N-Geometry window.
+</STRONG>
+</a><P><dl><a name="11154">
+<dt>Use the camera moves just as if you were moving the camera.</dt>
+</a><P></dl><a name="8335">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> to save the light's new position.
+</STRONG>
+</a><P><dl><a name="8336">
+<dt>The camera returns to its previous position, but the position of the light has been updated.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The aspect ratio for the camera </em>changes<em> to match the aspect ratio of a spotlight with a rectangular spot pattern.</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	To abort a light view change, <strong>(CLICK-R)</strong> after the move has been initiated.</font></dd></dt></dl><P>
+<a name="7662">
+<h3> Set Weight</h3>
+</a><a name="7663">
+<em>Bspline curve control points</em><p>
+</a><P><a name="7664">
+Gives more or less "pull" to a control point. For an arc along a wire, select the segment and convert it to a bspline using the <strong>Replace with Bspline</strong> command. Then select a point at either end of the wire and move the mouse back and forth to change the shape of the arc.<p>
+</a><P><a name="7676">
+ <P><img src="4ModifyingBodies.anc112.gif"><p>
+</a><a name="7677">
+<em>Figure 4.114  &#32; &#32;Top, original Bspline curve; bottom, after modifying the "weight" of a control point.
+</em></a><P><a name="7348">
+<h3> Smooth</h3>
+</a><a name="7349">
+<em>Face collections, polyhedra, wires</em><p>
+</a><P><a name="7350">
+Gives polyhedra and face collections a smoother, rounder appearance by beveling all edges and vertices. Additional faces are added to smooth the body:<p>
+</a><P><a name="8678">
+ <P><img src="4ModifyingBodies.anc113.gif"><p>
+</a><a name="8680">
+<em>Figure 4.115  &#32; &#32;Left, original cat; right, smoothed cat
+</em></a><P><a name="8742">
+You can smooth a collection of faces if you want to add detail only to a particular area of a body. For example, suppose you wanted to add some detail just to the head area of the cat model shown above:<p>
+</a><P>
+<a name="8760">
+<STRONG>	 1.	 Collect the faces around the cat's head.
+</STRONG>
+</a><P><a name="8761">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="8764">
+<dt>Only the area made up of the collected faces is smoothed:</dt>
+</a><P><a name="8746">
+ <P><img src="4ModifyingBodies.anc114.gif"><p>
+</a></dl>
+<a name="8747">
+<em>Figure 4.116  &#32; &#32;Left, original cat; right, cat with head region smoothed
+</em></a><P><a name="8716">
+To smooth a body using a menu (to specify how many times the <strong>Smooth</strong> command should be applied), <strong>(CTRL-L)</strong> on smooth. The menu in <a href="4ModifyingBodies3.html#7367">Figure 4.117</a> is displayed:<p>
+</a><P><a name="7365">
+ <P><img src="4ModifyingBodies.anc115.gif"><p>
+</a><a name="7367">
+<em>Figure 4.117  &#32; &#32;The menu for adjusting smoothing parameters
+</em></a><P><ul><ul>
+<BR><a name="7368">
+<li><strong>Iterations</strong> specifies the number of times N-Geometry smoothes the object during each smoothing operation. The higher this number, the more faces the object is subdivided into.
+</a><P><a name="8776">
+ <P><img src="4ModifyingBodies.anc116.gif"><p>
+</a></ul>
+</ul><a name="8778">
+<em>Figure 4.118  &#32; &#32;Left, original pyramid; center, pyramid smoothed once; right, smoothed three times
+</em></a><P><ul><ul>
+<BR><a name="7370">
+<li><strong>Copy w/History</strong> smoothes a <em>copy</em> of your original object, retaining the original in its pristine (pre-smoothed) condition. The original can then be used as a type of "control" body.
+</a><P></ul>
+</ul><a name="7371">
+<h4> Smoothing with History</h4>
+</a><a name="8713">
+The "Smooth with History" technique described here creates a copy of an object; the copy is smoothed a specified number of times, and can be controlled using the lower-resolution original as a "control" object.<p>
+</a><P><a name="8781">
+Try the following:<p>
+</a><P>
+<a name="7372">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="7373">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="7374">
+<STRONG>	3.	 <strong>(CTRL-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="7375">
+<dt>Enter <strong>3 </strong>for number of iterations and <strong>Yes</strong> for Copy w/History?</dt>
+</a><P><a name="7376">
+<dt>You now have two copies of the original object, one smoothed once, another smoothed three times.</dt>
+</a><P><a name="7380">
+ <P><img src="4ModifyingBodies.anc117.gif"><p>
+</a></dl>
+<a name="7381">
+<em>Figure 4.119  &#32; &#32;Original cube with copy smoothed three times
+</em></a><P>
+<a name="7382">
+<STRONG>	4.	 Choose Points on the Element sensitivity menu.
+</STRONG>
+</a><P><a name="7383">
+<STRONG>	5.	 Move a point on the original object.
+</STRONG>
+</a><P><a name="7387">
+ <P><img src="4ModifyingBodies.anc118.gif"><p>
+</a>
+<a name="7388">
+<em>Figure 4.120  &#32; &#32;Modified control object
+</em></a><P>
+<a name="7389">
+<STRONG>	6.	 Choose Bodies on the Element sensitivity menu.
+</STRONG>
+</a><P><a name="7390">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the smoothed copy.
+</STRONG>
+</a><P><a name="7391">
+<STRONG>	8.	 <strong>(CLICK-M)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="7392">
+<dt>This resmoothes the copy based on the state of the original control object:</dt>
+</a><P><a name="7396">
+ <P><img src="4ModifyingBodies.anc119.gif"><p>
+</a></dl>
+<a name="7397">
+<em>Figure 4.121  &#32; &#32;Move a point on the original control object
+</em></a><P><a name="8806">
+When used in conjunction with N-Dynamics, this means that you can create a test animation using the lower resolution object (which will animate quickly), then substitute the higher resolution object when you do you final animation.<p>
+</a><P><a name="7399">
+You may also find it useful to toggle the visibility or sensitivity of the hi-res version of the object (either <strong>(SHIFT-L)</strong> on the object or use the <strong>Object Display&gt;Visibility</strong> command). See the sections <a href="6DisplayingObjects.html#2622">"Visibility," on page &#32;6-8</a> and <a href="6DisplayingObjects.html#4281">"Sensitivity," on page &#32;6-7</a>.<p>
+</a><P><a name="8362">
+<h3> Sphericize</h3>
+</a><a name="8363">
+<em>Bodies, faces, collections of points</em><p>
+</a><P><a name="8364">
+Moves the selected set of vertices equidistantly from a specified point, making the element rounder.<p>
+</a><P><a name="8365">
+After selecting the object, you specify a midpoint around which the object is to be "sphericized" from the displayed menu. <p>
+</a><P><a name="8366">
+You are then automatically put in points mode and must select a control point somewhere on the object that will locate the outer radius of a circle that defines the "sphere:"<p>
+</a><P><a name="8370">
+ <P><img src="4ModifyingBodies.anc120.gif"><p>
+</a><a name="8371">
+<em>Figure 4.122  &#32; &#32;Left, original man; right, sphericized version using object midpoint as center and a point on top of the head to define the sphere's radius
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Selecting a control point closer to the center also has a scaling effect on the object (since it defines a smaller radius). If you want the shape to retain its size, choose a control point close to the perimeter of the object.</em></font></dd></dt></dl><P>
+<a name="8642">
+Sphericize can also be used to make a face more circular; the effectiveness of this command depends on how many sides the selected face has. Increasing the number of edges on a face provides better (more spherical) results:<p>
+</a><P><a name="8650">
+ <P><img src="4ModifyingBodies.anc121.gif"><p>
+</a><a name="8651">
+<em>Figure 4.123  &#32; &#32;Left, original face, middle, sphericized face (8 edges), right, sphericized face (16 edges)
+</em></a><P><a name="6431">
+<h3> Spot Angle</h3>
+</a><a name="6432">
+<em>Spot lights</em><p>
+</a><P><a name="6433">
+Interactively adjusts the spot angle for the selected spotlight:<p>
+</a><P><a name="6437">
+ <P><img src="4ModifyingBodies.anc122.gif"><p>
+</a><a name="6438">
+<em>Figure 4.124  &#32; &#32;Left, original light; right, same light with enlarged spot angle
+</em></a><P><a name="8245">
+<h3> Taper</h3>
+</a><a name="8246">
+<em>Polyhedra, wires, wire node collections, vertex collections</em><p>
+</a><P><a name="8247">
+Progressively scales the distance between collected elements along an axis.<p>
+</a><P><a name="10968">
+ <P><img src="4ModifyingBodies.anc123.gif"><p>
+</a><a name="10969">
+<em>Figure 4.125  &#32; &#32;Cat tapered along the Y axis
+</em></a><P><ul><a name="8248">
+<li><strong>(CLICK-L)</strong> brings up the following menu to select taper parameters:
+</a></li><P><a name="8252">
+ <P><img src="4ModifyingBodies.anc124.gif"><p>
+</a></ul><P><a name="8253">
+<em>Figure 4.126  &#32; &#32;Specifying taper parameters
+</em></a><P><ul><a name="8254">
+<li><strong>Scale Factor</strong> is the percent to scale the polyhedron along each of its axes. The default is a taper of (1, 1, 1) for the x, y, and z axes, respectively. This default does no scaling. If the values are left at the default, interactive tapering is enabled after you click on <strong>Taper</strong>. To taper an object symmetrically by A along the y axis, the components factor should be (A, 1, A).
+</a></li><P><ul>
+<BR><a name="8255">
+<li><strong>Taper Axis</strong> is the global axis that the taper proceeds along. The default is y.
+</a><P><BR><a name="8256">
+<li><strong>Distance from Center</strong> is the reference point on the taper axis at which the polyhedron is or would be tapered the specified angle. The default is the highest point of the polyhedron along the Y axis.
+</a><P><BR><a name="8257">
+<li><strong>Axis Location</strong> is the default is the midpoint of the polyhedron. This center defines two things: taper axis coordinate (the default is y) specifies the start of the taper or the location where the taper = 0. The other two coordinates specify the point through which the taper axis passes.
+</a><P><BR><a name="8258">
+<li><strong>Scale</strong> is the exponential power of the rate at which the taper proceeds. The default power of 1.0 power creates a linear taper. A lower power, such as 0.5, tapers quickly near the center, then more slowly near the ends. A higher power, such as 2.0, tapers slowly at the beginning and then more quickly near the ends.
+</a><P><BR><a name="8259">
+<li><strong>Symmetric to Center</strong> toggles on or off; it determines whether the tapering occurs symmetrically around the center of the object.
+</a><P></ul>
+<a name="8265">
+<li><strong>Previous</strong> resets the axis location values to their previous values (before they were changed in this dialog box).
+</a></li><P></ul><P><a name="8178">
+<h3> Tighten</h3>
+</a><a name="8179">
+<em>Vertices, bodies, and wires</em><p>
+</a><P><a name="8180">
+Pulls extruded parts of an object closer to the surrounding "surface" of the model. This could be used, for example, to tighten a group of mountains that had been pulled up from a grid.<p>
+</a><P><a name="8181">
+For each selected point, the midpoint of all adjoining faces is calculated; the tighten operation moves the point toward or away from that midpoint.<p>
+</a><P><ul><a name="8182">
+<li><strong>(CLICK-L)</strong> to tighten the selected points by the default factor (.5).
+</a></li><P><a name="8183">
+<li><strong>(CLICK-M)</strong> to relax the selected points by the default factor (.5).
+</a></li><P><a name="8184">
+<li><strong>(CLICK-R)</strong> to bring up a menu that allows you to specify how the object is tightened (or relaxed):
+</a></li><P><a name="8188">
+ <P><img src="4ModifyingBodies.anc125.gif"><p>
+</a></ul><P><a name="8189">
+<em>Figure 4.127  &#32; &#32;Tighten parameters
+</em></a><P><ul><ul>
+<BR><a name="8190">
+<li><strong>Tightening factor</strong> specifies how much the point is moved toward the midpoint of the surrounding faces.
+</a><P><BR><a name="8191">
+<li><strong>Hardness Weight</strong> determines how objects are tightened. A higher value tries to preserve "sharp" edges.
+</a><P><BR><a name="8192">
+<li><strong>Displacement Name</strong> lets you save the tightened/relaxed object as a relative displacement.
+</a><P><BR><a name="8193">
+<li><strong>Outside Neighbors</strong> specifies whether the vertices along the perimeter of the selected group of vertices are selected for the operation.
+</a><P><a name="8205">
+ <P><img src="4ModifyingBodies.anc126.gif"><p>
+</a></ul>
+</ul><a name="8206">
+<em>Figure 4.128  &#32; &#32;Left, original object; right, with individual vertices loosened or tightened
+</em></a><P><a name="8207">
+The <strong>Tighten</strong> operation can be applied to an entire group of vertices, such as the peaks of a range of mountains:<p>
+</a><P><a name="8211">
+ <P><img src="4ModifyingBodies.anc127.gif"><p>
+</a><a name="8213">
+<em>Figure 4.129  &#32; &#32;Left, original object; right, with peaks selected and tightened twice
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Tightening an entire grid (like that in <a href="4ModifyingBodies3.html#8213">Figure 4.129</a>) rather than points on the grid can cause the entire object to shrink (since all selected points are tightened. Tighten is best used with an explicitly selected set of vertices.</em></font></dd></dt></dl><P>
+<a name="7686">
+<h3> Triangulate</h3>
+</a><a name="7687">
+<em>Faces, bodies</em><p>
+</a><P><a name="7688">
+Divides a face, collection of faces, or all faces on a selected body into triangular faces for export to selected game consoles.<p>
+</a><P><a name="7692">
+ <P><img src="4ModifyingBodies.anc128.gif"><p>
+</a><a name="7693">
+<em>Figure 4.130  &#32; &#32;Left, original object; right, with faces subdivided into triangles.
+</em></a><P><a name="8280">
+<h3> Twist</h3>
+</a><a name="8281">
+<em>Polyhedra, wires, wire node collections, vertex collections</em><p>
+</a><P><a name="8282">
+Progressively rotates an element along an axis.<p>
+</a><P><ul><a name="8283">
+<li><strong>(CLICK-L)</strong> brings up the following menu:
+</a></li><P><a name="8287">
+ <P><img src="4ModifyingBodies.anc129.gif"><p>
+</a></ul><P><a name="8288">
+<em>Figure 4.131  &#32; &#32;Select Twist Parameters menu
+</em></a><P><ul><ul>
+<BR><a name="8289">
+<li><strong>Degrees Rotation</strong> specifies the number of degrees to twist the polyhedron from the center to the axis location. If left at 0, interactive twisting is enabled after you click on <strong>Twist</strong>.
+</a><P><BR><a name="8290">
+<li><strong>Twist Axis</strong> specifies the global axis that the twist proceeds along. The default is y.
+</a><P><BR><a name="8291">
+<li><strong>Distance from Center</strong> specifies the reference point on the twist axis at which the polyhedron is or would be twisted the specified angle. The default is the highest point of the polyhedron in y.
+</a><P><BR><a name="8292">
+<li><strong>Center located at</strong> specifies both the point in space through which the twist axis passes, and the center of the twist, that is, the point on the axis at which no effect occurs. The default is the midpoint of the polyhedron.
+</a><P><BR><a name="8293">
+<li><strong>Power</strong> specifies the exponential power of the rate at which the twist proceeds. A 1.0 power does a linear twist. A lower power, such as 0.5, twists quickly near the center, then more slowly near the ends. A higher power, such as 2.0, twists slowly at the beginning and then more quickly near the ends.
+</a><P><BR><a name="8294">
+<li><strong>Symmetric to center?</strong> specifies whether the twist reverses direction on either side of the center.
+</a><P></ul>
+</ul><ul><a name="9679">
+<li><strong>(CLICK-M)</strong> swirls an element around an axis. The amount of rotation for each point depends on the distance from the specified axis (as opposed to clicking <strong>(CLICK-L)</strong> on <strong>Twist</strong>, where the amount of rotation depends on the location along the specified axis.)
+</a></li><P><a name="8298">
+ <P><img src="4ModifyingBodies.anc130.gif"><p>
+</a></ul><P><a name="8299">
+<em>Figure 4.132  &#32; &#32;Left, original object; middle, twisted object; right, swirled object
+</em></a><P><a name="6682">
+<h3> Undo</h3>
+</a><a name="6683">
+<em>Any element</em><p>
+</a><P><a name="6684">
+Undoes the last operation. You can use <strong>Undo</strong> repeatedly, undoing each operation that was performed on the object in reverse order, until it eventually returns to its original state. When the object cannot be undone any further, a message is displayed, telling you that the object is in its most primitive state and can only be killed off to be reduced any more.<p>
+</a><P><a name="6685">
+To undo an operation:<p>
+</a><P>
+<a name="6686">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on any element that was affected by the last operation.
+</STRONG>
+</a><P><dl><a name="6687">
+<dt>For example, if you extruded a face, you could choose one of the extruded points, faces, or the body itself.</dt>
+</a><P></dl><a name="6688">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Undo.
+</STRONG>
+</a><P><dl><a name="6689">
+<dt>The object returns to its state before the last operation.</dt>
+</a><P></dl>
+<a name="7739">
+<h3> Vertex Subdivide</h3>
+</a><a name="7740">
+<em>Faces, polyhedra</em><p>
+</a><P><a name="7744">
+Cut one face (or faces) of a polyhedron into triangular faces. (See <a href="4ModifyingBodies3.html#7752">Figure 4.133</a>.) <p>
+</a><P><ul><a name="7745">
+<li><strong>(CLICK-L)</strong> subdivides face(s) between the existing vertices and a new center vertex, creating triangles.
+</a></li><P><a name="7746">
+<li><strong>(CLICK-M)</strong> subdivides faces only. You are prompted to select a vertex from which to subdivide the face.
+</a></li><P><a name="7750">
+ <P><img src="4ModifyingBodies.anc131.gif"><p>
+</a></ul><P><a name="7752">
+<em>Figure 4.133  &#32; &#32;Left, face subdivided between existing vertices; right, face subdivided from a specified vertex
+</em></a><P><a name="7138">
+<h3> Weld</h3>
+</a><a name="7139">
+<em>Polyhedra</em><p>
+</a><P><a name="7140">
+Merges two polyhedra having nearly coincident faces of the same size and shape. Nearly coincident means the planes of the two faces are closer than a certain distance and angled within approximately .1 degree of each other. <p>
+</a><P><a name="7141">
+The default distance by which the two faces can be separated is .0001 units, but you can <strong>(CTRL-L)</strong> on <strong>Weld</strong> to specify another value. (If you do <strong>(CTRL-L)</strong>, however, note that N-Geometry does not display the menu for specifying tolerance until after you select the second polyhedron.)<p>
+</a><P><a name="7142">
+To weld two objects:<p>
+</a><P>
+<a name="7143">
+<STRONG>	 1.	 First make sure the two have at least one set of nearly coincident faces.
+</STRONG>
+</a><P><dl><a name="7144">
+<dt>Let's assume we want to weld the cylinder to the cube:</dt>
+</a><P><a name="7148">
+ <P><img src="4ModifyingBodies.anc132.gif"><p>
+</a></dl>
+<a name="7149">
+<em>Figure 4.134  &#32; &#32;Objects to be welded
+</em></a><P><dl><dl><a name="7150">
+<dt>For the explanation below, let's also assume that both of these objects are aligned along the global Y axis.</dt>
+</a><P></dl></dl>
+<a name="7151">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the cylinder.
+</STRONG>
+</a><P><a name="7152">
+<STRONG>	3.	 Press the "o" hot key to enter orthographic mode.
+</STRONG>
+</a><P><a name="7153">
+<STRONG>	4.	 Press the "z" hot key so that you are looking directly at the side of the object.
+</STRONG>
+</a><P><a name="7154">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="7155">
+<dt>Move the cylinder so that it's bottom is aligned with the top of the cube:</dt>
+</a><P><a name="7159">
+ <P><img src="4ModifyingBodies.anc133.gif"><p>
+</a></dl>
+<a name="7160">
+<em>Figure 4.135  &#32; &#32;Objects aligned for weld
+</em></a><P>
+<a name="7161">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> to choose the top face of the cube.
+</STRONG>
+</a><P><a name="7162">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on Inset and choose the bottom face of the cylinder.
+</STRONG>
+</a><P><dl><a name="7163">
+<dt>This creates a hole of the same shape as the bottom of the cylinder on the face being welded to. If you turn off the Visibility of the cylinder, the cube should look like this:</dt>
+</a><P><a name="7167">
+ <P><img src="4ModifyingBodies.anc134.gif"><p>
+</a></dl>
+<a name="7168">
+<em>Figure 4.136  &#32; &#32;Preparing a face for weld
+</em></a><P>
+<a name="7169">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the top face of the cube and <strong>(CLICK-L)</strong> on Dehole.
+</STRONG>
+</a><P><dl><a name="7170">
+<dt>The face should look something like this after being deholed:</dt>
+</a><P><a name="7174">
+ <P><img src="4ModifyingBodies.anc135.gif"><p>
+</a></dl>
+<a name="7175">
+<em>Figure 4.137  &#32; &#32;Deholing a face before the weld
+</em></a><P>
+<a name="7176">
+<STRONG>	9.	 Make the cylinder visible again.
+</STRONG>
+</a><P><a name="7177">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="8966">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Weld.
+</STRONG>
+</a><P><a name="7178">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the cylinder.
+</STRONG>
+</a><P><a name="7179">
+<STRONG>	13.	 A copy of the cylinder is now welded to the cube, and can now be modified as one object.
+</STRONG>
+</a><P><dl><a name="7180">
+<dt><strong>Weld</strong> does this as a safety feature: it does not modify the second polyhedron, but rather a copy of it, retaining the original version in case you ever need it.</dt>
+</a><P><a name="7184">
+ <P><img src="4ModifyingBodies.anc136.gif"><p>
+</a></dl>
+<a name="7185">
+<em>Figure 4.138  &#32; &#32;Left, original cylinder; right, cube, with copy of cylinder welded on
+</em></a><P><a name="7186">
+If the second polyhedron does not contain a coincident face, N-Geometry tells you so by displaying a message in the shell window.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4ModifyingBodies2.html">[Prev]</a> <a href="5ViewingObjects.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 09:36:32 -->
+
+</body>
+</html>

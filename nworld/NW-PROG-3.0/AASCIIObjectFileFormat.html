@@ -1,0 +1,622 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="OptimizingCode.html">[Prev]</a> <a href="B-2.1-3.0RenamedFunctions.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="25775">
+<h1>Appendix A	 	ASCII Object<br>	File Format</h1>
+</a><a name="25025">
+Objects created on modeling systems other than N-Geometry can be read into N-Geometry if their data files are converted to a format N-Geometry understands. Some familiarity with the N-Geometry object structure and the body classes is useful in helping to understand the file organization. Depending on the saveout mode, the following information may be maintained in one file or in three smaller files (see below).<p>
+</a><P><a name="25026">
+N-Geometry object files are always text files consisting of keyword and value pairs, and mirror the structure of the objects themselves. The file is of the type <code>:object</code>, whose extension is .geo. A file represents one object, but that object may be either a simple object, with a single body as its inferior, or the top of an arbitrarily complex hierarchy of objects.<p>
+</a><P><a name="25027">
+The hierarchical structure of objects is represented in the file as an outline structure. Each of the different object and body classes, as well as the body-display-items, has its own file-writing routine, and as the object hierarchy is traversed, each is passed the output stream to add its contribution. The result is a nested structure, with information from the top-level object surrounding that of any subobjects, which in turn enclose bdi information, which surround the basic body data section.<p>
+</a><P><a name="25028">
+This structure is read by different classes as they are instanced on readin, thus keywords relevant to a body must always appear inside the body section. Body-specific keywords outside the body section will be ignored, and conversely, object keywords (for example) appearing inside the body section are ignored.<p>
+</a><P><a name="25029">
+An object file consists of three basic parts, two of which are optional:<p>
+</a><P><ul><a name="25030">
+<li>File Attribute Header (optional)
+</a></li><P><a name="25031">
+<li>Readin Information (optional)
+</a></li><P><a name="25032">
+<li>Object Specification (required)
+</a></li><P></ul><P><a name="25033">
+<h3> The File Attribute Header</h3>
+</a><a name="25034">
+This is always kept in the file filename.geo.<p>
+</a><P><a name="25035">
+The file optionally begins with the following file attribute line, which is inserted solely for ease of editing in Xemacs:<p>
+</a><P><a name="25036">
+<code><pre>;;; -*- Base: 10.; Lowercase: Yes; Mode: Lisp; Package: 3d;-*-<p>
+</code></pre></a><a name="25451">
+Whether or not this attribute line is here, N-Geometry assumes all integers are base 10, and the current package is the GEOMETRY (3D) package.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>Symbols in other packages should be made explicit.</em></font></dd></dt></dl><P>
+<a name="25039">
+<h3> Readin Information</h3>
+</a><a name="25040">
+This is always kept in the file foo.geo.<p>
+</a><P><a name="25041">
+Readin information is optional data not connected with any object or body, and helps define the readin environment. Two such keywords are currently recognized in N-Geometry:<p>
+</a><P><a name="25042">
+<h4> 	:version</h4>
+</a><dl><dl><a name="25043">
+<dt>Keyword, specifies the major version number of the copy of N-Geometry that wrote the file. It is not meaningful for files produced by other means.</dt>
+</a><P></dl></dl><a name="25044">
+<h4> :units</h4>
+</a><dl><dl><a name="25045">
+<dt>Keyword, Specifies the real-world units that the numbers in this file are presumed to represent. If, on readin, the units are not the same as the current global units, the object will be scaled to preserve the proper relative size. If they are not here, the file will be read in in whatever the current global units are, which can lead to problems trying to recreate a scen when the objects were made at different times or on different machines using different units.</dt>
+</a><P></dl></dl><a name="25046">
+<h3> Object Specification</h3>
+</a><a name="25047">
+This is always kept in the file filename.geo.<p>
+</a><P><a name="25048">
+The bulk of the file consists of the object specification for the top-level object, but the basic structure applies also to subobjects. The format of an object specification consists of delimiters and the object description, as follows:<p>
+</a><P><a name="25049">
+<code><pre>:name &lt;<em>"object name</em>"&gt;<p>
+</code></pre></a><a name="25051">
+<code><pre>	&lt;<em>object description</em>&gt;<p>
+</code></pre></a><a name="25053">
+<code><pre>:end &lt;<em>"object name"</em> (<em>optional</em>)&gt;<p>
+</code></pre></a><a name="25055">
+The <code>:name</code> keyword begins the object specification.<p>
+</a><P><a name="25056">
+<code>&lt;</code><em>object name</em><code>&gt;</code> must be a string (bounded by double-quotation marks).<p>
+</a><P><a name="25057">
+<code>:end</code> concludes an object description. N-Geometry typically writes the name string after an <code>:end</code> keyword, but it is optional and included only to make the file easier to read.<p>
+</a><P><a name="25058">
+<h3> Object Description</h3>
+</a><a name="25059">
+This is always kept in the file filename.geo.<p>
+</a><P><a name="25060">
+The object description consists of a number of different keyword-value pairs, but the only required component inside an object description is a <strong>:body</strong> specification, which will specify the body of the object, and whether it is a list of more objects or a single geometric entity.<p>
+</a><P><a name="25061">
+The basic structure of the object description is as follows:<p>
+</a><P><a name="25062">
+<code><pre>&lt;<em>object information</em> (<em>optional</em>)&gt;<p>
+</code></pre></a><a name="25064">
+<code><pre>:body &lt;<em>body identifier</em>&gt;<p>
+</code></pre></a><a name="25066">
+<code><pre>&lt;<em>body description</em>&gt;<p>
+</code></pre></a><a name="25068">
+<code><pre>&lt;<em>object information</em> (<em>optional</em>)&gt;<p>
+</code></pre></a><a name="25071">
+<h3> Body Identifiers</h3>
+</a><a name="25072">
+The body identifier, the value for the <code>:body</code> keyword, can be a symbol, a string, or a list.<p>
+</a><P><a name="25073">
+<h4> The Symbolic Body Identifier</h4>
+</a><a name="25074">
+If the body identifier is a symbol, it can represent one of three things, which are checked in the following order:<p>
+</a><P>
+<a name="25075">
+<STRONG>	 1.	 A class name.
+</STRONG>
+</a><P><dl><a name="25076">
+<dt>This will cause a body of that flavor to be created, and the open file handed off to that body to read. What follows in the file is specific to that flavor. In the example below, the restored body will be a polyhedron, and the section following (up to the <code>:end-body</code> keyword) contains polyhedron-specific information (described later).</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>All </em><em>:end-xxx keywords are treated interchangeably and are differentiated only to make the file clearer to read.</em></font></dd></dt><a name="25088">
+<code><pre>:body POLYHEDRON<p>
+</code></pre></a><a name="25089">
+<code><pre>:description "(Polyhedron): &#32; &#32;4pts &#32; &#32;6edges &#32; &#32;4faces<p>
+</code></pre></a><a name="25090">
+<code><pre>:vertices<p>
+</code></pre></a><a name="25091">
+<code><pre>((0.0						 &#32;30.48				0.0)<p>
+</code></pre></a><a name="25092">
+<code><pre> &#32;(0.		0				-10.16				28.73682)<p>
+</code></pre></a><a name="25093">
+<code><pre> &#32;(24.886818						-10.16				-14.36841)<p>
+</code></pre></a><a name="25094">
+<code><pre> &#32;(-24.886818						-10.16				-14.36841))<p>
+</code></pre></a><a name="25095">
+<code><pre>:edges<p>
+</code></pre></a><a name="25096">
+<code><pre>((1			3)<p>
+</code></pre></a><a name="25097">
+<code><pre> &#32;(3			2)<p>
+</code></pre></a><a name="25098">
+<code><pre> &#32;(2			1)<p>
+</code></pre></a><a name="25099">
+<code><pre> &#32;(2			4)<p>
+</code></pre></a><a name="25100">
+<code><pre> &#32;(4			1)<p>
+</code></pre></a><a name="25101">
+<code><pre> &#32;(4			3)<p>
+</code></pre></a><a name="25102">
+<code><pre>:faces-by-edge<p>
+</code></pre></a><a name="25103">
+<code><pre>((1			2	3)<p>
+</code></pre></a><a name="25104">
+<code><pre> &#32;(3			4	5)<p>
+</code></pre></a><a name="25105">
+<code><pre> &#32;(5			6	1)<p>
+</code></pre></a><a name="25106">
+<code><pre> &#32;(2			6	4)<p>
+</code></pre></a><a name="25107">
+<code><pre>:end-body "POLYHEDRON"<p>
+</code></pre></a><a name="25468">
+<code><pre><p>
+</code></pre></a></dl><P>
+
+<a name="25108">
+<STRONG>	2.	 A group (or a list, which is treated identically).
+</STRONG>
+</a><P><dl><a name="25109">
+<dt>This indicates that what follows in the file is a series of object specifications, representing another layer in the object hierarchy. It is terminated by an <code>:end</code> or <code>:end-body</code> keyword.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>The indentation which N-Geometry typically used to write out an object is completely optional and has no effect on reading the file.</em></font></dd></dt><a name="25111">
+<code><pre>:body GROUP<p>
+</code></pre></a><a name="25112">
+<code><pre><p>
+</code></pre></a><a name="25113">
+<code><pre>	:name "My Tetrahedron"<p>
+</code></pre></a><a name="25114">
+<code><pre>	:body &lt;body&gt;<p>
+</code></pre></a><a name="25115">
+<code><pre>	&lt;body-description&gt;<p>
+</code></pre></a><a name="25116">
+<code><pre>	:end "My Tetrahedron"<p>
+</code></pre></a><a name="25117">
+<code><pre><p>
+</code></pre></a><a name="25118">
+<code><pre>	:name "My cube<p>
+</code></pre></a><a name="25119">
+<code><pre>	:body &lt;body&gt;<p>
+</code></pre></a><a name="25120">
+<code><pre>	&lt;body-description&gt;<p>
+</code></pre></a><a name="25121">
+<code><pre>	:end "My Cube"<p>
+</code></pre></a><a name="25122">
+<code><pre><p>
+</code></pre></a><a name="25123">
+<code><pre>:end-body "GROUP"<p>
+</code></pre></a></dl><P>
+
+<a name="25124">
+<STRONG>	3.	 Another special symbol which yields a body.
+</STRONG>
+</a><P><dl><a name="25125">
+<dt>Currently, the only other such symbol recognized by N-Geometry is <br><code>BODY-FILE</code>, which indicates that what follows is a pathname where a separate file describing the body in full may be found. It is assumed that no further body information is in the object file, and that the <code>:end-body</code> is implicit in the end of the body file, so that keyword should not appear here. This is currently only used by the binary body facility. For example, the above polyhedron written into a binary body file would yield the following object description:</dt>
+</a><P></dl><a name="25126">
+<code><pre>:body BODY-FILE 			(:DUCK "SNAKE" :U<p>
+</code></pre></a><a name="25127">
+<code><pre>			("delrey:" "people" "caro" "geodoc" "bodies")<p>
+</code></pre></a><a name="25128">
+<code><pre>			 &#32;"Tetrahedron 3PVGJ4" :BODY :U)<p>
+</code></pre></a>
+<a name="25129">
+<h4> String Body Identifier</h4>
+</a><a name="25130">
+This information can also be in foo&lt;code&gt;.tbd, where &lt;code&gt; is an automatically generated timestamp.<p>
+</a><P><a name="25131">
+If the body identifier is a string, the string refers to the name of another object previously encountered in the same file with that name. This requires the obect in the file to be a multiple object. The object so referenced will be reinstanced upon readin. Inasmuch as the reinstanced bodies are the same, there should be no body description. That is, no further body information, and no :end-body keyword should be written.<p>
+</a><P><a name="25132">
+The following example illustrates:<p>
+</a><P><a name="25133">
+<code><pre>:body GROUP<p>
+</code></pre></a><a name="25134">
+<code><pre><p>
+</code></pre></a><a name="25135">
+<code><pre>	:name "My Tetrahedron"<p>
+</code></pre></a><a name="25136">
+<code><pre>	:matrix (1 0 0  &#32;0 1 0  &#32;0 0 1  &#32;0 0 0)<p>
+</code></pre></a><a name="25137">
+<code><pre>	:body BODY-FILE &#32; &#32;(:DUCK "SNAKE" :U<p>
+</code></pre></a><a name="25138">
+<code><pre>		("delrey:" "people" "caro" "geodoc" "bodies")<p>
+</code></pre></a><a name="25139">
+<code><pre>		 &#32;"Tetrahedron 3PVGJ4" :BODY :U)<p>
+</code></pre></a><a name="25140">
+<code><pre>	:end "My Tetrahedron"<p>
+</code></pre></a><a name="25141">
+<code><pre><p>
+</code></pre></a><a name="25142">
+<code><pre>	:name "My Tetrahedron&lt;2&gt;"<p>
+</code></pre></a><a name="25143">
+<code><pre>	:matrix (1 0 0  &#32;					0 1 0  &#32;0 0 1  &#32;-2 0 0)<p>
+</code></pre></a><a name="25144">
+<code><pre>	:body "My Tetrahedron"<p>
+</code></pre></a><a name="25145">
+<code><pre>	:end "My Tetrahedron&lt;2&gt;"<p>
+</code></pre></a><a name="25146">
+<code><pre><p>
+</code></pre></a><a name="25147">
+<code><pre>	:name "My Tetrahedron&lt;3&gt;"<p>
+</code></pre></a><a name="25148">
+<code><pre>	:matrix (1 0 0  &#32;0 1 0  &#32;0 0 1  &#32;2 0 0)<p>
+</code></pre></a><a name="25149">
+<code><pre>	:body "My Tetrahedron"<p>
+</code></pre></a><a name="25150">
+<code><pre>	:end "My Tetrahedron&lt;3&gt;"<p>
+</code></pre></a><a name="25151">
+<code><pre><p>
+</code></pre></a><a name="25152">
+<code><pre>:end-body GROUP<p>
+</code></pre></a><a name="25153">
+<code><pre><p>
+</code></pre></a><a name="25154">
+This represents a group of three tetrahedra, all referencing the one body found in the specified body file. The :matrix object keyword here indicates that, although they share the same body, the three objects appear in different positions. The first is in its home position, the second is displaced two units left (along the negative x axis), the third, 2 units right.<p>
+</a><P><a name="25155">
+<h4> List Body Identifier</h4>
+</a><a name="25156">
+If the body identifier is a list, the body identifier is assumed to be an expression that when evaluated returns a body. For example, our tetrahedron body could have been written as follows:<p>
+</a><P><a name="25157">
+<code><pre>:body (make-tetrahedron 1.0)<p>
+</code></pre></a><a name="25158">
+<code><pre>:end-body "tetrahedron"<p>
+</code></pre></a><a name="25159">
+<code><pre><p>
+</code></pre></a><a name="25726">
+The <code>3D:MAKE-TETRAHEDRON</code> function returns a fully-formed polyhedron. Note that the form (<code>make-instance </code><em>`body-class</em>) is exactly equivalent to just using the flavor symbol <code>body-class</code>.<p>
+</a><P><a name="25728">
+<h3> Optional Object Information</h3>
+</a><a name="25729">
+This is always kept in the file filename.geo.<p>
+</a><P><a name="25163">
+<h4> :matrix</h4>
+</a><dl><dl><a name="25164">
+<dt>Sets the initial transformation of the object. The value of this keyword is a list of 12, 16, or 17 elements, which are used to set the object's initial transformation.</dt>
+</a><P><a name="25165">
+<dt>If of length 12, the list is assumed to represent a 3x4 matrix is row-major order:</dt>
+</a><P></dl><a name="25166">
+<code><pre>1			2		3<p>
+</code></pre></a><a name="25167">
+<code><pre>4			5		6<p>
+</code></pre></a><a name="25168">
+<code><pre>7			8		9<p>
+</code></pre></a><a name="25169">
+<code><pre>10			11		12<p>
+</code></pre></a><a name="25170">
+<code><pre><p>
+</code></pre></a><dl><a name="25171">
+<dt>If of length 16, the elements represent a 4x4 matrix:</dt>
+</a><P></dl><a name="25172">
+<code><pre>1			2		3		4<p>
+</code></pre></a><a name="25173">
+<code><pre>5			6		7		8<p>
+</code></pre></a><a name="25174">
+<code><pre>9			10		11		12<p>
+</code></pre></a><a name="25175">
+<code><pre>13			14		15		16<p>
+</code></pre></a><a name="25176">
+<code><pre><p>
+</code></pre></a><dl><a name="25177">
+<dt>A 17-element list is identical to a 16 element list, with the exception that the first element is ignored. N-Geometry has traditionally written out an integer code as the first item in the matrix list, but is is not used on readin and need not be included.</dt>
+</a><P></dl></dl><a name="25178">
+<h4> 	:documentation</h4>
+</a><dl><dl><a name="25179">
+<dt>Used to help identify the origin or use of the object. The value of this keyword is a string of any length that is stored with the object but is otherwise ignored on readin.</dt>
+</a><P></dl></dl><a name="25180">
+<h4> :view-relative</h4>
+</a><dl><dl><a name="25181">
+<dt>Makes the object into a view-relative object if the value of this keyword is anything non-nil. Its initial position, as described by the :matrix keyword, is interpreted as being in the frame of reference of the camera.</dt>
+</a><P></dl></dl><a name="25182">
+<h4> :init-display</h4>
+</a><dl><dl><a name="25183">
+<dt>Used by N-Geometry to save the display state of each terminal object at writeout time. It should not be included in files created from other sources. This is actually output by body display items, so it occurs only in the object description of terminal objects (those whose body is a simple geometric entity).</dt>
+</a><P></dl></dl><a name="25184">
+<h3> Body Keywords</h3>
+</a><a name="25185">
+This information can be kept in the file foo.geo or foo&lt;code&gt;.tbd, where &lt;code&gt; is an automatically generated timestamp.<p>
+</a><P><a name="25186">
+These keywords are relevant to bodies of any flavor:<p>
+</a><P><a name="25187">
+<h4> :version</h4>
+</a><dl><dl><a name="25188">
+<dt>Specifies the major version number of the copy of N-Geometry writing this file. Optional.</dt>
+</a><P></dl></dl><a name="25189">
+<h4> :description</h4>
+</a><dl><dl><a name="25190">
+<dt>Specifies the type and number of elements that make up the body. This keyword primarily makes it easier to read the file; in the case of polyhedra, N-Geometry does refer to it to help speed up readin. This keyword's presence is not mandatory; if you do use it, you must use the following format:</dt>
+</a><P></dl><a name="25191">
+<code><pre><code>"(&lt;</code><strong>flavor-name</strong><code>&gt;): &lt;</code><strong>nv</strong><code>&gt;pts &lt;</code><strong>ne</strong><code>&gt;edges &lt;</code><strong>nf</strong><code>&gt;faces {&lt;</code><strong>np</strong><code>&gt;parts}"</code><p>
+</code></pre></a><dl><a name="25859">
+<dt>	The curly braces indicate that the parts specifier is optional.</dt>
+</a><P></dl></dl><a name="25861">
+<h4> :eval</h4>
+</a><dl><dl><a name="25862">
+<dt>Is an expression that is evaluated inside the body instance when it is read in. Because it is evaluated inside the instance, instance-variables, such as SELF, are directly accessible. This allows you to store operations that create a large volume of data in algorithmic form, thus saving both file size and readin time. For instance, you could save a smoothed polyhedron by saving the explicit geometry of the unsmoothed version, which is relatively compact, and then include the following:</dt>
+</a><P></dl><a name="25196">
+<code><pre>:eval (doo-smooth self .5 :npasses 3)<p>
+</code></pre></a><a name="25198">
+<code><pre><p>
+</code></pre></a></dl><a name="25199">
+<h4> Keyword	Any eternal property</h4>
+</a><dl><dl><a name="25200">
+<dt>If you have defined this keyword as an eternal, or saveable property for the flavor of body being read (for a list, call <code>3D:ALL-ETERNAL-PROPERTIES-FOR-ELEMENT</code>), the value of this keyword is added to the body's property list. Keyword and symbols in the geometry package are treated equvalently. For example, the following puts the <code>NLATITUDES</code> property on the body:</dt>
+</a><P></dl><a name="25201">
+<code><pre>:nlatitudes 18<p>
+</code></pre></a></dl><a name="25204">
+<h4> Any operation</h4>
+</a><dl><dl><a name="25205">
+<dt>If the keyword is a message or generic function (a non-keyword symbol) that this body flavor handles, the body is sent the message with the value of the keyword (which must be a list or nil) as arguments. You could save the above example for <code>:eval</code> simply as follows:</dt>
+</a><P></dl><a name="25206">
+<code><pre>:doo-smooth (.5 :npasses 3)<p>
+</code></pre></a></dl><a name="25209">
+<h3> Polyhedron Keywords</h3>
+</a><a name="25210">
+This information can be stored in either foo.geo or foo&lt;&gt;.tbd.<p>
+</a><P><a name="25211">
+Keywords of this type are handled only by bodies of flavor <code>3D:polyhedron</code>.<p>
+</a><P><a name="25212">
+For the following entries with two choices, the element lists of the <br>"numbered-" variants are assumed to have one extra element, the first, which is an integer serial number. Normally N-Geometry ignores this number and assumes the elements are numbered consecutivel starting with 1, so this option is used primarily for ease of perusing the file. You can, however, request N-Geometry to actually read the numbers and use them as serial numbers.<p>
+</a><P><a name="25213">
+<h4> :vertices</h4>
+</a><a name="25214">
+<h4> :numbered-vertices</h4>
+</a><dl><dl><a name="25215">
+<dt>Specifies a list of three-element lists of the xyz coordinates of a polyhedron's vertices, as follows:</dt>
+</a><P></dl><a name="25216">
+<code><pre><code>((&lt;</code><em>x-coordinate</em><code>&gt; &#32; &#32; &#32;&lt;</code><em>y-coordinate</em><code>&gt; &#32; &#32; &#32;&lt;</code><em>z-coordinate</em><code>&gt;)</code><p>
+</code></pre></a><a name="25217">
+<code><pre><code>...)</code><p>
+</code></pre></a><a name="25218">
+<code><pre><p>
+</code></pre></a></dl><a name="25219">
+<h4> :vertex-attributes</h4>
+</a><dl><dl><a name="25220">
+<dt>Specifies as association list of vertex attributes and the serial numbers of the vertices to which they belong.</dt>
+</a><P></dl></dl><a name="25221">
+<h4> :edges</h4>
+</a><a name="25222">
+<h4> 	:numbered-edges</h4>
+</a><dl><dl><a name="25223">
+<dt>Specifies a list of two-element lists of the endpoints of a polyhedron's edges. The numbers refer to the serial numbers of the vertices in the <code>:vertices</code> list, above. Because of this dependence, the <code>:vertices</code> list must always preced the <code>:edges</code> list in the file:</dt>
+</a><P></dl><a name="25224">
+<code><pre><code>((&lt;</code><em>head-vtx</em><code>&gt; &#32; &#32; &#32;&lt;</code><em>tail-vtx</em><code>&gt;)</code><p>
+</code></pre></a><a name="25225">
+<code><pre><code>...)</code><p>
+</code></pre></a><a name="25226">
+<code><pre><p>
+</code></pre></a></dl><a name="25227">
+<h4> :faces-by-edge<br>:numbered-faces-by-edge</h4>
+</a><dl><dl><a name="25229">
+<dt>Specifies a list of <em>n</em>-element lists, containing the serial numbers of the edges bounding each face. The edges are traced in clockwise order fromthe outside of the polyhedron. Because of the dependence on the edge serial numbers, the <code>:edges</code> list must always preced the <code>:faces-by-edge</code> list in the file:</dt>
+</a><P></dl><a name="25230">
+<code><pre>((&lt;<em>first-edge</em>&gt; &#32;&lt;<em>second-edge</em>&gt; &#32;&lt;<em>third-edge</em>&gt;...&lt;<em>nth-edge</em>&gt;)<p>
+</code></pre></a><a name="25231">
+<code><pre>...)<p>
+</code></pre></a><a name="25232">
+<code><pre><p>
+</code></pre></a></dl><a name="25233">
+<h4> :faces-by-vertex<br>:numbered-faces-by-vertex</h4>
+</a><dl><dl><a name="25235">
+<dt>Specifies a list of n-element lists, containing the serial numbers of the vertices of each face, in clockwise order from the outside of the polyhedron. Because of the dependence on the vertex serial numbers, the <code>:vertices</code> list must always precede the <code>:faces-by-vertex</code> list in the file.</dt>
+</a><P><a name="25236">
+<dt>Also, there should be no <code>:edges</code> list, which is one of the primary advantages of using this keyword over the <code>:faces-by-edge</code> keyword; the file takes up less space. Another advantage is that some other systems describe polygons by their vertices, so it becomes easier to convert file formats to and from such systems. Because edges are shared by neighboring faces, however, the database must be searched for existing edges as pairs of vertices are read in, making this method somewhat more time consuming than using <strong>:faces-by-edge</strong>.</dt>
+</a><P><a name="25237">
+<dt>The following illustrates the faces-by-vertex construct:</dt>
+</a><P></dl><a name="25238">
+<code><pre>((&lt;<em>first-vtx</em>&gt; &#32;&lt;<em>second-vtx</em>&gt; &#32;&lt;<em>third-vtx</em>&gt;...&lt;<em>nth-vtx</em>&gt;)<p>
+</code></pre></a><a name="25239">
+<code><pre>...)<p>
+</code></pre></a><a name="25240">
+<code><pre><p>
+</code></pre></a></dl><a name="25241">
+<h4> Keyword	:face-attributes</h4>
+</a><dl><dl><a name="25242">
+<dt>Specifies an association list of face attributes and the serial numbers of the faces to which they belong.</dt>
+</a><P></dl></dl><a name="25243">
+<h4> :attributes</h4>
+</a><dl><dl><a name="25244">
+<dt>Specifies the polyhedron's render attribute list. A description of the elements of this, as well as the face- and vertex-attributes lists, is the province of N-Render and is not covered in this discussion.</dt>
+</a><P></dl></dl><a name="25245">
+<h4> :parts</h4>
+</a><dl><dl><a name="25246">
+<dt>Follows any of the above element-reading keywords in the file; is applicable to any bodies containing <code>3D:parts-mixin</code>. The value is a list of three-element lists, each consisting of a part name (a string), a single-member list of the flavor of the part components, and a list of the serial numbers of the part components:</dt>
+</a><P></dl><a name="25247">
+<code><pre>((&lt;<em>name-of-part-1</em>&gt; &#32;&lt;<em>flavor-of-elements</em>&gt; &#32;<br> &#32; &#32;&lt;<em>element-serial-numbers</em>&gt;<br>...)<p>
+</code></pre></a><dl><a name="25249">
+<dt>The following example illustrates the parts format:</dt>
+</a><P></dl><a name="25250">
+<code><pre>(("Part of 5 faces" &#32; &#32;(FACE) &#32; &#32;(1 5 32 6 20))<br> &#32;("Top face vertices" &#32; &#32;(VERTEX) &#32; &#32;(120 121 122 123)))<p>
+</code></pre></a></dl><a name="25253">
+<h4> :locus-state-lists</h4>
+</a><dl><dl><a name="25254">
+<dt>There are two entries here, both of which are displacements:</dt>
+</a><P><a name="25539">
+<dt>:locus-state-lists and :displacements.  Assuming they are non-nil, both are lists that look like:</dt>
+</a><P></dl><a name="25542">
+<code><pre>((displacement-name-1<p>
+</code></pre></a><a name="25543">
+<code><pre>  (vnum-1 dx dy dz)<p>
+</code></pre></a><a name="25544">
+<code><pre>  (vnum-2 dx dy dz)<p>
+</code></pre></a><a name="25545">
+<code><pre>  ...)<p>
+</code></pre></a><a name="25546">
+<code><pre> (displacement-name-2<p>
+</code></pre></a><a name="25547">
+<code><pre>   ...))<p>
+</code></pre></a><dl><a name="25549">
+<dt>Vnums are indices into the vertex lists. The only difference is that in the locus-state lists the dx dy dz are <em>absolute</em> coordinates while in the displacement lists they are <em>relative</em> offsets.</dt>
+</a><P><a name="25552">
+<dt>Displacement lists may also have an axis at the end of the list if they are rotational displacements.</dt>
+</a><P><a name="25556">
+<dt>(The <code>:locus-state-lists</code> property gets written out even when there aren't any, which is why you get the () following the keyword.)</dt>
+</a><P></dl></dl><a name="25255">
+<h2><HR> Saving Objects</h2>
+</a><a name="25256">
+When saving objects in the native .geo format, you have three methods to save an object:<p>
+</a><P><ul><a name="25257">
+<li>As a single text file
+</a></li><P><a name="25258">
+<li>As a group of three text files
+</a></li><P><a name="25259">
+<li>As a pair of text files and a single binary file. (The advantage of saving the body data file in binary format is that the object loads substantially faster.)
+</a></li><P></ul><P><a name="25260">
+Note that these options all apply to the native geometry (.geo) format. Objects saved in the Wavefront (.obj) file format are always saved as single text files.<p>
+</a><P><a name="25261">
+When you use either the second or third option for saving a geo object, three files are created:<p>
+</a><P><ul><a name="25262">
+<li>a .geo file
+</a></li><P><a name="25263">
+<li>a .body file
+</a></li><P><a name="25264">
+<li>a body data file, either .tbd (text) or .bbd (binary)
+</a></li><P></ul><P><a name="25265">
+The .geo file references the .body file, and the .body file references the .tbd or the .bbd file. This structure facilitates the reinstancing of an object. <p>
+</a><P><a name="25266">
+Also, as long as the only difference between multiple objects is tranformational (rather than topological), multiple objects can reference the same body data file, which saves disk space. While this may not be significant for some users, it can be critical for people working with databases with tens of thousands of vertices, such as those generated by three-dimensional scanners.<p>
+</a><P><a name="25267">
+Typically the .body and .tbd or .bbd files are saved in a /bodies subdirectory of the N-Geometry directory (although this can be modified from within the N-Geometry user interface).<p>
+</a><P><a name="25268">
+<h3> Saving a Sample Object</h3>
+</a><a name="25269">
+A typical .geo file (in this case, for a tetrahedron) would look something like this:<p>
+</a><P><a name="25270">
+<code><pre>;;; -*- Base: 10.; Lowercase: Yes; Mode: Lisp; Syntax: CLtL; Package: 3d; -*-<p>
+</code></pre></a><a name="25271">
+<code><pre>(in-package "3D")<p>
+</code></pre></a><a name="25272">
+<code><pre>:version (100 0)<p>
+</code></pre></a><a name="25273">
+<code><pre>:units FEET<p>
+</code></pre></a><a name="25274">
+<code><pre><p>
+</code></pre></a><a name="25275">
+<code><pre>:name "Tetrahedron"<p>
+</code></pre></a><a name="25276">
+<code><pre>:init-display (:visible-p t :backface-culling-p t  <br>:min-edge-hardness nil)<p>
+</code></pre></a><a name="25277">
+<code><pre>:body BODY-FILE (:DUCK "SNAKE" :U<p>
+</code></pre></a><a name="25278">
+<code><pre>			("delrey1" "people" "caro" "geodoc" "bodies")<p>
+</code></pre></a><a name="25279">
+<code><pre>			 &#32;"Tetrahedron3PVGJ4" :BODY :U)<p>
+</code></pre></a><a name="25280">
+<code><pre>:end "Tetrahedron"<p>
+</code></pre></a><a name="25281">
+<code><pre><p>
+</code></pre></a><a name="25282">
+<code><pre>(EOF)<p>
+</code></pre></a><a name="25284">
+The corresponding .body file would look something like this:<p>
+</a><P><a name="25285">
+<code><pre>POLYHEDRON<p>
+</code></pre></a><a name="25286">
+<code><pre>Tetrahedron3PVGJ4<p>
+</code></pre></a><a name="25287">
+<code><pre>(:DUCK "SNAKE" :U ("delrey1" "people" "caro" "geodoc") "Tetrahedron" :OBJECT :U) :BINARY-BODYDATA :UNSPECIFIC<p>
+</code></pre></a><a name="25288">
+<code><pre><p>
+</code></pre></a><a name="25289">
+<code><pre>(EOF)<p>
+</code></pre></a><a name="25291">
+Finally, if the body data were saved in a text format, the corresponding .tbd file would look something like this:<p>
+</a><P><a name="25292">
+<code><pre>:body POLYHEDRON<p>
+</code></pre></a><a name="25293">
+<code><pre>:version (100 0)<p>
+</code></pre></a><a name="25294">
+<code><pre>:description "(Polyhedron): 15pts 28edges 15faces."<p>
+</code></pre></a><a name="25295">
+<code><pre>:numbered-vertices<p>
+</code></pre></a><a name="25296">
+<code><pre>((1	-1.9096849	13.180311	-1.1025571)<p>
+</code></pre></a><a name="25297">
+<code><pre> (2	0.0	-3.3333335	9.42809)<p>
+</code></pre></a><a name="25298">
+<code><pre> (3 	8.164966	-3.3333335	-4.714047)<p>
+</code></pre></a><a name="25299">
+<code><pre> (4 	-8.164966	-3.3333335	-4.714047)<p>
+</code></pre></a><a name="25300">
+<code><pre> (5 	5.4120126	-3.6708906	12.552714)<p>
+</code></pre></a><a name="25301">
+<code><pre> (6 	2.758126	11.126 	1.5924047)<p>
+</code></pre></a><a name="25302">
+<code><pre> (7 	13.576978	-3.6708906	-1.5894197)<p>
+</code></pre></a><a name="25303">
+<code><pre> (8 	1.6329931	7.333333	-0.9428094)<p>
+</code></pre></a><a name="25304">
+<code><pre> (9 	0.5516252	10.2252	0.31848094)<p>
+</code></pre></a><a name="25305">
+<code><pre> (10	-1.6329931	7.333333	-0.9428094)<p>
+</code></pre></a><a name="25306">
+<code><pre> (11	0.0    	7.333333	1.8856181)<p>
+</code></pre></a><a name="25307">
+<code><pre> (12	2.758126	-2.0187716	10.88716)<p>
+</code></pre></a><a name="25308">
+<code><pre> (13	2.5948267	-2.2740002	10.926212)<p>
+</code></pre></a><a name="25309">
+<code><pre> (14	10.759792	-2.2740002	-3.2159228)<p>
+</code></pre></a><a name="25310">
+<code><pre> (15	10.807622	-2.0187716	-3.0549753))<p>
+</code></pre></a><a name="25311">
+<code><pre><p>
+</code></pre></a><a name="25312">
+<code><pre>:numbered-faces-by-vertex<p>
+</code></pre></a><a name="25313">
+<code><pre>((1	 	6	15	12)<p>
+</code></pre></a><a name="25314">
+<code><pre> (2	 	10	11	2	4)<p>
+</code></pre></a><a name="25315">
+<code><pre> (3	 	8	10	4	3)<p>
+</code></pre></a><a name="25316">
+<code><pre> (4	 	2	3	4)<p>
+</code></pre></a><a name="25317">
+<code><pre> (5	 	11	9	6	12	13	2)<p>
+</code></pre></a><a name="25318">
+<code><pre> (6	 	9	8	3	14	15	6)<p>
+</code></pre></a><a name="25319">
+<code><pre> (7	 	3	2	13	14)<p>
+</code></pre></a><a name="25320">
+<code><pre> (8	 	8	9	1)<p>
+</code></pre></a><a name="25321">
+<code><pre> (9	 	10	8	1)<p>
+</code></pre></a><a name="25322">
+<code><pre> (10		11	10	1)<p>
+</code></pre></a><a name="25323">
+<code><pre> (11		9	11	1)<p>
+</code></pre></a><a name="25324">
+<code><pre> (12		5	13	12)<p>
+</code></pre></a><a name="25325">
+<code><pre> (13		7	15	14)<p>
+</code></pre></a><a name="25326">
+<code><pre> (14			13	5		7	14)<p>
+</code></pre></a><a name="25327">
+<code><pre> (15			5	12		15	7))<p>
+</code></pre></a><a name="25328">
+<code><pre>:locus-state-lists<p>
+</code></pre></a><a name="25329">
+<code><pre> (  )<p>
+</code></pre></a><a name="25330">
+<code><pre>:end-body "POLYHEDRON"<p>
+</code></pre></a><a name="25331">
+<code><pre><p>
+</code></pre></a><a name="25332">
+<code><pre>(EOF)<p>
+</code></pre></a><a name="25334">
+The .tbd file contains only topological information, along with the vertex coordinates of the object in its <em>untransformed</em> state. <p>
+</a><P><ul><a name="25335">
+<li>If you save an object whose topology has not changed without baking it, only the .geo and .body files are updated.
+</a></li><P><a name="25336">
+<li>If you transform an object, bake it, then save, the .tbd or .bbd is updated as well.
+</a></li><P></ul><P><a name="25337">
+Note that if you change an object's topology (extruding a face, for instance), and then save it, the .tbd or .bbd file is updated automatically (without baking).<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="OptimizingCode.html">[Prev]</a> <a href="B-2.1-3.0RenamedFunctions.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:34:40 -->
+
+</body>
+</html>

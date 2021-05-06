@@ -1,0 +1,212 @@
+<html><head><title>Glossary of Terms</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2MenusCommands.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="1908">
+<h1>Glossary of Terms</h1>
+</a>
+<hr><p><a name="2207">
+<h4> The Skeletal Animation System (SAS) uses terms which you probably don't use in everyday conversation. You may want to refer to this chapter if you're confused about a term when using the other chapters in this book or the Skeletal Animation System Tutorial.</h4>
+</a><a name="496">
+<h2><HR> Skeletal Animation System-A Glossary</h2>
+</a><a name="1382">
+<h4> Attached Objects</h4>
+</a><a name="1631">
+Objects that are attached to a bone, collection of bones, or a skeleton, but that are not a "skin." Attached objects are transformed along with the element to which they are attached, but do not deform. Attached objects can be used to create a creature's entire body, or to place items like a gun or sword in the character's hand, or a hat on his head.<p>
+</a><P><a name="1630">
+<h4> Base</h4>
+</a><a name="497">
+The <strong>Base</strong> state is an absolute reference point for the skeleton; normal poses are "measured" from the saved base state for the skeleton.<p>
+</a><P><a name="1393">
+When a given state for the skeleton is defined as the base state, the X, Y, and Z rotations for all bones in the skeleton are reset to 0, and the bone <em>scale</em> is set to 1.0.<p>
+</a><P><a name="1394">
+The base state is similar to an absolute displacement, as described in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="498">
+<h4> Bone</h4>
+</a><a name="499">
+Bones are the individual segments that are connected to together to form a skeleton. The <em>skeleton</em> is the stick figure that you use to design the actual animation of the 3D object.<p>
+</a><P><a name="503">
+<h4> Difference Pose</h4>
+</a><a name="2497">
+A difference pose is a special kind of pose that is measured in relation to another pose rather than to the skeleton's base state. Using difference poses, as described in the <em>Skeletal Animation System Tutorial</em>, is an extremely easy way to modify motion capture data.<p>
+</a><P><a name="2496">
+<h4> DOF Limits</h4>
+</a><a name="504">
+When posing a skeleton, you can define limits for how a bone can be moved:<p>
+</a><P><ul><a name="505">
+<li>X rotation
+</a></li><P><a name="1757">
+<li>Y rotation
+</a></li><P><a name="1758">
+<li>Z rotation
+</a></li><P><a name="508">
+<li>Bone scale
+</a></li><P></ul><P><a name="1700">
+These parameters are referred to as <em>degrees of freedom</em>, and define the rotational limits for each bone. You define limits for an individual bone or an entire skeleton using the <strong>DOF Editor</strong> command.<p>
+</a><P><a name="2500">
+When executing IK moves, you can specify whether the operation should take the DOF Limits into account.<p>
+</a><P><a name="510">
+<h4> Dummy Bones</h4>
+</a><a name="2245">
+On some skeletons, you may find bones that are necessary for the structure of the skeleton, but which are not updated by any motion capture data. These bones are called "dummy bones" and N-Geometry let's you know they're there by turning off the display of the bone frame for them.<p>
+</a><P><a name="2267">
+For example, if you look at the neck, shoulder, hip, and thumb areas of an Acclaim skeleton, you can see that there are several dummy bones:<p>
+</a><P><a name="2259">
+ <P><img src="1Glossary.anc.gif"><p>
+</a><a name="2261">
+<em>Figure 1.1  &#32; &#32;Dummy bones
+</em></a><P><a name="2505">
+All dummy bones should have the prefix "dummy" in their name.<p>
+</a><P><a name="2240">
+<h4> IK Set</h4>
+</a><a name="1541">
+A IK Set describes <em>which bones can be moved around which axes </em>to perform an inverse kinematic (IK) move. For example, if you want to make a character reach for a doorknob, you also want to specify which bones can be rotated around which axes to successfully complete that move.<p>
+</a><P><a name="2464">
+For example, <a href="1Glossary.html#2450">Figure 1.2</a> shows the same skeleton reaching for the same location using different IK Sets.<p>
+</a><P><a name="2449">
+ <P><img src="1Glossary.anc1.gif"><p>
+</a><a name="2450">
+<em>Figure 1.2  &#32; &#32;Executing an IK move with different IK Sets
+</em></a><P><a name="1565">
+You must define an IK set before performing any IK move-if you attempt to do so, you're prompted to define the IK set before you continue. IK Sets are created and modified using a simple matrix, such as the one shown in <a href="1Glossary.html#1557">Figure 1.3</a>:<p>
+</a><P><a name="1556">
+ <P><img src="1Glossary.anc2.gif"><p>
+</a><a name="1557">
+<em>Figure 1.3  &#32; &#32;IK Set
+</em></a><P><a name="1543">
+<h4> Hard Part</h4>
+</a><a name="1705">
+The default skin part type for skins assigned to a skeleton using the <strong>Skin</strong> operation. Parts can be defined as "hard" or "soft" using the <strong>Hard/Soft</strong> command. Vertices in a hard part retain their relationship to a bone, regardless of how that bone is moved; vertices assigned to soft parts deform naturally around joints on a skeleton. Hard and soft parts are described in more detail in the <em>Skeletal Animation System Tutorial</em>. See also <em>soft parts</em>.<p>
+</a><P><a name="515">
+<h4> Inverse Kinematics</h4>
+</a><a name="516">
+Inverse kinematics is an algorithm used to pose skeletons. Inverse kinematics says that if you change a joint's orientation, the rest of the skeleton can be made to behave in a natural way to accommodate the new position of that joint.<p>
+</a><P><a name="1409">
+Inverse kinematic moves pays attention to any DOF limits placed on bones affected by that joint's positional change.<p>
+</a><P><a name="518">
+When you perform an IK move, you can move the point within defined constraints; in fact, IK constraints in place for that joint may make certain positions unattainable for the skeleton. Defining those constraints more exactly ensures more expected skeletal motion (as there are fewer possible positions for affected bones to take to accommodate the point move).<p>
+</a><P><a name="2411">
+<h4> Joint</h4>
+</a><a name="2412">
+Each bone is defined by two joints, one at each end. The joint further from the root is referred to as the <em>inferior </em>joint of the bone (the pointy end of the bone frame), the joint closer to the root as the <em>superior </em>(the wide end of the bone frame). <p>
+</a><P><a name="2424">
+ <P><img src="1Glossary.anc3.gif"><p>
+</a><a name="2425">
+<em>Figure 1.1  &#32; &#32;Head and tail joints
+</em></a><P><a name="2426">
+Joints can be assigned a specific joint ID using the <strong>Joint Identification</strong> command, which automatically defines DOF limits to be used when performing IK operations on this joint.<p>
+</a><P><a name="524">
+<h4> Local Axes</h4>
+</a><a name="525">
+Each bone has local X, Y, and Z axes. Typically, one of these axes is aligned with the length of the bone; this axis is referred to as the <em>bone direction axis</em> or <em>twist axis</em>.<p>
+</a><P><a name="1468">
+ <P><img src="1Glossary.anc4.gif"><p>
+</a><a name="1469">
+<em>Figure 1.2  &#32; &#32;Local bone axes
+</em></a><P><a name="1783">
+When you modify the position of a bone, having the local axes follow the orientation of the bone is optional. However, the local axes for a bone always change if the bone's superior moves.<p>
+</a><P><a name="1454">
+For example<em>, </em>in a humanoid skeleton, if you move the humerus (upper arm) bone, the xyz axes for the forearm, wrist, and any bones in the hand are updated automatically because the humerus is superior to those bones.<p>
+</a><P><a name="1002">
+<h4> Motion Capture Data</h4>
+</a><a name="1003">
+A skeleton can have motion data associated with it. Motion capture data causes the skeleton to move in a specified manner over a period of time using N-Dynamics. Motion capture data is generated based on computer input from motion sensors attached to live models. Motion capture data is supplied by other third party vendors, not by Nichimen Graphics.<p>
+</a><P><a name="1005">
+N-Geometry currently supports three formats of motion capture data:<p>
+</a><P><ul><a name="1792">
+<li>.asf (Acclaim format)
+</a></li><P><a name="1006">
+<li>.bvh (BioVision format)
+</a></li><P><a name="2220">
+<li>htr (Motion Analysis)
+</a></li><P></ul><P><a name="1008">
+These are all editable ASCII files.<p>
+</a><P><a name="1494">
+Each of these types of motion capture data can be decomposed into component data:<p>
+</a><P><ul><a name="1495">
+<li>rotational components (shows the x, y, and z rotations for each bone over the length of the file)
+</a></li><P><a name="1496">
+<li>pose to pose (allows you to capture poses based on the motion of the skeleton)
+</a></li><P></ul><P><a name="1497">
+Both of these techniques are described in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="1796">
+<h4> Pose</h4>
+</a><a name="1798">
+You can pose a skeleton in different positions (much like a wire model), then save those poses for use later with N-Dynamics. Poses are measured in relation to the saved base state for the skeleton (or relative to another pose with <em>difference poses</em>). Poses are the sum of any local bone rotations plus any root transformations.<p>
+</a><P><a name="1795">
+<h4> Root</h4>
+</a><a name="919">
+The root is the "logical" center of the skeleton; any bone can be traced along a single path <em>back</em> to the root. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>No loops are allowed in a skeleton. There is only one path back to the root from any joint.</em></font></dd></dt></dl><P>
+<a name="1505">
+Typically, the root also corresponds to the center of gravity for the skeleton. For a humanoid, the root is usually at the base of the spine:<p>
+</a><P><a name="918">
+ <P><img src="1Glossary.anc5.gif"><p>
+</a><a name="914">
+<em>Figure 1.3  &#32; &#32;The root for a humanoid skeleton (Biovision)
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When scaling a skeleton, you should always scale by selected vertex, choosing the root as the vertex around which the skeleton is to be scaled. This ensures that the root remains aligned with the global origin.</em></font></dd></dt></dl><P>
+<a name="533">
+<h4> Skeleton</h4>
+</a><a name="534">
+The skeleton is a special type of geometry body which can be created in or imported into N-Geometry. By attaching models (skins) either to the entire skeleton or to individual bones on the skeleton, you can animate the transformation and deformation of those objects. What other systems use a hierarchy of bones to represent is incorporated into a single skeleton body.<p>
+</a><P><a name="540">
+<h4> Skin</h4>
+</a><a name="1957">
+The skin is the 3D object or model that you want to actually animate. When assigning a 3D "hand" to the "hand bone," the <em>hand</em> is referred to as the skin. Skins act like "envelopes" around the skeleton which deform to follow the animated skeleton. See also <em>attached object</em> and <em>parts</em>.<p>
+</a><P><a name="1965">
+ <P><img src="1Glossary.anc6.gif"><p>
+</a><a name="1966">
+<em>Figure 1.4  &#32; &#32;The skin and skeleton
+</em></a><P><a name="1032">
+<h4> Skin Displacements</h4>
+</a><a name="1033">
+Skin displacements are "secondary" actions that can be created by the animator to cause the change in skin shape based on skeletal animation to more closely simulate natural movement. Skin displacements are similar to relative displacements in N-Geometry. They can be used to simulate muscular expansion or facial expressions.<p>
+</a><P><a name="1035">
+For example, a forearm rotating upward in the X direction should display a corresponding swelling of the bicep and change in shape of the elbow joint. The swelling of the bicep and the change in shape of the elbow can be saved as a skin displacement; when animating the skeleton (rotating the forearm upward in the X, for example) the skin will then change shape appropriately every time.<p>
+</a><P><a name="2394">
+<h4> Skin Parts</h4>
+</a><a name="2395">
+When a skin is attached to a skeleton, it is divided into "parts." Each set of vertices (part) is associated with a bone on the skeleton, and are driven by the animation of that bone.<p>
+</a><P><a name="543">
+<h4> Soft Influence</h4>
+</a><a name="1842">
+The calculation method used to determine how soft parts are deformed; see also <em>hard parts</em>, <em>soft parts</em>.<p>
+</a><P><a name="1841">
+<h4> Soft Parts</h4>
+</a><a name="1056">
+Individual skin parts can be defined as "hard" or "soft" parts; soft parts allow for natural deformation around areas like joints on an animated figure. When a part is designated as soft, additional calculations are performed during skeletal animation to make the appearance of the skin around the joint more natural. See also <em>hard parts</em>.<p>
+</a><P><a name="1055">
+<h4> Superior and Inferior</h4>
+</a><a name="687">
+If a bone (B) lies between a selected bone (C) and the root (A), it is said to be <em>superior</em> to that bone. If a bone is further away from the root, it is <em>inferior</em> to that bone. A bone may have only one path to the root (see <strong>Root</strong> above).<p>
+</a><P><a name="689">
+For example, the bone in the upper arm is superior to the bone in the forearm, since it lies between the forearm and the root. Consequently, the forearm bone is said to be <em>inferior</em> to the upper arm bone.<p>
+</a><P><a name="959">
+ <P><img src="1Glossary.anc7.gif"><p>
+</a><a name="951">
+<em>Figure 1.5  &#32; &#32;The upper arm is <em>superior</em> to the forearm; it is between the forearm and the root
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2MenusCommands.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 10:50:15 -->
+
+</body>
+</html>

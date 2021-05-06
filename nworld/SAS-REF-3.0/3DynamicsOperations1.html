@@ -1,0 +1,1047 @@
+<html><head><title>Dynamic Operations</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="3DynamicsOperations.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="27449">
+<h2><HR> Make Wire from Joint Motion</h2>
+</a><a name="25793">
+Creates a multi-segmented wire based on the animated motion of a bone. A new segment is generated at the end of each frame; the segment is a straight line between the previous position of the joint and its position at the current frame.<p>
+</a><P><a name="25819">
+This operation can be used to create "motion wires" which can be used with the <strong>IK Move Along Wire</strong> operation if you want to "fine tune" the motion capture data.<p>
+</a><P><a name="26489">
+ <P><img src="3DynamicsOperations.anc17.gif"><p>
+</a><a name="26490">
+<em>Figure 3.15  &#32; &#32;Wires can be generated from any joint on a skeleton
+</em></a><P><a name="26473">
+The generated wire is created from the tip of the bone that is further from the root.<p>
+</a><P><a name="26534">
+The <strong>Make Wire from Joint Motion </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="16563">
+<em>Table 3.10  &#32; &#32;Make Wire from Joint Motion parameters
+</em></a></dl>
+<tr><th align="left"><a name="16567">
+Parameter
+</a><th align="left"><a name="24737">
+Dynamic?
+</a><th align="left"><a name="16569">
+Description
+</a>
+<tr><td valign="top"><a name="16571">
+ Skeleton<p>
+</a><td valign="top"><a name="24739">
+ No<p>
+</a><td valign="top"><a name="16573">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="16575">
+ Bone<p>
+</a><td valign="top"><a name="24741">
+ No<p>
+</a><td valign="top"><a name="16577">
+ The bone whose tip is being used to create the wire.<p>
+</a>
+<tr><td valign="top"><a name="16579">
+ Wire<p>
+</a><td valign="top"><a name="24743">
+ No<p>
+</a><td valign="top"><a name="16581">
+ The name of the wire.<p>
+</a><a name="25804">
+ If you select <strong>None</strong>, you are prompted for a name when you animate the script. If you choose an existing wire, that wire is modified when the script is animated.<p>
+</a>
+<tr><td valign="top"><a name="16583">
+ Visible?<p>
+</a><td valign="top"><a name="24745">
+ No<p>
+</a><td valign="top"><a name="16585">
+ Should the wire be visible as each segment is drawn?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15920">
+<h2><HR> Quaternion Rotate Bone</h2>
+</a><a name="28560">
+The <strong>Quaternion Rotate Bone</strong> operation lets you rotate a bone using "quaternion" notation, which describe the orientation of an object in 3D space using four values rather than three (as with X, Y, Z rotations). <p>
+</a><P><a name="29518">
+Using a quaternion rotations avoids "gimbal lock" which can sometimes happen when a bone is closely aligned with the global X, Y, or Z axes. Some animators find it easier to use than other rotation commands, since you pose the skeleton and copy the current state of one or more bones into a cue (much like keyframing).<p>
+</a><P><a name="28564">
+ <P><img src="3DynamicsOperations.anc18.gif"><p>
+</a><a name="28565">
+<em>Figure 3.16  &#32; &#32;Left, original skeleton; right, copy, with upper left arm rotated with Quaternion Rotate Root
+</em></a><P><a name="28567">
+To use the <strong>Quaternion Rotate Bone</strong> operation:<p>
+</a><P>
+<a name="29529">
+<STRONG>	 1.	 Create a <strong>Quaternion Rotate Bone</strong> channel.
+</STRONG>
+</a><P><a name="29530">
+<STRONG>	2.	 Insert a cue where you want the rotation to occur.
+</STRONG>
+</a><P><a name="29531">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on a cue.
+</STRONG>
+</a><P><dl><a name="29532">
+<dt>The following menu appears:</dt>
+</a><P><a name="29537">
+ <P><img src="3DynamicsOperations.anc19.gif"><p>
+</a></dl>
+<a name="29538">
+<em>Figure 3.17  &#32; &#32;Using Quaternion Rotate Root on a bone
+</em></a><P>
+<a name="29540">
+<STRONG>	4.	 Rotate the target bone into the desired pose.
+</STRONG>
+</a><P><a name="29541">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on CopyOrientation.
+</STRONG>
+</a><P><a name="29547">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics script editor.
+</STRONG>
+</a><P><dl><a name="29550">
+<dt>The script animates, and the bone rotates, hitting each cue in the channel. 
+<P><Table Border="1">
+<dl>
+<a name="28571">
+<em>Table 3.11  &#32; &#32;Quaternion Rotate Bone parameters
+</em></a></dl>
+<tr><th align="left"><a name="28577">
+Parameter
+</a><th align="left"><a name="28579">
+Dynamic?
+</a><th align="left"><a name="28581">
+Description
+</a>
+<tr><td valign="top"><a name="28583">
+ Skeleton<p>
+</a><td valign="top"><a name="28585">
+ No<p>
+</a><td valign="top"><a name="28587">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="28589">
+ Bone<p>
+</a><td valign="top"><a name="28591">
+ No<p>
+</a><td valign="top"><a name="28593">
+ The bone being rotated.<p>
+</a>
+<tr><td valign="top"><a name="28595">
+ Orientation<p>
+</a><td valign="top"><a name="28597">
+ Yes<p>
+</a><td valign="top"><a name="28601">
+ The orientation of the bone at the given frame, described in quaternion notation.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</dt>
+</a><P></dl>
+<a name="28290">
+<h2><HR> Quaternion Rotate Root</h2>
+</a><a name="29573">
+The <strong>Quaternion Rotate Root </strong>operation is similar to the Quaternion Rotate Bone operation described previously. This operation lets you rotate the root of the skeleton using "quaternion" notation, which, as mentioned before, describe the orientation of an object in 3D space using four values rather than three (as with X, Y, Z rotations).<p>
+</a><P><a name="29574">
+Using a quaternion rotations avoids "gimbal lock" which can sometimes happen when a skeleton is closely aligned with the global X, Y, or Z axes.<p>
+</a><P><a name="28642">
+ <P><img src="3DynamicsOperations.anc20.gif"><p>
+</a><a name="28643">
+<em>Figure 3.18  &#32; &#32;Left, original skeleton, right, skeleton root rotated on the Y axis with Quaternion Rotate Root
+</em></a><P><a name="29607">
+To use the <strong>Quaternion Rotate Bone</strong> operation:<p>
+</a><P>
+<a name="29608">
+<STRONG>	 1.	 Create a <strong>Quaternion Rotate Bone</strong> channel.
+</STRONG>
+</a><P><a name="29609">
+<STRONG>	2.	 Insert a cue where you want the rotation to occur.
+</STRONG>
+</a><P><a name="29610">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on a cue.
+</STRONG>
+</a><P><dl><a name="29611">
+<dt>The following menu appears:</dt>
+</a><P><a name="29615">
+ <P><img src="3DynamicsOperations.anc21.gif"><p>
+</a></dl>
+<a name="29616">
+<em>Figure 3.19  &#32; &#32;Using Quaternion Rotate Root on a skeleton
+</em></a><P>
+<a name="29617">
+<STRONG>	4.	 Rotate the target bone into the desired pose.
+</STRONG>
+</a><P><a name="29618">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on CopyOrientation.
+</STRONG>
+</a><P><a name="29619">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics script editor.
+</STRONG>
+</a><P>
+<a name="28676">
+The script animates, and the bone rotates, hitting each cue in the channel. 
+<P><Table Border="1">
+<dl>
+<a name="28647">
+<em>Table 3.12  &#32; &#32;Quaternion Rotate Root parameters
+</em></a></dl>
+<tr><th align="left"><a name="28653">
+Parameter
+</a><th align="left"><a name="28655">
+Dynamic?
+</a><th align="left"><a name="28657">
+Description
+</a>
+<tr><td valign="top"><a name="28659">
+ Skeleton<p>
+</a><td valign="top"><a name="28661">
+ No<p>
+</a><td valign="top"><a name="28663">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="28671">
+ Orientation<p>
+</a><td valign="top"><a name="28673">
+ Yes<p>
+</a><td valign="top"><a name="29625">
+ The orientation of the bone at the given frame, described in quaternion notation.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="28289">
+<h2><HR> Read Acclaim Data</h2>
+</a><a name="25873">
+Reads in Acclaim format motion capture data (including the <strong>.asf</strong> and <strong>.amc</strong> files). To animate using this operation you need:<p>
+</a><P><ul><a name="26800">
+<li>A skeleton, typically read in as an Acclaim format skeleton. The skeleton can also be built from scratch as long as it is named appropriately to match the specified .asf and .amc files.
+</a></li><P><a name="26801">
+<li>A .asf file that describes that skeleton (e.g., bone names, bone length, degrees of freedom, and so forth)
+</a></li><P><a name="26802">
+<li>A .amc motion capture file (which describes the motion for that skeleton).
+</a></li><P></ul><P><a name="26869">
+To animate a skeleton using this operation, you'll typically include this channel as one of the first skeletal operations in the script; to animate the selected skeleton, use an <strong>Update Skeleton</strong> operation.<p>
+</a><P><a name="26876">
+The <strong>Read Acclaim Data </strong>operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="15504">
+<em>Table 3.13  &#32; &#32;Read Acclaim Data parameters
+</em></a></dl>
+<tr><th align="left"><a name="15508">
+Parameter
+</a><th align="left"><a name="24753">
+Dynamic?
+</a><th align="left"><a name="15510">
+Description
+</a>
+<tr><td valign="top"><a name="15512">
+ Skeleton<p>
+</a><td valign="top"><a name="24755">
+ No<p>
+</a><td valign="top"><a name="15514">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="15516">
+ Skeleton Dir.<p>
+</a><td valign="top"><a name="24757">
+ No<p>
+</a><td valign="top"><a name="15518">
+ The directory containing the skeleton file.<p>
+</a>
+<tr><td valign="top"><a name="15520">
+ .asf File Name<p>
+</a><td valign="top"><a name="24759">
+ No<p>
+</a><td valign="top"><a name="15522">
+ The skeleton file.<p>
+</a>
+<tr><td valign="top"><a name="15524">
+ Motion Dir.<p>
+</a><td valign="top"><a name="24761">
+ No<p>
+</a><td valign="top"><a name="15526">
+ The directory containing the motion capture data file.<p>
+</a>
+<tr><td valign="top"><a name="16615">
+ .amc File Name<p>
+</a><td valign="top"><a name="24763">
+ No<p>
+</a><td valign="top"><a name="16617">
+ The motion capture data file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15541">
+<h2><HR> Read Biovision Data</h2>
+</a><a name="26820">
+Reads in Biovision motion capture data. To animate using this operation you need:<p>
+</a><P><ul><a name="26821">
+<li>A skeleton, typically read in as a Biovision format skeleton. The skeleton can also be built from scratch as long as it is named appropriately to match the specified .bvh file.
+</a></li><P><a name="26822">
+<li>The .bvh file itself. The .bvh file includes both a description of the skeleton (e.g., the skeleton's bone names, bone length, degrees of freedom, and so forth) and any motion capture data (which describes the motion for that skeleton).
+</a></li><P></ul><P><a name="26891">
+To animate a skeleton using this operation, you'll typically include this channel as one of the first skeletal operations in the script; to animate the skeleton, use an <strong>Update Skeleton</strong> operation.<p>
+</a><P><a name="26892">
+The <strong>Read Biovision Data </strong>operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="15551">
+<em>Table 3.14  &#32; &#32;Read Biovision Data parameters
+</em></a></dl>
+<tr><th align="left"><a name="15555">
+Parameter
+</a><th align="left"><a name="24771">
+Dynamic?
+</a><th align="left"><a name="15557">
+Description
+</a>
+<tr><td valign="top"><a name="16659">
+ Skeleton<p>
+</a><td valign="top"><a name="24773">
+ No<p>
+</a><td valign="top"><a name="16661">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="16663">
+ Motion Dir.<p>
+</a><td valign="top"><a name="24775">
+ No<p>
+</a><td valign="top"><a name="16665">
+ The directory containing the motion capture data.<p>
+</a>
+<tr><td valign="top"><a name="16667">
+ .bvh File Name<p>
+</a><td valign="top"><a name="24777">
+ No<p>
+</a><td valign="top"><a name="16669">
+ The name of the motion capture data file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15587">
+<h2><HR> Read Motion Analysis Data</h2>
+</a><a name="28681">
+Reads a Motion Analysis motion capture data file. To animate using this operation you need:<p>
+</a><P><ul><a name="28682">
+<li>A skeleton, typically read in as a Motion Analysis format skeleton. The skeleton can also be built from scratch as long as it is named appropriately to match the specified .htr file.
+</a></li><P><a name="28683">
+<li>The .htr file itself. The .htr file includes both a description of the skeleton (e.g., the skeleton's bone names, bone length, degrees of freedom, and so forth) and any motion capture data (which describes the motion for that skeleton).
+</a></li><P></ul><P><a name="28684">
+To animate a skeleton using this operation, you'll typically include this channel as one of the first skeletal operations in the script; to animate the skeleton, use an <strong>Update Skeleton</strong> operation.<p>
+</a><P><a name="28717">
+The <strong>Read Motion Analysis Data </strong>operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="28688">
+<em>Table 3.15  &#32; &#32;Read Motion Analysis Data parameters
+</em></a></dl>
+<tr><th align="left"><a name="28694">
+Parameter
+</a><th align="left"><a name="28696">
+Dynamic?
+</a><th align="left"><a name="28698">
+Description
+</a>
+<tr><td valign="top"><a name="28700">
+ Skeleton<p>
+</a><td valign="top"><a name="28702">
+ No<p>
+</a><td valign="top"><a name="28704">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="28706">
+ Motion Dir.<p>
+</a><td valign="top"><a name="28708">
+ No<p>
+</a><td valign="top"><a name="28710">
+ The directory containing the motion capture data file.<p>
+</a>
+<tr><td valign="top"><a name="28712">
+ .htr File Name<p>
+</a><td valign="top"><a name="28714">
+ No<p>
+</a><td valign="top"><a name="28716">
+ The name of the motion capture file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="28291">
+<h2><HR> Rotate Root</h2>
+</a><a name="29631">
+The <strong>Rotate Root </strong>operation lets you dynamically rotate the root of the skeleton around the X, Y, or Z axes.<p>
+</a><P><a name="28749">
+ <P><img src="3DynamicsOperations.anc22.gif"><p>
+</a><a name="28750">
+<em>Figure 3.20  &#32; &#32;Using rotate root on a skeleton
+</em></a><P><a name="28751">
+As with any dynamic operation, you can specify any number of cues in any channel. You might, for instance, want the skeleton to change its X, Y, and Z rotation at frame about a third of the way into the script, then change its X rotation twice more near the end of the script:<p>
+</a><P><a name="29662">
+ <P><img src="3DynamicsOperations.anc23.gif"><p>
+</a><a name="29663">
+<em>Figure 3.21  &#32; &#32;Enter cues in the appropriate channel wherever you want the skeleton to rotate
+</em></a><P><a name="29676">
+After inserting the cues where you want the rotations to occur, you can edit the cue values:<p>
+</a><P>
+<a name="29678">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><a name="29683">
+<STRONG>	2.	 Adjust the value using the slider.
+</STRONG>
+</a><P><a name="29657">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Animate button.
+</STRONG>
+</a><P>
+<a name="28777">
+The following parameters can be set for the <strong>Rotate Root</strong> operation: 
+<P><Table Border="1">
+<dl>
+<a name="28754">
+<em>Table 3.16  &#32; &#32;Rotate Root parameters
+</em></a></dl>
+<tr><th align="left"><a name="28760">
+Parameter
+</a><th align="left"><a name="28762">
+Dynamic?
+</a><th align="left"><a name="28764">
+Description
+</a>
+<tr><td valign="top"><a name="28766">
+ Skeleton<p>
+</a><td valign="top"><a name="28768">
+ No<p>
+</a><td valign="top"><a name="28770">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="28772">
+ X Angle<p>
+</a><td valign="top"><a name="28774">
+ Yes<p>
+</a><td valign="top"><a name="28776">
+ The value by which the root should be rotated around its X axis.<p>
+</a>
+<tr><td valign="top"><a name="28792">
+ Y Angle<p>
+</a><td valign="top"><a name="28794">
+ Yes<p>
+</a><td valign="top"><a name="28796">
+ The value by which the root should be rotated around its Y axis.<p>
+</a>
+<tr><td valign="top"><a name="28786">
+ Z Angle<p>
+</a><td valign="top"><a name="28788">
+ Yes<p>
+</a><td valign="top"><a name="28790">
+ The value by which the root should be rotated around its Z axis.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="28295">
+<h2><HR> Scale Bone</h2>
+</a><a name="26124">
+Scales the length of the selected bone using the dynamic value in <strong>Factor</strong>. You can scale the bone using one of the three modes described below. This technique can be used on several bones to create cartoonish effects, as described in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="28854">
+ <P><img src="3DynamicsOperations.anc24.gif"><p>
+</a><a name="28855">
+<em>Figure 3.22  &#32; &#32;Scaling a bone
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong><em>You must make sure that the bone being scaled does not have a fixed length. If the DOF defined for this bone does not allow it to be scaled, the operation executes, but the bone doesn't change length.</em></font></dd></dt></dl><P>
+<a name="26155">
+To check the DOF for the referenced bone, <strong>(SHIFT-L)</strong> on the bone in the N-Geometry window and try to resize it using the <strong>Scale Bone</strong> operation. If the bone has a fixed length, the following dialog box appears:<p>
+</a><P><a name="26205">
+ <P><img src="3DynamicsOperations.anc25.gif"><p>
+</a><a name="26206">
+<em>Figure 3.23  &#32; &#32;Scaled bones cannot have fixed length
+</em></a><P><a name="26156">
+You can <strong>(CLICK-L)</strong> on Yes to free the bone. <p>
+</a><P><a name="26215">
+To check the fixed length setting for multiple bones at the same time, <strong>(SHIFT-L)</strong> on the skeleton and <strong>(CLICK-L)</strong> on DOF Editor, then make sure the Scale DOF is checked for that bone:<p>
+</a><P><a name="26233">
+ <P><img src="3DynamicsOperations.anc26.gif"><p>
+</a><a name="26234">
+<em>Figure 3.24  &#32; &#32;Use the DOF editor to set the "scalability" of multiple bones at once; Min and Max values are displayed if the Scale DOF is active
+</em></a><P><a name="26228">
+In <a href="3DynamicsOperations1.html#26234">Figure 3.24</a>, the second bone can be scaled; all others are of fixed length. 
+<P><Table Border="1">
+<dl>
+<a name="26160">
+<em>Table 3.17  &#32; &#32;Scale Bone parameters
+</em></a></dl>
+<tr><th align="left"><a name="26166">
+Parameter
+</a><th align="left"><a name="26168">
+Dynamic?
+</a><th align="left"><a name="26170">
+Description
+</a>
+<tr><td valign="top"><a name="26172">
+ Skeleton<p>
+</a><td valign="top"><a name="26174">
+ No<p>
+</a><td valign="top"><a name="26176">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="26178">
+ Bone<p>
+</a><td valign="top"><a name="26180">
+ No<p>
+</a><td valign="top"><a name="26182">
+ The bone being scaled.<p>
+</a>
+<tr><td valign="top"><a name="26184">
+ Mode<p>
+</a><td valign="top"><a name="26186">
+ No<p>
+</a><td valign="top"><a name="26188">
+ Determines how the dynamic value in Factor is applied to the Bone.<p>
+</a><a name="26189">
+ <strong>Set</strong> uses the value in <strong>Factor</strong> for the new bone length.<p>
+</a><a name="26190">
+ <strong>Add</strong> adds the value in <strong>Factor</strong> to the current bone length.<p>
+</a><a name="26191">
+ <strong>Multiply</strong> uses the value in <strong>Factor</strong> as a factor by which to multiply the bone length.<p>
+</a>
+<tr><td valign="top"><a name="26193">
+ Factor<p>
+</a><td valign="top"><a name="26195">
+ Yes<p>
+</a><td valign="top"><a name="26197">
+ The dynamic value used to scale the bone.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15935">
+<h2><HR> Transform Root</h2>
+</a><a name="26319">
+If you want to transform (move, rotate, or scale) <em>the entire skeleton</em>, you can use the <strong>Transform Root</strong> operation. This operation is actually performed on the skeleton object.<p>
+</a><P><a name="28927">
+ <P><img src="3DynamicsOperations.anc27.gif"><p>
+</a><a name="28928">
+<em>Figure 3.25  &#32; &#32;Transforming the Root node
+</em></a><P><a name="26345">
+This operation could be used to move the entire skeleton in 3D space, to rotate the skeleton around its root, or scale the entire skeleton object larger or smaller. Note that by default the <strong>scale</strong> subchannel is <em>not</em> dynamic, although it can be made so. Dynamic channels are created for XYZ rotations and offsets:<p>
+</a><P><a name="29713">
+ <P><img src="3DynamicsOperations.anc28.gif"><p>
+</a><a name="29714">
+<em>Figure 3.26  &#32; &#32;In a Transform Root operation, rotate and translation channels are automatically dynamic
+</em></a><P><a name="29708">
+The following parameters can be set with the <strong>Transform Root</strong> operation: 
+<P><Table Border="1">
+<dl>
+<a name="16736">
+<em>Table 3.18  &#32; &#32;Transform Root parameters
+</em></a></dl>
+<tr><th align="left"><a name="16740">
+Parameter
+</a><th align="left"><a name="24801">
+Dynamic?
+</a><th align="left"><a name="16742">
+Description
+</a>
+<tr><td valign="top"><a name="16744">
+ Skeleton<p>
+</a><td valign="top"><a name="24803">
+ No<p>
+</a><td valign="top"><a name="16746">
+ The skeleton being transformed.<p>
+</a>
+<tr><td valign="top"><a name="16748">
+ X, Y, and Z Offset<p>
+</a><td valign="top"><a name="24805">
+ Yes<p>
+</a><td valign="top"><a name="16750">
+ The dynamic values for the X, Y, and Z move of the skeleton (using the root).<p>
+</a>
+<tr><td valign="top"><a name="16752">
+ X, Y, and Z Angle<p>
+</a><td valign="top"><a name="24807">
+ Yes<p>
+</a><td valign="top"><a name="16754">
+ The dynamic values for the X, Y, and Z angles of rotation for the skeleton.<p>
+</a>
+<tr><td valign="top"><a name="16756">
+ Scale<p>
+</a><td valign="top"><a name="24809">
+ Can be<p>
+</a><td valign="top"><a name="16758">
+ The value (which can be dynamic) for the scale of the skeleton.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15934">
+<h2><HR> Translate Root</h2>
+</a><a name="28867">
+If you want to translate <em>the entire skeleton</em> (move it along one or more axes), you can use the <strong>Translate Root</strong> operation. This operation is actually performed on the skeleton object.<p>
+</a><P><a name="28936">
+ <P><img src="3DynamicsOperations.anc29.gif"><p>
+</a><a name="28937">
+<em>Figure 3.27  &#32; &#32;Translating the Root, in this case, along the Z axis
+</em></a><P><a name="28868">
+This operation has fewer parameters than the <strong>Transform Root</strong> operation described earlier; translations do not include scaling or rotation of the target object. 
+<P><Table Border="1">
+<dl>
+<a name="28872">
+<em>Table 3.19  &#32; &#32;Transform Root parameters
+</em></a></dl>
+<tr><th align="left"><a name="28878">
+Parameter
+</a><th align="left"><a name="28880">
+Dynamic?
+</a><th align="left"><a name="28882">
+Description
+</a>
+<tr><td valign="top"><a name="28884">
+ Skeleton<p>
+</a><td valign="top"><a name="28886">
+ No<p>
+</a><td valign="top"><a name="28888">
+ The skeleton being translated.<p>
+</a>
+<tr><td valign="top"><a name="28890">
+ X, Y, and Z Offset<p>
+</a><td valign="top"><a name="28892">
+ Yes<p>
+</a><td valign="top"><a name="28894">
+ The dynamic values for the X, Y, and Z move of the skeleton (using the root).<p>
+</a>
+<tr><td valign="top"><a name="28902">
+ Scale<p>
+</a><td valign="top"><a name="28904">
+ Can be<p>
+</a><td valign="top"><a name="28906">
+ The value (which can be dynamic) for the scale of the skeleton.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="28297">
+<h2><HR> Update Skeleton</h2>
+</a><a name="15588">
+As mentioned in the section <a href="3DynamicsOperations.html#26040">"Skeletal Operation Order in N-Dynamics Scripts," on page &#32;3-2</a>, the Update Skeleton operation applies the changes specified in other skeletal operations to the skeleton.<p>
+</a><P><a name="26294">
+The Update Skeleton operation is visually divided into several logical sections:<p>
+</a><P><ul><a name="26312">
+<li><strong>Skeleton</strong> lets you select the skeleton to update and toggle its visibility.
+</a></li><P><a name="26315">
+<li><strong>Skins</strong> controls how any skins assigned to the skeleton are updated.
+</a></li><P><a name="26316">
+<li><strong>Root Transformations</strong> controls whether any transformation, rotation, or scaling operation are applied to the skeleton as directed by any previous motion capture that has been read or through any <strong>Transform Root</strong> operations. 
+<P><Table Border="1">
+<dl>
+<a name="15596">
+<em>Table 3.20  &#32; &#32;Update Skeleton parameters
+</em></a></dl>
+<tr><th align="left"><a name="15600">
+Element
+</a><th align="left"><a name="28947">
+Variable
+</a><th align="left"><a name="24817">
+Dynamic?
+</a><th align="left"><a name="15602">
+Description
+</a>
+<tr><td valign="top"><a name="15604">
+ <strong>Skeleton</strong><p>
+</a><td valign="top"><a name="28949">
+ <p>
+</a><td valign="top"><a name="24819">
+ <p>
+</a><td valign="top"><a name="15606">
+ <p>
+</a>
+<tr><td valign="top"><a name="16777">
+ <p>
+</a><td valign="top"><a name="28969">
+ Name<p>
+</a><td valign="top"><a name="24821">
+ No<p>
+</a><td valign="top"><a name="16779">
+ The skeleton to be updated.<p>
+</a>
+<tr><td valign="top"><a name="16773">
+ <p>
+</a><td valign="top"><a name="28971">
+ Visible?<p>
+</a><td valign="top"><a name="24823">
+ No<p>
+</a><td valign="top"><a name="16775">
+ Should the skeleton be made visible after it is updated?<p>
+</a>
+<tr><td valign="top"><a name="15608">
+ <strong>Skins</strong><p>
+</a><td valign="top"><a name="28955">
+ <p>
+</a><td valign="top"><a name="24825">
+ <p>
+</a><td valign="top"><a name="15610">
+ <p>
+</a>
+<tr><td valign="top"><a name="16796">
+ <p>
+</a><td valign="top"><a name="28973">
+ Update?<p>
+</a><td valign="top"><a name="24827">
+ No<p>
+</a><td valign="top"><a name="16798">
+ Should the skin(s) assigned to this skeleton be updated as the skeleton is animated?<p>
+</a>
+<tr><td valign="top"><a name="16792">
+ <p>
+</a><td valign="top"><a name="28975">
+ Displace?<p>
+</a><td valign="top"><a name="24829">
+ No<p>
+</a><td valign="top"><a name="16794">
+ Should skin displacements driven by bone rotation be applied as the skeleton is animated?<p>
+</a>
+<tr><td valign="top"><a name="15612">
+ <strong>Root<br>Transformations</strong><p>
+</a><td valign="top"><a name="28961">
+ <p>
+</a><td valign="top"><a name="24831">
+ <p>
+</a><td valign="top"><a name="16809">
+ <p>
+</a>
+<tr><td valign="top"><a name="16826">
+ <p>
+</a><td valign="top"><a name="28977">
+ Translate?<p>
+</a><td valign="top"><a name="24833">
+ No<p>
+</a><td valign="top"><a name="16828">
+ Should root transformations be applied to the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="16822">
+ <p>
+</a><td valign="top"><a name="28979">
+ Rotate?<p>
+</a><td valign="top"><a name="24835">
+ No<p>
+</a><td valign="top"><a name="16824">
+ Should root rotations be applied to the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="16818">
+ <p>
+</a><td valign="top"><a name="28981">
+ Scale?<p>
+</a><td valign="top"><a name="24837">
+ No<p>
+</a><td valign="top"><a name="16820">
+ Should root scaling operations be applied to the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="28991">
+ Motion Editing<p>
+</a><td valign="top"><a name="28993">
+ <p>
+</a><td valign="top"><a name="28995">
+ <p>
+</a><td valign="top"><a name="28997">
+ <p>
+</a>
+<tr><td valign="top"><a name="28999">
+ <p>
+</a><td valign="top"><a name="29001">
+ Limit DOFs?<p>
+</a><td valign="top"><a name="29003">
+ No<p>
+</a><td valign="top"><a name="29005">
+ Should the skeleton's DOFs be used when animating?<p>
+</a>
+<tr><td valign="top"><a name="28983">
+ <p>
+</a><td valign="top"><a name="28985">
+ Save Pose?<p>
+</a><td valign="top"><a name="28987">
+ No<p>
+</a><td valign="top"><a name="28989">
+ If you are using Difference Posing, described in the <em>Skeletal Animation System Tutorial</em>, set this to <strong>Yes</strong>.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</a></li><P></ul><P><a name="15940">
+<h2><HR> Update Skins</h2>
+</a><a name="29750">
+If you do a simple dynamic operation such as <strong>Move</strong> or <strong>Rotate</strong> to a skeleton <em>after</em> the <strong>Update Skeleton</strong> operation, any skins are <em>not</em> updated. <strong>Update Skins</strong> updates the skins according to the new skeleton position (and should obviously go toward the bottom of the script). 
+<P><Table Border="1">
+<dl>
+<a name="29753">
+<em>Table 3.21  &#32; &#32;Update Skin parameters
+</em></a></dl>
+<tr><th align="left"><a name="29761">
+Element
+</a><th align="left"><a name="29763">
+Variable
+</a><th align="left"><a name="29765">
+Dynamic?
+</a><th align="left"><a name="29767">
+Description
+</a>
+<tr><td valign="top"><a name="29769">
+ <strong>Skins</strong><p>
+</a><td valign="top"><a name="29771">
+ <p>
+</a><td valign="top"><a name="29773">
+ <p>
+</a><td valign="top"><a name="29775">
+ <p>
+</a>
+<tr><td valign="top"><a name="29777">
+ <p>
+</a><td valign="top"><a name="29779">
+ Update?<p>
+</a><td valign="top"><a name="29781">
+ No<p>
+</a><td valign="top"><a name="29783">
+ Should the skin(s) attached to this skeleton be updated as the skeleton is animated?<p>
+</a>
+<tr><td valign="top"><a name="29785">
+ <p>
+</a><td valign="top"><a name="29787">
+ Displace?<p>
+</a><td valign="top"><a name="29789">
+ No<p>
+</a><td valign="top"><a name="29791">
+ Should skin displacements driven by bone rotation be applied as the skeleton is animated?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="28299">
+<h2><HR> Write Acclaim Data</h2>
+</a><a name="26919">
+Writes an .amc file based on the animated motion of a skeleton.<p>
+</a><P><a name="26925">
+This operation might be used, for example, after you had used the <strong>IK Move along Wire</strong> operation to tweak a previously saved motion capture (.amc) file. These saved files can then be reread using the <strong>Read Acclaim Data</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="16201">
+<em>Table 3.22  &#32; &#32;Write Acclaim Data parameters
+</em></a></dl>
+<tr><th align="left"><a name="16205">
+Parameter
+</a><th align="left"><a name="24845">
+Dynamic?
+</a><th align="left"><a name="16207">
+Description
+</a>
+<tr><td valign="top"><a name="16209">
+ Skeleton<p>
+</a><td valign="top"><a name="24847">
+ No<p>
+</a><td valign="top"><a name="16211">
+ The skeleton being used to generate the Acclaim data.<p>
+</a>
+<tr><td valign="top"><a name="16213">
+ Skeleton Dir.<p>
+</a><td valign="top"><a name="24849">
+ No<p>
+</a><td valign="top"><a name="16215">
+ The .asf file with which the .amc file should be associated.<p>
+</a>
+<tr><td valign="top"><a name="16217">
+ .asf File Name<p>
+</a><td valign="top"><a name="24851">
+ No<p>
+</a><td valign="top"><a name="16222">
+ The name of the .asf file.<p>
+</a>
+<tr><td valign="top"><a name="16890">
+ Motion Dir.<p>
+</a><td valign="top"><a name="24853">
+ No<p>
+</a><td valign="top"><a name="16892">
+ The directory into which the motion capture file should be written.<p>
+</a>
+<tr><td valign="top"><a name="16886">
+ .amc File Name<p>
+</a><td valign="top"><a name="24855">
+ No<p>
+</a><td valign="top"><a name="16888">
+ The name of the motion capture file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you write out a frame range of the script, written frames are numbered 1 &#32;through N, regardless of their frame number in the script.</em></font></dd></dt></dl><P>
+<a name="29992">
+<h2><HR> X Rotate Bone</h2>
+</a><a name="15623">
+Rotates a bone around its local X axis. 
+<P><Table Border="1">
+<dl>
+<a name="15631">
+<em>Table 3.23  &#32; &#32;X Rotate Bone parameters
+</em></a></dl>
+<tr><th align="left"><a name="15635">
+Parameter
+</a><th align="left"><a name="24863">
+Dynamic?
+</a><th align="left"><a name="15637">
+Description
+</a>
+<tr><td valign="top"><a name="15639">
+ Skeleton<p>
+</a><td valign="top"><a name="24865">
+ No<p>
+</a><td valign="top"><a name="15641">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="15643">
+ Bone<p>
+</a><td valign="top"><a name="24867">
+ No<p>
+</a><td valign="top"><a name="15645">
+ The bone you want to rotate.<p>
+</a>
+<tr><td valign="top"><a name="15647">
+ X Angle<p>
+</a><td valign="top"><a name="24869">
+ Yes<p>
+</a><td valign="top"><a name="15652">
+ The dynamic value for the X rotation.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15656">
+<h2><HR> XYZ Rotate Bone</h2>
+</a><a name="16922">
+Rotate a bone in any or all three planes. Separate subchannels are created for each dynamic value. 
+<P><Table Border="1">
+<dl>
+<a name="16854">
+<em>Table 3.24  &#32; &#32;XYZ Rotate Bone parameters
+</em></a></dl>
+<tr><th align="left"><a name="16858">
+Parameter
+</a><th align="left"><a name="24877">
+Dynamic?
+</a><th align="left"><a name="16860">
+Description
+</a>
+<tr><td valign="top"><a name="16862">
+ Skeleton<p>
+</a><td valign="top"><a name="24879">
+ No<p>
+</a><td valign="top"><a name="16864">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="16866">
+ Bone<p>
+</a><td valign="top"><a name="24881">
+ No<p>
+</a><td valign="top"><a name="16868">
+ The bone you want to rotate.<p>
+</a>
+<tr><td valign="top"><a name="16870">
+ X, Y, and Z Angle<p>
+</a><td valign="top"><a name="24883">
+ Yes<p>
+</a><td valign="top"><a name="16875">
+ The dynamic values for the X, Y, and Z rotations.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15690">
+<h2><HR> Y Rotate Bone</h2>
+</a><a name="15691">
+Rotates a bone around its local Y axis. See <strong>X Rotate Bone</strong>, above, for details.<p>
+</a><P><a name="15692">
+<h2><HR> Z Rotate Bone</h2>
+</a><a name="15693">
+Rotates a bone around its local Z axis. See <strong>X Rotate Bone</strong>, above, for details.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="3DynamicsOperations.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 10:49:52 -->
+
+</body>
+</html>

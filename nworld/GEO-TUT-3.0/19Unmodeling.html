@@ -1,0 +1,715 @@
+<html><head><title>Unmodeling</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="18Mappers.html">[Prev]</a> <a href="20RepairingObjects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Unmodeling</h1>
+</a>
+<hr><p><a name="20445">
+<h4> We called this chapter "Unmodeling" because it shows some techniques that you might not think of if you're used to working with other modelers. Get ready to bend your mind!</h4>
+</a><a name="9046">
+ <P><img src="19Unmodeling.anc.gif"><p>
+</a><a name="18651">
+<h2><HR> The Hollow Cube</h2>
+</a><a name="18652">
+In this exercise, we'll start with a solid cube and turn it into a "hollow" object.<p>
+</a><P>
+<a name="18662">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><a name="18663">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="18664">
+<dt>This selects all of the faces on the body of the tetrahedron.</dt>
+</a><P></dl><a name="18665">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the collection of faces, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="18666">
+<dt>Enter a value of 1.</dt>
+</a><P><a name="18670">
+ <P><img src="19Unmodeling.anc1.gif"><p>
+</a></dl>
+<a name="18671">
+<em>Figure 19.1  &#32; &#32;Inset the faces
+</em></a><P>
+<a name="18672">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the still collected faces, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="18673">
+<dt><strong>Extrude</strong> the faces inward slightly, but make sure they don't overlap.</dt>
+</a><P><a name="18680">
+ <P><img src="19Unmodeling.anc2.gif"><p>
+</a></dl>
+<a name="18681">
+<em>Figure 19.2  &#32; &#32;Extrude the faces inward
+</em></a><P>
+<a name="18682">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Shading&gt;Cube.
+</STRONG>
+</a><P><a name="18683">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on one of the large faces, then <strong>(CLICK-L)</strong> on Bridge.
+</STRONG>
+</a><P><a name="18684">
+<STRONG>	7.	 Move the camera and <strong>(CLICK-L)</strong> on the opposite face.
+</STRONG>
+</a><P><dl><a name="18685">
+<dt>Your object should look like this:</dt>
+</a><P><a name="18689">
+ <P><img src="19Unmodeling.anc3.gif"><p>
+</a></dl>
+<a name="18690">
+<em>Figure 19.3  &#32; &#32;After the first bridge
+</em></a><P><dl><dl><a name="18730">
+<dt>Remember, however, that we now have a winged-edge model; we can't simply bridge from side to side, but must bridge the remaining faces individually.</dt>
+</a><P></dl></dl>
+<a name="18691">
+<STRONG>	8.	 On one of the remaining faces, use the Bridge operation.
+</STRONG>
+</a><P><dl><a name="18692">
+<dt>Your object should look like this:</dt>
+</a><P><a name="18696">
+ <P><img src="19Unmodeling.anc4.gif"><p>
+</a></dl>
+<a name="18697">
+<em>Figure 19.4  &#32; &#32;Second side bridged
+</em></a><P>
+<a name="18736">
+<STRONG>	9.	 Repeate the Bridge command for each of the remaining three faces.
+</STRONG>
+</a><P><dl><a name="18741">
+<dt>Your finished object should look like this:</dt>
+</a><P><a name="18747">
+ <P><img src="19Unmodeling.anc5.gif"><p>
+</a></dl>
+<a name="18748">
+<em>Figure 19.5  &#32; &#32;All faces bridged
+</em></a><P><a name="18758">
+Now, this looks pretty good, but we still have a little cleanup to do on the inside of the cube.<p>
+</a><P>
+<a name="18759">
+<STRONG>	10.	 Turn shading for the object off.
+</STRONG>
+</a><P><a name="18760">
+<STRONG>	11.	 Zoom the camera into the inside of the cube.
+</STRONG>
+</a><P><dl><a name="18761">
+<dt>Look at one of the joints.</dt>
+</a><P></dl><a name="18762">
+<STRONG>	12.	 Some of the inside edges have an extra segment, created when you bridged the faces:
+</STRONG>
+</a><P><a name="18771">
+ <P><img src="19Unmodeling.anc6.gif"><p>
+</a>
+<a name="18772">
+<em>Figure 19.6  &#32; &#32;Dissolving extra segments
+</em></a><P>
+<a name="18826">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the segment, then <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><a name="18846">
+ <P><img src="19Unmodeling.anc7.gif"><p>
+</a>
+<a name="18847">
+<em>Figure 19.7  &#32; &#32;Dissolving extra segments
+</em></a><P>
+<a name="18853">
+<STRONG>	14.	 Cut the face created when the segment is dissolved as shown:
+</STRONG>
+</a><P><a name="18864">
+ <P><img src="19Unmodeling.anc8.gif"><p>
+</a>
+<a name="18865">
+<em>Figure 19.8  &#32; &#32;Cut the resulting face
+</em></a><P>
+<a name="18855">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on the small triangular face.
+</STRONG>
+</a><P><a name="18887">
+ <P><img src="19Unmodeling.anc9.gif"><p>
+</a>
+<a name="18888">
+<em>Figure 19.9  &#32; &#32;Select the triangular face
+</em></a><P>
+<a name="18854">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on Collapse.
+</STRONG>
+</a><P><dl><a name="18896">
+<dt>The triangular face collapses to a point, resulting in a clean, smooth joint:</dt>
+</a><P><a name="18906">
+ <P><img src="19Unmodeling.anc10.gif"><p>
+</a></dl>
+<a name="18907">
+<em>Figure 19.10  &#32; &#32;Collapsing the face
+</em></a><P>
+<a name="18897">
+<STRONG>	17.	 Repeat the cleanup process described in steps <a href="19Unmodeling.html#18826">13</a> through <a href="19Unmodeling.html#18854">16</a> for each of the remaining joints.
+</STRONG>
+</a><P><dl><a name="18923">
+<dt>Your object should look like this when completed:</dt>
+</a><P><a name="18933">
+ <P><img src="19Unmodeling.anc11.gif"><p>
+</a></dl>
+<a name="18934">
+<em>Figure 19.11  &#32; &#32;The finished cube
+</em></a><P><a name="8999">
+<h2><HR> The Hollow Pyramid</h2>
+</a><a name="18422">
+Now, let's try the same thing with a tetrahedron.<p>
+</a><P>
+<a name="18429">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Tetrahedron.
+</STRONG>
+</a><P><a name="18430">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the tetrahedron, then <strong>(CLICK-R)</strong> on Select Elements.
+</STRONG>
+</a><P><dl><a name="18433">
+<dt>This selects all of the faces on the body of the tetrahedron.</dt>
+</a><P></dl><a name="18434">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the collection of faces, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="18435">
+<dt>Enter a value of .5.</dt>
+</a><P><a name="18444">
+ <P><img src="19Unmodeling.anc12.gif"><p>
+</a></dl>
+<a name="18445">
+<em>Figure 19.1  &#32; &#32;Inset the faces
+</em></a><P>
+<a name="18436">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the still collected faces, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="18437">
+<dt><strong>Extrude</strong> the faces inward slightly, but make sure they don't overlap.</dt>
+</a><P><a name="18456">
+ <P><img src="19Unmodeling.anc13.gif"><p>
+</a></dl>
+<a name="18457">
+<em>Figure 19.2  &#32; &#32;Extrude the faces inward
+</em></a><P>
+<a name="18438">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Shading&gt;Tetrahedron.
+</STRONG>
+</a><P><a name="18488">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on one of the large triangular faces, then <strong>(CLICK-L)</strong> on Bridge.
+</STRONG>
+</a><P><a name="18508">
+<STRONG>	7.	 Move the camera and <strong>(CLICK-L)</strong> on a second triangular face.
+</STRONG>
+</a><P><dl><a name="18509">
+<dt>Your object should look like this:</dt>
+</a><P><a name="18351">
+ <P><img src="19Unmodeling.anc14.gif"><p>
+</a></dl>
+<a name="18352">
+<em>Figure 19.3  &#32; &#32;After the first bridge
+</em></a><P>
+<a name="18511">
+<STRONG>	8.	 On the remaining two sides of the pyramid, use the Bridge operation to bridge between the two faces on each side.
+</STRONG>
+</a><P><dl><a name="18520">
+<dt>Your object should look like this:</dt>
+</a><P><a name="18526">
+ <P><img src="19Unmodeling.anc15.gif"><p>
+</a></dl>
+<a name="18527">
+<em>Figure 19.4  &#32; &#32;All faces bridged
+</em></a><P><a name="18535">
+Now, this looks pretty good, but we still have a little cleanup to do on the inside of the pyramid.<p>
+</a><P>
+<a name="18536">
+<STRONG>	9.	 Turn shading for the object off.
+</STRONG>
+</a><P><a name="18537">
+<STRONG>	10.	 Zoom the camera into the inside of the pyramid.
+</STRONG>
+</a><P><dl><a name="18550">
+<dt>Look at one of the joints.</dt>
+</a><P></dl><a name="18547">
+<STRONG>	11.	 Make the following cut by selecting the highlighted face and using the Cut command:
+</STRONG>
+</a><P><a name="18543">
+ <P><img src="19Unmodeling.anc16.gif"><p>
+</a>
+<a name="18544">
+<em>Figure 19.5  &#32; &#32;Cutting the inside faces
+</em></a><P><a name="18580">
+ <P><img src="19Unmodeling.anc17.gif"><p>
+</a><a name="18581">
+<em>Figure 19.6  &#32; &#32;Collapse the small triangular faces
+</em></a><P>
+<a name="18570">
+<STRONG>	12.	 Repeat this modification on the inside of each joint on the pyramid.
+</STRONG>
+</a><P><dl><a name="18521">
+<dt>You should have a single vertex at the inside of each joint when you're finished:</dt>
+</a><P><a name="18631">
+ <P><img src="19Unmodeling.anc18.gif"><p>
+</a></dl>
+<a name="18632">
+<em>Figure 19.7  &#32; &#32;Completed pyramid
+</em></a><P><dl><dl><a name="18622">
+<dt></dt>
+</a><P></dl></dl><a name="18357">
+<h2><HR> The Dresser</h2>
+</a><a name="18362">
+This exercise demonstrates the power and flexibility of N-Geometry's winged edge database. You'll work with some unusually shaped faces and make some cuts you might not expect to be able to do.<p>
+</a><P>
+<a name="19538">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><a name="19541">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the front face, then <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="19548">
+<dt>Choose the Z axis from the menu that appears, and move the face back so the cube has the basic correct dimensions of a dresser:</dt>
+</a><P><a name="19561">
+ <P><img src="19Unmodeling.anc19.gif"><p>
+</a></dl>
+<a name="19562">
+<em>Figure 19.8  &#32; &#32;Cube "squashed" along the Z axis
+</em></a><P>
+<a name="19549">
+<STRONG>	3.	 Collect the segments on both sides of the front face.
+</STRONG>
+</a><P><a name="19583">
+ <P><img src="19Unmodeling.anc20.gif"><p>
+</a>
+<a name="19584">
+<em>Figure 19.9  &#32; &#32;Collect segments on each side of the front face
+</em></a><P>
+<a name="19578">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="19592">
+<dt>This cuts the segments into thirds.</dt>
+</a><P></dl><a name="19604">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the front face again, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="19605">
+<dt>Specify an Inset Width of 1 in the dialog box that appears.</dt>
+</a><P><a name="19597">
+ <P><img src="19Unmodeling.anc21.gif"><p>
+</a></dl>
+<a name="19598">
+<em>Figure 19.10  &#32; &#32;Inset the front face
+</em></a><P>
+<a name="19611">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the front face, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="19614">
+<dt>Move the front face back along the Z axis so that it's almost touching the back of the cube:</dt>
+</a><P><a name="19622">
+ <P><img src="19Unmodeling.anc22.gif"><p>
+</a></dl>
+<a name="19623">
+<em>Figure 19.11  &#32; &#32;Extrude the front face back into the dresser
+</em></a><P><a name="19629">
+Notice that because we cut the segments on the inset face that two segments run from the front of the dresser to the back.<p>
+</a><P>
+<a name="19633">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the inset face, then <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="19640">
+<dt>Cut the inset face as shown below; you'll actually have to repeat the <strong>Cut</strong> operation to make both cuts.</dt>
+</a><P><a name="19652">
+ <P><img src="19Unmodeling.anc23.gif"><p>
+</a></dl>
+<a name="19653">
+<em>Figure 19.12  &#32; &#32;Cut the inset face
+</em></a><P><a name="19669">
+Now that we've cut the inside of the dresser appropriately, we can make our shelves.<p>
+</a><P>
+<a name="19668">
+<STRONG>	8.	 Collect the six segments on the inside of the dresser where the shelves should be.
+</STRONG>
+</a><P><a name="19688">
+ <P><img src="19Unmodeling.anc24.gif"><p>
+</a>
+<a name="19689">
+<em>Figure 19.13  &#32; &#32;Collect the segments which will form the shelves
+</em></a><P>
+<a name="19695">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Bevel.
+</STRONG>
+</a><P><dl><a name="19696">
+<dt>Enter a bevel width of .5, then <strong>(CLICK-L)</strong> on the Bevel button. The selected segments are replaced by faces:</dt>
+</a><P><a name="19712">
+ <P><img src="19Unmodeling.anc25.gif"><p>
+</a></dl>
+<a name="19713">
+<em>Figure 19.14  &#32; &#32;Bevel the collected edges
+</em></a><P>
+<a name="19719">
+<STRONG>	10.	 Collect the four segments in the back corners of where the shelves should be, then <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><a name="19727">
+ <P><img src="19Unmodeling.anc26.gif"><p>
+</a>
+<a name="19728">
+<em>Figure 19.15  &#32; &#32;Dissolve the edges shown
+</em></a><P>
+<a name="19722">
+<STRONG>	11.	 Select faces on the element sensitivity menu, then <strong>(CLICK-L)</strong> on one of the "shelf" faces.
+</STRONG>
+</a><P><dl><a name="19759">
+<dt>One of the advantages of N-Geometry's winged-edge object design is that you can have some quite unusual faces. In this case, two faces wrap all the way around the inside of the object.</dt>
+</a><P><a name="19752">
+ <P><img src="19Unmodeling.anc27.gif"><p>
+</a></dl>
+<a name="19753">
+<em>Figure 19.16  &#32; &#32;Choose one of the "shelf" faces
+</em></a><P>
+<a name="19744">
+<STRONG>	12.	 Cut the face from top front vertex to top front vertex.
+</STRONG>
+</a><P><a name="19792">
+ <P><img src="19Unmodeling.anc28.gif"><p>
+</a>
+<a name="19793">
+<em>Figure 19.17  &#32; &#32;Choose one of the "shelf" faces
+</em></a><P><dl><dl><a name="19844">
+<dt>The resulting object now looks like this:</dt>
+</a><P><a name="19860">
+ <P><img src="19Unmodeling.anc29.gif"><p>
+</a></dl></dl><a name="19861">
+<em>Figure 19.18  &#32; &#32;The first cut on a shelf
+</em></a><P>
+<a name="19870">
+<STRONG>	13.	 Cut the face again, this time choosing the two vertices directly below those shown in <a href="19Unmodeling.html#19793">Figure 19.17</a>.
+</STRONG>
+</a><P><a name="19889">
+ <P><img src="19Unmodeling.anc30.gif"><p>
+</a>
+<a name="19890">
+<em>Figure 19.19  &#32; &#32;The generated shelf
+</em></a><P>
+<a name="19787">
+<STRONG>	14.	 Now, cut the face for the bottom shelf in the same way.
+</STRONG>
+</a><P><dl><a name="19898">
+<dt>Your object should look like this:</dt>
+</a><P><a name="19904">
+ <P><img src="19Unmodeling.anc31.gif"><p>
+</a></dl>
+<a name="19905">
+<em>Figure 19.20  &#32; &#32;The main body of the dresser
+</em></a><P><a name="19899">
+<h3> Building the Drawers</h3>
+</a><a name="19918">
+Now that you have the main body of the dresser done, the rest should be easy.<p>
+</a><P>
+<a name="19917">
+<STRONG>	15.	 Collect the three faces at the back of the drawer "slots."
+</STRONG>
+</a><P><a name="19926">
+ <P><img src="19Unmodeling.anc32.gif"><p>
+</a>
+<a name="19927">
+<em>Figure 19.21  &#32; &#32;Starting the drawers
+</em></a><P>
+<a name="19921">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-R)</strong> on Chip Off.
+</STRONG>
+</a><P><a name="19947">
+ <P><img src="19Unmodeling.anc33.gif"><p>
+</a>
+<a name="19948">
+<em>Figure 19.22  &#32; &#32;Naming the chipped off group of faces
+</em></a><P><dl><dl><a name="19679">
+<dt>Give the chipped off group of faces a name, then <strong>(CLICK-L)</strong> on <strong>Add Object</strong>. The dialog box closes and the group of 3 faces is created; <strong>(CLICK-R)</strong> on the N-Geometry window to leave the faces where they are.</dt>
+</a><P></dl></dl>
+<a name="19647">
+<STRONG>	17.	 <strong>(SHIFT-L)</strong> on the collection of faces, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="19969">
+<dt>Pull the faces out toward the front of the dresser, until they're flush with the front.</dt>
+</a><P><a name="19979">
+ <P><img src="19Unmodeling.anc34.gif"><p>
+</a></dl>
+<a name="19980">
+<em>Figure 19.23  &#32; &#32;Pull out the faces flush with the front of the dresser
+</em></a><P>
+<a name="19991">
+<STRONG>	18.	 Collect the faces on the top of each drawer.
+</STRONG>
+</a><P><a name="20010">
+ <P><img src="19Unmodeling.anc35.gif"><p>
+</a>
+<a name="20011">
+<em>Figure 19.24  &#32; &#32;Collect the faces on top of the drawers]
+</em></a><P>
+<a name="20017">
+<STRONG>	19.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="20000">
+<dt>Specify an Inset Width of <strong>.5</strong>, then <strong>(CLICK-L)</strong> on Inset.</dt>
+</a><P><a name="20024">
+ <P><img src="19Unmodeling.anc36.gif"><p>
+</a></dl>
+<a name="20025">
+<em>Figure 19.25  &#32; &#32;Inset the tops of the drawers
+</em></a><P>
+<a name="19974">
+<STRONG>	20.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="20031">
+<dt>Move the inset faces straight down into the drawers to hollow them out:</dt>
+</a><P><a name="20039">
+ <P><img src="19Unmodeling.anc37.gif"><p>
+</a></dl>
+<a name="20040">
+<em>Figure 19.26  &#32; &#32;Making the drawers "hollow"
+</em></a><P>
+<a name="20046">
+<STRONG>	21.	 Turn on Shading for the objects (both the dresser and the drawers).
+</STRONG>
+</a><P><dl><a name="20047">
+<dt>If your drawers are lined up exactly with the front of the dresser, you'll see a grey cube. However, because each drawer was created from a separate chipped off face, each is a separate object and can be modified (or animated in N-Dynamics) independently.</dt>
+</a><P></dl><a name="20056">
+<STRONG>	22.	 <strong>(SHIFT-L)</strong> on the object that you named in step <a href="19Unmodeling.html#19921">16</a> then <strong>(CLICK-M)</strong> on Axis Move&gt;Z.
+</STRONG>
+</a><P><dl><a name="20090">
+<dt>Move the drawer forward along the Z axis.</dt>
+</a><P><a name="20096">
+ <P><img src="19Unmodeling.anc38.gif"><p>
+</a></dl>
+<a name="20097">
+<em>Figure 19.27  &#32; &#32;Move the drawer
+</em></a><P><dl><dl><a name="20091">
+<dt>Move the other drawers in the same way; try shading the object to see what the final will look like:</dt>
+</a><P><a name="20120">
+ <P><img src="19Unmodeling.anc39.gif"><p>
+</a></dl></dl><a name="20121">
+<em>Figure 19.28  &#32; &#32;Shaded dresser
+</em></a><P><a name="20070">
+<h2><HR> Roman Bath</h2>
+</a><a name="18959">
+Here's a quick and dirty way to create a complex, single object-environment using a solid of rotation with N-Geometry's Mirror and Flatten commands:<p>
+</a><P>
+<a name="18962">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Solid of Rotation.
+</STRONG>
+</a><P><dl><a name="18965">
+<dt>Use the menu defaults and sketch a contour that looks something like the one in <a href="19Unmodeling.html#18865">Figure 19.8</a>. This contour will define the contour of a repeating column, so you might want to make it a little more ornate. </dt>
+</a><P><a name="18977">
+<dt>Just make sure that the top of the column is narrower than the bottom:</dt>
+</a><P><a name="18393">
+ <P><img src="19Unmodeling.anc40.gif"><p>
+</a></dl>
+<a name="18394">
+<em>Figure 19.29  &#32; &#32;Starting the wire
+</em></a><P>
+<a name="18987">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> when you're finished sketching the contour and <strong>(CLICK-L)</strong> on OK.
+</STRONG>
+</a><P><dl><a name="18989">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="19013">
+ <P><img src="19Unmodeling.anc41.gif"><p>
+</a></dl>
+<a name="19014">
+<em>Figure 19.30  &#32; &#32;Solid of Rotation parameters
+</em></a><P>
+<a name="18988">
+<STRONG>	3.	 Change the number of n-Longitudes to 4 and <strong>(CLICK-L)</strong> on Make Solid to create the column:
+</STRONG>
+</a><P><a name="19054">
+ <P><img src="19Unmodeling.anc42.gif"><p>
+</a>
+<a name="19055">
+<em>Figure 19.31  &#32; &#32;A basic column
+</em></a><P>
+<a name="19066">
+<STRONG>	4.	 Collect the faces on the bottom of the column, then <strong>(CLICK-L)</strong> on Merge Region.
+</STRONG>
+</a><P><dl><a name="19188">
+<dt>Now, when we use the Mirror operation, the bottom of the floor will remain a single face. (Of course, we could select all the faces on the bottom of the completed room, but this will save us a few mouse clicks!)</dt>
+</a><P><a name="19200">
+ <P><img src="19Unmodeling.anc43.gif"><p>
+</a></dl>
+<a name="19201">
+<em>Figure 19.32  &#32; &#32;Merge the faces on the bottom of the column with Merge Region
+</em></a><P><a name="19211">
+<h3> Mirroring the Column</h3>
+</a>
+<a name="19065">
+<STRONG>	5.	 Select the column body, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><a name="19087">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on a face at the base of the column.
+</STRONG>
+</a><P><a name="19078">
+ <P><img src="19Unmodeling.anc44.gif"><p>
+</a>
+<a name="19079">
+<em>Figure 19.33  &#32; &#32;Mirror around a face at the base of the column
+</em></a><P><a name="19093">
+The resulting object should look like this:<p>
+</a><P><a name="19102">
+ <P><img src="19Unmodeling.anc45.gif"><p>
+</a><a name="19103">
+<em>Figure 19.34  &#32; &#32;Mirrored object
+</em></a><P>
+<a name="19123">
+<STRONG>	7.	 Select the column body again, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><a name="19124">
+<STRONG>	8.	 This time, <strong>(CLICK-L)</strong> on the longer face on the newly mirrored object.
+</STRONG>
+</a><P><a name="19114">
+ <P><img src="19Unmodeling.anc46.gif"><p>
+</a>
+<a name="19115">
+<em>Figure 19.35  &#32; &#32;Mirror the object around the long face
+</em></a><P><a name="19151">
+Now repeat the <strong>Mirror</strong> operation twice more so that you have sixteen columns.<p>
+</a><P><a name="19162">
+ <P><img src="19Unmodeling.anc47.gif"><p>
+</a><a name="19163">
+<em>Figure 19.36  &#32; &#32;Sixteen columns
+</em></a><P><a name="19169">
+<h3> Building the Roof</h3>
+</a><a name="19170">
+Now we can build the roof with one final operation.<p>
+</a><P>
+<a name="19176">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the face on the bottom face of the object.
+</STRONG>
+</a><P><a name="19229">
+ <P><img src="19Unmodeling.anc48.gif"><p>
+</a>
+<a name="19230">
+<em>Figure 19.37  &#32; &#32;Select the face on the bottom of the object
+</em></a><P>
+<a name="19186">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Flatten&gt;Y.
+</STRONG>
+</a><P><dl><a name="19244">
+<dt>N-Geometry goes into point selection mode; <strong>(CLICK-L)</strong> on one of the points on the top of the column, and the floor is "pulled up" to the height of the ceiling.</dt>
+</a><P><a name="19253">
+ <P><img src="19Unmodeling.anc49.gif"><p>
+</a></dl>
+<a name="19254">
+<em>Figure 19.38  &#32; &#32;Flatten the bottom of the floor to the top of the columns along the Y axis
+</em></a><P>
+<a name="19248">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Shading and pick the object from the object list that appears.
+</STRONG>
+</a><P><dl><a name="19264">
+<dt>That's it! The resulting environment is a single object, with no holes, all pulled out from a geometry primitive in just a few steps.</dt>
+</a><P><a name="19279">
+ <P><img src="19Unmodeling.anc50.gif"><p>
+</a></dl>
+<a name="19280">
+<em>Figure 19.39  &#32; &#32;The completed room
+</em></a><P><a name="18360">
+<h2><HR> Round Pegs in Square Faces</h2>
+</a><a name="19297">
+How do you pull a round pole out of a square face? Try this:<p>
+</a><P>
+<a name="19312">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><a name="19313">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the top face, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="19314">
+<dt>Use an Inset Width of 3 in the dialog box that appears.</dt>
+</a><P><a name="19321">
+ <P><img src="19Unmodeling.anc51.gif"><p>
+</a></dl>
+<a name="19322">
+<em>Figure 19.40  &#32; &#32;Inset the top face of the cube
+</em></a><P>
+<a name="19305">
+<STRONG>	3.	 Collect the segments on the inset face:
+</STRONG>
+</a><P><a name="19333">
+ <P><img src="19Unmodeling.anc52.gif"><p>
+</a>
+<a name="19334">
+<em>Figure 19.41  &#32; &#32;Collect the segments on the inset face
+</em></a><P>
+<a name="19342">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="19328">
+<dt>This cuts the selected segments into thirds.</dt>
+</a><P></dl><a name="19363">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the inset face.
+</STRONG>
+</a><P><a name="19356">
+ <P><img src="19Unmodeling.anc53.gif"><p>
+</a>
+<a name="19357">
+<em>Figure 19.42  &#32; &#32;Select the inset face &#32; &#32;
+</em></a><P>
+<a name="19351">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Sphericize&gt;This Element's Midpoint.
+</STRONG>
+</a><P><dl><a name="19372">
+<dt>N-Geometry goes into point-select mode.</dt>
+</a><P></dl><a name="19375">
+<STRONG>	7.	 Choose one of the points on the side of the inset face.
+</STRONG>
+</a><P><dl><a name="19419">
+<dt>The point you choose in this step determines the "radius" for the sphericizing operation; choosing a corner point on the inset face will make a larger circular face than if you choose a point on the center of an edge on the inset face.</dt>
+</a><P></dl><a name="19376">
+<STRONG>	8.	 In the dialog box that appears, use the default value of 1.0 for a sphericizing factor, then <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="19432">
+<dt>Use a value between 0 and 1 to specify the rounding factor.</dt>
+</a><P><a name="19392">
+ <P><img src="19Unmodeling.anc54.gif"><p>
+</a></dl>
+<a name="19393">
+<em>Figure 19.43  &#32; &#32;Specify "how much" the element is to be sphericized
+</em></a><P><dl><dl><a name="19442">
+<dt>The face is rounded:</dt>
+</a><P><a name="19449">
+ <P><img src="19Unmodeling.anc55.gif"><p>
+</a></dl></dl><a name="19450">
+<em>Figure 19.44  &#32; &#32;The rounded face
+</em></a><P><dl><dl><a name="19506">
+<dt>The degree of roundness is also affected by the number of vertices on the element being sphericized. The sphericize operation actually moves all the vertices on the selected object an equal distance from an arbitrary specified center; if you try to sphericize the face before cutting the edges, you'd see no change, since each corner point is already equidistant from the element center (which we selected as our center).</dt>
+</a><P><a name="19511">
+<dt>The face can now be extruded to pull a round peg out of our square cube:</dt>
+</a><P><a name="19465">
+ <P><img src="19Unmodeling.anc56.gif"><p>
+</a></dl></dl><a name="19466">
+<em>Figure 19.45  &#32; &#32;Extruded face
+</em></a><P>
+<a name="19480">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Object Display&gt;Shading, then <strong>(CLICK-L)</strong> on the object from the object list that appears.
+</STRONG>
+</a><P><dl><a name="19481">
+<dt>The final, shaded object should look like this:</dt>
+</a><P><a name="19487">
+ <P><img src="19Unmodeling.anc57.gif"><p>
+</a></dl>
+<a name="19488">
+<em>Figure 19.46  &#32; &#32;Shaded object
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="18Mappers.html">[Prev]</a> <a href="20RepairingObjects.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/29/96 12:36:30 -->
+
+</body>
+</html>

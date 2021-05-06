@@ -1,0 +1,455 @@
+<html><head><title>Skinning a Skeleton</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="3AttachedObjects.html">[Prev]</a> <a href="5SkinningEnhancements.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Skinning a Skeleton</h1>
+</a>
+<hr><p><a name="10753">
+<h4> This chapter describes how to attach a single skin to a skeleton. Single skins act as "envelopes" around a skeleton, and deform to follow the animated skeleton.</h4>
+</a><a name="12086">
+ <P><img src="4UsingSkins.anc.gif"><p>
+</a><a name="12080">
+<h2><HR> In this Chapter</h2>
+</a><a name="10754">
+You'll learn how to:<p>
+</a><P><ul><a name="11234">
+<li>associate a single skin object to a skeleton to create natural looking skin deformations that follow a skeleton's motion
+</a></li><P><a name="12690">
+<li>save skins and skeletons
+</a></li><P><a name="11749">
+<li>define your own skin parts on a skin
+</a></li><P></ul><P><a name="10593">
+<h2><HR> Using Skins and Skeletons</h2>
+</a><a name="11282">
+In the previous chapter, you learned how to attach <em>objects</em> to a skeleton (both automatically and manually). In this chapter, we'll learn how to "skin" a skeleton, using an enclosed polyhedra that roughly matches the skeleton we want to animate with.<p>
+</a><P><a name="11301">
+"Skins" are polyhedron which are attached to a skeleton. Skins differ from attached objects in that each vertex on the polyhedron is associated with the bone it is closest to when you "skin" the skeleton.<p>
+</a><P><a name="12998">
+When you animate or move a given bone, only the vertices associated with that bone move. For example, if you rotated a forearm upward, the vertices associated with the forearm (and any bones further from the root) would rotate too. The skin "deforms" to follow the motion of the bone.<p>
+</a><P><a name="11331">
+Skins also support "soft" parts (which enhance the natural appearance of skin around joints) and skin displacements (which allow you to modify the topology of the object based on a selected bone's rotation). Both of these options are discussed in <a href="5SkinningEnhancements.html#7752">Chapter &#32;5</a> <a href="5SkinningEnhancements.html#10714">"Skinning Enhancements" &#32;</a>in more detail.<p>
+</a><P><a name="10958">
+<h2><HR> Skinning a Skeleton</h2>
+</a><a name="12639">
+For this tutorial, we'll use a sample skin object that is included with the skeletal animation system. <p>
+</a><P><a name="12648">
+You can attach a skin of any shape to any skeleton; however, to get the best results, you'll typically scale the model down to fit the skeleton before you begin the skinning process.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you need to change the size of the skeleton instead of the model, see the section <a href="10EditingMCData.html#12175">"Copying Motion Data between Skeletons," on page &#32;10-14</a>.</font></dd></dt></dl><P>
+<a name="10959">
+<h3> Loading the Skin</h3>
+</a>
+<a name="10961">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="10962">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on GeoMenus&gt;Add New Object&gt;Read.
+</STRONG>
+</a><P><dl><a name="10964">
+<dt>Enter the pathname for the creature's skin and skeleton:</dt>
+</a><P><dl><a name="10965">
+<dt><code>/usr/local/ngc/demo/objects/</code><p>
+</a><P></dl></dl><a name="10966">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on Select Several and choose the following two objects:
+</STRONG>
+</a><P><dl><dl><a name="10967">
+<dt><code>tutorial-skin-1<br>tutorial-skeleton-1</code><p>
+</a><P></dl></dl><dl><a name="10969">
+<dt>This loads the sample skin and skeleton into the N-Geometry window:</dt>
+</a><P><a name="10973">
+ <P><img src="4UsingSkins.anc1.gif"><p>
+</a></dl>
+<a name="10974">
+<em>Figure 4.1  &#32; &#32;Creature skin and skeleton loaded into the 3D editor
+</em></a><P><a name="10975">
+<h3> Saving a Base State for the Skeleton</h3>
+</a><a name="10977">
+When attaching a skin to a skeleton, it's important that you save a "base state" for both objects. Saving a base state for the two objects ensures that you'll always be able to get back to a saved state where the objects are properly aligned.<p>
+</a><P><a name="10978">
+Once you've saved the base state of the skeleton, you can pose the skeleton, but always return it to its base state if you need to.<p>
+</a><P><a name="10979">
+Try this:<p>
+</a><P>
+<a name="10980">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Bodies in the sensitivity element menu along the top of the 3D editor.
+</STRONG>
+</a><P><a name="10981">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton whose base state you want to save.
+</STRONG>
+</a><P><a name="10983">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="10984">
+<dt>This saves the current position of the skeleton as its base state.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Skeletons read in from motion capture files typically already have a base state saved. You can select the skeleton, then <strong>(CLICK-R)</strong> on Base&gt;Select to see a list of base states currently saved for the skeleton.</font></dd></dt></dl><P>
+
+<a name="10985">
+<STRONG>	4.	 Enter the name of the base state.
+</STRONG>
+</a><P><dl><a name="10986">
+<dt>A default name for the base state ("Base") is automatically supplied.</dt>
+</a><P></dl><a name="10987">
+<STRONG>	5.	 Leave Rotate Local Axes? set to Yes and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P>
+<a name="10988">
+You've now saved a base state for the skeleton.<p>
+</a><P><a name="10989">
+<h4> When to Resave a Skeleton's Base State</h4>
+</a><a name="10990">
+Once you've saved the skeleton's base state, there are several cases where you should <em>resave</em> the base state of the skeleton:<p>
+</a><P><ul><a name="10991">
+<li><em>Any time you change the number of joints on the skeleton.</em>
+</a></li><P><dl><a name="10992">
+<dt><strong>Collapse</strong> and <strong>Add</strong>, for example, invalidate a skeleton's saved base state. The first command removes joints, while the second adds joints, to the skeleton. If you've modified the skeleton and try to revert to a saved base state, the SAS will make its best attempt to return the skeleton to its saved base, but cannot guarantee accuracy, as there is no reference for what to do with new or missing joints.</dt>
+</a><P></dl><a name="10993">
+<li><em>If you use </em><strong>Align/Rotate Axes</strong><em> to change the orientation of a bone's axes and want those changes saved as part of the base state.</em>
+</a></li><P></ul><P><a name="11004">
+<h3> Skinning</h3>
+</a><a name="12907">
+To skin the skeleton:<p>
+</a><P>
+<a name="11005">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Bodies in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="11006">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="11007">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Skin.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you try to skin a skeleton and no base has been saved for the object, you'll be prompted to save a base state.</em></font></dd></dt><a name="12929">
+ <P><img src="4UsingSkins.anc2.gif"><p>
+</a></dl><P>
+<a name="12930">
+<em>Figure 4.2  &#32; &#32;Saving a base state for the skin
+</em></a><P><dl><dl><a name="12940">
+<dt>Just as you did for the skeleton, you should save a base state for the skin. (This ensures that you can return the skin to a state where you know it matches the skeleton's base state.)</dt>
+</a><P></dl></dl>
+<a name="11008">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the skin you want to use and <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="11009">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11013">
+ <P><img src="4UsingSkins.anc3.gif"><p>
+</a></dl>
+<a name="11014">
+<em>Figure 4.3  &#32; &#32;Creating skin parts
+</em></a><P>
+<a name="11015">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="11016">
+<dt>This logically divides the vertices on the skin into different parts; each vertex is assigned to a part associated with the bone closest to the vertex. The following dialog box appears:</dt>
+</a><P><a name="11020">
+ <P><img src="4UsingSkins.anc4.gif"><p>
+</a></dl>
+<a name="11021">
+<em>Figure 4.4  &#32; &#32;Specifying the type of skin parts to be created
+</em></a><P>
+<a name="11022">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Make Default Skin Parts.
+</STRONG>
+</a><P><ul>
+<BR><a name="11023">
+<li><strong>Make Default Skin Parts</strong>
+</a><P><dl><a name="11024">
+<dt>The default is to make the <strong>Y</strong> and <strong>Length</strong> parameters soft and the <strong>X</strong> and <strong>Z</strong> axes hard. This means that if you scale or twist the bone that the skin updates like a soft part (described below). However, if a bone rotates along one of the other axes, the associated vertices move like a hard part.<p>
+</a><P></dl><BR><a name="11025">
+<li><strong>Make Hard Skin Parts Only</strong>
+</a><P><dl><a name="11026">
+<dt>The created skin parts always move like hard parts.<p>
+</a><P></dl></ul>
+
+<a name="11027">
+Hard and soft parts are described in more detail in the section <a href="5SkinningEnhancements.html#12743">"Soft Parts," on page &#32;5-3</a>.<p>
+</a><P><a name="11031">
+<h4> Testing Your Skin and Skeleton</h4>
+</a><a name="11032">
+The next step in the skinning process is to make sure the skin has been attached to the skeleton.<p>
+</a><P>
+<a name="11033">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on segments in the element sensitivity menu along the top of the N-Geometry window.
+</STRONG>
+</a><P><a name="11034">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on a bone.
+</STRONG>
+</a><P><a name="11035">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on Rotate/Twist.
+</STRONG>
+</a><P><dl><a name="11036">
+<dt>Move the mouse around; the bone should move, and, as it does, update some of the vertices on the attached skin.</dt>
+</a><P></dl>
+<a name="11037">
+For now, it's enough to move one or two bones to see if the skin is properly attached to the bones.<p>
+</a><P><a name="11038">
+<h4> The "Bubble Gum" Effect: Redefining Skin Parts</h4>
+</a><a name="11039">
+When assigning a skin to a skeleton and making skin parts automatically, it's probable that vertices will be assigned to bones that are <em>physically</em> closer, but which shouldn't <em>logically</em> control those skin vertices.<p>
+</a><P><a name="11040">
+For example, the vertices around a model's hips might be closer to the hand bone when you use the <strong>Skin</strong> command. If so, they'll be assigned to the hand bone when you make default skin parts, even though the hip bone should be controlling the motion of those vertices. <p>
+</a><P><a name="11780">
+You can test the automatic skinning by rotating several bones and seeing how well the skin follows. If the vertices on a model are assigned to the wrong bone, you get a "bubble-gum" effect:<p>
+</a><P><a name="11047">
+ <P><img src="4UsingSkins.anc5.gif"><p>
+</a><a name="11048">
+<em>Figure 4.5  &#32; &#32;Vertices on the hip assigned to forearm bone; vertices on the hand assigned to the femur
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>Redefining skin parts is necessary only if you find that vertices along the skin are attached to an inappropriate bone.</em></font></dd></dt></dl><P>
+<a name="13072">
+To reassign a vertex on the skin object to a different bone:<p>
+</a><P>
+<a name="13073">
+<STRONG>	 1.	 Select the vertex or vertices you want to reassign.
+</STRONG>
+</a><P><a name="13074">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="11057">
+<STRONG>	3.	 <strong>(SHIFT-M)</strong> on Add to Part.
+</STRONG>
+</a><P><dl><a name="11058">
+<dt>The skin part to which the selected vertex (or vertices) belongs is displayed.</dt>
+</a><P></dl><a name="11059">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the part you want to remove the vertex <em>from</em>.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you are working with a collection of vertices, you need to remove the vertices from their respective parts. If the vertices you have collected belong to different skin parts, you can choose </em><strong>All Parts</strong><em> from the dialog box when prompted to specify which parts the vertices should be removed from.</em></font></dd></dt></dl><P>
+
+<a name="11061">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the collection again.
+</STRONG>
+</a><P><a name="11062">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on Add to Part.
+</STRONG>
+</a><P><dl><a name="11063">
+<dt>Select the part to which you want to <em>add</em> the vertices.</dt>
+</a><P></dl><a name="11064">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="11065">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="11066">
+<dt>This returns the skin and skeleton to their base positions.</dt>
+</a><P></dl><a name="11067">
+<STRONG>	9.	 Use Rotate/Twist again to move the bone and verify that the vertex is now attached to the desired bone.
+</STRONG>
+</a><P><dl><a name="12852">
+<dt>After you've verified that all the vertices are attached to the correct bones, you can pose the skeleton using any of the tools described later in this book, and the skins will follow automatically!</dt>
+</a><P><a name="12870">
+ <P><img src="4UsingSkins.anc6.gif"><p>
+</a></dl>
+<a name="12871">
+<em>Figure 4.6  &#32; &#32;Posing a skeleton with a skin
+</em></a><P><a name="13103">
+<h4> Using the Select Skins Command</h4>
+</a><a name="13109">
+You can also use the <strong>Select Skins</strong> command to see which vertices are associated with a bone. To use this command:<p>
+</a><P>
+<a name="13116">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose skin parts you want to view
+</STRONG>
+</a><P><a name="13124">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Select Skins.
+</STRONG>
+</a><P><dl><a name="13125">
+<dt>The vertices associated with this bone are highlighted in the N-Geometry window.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also use <strong>(CLICK-M)</strong> or <strong>(CLICK-R)</strong> to display only the hard or soft parts associated with a particular bone. See the Skeletal Animation System Tutorial </font></dd></dt></dl><P>
+<a name="12677">
+<h2><HR> Saving Your Work</h2>
+</a><a name="12843">
+When you've finished attaching the skin, you should save your work.<p>
+</a><P><a name="12733">
+To save a skeleton with a skin, simply save the skeleton. If a skin has been attached to the skeleton, it is saved as well, whether you save the skeleton from N-Geometry or as an element in an N-Dynamics script.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong><em>		When saving a skeleton and attached skin, you should always use the .geo format unless you have a specific reason not to!</em></font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you try to save the skeleton when it's not in a base state, a dialog box appears, allowing you to return the skeleton to its base state before saving.</em></font></dd></dt></dl><P>
+<a name="12756">
+Only N-Geometry's native <strong>.geo</strong> format records information such as the base state, poses, and other information required to work with the skeleton again.<p>
+</a><P><a name="11120">
+<h2><HR> Auto Skinning: Specifying Your Own Skin Parts</h2>
+</a><a name="11121">
+If you're in a situation where one animator is working with the skeletons and another is designing the skins, the animator in charge of skins can define skin parts that automatically get assigned to the desired bone. Here's an overview of the entire process:<p>
+</a><P>
+<a name="11122">
+<STRONG>	 1.	 Create or load the skeleton that is to be used in the animation.
+</STRONG>
+</a><P><a name="11123">
+<STRONG>	2.	 Define the names that are going to be used for each bone on the skeleton.
+</STRONG>
+</a><P><dl><a name="11124">
+<dt>You can use the Rename function to rename individual bones on the skeleton. Save a version of the skeleton in its base state that the modeler can reference.</dt>
+</a><P></dl><a name="11125">
+<STRONG>	3.	 The animator animates the skeleton.
+</STRONG>
+</a><P><a name="11126">
+<STRONG>	4.	 The modeler creates the skin.
+</STRONG>
+</a><P><dl><a name="11127">
+<dt>The modeler also selects which vertices on the model are assigned to each bone on the skeleton, as described below.</dt>
+</a><P></dl>
+<a name="11128">
+<h4> Dividing the Skin into Parts</h4>
+</a><a name="11129">
+The first step is to build a skin that will eventually be attached to the animator's skeleton. <p>
+</a><P><a name="11130">
+Once that is complete, you'll want to pick which vertices on the skin are assigned to each bone; you do this by selecting the vertices and making them "parts" with names that are based on the name of the bone.<p>
+</a><P><a name="11131">
+Suppose you want to define a skin part for the left hand bone:<p>
+</a><P>
+<a name="11132">
+<STRONG>	 1.	 Load both the skeleton with the agreed upon names and the skin you've created.
+</STRONG>
+</a><P><a name="11133">
+<STRONG>	2.	 Move the mouse over the left hand bone.
+</STRONG>
+</a><P><dl><a name="11134">
+<dt>The name of the bone is displayed in the upper left corner of the N-Geometry window. For this exercise, let's assume you and the the animator agreed to call it "left-hand":</dt>
+</a><P><a name="11138">
+ <P><img src="4UsingSkins.anc7.gif"><p>
+</a></dl>
+<a name="11139">
+<em>Figure 4.7  &#32; &#32;<strong>(CLICK-L)</strong> on the bone to display its name in the upper left corner
+</em></a><P>
+<a name="11140">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on points in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><dl><a name="11141">
+<dt>This puts you into "collect" mode.</dt>
+</a><P></dl><a name="11142">
+<STRONG>	4.	 Select the vertices you want to assign to the LeftHand bone.
+</STRONG>
+</a><P><a name="11146">
+ <P><img src="4UsingSkins.anc8.gif"><p>
+</a>
+<a name="11147">
+<em>Figure 4.8  &#32; &#32;Select the vertices you want to assign to the skin part
+</em></a><P>
+<a name="11148">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> when you've collected all the vertices.
+</STRONG>
+</a><P><dl><a name="11149">
+<dt>This completes the collection.</dt>
+</a><P></dl><a name="11150">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="11151">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Add to Part.
+</STRONG>
+</a><P><a name="11152">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Make New Part.
+</STRONG>
+</a><P><a name="11153">
+<STRONG>	9.	 Specify the name for the new part.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note!</strong>	Hard parts should be given the name of the bone, followed by the extension "-skin" (include the dash). Hard parts are soft in their scale and twist axes, but hard in the other two.</font></dd></dt><a name="11158">
+ <P><img src="4UsingSkins.anc9.gif"><p>
+</a></dl><P>
+<a name="11159">
+<em>Figure 4.9  &#32; &#32;Enter the name for the skin part
+</em></a><P>
+<a name="11163">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Make Part.
+</STRONG>
+</a><P><dl><a name="11832">
+<dt>This step <em>defines</em> the skin part, but does not assign it.</dt>
+</a><P></dl>
+<a name="11833">
+Repeat the above steps until <em>all</em> the vertices on the skin had been assigned to appropriate skin parts.<p>
+</a><P><a name="11165">
+<h4> Assigning Your Own Skin Parts</h4>
+</a>
+<a name="11167">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on bodies in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="11168">
+<STRONG>	12.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="11169">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on Skin.
+</STRONG>
+</a><P><a name="11170">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the name of the skin.
+</STRONG>
+</a><P><a name="11171">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="11172">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11176">
+ <P><img src="4UsingSkins.anc10.gif"><p>
+</a></dl>
+<a name="11177">
+<em>Figure 4.10  &#32; &#32;Assigning skin parts
+</em></a><P>
+<a name="11178">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on No.
+</STRONG>
+</a><P><dl><a name="11179">
+<dt>You don't want the SAS to create parts; that's what you've just done, so <strong>(CLICK-L)</strong> on <strong>No</strong>.</dt>
+</a><P></dl>
+<a name="11180">
+<h4> Test the Skin Part</h4>
+</a>
+<a name="11181">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on segments in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11182">
+<STRONG>	18.	 <strong>(SHIFT-L)</strong> on the left-hand bone.
+</STRONG>
+</a><P><a name="11183">
+<STRONG>	19.	 <strong>(CLICK-R)</strong> on Rotate/Twist.
+</STRONG>
+</a><P><dl><a name="11184">
+<dt>Move the bone around to see that the joints are now attached to the named bone.</dt>
+</a><P><a name="11189">
+ <P><img src="4UsingSkins.anc11.gif"><p>
+</a></dl>
+<a name="11190">
+<em>Figure 4.11  &#32; &#32;Try rotating the bone to test the manual assignment of skin parts
+</em></a><P><a name="11208">
+<h4> Check for Vertices Assigned to Multiple Bones</h4>
+</a><a name="12791">
+When you animate a skeleton, each vertex on a skin should be driven by the movement of a single bone; if a vertex is assigned to more than one bone and you animate the skeleton, you'll get a "double transformation"-the transformation for both bones are <em>added</em>, then applied to the vertex.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Skin <em>vertices must be assigned to only one bone!</em> </font></dd></dt></dl><P>
+<a name="11848">
+If you intuitively think that one or more vertices on a particular area of skin <em>should</em> be affected by the movement of more than one bone, it probably means you want to create a soft part for the area containing that vertex to create a natural looking skin deformation. Soft parts are described in more detail in the following chapter.<p>
+</a><P><a name="12676">
+<h2><HR> Congratulations!</h2>
+</a><a name="12443">
+You've now learned how to skin a skeleton, reassign vertices on a skin to different bones, make your own skin parts, and isolate vertices assigned to more than one bone.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="3AttachedObjects.html">[Prev]</a> <a href="5SkinningEnhancements.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 19:22:39 -->
+
+</body>
+</html>

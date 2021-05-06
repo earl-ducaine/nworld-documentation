@@ -1,0 +1,735 @@
+<html><head><title>File and Edit Menus</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="2CreatingObjects1.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="23716">
+<h1>File and Edit Menus</h1>
+</a>
+<hr><p><a name="32014">
+<h2><HR> The File Menu</h2>
+</a><a name="32023">
+The <strong>GeoMenus&gt;File</strong> menu lets you do all of the following tasks:<p>
+</a><P><ul><a name="31375">
+<li>Creating new primitives
+</a></li><P><a name="31376">
+<li>Opening previously saved objects
+</a></li><P><a name="31377">
+<li>Saving an object to disk
+</a></li><P><a name="31378">
+<li>Exporting an object to a different file format
+</a></li><P><a name="31379">
+<li>Deleting an object from N-Geometry
+</a></li><P></ul><P><a name="23852">
+The <strong>GeoMenus&gt;File </strong>menu looks like this: <p>
+</a><P><a name="25012">
+ <P><img src="2CreatingObjects.anc6.gif"><p>
+</a><a name="25013">
+<em>Figure 2.1  &#32; &#32;The File menu
+</em></a><P><a name="31388">
+Each of the options on the <strong>File</strong> menu are described in the following sections.<p>
+</a><P><a name="10087">
+<h2><HR> New Object</h2>
+</a><a name="6301">
+The <strong>File&gt;New Object</strong> command lets you create a new primitive in the N-Geometry window. <p>
+</a><P><ul><a name="23904">
+<li><strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> to select the primitive type you want to add from a menu. The <strong>New Object</strong> menu looks like this:
+</a></li><P><a name="25128">
+ <P><img src="2CreatingObjects.anc7.gif">					 <p>
+</a></ul><P><a name="25129">
+<em>Figure 2.2  &#32; &#32;The Create menu
+</em></a><P><a name="25020">
+Use the <strong>New Object</strong> menu to add lights, polyhedra, and other types of <em>primitives</em> to your scene. Primitivies are the basic "building blocks" for creating more complex objects in N-Geometry.<p>
+</a><P><a name="23965">
+<h3> Scaling Center</h3>
+</a><a name="30615">
+Creates a selectable, arbitrarily placed point in 3D space around which scaling operations can be performed.<p>
+</a><P><a name="30809">
+When you scale an object in N-Geometry or N-Dynamics, you can specify that the scaling take place with respect to this point.<p>
+</a><P><a name="30350">
+To add a scaling center:<p>
+</a><P>
+<a name="30647">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Scaling Center</strong>.
+</STRONG>
+</a><P><dl><a name="30648">
+<dt>A list of methods for locating the center is displayed:</dt>
+</a><P><a name="30654">
+ <P><img src="2CreatingObjects.anc8.gif"><p>
+</a></dl>
+<a name="30655">
+<em>Figure 2.3  &#32; &#32;Methods for positioning a scaling center
+</em></a><P>
+<a name="30659">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Cursor</strong>.
+</STRONG>
+</a><P><dl><a name="30663">
+<dt>You can use any of the methods listed on the menu for locating a scaling center. These methods are described in <a href="1Overview.html#8384">"Operations That Need an Origin," on page &#32;1-45</a>.</dt>
+</a><P></dl><a name="30666">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the N-Geometry window where you want the cursor to be.
+</STRONG>
+</a><P><a name="30672">
+ <P><img src="2CreatingObjects.anc9.gif"><p>
+</a>
+<a name="30673">
+<em>Figure 2.4  &#32; &#32;A scaling center
+</em></a><P><dl><dl><a name="30679">
+<dt>The scaling center appears as a single point in the N-Geometry window. You use a scaling center in scaling operations that take place around a certain point.</dt>
+</a><P></dl></dl>
+<a name="30688">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivty menu, then <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="30693">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on <strong>Scale</strong>.
+</STRONG>
+</a><P><a name="30696">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the scaling center.
+</STRONG>
+</a><P><dl><a name="30710">
+<dt>Move the mouse left and right to scale the object with respect to the scaling center.</dt>
+</a><P><a name="30717">
+ <P><img src="2CreatingObjects.anc10.gif"><p>
+</a></dl>
+<a name="30718">
+<em>Figure 2.5  &#32; &#32;Cube scaled up and down using scaling center
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Scaling centers can be restructured under an object using the <strong>GeoMenus&gt;Utilities&gt;Restructure</strong>, or with the restructuring capabilities of the Browser. If you want to Scale an object around a point in an N-Dynamics script, you may want to restructure the scaling center under the object so that they share the same transformation matrix.</font></dd></dt></dl><P>
+<a name="30348">
+<h3> Rotation Axes</h3>
+</a><a name="30802">
+Creates a selectable, arbitrarily placed segment in 3D space around which rotation operations can be performed.<p>
+</a><P><a name="30796">
+When you rotate an object in N-Geometry or N-Dynamics, you can specify that the rotation take place around this axis.<p>
+</a><P><a name="30748">
+To add a rotation axis:<p>
+</a><P>
+<a name="30749">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Rotation Axis</strong>.
+</STRONG>
+</a><P><dl><a name="30750">
+<dt>A list of methods for locating the axis is displayed:</dt>
+</a><P><a name="30754">
+ <P><img src="2CreatingObjects.anc11.gif"><p>
+</a></dl>
+<a name="30755">
+<em>Figure 2.6  &#32; &#32;Methods for positioning a scaling center
+</em></a><P>
+<a name="30756">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Select Normal</strong>.
+</STRONG>
+</a><P><dl><a name="30757">
+<dt>You can use any of the methods listed on the menu for locating a rotation axis. These methods are described in <a href="1Overview.html#8360">"Operations That Need an Axis," on page &#32;1-43</a>.</dt>
+</a><P></dl><a name="30758">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the vertex whose normal you want to be able to rotate the object around.
+</STRONG>
+</a><P><a name="30762">
+ <P><img src="2CreatingObjects.anc12.gif"><p>
+</a>
+<a name="30763">
+<em>Figure 2.7  &#32; &#32;A scaling center
+</em></a><P><dl><dl><a name="30764">
+<dt>The rotation axis appears as a short segment in the N-Geometry window. </dt>
+</a><P><a name="30873">
+ <P><img src="2CreatingObjects.anc13.gif"><p>
+</a></dl></dl><a name="30874">
+<em>Figure 2.8  &#32; &#32;Rotation axes are separate objects
+</em></a><P><dl><dl><a name="30868">
+<dt>You use a rotation axis in scaling operations that take place around a specified axis.</dt>
+</a><P></dl></dl>
+<a name="30765">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivty menu, then <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="30766">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on <strong>Rotate</strong>.
+</STRONG>
+</a><P><a name="30883">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Select a Segment</strong>.
+</STRONG>
+</a><P><a name="30767">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the rotation axis.
+</STRONG>
+</a><P><dl><a name="30768">
+<dt>Move the mouse left and right to scale the object with respect to the scaling center.</dt>
+</a><P><a name="30772">
+ <P><img src="2CreatingObjects.anc14.gif"><p>
+</a></dl>
+<a name="30773">
+<em>Figure 2.9  &#32; &#32;Cube rotated around rotation axis
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Rotation axes can be restructured under an object using the <strong>GeoMenus&gt;Utilities&gt;Restructure</strong>, or with the restructuring capabilities of the Browser. If you want to Rotate an object around an axis in an N-Dynamics script, you may want to restructure the rotation axis under the object so that they share the same transformation matrix.</font></dd></dt></dl><P>
+<a name="30349">
+<h3> Mapper</h3>
+</a><a name="30945">
+Mappers are geometric objects that are used to specify how two-dimensional maps are to be projected onto a three dimensional object or face part.<p>
+</a><P><a name="30946">
+Mappers may be of three types:<p>
+</a><P><ul><a name="31076">
+<li>planar
+</a></li><P><a name="31079">
+<li>cylindrical
+</a></li><P><a name="31082">
+<li>spherical
+</a></li><P></ul><P><a name="30950">
+Planar, cylindrical, and spherical mapper objects are represented in the N-Geometry window by <em>icons</em>. The lines of the mapper icon describe the location of the mapping image's edges in the projection.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	There are other mapper types, including parametric, per face, and frozen mappers, which are expressed in more detail in the Attributes Editor Reference Guide and the Getting Started guide.</font></dd></dt></dl><P>
+<a name="30951">
+To define how points in the image correspond to points in the mapper, pairs of numbers called <em>UV coordinates</em> are used. The U coordinate expresses the distance in the image from left to right, with 0 indicating the left side and 1 indicating the right side. The V coordinate describes positions from top to bottom, with 0 for the top and 1 for the bottom.<p>
+</a><P><ul><a name="31105">
+<li>For cylindrical and spherical projections, a line indicates where the left and right edges of the image meet in the projection. The UV coordinate origin (where U=0 and V=0) is indicated by the location of a triangular shape in the object. 
+</a></li><P><a name="30952">
+<li>For planar and cylindrical mapper, the triangle points in the direction of increasing U values. 
+</a></li><P><a name="30953">
+<li>For a spherical mapper, the triangle takes the form of an arc that sweeps 90&#176; from the image seam to U=.25.
+</a></li><P></ul><P><a name="31095">
+<h4> Planar Mappers</h4>
+</a><a name="30957">
+In a planar mapper, points in the image are projected in parallel lines through space in the direction defined to be perpendicular to the mapper. This resembles how objects look when they are placed in the path of a slide projector beam.<p>
+</a><P><a name="30958">
+<a href="2CreatingObjects.html#30978">Figure 2.10</a> shows a planar mapper with its UV coordinates labeled, and a planar mapper bounding an octahedron.<p>
+</a><P><a name="30976">
+ <P><img src="2CreatingObjects.anc15.gif"><p>
+</a><a name="30978">
+<em>Figure 2.10  &#32; &#32;A planar mapper bounding an octahedron
+</em></a><P><a name="30981">
+<h4> Cylindrical Mappers</h4>
+</a><a name="30982">
+In a cylindrical mapper, the image is wrapped cylindrically around the object, with the left edge of the image meeting the right edge. The image thus appears to be "wrapped" around the object like the label of a can of soup, with the left edge of the image abutting the right edge. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	For hints on creating a seamless texture map, see the <em>N-Paint Tutorial</em>.</font></dd></dt></dl><P>
+<a name="31107">
+<a href="2CreatingObjects.html#31005">Figure 2.11</a> shows a cylindrical mapper with its UV coordinates labeled, and a cylindrical mapper bounding an octahedron.<p>
+</a><P><a name="31003">
+ <P><img src="2CreatingObjects.anc16.gif"><p>
+</a><a name="31005">
+<em>Figure 2.11  &#32; &#32;A cylindrical mapper bounding an octahedron
+</em></a><P><a name="31008">
+<h4> Spherical Mappers</h4>
+</a><a name="31009">
+In a spherical mapper, the UV coordinates are arranged like the longitude and latitude lines of a globe. The relationship between the image and the mapper is therefore like the relationship between a grid of horizontal and vertical lines and a set of longitude and latitude lines on a globe. The portions of the image near the top and bottom are compressed at the top and bottom of the spherical region. <a href="2CreatingObjects.html#31039">Figure 2.12</a> shows a spherical mapper with its UV coordinates labeled, and a spherical mapper bounding an octahedron.<p>
+</a><P><a name="31037">
+ <P><img src="2CreatingObjects.anc17.gif"><p>
+</a><a name="31039">
+<em>Figure 2.12  &#32; &#32;A spherical mapper bounding a cube
+</em></a><P><a name="31041">
+When they are created, mappers are separate objects; they can be restructured into an object (so that one shares or inherits its transformation matrix from another). You can also freeze the relationship of the mapper's UVs to the object, as described in the section <a href="4ModifyingBodies2.html#11186">"Make Frozen Mapper," on page &#32;4-57</a>.<p>
+</a><P><a name="31050">
+A dynamic mapper in N-Geometry can be <em>animated</em> in N-Dynamics just like other objects. With a dynamic planar mapper, for example, if the object's transformation is animated differently than that of the mapper, the mapped image will slide along the surface, like the surface of an object passing through the beam of a slide projector.<p>
+</a><P><a name="31051">
+You can use dynamic mappers to simulate motion without ever moving the object; for example, you could project a map of a wheel onto the wheel of a car model, then rotate the map to create the illusion that the wheel was spinning.<p>
+</a><P><a name="32321">
+<h4> Creating a Mapper</h4>
+</a><a name="31341">
+To create a mapper:<p>
+</a><P>
+<a name="31167">
+<STRONG>	 1.	 Create the object to which you want to attach the mapper.
+</STRONG>
+</a><P><a name="31168">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Mapper</strong>.
+</STRONG>
+</a><P><dl><a name="31171">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="31178">
+ <P><img src="2CreatingObjects.anc18.gif"><p>
+</a></dl>
+<a name="31179">
+<em>Figure 2.13  &#32; &#32;Creating a mapper
+</em></a><P>
+<a name="31197">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the type of mapper you want to create.
+</STRONG>
+</a><P><a name="31183">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the <strong>Bounds Source</strong> text edit box.
+</STRONG>
+</a><P><dl><a name="31186">
+<dt>An object list appears. <strong>(CLICK-L)</strong> on the object with which you want to associate the mapper.</dt>
+</a><P><a name="31191">
+<dt>Note that the name of the mapper changes to show the new type and object upon which the mapper is based.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can specify either an object or a face part as the bounds source for a mapper. You can display any face parts for an object if you <strong>(CLICK-R)</strong> on an object in an object list.</font></dd></dt></dl><P>
+<a name="31172">
+<h4> Restructuring the Mapper</h4>
+</a><a name="31212">
+If you want to be able to animate both the object and its mapper together, you should restructure them into a new group with the Browser. Until you restructure them into a new group, you can't move both as a single object:<p>
+</a><P><a name="31315">
+ <P><img src="2CreatingObjects.anc19.gif"><p>
+</a><a name="31316">
+<em>Figure 2.14  &#32; &#32;Object transformed separately from mapper
+</em></a><P><a name="31310">
+To restructure the object and mapper into a new object:<p>
+</a><P>
+<a name="31217">
+<STRONG>	5.	 Open the Browser.
+</STRONG>
+</a><P><a name="31224">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Geo</strong> button.
+</STRONG>
+</a><P><dl><a name="31285">
+<dt>The object and mapper are both top level objects to begin:</dt>
+</a><P><a name="31233">
+ <P><img src="2CreatingObjects.anc20.gif"><p>
+</a></dl>
+<a name="31234">
+<em>Figure 2.15  &#32; &#32;Object and mapper both top level objects
+</em></a><P>
+<a name="31286">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> and drag the mapper node onto the object.
+</STRONG>
+</a><P><a name="31242">
+ <P><img src="2CreatingObjects.anc21.gif"><p>
+</a>
+<a name="31243">
+<em>Figure 2.16  &#32; &#32;Restructuring a mapper and an object into a new group
+</em></a><P><dl><dl><a name="31287">
+<dt>As you drag the mapper, its name is outlined in red; when the text is over the target object, the box around that object turns blue. Let up on the mouse and the following dialog box appears:</dt>
+</a><P><a name="31260">
+ <P><img src="2CreatingObjects.anc22.gif"><p>
+</a></dl></dl><a name="31261">
+<em>Figure 2.17  &#32; &#32;Confirm menu
+</em></a><P>
+<a name="31294">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on <strong>Yes</strong>.
+</STRONG>
+</a><P><dl><a name="31337">
+<dt>This restructures the two elements into a new group, whose structure should now look like this:</dt>
+</a><P><a name="31270">
+ <P><img src="2CreatingObjects.anc23.gif"><p>
+</a></dl>
+<a name="31271">
+<em>Figure 2.18  &#32; &#32;Mapper restructured into a new group
+</em></a><P>
+<a name="31265">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the Octahedron Group, then <strong>(CLICK-L)</strong> on <strong>Axis Move&gt;X</strong>.
+</STRONG>
+</a><P><dl><a name="31325">
+<dt>Now, if you move the group, both the octahedron and the mapper move, since they are inferior objects of the group and inherit its transformation matrix.</dt>
+</a><P><a name="31330">
+ <P><img src="2CreatingObjects.anc24.gif"><p>
+</a></dl>
+<a name="31331">
+<em>Figure 2.19  &#32; &#32;Transforming a group containing an object and a mapper
+</em></a><P><dl><dl><a name="31225">
+<dt>If you want to animate both an object and a mapper together (as you do in N-Dynamics), you'll want to restructure objects like this.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong>If you create and assign a mapper in the Browser, the superior group containing the object and the mapper is created automatically.</font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	Creating mappers is discussed in more detail in the N-Geometry Tutorial, and using the <em>Browser</em> for tasks like restructuring is discussed in more detail in Getting Started.</font></dd></dt></dl><P>
+<a name="31228">
+<h3> Creating Lights</h3>
+</a><a name="23966">
+N-Geometry provides you with several types of lights for illuminating shaded or rendered objects: <p>
+</a><P><ul><a name="27046">
+<li><strong>Spot</strong> lights are cone shaped; you must specify the location and the aim point for the spot light, and the radius of its perimeter at the aim point (the wide part of the cone).
+</a></li><P><a name="27050">
+<li><strong>Infinite</strong> lights are located at an infinite distance from the global center and emit parallel light rays (much like a star, which is at an effectively infinite distance). You must specify a direction when creating an infinite light. The default direction is 0, 1, 0.
+</a></li><P><a name="27040">
+<li><strong>Point</strong> lights radiate uniformly from a point. A light bulb suspended on a chain is a good example of a point ight. The default position is 0,0,0.
+</a></li><P><a name="27054">
+<li><strong>Ambient</strong> lights are <em>sourceless</em> lights that are uniformly distributed in all directions. They have no fixed position. Rooms lit by indirect sunlight have "ambient" light-ambient lights cast a "tone" to an entire scene.
+</a></li><P></ul><P><a name="23975">
+These lights and their characteristics are described in more detail in the <em>Attributes Editor User Guide</em>. <p>
+</a><P><a name="27099">
+Lights are treated as objects in N-Geometry. After generating a light object, you may modify it using one of two methods:<p>
+</a><P><ul><a name="27025">
+<li>by selecting the light in N-Geometry and using a modify body command
+</a></li><P><a name="27026">
+<li>by selecting the light in the Attributes Editor and changing its parameters
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	To select a light in N-Geometry, you must select <strong>points</strong> in the element sensitivity menu.</font></dd></dt></dl><P>
+<a name="30179">
+Initially, the view window contains a single default point light positioned at 100, 300, 150 (up and back) so that it illuminates all visible objects.<p>
+</a><P><a name="23977">
+<strong>(CLICK-L)</strong> on <strong>File&gt;New Object&gt;light</strong> to bring up the menu that lets you specify the parameters for a new light:<p>
+</a><P><a name="23981">
+ <P><img src="2CreatingObjects.anc25.gif"><p>
+</a><a name="23982">
+<em>Figure 2.20  &#32; &#32;Defining a new light
+</em></a><P><a name="23984">
+Each of these parameters is described in more detail below: 
+<P><Table Border="1">
+<dl>
+<a name="26592">
+<em>Table 2.1  &#32; &#32;Light parameters for lights in N-Geometry
+</em></a></dl>
+<tr><th align="left"><a name="26598">
+Parameter
+</a><th align="left"><a name="26600">
+Light Type
+</a><th align="left"><a name="26602">
+Description
+</a>
+<tr><td valign="top"><a name="26604">
+ <strong>Name</strong><p>
+</a><td valign="top"><a name="26606">
+ <em>Ambient<br>Point<br>Infinite<br>Spot</em><p>
+</a><td valign="top"><a name="26608">
+ Specifies the name of the light object to be created from this menu.<p>
+</a>
+<tr><td valign="top"><a name="26610">
+ <strong>Type</strong><p>
+</a><td valign="top"><a name="26612">
+ <p>
+</a><td valign="top"><a name="26704">
+ Selects the <em>type</em> of light to be created from this menu, as described above.<p>
+</a>
+<tr><td valign="top"><a name="26725">
+ <strong>Reference Space</strong><p>
+</a><td valign="top"><a name="26881">
+ <em>Point<br>Infinite<br>Spot</em><p>
+</a><td valign="top"><a name="26734">
+ <strong>Global</strong> positions lights using the conventional global coordinate system. If you want to render a scene as if the lights were fixed in space, select this option.<p>
+</a><a name="26735">
+ <strong>Camera</strong> selects a coordinate system that is centered with and aligned to the camera's current view. Lights specified this way maintain a constant relationship to the camera, even if the camera moves. Camera space is left-handed (position z is forward). If you want to render a scene as if the lights were attached to the camera, select this option.<p>
+</a>
+<tr><td valign="top"><a name="26622">
+ <strong>Brightness</strong><p>
+</a><td valign="top"><a name="26890">
+ <em>Ambient<br>Point<br>Infinite<br>Spot</em><p>
+</a><td valign="top"><a name="26748">
+ Specifies the intensity of a light. The practical range is from 0 (least) to 1 (greatest). The actual range is unlimited in both the positive and negative directions. This flexibility can be helpful when you are illuminating dark objects; further, you can create negative lights, which subtract light from a scene. Use great care when specifying values greater than 1. In some cases, intensity values in the renderer might overflow, creating anomalous colors.<p>
+</a>
+<tr><td valign="top"><a name="26628">
+ <strong>Color</strong><p>
+</a><td valign="top"><a name="26897">
+ <em>Ambient<br>Point<br>Infinite<br>Spot</em><p>
+</a><td valign="top"><a name="26762">
+ Selects the color for the light using a palette.<p>
+</a><a name="26769">
+ <P><img src="2CreatingObjects.anc4.gif"><p>
+</a><a name="26770">
+<em>Figure 2.21  &#32; &#32;Selecting colors from the palette
+</em></a><P><a name="26771">
+ To change the values displayed on the palette, <strong>(CLICK-L)</strong> on the Edit button. For a complete description of setting light color, see the <em>Attributes Editor User Guide</em>.<p>
+</a>
+<tr><td valign="top"><a name="26634">
+ <strong>Group</strong><p>
+</a><td valign="top"><a name="26904">
+ <em>Ambient<br>Point<br>Infinite<br>Spot</em><p>
+</a><td valign="top"><a name="26786">
+ Specifies the initial group in which the light is placed. Light groups are arbitrary, named collections of lights which are used by N-Render as an attribute (you typically select a light group to apply to an object or group of objects). Lights can belong to any number of groups. See the N-Render documentation for a description of lights and light groups and how they affect surface characteristics.<p>
+</a>
+<tr><td valign="top"><a name="26640">
+ <strong>Location</strong><p>
+</a><td valign="top"><a name="26911">
+ <em>Point<br>Spot</em><p>
+</a><td valign="top"><a name="26799">
+ For a point light, specify the X, Y, and Z coordinates for the light.<p>
+</a><a name="26800">
+ For a spot light, set the X, Y, and Z coordinates for the eyepoint (the sharp end of the cone).<p>
+</a>
+<tr><td valign="top"><a name="26805">
+ <strong>Aim Point</strong><p>
+</a><td valign="top"><a name="26809">
+ <em>Spot</em><p>
+</a><td valign="top"><a name="26813">
+ Sets the X, Y, and Z location for the spot light. The location and aim point values define the length of the light and its orientation.<p>
+</a>
+<tr><td valign="top"><a name="26652">
+ <strong>Radius</strong><p>
+</a><td valign="top"><a name="26822">
+ <em>Spot</em><p>
+</a><td valign="top"><a name="26826">
+ Sets the radius (from aim point to the edge of the light) of a spot light.<p>
+</a>
+<tr><td valign="top"><a name="26658">
+ <strong>Shadowing</strong><p>
+</a><td valign="top"><a name="26835">
+ <em>Spot</em><p>
+</a><td valign="top"><a name="26839">
+ Specifies whether or not the light should generate shadows.<p>
+</a>
+<tr><td valign="top"><a name="26664">
+ <strong>Projecting</strong><p>
+</a><td valign="top"><a name="26850">
+ <em>Spot</em><p>
+</a><td valign="top"><a name="26854">
+ Lets you specify that the spot light is to project an image (much like a slide through a slide projector). The image to be projected is specified with the Parameters menu. <p>
+</a><a name="26855">
+ <strong>Note.</strong>	<em>You must have selected Render as your render domain (rather than GL Shade) for this option's effect to be visible.</em><p>
+</a>
+<tr><td valign="top"><a name="26670">
+ <strong>Direction</strong><p>
+</a><td valign="top"><a name="26864">
+ <em>Infinite lights</em><p>
+</a><td valign="top"><a name="26868">
+ Specify the direction in which the infinite light is shining. If you <strong>(CLICK-L)</strong> on the text edit box, you can select the axis along which the light is aimed.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="24141">
+<h3> Creating Polyhedra</h3>
+</a><a name="24142">
+Tetrahedra, octahedra, icosahedra, dodecahedra, cubes, cylinders, spheres and torus with default settings can be created by a single left mouse click. The default values for each polyhedron are shown in the menus in this section. <p>
+</a><P><a name="24143">
+To create one of these polyhedra with other than the default values, <strong>(CLICK-R)</strong> to bring up a menu. These parameters are described in the section <a href="2CreatingObjects.html#24224">"Parameter Descriptions for Menu-Generated Polyhedra," on page &#32;2-21</a>.<p>
+</a><P><a name="24150">
+Both objects shown in <a href="2CreatingObjects.html#24156">Figure 2.22</a>, for example, are cylinder primitives. The object on the left is the default cylinder; the object on the right was created using the cylinder menu (it has 3 faces around (rather than 36), and it has a wedge cut). Simply modifying the polyhedron default settings is an often overlooked method for creating interesting polyhedra.<p>
+</a><P><a name="24154">
+ <P><img src="2CreatingObjects.anc26.gif"><p>
+</a><a name="24156">
+<em>Figure 2.22  &#32; &#32;Default cylinder; cylinder created with modified settings (four sides)
+</em></a><P><a name="24157">
+Each of the basic polyhedra are described below. As with all of N-Geometry, you'll learn best by trying to create the different shapes on your own.<p>
+</a><P><a name="24159">
+<h4> Tetrahedron</h4>
+</a><a name="24164">
+ <P><img src="2CreatingObjects.anc27.gif"><p>
+</a><a name="24165">
+<em>Figure 2.23  &#32; &#32;Tetrahedron and menu
+</em></a><P><a name="24167">
+<h4> Octahedron</h4>
+</a><a name="24172">
+ <P><img src="2CreatingObjects.anc28.gif"><p>
+</a><a name="24173">
+<em>Figure 2.24  &#32; &#32;Octahedron and menu
+</em></a><P><a name="24175">
+<h4> Icosahedron</h4>
+</a><a name="24180">
+ <P><img src="2CreatingObjects.anc29.gif"><p>
+</a><a name="24181">
+<em>Figure 2.25  &#32; &#32;Icosahedron and menu
+</em></a><P><a name="24183">
+<h4> Dodecahedron</h4>
+</a><a name="24188">
+ <P><img src="2CreatingObjects.anc30.gif"><p>
+</a><a name="24189">
+<em>Figure 2.26  &#32; &#32;Dodecahedron and menu
+</em></a><P><a name="24191">
+<h4> Cube</h4>
+</a><a name="24196">
+ <P><img src="2CreatingObjects.anc31.gif"><p>
+</a><a name="24197">
+<em>Figure 2.27  &#32; &#32;Cube and menu
+</em></a><P><a name="24199">
+<h4> Cylinder</h4>
+</a><a name="24204">
+ <P><img src="2CreatingObjects.anc32.gif"><p>
+</a><a name="24205">
+<em>Figure 2.28  &#32; &#32;Cylinder and menu
+</em></a><P><a name="24207">
+<h4> Sphere</h4>
+</a><a name="24212">
+ <P><img src="2CreatingObjects.anc33.gif"><p>
+</a><a name="24213">
+<em>Figure 2.29  &#32; &#32;Sphere and menu
+</em></a><P><a name="24215">
+<h4> Torus</h4>
+</a><a name="24220">
+ <P><img src="2CreatingObjects.anc34.gif"><p>
+</a><a name="24221">
+<em>Figure 2.30  &#32; &#32;Torus and menu
+</em></a><P><a name="24224">
+<h4> Parameter Descriptions for Menu-Generated Polyhedra</h4>
+</a><a name="24225">
+The following menu items, which are ordered alphabetically, are specified for polyhedra that don't have to be encoded. Not all menu items pertain to all polyhedra. 
+<P><Table Border="1">
+<dl>
+<a name="25268">
+<em>Table 2.2  &#32; &#32;Parameters for generating polyhedra
+</em></a></dl>
+<tr><th align="left"><a name="25274">
+Parameter
+</a><th align="left"><a name="25276">
+Used to Create
+</a><th align="left"><a name="25278">
+Description
+</a>
+<tr><td valign="top"><a name="25280">
+ <strong>Arc Sampling</strong><p>
+</a><td valign="top"><a name="25282">
+ <em>Generated objects that <br>contain an arc</em><p>
+</a><td valign="top"><a name="25284">
+ In degrees, the frequency to be used for sampling the arc. A higher number means fewer facets on the arc.<p>
+</a>
+<tr><td valign="top"><a name="25286">
+ <strong>C-S init rot.</strong><p>
+</a><td valign="top"><a name="25288">
+ <em>Contour solids<br>Tubes<br>Tube solids</em><p>
+</a><td valign="top"><a name="25290">
+ The initial rotation from the home position of the object's cross section. This won't be apparent if you are using circular cross-sections; however, if you are using irregularly shaped cross-sections, its impact is more readily apparent.<p>
+</a>
+<tr><td valign="top"><a name="25292">
+ <strong>Depth</strong><p>
+</a><td valign="top"><a name="25294">
+ <em>Cube</em><p>
+</a><td valign="top"><a name="25296">
+ Length of the created object along the Z axis.<p>
+</a>
+<tr><td valign="top"><a name="25298">
+ <strong>Faces Around</strong><p>
+</a><td valign="top"><a name="25300">
+ <em>Cylinder</em><p>
+</a><td valign="top"><a name="25302">
+ Number of sides the generated cylinder will have.<p>
+</a>
+<tr><td valign="top"><a name="25674">
+ <strong>Height</strong><p>
+</a><td valign="top"><a name="25676">
+ <em>Cube<br>Cylinder</em><p>
+</a><td valign="top"><a name="25678">
+ Length of the created object along the Y axis.<p>
+</a>
+<tr><td valign="top"><a name="25739">
+ <strong>Main Radius</strong><p>
+</a><td valign="top"><a name="25741">
+ <em>Torus</em><p>
+</a><td valign="top"><a name="25743">
+ Distance from center of torus to outside of tube.<p>
+</a>
+<tr><td valign="top"><a name="25304">
+ <strong>Major Axis</strong><p>
+</a><td valign="top"><a name="25306">
+ <em>Cylinder</em><p>
+</a><td valign="top"><a name="25308">
+ Specifies the global axis along which the cylinder is aligned. Possible values are the symbols X, Y, or Z, or a list representing a Cartesian vector.<p>
+</a>
+<tr><td valign="top"><a name="25310">
+ <strong>n-Latitudes</strong><p>
+</a><td valign="top"><a name="25312">
+ <em>Sphere<br>Torus</em><p>
+</a><td valign="top"><a name="25314">
+ Number of faces between the poles of the sphere. (On a globe, latitude lines are those that run parallel to the equator.)<p>
+</a>
+<tr><td valign="top"><a name="25316">
+ <strong>n-Longitudes</strong><p>
+</a><td valign="top"><a name="25318">
+ <em>Sphere<br>Torus</em><p>
+</a><td valign="top"><a name="25320">
+ Number of faces around the sphere or solid of rotation. (On a globe, time changes with difference in longitude.)<p>
+</a>
+<tr><td valign="top"><a name="25322">
+ <strong>Origin</strong><p>
+</a><td valign="top"><a name="25324">
+ <em>Cube<br>Cylinder</em><p>
+</a><td valign="top"><a name="25326">
+ Location for the object's local origin. Pops up a menu to preset this location.<p>
+</a>
+<tr><td valign="top"><a name="25328">
+ <strong>Pie-cut Poles</strong><p>
+</a><td valign="top"><a name="25330">
+ <em>Cylinder<br>Sphere</em><p>
+</a><td valign="top"><a name="25332">
+ Specifies whether the top and bottom of the object are to be single faces or are to be formed by connecting the side edges to a point at the pole (making the top appear as if it were cut like a pie). The default is <strong>No</strong>.<p>
+</a><a name="25412">
+ <P><img src="2CreatingObjects.anc.gif"><p>
+</a><a name="25796">
+<em>Figure 2.31  &#32; &#32;Left, default cylinder; right, cylinder with pie-shaped poles
+</em></a><P>
+<tr><td valign="top"><a name="25334">
+ <strong>Polar Axis</strong><p>
+</a><td valign="top"><a name="25336">
+ <em>Sphere<br>Torus</em><p>
+</a><td valign="top"><a name="25419">
+ The axis along which the center (pole) of the object is aligned. The default is the <strong>Y</strong> axis. <strong>(CLICK-L)</strong> on this field to select an axis from a menu.<p>
+</a><a name="25420">
+ <strong>Note.</strong>	<em> If you want an object with vertical axes, encode the contour top to bottom and specify y as the polar axis. If you want an object with a horizontal axis, encode the contour from right to left and specify x as the polar axis.</em><p>
+</a>
+<tr><td valign="top"><a name="25340">
+ <strong>Radius</strong><p>
+</a><td valign="top"><a name="25706">
+ <em>Cylinder<br>Dodecahedron Icosahedron<br>Octahedron Sphere<br>Tetrahedron Torus</em><p>
+</a><td valign="top"><a name="25344">
+ Used with radially symmetrical bodies, specifies the distance from the center of the polyhedron to each of its vertices.<p>
+</a>
+<tr><td valign="top"><a name="25432">
+ <strong>Ring?</strong><p>
+</a><td valign="top"><a name="25434">
+ <em>Tubes</em><p>
+</a><td valign="top"><a name="25465">
+ Connects the first and last sections. The default is <strong>No</strong><code>.</code><p>
+</a><a name="25466">
+ <strong>Note.</strong>	<em> Unless the path of the tube lies entirely in one plane, the faces of the last section will probably be twisted.</em><p>
+</a>
+<tr><td valign="top"><a name="25438">
+ <strong>Sketch Axis</strong><p>
+</a><td valign="top"><a name="25440">
+ <em>Any sketched object</em><p>
+</a><td valign="top"><a name="25483">
+ Specifies the axis on the sketching screen around which the contour is assumed to rotate. N-Geometry provides a default axis that is based on the shape of your contour.<p>
+</a>
+<tr><td valign="top"><a name="25444">
+ <strong>Sweep Angle</strong><p>
+</a><td valign="top"><a name="25719">
+ <em>Cylinder<br>Solid of rotation<br>Sphere<br>Torus</em><p>
+</a><td valign="top"><a name="25495">
+ Number of degrees with which the polyhedron is to be created. 360 degrees is a complete sphere. 180 degrees indicates one half of a sphere.<p>
+</a><a name="25499">
+ <P><img src="2CreatingObjects.anc1.gif"><p>
+</a><a name="25500">
+<em>Figure 2.32  &#32; &#32;Left, sphere with 360 degree swept angle, and right, with 270 degree swept angle (with wedge cut)
+</em></a><P>
+<tr><td valign="top"><a name="25450">
+ <strong>Toroidal</strong><p>
+</a><td valign="top"><a name="25452">
+ <em>Solids of rotation</em><p>
+</a><td valign="top"><a name="25537">
+ Finishing treatment for the object. If the object is not toroidal, its top and bottom are finished with flat planes. If the object is toroidal, its top and bottom are connected and a "tunnel" is formed through the object:<p>
+</a><a name="25544">
+ <P><img src="2CreatingObjects.anc2.gif"><p>
+</a><a name="25546">
+<em>Figure 2.33  &#32; &#32;Left, non-toroidal, right toroidal, solids of rotation (made from wire at right)
+</em></a><P>
+<tr><td valign="top"><a name="25757">
+ <strong>Tube Radius</strong><p>
+</a><td valign="top"><a name="25759">
+ <em>Torus</em><p>
+</a><td valign="top"><a name="25761">
+ Radius for tube of the torus.<p>
+</a>
+<tr><td valign="top"><a name="25456">
+ <strong>Wedge-cut</strong><p>
+</a><td valign="top"><a name="25726">
+ <em>Cylinder<br>Solid of rotation<br>Sphere<br>Torus</em><p>
+</a><td valign="top"><a name="25570">
+ A swept angle of less than 360 degrees leaves the object with an open end. <p>
+</a><a name="25883">
+ The default treatment is to close the open end with a flat polygon joined at the "last" latitude lines. <p>
+</a><a name="25884">
+ When wedge-cut is enabled, a spine is created down the center of the object and two planes are created to connect the edges to the center, creating the wedge shape. When wedge-cut is selected, pie-cut poles are created (as described above).<p>
+</a><a name="25577">
+ <P><img src="2CreatingObjects.anc3.gif"><p>
+</a><a name="25579">
+<em>Figure 2.34  &#32; &#32;Left, default 270-degree swept-cut cylinder; right, wedge-cut version (note automatically created pie-cut poles)
+</em></a><P>
+<tr><td valign="top"><a name="25346">
+ <strong>Width</strong><p>
+</a><td valign="top"><a name="25348">
+ <em>Cube</em><p>
+</a><td valign="top"><a name="25626">
+ Length of the object along the x axis.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P>
+<h2>(CLICK-L) on [Next] to continue...</h2>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="2CreatingObjects1.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 08:11:44 -->
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<html><head><title>Using PlayStation Express</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0-AboutThisDoc.html">[Prev]</a> <a href="2-VectorEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="19749">
+<h1>Using PlayStation Express</h1>
+</a>
+<hr><p><a name="19892">
+Nichimen's PlayStation Express is designed to allow you to quickly and easily create 3D object and animation data, and port that data to the Sony PlayStation. You can preview attributed objects without animation, export TOD animations, or use the Action Editor and the Vector Editor to create MIME (multi-interpolation method) animations on the PlayStation.<p>
+</a><P><a name="19750">
+<h2><HR> Overview</h2>
+</a><a name="16158">
+PlayStation Express is designed to allow you, the artist, to see how your work will look on your target platform, the Sony PlayStation. It's designed to allow you to do your work in the context of that target system, so that any necessary optimization or adjustments can be made during the development process by you, the artist, rather than later by a programmer. The result is no surprises when it's time to actually build a game out of your work.<p>
+</a><P><a name="16915">
+The PlayStation's MIME (Multi Interpolation MEthod) feature lets users develop a new type of game, capable of interactively displaying 3D character action in real time. This real time animation supports render attributes and deformations, a feature unprecedented in the gaming industry.<p>
+</a><P><a name="16162">
+Computer graphics software (and character animation based on skin deformation in particular), typically uses sophisticated hierarchical data structures. In the past, game systems have typically been incapable or inefficient at handling such hierarchical structures. The relatively simple data structure developed for use in the PlayStation can represent both 3D objects and their associated animation data. <p>
+</a><P><a name="16530">
+N-Geometry uses the concept of <em>displacements</em> to describe animation with skin deformation; displacements calculate the difference in position of vertices using vectors. Sony's MIME concept is based on a very similar idea, which make N-Geometry an ideal fit for development of 3D game models.<p>
+</a><P><a name="19588">
+In addition to MIME animations, the PlayStation supports TOD animations. TOD animations support multiple objects and texture maps, but no displacements. They are ideal for generating game environments and animations for objects with "fixed" shapes.<p>
+</a><P><a name="20468">
+<h3> Using the PC</h3>
+</a><a name="20469">
+The PlayStation interfaces with a PC, which in turn interfaces with the SGI. Data are transferred between the PC and the SGI via FTP. At various times, you'll need to launch the Sony software on the PC and execute several commands to prepare the software to receive objects and animations. <p>
+</a><P><a name="16923">
+<h3> Keyframe vs. Vector animation</h3>
+</a><a name="16924">
+Before using PSX Express, it is important to understand the difference between the traditional keyframing approach to computer animation and the use of MIME vectors.<p>
+</a><P><a name="16925">
+Keyframes, while powerful and useful for generating computer animation, are intended to produce a <em>fixed sequence</em> animation; that is, the script is defined, and each time the script is executed, the same animation is produced. The intent of vector-based animation is to generate <em>interactive</em> 3D action, which requires a new way of thinking about what makes an "action."<p>
+</a><P><a name="16928">
+In MIME, an action is represented by a combination of a base vector (similar to a base displacement) and one or more additional vectors (similar to relative displacements). For each vector, a wave is created, which controls interpolation between vectors. With this approach, poses can be separated from time. <p>
+</a><P><a name="18753">
+In vector based animation, you have a base shape for the model and a target shape for the model; the curve data determines the transition between the two shapes. By changing the shape of the wave file, you can completely control the transition between the two states.<p>
+</a><P><a name="18301">
+<h3> Creating Data for the PlayStation</h3>
+</a><a name="18355">
+Users generate and edit data using N-Geometry and N-Dynamics, then use the Vector Editor and Action Editor to convert and export that data so it can be utilized by MIME on the development kit for the PlayStation. This process is iterative; you may go back and forth between N-Geometry, N-Dynamics, the Vector Editor and PSX Express several times as you tweak your animation:<p>
+</a><P><a name="18356">
+ <P><img src="1-Overview.anc.gif"><p>
+</a><a name="18364">
+<em>Figure 1.1  &#32; &#32;N-Dynamics, N-Geometry, the Vector Editor, and PSX Express
+</em></a><P><a name="18783">
+Action is previewed in both the Dynamics playback window and PSX Express playback window, depending on the source of the recording.<p>
+</a><P><ul><a name="18360">
+<li>Objects to be animated are created in N-Geometry:
+</a></li><P><ul>
+<BR><a name="18787">
+<li>For MIME objects, you define any displacements and Sony domain render attributes.
+</a><P><BR><a name="18788">
+<li>For TOD objects, you define any Sony domain render attributes, including texture maps. TOD files are described later in this chapter, in the section <a href="1-Overview.html#20425">"Attributed Objects and TOD Animations," on page &#32;1-8</a>.
+</a><P></ul>
+<a name="18424">
+<li>The object is animated using N-Dynamics.
+</a></li><P><a name="18425">
+<li>Animations can be previewed in the Dynamics Playback window.
+</a></li><P><a name="18426">
+<li>When the animation looks correct, the Vector Editor can be used to create a new MIME object out of the N-Geometry model, based on cues in the N-Dynamics script.
+</a></li><P><a name="18443">
+<li>The Action Editor creates a new <em>action</em> based on the MIME object created in the Vector Editor. The action consists of a series of subactions, each of which contains a vector (pose) and wave (curve data). The curve data in these subactions can be edited using N-Dynamics' extensive curve editing tools.
+</a></li><P><a name="18444">
+<li>Animations can be played back in real time, at variable speed, or in a loop (just as in N-Dynamics) in the PSX Express Playback window.
+</a></li><P></ul><P><a name="18445">
+<h2><HR> MIME Objects</h2>
+</a><a name="16167">
+<h3> Data Export</h3>
+</a><a name="16168">
+PSX Express exports MIME animation data to an RSD file set containing:<p>
+</a><P><ul><a name="16571">
+<li>Vector files
+</a></li><P><a name="16572">
+<li>Wave files
+</a></li><P></ul><P><a name="16575">
+This data is written to the local hard drive or to a shared disk via NFS, then sent to the PSX development system via FTP.<p>
+</a><P><a name="16171">
+<h4> Vector</h4>
+</a><a name="16172">
+In describing MIME animation using skin deformations, a key shape is referred to as a <em>vector</em>. While the term vector normally refers to a difference in position (as with a displacement in N-Geometry), in the context of MIME it refers to an object displaced to a certain state; if you are familiar with N-Geometry, a vector is essentially the same as a relative displacement (or gesture, if you use multiple displacements). Displacements are described in detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="16176">
+<h4> Wave</h4>
+</a><a name="16177">
+The wave created for each subaction controls the interpolation between the base vector and any "relative" vector.<p>
+</a><P><a name="16187">
+<h3> Data Structure</h3>
+</a><a name="19997">
+An understanding of the MIME object's data structure may help you use PSX Express more effectively:<P><img src="1-Overview.anc1.gif"><p>
+</a><P><a name="20177">
+<em>Figure 1.2  &#32; &#32;Data structure of a MIME object
+</em></a><P><a name="19989">
+Each of these elements is described in the paragraphs below:<p>
+</a><P><a name="20247">
+<h4> MIME Object</h4>
+</a><a name="16195">
+The MIME object contains all the data about the object except for its wave information. The vector information is saved to file as a MIME object.<p>
+</a><P><a name="16196">
+<h4> Geometry Object</h4>
+</a><a name="16197">
+The geometry object is the model or "skin" being animated. N-Geometry supplies geometrical data, base and relative displacements, plus any render attributes.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Currently, the PlayStation does not support objects with hierarchical data structures; objects to be animated as MIME objects must be terminal objects consisting of a single skin.</em></font></dd></dt></dl><P>
+<a name="16198">
+<h4> Vectors</h4>
+</a><a name="16199">
+The vector list contains a list of vectors for the MIME object. Each MIME vector contains:<p>
+</a><P><ul><a name="19411">
+<li>A <strong>base displacement</strong>, which is the initial state of the object for the vector. (This state corresponds to an absolute displacement in N-Geometry.)
+</a></li><P><a name="18580">
+<li>A list of <strong>relative displacements</strong> (and their applied values) for the object. These displacements correspond to relative or rotational displacements in N-Geometry. There is no limit to the number of displacements that can be used to create a given vector.
+</a></li><P><a name="18583">
+<li>A <strong>finalize vector</strong>, which lets you do any fine editing of shape deformations (such as the skin around an elbow) which is difficult to define using other functions. The finalize vector stores the relative value between the original shape and the shape after editing, which frees you from repeating fine tuning work after changing other parameters.
+</a></li><P><a name="19426">
+<li>A set of <strong>final coordinates</strong>, which stores the coordinate values resulting from the application of all parameters plus the finalize vector.
+</a></li><P></ul><P><a name="16213">
+<h4> Action List</h4>
+</a><a name="16214">
+The motion of an object is referred to as an <em>action</em>. The MIME object can store multiple actions, which consist of a combination of multiple subactions. <p>
+</a><P><a name="17387">
+Each action consists of a base vector and zero or more optional subactions. An action requires both length (seconds) and rate (frames/sec) parameters, which can be changed at any time.<p>
+</a><P><ul><a name="16219">
+<li>The <strong>base vector</strong> is the initial state of the shape in MIME; any vector in the MIME object can be used as the base vector.
+</a></li><P><a name="16224">
+<li>Each <strong>subaction</strong> contains a vector and a wave.
+</a></li><P><ul>
+<BR><a name="16225">
+<li>The <strong>vector</strong> can be any vector in the MIME object.
+</a><P><BR><a name="16226">
+<li>The <strong>wave</strong> is not object dependent; you can use a wave associated with the current MIME object, or read a previously saved wave.
+</a><P></ul>
+<a name="19546">
+<li>The <strong>final vector</strong> corresponds to the last cue in the N-Dynamics script; usually the same as the base vector to create cyclical animation.
+</a></li><P></ul><P><a name="16233">
+<h4> Waves</h4>
+</a><a name="16234">
+A list of waves associated with the MIME object. Waves are not part of the MIME object, and can be used in creating any number of MIME objects.<p>
+</a><P><a name="19567">
+A .dat file is written when an action is saved. This is an action definition file which describes which vector is associated with which wave.<p>
+</a><P><a name="20422">
+This is an user-editable ASCII file; if you wanted to modify which wave was associated with which vector, you could manually edit this file, rather than making the change from within PSX Express.<p>
+</a><P><a name="20425">
+<h2><HR> Attributed Objects and TOD Animations</h2>
+</a><a name="20426">
+TOD animations are also supported by the Sony PlayStation. TOD animations support multiple objects and texture maps, but no displacements. They are ideal for generating game environments and animations for objects with "fixed" shapes.<p>
+</a><P><a name="19560">
+TOD animations are much simpler to create and send to the PlayStation; in fact, they can be sent using only N-Geometry and a simple N-Dynamics script. TOD animation is discussed in more detail in <a href="2-VectorEditor.html#16123">Chapter &#32;2</a>, <a href="2-VectorEditor.html#21090">"Objects and TOD Animations" &#32;</a>. <p>
+</a><P><a name="20441">
+Finally, you can preview your attributed objects on the PlayStation. Previewing objects can help you to optimize the appearance of your objects and textures for the PlayStation, streamlining the development process and saving time once you begin to animate your objects.<p>
+</a><P><a name="20498">
+<h2><HR> Configuring N-Dynamics</h2>
+</a><a name="20503">
+Before you can effectively transfer data between the SGI and the PC, you must ensure that the correct PC hostname is specified in the N-Dynamics Options menu. <p>
+</a><P><a name="20504">
+To do so:<p>
+</a><P>
+<a name="20505">
+<STRONG>	1.	 Open N-Dynamics.
+</STRONG>
+</a><P><a name="20506">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Options.
+</STRONG>
+</a><P><dl><a name="20507">
+<dt>The N-Dynamics Options menu appears:</dt>
+</a><P><a name="20508">
+ <P><img src="1-Overview.anc2.gif"><p>
+</a></dl>
+<a name="20509">
+<em>Figure 1.3  &#32; &#32;N-Dynamics options
+</em></a><P>
+<a name="20523">
+<STRONG>	3.	 Specify the correct PC hostname.
+</STRONG>
+</a><P><dl><a name="20524">
+<dt>If you don't know the name of the computer you need to be attached to, consult your System Administrator.</dt>
+</a><P></dl><a name="20525">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It to save your changes to memory, or <strong>(CLICK-L)</strong> on Save Preferences to save your preferences to disk.<strong></strong>
+</STRONG>
+</a><P>
+
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0-AboutThisDoc.html">[Prev]</a> <a href="2-VectorEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:13 -->
+
+</body>
+</html>

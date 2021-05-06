@@ -1,0 +1,374 @@
+<html><head><title>N-Dynamics Basics</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2Basics-2.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>N-Dynamics Basics</h1>
+</a>
+<hr><p><a name="5780">
+<h4> In this chapter you'll learn some of the basic concepts and script editing skills you'll need to work in N-Dynamics.</h4>
+</a><a name="9545">
+<h2><HR> In this Chapter</h2>
+</a><a name="9546">
+You'll learn how to perform some of the basic tasks you'll need to be able to do with N-Dynamics:<p>
+</a><P><ul><a name="9547">
+<li>create a basic script
+</a></li><P><a name="9548">
+<li>add channels to a script
+</a></li><P><a name="9549">
+<li>insert cues into a channel
+</a></li><P><a name="9550">
+<li>edit cue values
+</a></li><P><a name="9551">
+<li>animate a script
+</a></li><P><a name="9552">
+<li>playback a test animation
+</a></li><P><a name="9553">
+<li>save a script
+</a></li><P></ul><P><a name="9554">
+<h2><HR> Creating a Script</h2>
+</a><a name="9555">
+Animations are created in <em>scripts</em>. A script consists of a hierarchy of channels. Each channel represents a specific action to perform on an object (or objects) in N-Geometry.<p>
+</a><P><a name="9557">
+To create a new script, make sure that the N-Dynamics script editor window is open. There are two ways to open N-Dynamics:<p>
+</a><P><ul><a name="9558">
+<li>Use N&#183;World's configuration bar to select one of the options under <strong>Dynamics</strong>
+</a></li><P><a name="9559">
+<li><strong>(CLICK-L)</strong> on the red <strong>Dynamics</strong> icon on your desktop.
+</a></li><P></ul><P><a name="9560">
+The script editor looks like this:<p>
+</a><P><a name="9573">
+ <P><img src="1Basics.anc.gif"><p>
+</a><a name="9574">
+<em>Figure 1.1  &#32; &#32;The script editor
+</em></a><P><a name="9575">
+To create a new script:<p>
+</a><P>
+<a name="9576">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File.
+</STRONG>
+</a><P><dl><a name="9577">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="10324">
+ <P><img src="1Basics.anc1.gif"><p>
+</a></dl>
+<a name="10325">
+<em>Figure 1.2  &#32; &#32;The script editor
+</em></a><P>
+<a name="9578">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Create New Script.
+</STRONG>
+</a><P><dl><a name="9584">
+<dt>A dialog box appears, where you may specify a new name for the script:</dt>
+</a><P><a name="9596">
+ <P><img src="1Basics.anc2.gif"><p>
+</a></dl>
+<a name="9597">
+<em>Figure 1.3  &#32; &#32;Naming a script
+</em></a><P><dl><dl><a name="9598">
+<dt>Your home directory is specified by default. For now, <strong>(CLICK-L)</strong> on <strong>Do It</strong> to use the directory and script name.</dt>
+</a><P></dl></dl>
+<a name="9600">
+<STRONG>	3.	 Enter the number of channels for the script in the dialog box that appears:
+</STRONG>
+</a><P><a name="9604">
+ <P><img src="1Basics.anc3.gif"><p>
+</a>
+<a name="9605">
+<em>Figure 1.4  &#32; &#32;Specifying the number of channels for a script
+</em></a><P><dl><dl><a name="9606">
+<dt>You can move the slider back and forth to change the number of channels in the script, or <strong>(CLICK-L)</strong> right on the number to display a keypad where you can type in a number of channels:</dt>
+</a><P><a name="9610">
+ <P><img src="1Basics.anc4.gif"><p>
+</a></dl></dl><a name="9611">
+<em>Figure 1.5  &#32; &#32;Using the keypad
+</em></a><P><dl><dl><a name="9612">
+<dt>For now, <strong>Abort</strong> out of this command, and <strong>(CLICK-L)</strong> on <strong>Do It</strong> to create a script with two channels. Your script editor window should look something like this:</dt>
+</a><P><a name="9616">
+ <P><img src="1Basics.anc5.gif"><p>
+</a></dl></dl><a name="9617">
+<em>Figure 1.6  &#32; &#32;The script editor with two channels
+</em></a><P><dl><dl><a name="9618">
+<dt>Two blue rectangles, or <em>channels</em>, appear in the script editor window.</dt>
+</a><P><a name="9619">
+<dt>The operation performed by a channel appears in the <em>center</em> of the channel; when you specify an object on which the operation is to be performed, the name of the object is added too.</dt>
+</a><P></dl></dl><a name="10191">
+<h3> Creating an Object to Animate</h3>
+</a><a name="9620">
+Before you can see how scripts work, though, you'll need to create an object to animate in N-Geometry. (As described earlier, N-Dynamics can be used to drive any of the other packages in N&#183;World; we'll use some simple shape animations using shapes created in N-Geometry to get started.)<p>
+</a><P>
+<a name="9621">
+<STRONG>	4.	 Open N-Geometry.
+</STRONG>
+</a><P><a name="9622">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Tetrahedron.
+</STRONG>
+</a><P><dl><a name="9623">
+<dt>The object appears in the middle of the N-Geometry window:</dt>
+</a><P><a name="9627">
+ <P><img src="1Basics.anc6.gif"><p>
+</a></dl>
+<a name="9628">
+<em>Figure 1.7  &#32; &#32;A tetrahedron in N-Geometry
+</em></a><P><a name="10192">
+<h3> Selecting an N-Dynamics Operation</h3>
+</a>
+<a name="9629">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on the first Make Visible channel in the script.
+</STRONG>
+</a><P><dl><a name="9630">
+<dt>The following dialog appears:</dt>
+</a><P><a name="9634">
+ <P><img src="1Basics.anc7.gif"><p>
+</a></dl>
+<a name="9635">
+<em>Figure 1.8  &#32; &#32;Changing an operation
+</em></a><P>
+<a name="9636">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Operation text edit box, which currently contains a Make Visible operation.
+</STRONG>
+</a><P><dl><a name="9637">
+<dt>A menu, listing the various operation classes appears:</dt>
+</a><P><a name="9641">
+ <P><img src="1Basics.anc8.gif"><p>
+</a></dl>
+<a name="9642">
+<em>Figure 1.9  &#32; &#32;Using the keypad
+</em></a><P><a name="9643">
+Operations are color-coded by the application they pertain to:<p>
+</a><P><ul><a name="9644">
+<li>red for N-Dynamics
+</a></li><P><a name="9645">
+<li>blue for N-Geometry
+</a></li><P><a name="9646">
+<li>purple for N-Paint
+</a></li><P><a name="9647">
+<li>yellow for N-Render
+</a></li><P><a name="9648">
+<li>green for animating attributes
+</a></li><P></ul><P>
+<a name="9649">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Geometry&gt;Translation.
+</STRONG>
+</a><P><dl><a name="9650">
+<dt>A list of available translation operations appears:</dt>
+</a><P><a name="9654">
+ <P><img src="1Basics.anc9.gif"><p>
+</a></dl>
+<a name="9655">
+<em>Figure 1.10  &#32; &#32;Translation operations
+</em></a><P><dl><dl><a name="9656">
+<dt>A translation operation moves an object along an axis without rotating it. To start, we just want to move the tetrahedron in a straight line.</dt>
+</a><P></dl></dl>
+<a name="9657">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on X Move.
+</STRONG>
+</a><P><dl><a name="9658">
+<dt>The parameters for the channel are updated:</dt>
+</a><P><a name="9662">
+ <P><img src="1Basics.anc10.gif"><p>
+</a></dl>
+<a name="9663">
+<em>Figure 1.11  &#32; &#32;X Move operation parameters
+</em></a><P>
+<a name="10606">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the Object text edit field, which currently displays "None".
+</STRONG>
+</a><P><dl><a name="10607">
+<dt>A list of objects currently loaded into N-Geometry is displayed:</dt>
+</a><P><a name="9669">
+ <P><img src="1Basics.anc11.gif"><p>
+</a></dl>
+<a name="9670">
+<em>Figure 1.12  &#32; &#32;Object list
+</em></a><P>
+<a name="9671">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Tetrahedron, then <strong>(CLICK-L) </strong>on Do It.
+</STRONG>
+</a><P><dl><a name="9672">
+<dt>Your script should now look something like this:</dt>
+</a><P><a name="9676">
+ <P><img src="1Basics.anc12.gif"><p>
+</a></dl>
+<a name="9677">
+<em>Figure 1.13  &#32; &#32;Curve channel
+</em></a><P><a name="9678">
+What's that gray channel for? The gray channel is a <em>curve</em>. It contains data that is passed to the parent operation at each frame as the script is animated.<p>
+</a><P>
+<a name="9679">
+<STRONG>	12.	 (CLICK-L) on the [X-OFFSET] (LINEAR) channel.
+</STRONG>
+</a><P><dl><a name="9680">
+<dt>This opens up the channel:</dt>
+</a><P><a name="9684">
+ <P><img src="1Basics.anc13.gif"><p>
+</a></dl>
+<a name="9685">
+<em>Figure 1.14  &#32; &#32;Opening a curve channel
+</em></a><P><dl><dl><a name="9686">
+<dt>If you open the channel, you can see what value is passed to the parent operation at any given frame; in this case, the value says how far to move the tetrahedron in the X direction.</dt>
+</a><P></dl></dl>
+<a name="9687">
+<STRONG>	13.	 Move the cursor back and forth over the curve channel.
+</STRONG>
+</a><P><dl><a name="9688">
+<dt>As you move the mouse back and forth, both the <em>time box</em> and <em>frame box</em> change to reflect the cursor's current position:</dt>
+</a><P><a name="9700">
+ <P><img src="1Basics.anc14.gif"><p>
+</a></dl>
+<a name="9701">
+<em>Figure 1.15  &#32; &#32;Now-time cursor positioned at frame 15
+</em></a><P><a name="10209">
+<h3> Toggling the Grid</h3>
+</a><a name="10210">
+You can constrain the placement of cues to even frames or turn that constraint off and insert cues at any point in between:<p>
+</a><P>
+<a name="9702">
+<STRONG>	14.	 Press the "g" hot key to constrain the insertion of cues to even frame numbers.
+</STRONG>
+</a><P><dl><a name="10195">
+<dt>A brief message "Grid turned on" or "Grid turned off" is displayed at the bottom of the script editor window.</dt>
+</a><P></dl>
+<a name="10215">
+<h3> Inserting Cues</h3>
+</a><a name="10216">
+You change values in a curve channel either by sketching a curve or by inserting <em>cues</em> and assigning values to those cues.<p>
+</a><P>
+<a name="9703">
+<STRONG>	15.	 Move the cursor over the curve channel again, move it to frame 15, and press the "s" hot key.
+</STRONG>
+</a><P><dl><a name="9704">
+<dt>The "s" hot key is used to insert elements-in this case, a new <em>cue</em>:</dt>
+</a><P><a name="9708">
+ <P><img src="1Basics.anc15.gif"><p>
+</a></dl>
+<a name="9709">
+<em>Figure 1.16  &#32; &#32;Opening a curve channel
+</em></a><P><a name="10219">
+<h3> Editing a Cue's Value</h3>
+</a><a name="10220">
+To change the value of a cue:<p>
+</a><P>
+<a name="9710">
+<STRONG>	16.	 (CLICK-M) on the new cue to change its value.
+</STRONG>
+</a><P><dl><a name="9711">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="9715">
+ <P><img src="1Basics.anc16.gif"><p>
+</a></dl>
+<a name="9716">
+<em>Figure 1.17  &#32; &#32;Editing a cue value
+</em></a><P>
+<a name="9717">
+<STRONG>	17.	 Use the slider to change the value to 30, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="9718">
+<dt>The currently selected cue is highlighted in green; note that the curve now has some shape to it:</dt>
+</a><P><a name="9722">
+ <P><img src="1Basics.anc17.gif"><p>
+</a></dl>
+<a name="9723">
+<em>Figure 1.18  &#32; &#32;An edited cue
+</em></a><P><dl><dl><a name="9724">
+<dt>Cues contain explicit values. Every channel has, by default, a cue at its beginning and end, but can have any number of additional cues.</dt>
+</a><P></dl></dl>
+<a name="9725">
+<STRONG>	18.	 (CLICK-L) on the Animate button.
+</STRONG>
+</a><P><dl><a name="9726">
+<dt>The tetrahedron animates from global center along the X axis, then back.</dt>
+</a><P><a name="9732">
+ <P><img src="1Basics.anc18.gif"><p>
+</a></dl>
+<a name="9733">
+<em>Figure 1.19  &#32; &#32;Animating the script
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>To stop an animation in progress, </em><strong>(CLICK-R)</strong><em> on the N-Dynamics window.</em></font></dd></dt></dl><P>
+
+<a name="9734">
+<STRONG>	19.	 <strong>(CLICK-M)</strong> on the cue and change its value to -40, then animate the script again.
+</STRONG>
+</a><P><dl><a name="9116">
+<dt>This time the tetrahedron moves along the X axis in the negative direction.</dt>
+</a><P></dl>
+<a name="10084">
+<h3> Deleting an Element</h3>
+</a><a name="10085">
+As often happens, you may find that you want to delete something from an N-Dynamics script. In this case, let's delete the extra <strong>Make Visible</strong> channel:<p>
+</a><P>
+<a name="10093">
+<STRONG>	20.	 Move the cursor over the extra Make Visible channel at the bottom of the script.
+</STRONG>
+</a><P><dl><a name="10094">
+<dt>Press the "Shift-D" hot key combination.</dt>
+</a><P><a name="10097">
+<dt>This deletes the currently highlighted element (either a channel, a curve, or a cue).</dt>
+</a><P></dl>
+<a name="10100">
+After you delete the extra channel, any other channels in the script resize automatically to fit the available space.<p>
+</a><P><a name="10083">
+<h3> Saving Your Script</h3>
+</a><a name="10138">
+N-Dynamics' save dialog box prompts you to save the script and any objects referenced by that script.<p>
+</a><P><a name="10134">
+To save a script:<p>
+</a><P>
+<a name="10139">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on <strong>File&gt;Save Script</strong>.
+</STRONG>
+</a><P><dl><a name="10140">
+<dt>The N-Dynamics save dialog box opens:</dt>
+</a><P><a name="10020">
+ <P><img src="1Basics.anc19.gif"><p>
+</a></dl>
+<a name="10021">
+<em>Figure 1.20  &#32; &#32;Saving the script
+</em></a><P><dl><dl><a name="10103">
+<dt>At this point you can both rename any objects and change the directory in which any objects or scripts will be saved.</dt>
+</a><P><a name="10155">
+<dt>An "*" in the <strong>MOD</strong> column indicates that the element has not been saved in its current state. Objects with an "*" automatically have their <strong>Save</strong> toggles set. The last column in this dialog box tells you the type of element being saved.</dt>
+</a><P></dl></dl>
+<a name="10158">
+<STRONG>	22.	 Rename the script "move-tetrahedron".
+</STRONG>
+</a><P><a name="10162">
+<STRONG>	23.	 Specify the directory in which you want to save the script.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can't save scripts in the default directory:<br><br><code>/usr/local/ngc/demo/scripts</code><br><br>This directory contains original scripts that you always want to be able to refer to.</font></dd></dt></dl><P>
+
+<a name="10167">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on Save.
+</STRONG>
+</a><P><dl><a name="10159">
+<dt>We'll use this script again in the next chapter, so make sure to save it!</dt>
+</a><P></dl>
+<a name="10119">
+<h2><HR> Congratulations!</h2>
+</a><a name="10123">
+You've now learned some basic script editing skills, including creating and saving scripts and their referenced objects, assigning operations to channels, and editing cues. You'll use all these skills in the remaining tutorials in this chapter.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2Basics-2.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 13:36:10 -->
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<html><head><title>Animating Attributes</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Camera.html">[Prev]</a> <a href="6Displacements.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Animating Attributes</h1>
+</a>
+<hr><p><a name="11387">
+<h4> In this chapter you'll learn how to animate the attributes used to render an object in N&#183;World.</h4>
+</a><a name="11202">
+ <P><img src="5Attributes.anc.gif"><p>
+</a><a name="9603">
+<h2><HR> In this Chapter</h2>
+</a><a name="9622">
+You'll learn how to:<p>
+</a><P><ul><a name="10338">
+<li>animate changes in a material applied to an object over time
+</a></li><P><a name="10324">
+<li>animate attributes for a light over time
+</a></li><P><a name="9604">
+<li>write out a movie of your animation
+</a></li><P></ul><P><a name="9698">
+In order to render an object you need to specify three things:<p>
+</a><P><ul><a name="9699">
+<li>The <em>domain</em> in which the object will be rendered
+</a></li><P><dl><a name="9728">
+<dt>N&#183;World can output objects to different targets (e.g., different game platforms, on the SGI using the built in GL renderer, or to a photorealistic image using N-Render). All targets, however, don't share the same attributes, so they're divided into target specific <em>domains</em>. Each domain has certain attributes specific to that domain (e.g., attributes for an object being sent to the Sega Saturn are different than those being ray-traced with N-Render).</dt>
+</a><P></dl><a name="9702">
+<li>The <em>material</em> to be used when rendering the object
+</a></li><P><dl><a name="9714">
+<dt>A material gives the object its basic appearance characteristics, including color, opacity, texture maps, and so forth.</dt>
+</a><P></dl><a name="9705">
+<li>The <em>lights</em> to be used when rendering the object
+</a></li><P><dl><a name="9726">
+<dt>A light also has attributes, such as type, color, shadow characteristics and so forth.</dt>
+</a><P></dl></ul><P><a name="9765">
+Both material and light attributes can be animated over time; this chapter describes animating a material.<p>
+</a><P><a name="9634">
+<h2><HR> Animating Material Attributes</h2>
+</a><a name="9871">
+There are four steps in animating a material attribute:<p>
+</a><P>
+<a name="9872">
+<STRONG>	 1.	 Create the object to use the material (using N-Geometry).
+</STRONG>
+</a><P><a name="9894">
+<STRONG>	2.	 Create the material (using the Attributes Editor).
+</STRONG>
+</a><P><a name="9873">
+<STRONG>	3.	 Assign the material to an object (using the Browser or in N-Geometry).
+</STRONG>
+</a><P><a name="9884">
+<STRONG>	4.	 Select the attribute(s) of that material that you want to change and animate it (using N-Dynamics).
+</STRONG>
+</a><P>
+<a name="9857">
+<h3> Creating the Object</h3>
+</a><a name="11551">
+The object can be any polyhedra loaded into N-Geometry. For this example, use a simple tetrahedron. In N-Geometry:<p>
+</a><P>
+<a name="11553">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Tetrahedron</strong>.
+</STRONG>
+</a><P><dl><a name="11554">
+<dt>A tetrahedron appears in the N-Geometry window.</dt>
+</a><P></dl>
+<a name="9908">
+<h3> Creating a Material</h3>
+</a><a name="9858">
+The next step in animating a material attribute is to decide what kind of change you want to animate. Let's suppose that you want to change an object's diffuse color from yellow to dark blue, then back to yellow again over the course of a script.<p>
+</a><P><a name="9925">
+In the Attributes Editor:<p>
+</a><P>
+<a name="10009">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the <strong>Materials</strong> button at the top of the screen.
+</STRONG>
+</a><P><a name="10010">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the <strong>New</strong> button to create a new material.
+</STRONG>
+</a><P><a name="10014">
+ <P><img src="5Attributes.anc1.gif"><p>
+</a>
+<a name="10015">
+<em>Figure 5.1  &#32; &#32;Create a new material
+</em></a><P><dl><dl><a name="10018">
+<dt>Enter a name for the new material in the dialog box that appears.</dt>
+</a><P></dl></dl>
+<a name="9967">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the <strong>GL Shade</strong> button to select that domain.
+</STRONG>
+</a><P><a name="9978">
+ <P><img src="5Attributes.anc2.gif"><p>
+</a>
+<a name="9997">
+<em>Figure 5.2  &#32; &#32;Select a domain
+</em></a><P>
+<a name="10044">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the <strong>Shader</strong> box under the Material Parameters section of the Materials editor.
+</STRONG>
+</a><P><dl><a name="10054">
+<dt>The basic parameters for the material are selected in this section of the editor.</dt>
+</a><P><a name="10057">
+ <P><img src="5Attributes.anc3.gif"><p>
+</a></dl>
+<a name="10058">
+<em>Figure 5.3  &#32; &#32;Selecting an attribute to animate
+</em></a><P>
+<a name="10059">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the color box next to <strong>Diffuse Color</strong>.
+</STRONG>
+</a><P><dl><a name="10060">
+<dt>Select a bright yellow from the palette that appears.</dt>
+</a><P><a name="9984">
+ <P><img src="5Attributes.anc4.gif"><p>
+</a></dl>
+<a name="9995">
+<em>Figure 5.4  &#32; &#32;Selecting an initial color for the material
+</em></a><P>
+<a name="9950">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Rename</strong> button and give the material a descriptive name:
+</STRONG>
+</a><P><a name="9990">
+ <P><img src="5Attributes.anc5.gif"><p>
+</a>
+<a name="9991">
+<em>Figure 5.5  &#32; &#32;Naming the material
+</em></a><P><a name="9859">
+<h3> Assigning a Material to an Object</h3>
+</a><a name="9860">
+Now that you've defined a material set, you need to apply it to an object. There are two ways to assign a material to an object:<p>
+</a><P><ul><a name="10066">
+<li><strong>(SHIFT-L)</strong> on the object in N-Geometry and <strong>(CLICK-L)</strong> on the <strong>Material</strong> command.
+</a></li><P><a name="11616">
+<li>Use the Browser, as described below.
+</a></li><P></ul><P><a name="11621">
+To assign a material through the Browser:<p>
+</a><P>
+<a name="10073">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the object to which you want to assign a material.
+</STRONG>
+</a><P><dl><a name="10113">
+<dt>The Browser opens, showing you any objects loaded in N-Geometry:</dt>
+</a><P><a name="10076">
+ <P><img src="5Attributes.anc6.gif"><p>
+</a></dl>
+<a name="10077">
+<em>Figure 5.6  &#32; &#32;N-Geometry objects viewed through the Browser
+</em></a><P>
+<a name="10127">
+<STRONG>	8.	 <strong>(CLICK-R)</strong> on <strong>Tetrahedron</strong>.
+</STRONG>
+</a><P><dl><a name="10135">
+<dt>The following menu appears:</dt>
+</a><P><a name="10140">
+ <P><img src="5Attributes.anc7.gif"><p>
+</a></dl>
+<a name="10141">
+<em>Figure 5.7  &#32; &#32;Browser selectable operations
+</em></a><P>
+<a name="10147">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on <strong>Assign Material</strong>.
+</STRONG>
+</a><P><dl><a name="10148">
+<dt>A list of currently loaded materials is displayed:</dt>
+</a><P><a name="10154">
+ <P><img src="5Attributes.anc8.gif"><p>
+</a></dl>
+<a name="10155">
+<em>Figure 5.8  &#32; &#32;Selecting a material
+</em></a><P>
+<a name="10149">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the icon for the material that you want to use.
+</STRONG>
+</a><P><dl><a name="10175">
+<dt>After applying the material, you can <strong>(CLICK-L)</strong> on the black triangle next to the object to see its new structure:</dt>
+</a><P><a name="10171">
+ <P><img src="5Attributes.anc9.gif"><p>
+</a></dl>
+<a name="10172">
+<em>Figure 5.9  &#32; &#32;The updated structure is now shown in the browser
+</em></a><P><dl><dl><a name="10181">
+<dt>The hierarchical structure in the Browser is described in more detail in <em>Getting Started</em>.</dt>
+</a><P><a name="11626">
+<dt>You've now assigned a material to the object.</dt>
+</a><P></dl></dl><a name="10388">
+<h4> Assigning Materials in N-Geometry</h4>
+</a><a name="10419">
+You can assign a material to an object without using the Browser if you don't need to see your object hierarchy:<p>
+</a><P>
+<a name="10401">
+<STRONG>	11.	 <strong>(SHIFT-L) </strong>on the object to which you want to assign a material.
+</STRONG>
+</a><P><a name="11629">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Material.
+</STRONG>
+</a><P><dl><a name="10407">
+<dt>A list of currently loaded materials is displayed:</dt>
+</a><P><a name="10412">
+ <P><img src="5Attributes.anc10.gif"><p>
+</a></dl>
+<a name="10413">
+<em>Figure 5.10  &#32; &#32;Selecting a material
+</em></a><P>
+<a name="10406">
+<STRONG>	13.	 <strong>(CLICK-L) </strong>on the material you want to assign to the object.
+</STRONG>
+</a><P>
+<a name="9849">
+<h3> Animating Material Attributes</h3>
+</a><a name="10184">
+Now that you've assigned the material to the object, you can animate changes in the attributes that make up the material.<p>
+</a><P>
+<a name="10081">
+<STRONG>	14.	 Create a new script with two channels.
+</STRONG>
+</a><P><a name="10082">
+<STRONG>	15.	 <strong>(CLICK-M)</strong> on the first channel, then <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit box.
+</STRONG>
+</a><P><a name="10083">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the green <strong>Other&gt;Attributes</strong> operation.
+</STRONG>
+</a><P><dl><a name="11692">
+<dt>Select <strong>Animate Attributes</strong> from the dialog box:</dt>
+</a><P><a name="11698">
+ <P><img src="5Attributes.ancA11.gif"><p>
+</a></dl>
+<a name="11699">
+<em>Figure 5.11  &#32; &#32;Animate attributes is used to animate materials
+</em></a><P><dl><dl><a name="10086">
+<dt>The properties for this operation look like this:</dt>
+</a><P><a name="11708">
+ <P><img src="5Attributes.anc11.gif"><p>
+</a></dl></dl><a name="10087">
+<em>Figure 5.12  &#32; &#32;Changing Animate Attribute parameters
+</em></a><P>
+<a name="10088">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the <strong>Domain</strong> text edit box.
+</STRONG>
+</a><P><dl><a name="10089">
+<dt>A menu of domains available in N&#183;World appears:</dt>
+</a><P><a name="10092">
+ <P><img src="5Attributes.anc12.gif"><p>
+</a></dl>
+<a name="10093">
+<em>Figure 5.13  &#32; &#32;Selecting a domain
+</em></a><P>
+<a name="10094">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on <strong>GL Shade</strong>.
+</STRONG>
+</a><P><a name="10095">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the <strong>Attribute Name</strong> text edit box.
+</STRONG>
+</a><P><dl><a name="10096">
+<dt>A menu of attributes that can be animated for the selected domain is displayed:</dt>
+</a><P><a name="10099">
+ <P><img src="5Attributes.anc13.gif"><p>
+</a></dl>
+<a name="10100">
+<em>Figure 5.14  &#32; &#32;Selecting an attribute to animate
+</em></a><P><dl><dl><a name="10101">
+<dt>This menu varies with the domain selected. For example, if you choose the Render domain, you'll have a substantially larger number of attributes that can be animated. </dt>
+</a><P><a name="10102">
+<dt>However, for this tutorial, we'll use GL Shade since our changes can be viewed interactively on the SGI.</dt>
+</a><P></dl></dl>
+<a name="10103">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on <strong>Diffuse Color</strong>.
+</STRONG>
+</a><P><a name="10209">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on <strong>Set </strong>and choose the material you created in the previous section.
+</STRONG>
+</a><P><dl><a name="10226">
+<dt>Your operation parameters should look like this:</dt>
+</a><P><a name="10234">
+ <P><img src="5Attributes.anc14.gif"><p>
+</a></dl>
+<a name="10235">
+<em>Figure 5.15  &#32; &#32;Operation parameters
+</em></a><P><dl><dl><a name="10249">
+<dt><strong>(CLICK-L)</strong> on <strong>Do It</strong> when you're done.</dt>
+</a><P></dl></dl>
+<a name="10250">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the <strong>Animate DIFFUSE-COLOR</strong> channel, then <strong>(CLICK-M)</strong> on the cue at the end of the curve.
+</STRONG>
+</a><P><a name="10202">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on a dark blue from the palette.
+</STRONG>
+</a><P><dl><a name="10272">
+<dt>This inserts a <em>color</em> value into the cue at the end of the channel. (You can insert any number of cues into this channel, depending on how many target colors you want hit over the course of the animation.)</dt>
+</a><P></dl><a name="10273">
+<STRONG>	24.	 In N-Geometry, make sure the object is shaded.
+</STRONG>
+</a><P><dl><a name="10274">
+<dt><strong>(CLICK-L)</strong> on objects in the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the tetrahedron and <strong>(CLICK-L)</strong> on <strong>Shading</strong>. An object must be shaded for GL Shade attributes to be visible.</dt>
+</a><P></dl><a name="10280">
+<STRONG>	25.	 <strong>(CLICK-M)</strong> on the <strong>Make Visible</strong> channel and select the Tetrahedron object.
+</STRONG>
+</a><P><a name="10264">
+<STRONG>	26.	 Animate the script.
+</STRONG>
+</a><P><dl><a name="10350">
+<dt>The color of the object changes over the course of the script from yellow to blue.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you playback an animation with a shaded object, the object appears in solid black. If you want to create a clip from an animation that contains a shaded object, you need to write out a movie file, which is described later in this chapter.</font></dd></dt><a name="10365">
+ <P><img src="5Attributes.anc15.gif"><p>
+</a></dl><P>
+<a name="10366">
+<em>Figure 5.16  &#32; &#32;The object's diffuse color animates over time
+</em></a><P><a name="10434">
+<h2><HR> Saving Color Animations</h2>
+</a><a name="10435">
+The preview feature of N-Dynamics writes out only 1-bit previews, since this feature is typically used for testing the motion aspects of an animation.<p>
+</a><P><a name="10480">
+Whenever you want to write out an animation that includes shaded models, you need to write out a movie file. You can create a movie file from images in the N-Geometry window, the N-Paint canvas, or the N-Render output window. A movie file can be played back with the <strong>movieplayer</strong> utility from SGI.<p>
+</a><P><a name="10505">
+To create a movie file:<p>
+</a><P>
+<a name="10506">
+<STRONG>	 1.	 Add another channel to the script.
+</STRONG>
+</a><P><a name="10507">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the channel.
+</STRONG>
+</a><P><a name="10510">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Dynamics&gt;Image Operations&gt;Record Movie Image</strong>.
+</STRONG>
+</a><P><a name="10518">
+ <P><img src="5Attributes.anc16.gif"><p>
+</a>
+<a name="10519">
+<em>Figure 5.17  &#32; &#32;Parameters for creating a movie file
+</em></a><P><ul><ul>
+<BR><a name="10523">
+<li><strong>Directory</strong> is the directory into which the movie file is written
+</a><P><BR><a name="10524">
+<li><strong>Movie Name</strong> is the name of the clip ( by default the same as the script name)
+</a><P><BR><a name="10525">
+<li><strong>Input</strong> is the window from which each frame is captured
+</a><P></ul>
+</ul>
+<a name="10540">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Input field to display a pop-up of the windows from which a movie can be generated:
+</STRONG>
+</a><P><a name="10547">
+ <P><img src="5Attributes.anc17.gif"><p>
+</a>
+<a name="10548">
+<em>Figure 5.18  &#32; &#32;Selecting the source window for the movie file
+</em></a><P><ul><ul>
+<BR><a name="10552">
+<li><strong>Render Window</strong> makes a movie out of images in the render window (frames rendered with N-Render).
+</a><P><BR><a name="10553">
+<li><strong>Paint Canvas</strong> makes a movie out of images on the N-Paint canvas.
+</a><P><BR><a name="10556">
+<li><strong>3D Camera</strong> makes a movie out of images displayed in the N-Geometry window.
+</a><P></ul>
+</ul>
+<a name="10557">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on 3D Camera to record the changes displayed in the N-Geometry window.
+</STRONG>
+</a><P><a name="10558">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in the N-Dynamics window.
+</STRONG>
+</a><P>
+<a name="10541">
+<h3> Playing Back the Animation</h3>
+</a><a name="10561">
+To play back the animation:<p>
+</a><P>
+<a name="10566">
+<STRONG>	7.	 Open a UNIX shell.
+</STRONG>
+</a><P><a name="10567">
+<STRONG>	8.	 Change to the directory into which you wrote the movie clip.
+</STRONG>
+</a><P><dl><a name="10568">
+<dt>Movies have the extension <strong>.clip</strong>. You should see a file that looks like this in the directory you specified above:</dt>
+</a><P><dl><a name="10573">
+<dt><code>script-name.clip</code><p>
+</a><P></dl></dl><a name="10576">
+<STRONG>	9.	 Enter the following command at the UNIX prompt:
+</STRONG>
+</a><P><dl><dl><a name="10589">
+<dt><code>movieplayer script-name.clip</code><p>
+</a><P></dl></dl>
+<a name="10542">
+The MoviePlayer control panel and playback windows appear, as shown in <a href="5Attributes.html#10602">Figure 5.19</a>.<p>
+</a><P><a name="10601">
+ <P><img src="5Attributes.anc18.gif"><p>
+</a><a name="10602">
+<em>Figure 5.19  &#32; &#32;SGI's MoviePlayer utility 
+</em></a><P>
+<a name="10590">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the <strong>Play</strong> button to play back the animation.
+</STRONG>
+</a><P><dl><a name="10632">
+<dt>You can also <strong>(DRAG-L)</strong> on the triangle at the bottom of the playback window to wipe through the animation.</dt>
+</a><P></dl>
+<a name="11400">
+<h2><HR> Congratulations!</h2>
+</a><a name="11401">
+You've now learned to animate both material attributes and light attributes in N-Dynamics.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Camera.html">[Prev]</a> <a href="6Displacements.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 15:02:20 -->
+
+</body>
+</html>

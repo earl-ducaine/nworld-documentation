@@ -1,0 +1,994 @@
+<html><head><title>Creating &amp; Using Materials</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="3Domains.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11181">
+<h1>Creating &amp; Using Materials</h1>
+</a>
+<hr><p><a name="11407">
+<h4> A material is a collection of attributes that can be assigned to an object and which determine its surface appearance. This chapter describes how to use the Attributes Editor, N&#183;World's an easy-to-use graphical interface for defining materials. It also describes how to apply the material to an object and render the object.</h4>
+</a><a name="15604">
+ <P><img src="2CreatingMaterials.anc.gif"><p>
+</a><a name="15710">
+<h2><HR> Mini-Tutorial 1: Creating and Using Materials</h2>
+</a><a name="15711">
+This chapter contains a mini-tutorial illustrating the procedure for creating, applying, and modifying materials. We'll walk you through the procedure, step-by-step, for creating a your own material and assigning it to an object. You'll learn to:<p>
+</a><P><ul><a name="15816">
+<li>Create the object
+</a></li><P><a name="16134">
+<li>Create a basic material
+</a></li><P><a name="15825">
+<li>Assign the material
+</a></li><P><a name="15826">
+<li>Modify the material
+</a></li><P><a name="15828">
+<li>Add a texture map
+</a></li><P><a name="15829">
+<li>Copy the material from GL Shade to Render
+</a></li><P><a name="15830">
+<li>Save the material
+</a></li><P><a name="15712">
+<li>Load the preset materials that are included with N&#183;World
+</a></li><P></ul><P><a name="15851">
+For this example, we'll use the default lights in N-Geometry to light the scene; we discuss adding other lights to materials in a later chapter.<p>
+</a><P><a name="15835">
+<h3> Creating an Object</h3>
+</a>
+<a name="15714">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on New Object&gt;Sphere in the GeoMenus.
+</STRONG>
+</a><P><a name="15953">
+ <P><img src="2CreatingMaterials.anc1.gif"><p>
+</a>
+<a name="15954">
+<em>Figure 2.1  &#32; &#32;Creating an object
+</em></a><P><a name="15928">
+<h3> Shading the Object</h3>
+</a><a name="15929">
+In order to see the assigned attributes for an object, you need to display it in <em>shaded</em> mode. You can display some or all of the objects in a scene in shaded mode.<p>
+</a><P>
+<a name="15934">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="15935">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the sphere.
+</STRONG>
+</a><P><a name="15936">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Shading.
+</STRONG>
+</a><P><a name="15970">
+ <P><img src="2CreatingMaterials.anc2.gif"><p>
+</a>
+<a name="15971">
+<em>Figure 2.2  &#32; &#32;Shade the object
+</em></a><P><a name="15908">
+<h3> Creating a New Material</h3>
+</a><a name="15874">
+We're now ready to create a new material. You define materials in the <strong>Attributes Editor</strong>. To open the Attributes Editor:<p>
+</a><P>
+<a name="16026">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the green <strong>Attributes</strong> button at the bottom of the screen.
+</STRONG>
+</a><P><dl><a name="16028">
+<dt>The Attributes Editor opens, as shown in <a href="2CreatingMaterials.html#16021">Figure 2.3</a>.</dt>
+</a><P><a name="16020">
+ <P><img src="2CreatingMaterials.anc3.gif"><p>
+</a></dl>
+<a name="16021">
+<em>Figure 2.3  &#32; &#32;The Attributes Editor window (shown with some preset materials loaded)
+</em></a><P>
+<a name="15863">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the Materials button at the top of the screen to make sure you're in Materials mode.
+</STRONG>
+</a><P><a name="16051">
+<STRONG>	7.	 (CLICK-L) on the GL Shade button.
+</STRONG>
+</a><P><dl><a name="16142">
+<dt>We only want to view this object in the N-Geometry window for now, so we only have to define the GL Shade attributes.</dt>
+</a><P></dl><a name="16141">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on New.
+</STRONG>
+</a><P><dl><a name="16057">
+<dt>Enter a directory and name for the material in the dialog box that appears, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>:</dt>
+</a><P><a name="16049">
+ <P><img src="2CreatingMaterials.anc4.gif"><p>
+</a></dl>
+<a name="16050">
+<em>Figure 2.4  &#32; &#32;Creating a material
+</em></a><P><a name="16061">
+A new icon appears in the material icon area across the top of the Attributes Editor; the red rectangle around the icon indicates that it is the currently selected material.<p>
+</a><P><a name="16037">
+<h3> Assigning a Material to an Object</h3>
+</a><a name="15875">
+The next step is to assign the material to the object. You associate a material with an object thought <strong>Browser</strong>.<p>
+</a><P>
+<a name="16067">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the configuration bar across the bottom of the screen to open the Browser.
+</STRONG>
+</a><P><dl><a name="16068">
+<dt>Your display should look something like this:</dt>
+</a><P><a name="16073">
+ <P><img src="2CreatingMaterials.anc5.gif"><p>
+</a></dl>
+<a name="16074">
+<em>Figure 2.5  &#32; &#32;Object hierarchy as displayed in the Browser
+</em></a><P>
+<a name="16090">
+<STRONG>	10.	 <strong>(CLICK-R)</strong> on the Sphere field in the Browser.
+</STRONG>
+</a><P><dl><a name="16091">
+<dt>The following menu appears:</dt>
+</a><P><a name="16086">
+ <P><img src="2CreatingMaterials.anc6.gif"><p>
+</a></dl>
+<a name="16087">
+<em>Figure 2.6  &#32; &#32;Menu of object operations in the Browser
+</em></a><P>
+<a name="16064">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Assign Material.
+</STRONG>
+</a><P><dl><a name="16093">
+<dt>A list of currently loaded materials is displayed:</dt>
+</a><P><a name="16099">
+ <P><img src="2CreatingMaterials.anc7.gif"><p>
+</a></dl>
+<a name="16100">
+<em>Figure 2.7  &#32; &#32;Selecting a material to assign to an object
+</em></a><P><dl><dl><a name="16094">
+<dt>In this case, we've created only one material, called material-1.</dt>
+</a><P></dl></dl>
+<a name="16106">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the material-1 icon.
+</STRONG>
+</a><P><dl><a name="16107">
+<dt>Now, if you look at the Browser, you'll see that there's an inverted triangle in the Sphere field. This indicates that there is additional information about the Sphere object that can be displayed.</dt>
+</a><P></dl><a name="16110">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on the inverted triangle.
+</STRONG>
+</a><P><dl><a name="16111">
+<dt>The hierarchy opens up to show you that the material has been assigned:</dt>
+</a><P><a name="16117">
+ <P><img src="2CreatingMaterials.anc8.gif"><p>
+</a></dl>
+<a name="16118">
+<em>Figure 2.8  &#32; &#32;Looking at material assignment through the Browser
+</em></a><P><dl><dl><a name="16128">
+<dt>That's all there is to assigning a material to an object (or a part). Now we'll go back to the Attributes Editor and modify the material and watch the changes interactively in the N-Geometry window.</dt>
+</a><P></dl></dl><a name="15864">
+<h3> Modifying a Material</h3>
+</a><a name="15876">
+Back In the Attributes Editor take a closer look at the middle portion of the window. Under the Material Parameters bar, there are two slots:<p>
+</a><P><ul><a name="16150">
+<li>Shader
+</a></li><P><a name="16151">
+<li>Texture
+</a></li><P></ul><P><a name="16152">
+Just as the current material is outlined in red, so is the current area of the material for which you are defining parameters. We'll work with textures in a little bit; for now, <strong>(CLICK-L)</strong> on <strong>Shader</strong><strong>.</strong><p>
+</a><P>
+<a name="16157">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Diffuse Color color bar.
+</STRONG>
+</a><P><dl><a name="16158">
+<dt>A palette appears:</dt>
+</a><P><a name="16164">
+ <P><img src="2CreatingMaterials.anc9.gif"><p>
+</a></dl>
+<a name="16165">
+<em>Figure 2.9  &#32; &#32;Selecting a color
+</em></a><P>
+<a name="16159">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on a red.
+</STRONG>
+</a><P><dl><a name="16169">
+<dt>The diffuse color for the material is updated, as is the <strong>Shader</strong> icon:</dt>
+</a><P><a name="16174">
+ <P><img src="2CreatingMaterials.anc10.gif"><p>
+</a></dl>
+<a name="16175">
+<em>Figure 2.10  &#32; &#32;Updated Diffuse Color and Shader icon
+</em></a><P>
+<a name="16179">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Redisplay button at the bottom of the Attributes Editor window.
+</STRONG>
+</a><P><dl><a name="16180">
+<dt>The scene in the N-Geometry window is redisplayed, showing any objects that have been updated.</dt>
+</a><P><a name="16187">
+ <P><img src="2CreatingMaterials.anc11.gif"><p>
+</a></dl>
+<a name="16188">
+<em>Figure 2.11  &#32; &#32;Updated material applied to sphere
+</em></a><P><a name="16194">
+Now let's make some other changes to the material and see how they affect the object's appearance.<p>
+</a><P>
+<a name="16226">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the <strong>Yes</strong> button next to <strong>Smooth Shade</strong>.
+</STRONG>
+</a><P><dl><a name="16227">
+<dt>The object is displayed using vertex rather than face normals, which produces a smooth (non-faceted) appearance:</dt>
+</a><P><a name="16235">
+ <P><img src="2CreatingMaterials.anc12.gif"><p>
+</a></dl>
+<a name="16236">
+<em>Figure 2.12  &#32; &#32;Smooth Shading turned on
+</em></a><P>
+<a name="16204">
+<STRONG>	18.	 (CLICK-L) on the Specular Color field and choose a dark blue.
+</STRONG>
+</a><P><dl><a name="16246">
+<dt>The specular color is the reflected "highlight" you see on surface of an object.</dt>
+</a><P></dl><a name="16225">
+<STRONG>	19.	 <strong>(DRAG-L)</strong> on the Shininess slider toward the center of the range, then <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="16254">
+<dt>Note that increasing the "shininess" value makes the specular smaller, which simulates a "shinier" surface.</dt>
+</a><P></dl><a name="16214">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Yes next to Outline Faces, then <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="16260">
+<dt>The faces are outlined on the object:</dt>
+</a><P><a name="16266">
+ <P><img src="2CreatingMaterials.anc13.gif"><p>
+</a></dl>
+<a name="16267">
+<em>Figure 2.13  &#32; &#32;Outline faces turned on
+</em></a><P><a name="16271">
+One of the biggest advantages of working with a GL Shade material is that you can apply it to an object and still model with a shaded object. Modeling with <strong>Outline Faces</strong> turned on makes it easy to see which faces you're working on!<p>
+</a><P><a name="16289">
+Try this:<p>
+</a><P>
+<a name="16290">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu in the N-Geometry window.
+</STRONG>
+</a><P><a name="16291">
+<STRONG>	22.	 <strong>(SHIFT-L)</strong> on a point on the sphere.
+</STRONG>
+</a><P><a name="16292">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on <strong>Move</strong>.
+</STRONG>
+</a><P><dl><a name="16293">
+<dt>Move the point around. The object is updated interactively as you model.</dt>
+</a><P><a name="16300">
+ <P><img src="2CreatingMaterials.anc14.gif"><p>
+</a></dl>
+<a name="16301">
+<em>Figure 2.14  &#32; &#32;Modeling with GL Shading turned on
+</em></a><P>
+<a name="16309">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on Emission Color and select a medium blue.
+</STRONG>
+</a><P><dl><a name="16312">
+<dt>The emission color defines the darkest possible color for the surface of the object. If you use black (the default) the object can be any color. The lighter the color you specify, the lighter the overall object will appear:</dt>
+</a><P><a name="16326">
+ <P><img src="2CreatingMaterials.anc15.gif"><p>
+</a></dl>
+<a name="16327">
+<em>Figure 2.15  &#32; &#32;Changing the Emission Color
+</em></a><P><a name="15877">
+Whenever you modify an attribute, the attributes editor display is updated to indicate that the material has been changed:<p>
+</a><P><a name="16358">
+ <P><img src="2CreatingMaterials.anc16.gif"><p>
+</a><a name="16359">
+<em>Figure 2.16  &#32; &#32;Changed attributes are marked "Changed*"
+</em></a><P><ul><a name="16386">
+<li>The <strong>Redisplay</strong> button applies changes to the material (in memory) and redisplays the N-Geometry scene.
+</a></li><P></ul><P><a name="16407">
+<h3> Saving a Material</h3>
+</a><a name="16408">
+Let's save the material before we continue:<p>
+</a><P>
+<a name="16420">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on the <strong>Save</strong> button.
+</STRONG>
+</a><P><dl><a name="16421">
+<dt>A dialog box displaying any loaded materials is displayed:</dt>
+</a><P><a name="16426">
+ <P><img src="2CreatingMaterials.anc17.gif"><p>
+</a></dl>
+<a name="16427">
+<em>Figure 2.17  &#32; &#32;Saving a material
+</em></a><P><a name="16390">
+New materials, or materials that have been modified but not saved to disk are marked with an asterisk ("*") in the <strong>Mod</strong> column.<p>
+</a><P>
+<a name="16433">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on the Save checkbox for any material you want to save.
+</STRONG>
+</a><P><dl><a name="16434">
+<dt>By default, any modified material is checked.</dt>
+</a><P></dl><a name="16343">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on Save.
+</STRONG>
+</a><P>
+<a name="15866">
+<h3> Adding a Texture Map</h3>
+</a><a name="15878">
+Now that you've created a basic material, lets add a texture map. Texture mapping is the projection of an image onto the surface of an object through a special type of object called a <em>mapper</em>.<p>
+</a><P><a name="16437">
+Rather than changing our original material, let's make a copy and work with that:<p>
+</a><P>
+<a name="16447">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on the icon for the material you want to copy.
+</STRONG>
+</a><P><dl><a name="16458">
+<dt>This makes the material the current material.</dt>
+</a><P></dl><a name="16459">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on the Copy button.
+</STRONG>
+</a><P><a name="16464">
+<STRONG>	30.	 Enter the directory and name of the new material in the dialog box that appears.
+</STRONG>
+</a><P>
+<a name="16466">
+A new icon appears in the row of icons at the top of the Attributes Editor. The name of the currently selected material is also displayed on the <strong>"Current Material:</strong>" black bar:<p>
+</a><P><a name="16475">
+ <P><img src="2CreatingMaterials.anc18.gif"><p>
+</a><a name="16476">
+<em>Figure 2.18  &#32; &#32;Determining which material is currently selected
+</em></a><P>
+<a name="16575">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on the Texture box in the Material Parameters section of the Attributes Editor.
+</STRONG>
+</a><P><a name="16590">
+ <P><img src="2CreatingMaterials.anc19.gif"><p>
+</a>
+<a name="16591">
+<em>Figure 2.19  &#32; &#32;<strong>(CLICK-L)</strong> on the texture box
+</em></a><P>
+<a name="16576">
+<STRONG>	32.	 <strong>(CLICK-R)</strong> on the texture map field<strong>.</strong>
+</STRONG>
+</a><P><dl><a name="16597">
+<dt>A dialog box appears:</dt>
+</a><P><a name="16613">
+ <P><img src="2CreatingMaterials.anc20.gif"><p>
+</a></dl>
+<a name="16614">
+<em>Figure 2.20  &#32; &#32;A directory of texture maps
+</em></a><P>
+<a name="16621">
+<STRONG>	33.	 Make sure the following directory is in the top of the dialog box:
+</STRONG>
+</a><P><dl><dl><a name="16624">
+<dt><code>/usr/local/ngc/presets/maps</code><p>
+</a><P></dl></dl><a name="16600">
+<STRONG>	34.	 Use the scroll bar to scroll up and down to look at the different textures, then <strong>(CLICK-L)</strong> on the icon for the texture you want to use.
+</STRONG>
+</a><P><dl><a name="16625">
+<dt>We'll use <strong>tile-C.tpx</strong> for this example.</dt>
+</a><P></dl>
+<a name="16648">
+The selected texture map is added to the material; the icon for the texture map is displayed in the <strong>Texture</strong> material parameters slot, and the <strong>Shader</strong> icon is updated:<p>
+</a><P><a name="16634">
+ <P><img src="2CreatingMaterials.anc21.gif"><p>
+</a><a name="16635">
+<em>Figure 2.21  &#32; &#32;The selected texture appears in the material parameters section
+</em></a><P>
+<a name="16647">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on Redisplay.
+</STRONG>
+</a><P><dl><a name="16655">
+<dt>Nothing happens! That's because when you project any type of map onto the surface of an object, you must create a mapper through which to project it. A mapper is a special object that determines the relationship between the selected map and the surface of the object.</dt>
+</a><P></dl>
+<a name="16664">
+<h3> Creating a Mapper</h3>
+</a><a name="16665">
+To create a mapper, you need to use the Browser:<p>
+</a><P>
+<a name="16666">
+<STRONG>	36.	 <strong>(CLICK-L)</strong> on the Browser button on the configuration bar.
+</STRONG>
+</a><P><a name="16667">
+<STRONG>	37.	 <strong>(CLICK-R)</strong> on the Sphere node.
+</STRONG>
+</a><P><a name="16670">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> on Create Mapper.
+</STRONG>
+</a><P><dl><a name="16671">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="16678">
+ <P><img src="2CreatingMaterials.anc22.gif"><p>
+</a></dl>
+<a name="16679">
+<em>Figure 2.22  &#32; &#32;Creating a mapper
+</em></a><P>
+<a name="16683">
+<STRONG>	39.	 <strong>(CLICK-L)</strong> on the Spherical button, then <strong>(CLICK-L)</strong> on Make Mapper.
+</STRONG>
+</a><P>
+<a name="16684">
+If you look at the Browser now, you can see that a Sphere group has been created, which includes both the sphere object and the spherical mapper you just created:<p>
+</a><P><a name="16696">
+ <P><img src="2CreatingMaterials.anc23.gif"><p>
+</a><a name="16697">
+<em>Figure 2.23  &#32; &#32;New hierarchy
+</em></a><P><a name="16706">
+To specify which mapper the map is applied through:<p>
+</a><P>
+<a name="16691">
+<STRONG>	40.	 <strong>(CLICK-R)</strong> on the Sphere node.
+</STRONG>
+</a><P><a name="16705">
+<STRONG>	41.	 <strong>(CLICK-L)</strong> on <strong>Assign Material</strong>.
+</STRONG>
+</a><P><dl><a name="16707">
+<dt>Select your new material from the list that appears. Because our new material contains a map, you must tell N-Geometry which mapper to apply it through. A dialog box appears to let you select a mapper:</dt>
+</a><P><a name="16724">
+ <P><img src="2CreatingMaterials.anc24.gif"><p>
+</a></dl>
+<a name="16725">
+<em>Figure 2.24  &#32; &#32;Selecting a mapper
+</em></a><P><dl><dl><a name="16709">
+<dt>Because we only have one mapper for our sphere, it's automatically entered in the <strong>Mapper</strong> field.</dt>
+</a><P></dl></dl>
+<a name="16731">
+<STRONG>	42.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P>
+<a name="16732">
+The map is now assigned through a mapper, and the scene in N-Geometry is automatically updated:<p>
+</a><P><a name="16742">
+ <P><img src="2CreatingMaterials.anc25.gif"><p>
+</a><a name="16743">
+<em>Figure 2.25  &#32; &#32;Creating a mapper
+</em></a><P><a name="16737">
+Note that any attributes you specified under the <strong>Shader</strong> section interact with those defined in the <strong>Texture</strong> section.<p>
+</a><P>
+<a name="16758">
+<STRONG>	43.	 <strong>(CLICK-L)</strong> on the <strong>Shader</strong> icon and change the set the Diffuse and Specular color to white, and the Emission Color to black.
+</STRONG>
+</a><P><a name="16761">
+<STRONG>	44.	 <strong>(CLICK-L)</strong> on Redisplay to see the texture with no other color mixed in.
+</STRONG>
+</a><P><a name="16767">
+ <P><img src="2CreatingMaterials.anc26.gif"><p>
+</a>
+<a name="16957">
+<em>Figure 2.26  &#32; &#32;Mapper applied with no diffuse, specular, or emission color
+</em></a><P><a name="16961">
+<h3> Copying Attributes between Domains</h3>
+</a><a name="16962">
+Both of the materials we created so far have been for use in the GL Shade domain. However, a single material can contain attributes for all available render domains. Let's copy the material we just created from the GL Shade domain to the Render domain and render the object using N-Render.<p>
+</a><P><a name="16862">
+To copy attribute values from the Render domain to the GL Shade domain:<p>
+</a><P>
+<a name="16867">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the icon for the material whose attributes you want to translate from one domain to another.
+</STRONG>
+</a><P><a name="16888">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on a domain button.
+</STRONG>
+</a><P><dl><a name="16890">
+<dt>A menu appears, from which you select the source domain and the target domain:</dt>
+</a><P><a name="16844">
+ <P><img src="2CreatingMaterials.anc27.gif"><p>
+</a></dl>
+<a name="16845">
+<em>Figure 2.27  &#32; &#32;Translate attributes dialog box
+</em></a><P>
+<a name="16911">
+<STRONG>	3.	 In the top row, <strong>(CLICK-L)</strong> on the "from" (source) domain.
+</STRONG>
+</a><P><dl><a name="16912">
+<dt>In our case, we're translating from GL Shade, so <strong>(CLICK-L)</strong> on the <strong>GL Shade</strong> button.</dt>
+</a><P></dl><a name="16917">
+<STRONG>	4.	 In the bottom row, <strong>(CLICK-L)</strong> on the "to" (destination) domain.
+</STRONG>
+</a><P><dl><a name="16918">
+<dt>We want to translate the GL Shade attributes to Render attributes, so <strong>(CLICK-L)</strong> on <strong>Render</strong>.</dt>
+</a><P><a name="16937">
+ <P><img src="2CreatingMaterials.anc28.gif"><p>
+</a></dl>
+<a name="16938">
+<em>Figure 2.28  &#32; &#32;Select a source and a destination domain
+</em></a><P>
+<a name="16846">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><a name="16974">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the <strong>Render</strong> domain button.
+</STRONG>
+</a><P><dl><a name="16975">
+<dt>This switches to the render domain. </dt>
+</a><P></dl><a name="16983">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Texture icon.
+</STRONG>
+</a><P><dl><a name="16984">
+<dt>Note that all the attributes that were defined for the GL Shade attribute have been translated to the Render domain. Additional attributes in a more robust domain are left at their default values, but can be modified and saved as part of the current material.</dt>
+</a><P></dl><a name="16985">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the <strong>Render</strong> button at the bottom of the Attributes Editor to render the scene.
+</STRONG>
+</a><P><dl><a name="16986">
+<dt>The results of the render are displayed in the <strong>Nichimen Render Display</strong> window.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Only attributes which are supported in both domains are copied between domains. In other words, texture map data will be copied between the GL Shade and Render domains, but attributes unique a given domain are not copied to a domain that does not support that attribute.</font></dd></dt></dl><P>
+<a name="15869">
+<h2><HR> Loading Materials</h2>
+</a><a name="15861">
+Once you've saved a material to file, you can read it back in at any time. A library of preset materials can be found in the following directory:<p>
+</a><P><dl><dl><a name="16802">
+<dt><code>/usr/local/ngc/presets/materials</code></dt>
+</a><P></dl></dl><a name="16987">
+To load saved materials (including the preset materials) into the Attributes Editor:<p>
+</a><P>
+<a name="16988">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Load.
+</STRONG>
+</a><P><dl><a name="16996">
+<dt>A standard N&#183;World Choose Directory menu appears. (This menu is described in more detail in the <em>Getting Started</em> manual.) </dt>
+</a><P><a name="17042">
+ <P><img src="2CreatingMaterials.anc29.gif"><p>
+</a></dl>
+<a name="17043">
+<em>Figure 2.29  &#32; &#32;Choose Directory
+</em></a><P>
+<a name="17032">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Specify a New Directory.
+</STRONG>
+</a><P><dl><a name="17033">
+<dt>Enter the name of the directory you want to load materials from. If you've already loaded materials from the directory in the current session, or if the directory is part of the current project, the directory will appear at the top of the directory list.</dt>
+</a><P><a name="17002">
+<dt>Material files have the filename extension .<strong>attr</strong>. Once you've selected a directory, a pop-up menu appears listing the files in that directory which have the appropriate extension:</dt>
+</a><P><a name="17006">
+ <P><img src="2CreatingMaterials.anc30.gif"><p>
+</a></dl>
+<a name="17007">
+<em>Figure 2.30  &#32; &#32;Selecting materials to load
+</em></a><P>
+<a name="17008">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on any materials you want to load:
+</STRONG>
+</a><P><a name="17075">
+ <P><img src="2CreatingMaterials.anc31.gif"><p>
+</a>
+<a name="17076">
+<em>Figure 2.31  &#32; &#32;<strong>(CLICK-L)</strong> on each material you want to load
+</em></a><P>
+<a name="17080">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="17081">
+<dt>The selected materials are loaded and their icons (if they exist) are displayed on the icon bar at the top of the Attributes Editor:</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	If you load a material which inherits from another material, then <strong>both</strong> materials are loaded.</font></dd></dt></dl><P>
+<a name="11436">
+<h2><HR> Other Operations on Materials</h2>
+</a><a name="13207">
+The row of green buttons beneath the icon bar are used to perform file operations on materials: creating, loading, saving, copying, deleting, and renaming. We've already discussed creating, saving, and loading in the previous pages; the rest of the commands are described below:<p>
+</a><P><a name="11464">
+<h3> Copying Materials</h3>
+</a><a name="17161">
+To make a distinct copy of a material already loaded in memory:<p>
+</a><P>
+<a name="17162">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the icon for the material you want to copy (making the material the "current" material).
+</STRONG>
+</a><P><a name="17183">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Copy</strong>.
+</STRONG>
+</a><P><dl><a name="17163">
+<dt>Enter the directory and name for the new material in the dialog box that appears:</dt>
+</a><P><a name="17190">
+ <P><img src="2CreatingMaterials.anc32.gif"><p>
+</a></dl>
+<a name="17191">
+<em>Figure 2.32  &#32; &#32;Making a copy of a material already in memory
+</em></a><P>
+<a name="17168">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="17198">
+ <P><img src="2CreatingMaterials.anc33.gif"><p>
+</a>
+<a name="17199">
+<em>Figure 2.33  &#32; &#32;The icon for the copied material is inserted at the beginning of the icon bar and is automatically selected as the current material
+</em></a><P><a name="11465">
+<h3> Deleting Materials</h3>
+</a><a name="17160">
+To delete one or more materials from memory:<p>
+</a><P>
+<a name="11546">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>Delete</strong> to delete a material from <em>memory</em>. 
+</STRONG>
+</a><P><dl><a name="17133">
+<dt>Highlight any of the materials that you want to delete from the pop-up that appears, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P><a name="11547">
+ <P><img src="2Attributes.anc5.gif"><p>
+</a></dl>
+<a name="11548">
+<em>Figure 2.34  &#32; &#32;Delete Material pop-up menu
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Delete materials from disk using the Browser or from a UNIX shell.</font></dd></dt></dl><P>
+<a name="11469">
+<h3> Renaming Materials</h3>
+</a><a name="11563">
+To rename a material:<p>
+</a><P>
+<a name="17218">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the <strong>Rename</strong> button.
+</STRONG>
+</a><P><dl><a name="17224">
+<dt>A menu of currently loaded materials (including pathnames) is displayed:</dt>
+</a><P><a name="11571">
+ <P><img src="2Attributes.anc6.gif"><p>
+</a></dl>
+<a name="11572">
+<em>Figure 2.35  &#32; &#32;Rename material pop-up menu
+</em></a><P>
+<a name="11577">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the material you want to rename.
+</STRONG>
+</a><P><dl><a name="17234">
+<dt>Enter a new name and, if desired, a new path for the material.</dt>
+</a><P></dl><a name="17237">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P>
+<a name="11590">
+<h2><HR> How Attributes are Grouped</h2>
+</a><a name="11601">
+Most render domains support a large number of attributes. To make things manageable, these attributes are broken into different related groups. You select the group of attributes that you want to change by selecting the appropriate icon in the middle of the Attributes Editor<p>
+</a><P><a name="17506">
+These parameters appear as icons in the Material Parameters section of the Attributes Editor window:<p>
+</a><P><a name="11609">
+ <P><img src="2Attributes.anc8.gif"><p>
+</a><a name="11610">
+<em>Figure 2.36  &#32;The material parameters menu
+</em></a><P><a name="11615">
+Parameters are in turn comprised of a set of attributes; they serve as a convenient way of grouping related attributes in the Attributes Editor menu. Some parameters are not available for all render domains.<strong> </strong><p>
+</a><P><a name="13456">
+<strong>(CLICK-L)</strong> on an icon to edit the attributes associated with that aspect of the material.<p>
+</a><P><a name="11618">
+<h3> Shader</h3>
+</a><a name="11619">
+Shader parameters define the behavior of the shader for the currently selected domain. The Shader attributes control the "basic" appearance of the object (non-map related attributes).<p>
+</a><P><a name="11624">
+<h3> Texture</h3>
+</a><a name="11625">
+Specify a texture map and texture map options. <strong>Texture</strong> maps laminate an <em>image</em> onto an object or face part.<p>
+</a><P><a name="11640">
+<h3> Opacity</h3>
+</a><a name="12565">
+<em>Render domain only</em><p>
+</a><P><a name="11641">
+Specify an opacity map and map options. <strong>Opacity</strong> maps control the opacity of an object or face part.<p>
+</a><P><a name="11647">
+<h3> Bump</h3>
+</a><a name="13464">
+<em>Render domain only</em><p>
+</a><P><a name="11667">
+Specify a bump map and map options. A bump map is a black and white image that is used in conjunction with a texture map to produce a textured, 3D appearance on a smooth surface. Bump maps can be a quick and simple way of applying 3D texture to your objects without adding or modifying geometry (which increases render time).<p>
+</a><P><a name="11650">
+<h3> Reflection</h3>
+</a><a name="13466">
+<em>Render domain only</em><p>
+</a><P><a name="11672">
+Specify a reflection map and map options. <strong>Reflection</strong> maps are images mapped onto objects in such a way that they appear to be reflected from the object.<p>
+</a><P><a name="11651">
+<h3> Refraction</h3>
+</a><a name="13468">
+<em>Render domain only</em><p>
+</a><P><a name="11676">
+<strong>Refraction</strong> maps map a scene onto an object in such a way that it appears to be <em>refracted</em> from the interior of the object. <p>
+</a><P><a name="17593">
+<h2><HR> Using Attributes</h2>
+</a><a name="17594">
+Each render domain contains a suite of attributes whose values determine how objects rendered with a given material will look. Attributes are displayed in the bottom half of the Attributes Editor. You <strong>(CLICK-L)</strong> on the appropriate icon to edit attributes associated with that icon. For example, to change the basic appearance of an object, <strong>(CLICK-L)</strong> on the <strong>Shader</strong> icon; to change the texture mapping attributes, <strong>(CLICK-L)</strong> on <strong>Texture</strong>, and so on.<p>
+</a><P><a name="17595">
+Not all icons are available for all domains; for example, only the Render domain supports Reflection and Refraction mapping, so these icons will never appear if you select a domain other than Render. The attributes in a given section also vary from domain to domain-for example, <strong>Shader</strong> attributes that can be specified for a game domain are tailored for that machine, and differ from those that can be specified in a more generic domain such as GL Shade.<p>
+</a><P><a name="17597">
+<h4> Attribute Fields</h4>
+</a><a name="17598">
+You modify attributes by editing their values in each <strong>attribute field</strong>. Attribute fields have three primary components:<p>
+</a><P><a name="17614">
+ <P><img src="2CreatingMaterials.anc37.gif"><p>
+</a><a name="17615">
+<em>Figure 2.37  &#32; &#32;An Attribute field
+</em></a><P><ul><a name="17616">
+<li><strong>Label</strong> provides a brief description of the attribute.
+</a></li><P><a name="17617">
+<li><strong>Value</strong> shows the current value of the attribute. The type of this field (e.g. slider, text-edit-field, etc.) varies as appropriate for the attribute.
+</a></li><P><a name="17619">
+<li><strong>Source</strong> shows the source of the attributes current value. This field will contain one of four values: 
+<P><Table Border="1">
+<dl>
+<a name="17622">
+<em>Table 2.1 <strong></strong><em> &#32; &#32;Attribute sources</em>
+</em></a></dl>
+<tr><th align="left"><a name="17626">
+Source
+</a><th align="left"><a name="17628">
+Description
+</a>
+<tr><td valign="top"><a name="17630">
+ Default<p>
+</a><td valign="top"><a name="17632">
+ The value is set using default values for the domain.<p>
+</a>
+<tr><td valign="top"><a name="17634">
+ Local<p>
+</a><td valign="top"><a name="17636">
+ The value is unique to the current material.<p>
+</a>
+<tr><td valign="top"><a name="17638">
+ Inherited<p>
+</a><td valign="top"><a name="17640">
+ The value is inherited from another material.<p>
+</a>
+<tr><td valign="top"><a name="17642">
+ Changed *<p>
+</a><td valign="top"><a name="17644">
+ The value has been changed since the material was last saved.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</a></li><P></ul><P><a name="11686">
+<h2><HR> Render Operations</h2>
+</a><a name="11690">
+These commands, located on buttons along the bottom of the Attributes Editor window, allow you to:<p>
+</a><P><ul><a name="17281">
+<li>revert to a previously saved version of a material
+</a></li><P><a name="17284">
+<li>set defaults for the current domain
+</a></li><P><a name="17286">
+<li>preview a material (using the shader icon)
+</a></li><P><a name="17289">
+<li>render or redisplay the current scene
+</a></li><P></ul><P><a name="18203">
+The commands that appear at the bottom of the Attributes Editor depend on which domain you are in; the domains to which each command applies is noted in the sections below.<p>
+</a><P><a name="18204">
+<h3> Revert</h3>
+</a><a name="18205">
+<em>All domains</em><p>
+</a><P><a name="17362">
+You can use the <strong>Revert</strong> command to reload the last saved version of a material, or to clear any changes that have been made to a material in memory:<p>
+</a><P><ul><a name="11694">
+<li><strong>(CLICK-L)</strong> on <strong>Revert </strong>to restore attributes to their last saved version (rereads the material from disk).
+</a></li><P><a name="18148">
+<li><strong>(CLICK-R) </strong>on <strong>Revert </strong>to clear <em>local</em> attributes on the material. Attribute values revert to their default or inherited values (if the material inherits from another material).
+</a></li><P></ul><P><a name="18154">
+<h3> Preview</h3>
+</a><a name="18155">
+<em>Render domain only</em><p>
+</a><P><a name="11937">
+<strong>Preview</strong> applies the current material to the sphere for the material icon. The material icon is shown on the icon bar and in the <strong>Shader</strong> parameters slot in the Material Parameters section of the menu.<p>
+</a><P><a name="11699">
+ <P><img src="2Attributes.anc10.gif"><p>
+</a><a name="11700">
+<em>Figure 2.38  &#32; &#32;Previewing a material
+</em></a><P><a name="17378">
+Whenever you change a <strong>Render</strong> attribute, a red "X" appears over its icon; the red "X" tells you that while the changes may have been saved with the material, the icon (which must be rendered like any other object!) has not been updated.<p>
+</a><P><a name="17397">
+<strong>(CLICK-L)</strong> on <strong>Preview </strong>to update the icon for the material.<p>
+</a><P><a name="15443">
+ <P><img src="2CreatingMaterials.anc39.gif"><p>
+</a><a name="15444">
+<em>Figure 2.39  &#32; &#32;A large red "X" appears over a render icon if its icon has not been updated to match change attributes
+</em></a><P><a name="11882">
+<h3> Render</h3>
+</a><a name="13472">
+<em>Render domain only</em><p>
+</a><P><a name="11883">
+Render the scene using the current parameters to the output window.<p>
+</a><P><a name="11642">
+<h3> Redisplay</h3>
+</a><a name="11945">
+<em>GL Shade, SonyPSX, N64, and Sega domains</em><p>
+</a><P><a name="11946">
+Redisplays objects in the Geometry window to reflect changes in materials.<p>
+</a><P><ul><a name="13120">
+<li><strong>(CLICK-M)</strong> Redisplays the entire scene.
+</a></li><P><a name="13121">
+<li><strong>(CTRL-M) </strong>rereads texture maps. Use this option to see the effects of changes you've made to texture maps.
+</a></li><P></ul><P><a name="11947">
+<h3> Reset</h3>
+</a><a name="17429">
+<em>N64 and Sega domains</em><p>
+</a><P><a name="11949">
+Resets the attached game machine.<p>
+</a><P><a name="11950">
+<h3> Preview</h3>
+</a><a name="17439">
+<em>Render, SonyPSX, N64, and Sega domains</em><p>
+</a><P><a name="11952">
+When the <strong>Render</strong> domain is the current domain, the preview button updates icons in the Attributes Editor menus to reflect the current attribute settings.<p>
+</a><P><a name="15266">
+When SonyPSX, N64, or Sega is the current domain, the <strong>Preview</strong> button exports the current object to the game platform, as described in the appropriate <em>Game Express</em> manual.<p>
+</a><P><a name="13214">
+<h2><HR> Mini-Tutorial 2: Using Inheritance</h2>
+</a><a name="13215">
+In the following example we'll create two materials which inherit properties from a common base material. We'll apply these materials to objects, then demonstrate how changes to the base material affect the two materials which inherit attributes from it, even though the base material itself is not associated with either object.<p>
+</a><P>
+<a name="17651">
+<STRONG>	 1.	 In Geometry, create two spheres.
+</STRONG>
+</a><P><a name="17653">
+<STRONG>	2.	 In the Browser, create and assign a mapper to each sphere.
+</STRONG>
+</a><P><a name="17773">
+<STRONG>	3.	 Turn shading on for both of the spheres:
+</STRONG>
+</a><P><a name="17779">
+ <P><img src="2CreatingMaterials.anc40.gif"><p>
+</a>
+<a name="17780">
+<em>Figure 2.40  &#32; &#32;Turn on shading for both spheres
+</em></a><P>
+<a name="17655">
+<STRONG>	4.	 In the Attributes Editor, load the following material file:
+</STRONG>
+</a><P><dl><dl><a name="17659">
+<dt><code>/usr/local/ngc/presets/materials/brick-red</code><p>
+</a><P></dl></dl><dl><a name="13225">
+<dt>The icon for the brick-red material should appear in the Select Material section of the menu.</dt>
+</a><P></dl><a name="17691">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Render domain button.
+</STRONG>
+</a><P><a name="13226">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on New to create a new material.
+</STRONG>
+</a><P><dl><a name="13227">
+<dt>Name your new material "brick-red-2", then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P></dl><a name="13231">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Inheriting field in the Hierarchy operations section of the Attributes Editor.
+</STRONG>
+</a><P><dl><a name="17702">
+<dt>A list of materials currently loaded into memory appears.</dt>
+</a><P></dl><a name="17704">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on brick-red.
+</STRONG>
+</a><P><dl><a name="17932">
+<dt>Note that when inheritance is first established between two materials, local attributes for the source material show up as inherited attributes for the inheriting material. Of course, you can still change attributes in the source or inheriting material other than these attributes.</dt>
+</a><P><a name="17705">
+<dt>Note also that in the <strong>Current Material</strong> section, the source material from which this material inherits is displayed:</dt>
+</a><P><a name="17917">
+ <P><img src="2CreatingMaterials.anc41.gif"><p>
+</a></dl>
+<a name="17918">
+<em>Figure 2.41  &#32; &#32;If a material inherits from another, that material is displayed
+</em></a><P>
+<a name="13246">
+<STRONG>	9.	 Repeat steps <a href="2CreatingMaterials.html#17655">4</a> through <a href="2CreatingMaterials.html#17704">8</a>, but this time name the material brick-red-3.
+</STRONG>
+</a><P><dl><a name="13255">
+<dt>We now have three materials, two of which inherit attribute values from the third, as shown in <a href="2CreatingMaterials.html#13257">Figure 2.42</a>.</dt>
+</a><P><a name="13256">
+ <P><img src="2Attributes.anc47.gif"><p>
+</a></dl>
+<a name="13257">
+<em>Figure 2.42  &#32; &#32;The material hierarchy for the brick-red materials
+</em></a><P>
+<a name="13293">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on brick-red-2's icon to make it the current material.
+</STRONG>
+</a><P><dl><a name="13306">
+<dt>We'll modify this material slightly to demonstrate the difference between local attribute values and inherited attribute values.</dt>
+</a><P></dl><a name="13307">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Bump in the Material Parameters section of the Attributes Editor.
+</STRONG>
+</a><P><a name="13308">
+<STRONG>	12.	 Change the bump depth values to 5.0 and 5.0.
+</STRONG>
+</a><P><a name="13310">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on brick-red-3's icon to make it the current material.
+</STRONG>
+</a><P><a name="13320">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Shader icon, then adjust the Visibility attribute to a value around .5.
+</STRONG>
+</a><P><dl><a name="13321">
+<dt>You can adjust other attributes as well if you wish. The point is to demonstrate how changes made locally to attribute values are independent of and complement changes we'll make later to the material from which brick-red-2 and brick-red-3 inherit values.</dt>
+</a><P></dl><a name="13347">
+<STRONG>	15.	 Using the browser, assign brick-red-2 to one of your spheres, and brick-red-3 to the other.
+</STRONG>
+</a><P><dl><a name="13355">
+<dt>If you need to review the procedure for assigning materials to objects, see the section <a href="2CreatingMaterials.html#16037">"Assigning a Material to an Object," on page &#32;2-5</a>.</dt>
+</a><P></dl><a name="13366">
+<STRONG>	16.	 (CLICK-L) on the Render button in the Attributes Editor to render the scene.
+</STRONG>
+</a><P><dl><a name="13367">
+<dt>When the render is completed, you should see two similar yet distinct brick spheres in the render window.</dt>
+</a><P><a name="17816">
+ <P><img src="2CreatingMaterials.anc43.gif"><p>
+</a></dl>
+<a name="17818">
+<em>Figure 2.43  &#32; &#32;Rendered spheres; left, with heightened bump map, right, with reduced visibility
+</em></a><P>
+<a name="13368">
+<STRONG>	17.	 In the Attributes Editor, <strong>(CLICK-L)</strong> on brick-red's icon to make it the current material.
+</STRONG>
+</a><P><a name="13348">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on the Texture in the Material Parameters section of the Attributes Editor.
+</STRONG>
+</a><P><a name="13376">
+<STRONG>	19.	 Adjust the UV Scale values to 5.0 and 5.0.
+</STRONG>
+</a><P><dl><a name="13379">
+<dt>This adjusts the scale of the texture map along both its U and V coordinates; modifying the UV scale for a map changes the apparent "size" of the map. A higher value causes the features to repeat more times over the projected area.</dt>
+</a><P></dl><a name="17870">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on Bump icon in the Material Parameters section of the Attributes Editor.
+</STRONG>
+</a><P><a name="17871">
+<STRONG>	21.	 Adjust the UV Scale values to 5.0 and 5.0.
+</STRONG>
+</a><P><dl><a name="17872">
+<dt>If you change the UV scale of your texture map without making a like adjustment to your bump map, the scale of the two maps will be out of alignment.</dt>
+</a><P></dl><a name="13385">
+<STRONG>	22.	 Render the scene again.
+</STRONG>
+</a><P><dl><a name="13386">
+<dt>This render illustrates how attributes are inherited; changes in brick-red-2 or brick-red-3 that are local override the attributes in the set they inherit from (brick-red). Changes made to the source material affect any set that inherits from it, as long as there are no local overrides in that material.</dt>
+</a><P><a name="17893">
+ <P><img src="2CreatingMaterials.anc44.gif"><p>
+</a></dl>
+<a name="17894">
+<em>Figure 2.44  &#32; &#32;Rendered spheres, with local attributes still in place, but inherited UV Scale
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you modify an attribute in your base material (making that attribute local), then make a copy of the material, that copy will also show the modified attribute as local. If you set up inheritance between the copy and the original, the copied attribute will not inherit (since N-Render thinks the value is local). Inheriting sets should have attribute values that are default before setting up inheritance.</font></dd></dt></dl><P>
+<a name="18023">
+<h3> Using the Browser to Define Inheritance</h3>
+</a><a name="18024">
+Inheritance can be defined between materials in the browser using a simple drag and drop technique. To make one material inherit from another using the Browser:<p>
+</a><P>
+<a name="18029">
+<STRONG>	 1.	 Open the Browser.
+</STRONG>
+</a><P><a name="18056">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Materials button.
+</STRONG>
+</a><P><dl><a name="18074">
+<dt>The hierarchy of currently loaded materials is displayed, as shown in <a href="2CreatingMaterials.html#18073">Figure 2.45</a>:</dt>
+</a><P><a name="18071">
+ <P><img src="2CreatingMaterials.anc45.gif"><p>
+</a></dl>
+<a name="18073">
+<em>Figure 2.45  &#32; &#32;Current material hierarchy-material-1 and x are at the same level (no inheritance)
+</em></a><P>
+<a name="18057">
+<STRONG>	3.	 <strong>(DRAG-M)</strong> on the set that should inherit from another set.
+</STRONG>
+</a><P><dl><a name="18058">
+<dt>A red outline of the material name follows the mouse.</dt>
+</a><P><a name="18094">
+ <P><img src="2CreatingMaterials.anc46.gif"><p>
+</a></dl>
+<a name="18096">
+<em>Figure 2.46  &#32; &#32;The name of the material follows the mouse
+</em></a><P>
+<a name="18048">
+<STRONG>	4.	 Move the outlined name over the set to inherit <em>from</em>.
+</STRONG>
+</a><P><dl><a name="18114">
+<dt>The resulting structure shows how materials inherit:</dt>
+</a><P><a name="18131">
+ <P><img src="2CreatingMaterials.anc47.gif"><p>
+</a></dl>
+<a name="18133">
+<em>Figure 2.47  &#32; &#32;Resulting hierarchy-material-1 now inherits from x
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="1Overview.html">[Prev]</a> <a href="3Domains.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:08 -->
+
+</body>
+</html>

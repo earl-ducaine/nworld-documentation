@@ -1,0 +1,542 @@
+<html><head><title>Building Skeletons</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="1GettingStarted.html">[Prev]</a> <a href="3AttachedObjects.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Building Skeletons</h1>
+</a>
+<hr><p><a name="12024">
+<h4> This chapter describes how to build your own humanoid and non-humanoid skeletons.</h4>
+</a><a name="12025">
+ <P><img src="2BuildingSkeletons.anc.gif"><p>
+</a><a name="11262">
+<h2><HR> In this Chapter</h2>
+</a><a name="11263">
+You'll learn how to:<p>
+</a><P><ul><a name="11264">
+<li>use the default skeleton primitive to create a basic humanoid skeleton
+</a></li><P><a name="11265">
+<li>build a humanoid skeleton from scratch
+</a></li><P><a name="11585">
+<li>build a custom skeleton (learning how to use the Cut, Collapse, Rename, and Flip commands)
+</a></li><P></ul><P><a name="10753">
+<h2><HR> Using the Skeleton Primitive</h2>
+</a><a name="10754">
+N-Geometry can generate a ready-to-use complete skeleton with just a couple of mouse clicks:<p>
+</a><P>
+<a name="10756">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;New Object&gt;Skeleton.
+</STRONG>
+</a><P><dl><a name="10759">
+<dt>This generates a humanoid skeleton with its root at the global center:</dt>
+</a><P><a name="10763">
+ <P><img src="2BuildingSkeletons.anc1.gif"><p>
+</a></dl>
+<a name="10764">
+<em>Figure 2.1  &#32; &#32;Skeleton primitive
+</em></a><P><a name="10765">
+<h3> Parts of a Skeleton</h3>
+</a><a name="10766">
+Before we begin a more detailed discussion of skeletons, we need to agree on some terminology. <a href="2BuildingSkeletons.html#10789">Figure 2.2</a> and the text that follows describes some basic elements to the Skeletal Animation System.<p>
+</a><P><a name="10788">
+ <P><img src="2BuildingSkeletons.anc2.gif"><p>
+</a><a name="10789">
+<em>Figure 2.2  &#32; &#32;Parts of a skeleton
+</em></a><P><a name="10790">
+<h4> Bone</h4>
+</a><a name="10791">
+Bones are the individual segments that are connected together to form a skeleton. The <em>skeleton</em> is the stick figure that you use to design the actual animation of the 3D object.<p>
+</a><P><a name="10792">
+<h4> Bone Axis</h4>
+</a><a name="11647">
+Each bone has local X, Y, and Z axes. Typically, one of these axes is aligned with the length of the bone; this axis is referred to as the <em>bone direction axis</em> or <em>twist axis</em>. Note also that the axes are color coded: 
+<P><Table Border="1">
+<dl>
+<a name="11688">
+<em>Table 2.1 <strong> &#32; &#32;Axis colors for bones</strong>
+</em></a></dl>
+<tr><th align="left"><a name="11692">
+Axis
+</a><th align="left"><a name="11694">
+Color
+</a>
+<tr><td valign="top"><a name="11696">
+ x<p>
+</a><td valign="top"><a name="11698">
+ red<p>
+</a>
+<tr><td valign="top"><a name="11700">
+ y<p>
+</a><td valign="top"><a name="11702">
+ green<p>
+</a>
+<tr><td valign="top"><a name="11704">
+ z<p>
+</a><td valign="top"><a name="11706">
+ yellow<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="11648">
+When you modify the position of a bone, having the local axes follow the orientation of the bone is optional. However, the local axes for a bone always change if the bone's superior moves.<p>
+</a><P><a name="11649">
+For example<em>, </em>in a humanoid skeleton, if you move the humerus (upper arm) bone, the xyz axes for the forearm, wrist, and any bones in the hand are updated automatically because the humerus is <em>superior</em> to those bones.<p>
+</a><P><a name="11634">
+<h4> Bone Frame</h4>
+</a><a name="11631">
+The bone frame is a blue "pyramid" drawn around a segment that identifies it as a bone. It makes it easier to see and indicates the "direction" of the bone (the "base" of the pyramid always leads back to the root).<p>
+</a><P><a name="11630">
+<h4> Joint</h4>
+</a><a name="10793">
+Each bone is defined by two joints, one at each end. The further from the root is referred to as the <em>inferior </em>of the bone (the pointy end of the bone frame), the end closer to the root as the <em>superior </em>(the wide end of the bone frame). <p>
+</a><P><a name="10798">
+<h4> Root</h4>
+</a><a name="10799">
+The root is the "logical" center of the skeleton; any bone can be traced along a single path <em>back</em> to the root. The root is not a "joint" per se, as it cannot be manipulated like other joints.<p>
+</a><P><a name="10800">
+Typically, the root corresponds to the center of gravity for the skeleton. For a humanoid, this is at the base of the spine.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>No loops are allowed in a skeleton-you must be able to trace a joint back to the root along only one path.</em></font></dd></dt></dl><P>
+<a name="10802">
+<h4> Wire</h4>
+</a><a name="11653">
+As mentioned in the section on bone frame above, the skeleton is actually a series of joined <em>wires</em>. You can toggle the display of the bone frames by choosing the skeleton and using <strong>(CLICK-M)</strong> on <strong>Display Bone</strong>.<p>
+</a><P><a name="11672">
+ <P><img src="2BuildingSkeletons.anc3.gif"><p>
+</a><a name="11673">
+<em>Figure 2.3  &#32; &#32;Left, bone frame on; right, bone frame off
+</em></a><P><a name="11652">
+Additional definitions of terms used in the Skeletal Animation System are included at the beginning of the <em>Skeletal Animation System Reference Guide</em>.<p>
+</a><P><a name="10803">
+<h2><HR> Building a Humanoid Skeleton</h2>
+</a><a name="10804">
+If you want to build your own custom skeleton from scratch by creating a series of encoded wires, then joining those wires together to form a skeleton. <p>
+</a><P><a name="10805">
+Follow the steps below to create a simple humanoid skeleton.<p>
+</a><P><a name="10806">
+<h4> +Z Orientation of the Skeletal Animation System</h4>
+</a><a name="10807">
+The skeletal animation system in general is based on the skeleton facing a +Z direction. While all the operations described in the SAS work on a skeleton <em>regardless</em> of its orientation, they are most <em>intuitive</em> if the skeleton is oriented along that direction.<p>
+</a><P><a name="10813">
+ <P><img src="2BuildingSkeletons.anc4.gif"><p>
+</a><a name="10814">
+<em>Figure 2.4  &#32; &#32;Skeleton primitive
+</em></a><P><a name="10815">
+<h4> Building the Spine</h4>
+</a><a name="10816">
+The first wire that you'll encode for our humanoid contains three bones when it's complete; the spine, the neck, and the head. This wire should be built so that the base of the spine (which is the center of gravity for a humanoid) starts on the global center coordinates.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>The beginning point for a skeleton is also known as its "root." The root should be aligned with the skeleton's center of gravity; for a humanoid, this is typically the base of the spine.</em></font></dd></dt></dl><P>
+<a name="10818">
+To build the spine:<p>
+</a><P>
+<a name="10819">
+<STRONG>	 1.	 Move the cursor over the Nichimen Geometry window.
+</STRONG>
+</a><P><a name="10820">
+<STRONG>	2.	 Press "z" on the keyboard so that you are looking directly along the z axis.
+</STRONG>
+</a><P><dl><a name="10821">
+<dt>If you're looking straight along the axis, it's easier to build the skeleton symmetrically.</dt>
+</a><P></dl><a name="10822">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="10824">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on File&gt;New Object&gt;Wire.
+</STRONG>
+</a><P><a name="10827">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> once on the global center coordinates.
+</STRONG>
+</a><P><dl><a name="10828">
+<dt>When you select to encode a wire, the cursor moves to this position automatically.</dt>
+</a><P><a name="10841">
+ <P><img src="2BuildingSkeletons.anc5.gif"><p>
+</a></dl>
+<a name="10842">
+<em>Figure 2.5  &#32; &#32;Starting the wire
+</em></a><P>
+<a name="10843">
+<STRONG>	6.	 Drag the mouse up along the y-axis and <strong>(CLICK-L)</strong> to create the first segment on the wire (for the spine itself).
+</STRONG>
+</a><P><a name="10844">
+<STRONG>	7.	 Drag up along the y-axis again, then <strong>(CLICK-L)</strong> to create the segment for the neck.
+</STRONG>
+</a><P><a name="10845">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> and drag up a final time to create the head bone.
+</STRONG>
+</a><P><dl><a name="10846">
+<dt>Essentially, you <strong>(CLICK-L)</strong> each time you want to create a bone joint. For a humanoid, the spine usually has three bones (the spine, neck, and head):</dt>
+</a><P><a name="10864">
+ <P><img src="2BuildingSkeletons.anc6.gif"><p>
+</a></dl>
+<a name="10865">
+<em>Figure 2.6  &#32; &#32;Encoding the wire for the spine
+</em></a><P>
+<a name="10866">
+<STRONG>	9.	 <strong>(CLICK-R)</strong> when you're done.
+</STRONG>
+</a><P><a name="10867">
+<STRONG>	10.	 In the dialog box that appears, name the wire.
+</STRONG>
+</a><P><dl><a name="10868">
+<dt>Choose a name like "spine" and <strong>(CLICK-L)</strong> on <strong>Add Wire</strong>.</dt>
+</a><P></dl>
+<a name="10869">
+<h4> Encode the Wire for the Left Arm</h4>
+</a><a name="10870">
+The next step in building your skeleton is to create an arm and a leg. Let's start by building the left arm.<p>
+</a><P><a name="10871">
+When you draw the arm, start from the <em>top</em> of the upper arm and draw down. When you join the arm to the spine (creating a bone between the upper arm and the neck), the "joining" wire is created between the <em>beginning</em> of the arm wire and the selected joint on the spine wire.<p>
+</a><P>
+<a name="10872">
+<STRONG>	11.	 Encode a wire with three segments to represent the skeleton's left arm.
+</STRONG>
+</a><P><dl><a name="10873">
+<dt>Following the same steps described above for building the spine, encode the wire for the left arm. Start the wire so that it is roughly parallel to the joint that represents the <em>top</em> of the spine. It should look something like this when you're done:</dt>
+</a><P><a name="10893">
+ <P><img src="2BuildingSkeletons.anc7.gif"><p>
+</a></dl>
+<a name="10894">
+<em>Figure 2.7  &#32; &#32;Encoding the wire for the arm
+</em></a><P><a name="10895">
+<h4> Encode the Wire for the Left Leg</h4>
+</a>
+<a name="10896">
+<STRONG>	12.	 Encode a wire with three segments to represent the left leg.
+</STRONG>
+</a><P><dl><a name="10897">
+<dt>This time, start the wire so that it is roughly parallel to the joint that represents the base of the spine (somewhere along the x-axis). The leg wire should also have three segments, one each to represent the femur, tibia, and foot:</dt>
+</a><P><a name="10924">
+ <P><img src="2BuildingSkeletons.anc8.gif"><p>
+</a></dl>
+<a name="10925">
+<em>Figure 2.8  &#32; &#32;Encoding the wire for the leg
+</em></a><P><a name="10926">
+<h4> Duplicate the Arm and Leg Wires</h4>
+</a><a name="10927">
+Rather than build additional wires from scratch, we can take advantage of some of N-Geometry's tools to mirror the left arm and leg wires for the right arm and leg. This ensures that our skeleton stays symmetrical.<p>
+</a><P>
+<a name="10928">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu along the top of the N-Geometry window.
+</STRONG>
+</a><P><a name="10929">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on the left arm wire.
+</STRONG>
+</a><P><a name="10930">
+<STRONG>	15.	 <strong>(CLICK-R)</strong> on Copy.
+</STRONG>
+</a><P><dl><a name="10931">
+<dt>This creates a duplicate of the object in the same location as the original. When prompted, give the duplicate an appropriate name, such as "right-arm".</dt>
+</a><P></dl><a name="10932">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the right arm wire.
+</STRONG>
+</a><P><a name="10933">
+<STRONG>	17.	 <strong>(CTRL-L)</strong> on Axis Scale.
+</STRONG>
+</a><P><a name="10934">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on X.
+</STRONG>
+</a><P><a name="10935">
+<STRONG>	19.	 <strong>CLICK-L</strong> on Origin.
+</STRONG>
+</a><P><a name="10936">
+<STRONG>	20.	 Enter a value of -1 in the dialog box that appears.
+</STRONG>
+</a><P><dl><a name="10937">
+<dt>The right arm wire is translated around the global origin along the x-axis by a factor of -1, essentially mirroring the position of the left arm.</dt>
+</a><P></dl><a name="10938">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on the Axis-Scale button in the dialog box.
+</STRONG>
+</a><P><a name="10939">
+<STRONG>	22.	 Repeat this process for the left leg.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you have trouble selecting either the right-arm or right-leg wires, you can temporarily turn off the sensitivity or the visibility of the left-arm or left-leg wires from the main menu, so that you can select the correct wires.</em></font></dd></dt></dl><P>
+<a name="10941">
+At this point, you should have five wires; the spine, the right and left arms, and the right and left legs. The right and left arm and leg wires should mirror each other along the x-axis. The wires should look something like this:<p>
+</a><P><a name="10978">
+ <P><img src="2BuildingSkeletons.anc9.gif"><p>
+</a><a name="10979">
+<em>Figure 2.9  &#32; &#32;Five wires
+</em></a><P><a name="10980">
+<h4> Convert the Spine Wire into a Skeleton</h4>
+</a><a name="10981">
+At this point, you still have nothing more than a series of encoded wires. You build the skeleton by converting the spine wire into a series of connected bones and attaching the arm and leg wires to the appropriate joints along the spine.<p>
+</a><P>
+<a name="12247">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu along the top of the N-Geometry window.
+</STRONG>
+</a><P><a name="10983">
+<STRONG>	24.	 <strong>(SHIFT-L)</strong> on the spine wire.
+</STRONG>
+</a><P><dl><a name="10984">
+<dt><strong>(CLICK-L)</strong> on the <strong>Skeleton</strong> command.</dt>
+</a><P></dl><a name="10985">
+<STRONG>	25.	 Give the skeleton a name, or <strong>(CLICK-L)</strong> on Done to accept the default.
+</STRONG>
+</a><P><dl><a name="10986">
+<dt>The default, "Skeleton-from-<em>wirename</em>," is useful because it tells you which wire the bones were generated from.</dt>
+</a><P><a name="10987">
+<dt>This changes the segments along the selected wire into individual bones. Converting the wire into a bone automatically hides the selected wire, instead displaying thin, blue, four-sided pyramid shaped "bone frames" to indicate that the segment is a bone:</dt>
+</a><P><a name="10994">
+ <P><img src="2BuildingSkeletons.anc10.gif"><p>
+</a></dl>
+<a name="10995">
+<em>Figure 2.10  &#32; &#32;Spine wire converted into a bone
+</em></a><P><a name="11018">
+<h4> Connecting the Arms and Legs to the Skeleton</h4>
+</a><a name="11019">
+Let's start by connecting the left arm to the top of the spine. When you join a wire to an existing joint on a bone, an additional bone is created between the selected joint and the beginning of the selected wire.<p>
+</a><P>
+<a name="12255">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on points in the element sensitivity menu along the top of the N-Geometry window.
+</STRONG>
+</a><P><a name="11022">
+<STRONG>	27.	 <strong>(SHIFT-L)</strong> on the joint that joins the spine and the neck on the Spine wire.
+</STRONG>
+</a><P><a name="11023">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on Connect.
+</STRONG>
+</a><P><a name="11025">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on the left-arm bone.
+</STRONG>
+</a><P><dl><a name="11026">
+<dt>The left-arm wire is converted into a bone, and again, the bone frame is displayed in place of the underlying wire. Note that an adjoining bone is created between the selected joint and the selected wire.</dt>
+</a><P><a name="11033">
+ <P><img src="2BuildingSkeletons.anc11.gif"><p>
+</a></dl>
+<a name="11034">
+<em>Figure 2.11  &#32; &#32;Attaching a wire to the spine
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you don't want to create an intervening bone, align the starting joint of the wire with the selected joint on the skeleton (you can do this with the </em><strong>Position</strong><em> command). Alternately, you can use the </em><strong>Collapse</strong><em> command to get rid of any bones you don't want.</em></font></dd></dt></dl><P>
+
+<a name="11036">
+<STRONG>	30.	 Join the rest of the bones to the skeleton using the same process outlined in steps <a href="2BuildingSkeletons.html#12255">26</a> through <a href="2BuildingSkeletons.html#11023">28</a>.
+</STRONG>
+</a><P><dl><a name="11043">
+<dt>Attach the right arm to the same joint as the left; attach the two leg wires to the joint at the base of the spine (forming the hips in the process). When you're done creating the skeleton, it should look something like <a href="2BuildingSkeletons.html#11052">Figure 2.12</a>:</dt>
+</a><P><a name="11050">
+ <P><img src="2BuildingSkeletons.anc12.gif"><p>
+</a></dl>
+<a name="11052">
+<em>Figure 2.12  &#32; &#32;Completed skeleton
+</em></a><P><a name="11053">
+<h2><HR> Building a Custom Skeleton</h2>
+</a><a name="11570">
+Of course, you're not limited to generating humanoid skeletons in the Skeletal Animation System. In fact, you can build skeletons of any complexity, with the single caveat that no loops are permitted. Take a look at the following object, for example:<p>
+</a><P><dl><dl><a name="11054">
+<dt><code>/usr/local/ngc/demo/objects/spider.geo</code></dt>
+</a><P></dl></dl><a name="11055">
+Note that the creature has several legs, additional "vertebrae:"<p>
+</a><P><a name="11060">
+ <P><img src="2BuildingSkeletons.anc13.gif"><p>
+</a><a name="11061">
+<em>Figure 2.13  &#32; &#32;A sample spider skeleton
+</em></a><P><a name="11577">
+There are several commands that will be quite useful if you are creating custom skeletons:<p>
+</a><P><ul><a name="12281">
+<li><strong>Add</strong>
+</a></li><P><a name="12329">
+<li><strong>Cut</strong>
+</a></li><P><a name="11581">
+<li><strong>Collapse</strong>
+</a></li><P><a name="11582">
+<li><strong>Rename</strong>
+</a></li><P><a name="11583">
+<li><strong>Flip</strong>
+</a></li><P></ul><P><a name="11584">
+Each of these commands is described in the following sections<p>
+</a><P><a name="11062">
+<h3> Adding Bones</h3>
+</a><a name="12287">
+The <strong>Add</strong> command can be used to "grow" a bone from a selected joint. To add a bone:<p>
+</a><P>
+<a name="12293">
+<STRONG>	 1.	 Create a skeleton.
+</STRONG>
+</a><P><a name="12297">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the joint you want to add the bone to.
+</STRONG>
+</a><P><dl><a name="12298">
+<dt>The cursor changes into a crosshair.</dt>
+</a><P></dl><a name="12299">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> at the point where the bone should end.
+</STRONG>
+</a><P><dl><a name="12300">
+<dt>The new bone is added on to the skeleton; you can continue to <strong>(CLICK-L)</strong> to add additional joints, or <strong>(CLICK-R)</strong> when you're finished adding bones.<strong></strong></dt>
+</a><P><a name="12324">
+ <P><img src="2BuildingSkeletons.anc14.gif"><p>
+</a></dl>
+<a name="12325">
+<em>Figure 2.14  &#32; &#32;Adding several bones to a shoulder joint
+</em></a><P><a name="12286">
+<h3> Cutting Bones</h3>
+</a><a name="11063">
+One simple way to add complexity to a skeleton that you're building is to cut longer bones into smaller ones. As described in the <em>Skeletal Animation System Reference Guide</em>, you can cut bones in half, in thirds, or at arbitrary lengths along any segment.<p>
+</a><P><a name="11064">
+Consider the case where you've built a skeleton for a snake:<p>
+</a><P><a name="11068">
+ <P><img src="2BuildingSkeletons.anc15.gif"><p>
+</a><a name="11069">
+<em>Figure 2.15  &#32; &#32;A simple snake skeleton
+</em></a><P><a name="11070">
+If you're happy with the general size and shape of the skeleton, but want to give yourself more "joints" to work with, you can cut individual bones into halves or thirds.<p>
+</a><P>
+<a name="11071">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on segments in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11072">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><a name="11073">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Cut to cut the bone in half.
+</STRONG>
+</a><P><dl><a name="11074">
+<dt>The bone is divided into two bones:</dt>
+</a><P><a name="11093">
+ <P><img src="2BuildingSkeletons.anc16.gif"><p>
+</a></dl>
+<a name="11094">
+<em>Figure 2.16  &#32; &#32;A segment on the snake skeleton cut in half
+</em></a><P><dl><dl><a name="11095">
+<dt>When you cut a bone, the bone closer to the root joint retains the original bone name; the new, generated bone is modified by adding a "_2" and "_3" and so on (depending on how many segments you cut the bone into).</dt>
+</a><P><a name="11096">
+<dt>We could, for example, cut all the bones into thirds, allowing us to create a more "snakelike" appearance for the skeleton (like that shown in <a href="2BuildingSkeletons.html#11106">Figure 2.17</a>).</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can collect several segments at once if you want to cut them all at the same time. </em><strong>(CLICK-R)</strong><em> on segments in the element sensitivity menu, collect the segments, then use the </em><strong>Cut</strong><em> command to cut them all at the same time.</em></font></dd></dt><a name="11104">
+ <P><img src="2BuildingSkeletons.anc17.gif"><p>
+</a></dl><P>
+<a name="11106">
+<em>Figure 2.17  &#32; &#32;Cutting bones gives you more flexibility in posing a skeleton
+</em></a><P><a name="11107">
+Posing the skeleton is discussed in more detail starting in the section <a href="6Posing.html#">Chapter &#32;6</a>.<p>
+</a><P><a name="11111">
+<h3> Collapsing Bones</h3>
+</a><a name="11112">
+While cutting bones lets you add complexity to a skeleton, collapsing them lets you take it away.<p>
+</a><P><a name="11113">
+When you collapse a bone, you remove it from the skeleton. If the bone is between two others, the bone further from the root joint is scaled to fill the gap.<p>
+</a><P><a name="11114">
+If you decided that the skeleton you were working with was more complex than it had to be, you could modify it by removing or collapsing individual bones.<p>
+</a><P><a name="11115">
+Try this:<p>
+</a><P>
+<a name="11116">
+<STRONG>	 1.	 Load a skeleton primitive.
+</STRONG>
+</a><P><a name="11117">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton's left forearm.
+</STRONG>
+</a><P><a name="11130">
+ <P><img src="2BuildingSkeletons.anc18.gif"><p>
+</a>
+<a name="11131">
+<em>Figure 2.18  &#32; &#32;Skeleton primitive
+</em></a><P>
+<a name="11132">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Collapse.
+</STRONG>
+</a><P><dl><a name="11133">
+<dt>The lower bone extends to fill the void left by the collapse of the forearm bone:</dt>
+</a><P><a name="11141">
+ <P><img src="2BuildingSkeletons.anc19.gif"><p>
+</a></dl>
+<a name="11142">
+<em>Figure 2.19  &#32; &#32;The Hand bone is scaled to fill the gap left by the collapsed Forearm
+</em></a><P><a name="11143">
+<h3> Renaming Bones</h3>
+</a><a name="11144">
+When you build a skeleton from scratch, the individual bones are assigned numbers, such as bone-10 or bone-12, as they are attached to the skeleton. Renaming the bones lets you give them more recognizable names; assigning bones names like "left-hand" instead of "bone-6" lets you tell which bone you're working with by looking at the top of the 3D editor window or currently displayed menu.<p>
+</a><P><a name="11145">
+It is especially important for when you build skin parts (described later in this tutorial) because those parts are named for the bone to which they are attached. It's much easier to recognize "left-hand-skin" than "bone-6-skin".<p>
+</a><P><a name="11146">
+To rename a bone:<p>
+</a><P>
+<a name="11147">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Segments in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="11148">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on a bone.
+</STRONG>
+</a><P><a name="11149">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Rename.
+</STRONG>
+</a><P><a name="11150">
+<STRONG>	4.	 Enter the new bone name and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P>
+<a name="11151">
+Repeat this process for each bone until you've given all the bones an appropriate name.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> <em>Renaming a bone does not affect any saved base states or keyposes.</em></font></dd></dt></dl><P>
+<a name="11153">
+<h3> Flipping Bones to Change the Root</h3>
+</a><a name="11154">
+Flipping a bone changes the location of the root.<p>
+</a><P><a name="11155">
+For example, if you had built a skeleton with a multi-segmented backbone, and decided that you needed to change the location of the root on that skeleton, you could flip the appropriate bone(s) to change the position of the root.<p>
+</a><P><a name="11156">
+This operation can also be used to change a skeleton that was read in as part of a motion capture data file, and which may have its root in the wrong place.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>For a skeleton read in as part of a motion capture file, changing the location of the root may invalidate the motion capture data when it is applied in an N-Dynamics.</em></font></dd></dt></dl><P>
+<a name="11158">
+Suppose you created a skeleton that looked like this:<p>
+</a><P><a name="11165">
+ <P><img src="2BuildingSkeletons.anc20.gif"><p>
+</a><a name="11167">
+<em>Figure 2.20  &#32; &#32;Skeleton with inappropriately positioned root
+</em></a><P><a name="11168">
+You can identify the root by tracing the direction of the bone frames; in <a href="2BuildingSkeletons.html#11167">Figure 2.20</a>, the root is at the tail of the creature (which tells us this creature was probably generated from a wire that started from that point).<p>
+</a><P><a name="11172">
+Generally, it's desirable for the root to be located close to the center of gravity for the skeleton. Flipping the proper bone can change which joint is considered the root.<p>
+</a><P><a name="11179">
+ <P><img src="2BuildingSkeletons.anc21.gif"><p>
+</a><a name="11180">
+<em>Figure 2.21  &#32; &#32;Flip the bone directly above or below the desired root
+</em></a><P><a name="11181">
+If you flip a bone that is more than one bone away from the current root, all intermediate bones are flipped to accommodate the new "root" position:<p>
+</a><P><a name="11188">
+ <P><img src="2BuildingSkeletons.anc22.gif"><p>
+</a><a name="11189">
+<em>Figure 2.22  &#32; &#32;Spider with root in more appropriate location
+</em></a><P><a name="11190">
+The resulting root is located more appropriately, near the center of gravity for the spider.<p>
+</a><P><a name="11191">
+You may want to load the skeleton primitive and experiment with the <strong>Flip</strong> command to get a better sense of how to change the root's position.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can only have one root on a skeleton.</em> </font></dd></dt></dl><P>
+<a name="11193">
+The root's significance is discussed in more detail in <a href="6Posing.html#">Chapter &#32;6</a>, <a href="6Posing.html#">"Posing a Skeleton" &#32;</a><p>
+</a><P><a name="11770">
+<h2><HR> Congratulations!</h2>
+</a><a name="12047">
+You've now learned how to create your own skeletons in N-Geometry. Additional commands for manipulating skeletons, bones, and joints are described in the <em>Skeletal Animation System Reference Guide</em>.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="1GettingStarted.html">[Prev]</a> <a href="3AttachedObjects.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 18:51:50 -->
+
+</body>
+</html>

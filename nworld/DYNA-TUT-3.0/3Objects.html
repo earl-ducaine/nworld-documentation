@@ -1,0 +1,446 @@
+<html><head><title>Animating Objects</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Basics-2.html">[Prev]</a> <a href="4Camera.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Animating Objects</h1>
+</a>
+<hr><p><a name="10812">
+<h4> In this chapter you'll learn how to build a simple animated logo, displaying call letters spinning around a planet.</h4>
+</a><a name="10819">
+ <P><img src="3Objects.anc.gif"><p>
+</a><a name="10813">
+<p>
+</a><P><a name="10814">
+<h2><HR> In this Chapter</h2>
+</a><a name="9580">
+You'll learn about:<p>
+</a><P><ul><a name="9992">
+<li>animating superior and inferior objects
+</a></li><P><a name="9994">
+<li>transforming an object by moving its origin
+</a></li><P><a name="9993">
+<li>animating a superior object
+</a></li><P><a name="9998">
+<li>saving a view
+</a></li><P><a name="10789">
+<li>animating a single frame
+</a></li><P><a name="10155">
+<li>changing the script length
+</a></li><P></ul><P><a name="9995">
+This chapter describes how to animate superior and inferior objects and how to work with changing objects' origins. (This should help you better understand the difference between a body and an object).<p>
+</a><P><a name="9594">
+<h2><HR> Setting Up Your Animation</h2>
+</a><a name="9599">
+When you're building an animation, even a simple one, it's a good idea to spend a little time before you start, figuring out exactly what you want to do.<p>
+</a><P><a name="9609">
+You need to determine which types of elements are going to be animated, how you want them to move (or change), then finally, how to set those objects up properly so that they behave in the manner you expect when you animate them.<p>
+</a><P><a name="9614">
+In this example, suppose you've been given the task of animating a set of call letters, like those for a radio or television station, orbiting around a globe.<p>
+</a><P><a name="9625">
+<h2><HR> Creating the Elements</h2>
+</a><a name="9116">
+If you're working with 3D objects, then you're going to create your elements in N-Geometry. First, let's create a set of call letters that we're going to animate.<p>
+</a><P><a name="9648">
+In N-Geometry:<p>
+</a><P>
+<a name="9649">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Text</strong>.
+</STRONG>
+</a><P><dl><a name="9652">
+<dt>Enter the call letters in the <strong>Character(s)</strong> text edit box, and select a font using <strong>(CLICK-L)</strong> on <strong>Font&gt;New</strong>.</dt>
+</a><P><a name="9653">
+ <P><img src="3Objects.anc1.gif"><p>
+</a></dl>
+<a name="9664">
+<em>Figure 3.1  &#32; &#32;Creating text characters in N-Geometry
+</em></a><P><a name="9672">
+Your letters should appear in the N-Geometry window:<p>
+</a><P><a name="9680">
+ <P><img src="3Objects.anc2.gif"><p>
+</a><a name="9681">
+<em>Figure 3.2  &#32; &#32;Created text
+</em></a><P>
+<a name="9675">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="9694">
+<dt>When you create a string of text, the individual letters are grouped as inferior objects to the "word" object group.</dt>
+</a><P><a name="9751">
+ <P><img src="3Objects.anc3.gif"><p>
+</a></dl>
+<a name="9752">
+<em>Figure 3.3  &#32; &#32;Selecting the text object
+</em></a><P>
+<a name="9632">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the word object, then <strong>(CLICK-M)</strong> on <strong>Home</strong>.
+</STRONG>
+</a><P><dl><a name="9724">
+<dt>This makes the origin of all inferior objects (the letters) the same as the superior object (the word):</dt>
+</a><P><a name="9756">
+ <P><img src="3Objects.anc4.gif"><p>
+</a></dl>
+<a name="9757">
+<em>Figure 3.4  &#32; &#32;Initializing the home position of the inferior objects
+</em></a><P>
+<a name="10976">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the bodies in the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="10977">
+<dt>Remember that an object consists of a <em>transformation matrix</em> and a <em>body</em>. You transform (rotate, scale, &amp; rotate) <em>objects</em> in N-Geometry.</dt>
+</a><P><a name="10978">
+<dt>Earlier, we worked with our letter <em>objects</em>. Now, we'll modify the letter <em>bodies</em> so that when we rotate the object, we'll see the correct animation.</dt>
+</a><P></dl><a name="9825">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the letter W, then <strong>(CTRL-L)</strong> on <strong>Axis Move&gt;Z</strong>.
+</STRONG>
+</a><P><dl><a name="9832">
+<dt>Enter a distance of 15 in the dialog box that appears.</dt>
+</a><P><a name="9817">
+ <P><img src="3Objects.anc5.gif"><p>
+</a></dl>
+<a name="9818">
+<em>Figure 3.5  &#32; &#32;Axis Move the body of the letter forward along the Z axis
+</em></a><P><a name="9848">
+In order to make a perfect circle, however, we need to line up the center of the letter right over the z axis.<p>
+</a><P>
+<a name="9851">
+<STRONG>	6.	 Press the "z" hot key to aim the camera along the Z axis.
+</STRONG>
+</a><P><a name="9852">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the letter W, then <strong>(CLICK-L)</strong> on <strong>Axis Move&gt;X</strong>.
+</STRONG>
+</a><P><dl><a name="9859">
+<dt>Align the letter so that it looks like this:</dt>
+</a><P><a name="9864">
+ <P><img src="3Objects.anc6.gif"><p>
+</a></dl>
+<a name="9865">
+<em>Figure 3.6  &#32; &#32;Axis Move the body of the letter so it's aligned over the Z axis
+</em></a><P><a name="9812">
+Repeat the process with the other letters so that they're also aligned with the Z axis. Your letters should look something like this when you're done:<p>
+</a><P><a name="9884">
+ <P><img src="3Objects.anc7.gif"><p>
+</a><a name="9885">
+<em>Figure 3.7  &#32; &#32;All letters moved out along the Z axis
+</em></a><P>
+<a name="9879">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the letter N, then <strong>(CLICK-M)</strong> on <strong>Rotate&gt;Y</strong>.
+</STRONG>
+</a><P><dl><a name="9893">
+<dt>Move the letter until it's a good distance from the W, something like this:</dt>
+</a><P><a name="9899">
+ <P><img src="3Objects.anc8.gif"><p>
+</a></dl>
+<a name="9900">
+<em>Figure 3.8  &#32; &#32;Moving the letters out, one by one
+</em></a><P><dl><dl><a name="9904">
+<dt>Repeat the process for the other letters, until your word has the correct spacing around the Y axis:</dt>
+</a><P><a name="9910">
+ <P><img src="3Objects.anc9.gif"><p>
+</a></dl></dl><a name="9911">
+<em>Figure 3.9  &#32; &#32;The letters in position
+</em></a><P>
+<a name="9894">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;New Object&gt;Sphere</strong>.
+</STRONG>
+</a><P><dl><a name="9923">
+<dt>This sphere will serve as our globe. Your elements should look something like this:</dt>
+</a><P><a name="9937">
+ <P><img src="3Objects.anc10.gif"><p>
+</a></dl>
+<a name="9938">
+<em>Figure 3.10  &#32; &#32;The globe and the call letters in place
+</em></a><P><a name="9712">
+<h2><HR> Building the Script</h2>
+</a><a name="9953">
+Initially, you might think that you need a different channel to animate the spinning logo. But if we want to take advantage of the structured hierarchy of the object, we can animate the entire word as a single object.<p>
+</a><P><a name="10020">
+<h3> Animating the Text</h3>
+</a><a name="10027">
+As described earlier, the <em>letter</em> objects are inferior objects of the <em>word</em> object; if you want to animate the word rotating around the sphere, you can simply animate the superior word object-any subobjects are animated automatically, using the superior object's transformation matrix.<p>
+</a><P><a name="10021">
+While you're working with the text, make the Sphere invisible:<p>
+</a><P>
+<a name="10999">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the <strong>Sphere</strong> object, then <strong>(CLICK-L)</strong> on <strong>Visibility</strong>.
+</STRONG>
+</a><P>
+<a name="10368">
+Now, let's animate the text orbiting the globe:<p>
+</a><P>
+<a name="10030">
+<STRONG>	 1.	 In N-Dynamics, <strong>(CLICK-L)</strong> on <strong>File&gt;Create New Script</strong>.
+</STRONG>
+</a><P><dl><a name="10031">
+<dt>Give it a distinctive name-we'll use <strong>call-letters</strong> for the sample name in this chapter. When prompted, specify 1 channel for the new script.</dt>
+</a><P></dl><a name="10034">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the channel.
+</STRONG>
+</a><P><a name="10035">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit box.
+</STRONG>
+</a><P><a name="10038">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Rotation&gt;Y Rotate</strong>.
+</STRONG>
+</a><P><a name="10039">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit box, then <strong>(CLICK-L)</strong> on the <strong>Text</strong> object from the list that appears.
+</STRONG>
+</a><P><a name="10040">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="10041">
+<dt>Now that you've specified the operation to be performed (a rotate around the Y axis), you need to specfy how many degrees the object should rotate.</dt>
+</a><P></dl><a name="10051">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the curve channel under the <strong>Y Rotate</strong> channel.
+</STRONG>
+</a><P><a name="10056">
+<STRONG>	8.	 Enter an end value of <strong>360</strong>, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><a name="10063">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on <strong>Animate</strong>.
+</STRONG>
+</a><P><a name="10064">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Playback</strong>.
+</STRONG>
+</a><P><dl><a name="10071">
+<dt>The <strong>Text</strong> object spins 360 degrees around the Y axis:</dt>
+</a><P><a name="9971">
+ <P><img src="3Objects.anc11.gif"><p>
+</a></dl>
+<a name="9972">
+<em>Figure 3.11  &#32; &#32;The word object rotates around the Y axis (arrows added for emphasis)
+</em></a><P><a name="10154">
+<h3> Saving a View in a Script</h3>
+</a><a name="10159">
+Proper camera positioning is an important element in setting up an appealing animation. If you don't specifically save a view in the script, the animation will be generated using the camera's current position. To get the same results everytime, you want to save a camera view.<p>
+</a><P>
+<a name="10172">
+<STRONG>	11.	 Adjust the camera so that you're looking straight at the text object.
+</STRONG>
+</a><P><dl><a name="10180">
+<dt>Use the "z" hot key to line the camera up along the Z axis, then rotate the camera around.</dt>
+</a><P><a name="10192">
+ <P><img src="3Objects.anc12.gif"><p>
+</a></dl>
+<a name="10193">
+<em>Figure 3.12  &#32; &#32;The word object rotates around the Y axis (arrows added for emphasis)
+</em></a><P>
+<a name="10177">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on global and fixed-aim in the camera sensitivity menu at the bottom of the N-Geometry window.
+</STRONG>
+</a><P><a name="10178">
+<STRONG>	13.	 <strong>(CLICK-M)</strong> to start the camera, then <strong>(HOLD-M)</strong> to adjust the camera around the Z axis.
+</STRONG>
+</a><P><dl><a name="10179">
+<dt>Rotate the camera until your text looks like this:</dt>
+</a><P><a name="10220">
+ <P><img src="3Objects.anc13.gif"><p>
+</a></dl>
+<a name="10221">
+<em>Figure 3.13  &#32; &#32;Changing the camera angle
+</em></a><P>
+<a name="10210">
+<STRONG>	14.	 In N-Dynamics, move the mouse over the black title bar with the script name, and press the "s" hot key.
+</STRONG>
+</a><P><dl><a name="10227">
+<dt>Another channel is added to the bottom of the script.</dt>
+</a><P></dl><a name="10228">
+<STRONG>	15.	 <strong>(CLICK-M)</strong> on the channel, then <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit box.
+</STRONG>
+</a><P><a name="10248">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on <strong>Camera&gt;Set View</strong>.
+</STRONG>
+</a><P><a name="10255">
+ <P><img src="3Objects.anc14.gif"><p>
+</a>
+<a name="10256">
+<em>Figure 3.14  &#32; &#32;The Set View operation
+</em></a><P>
+<a name="10249">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the text edit box under the <strong>Source</strong> label.
+</STRONG>
+</a><P><dl><a name="10260">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="10266">
+ <P><img src="3Objects.anc15.gif"><p>
+</a></dl>
+<a name="10267">
+<em>Figure 3.15  &#32; &#32;Selecting where the view is to come from
+</em></a><P>
+<a name="10250">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on <strong>Local Value</strong>.
+</STRONG>
+</a><P><dl><a name="10343">
+<dt>A default value appears in the Viewer text edit box.</dt>
+</a><P></dl><a name="10344">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the <strong>L</strong> text edit box, then <strong>(CLICK-L)</strong> on <strong>Select Current Geo View</strong>.
+</STRONG>
+</a><P><a name="10348">
+ <P><img src="3Objects.anc16.gif"><p>
+</a>
+<a name="10312">
+<em>Figure 3.16  &#32; &#32;Selecting the current view from N-Geometry
+</em></a><P><dl><dl><a name="10298">
+<dt>The value in the <strong>Viewer</strong> text edit box is update to use the camera's current position.</dt>
+</a><P><a name="10319">
+ <P><img src="3Objects.anc17.gif"><p>
+</a></dl></dl><a name="10320">
+<em>Figure 3.17  &#32; &#32;Updated camera position
+</em></a><P>
+<a name="10328">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong> to save the camera view.
+</STRONG>
+</a><P><dl><a name="10349">
+<dt>Now, even if you move the camera, it will reset to the correct position when you animate the script.</dt>
+</a><P></dl><a name="9959">
+<STRONG>	21.	 <strong>(CLICK-R)</strong> on the script's title bar, and rearrange the channels so that the <strong>Set View</strong> channel comes first.
+</STRONG>
+</a><P>
+<a name="10282">
+<h3> Making the Planet Visible</h3>
+</a><a name="10352">
+Finally, we need to make the planet visible.<p>
+</a><P>
+<a name="10357">
+<STRONG>	22.	 Move the mouse over the script title bar and press the "s" hot key.
+</STRONG>
+</a><P><dl><a name="10358">
+<dt>A <strong>Make Visible</strong> channel appears at the bottom of the script (this is the default action for a channel).</dt>
+</a><P></dl><a name="10361">
+<STRONG>	23.	 <strong>(CLICK-M)</strong> on the <strong>Make Visible</strong> channel, then <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit box.
+</STRONG>
+</a><P><a name="10362">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the <strong>Sphere</strong> object from the object list that appears.
+</STRONG>
+</a><P>
+<a name="10363">
+<h3> Animating a Single Frame</h3>
+</a><a name="10364">
+Now, rather than animating the whole thing again, let's test animate a single frame.<p>
+</a><P>
+<a name="10371">
+<STRONG>	25.	 Move the cursor over the frame range area in N-Dynamics. 
+</STRONG>
+</a><P><dl><a name="10391">
+<dt>The frame range area shows the time box and the frame box:</dt>
+</a><P><a name="10379">
+ <P><img src="3Objects.anc18.gif"><p>
+</a></dl>
+<a name="10380">
+<em>Figure 3.18  &#32; &#32;The frame range area contains the time box and frame box
+</em></a><P>
+<a name="10437">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> at any point in the frame range area.
+</STRONG>
+</a><P><dl><a name="10442">
+<dt>If you move the cursor over the frame box, you know you're in the right place.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	A small green tick mark appears in the frame range area over the last animated frame; this serves as a handy reference when you're making changes to a script and want to go back and animate the same frame to see the affect of any changes you may have made to a script.</font></dd></dt></dl><P>
+<a name="10452">
+Your N-Geometry window should look something like this:<p>
+</a><P><a name="10467">
+ <P><img src="3Objects.anc19.gif"><p>
+</a><a name="10468">
+<em>Figure 3.19  &#32; &#32;Elements in their default position
+</em></a><P><a name="10476">
+The globe is a little bit below our letters; this is because the default center for a globe is its midpoint, while the default center for a letter (or word) is its lower left anchor point.<p>
+</a><P>
+<a name="10481">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="10479">
+<STRONG>	28.	 <strong>(SHIFT-L)</strong> on the sphere, then <strong>(CLICK-L)</strong> on <strong>Axis Move&gt;Y</strong>.
+</STRONG>
+</a><P><dl><a name="10486">
+<dt>Adjust the sphere until it's lined up with the text:</dt>
+</a><P><a name="10492">
+ <P><img src="3Objects.anc20.gif"><p>
+</a></dl>
+<a name="10493">
+<em>Figure 3.20  &#32; &#32;Aligning the elements
+</em></a><P>
+<a name="10454">
+<STRONG>	29.	 Save your script.
+</STRONG>
+</a><P>
+<a name="10585">
+<h3> Changing the Script Length</h3>
+</a><a name="10592">
+Suppose you're now happy with the way your animation looks, but find out that instead of a one-second piece, you need a three-second piece. You need to change the length of your script.<p>
+</a><P>
+<a name="10621">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on the frame range button in the lower right corner of the script editor (shown in <a href="3Objects.html#10380">Figure 3.18</a>).
+</STRONG>
+</a><P><dl><a name="10737">
+<dt>The following pop-up appears:</dt>
+</a><P><a name="10626">
+ <P><img src="3Objects.anc21.gif"><p>
+</a></dl>
+<a name="10627">
+<em>Figure 3.21  &#32; &#32;Changing the script length
+</em></a><P>
+<a name="10631">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on <strong>Change Script Length</strong>.
+</STRONG>
+</a><P><dl><a name="10633">
+<dt>The following dialog appears:</dt>
+</a><P><a name="10639">
+ <P><img src="3Objects.anc22.gif"><p>
+</a></dl>
+<a name="10640">
+<em>Figure 3.22  &#32; &#32;Specify time or frames
+</em></a><P>
+<a name="10632">
+<STRONG>	32.	 Enter a new length of 3 seconds, and press <strong>RETURN</strong>.
+</STRONG>
+</a><P><dl><a name="10657">
+<dt>The new script length (in frames) is also displayed. You can change either of these values; each is updated automatically as required.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>Stretch Subchannels</strong> is on by default. If set to <strong>Yes</strong>, any channels in the script are stretched (or squashed) to fit the new script length. If set to <strong>No</strong>, the script length is changed, but subchannels are not changed. (This is useful if you want to give yourself more frames to work with, but don't necessarily want to change the animation you've already created.)</font></dd></dt></dl><P>
+
+<a name="10656">
+<STRONG>	33.	 <strong>(CLICK-L)</strong> on <strong>Done</strong>.
+</STRONG>
+</a><P><dl><a name="10740">
+<dt>The new script length is displayed in the frame range button.</dt>
+</a><P></dl><a name="10744">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on <strong>Animate</strong>.
+</STRONG>
+</a><P><a name="10745">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on <strong>Playback</strong>.
+</STRONG>
+</a><P><dl><a name="10746">
+<dt>The <strong>Text</strong> object spins 360 degrees around the Y axis, but this time we've improved the camera angle and increased the length of the animation.</dt>
+</a><P></dl><a name="10755">
+<STRONG>	36.	 Save your script.
+</STRONG>
+</a><P>
+<a name="10612">
+<h2><HR> Congratulations!</h2>
+</a><a name="10807">
+You've created your first complete animation! You've learned a little bit more about working with objects and bodies, saving a view to a script, how to animate a single frame, and how to change the length of your script.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Basics-2.html">[Prev]</a> <a href="4Camera.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 14:22:19 -->
+
+</body>
+</html>

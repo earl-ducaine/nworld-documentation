@@ -1,0 +1,268 @@
+<html><head><title>The Vector Editor</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4-MIMETut.html">[Prev]</a> <a href="6-TOD+TextTut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="18982">
+<h1>The Vector Editor</h1>
+</a>
+<hr><p><a name="18983">
+Generating and editing vectors is an important part of the MIME animation process. <p>
+</a><P><a name="18984">
+<h2><HR> Using the Vector Editor</h2>
+</a><a name="18054">
+The Vector Editor is used to create new vectors that can be used in generating an action:<p>
+</a><P><a name="16246">
+ <P><img src="5-VectorEditor.anc.gif"><p>
+</a><a name="16250">
+<em>Figure 5.1  &#32; &#32;The Vector Editor Interface
+</em></a><P><ul><a name="18066">
+<li><strong>Current MIME Object</strong> shows the object with which the current vector is associated.
+</a></li><P><a name="18100">
+<li><strong>Editing Vector</strong> shows the name of the current vector (the one being edited).
+</a></li><P><a name="18101">
+<li><strong>Base Displacement</strong> shows the absolute displacement upon which this vector is based.
+</a></li><P><a name="18102">
+<li>The relative displacements used to create the current vector are displayed individually in the bottom half of the screen. (In the example above, both the <strong>squash</strong> and <strong>stretch</strong> displacements were used in creating <strong>vector 3</strong>.) You can use the sliders to interactively set the shape of the vector, as described later in this chapter.
+</a></li><P></ul><P><a name="16251">
+<h4> Create</h4>
+</a><a name="16262">
+<h4> Create New MIME Object</h4>
+</a><a name="16263">
+Creates a new MIME Object. When you choose this command, a list of objects currently loaded into N-Geometry is displayed.<p>
+</a><P><a name="17545">
+<strong>(Click-L)</strong> on the object you want to create a new MIME object for. The selected object is marked as the current MIME object; vectors you create are then associated with that MIME object.<p>
+</a><P><a name="16264">
+<h4> Create New Vector</h4>
+</a><a name="16265">
+Creates a new MIME vector for the current MIME object.<p>
+</a><P><a name="18092">
+To create a MIME vector, you must specify the following:<p>
+</a><P><ul><a name="18137">
+<li>name
+</a></li><P><a name="18095">
+<li>base displacement
+</a></li><P><a name="18096">
+<li>relative displacement(s)
+</a></li><P></ul><P><a name="18143">
+Once you've selected the displacements you want to use to create the vector, you can adjust how much each displacement contributes to the shape of the vector using the sliders:<p>
+</a><P>
+<a name="18153">
+<STRONG>	 1.	 Make sure the N-Geometry window is open
+</STRONG>
+</a><P><a name="18350">
+<STRONG>	2.	 For each displacement, move the appropriate slider back and forth to animate the object between its base state and that relative displacement. 
+</STRONG>
+</a><P><dl><a name="18357">
+<dt>You can adjust the slider for any or all of the displacements that you've selected to build this vector.</dt>
+</a><P></dl>
+<a name="18164">
+Once the object is in the shape you want, choose the <strong>Save Current Vector</strong> under the <strong>Save</strong> menu to save the new vector with the current MIME object.<p>
+</a><P><a name="16269">
+<h4> Duplicate Vector</h4>
+</a><a name="16270">
+Creates a copy of another vector.<p>
+</a><P><a name="16271">
+When you <strong>(CLICK-L)</strong> on this command, a list of previously created vectors is displayed. Select a vector from the list and specify a name for the copy. The copy is added to the MIME object's vector list and can be edited like any other vector.<p>
+</a><P><a name="18180">
+You might use this command to create two slightly different versions of the same vector, switching between the two when animating with the Action Editor.<p>
+</a><P><a name="16272">
+<h4> Display</h4>
+</a><a name="16273">
+Controls when the object is redisplayed in N-Geometry when the sliders are moved.<p>
+</a><P><a name="16274">
+<h4> Redisplay</h4>
+</a><a name="18195">
+Update the display only when requested. If you choose <strong>Auto Redisplay Off</strong> (below), you can refresh the N-Geometry display with this command.<p>
+</a><P><a name="16275">
+<h4> Auto Redisplay </h4>
+</a><a name="18207">
+Refreshes the N-Geometry display every time the slider is moved.<p>
+</a><P><a name="16276">
+<h4> Auto Redisplay Off </h4>
+</a><a name="18192">
+Suppresses refresh of the display. This is useful if you are working with very large objects or want to redisplay the object periodically while adjusting the sliders. If <strong>Auto Redisplay Off</strong> is selected, <strong>(Click-L)</strong> on the <strong>Redisplay</strong> button to force a redisplay.<p>
+</a><P><a name="16280">
+<h4> Modify</h4>
+</a><a name="16281">
+<h4> Rename</h4>
+</a><a name="16282">
+Rename a vector associated with the current MIME object.<p>
+</a><P><a name="18242">
+When you <strong>(Click-L)</strong> on this command, a list of vectors associated with the current MIME object is displayed.<p>
+</a><P><a name="18238">
+Select the object you want to rename, then enter the new name in the dialog box that appears. The vector is automatically resaved (to memory) with the new name.<p>
+</a><P><a name="16283">
+<h4> Add Displacements</h4>
+</a><a name="16284">
+Adds selected displacements to the current vector.<p>
+</a><P><a name="18245">
+When you <strong>(Click-L)</strong> on this command, a list of any displacements saved with the geometry object not currently used to create this vector is displayed.<p>
+</a><P><a name="18247">
+<strong>(Click-L)</strong> on any additional displacements you want to use to build this vector. The vector is resaved (to memory) with the new displacements added.<p>
+</a><P><a name="16285">
+<h4> Remove Displacements</h4>
+</a><a name="16286">
+Removes selected displacements from the current vector.<p>
+</a><P><a name="18266">
+When you <strong>(Click-L)</strong> on this command, a list of all displacements currently used to create this vector is displayed.<p>
+</a><P><a name="18267">
+<strong>(Click-L)</strong> on any displacements you want to remove from this vector. The vector is resaved (to memory) with the specified displacements removed.<p>
+</a><P><a name="16287">
+<h4> Reorder Displacements</h4>
+</a><a name="16288">
+Reorders the displacements associated with the current vector.<p>
+</a><P><a name="18312">
+This is particularly useful if you use rotational displacements, since their execution order affects the resulting animation.<p>
+</a><P><a name="18302">
+When you <strong>(Click-L)</strong> on this command, a list of all displacements currently used to create this vector is displayed.<p>
+</a><P><a name="18319">
+ <P><img src="5-VectorEditor.anc1.gif"><p>
+</a><a name="18320">
+<em>Figure 5.2  &#32; &#32;Reordering displacements
+</em></a><P><a name="18303">
+<strong>(Click-L)</strong> and on a displacement and drag up or down to change its position. <p>
+</a><P><a name="18334">
+The new displacement order is resaved automatically.<p>
+</a><P><a name="16289">
+<h4> Delete</h4>
+</a><a name="18395">
+<h4> Delete MIME Object</h4>
+</a><a name="18400">
+Deletes the selected MIME object.<p>
+</a><P><a name="18401">
+When you <strong>(Click-L)</strong> on this command, a list of all MIME objects currently loaded into memory is displayed.<p>
+</a><P><a name="18402">
+<strong>(Click-L)</strong> on any MIME objects you want to remove from memory, and <strong>(Click-L)</strong> on <strong>OK</strong> when prompted to confirm that you want to remove the MIME object.<p>
+</a><P><a name="16290">
+<h4> Delete Vector</h4>
+</a><a name="18363">
+Deletes selected vectors from their parent MIME object.<p>
+</a><P><a name="18364">
+When you <strong>(Click-L)</strong> on this command, a list of all vectors associated with the current MIME object is displayed.<p>
+</a><P><a name="18365">
+<strong>(Click-L)</strong> on any vectors you want to remove from the current MIME object, and <strong>(Click-L)</strong> on <strong>OK</strong> when prompted to confirm that you want to remove the vectors.<p>
+</a><P><a name="16294">
+<h4> Save</h4>
+</a><a name="16295">
+<h4> Save Current Vector</h4>
+</a><a name="16296">
+Saves the current vector in its current state (to memory).<p>
+</a><P><a name="18425">
+Whenever you use the sliders to modify the amount that a displacement is contributing to the vector, you need to resave the vector if you want to save those changes.<p>
+</a><P><a name="18523">
+You also need to save any newly created vectors before they can be used in an action.<p>
+</a><P><a name="16297">
+<h4> Group</h4>
+</a><a name="16299">
+<h4> Clear Group</h4>
+</a><a name="16300">
+Clears all referenced MIME objects (and any associate vectors or waves) from memory.<p>
+</a><P><a name="16301">
+<h4> Read Group</h4>
+</a><a name="18484">
+Load a group, which typically contains the MIME Object and any saved vectors and waves. A group is essentially a UNIX directory.<p>
+</a><P><a name="16305">
+<h4> Save Group</h4>
+</a><a name="18684">
+Saves a group, which contains the MIME Object and any referenced vectors and waves.<p>
+</a><P><a name="18725">
+For each action, the following files are saved:<p>
+</a><P><a name="18726">
+<code><pre>action-name.dat<p>
+</code></pre></a><a name="18770">
+For each subaction, the following files are saved: 
+<P><Table Border="1">
+<dl>
+<a name="18729">
+<em>Table 5.1 <strong></strong><em> &#32; &#32;Files created when saving a group </em>
+</em></a></dl>
+<tr><th align="left"><a name="18735">
+File
+</a><th align="left"><a name="18737">
+Contents
+</a><th align="left"><a name="18739">
+Description
+</a>
+<tr><td valign="top"><a name="18741">
+ action-name.WAVE<p>
+</a><td valign="top"><a name="18743">
+ wave data<p>
+</a><td valign="top"><a name="18745">
+ For the number of samples (frames), shows the value of the wave at each sample; e.g. a 30 frames subaction would create a wave file with 30 values.<p>
+</a>
+<tr><td valign="top"><a name="18747">
+ action-name.GRP<p>
+</a><td valign="top"><a name="18749">
+ Group file<p>
+</a><td valign="top"><a name="18751">
+ Description of polygons<p>
+</a>
+<tr><td valign="top"><a name="18753">
+ action-name.MAT<p>
+</a><td valign="top"><a name="18755">
+ Material<p>
+</a><td valign="top"><a name="18757">
+ Render attributes for the object<p>
+</a>
+<tr><td valign="top"><a name="18759">
+ action-name.PLY<p>
+</a><td valign="top"><a name="18761">
+ Polygon<p>
+</a><td valign="top"><a name="18763">
+ Vertex, normal, and polygon info<p>
+</a>
+<tr><td valign="top"><a name="18765">
+ action-name.RSD   <p>
+</a><td valign="top"><a name="18767">
+ Vector file <p>
+</a><td valign="top"><a name="18769">
+ Group, material, and polygon data<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+ <p>
+</a><P><a name="16307">
+<h4> File</h4>
+</a><a name="18434">
+<h4> Save Vector RSD</h4>
+</a><a name="18477">
+Export a single vector in RSD file format. (Creates the .grp, .mat, .ply, and.rsd files for the vector).<p>
+</a><P><a name="18462">
+<h4> Save Vector RSD (Flat Polygon)</h4>
+</a><a name="18467">
+Similar to <strong>Save Vector RSD</strong>, except with a single normal per polygon (rather than the multiple normals saved with <strong>Save Vector RSD</strong> above).<p>
+</a><P><a name="18522">
+<h4> Save Vector</h4>
+</a><a name="18506">
+Saves a description of the vector to file. <p>
+</a><P><a name="18468">
+<h4> Read Vector</h4>
+</a><a name="18515">
+Load a vector description file from file. <p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4-MIMETut.html">[Prev]</a> <a href="6-TOD+TextTut.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 09:13:23 -->
+
+</body>
+</html>

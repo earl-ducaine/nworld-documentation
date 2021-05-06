@@ -1,0 +1,492 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="AASCIIObjectFileFormat.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="25337">
+<h1>Appendix B	 N&#183;World 2.1 - 3.0 <br>	Renamed Functions</h1>
+</a><a name="25895">
+Many WOW functions were renamed, deleted or otherwise modified during the transition between N&#183;World 2.1 and N&#183;World 3.0. <p>
+</a><P><a name="25902">
+<h2><HR> Function Names Preceded by $</h2>
+</a><a name="25903">
+The dollar-sign ($) prefix has been removed from all symbols with the following exceptions:<p>
+</a><P><a name="25906">
+<code><pre>$COINCIDENT-P<p>
+</code></pre></a><a name="25908">
+<code><pre>$DIST-SQUARED<p>
+</code></pre></a><a name="25909">
+<code><pre>$DISTANCE<p>
+</code></pre></a><a name="25910">
+<code><pre>$MAGNITUDE<p>
+</code></pre></a><a name="25911">
+<code><pre>$MAGNITUDE-SQUARED<p>
+</code></pre></a><a name="25899">
+<h2><HR> Anti-Generic Functions (! Suffixes)</h2>
+</a><a name="25914">
+Many N&#183;World 2.1 functions existed in two forms, with and without the suffix (which generally denotes a Nichimen Anti-Generic optimization). The following functions existed with and without the ! in N&#183;World 2.1, but now exist in only one form<p>
+</a><P><a name="26009">
+<code><pre>GEN-LOCUS!<p>
+</code></pre></a><a name="26011">
+<code><pre>GEN-LOCOID!<p>
+</code></pre></a><a name="26012">
+<code><pre>GEN-POINT!<p>
+</code></pre></a><a name="26013">
+<code><pre>GEN-NODE!<p>
+</code></pre></a><a name="26014">
+<code><pre>GEN-WIRE-NODE!<p>
+</code></pre></a><a name="26015">
+<code><pre>GEN-VERTEX!<p>
+</code></pre></a><a name="26016">
+<code><pre>GEN-ARC-CENTER!<p>
+</code></pre></a><a name="26017">
+<code><pre>GEN-CROSSHAIR!<p>
+</code></pre></a><a name="26018">
+<code><pre>GEN-LOCATOR!<p>
+</code></pre></a><a name="26019">
+<code><pre>GEN-DIRECTION-VECTOR!<p>
+</code></pre></a><a name="26020">
+<code><pre>GEN-ORIENTATION-VECTOR!<p>
+</code></pre></a><a name="26021">
+<code><pre>GEN-PLANE!<p>
+</code></pre></a><a name="26022">
+<code><pre>GEN-CONSTRAINED-NODE!<p>
+</code></pre></a><a name="26023">
+<code><pre>GEN-WEIGHTED-CONSTRAINED-NODE!<p>
+</code></pre></a><a name="26024">
+<code><pre>GEN-CONTROL-POINT!<p>
+</code></pre></a><a name="26025">
+<code><pre>GEN-WEIGHTED-CONTROL-POINT!<p>
+</code></pre></a><a name="26031">
+The following function existed in both forms in N&#183;World 2.1, but their anti-generic counterparts have been removed from N&#183;World 3.0:<p>
+</a><P><a name="26078">
+For example, $DOT! and $DOT both existed in N&#183;World 2.1, but only $DOT exists in N&#183;World 3.0.<p>
+</a><P><a name="26032">
+<code><pre>$DOT<p>
+</code></pre></a><a name="26034">
+<code><pre>GEN-FVECTOR<p>
+</code></pre></a><a name="26035">
+<code><pre>GEN-FQUAD<p>
+</code></pre></a><a name="26036">
+<code><pre>GEN-FTRIPLET<p>
+</code></pre></a><a name="26037">
+<code><pre>GEN-DOUBLET<p>
+</code></pre></a><a name="26038">
+<code><pre>GEN-FSINGLET<p>
+</code></pre></a><a name="26039">
+<code><pre>GEN-DUMMY-BODY<p>
+</code></pre></a><a name="26040">
+<code><pre>GEN-BODY-ON-FILE<p>
+</code></pre></a><a name="26041">
+<code><pre>$GEN-LOCUS<p>
+</code></pre></a><a name="26042">
+<code><pre>$GEN-POINT<p>
+</code></pre></a><a name="26043">
+<code><pre>$GEN-NODE<p>
+</code></pre></a><a name="26044">
+<code><pre>$GEN-WIRE-NODE!<p>
+</code></pre></a><a name="26045">
+<code><pre>$GEN-VERTEX<p>
+</code></pre></a><a name="26046">
+<code><pre>$GEN-ARC-CENTER<p>
+</code></pre></a><a name="26047">
+<code><pre>GEN-SEGMOID<p>
+</code></pre></a><a name="26048">
+<code><pre>GEN-LINE-SEGMENT<p>
+</code></pre></a><a name="26049">
+<code><pre>GEN-WINGED-SEGMENT<p>
+</code></pre></a><a name="26050">
+<code><pre>GEN-WIRE-SEGMENT<p>
+</code></pre></a><a name="26051">
+<code><pre>GEN-WINGED-ARC<p>
+</code></pre></a><a name="26052">
+<code><pre>GEN-WIRE-ARC<p>
+</code></pre></a><a name="26053">
+<code><pre>GEN-EDGE<p>
+</code></pre></a><a name="26054">
+<code><pre>$GEN-CONSTRAINED-NODE,<p>
+</code></pre></a><a name="26055">
+<code><pre>$GEN-WEIGHTED-CONSTRAINED-NODE<p>
+</code></pre></a><a name="26056">
+<code><pre>$GEN-CONTROL-POINT<p>
+</code></pre></a><a name="26057">
+<code><pre>GEN-WINGED-BEZIER-CURVE<p>
+</code></pre></a><a name="26058">
+<code><pre>GEN-WIRE-BEZIER-CURVE,<p>
+</code></pre></a><a name="26059">
+<code><pre>GEN-WINGED-BSPLINE-CURVE<p>
+</code></pre></a><a name="26060">
+<code><pre>GEN-WIRE-BSPLINE-CURVE,<p>
+</code></pre></a><a name="26061">
+<code><pre>GEN-FACE<p>
+</code></pre></a><a name="26062">
+<code><pre>GEN-WIRE<p>
+</code></pre></a><a name="26063">
+<code><pre>GEN-RING-BASE<p>
+</code></pre></a><a name="26064">
+<code><pre>GEN-POLYHEDRON,<p>
+</code></pre></a><a name="26065">
+<code><pre>GEN-OBJECT<p>
+</code></pre></a><a name="26066">
+<code><pre>GEN-BDI<p>
+</code></pre></a><a name="26067">
+<code><pre>GEN-INSTANCED-ELEMENT<p>
+</code></pre></a><a name="26068">
+<code><pre>GEN-INDEPENDENT-AXIS<p>
+</code></pre></a><a name="26069">
+<code><pre>GEN-NORMAL-AXIS<p>
+</code></pre></a><a name="26070">
+<code><pre>GEN-MIDPOINT-AXIS<p>
+</code></pre></a><a name="26071">
+<code><pre>GEN-SEGPOINT<p>
+</code></pre></a><a name="26072">
+<code><pre>GEN-WF-SEGMENT<p>
+</code></pre></a><a name="26073">
+<code><pre>GEN-WIRE-FRAME<p>
+</code></pre></a><a name="26074">
+<code><pre>GEN-CUBE-WIRE-FRAME<p>
+</code></pre></a><a name="26075">
+<code><pre>GEN-RECTANGULAR-MESH,<p>
+</code></pre></a><a name="26076">
+<code><pre>$MATRIX-CENTER<p>
+</code></pre></a><a name="26077">
+<code><pre>$SET-MATRIX-CENTER<p>
+</code></pre></a><a name="26115">
+<h2><HR> Functions Which have been Deleted</h2>
+</a><a name="26116">
+The following functions have been deleted entirely, and are undefined in N&#183;World 3.0:<p>
+</a><P><a name="26117">
+<code><pre>MAKE-POLYHEDRON<p>
+</code></pre></a><a name="26119">
+<code><pre>MAKE-POINT!<p>
+</code></pre></a><a name="26120">
+<code><pre>MAKE-POINT<p>
+</code></pre></a><a name="26121">
+<code><pre>$MAKE-POINT<p>
+</code></pre></a><a name="26122">
+<code><pre>MULTIPLE-VALUE-LOCUS<p>
+</code></pre></a><a name="26123">
+<code><pre>$MULTIPLE-VALUE-LOCUS<p>
+</code></pre></a><a name="26124">
+<code><pre>MULTIPLE-VALUE-VECTOR<p>
+</code></pre></a><a name="26125">
+<code><pre>MULTIPLE-VALUE-PLANE<p>
+</code></pre></a><a name="26126">
+<code><pre>MULTIPLE-VALUE-TRIPLET<p>
+</code></pre></a><a name="26127">
+<code><pre>MULTIPLE-VALUE-QUADRUPLET<p>
+</code></pre></a><a name="26128">
+<h2><HR> Renamed Functions</h2>
+</a><a name="26129">
+<a href="B-2.1-3.0RenamedFunctions.html#26129">Table B.1</a> lists functions renamed for N&#183;World 3.0:	 
+<P><Table Border="1">
+<dl>
+<a name="26516">
+<em>Table B.1 <strong></strong> &#32; &#32;Functions renamed for N&#183;World 3.0
+</em></a></dl>
+<tr><th align="left"><a name="26699">
+N&#183;World 2.1
+</a><th align="left"><a name="26522">
+N&#183;World 3.0
+</a>
+<tr><td valign="top"><a name="26707">
+ <code>FIND-BOUNDS</code><p>
+</a><td valign="top"><a name="26709">
+ <code>MV-FIND-BOUNDS</code><p>
+</a>
+<tr><td valign="top"><a name="26524">
+ <code>FIND-BOUNDS-MIDPOINT</code><p>
+</a><td valign="top"><a name="26526">
+ <code>MV-FIND-MIDPOINT</code><p>
+</a>
+<tr><td valign="top"><a name="26528">
+ <code>FIND-DIMENSIONS</code><p>
+</a><td valign="top"><a name="26530">
+ <code>MV-FIND-DIMENSIONS</code><p>
+</a>
+<tr><td valign="top"><a name="26532">
+ <code>FIND-DIVISION-POINT</code><p>
+</a><td valign="top"><a name="26534">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26536">
+ <code>FIND-MIDPOINT</code><p>
+</a><td valign="top"><a name="26538">
+ <code>MV-FIND-MIDPOINT</code><p>
+</a>
+<tr><td valign="top"><a name="26540">
+ <code>FIND-BOUNDS-MIDPOINT</code><p>
+</a><td valign="top"><a name="26542">
+ <code>MV-FIND-BOUNDS-MIDPOINT</code><p>
+</a>
+<tr><td valign="top"><a name="26544">
+ <code>FIND-NORMAL</code><p>
+</a><td valign="top"><a name="26546">
+ <code>MV-FIND-NORMAL</code><p>
+</a>
+<tr><td valign="top"><a name="26548">
+ <code>FIND-MEAN-NORMAL</code><p>
+</a><td valign="top"><a name="26550">
+ <code>MV-FIND-MEAN-NORMAL</code><p>
+</a>
+<tr><td valign="top"><a name="26552">
+ <code>INSERT-NEW-EDGE-OPPOSITE</code><p>
+</a><td valign="top"><a name="26554">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26556">
+ <code>MOVE</code><p>
+</a><td valign="top"><a name="26558">
+ <code>MV-MOVE</code><p>
+</a>
+<tr><td valign="top"><a name="26560">
+ <code>PARSE-DIRECTION-FROM-VALUE</code><p>
+</a><td valign="top"><a name="26562">
+ <code>MV-DIRECTION</code><p>
+</a>
+<tr><td valign="top"><a name="26564">
+ <code>PARSE-TRIPLET-FROM-VALUE</code><p>
+</a><td valign="top"><a name="26566">
+ <code>MV-LOCATION | MV-SCALER;  (ok for FIXNUMS)</code><p>
+</a>
+<tr><td valign="top"><a name="26568">
+ <code>SCALE</code><p>
+</a><td valign="top"><a name="26570">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26572">
+ <code>SCALE-CHOPPED</code><p>
+</a><td valign="top"><a name="26574">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26576">
+ <code>SET-COORDINATES</code><p>
+</a><td valign="top"><a name="26578">
+ <code>SET-MV-LOCATION</code><p>
+</a>
+<tr><td valign="top"><a name="26580">
+ <code>SET-DIRECTION</code><p>
+</a><td valign="top"><a name="26582">
+ <code>SET-MV-DIRECTION</code><p>
+</a>
+<tr><td valign="top"><a name="26584">
+ <code>XYZ-MIDPOINT-SCALE-CHOPPED</code><p>
+</a><td valign="top"><a name="26586">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26588">
+ <code>XYZ-SCALE</code><p>
+</a><td valign="top"><a name="26590">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26592">
+ <code>XYZ-SCALE-CHOPPED</code><p>
+</a><td valign="top"><a name="26594">
+ Deleted<p>
+</a>
+<tr><td valign="top"><a name="26596">
+ <code>DRAW-3D-LINE</code><p>
+</a><td valign="top"><a name="26598">
+ <code>MV-DRAW-3D-LINE</code><p>
+</a>
+<tr><td valign="top"><a name="26600">
+ <code>DRAW-3D-POINT</code><p>
+</a><td valign="top"><a name="26602">
+ <code>MV-DRAW-3D-POINT</code><p>
+</a>
+<tr><td valign="top"><a name="26604">
+ <code>$SCALER</code><p>
+</a><td valign="top"><a name="26606">
+ <code>3D-SCALER</code><p>
+</a>
+<tr><td valign="top"><a name="26608">
+ <code>$FILL-VIEWED-POINT!</code><p>
+</a><td valign="top"><a name="26610">
+ <code>FILL-FREE-VIEWED-POINT!</code><p>
+</a>
+<tr><td valign="top"><a name="26612">
+ <code>$EYEPOINT</code><p>
+</a><td valign="top"><a name="26614">
+ <code>EYE-COORDINATES</code><p>
+</a>
+<tr><td valign="top"><a name="26616">
+ <code>$AIMPOINT</code><p>
+</a><td valign="top"><a name="26618">
+ <code>AIM-COORDINATES</code><p>
+</a>
+<tr><td valign="top"><a name="26620">
+ <code>GET-%ASPECT-RATIO</code><p>
+</a><td valign="top"><a name="26622">
+ <code>GET-INTERNAL-ASPECT-RATIO</code><p>
+</a>
+<tr><td valign="top"><a name="26624">
+ <code>DISTANCE-FROM-PLANE</code><p>
+</a><td valign="top"><a name="26626">
+ <code>OFFSET-FROM-PLANE | CACHED-OFFSET-FROM-PLANE</code><p>
+</a>
+<tr><td valign="top"><a name="26628">
+ <code>FIND-COMPLAINTS</code><p>
+</a><td valign="top"><a name="26630">
+ <code>NOTE-COMPLAINTS</code><p>
+</a>
+<tr><td valign="top"><a name="26632">
+ <code>UPDATE-VIEWING-TRANSFORM</code><p>
+</a><td valign="top"><a name="26634">
+ <code>UPDATE-VIEW-MATRIX | UPDATE-VIEWING-TRANSFORM</code><p>
+</a>
+<tr><td valign="top"><a name="26636">
+ <code>RESTORE-VIEW-MATRIX</code><p>
+</a><td valign="top"><a name="26638">
+ <code>RESTORE-VIEWING-TRANSFORM</code><p>
+</a>
+<tr><td valign="top"><a name="26640">
+ <code>MATRIX-CENTER!</code><p>
+</a><td valign="top"><a name="26642">
+ Deleted<code> </code>(use<code> with-MATRIX-CENTER)</code><p>
+</a>
+<tr><td valign="top"><a name="26644">
+ <code>ORIGIN-TRIPLET</code><p>
+</a><td valign="top"><a name="26646">
+ <code>ORIGIN-FTRIPLET</code><p>
+</a>
+<tr><td valign="top"><a name="26652">
+ <code>$MAJOR-AXIS-COMPONENT</code><p>
+</a><td valign="top"><a name="26654">
+ <code>$FIND-MAJOR-AXIS</code><p>
+</a>
+<tr><td valign="top"><a name="26660">
+ <code>ELEMENT-DEAD-P | KILLED?</code><p>
+</a><td valign="top"><a name="26662">
+ <code>DEAD-P | KILLED?</code><p>
+</a>
+<tr><td valign="top"><a name="26664">
+ <code>OK-ELEMENT</code><p>
+</a><td valign="top"><a name="26666">
+ <code>VALID-ELEMENT</code><p>
+</a>
+<tr><td valign="top"><a name="26668">
+ <code>VALID-3D-THING</code><p>
+</a><td valign="top"><a name="26670">
+ <code>VALID-ELEMENT</code><p>
+</a>
+<tr><td valign="top"><a name="26672">
+ <code>$OFFSET-FROM-PLANE</code><p>
+</a><td valign="top"><a name="26674">
+ <code>$OFFSET-FROM-$PLANE</code><p>
+</a>
+<tr><td valign="top"><a name="26676">
+ <code>GET-ETERNAL-PROPERTY-LIST</code><p>
+</a><td valign="top"><a name="26678">
+ <code>ETERNAL-PROPERTY-LIST</code><p>
+</a>
+<tr><td valign="top"><a name="26680">
+ <code>$TRANSFORM-DIRECTION</code><p>
+</a><td valign="top"><a name="26682">
+ Deleted (use<code> $%TRANSFORM-DIRECTION)</code><p>
+</a>
+<tr><td valign="top"><a name="26684">
+ <code>REDRAW-ACTIVE-EDGES</code><p>
+</a><td valign="top"><a name="26686">
+ <code>DRAW-ACTIVE-EDGES</code><p>
+</a>
+<tr><td valign="top"><a name="26688">
+ <code>REDRAW-ACTIVE-FACES</code><p>
+</a><td valign="top"><a name="26690">
+ <code>DRAW-ACTIVE-FACES</code><p>
+</a>
+<tr><td valign="top"><a name="26692">
+ <code>SCREEN-RECORD-MIXIN</code><p>
+</a><td valign="top"><a name="26694">
+ <code>SCREEN-SENSITIVITY-MIXIN</code><p>
+</a>
+<tr><td valign="top"><a name="26696">
+ <code>PRE-RECORD-MIXIN</code><p>
+</a><td valign="top"><a name="26698">
+ <code>SCREEN-RECORD-MIXIN</code><p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="26513">
+<h2><HR> Functions with Changed Argument Lists</h2>
+</a><a name="26827">
+The following functions have different argument lists in N&#183;World 3.0 than they did for N&#183;World 2.1: 
+<P><Table Border="1">
+<dl>
+<a name="26852">
+<em>Table B.2  &#32; &#32;N&#183;World 3.0 Arguments
+</em></a></dl>
+<tr><th align="left"><a name="26856">
+Function Name
+</a><th align="left"><a name="26858">
+N&#183;World 3.0 Argument List
+</a>
+<tr><td valign="top"><a name="26860">
+ <code>GEN-LOCOID</code><p>
+</a><td valign="top"><a name="26862">
+ <code>(CLASS &amp;OPTIONAL COORDS3F SERIAL-NUM ACC&amp;INITS)</code><p>
+</a>
+<tr><td valign="top"><a name="26864">
+ <code>GEN-LOCUS</code><p>
+</a><td valign="top"><a name="26866">
+ <code>(&amp;OPTIONAL COORDS3F)</code><p>
+</a>
+<tr><td valign="top"><a name="26868">
+ <code>TRANSFORMING-COORDINATES</code><p>
+</a><td valign="top"><a name="26870">
+ <code>((X Y &amp;OPTIONAL Z W) (TRANSFORM-MATRIX &amp;KEY RETURN)(&amp;OPTIONAL XVAR YVAR ZVAR WVAR OCODE INDEX INDEX-DEFAULT) &amp;BODY BODY-SEXP)</code><p>
+</a>
+<tr><td valign="top"><a name="26872">
+ <code>MAKE-NODE!</code><p>
+</a><td valign="top"><a name="26874">
+ <code>((&amp;OPTIONAL COORDS-OR-X Y Z) SERIAL-NUM PARENT &amp;OPTIONAL CLASS)</code><p>
+</a>
+<tr><td valign="top"><a name="26876">
+ <code>MAKE-WIRE-NODE!</code><p>
+</a><td valign="top"><a name="26878">
+ <code>(WIRE COORDS-OR-LIST &amp;OPTIONAL SERIAL-NUM)</code><p>
+</a>
+<tr><td valign="top"><a name="26880">
+ <code>MAKE-VERTEX!</code><p>
+</a><td valign="top"><a name="26882">
+ <code>(POINT-RING-MIXIN (&amp;OPTIONAL COORDS-OR-X Y Z) &amp;OPTIONAL SERIAL-NUM CLASS RING-BASE PREV)</code><p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="26828">
+<h3> View-Related Camera Methods</h3>
+</a><a name="26814">
+View-related methods of the camera (viewer-field) such as position, direction, view-angle, etc, now apply to a separate instance, the camera's viewer. Replace the camera in those args with <p>
+</a><P><a name="26826">
+<code><pre>(get-viewer &lt;camera&gt;)<p>
+</code></pre></a>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="AASCIIObjectFileFormat.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:34:48 -->
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<html><head><title>Magnet Operations</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Cube.html">[Prev]</a> <a href="6Dungeon.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Magnet Operations</h1>
+</a>
+<hr><p><a name="13225">
+<h4> In this chapter you'll learn how to use N-Geometry's magnet operation technique to distribute the effect of a command over a selected area of a model.</h4>
+</a><a name="9046">
+ <P><img src="5Mountains.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="13077">
+You'll learn about the following concepts:<p>
+</a><P><ul><a name="8410">
+<li>Magnet operations
+</a></li><P></ul><P><a name="13055">
+<h2><HR> Building a Mountain Range</h2>
+</a>
+<a name="13056">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="13059">
+<STRONG>	2.	 <strong>(CTRL-L)</strong> on Grid.
+</STRONG>
+</a><P><dl><a name="13057">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="11428">
+ <P><img src="5Mountains.anc1.gif"><p>
+</a></dl>
+<a name="11441">
+<em>Figure 5.1  &#32; &#32;Starting with a primitive
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Holding down the <strong>CTRL</strong> key when creating any primitive lets you specify additional parameters about how the primitive is created.</font></dd></dt><dl><a name="11875">
+<dt>Additional parameters typically let you specify size, orientation, number of subdivisions in the object, and so forth.</dt>
+</a><P></dl></dl><P>
+
+<a name="11884">
+<STRONG>	3.	 Set the Orientation to Y and <strong>(CLICK-L)</strong> on the Make Grid button.
+</STRONG>
+</a><P>
+<a name="11895">
+A grid appears in the N-Geometry window:<p>
+</a><P><a name="11903">
+ <P><img src="5Mountains.anc2.gif"><p>
+</a><a name="11904">
+<em>Figure 5.2  &#32; &#32;A simple grid, oriented along the Y plane
+</em></a><P><a name="11784">
+<h2><HR> Using Magnet Operations</h2>
+</a><a name="12007">
+Magnet moves let you perform an operation on an entire <em>area</em> of an object; the effect of the operation is strongest at the center of the area, and falls off toward the edge. We can use this magnet feature to create some very natural looking deformations. We'll use it in the sample below to pull up a natural looking mountain from a flat surface:<p>
+</a><P>
+<a name="12006">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on a vertex near the corner of the grid.
+</STRONG>
+</a><P><dl><a name="12086">
+<dt>This will be the "peak" of our first mountain:</dt>
+</a><P><a name="12100">
+ <P><img src="5Mountains.anc3.gif"><p>
+</a></dl>
+<a name="12101">
+<em>Figure 5.3  &#32; &#32;Select the peak of the mountain
+</em></a><P>
+<a name="12087">
+<STRONG>	5.	 <strong>(ALT-M)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="13068">
+<dt>Hold down the <strong>ALT</strong> key when you <strong>(CLICK-L)</strong> on <strong>Axis Move</strong>.</dt>
+</a><P></dl><a name="12090">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Y to select the Y Axis.
+</STRONG>
+</a><P>
+<a name="12043">
+Now, move the cursor over the grid again. You'll notice that as you move the cursor over the model, the vertex under the cursor is highlighted. <p>
+</a><P><a name="12163">
+When the cursor is in this mode, you're being asked to select a point that defines the perimeter for the area of influence for the magnet move.<p>
+</a><P>
+<a name="12031">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on a vertex two units away from your peak.
+</STRONG>
+</a><P><a name="11955">
+ <P><img src="5Mountains.anc4.gif"><p>
+</a>
+<a name="11956">
+<em>Figure 5.4  &#32; &#32;Choose a point a short distance from the "center" of the magnet move
+</em></a><P><a name="12201">
+This defines the area of influence for the move. <p>
+</a><P>
+<a name="12170">
+<STRONG>	8.	 Move the mouse to the right.
+</STRONG>
+</a><P><dl><a name="12224">
+<dt>The vertex at the center rises the most; those toward the edge are affected less and less the further they are from the original point selected:</dt>
+</a><P><a name="12239">
+ <P><img src="5Mountains.anc5.gif"><p>
+</a></dl>
+<a name="12240">
+<em>Figure 5.5  &#32; &#32;Drag the mouse right and left to pull up the mountain
+</em></a><P><a name="12518">
+<h3> Magnet Moves on Multiple Elements</h3>
+</a><a name="12550">
+How is influence calculated if you have multiple elements selected?<p>
+</a><P><a name="12551">
+Try this:<p>
+</a><P>
+<a name="12578">
+<STRONG>	9.	 Collect several points on the grid that are somewhat separated from each other.
+</STRONG>
+</a><P><a name="12570">
+ <P><img src="5Mountains.anc6.gif"><p>
+</a>
+<a name="12571">
+<em>Figure 5.6  &#32; &#32;Select several vertices on the grid
+</em></a><P>
+<a name="12605">
+<STRONG>	10.	 <strong>(ALT-M)</strong> on Axis Move.
+</STRONG>
+</a><P><a name="12606">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Y to select the Y Axis.
+</STRONG>
+</a><P><a name="12609">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on a vertex one square away from the peak closest to the upper right grid.
+</STRONG>
+</a><P><a name="13099">
+ <P><img src="5Mountains.anc7.gif"><p>
+</a>
+<a name="12680">
+<em>Figure 5.7  &#32; &#32;Select an area of influence
+</em></a><P>
+<a name="12681">
+<STRONG>	13.	 Move the mouse to the right and pull up several mountains.
+</STRONG>
+</a><P><dl><a name="12682">
+<dt>Note that all the mountains are identical; the sphere of influence is based on the distance of the point selected in step <a href="5Mountains.html#12609">12</a> and the nearest selected element.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The "sphere of influence" is calculated based on the defining vertex's distance from the closest selected element.</font></dd></dt><a name="13119">
+ <P><img src="5Mountains.anc8.gif"><p>
+</a></dl><P>
+<a name="12716">
+<em>Figure 5.8  &#32; &#32;The sphere of influence is the same for each selected element
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This feature makes it easy to create features such as scales on a dragon (or other types of bumps across a wide surface) using a uniform area of influence.</font></dd></dt></dl><P>
+<a name="12726">
+If you want to have different areas of influence for different elements, you should select them independently.<p>
+</a><P><a name="12740">
+Try pulling out several different mountains, using different areas of influence.<p>
+</a><P><a name="12561">
+<h3> Performing Magnet Moves on Other <br>Element Types</h3>
+</a><a name="12562">
+You can perform a magnet move using a vertex, segment, or face as the "center" for the area of influence.<p>
+</a><P><a name="12553">
+Repeat steps <a href="5Mountains.html#12006">4</a> through <a href="5Mountains.html#12170">8</a>, selecting a segment or face (instead of a vertex) in step <a href="5Mountains.html#12006">4</a>.<p>
+</a><P><a name="12797">
+ <P><img src="5Mountains.anc9.gif"><p>
+</a><a name="12798">
+<em>Figure 5.9  &#32; &#32;A mountain range landscape with 101 polygons (1 on bottom!)
+</em></a><P><a name="12521">
+<h3> Which Commands?</h3>
+</a><a name="12773">
+The magnet feature can be used with almost any modify operation in N-Geometry.<p>
+</a><P><a name="12789">
+Conceptually, the important thing to understand is that there is a falloff across the defined area. Some other example might produce results like those shown below.<p>
+</a><P><a name="12872">
+<h2><HR> Making an Egg</h2>
+</a>
+<a name="12853">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the face on top of the sphere, then <strong>(ALT-M)</strong> on Axis Move&gt;Y.
+</STRONG>
+</a><P><a name="13127">
+ <P><img src="5Mountains.anc10.gif"><p>
+</a>
+<a name="13128">
+<em>Figure 5.10  &#32; &#32;Select the top face on the sphere
+</em></a><P>
+<a name="12859">
+<STRONG>	2.	 Select a point somewhere near the sphere's "equator" to set the area of influence.
+</STRONG>
+</a><P><a name="12866">
+<STRONG>	3.	 Move the mouse to the right.
+</STRONG>
+</a><P><a name="12821">
+ <P><img src="5Mountains.anc11.gif"><p>
+</a>
+<a name="12822">
+<em>Figure 5.11  &#32; &#32;Magnet with Scale operation
+</em></a><P><a name="12873">
+<h2><HR> Creating a "Vacuum" Effect</h2>
+</a><a name="12878">
+If you want to simulate part of a model being "pulled," or sucked into a vacuum, you want to use a magnet move. <p>
+</a><P><a name="12915">
+Try this:<p>
+</a><P>
+<a name="12883">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the face on top of the sphere.
+</STRONG>
+</a><P><a name="12884">
+<STRONG>	2.	 <strong>(ALT-M)</strong> on Rotate&gt;X.
+</STRONG>
+</a><P><a name="12885">
+<STRONG>	3.	 Select a point somewhere near the sphere's "equator" to set the area of influence.
+</STRONG>
+</a><P><a name="12886">
+<STRONG>	4.	 Move the mouse to the right.
+</STRONG>
+</a><P><dl><a name="12894">
+<dt>(Note that in the example below, note that the object we're performing the magnet move on has been moved from global center.)</dt>
+</a><P><a name="12836">
+ <P><img src="5Mountains.anc12.gif"><p>
+</a></dl>
+<a name="12837">
+<em>Figure 5.12  &#32; &#32;Magnet with Rotate operation
+</em></a><P><a name="12916">
+We'll use magnet operations in several of the other N-Geometry tutorials.<p>
+</a><P><a name="12765">
+<h3> How the Area of Influence is Calculated</h3>
+</a><a name="12474">
+There are several methods for determining the area of influence when performing a magnet move; these methods are described in detail in the <em>N-Geometry Reference Guide.</em> Some methods use a "spherical" area of influence, while others measure the area along the surface.<p>
+</a><P><a name="12466">
+<h4> Specifying an Area of Influence Numerically</h4>
+</a><a name="12541">
+If you want to specify the area of influence numerically, hold down both the<strong> ALT</strong> and <strong>CTRL</strong> keys when selecting the operation like Axis Move. This brings up the following menu, which is described in the following section:<p>
+</a><P><a name="12386">
+ <P><img src="5Mountains.anc13.gif"><p>
+</a><a name="12387">
+<em>Figure 5.13  &#32; &#32;Specifying an area of influence numerically
+</em></a><P><ul><a name="12442">
+<li><strong>Influence dist</strong> lets you specify the distance used for calculating the area of influence. 
+</a></li><P><ul>
+<BR><a name="12445">
+<li>If you use either the <strong>Midpoint</strong> or <strong>Shortest</strong> methods, the distance represents the radius of the "invisible" sphere. 
+</a><P><BR><a name="12446">
+<li>If you use the <strong>Surface</strong> method, it represents the distance measured along the surface of the object.
+</a><P></ul>
+<dl><a name="12261">
+<dt>Both of these methods are described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl></ul><P><a name="13133">
+<h2><HR> Congratulations!</h2>
+</a><a name="13138">
+You've now learned how to use magnet moves to create natural looking features on a landscape. You can use the magnet feature with most of N-Geometry's commands.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4Cube.html">[Prev]</a> <a href="6Dungeon.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 10:42:52 -->
+
+</body>
+</html>

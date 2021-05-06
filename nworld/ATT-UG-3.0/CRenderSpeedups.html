@@ -1,0 +1,132 @@
+<html><head><title>Increasing Render Speed</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="BFileTypes.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="6517">
+<h1>Increasing Render Speed</h1>
+</a>
+<hr><p><a name="6841">
+There are a number of features in N-Render, but it's somewhat difficult to say that any one is more expensive (in terms of render time) than another. This chapter describes some basic rendering techniques for getting the best performance out of N-Render.<p>
+</a><P><a name="7366">
+<h3> Basics</h3>
+</a><ul><a name="7409">
+<li>When creating materials, be aware of your memory usage. Every map loaded into memory takes up some space, reducing the amount of memory left for N&#183;World left to run, and potentially slowing down N-Render.
+</a></li><P><a name="6844">
+<li>If you load a lot of texture in to memory at a high resolution you will use all your memory up and the machine will run slow.
+</a></li><P><a name="6847">
+<li>Shaders have little affect on render time unless you are using raytracing, visibility, or face control. You can create solid color materials using shader parameters-there is no need for single color texture maps unless you are planning to use N-Paint 3D on it.
+</a></li><P></ul><P><a name="6852">
+<h3> Mapping Questions</h3>
+</a><ul><a name="6854">
+<li>Texture maps have a minimal effect on render time, as long as the texture map resolution is not too high.
+</a></li><P><a name="6857">
+<li>What is too high? Well, if your rendered image is 640x480, then you shouldn't need any texture map bigger then 512x512. (The only time you might need to use a larger map is if the object gets very close to the camera and you want the detail of the map to hold up).
+</a></li><P><a name="7434">
+<li>Another mapping technique is to create seamless texture maps that repeat over and over with no apparent border. This lets you seamlessly texture an object without using additional memory. Creating seamless texture maps is described in the <em>N-Paint Tutorial</em>. 
+</a></li><P><a name="7475">
+<li>Once you have a seamless texture map, you can force the UVs of the mapper to repeat so that the texture is applied in a regular pattern over the surface of the object. For example, if you switch from a 512x512 texture to a 256x256 texture that has a UV scale of 2,2, you will use only 1/4 of the memory.
+</a></li><P><a name="6866">
+<li>Bump maps can double or triple the render time of your scene-use them wisely.
+</a></li><P><a name="6869">
+<li>Reflection and refraction maps can be used to simulate the raytracing effects possible in N-Render. Reflection maps do not slow down N-R		render very much.
+</a></li><P><a name="7468">
+<li>Raytracing can slow down your renders significantly. Use reflection or refraction maps if they will give you the same effect as raytracing-you'll save a lot of render time.
+</a></li><P><a name="7452">
+<li>Opacity maps on objects that are close to the camera will make the render very slow (since the render must render "clear" pixels).
+</a></li><P><a name="6880">
+<li>The more light you have in you scene will have an affect on the render time. Raytrace lights will also double or triple the render time.
+</a></li><P></ul><P><a name="6887">
+<h3> Things to Remember</h3>
+</a><a name="6889">
+The more complex your scene, the longer the render. Adding to the number of faces in the scene always adds to the render time.<p>
+</a><P><a name="6890">
+Rendering objects very close to the camera has a drastic affect on rendering time (when using complex materials).<p>
+</a><P><a name="6893">
+The table below should give you a relative idea of the trade-offs for feature vs. speed when rendering with N-Render. 
+<P><Table Border="1">
+<dl>
+<a name="7305">
+<em>Table C.1 <strong></strong><em> &#32; &#32;Effect of features on render time</em>
+</em></a></dl>
+<tr><th align="left"><a name="7309">
+Feature
+</a><th align="left"><a name="7311">
+Effect on Render Time
+</a>
+<tr><td valign="top"><a name="7313">
+ Lights without Shadows<p>
+</a><td valign="top"><a name="7315">
+ Low<p>
+</a>
+<tr><td valign="top"><a name="7317">
+ Texture Maps<p>
+</a><td valign="top"><a name="7319">
+ Low<p>
+</a>
+<tr><td valign="top"><a name="7321">
+ Reflection Maps<p>
+</a><td valign="top"><a name="7323">
+  Low<p>
+</a>
+<tr><td valign="top"><a name="7325">
+ Refraction Maps<p>
+</a><td valign="top"><a name="7327">
+  Low<p>
+</a>
+<tr><td valign="top"><a name="7329">
+ Shader Type<p>
+</a><td valign="top"><a name="7331">
+ Low (unless you are using raytracing, visibility, or face control)<p>
+</a>
+<tr><td valign="top"><a name="7333">
+ Lights with Shadow Maps<p>
+</a><td valign="top"><a name="7335">
+ Medium<p>
+</a>
+<tr><td valign="top"><a name="7337">
+ Bump Maps<p>
+</a><td valign="top"><a name="7339">
+ Medium<p>
+</a>
+<tr><td valign="top"><a name="7341">
+ Raytracing Lights/Materials<p>
+</a><td valign="top"><a name="7343">
+ Medium-High<p>
+</a>
+<tr><td valign="top"><a name="7345">
+ Opacity<p>
+</a><td valign="top"><a name="7347">
+  High<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="7093">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="BFileTypes.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 13:38:38 -->
+
+</body>
+</html>

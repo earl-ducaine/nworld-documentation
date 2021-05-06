@@ -1,0 +1,611 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="IntrotoWOW.html">[Prev]</a> <a href="NWorldDevoEnvironment.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="27895">
+Lisp (LISt Processing) is one of the most refined of the programming languages in use today. Originally developed in the early 1960s, it has developed into a rich and complex, fully object-oriented language. In fact, it is the only object oriented language with an ANSI standard. Today, Lisp is used in a wide range of applications, from Artificial Intelligence research to computer graphics.<p>
+</a><P><a name="29716">
+This chapter provides a brief overview of some of the most important Lisp concepts, including:<p>
+</a><P><ul><a name="29717">
+<li>Interpretation and evaluation
+</a></li><P><a name="29718">
+<li>Forms and syntax
+</a></li><P><a name="29719">
+<li>Defining functions
+</a></li><P><a name="29720">
+<li>Creating and manipulating lists
+</a></li><P><a name="29727">
+<li>Data structures, including variables and arrays
+</a></li><P><a name="29728">
+<li>Lisp classes
+</a></li><P></ul><P><a name="29715">
+<h2><HR> The Lisp Interpreter and Evaluation</h2>
+</a><a name="27898">
+Xemacs includes an interface with the Allegro Common Lisp interpreter. This interface includes, among other things, several Xemacs menu items, as well as the Lisp prompt:<p>
+</a><P><a name="29736">
+<code><pre>USER(1):<p>
+</code></pre></a><a name="28068">
+The current Lisp package is shown on the left sign of the prompt, while an incremental counter (similar to many UNIX shell prompts) appears on the right. You enter your Lisp forms to the right of the colon.<p>
+</a><P><a name="29737">
+You interact with Lisp the Lisp interpreter through the Lisp <em>listener</em>. You supply the <em>listener</em> with <em>forms </em>or<em> symbols</em> for <em>evaluation</em>. Evaluation always produces a result, which is returned by the interpreter. This result is called the <em>returned	 value</em>. Generally, Lisp forms are evaluated when you hit the return key after typing them into the interpreter. The process of reading input, evaluating symbols, and printing the returned value is called the read-eval-print loop.<p>
+</a><P><a name="27950">
+For example, consider how to add the numbers 2 and 2. In Lisp you evaluate the form:<p>
+</a><P><a name="27958">
+<code><pre>USER(2): (</a>+ 2 2)<p>
+</code></pre></a><a name="27955">
+and Lisp returns the value 4. <p>
+</a><P><a name="27967">
+<code><pre>USER(2): (+ 2 2)<p>
+</code></pre></a><a name="27975">
+<code><pre>4<p>
+</code></pre></a><a name="30198">
+In other words, the form (+ 2 2) evaluates to 4. We can symbolize this relationship with the =&gt; symbol, which means "evaluates to.":<p>
+</a><P><a name="30199">
+<code><pre>(+ 2 2) =&gt; 4<p>
+</code></pre></a><a name="27937">
+<h2><HR> Symbols</h2>
+</a><a name="27981">
+Symbols are named data objects which serve to name functions and variables within programs. Internally, a symbol is a data structure with five components:<p>
+</a><P><ul><a name="30203">
+<li>Symbol-name - the name of the symbol.
+</a></li><P><a name="30204">
+<li>Symbol-function - a compiled code object.
+</a></li><P><a name="30205">
+<li>Symbol-value - a value bound to the symbol.
+</a></li><P><a name="30209">
+<li>Symbol-plist - a list of properties associated with the symbol.
+</a></li><P><a name="30210">
+<li>Symbol-package - the package which contains the symbol.
+</a></li><P></ul><P><a name="30200">
+For now, we'll focus on symbol-name and symbol-value. Values are associated with symbols by binding. For example, the <code>setf</code> function binds a symbol to a value, as in this form:<p>
+</a><P><a name="27993">
+<code><pre>USER(3): (</a>setf x 7)<p>
+</code></pre></a><a name="27995">
+<code><pre>7<p>
+</code></pre></a><a name="28005">
+A symbol bound to a value has a<em> symbol-name</em> and a <em>symbol-value</em>. Evaluating a symbol returns the value of that symbol.<p>
+</a><P><a name="28011">
+<code><pre>USER(4): x<p>
+</code></pre></a><a name="28013">
+<code><pre>7<p>
+</code></pre></a><a name="28015">
+However, if you evaluate a symbol with the single-quote sign ('), the symbol-name is returned:<p>
+</a><P><a name="28016">
+<code><pre>USER(5): 'x<p>
+</code></pre></a><a name="28017">
+<code><pre>x<p>
+</code></pre></a><a name="27879">
+Symbols allow you to reference either the symbols themselves, or the values they are bound to. They can be bound to any Lisp data type, including complex data structures, classes, and functions. In addition, all Lisp data objects, including every function and variable defined in N&#183;World, are themselves symbols.<p>
+</a><P><a name="28749">
+<h2><HR> Packages</h2>
+</a><a name="28751">
+Packages are collections of Lisp symbols which serve as name spaces. They provide a handy way of preventing name conflicts when several developers are working on different pieces of a large project. Symbols within packages can be declared to be internal or external.<p>
+</a><P><ul><a name="28754">
+<li><em>External</em> symbols can be referred by any other package using single-colon syntax:
+</a></li><P><a name="28755">
+<code><pre>PackageA:foofunction<p>
+</code></pre></a><a name="28758">
+<li><em>Internal</em> symbols can also be called at any time, using double-colon syntax:
+</a></li><P><a name="28759">
+<code><pre>PackageA::foofunction<p>
+</code></pre></a></ul><P><a name="29755">
+A given package can also be declared to use another package. If package A uses package B, then symbols in package B can be used by functions in package A as if they were internal to A itself. No special syntax is required. However, it is usually prudent to use single-colon syntax to help keep track of which functions are truly internal to a package, and which are defined externally.<p>
+</a><P><a name="28761">
+Packages can have both names and nicknames. For instance, a given package might have the name Package A, and the nicknames A and PA.<p>
+</a><P><a name="28747">
+<h2><HR> Forms and Evaluation</h2>
+</a><a name="28288">
+A Lisp <em>form</em> is an expression, enclosed within parentheses, which returns a value when evaluated by the Lisp interpreter. Forms can themselves contain other forms nested within them. Evaluation occurs from left to right. Evaluation for the form:<p>
+</a><P><a name="30235">
+<code><pre>(+ 2 3)<p>
+</code></pre></a><a name="30236">
+can be summarized:<p>
+</a><P><dl><dl><a name="30240">
+<dt>2 =&gt; 2</dt>
+</a><P><a name="30241">
+<dt>3 =&gt; 3</dt>
+</a><P><a name="30242">
+<dt>+ with arguments 2 and 3 =&gt; 5</dt>
+</a><P></dl></dl><a name="28297">
+Numbers, strings enclosed within double-quotes (") and quoted symbols (e.g. `x , `blivet) evaluate to themselves. Unquoted symbols which have been bound to values (in other words, for which symbol-value is not undefined) evaluate to their values. If a symbol has not been bound to a value, evaluating it results in an error.<p>
+</a><P><a name="27880">
+<h2><HR> Functions</h2>
+</a><a name="28168">
+A <em>function</em> is any symbol which can be executed as code when supplied with the appropriate number and types of arguments. Functions accept <em>arguments</em> and return values. For example, the Lisp addition function + operates on arguments you supply:<p>
+</a><P><a name="28178">
+<code><pre>USER(7): (+ 2 2)<p>
+</code></pre></a><a name="28179">
+<code><pre>4<p>
+</code></pre></a><a name="28180">
+This function can be described as "performing the addition function on the arguments two and two returns the value four." Symbols can also be used as arguments in a function, as in this example:<p>
+</a><P><a name="28183">
+<code><pre>USER(8): (setf x 9)								;Bind the symbol x to the value 9<p>
+</code></pre></a><a name="28184">
+<code><pre>9								;Lisp returns the symbol value<p>
+</code></pre></a><a name="28185">
+<code><pre>USER(9): (+ x 1)								;Evaluate + with arguments x and 1<p>
+</code></pre></a><a name="28186">
+<code><pre>10								;Lisp returns the result<p>
+</code></pre></a><a name="28187">
+Because functions return values, they can be used as arguments themselves.<p>
+</a><P><a name="28190">
+<code><pre>USER(10): (+ 1 (+ 2 3))<p>
+</code></pre></a><a name="28191">
+<code><pre>6<p>
+</code></pre></a><a name="28173">
+In this example, Lisp evaluates the forms from the inside out. The form <code>(+ 2 3) </code>returns the value 5, which is then supplied as an argument to the second form, <br><code>(+ 1 5)</code>. Arguments supplied to a function from outside of that function are said to be passed from one function to another. In this example, the inner function passes it's result, 5, to the next function, which accepts it as an argument.<p>
+</a><P><a name="30977">
+<h2><HR> Evaluation, Side Effects, <br>and Functional Programming</h2>
+</a><a name="30978">
+Functional programming is the dominant paradigm for Lisp programmers.  Whereas other languages encourage you to use variables to store values, Lisp programmers focus on the <em>return values</em> of their functions. Setting global variables with <code>setf</code> is generally frowned upon. For example, the following function relies on a variable to hold it's result:<p>
+</a><P><dl><dl><a name="30990">
+<dt><code>(setf x (+ 2 2)) =&gt; 4</code></dt>
+</a><P></dl></dl><a name="31002">
+But the same effect can be achieved without setting the global variable x, e.g.,<p>
+</a><P><dl><dl><a name="31003">
+<dt><code>(+ 2 2) =&gt; 4</code></dt>
+</a><P></dl></dl><a name="31004">
+One benefit of functional programming in Lisp is <em>interactive testing</em>. In functional code, you can test each function as soon as it's written.  If your functions return the values you expect, you can be confident they are correct.  Functional programming allows you to to quickly modify existing programs or create new ones.  <p>
+</a><P><a name="28215">
+<h3> Defining Your Own Functions</h3>
+</a><a name="28222">
+You can define your own functions using the <code>DEFUN</code> macro, which has the following basic syntax:<p>
+</a><P><a name="30281">
+<code><pre>(</a>defun FuncName (<em>args</em>) (....body of function....))<p>
+</code></pre></a><dl>
+<dt><dd><font color=dd000><em>Note:</em>	A <em>Macro</em> is a special Lisp form whose arguments are evaluated slightly differently than the Lisp evaluation rule otherwise requires.</font></dd></dt></dl><P>
+<a name="30283">
+For example, consider a simple function which sums 7 and 2:<p>
+</a><P><a name="28232">
+<code><pre>USER(11): (defun add9() (+ 2 7)	;Define the function ADD9,<br>										 ;with no arguments<p>
+</code></pre></a><a name="28246">
+<code><pre>add9										 ;Lisp returns the name of the<br>										 ;function<p>
+</code></pre></a><a name="28192">
+The empty parenthesis after the name of the function indicates that this function accepts no arguments. Try evaluating this function at the Lisp prompt:<p>
+</a><P><a name="28248">
+<code><pre>USER(12):	 (add9)<p>
+</code></pre></a><a name="28250">
+<code><pre>9<p>
+</code></pre></a><a name="28249">
+Lisp returns the result, 9. Now let's define a simple function which can accept arguments. <p>
+</a><P><a name="28251">
+<code><pre>USER(13): (defun add-two-nums (x y)<p>
+</code></pre></a><a name="28255">
+<code><pre>					(+ x y))<p>
+</code></pre></a><a name="28257">
+<code><pre>ADD-TWO-NUMS<p>
+</code></pre></a><a name="28247">
+Now, when we evaluate this function we have to supply it with two arguments, using the syntax<p>
+</a><P><a name="28263">
+<code><pre>USER(14): (add-two-nums 3 4)<p>
+</code></pre></a><a name="28264">
+<code><pre>7<p>
+</code></pre></a><a name="28262">
+Failing to supply the number of arguments that a function expects to receive results in an error:<p>
+</a><P><a name="28265">
+<code><pre>USER(15): (add-two-nums 3)<p>
+</code></pre></a><a name="28267">
+<code><pre>Error: ADD-TWO-NUMS got 1 arg, wanted 2 args.<p>
+</code></pre></a><a name="28268">
+<code><pre>  [condition type: PROGRAM-ERROR]<p>
+</code></pre></a><a name="28271">
+You extend Lisp by creating your own functions. You can use functions which you define in exactly the same way that you use standard ANSI Lisp functions.<p>
+</a><P><a name="28784">
+<h2><HR> Lists</h2>
+</a><a name="30398">
+A <em>list</em> is a series of linked cells called <em>conses</em>. A cons cell has two parts, called the <em>car</em> and the <em>cdr</em>. The origin of these seemingly obscure terms lies in the earliest days of symbolic programming. Lisp was developed for use on the IBM 704 mainframe (which used vacuum tubes!). This machine's memory was divided into several components, including the address register and the decrement register. Hence, CAR stems from "Contents of Address Register", and CDR from Contents of Decrement Register. <p>
+</a><P><a name="28788">
+The car is a pointer to some data object. This data can be of any type, including numbers, strings, other lists, or any Lisp data objects. The <code>cdr</code> is pointer to the <code>car</code> of the next cons cell in the list. Lists themselves are written as symbols between parentheses, e.g.:<p>
+</a><P><a name="30335">
+<code><pre>(Apple Foo Bar 1)<p>
+</code></pre></a><a name="30940">
+Lists are always terminated by a special symbol called <code>NIL</code>, or the <em>empty list</em>. In other words, the last element of a list always has <code>NIL</code> as it's cdr. <code>NIL</code> and the empty list are symbolized by two empty parentheses, (). <p>
+</a><P><a name="30942">
+You can visualize a this list as a chain of cons cells like this:<p>
+</a><P><a name="30406">
+ <P><img src="LispFundamentals.anc.gif"><p>
+</a><a name="30311">
+Here is a list which contains a list:<p>
+</a><P><a name="30520">
+<code><pre>( A (BIG FAT) LIST)<p>
+</code></pre></a><a name="30521">
+And it's cons cell representation:<p>
+</a><P><a name="30474">
+ <P><img src="LispFundamentals.anc1.gif"><p>
+</a><a name="27885">
+<h3> Manipulating Lists</h3>
+</a><a name="28334">
+Lists are useful for managing sets of data. For instance, you can collect several discrete items into a list and pass them to a function as a single argument. You can also perform operations on each of the elements of a list in sequence, or search through a list and operate on those elements which meet certain criteria. Finally, lists can be useful for managing sequential data sets, since each element of a list has a pointer to the next element in the list in its cdr.<p>
+</a><P><a name="28871">
+Lists are superficially  similar to another Lisp data type called <em>vectors</em>, which are one-dimensional arrays. They differ primarily in that the amount of time necessary to access a component of a list increases with the length of the list, whereas the access time for any element of an array is constant. However, adding an element to the front of a list takes a constant amount of time, whereas adding elements to an array takes time in proportion to the size of the array. Also, elements in an array do not reference other elements in the data structure. <p>
+</a><P><a name="28352">
+<h4> Creating a List</h4>
+</a><a name="28359">
+Lists are created in several ways. The <code>list</code> function accepts an unlimited number of arguments, which it returns as the elements of a new list. For example,<p>
+</a><P><a name="28360">
+<code><pre>USER(16): (</a>list 1 2 3 4 5)<p>
+</code></pre></a><a name="31031">
+<code><pre>(1 2 3 4 5)<p>
+</code></pre></a><a name="30622">
+The <code>cons</code> function adds an argument as the first element of a list. For example:<p>
+</a><P><a name="28830">
+<code><pre>(</a>cons 1 (list 2 3 4 5))<p>
+</code></pre></a><a name="28831">
+Returns<p>
+</a><P><a name="28835">
+<code><pre>(1 2 3 4 5)<p>
+</code></pre></a><a name="28841">
+Lisp programmers sometimes refer to the act of using the cons function as <em>consing</em>. You can append elements to the end of a list using the <code>append</code> function:<p>
+</a><P><a name="28845">
+<code><pre>(</a>append (list 1 2 3) (list 4 5 6))<p>
+</code></pre></a><a name="28852">
+Returns<p>
+</a><P><a name="28853">
+<code><pre>(1 2 3 4 5 6)<p>
+</code></pre></a><a name="28849">
+You can create a one element list by consing a symbol and NIL, or the empty list.<p>
+</a><P><a name="28392">
+<code><pre>USER(18):(cons x nil)<p>
+</code></pre></a><a name="28514">
+or<p>
+</a><P><a name="28515">
+<code><pre>USER(19):(cons x ())<p>
+</code></pre></a><a name="29792">
+Returns<p>
+</a><P><a name="29793">
+<code><pre>(x)<p>
+</code></pre></a><a name="28854">
+<h4> Returning Elements of a List</h4>
+</a><a name="28855">
+You can return elements of a list by specifying their position using the <code>nth</code> function. For example, to return the fourth element of a list:<p>
+</a><P><a name="28856">
+<code><pre>USER(181): (</a>nth 3 (list 1 2 3 4 5))<p>
+</code></pre></a><a name="28858">
+Returns<p>
+</a><P><a name="29604">
+<code><pre>4<p>
+</code></pre></a><a name="29607">
+(The first element of a list is considered to be the 0th element, thus nth 3 is actually the fourth element of the list).<p>
+</a><P><a name="28863">
+Lists are the foundation of Lisp. Many functions you'll use in N&#183;World return lists, so you'll need to be comfortable using and manipulating lists to program effectively.<p>
+</a><P><a name="27887">
+<h2><HR> Variables</h2>
+</a><a name="28409">
+Variables are symbols bound to values. In other words, they are symbols whose symbol-values are not undefined. Values are bound to symbols using the <code>setf</code> function:<p>
+</a><P><a name="28875">
+<code><pre>USER(182): (setf avariable 3223)<p>
+</code></pre></a><a name="28877">
+<code><pre>3223<p>
+</code></pre></a><a name="28870">
+<h3> Scope</h3>
+</a><a name="28882">
+Once bound, variables remain bound within certain programmatic constraints, called the <em>scope</em> of a variable. Scope is a fairly complex issue, but suffice to say that variables can have global scope or local scope. Global variables, once bound, remain bound within the confines of the program within which they were bound. Usually, variables with local scope are bound only within the confines of the form within which they were bound. For example, variables bound within a function remain bound only within the confines of that function. To use variables like these outside of a macro, you must use <code>setf</code> to bind them globally.<p>
+</a><P><a name="31036">
+<h4> Setting Local Variables</h4>
+</a><a name="31041">
+You can use the <code>let</code> macro to create local variable bindings:<p>
+</a><P><dl><dl><a name="31042">
+<dt><code>(</a>let ((variable binding))</code></dt>
+</a><P><dl><a name="31043">
+<dt><code>(your-code here))</code><p>
+</a><P></dl></dl></dl><a name="31044">
+Variables bound with <code>let</code> are only bound within the let form itself.  For example, the variable z is defined in this function only within the confines of the let form::<p>
+</a><P><dl><dl><a name="31045">
+<dt><code>(defun test-let (x y)</code></dt>
+</a><P><a name="31047">
+<dt><code>  (let ((z (+ x y)))</code></dt>
+</a><P><a name="31048">
+<dt><code>    (</a>format t "z: ~a" z)))</code></dt>
+</a><P></dl></dl><a name="31049">
+Attempting to return a locally-bound variable outside of its scope is an error:<p>
+</a><P><dl><dl><a name="31050">
+<dt><code>(defun bad-let (x y)</code></dt>
+</a><P><a name="31051">
+<dt><code>  (let ((z (+ x y)))</code></dt>
+</a><P><a name="31052">
+<dt><code>  (format t "z: ~" z))  ;;; the end of the let form</code></dt>
+</a><P><a name="31053">
+<dt><code>  z)  ;;; this z is outside of the let, so is undefined</code></dt>
+</a><P></dl></dl><a name="28881">
+<h3> Types</h3>
+</a><a name="30646">
+Unlike other languages, Lisp does not require you to specify type for variables. Lisp takes care of these tasks for you. In a sense, variables are <em>generic</em> with respect to the programmer, since they are all of the same type (or no type). Of course, Lisp must determine the types of arguments passed to primitive functions, so unless you instruct it not to it will attempt to determine the types of your variables. The processor overhead required for this type checking can result in a performance penalty, so you may wish to declare types in certain situations (for more information, refer to Chapter 4 in <em>Common Lisp: The Language (Second Edition)</em>.<p>
+</a><P><a name="28898">
+Nichimen Graphics has addressed the issue of typing in the interest of optimizing code for speed by creating several macros, called <em>anti-generics</em>, which essentially declare types for you in certain situations. To learn more about anti-generics, see <a href="OptimizingCode.html#27898">"Optimizing Math with Anti-Generic Functions," on page &#32;12-1</a><p>
+</a><P><a name="28903">
+<h2><HR> Arrays</h2>
+</a><a name="28916">
+An array is a data structure whose elements are arranged in some Cartesian coordinate space. The rank of an array is equivalent to the number of dimensions it has. For example, a 5 x 5 element array is said to be of rank 5. <p>
+</a><P><a name="31074">
+Create arrays with <code>MAKE-AR</a>RAY</code>:<p>
+</a><P><a name="31075">
+<code><pre>(setf my-array (make-array '(5 5))<p>
+</code></pre></a><a name="31076">
+<code><pre>#2A((NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31078">
+<code><pre>    (NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31079">
+<code><pre>    (NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31080">
+<code><pre>    (NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31081">
+<code><pre>    (NIL NIL NIL NIL NIL))<p>
+</code></pre></a><a name="28413">
+You can find any given point in an array by specifying the coordinates of its storage location with the <code>aref</code> function. <p>
+</a><P><a name="28985">
+<code><pre>(aref my-array 2 1)<p>
+</code></pre></a><a name="31106">
+<code><pre>NIL<p>
+</code></pre></a><a name="31107">
+Finally, you can use setf and aref together to initialize elements of an array:<p>
+</a><P><a name="31108">
+<code><pre>(setf (aref my-array 3 3) 'foo)<p>
+</code></pre></a><a name="31100">
+<code><pre>#2A((NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31110">
+<code><pre>    (NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31111">
+<code><pre>    (NIL NIL NIL NIL NIL)<p>
+</code></pre></a><a name="31112">
+<code><pre>    (NIL NIL NIL FOO NIL)<p>
+</code></pre></a><a name="31113">
+<code><pre>    (NIL NIL NIL NIL NIL))<p>
+</code></pre></a><a name="27889">
+<h2><HR> Classes</h2>
+</a><a name="28417">
+A <em>class</em> is a data structure which controls the structure and behavior of other objects, which are it's <em>instances</em>. In other words, a class is a template of sorts, and instances are objects produced according to this template. Classes can inherit properties from other classes, and they  can define properties which are inherited by other classes. Given a class, <code>Foo</code>, <em>subclasses</em> of Foo are those classes which inherit properties from Foo, while <em>superclasses</em> are classes from which <code>Foo</code> inherits properties.<p>
+</a><P><a name="27890">
+Classes inherit two major types of properties:<p>
+</a><P><ul><a name="29004">
+<li>Slots
+</a></li><P><a name="29005">
+<li>Generic functions
+</a></li><P></ul><P><a name="29008">
+<h3> Slots</h3>
+</a><a name="29042">
+Slots are essentially storage spaces in an object which contain one and only one value. Slots can have:<p>
+</a><P><ul><a name="29025">
+<li>an <code>:initarg</code>, which provides default values for initialization when the class is instantiated.
+</a></li><P><a name="30653">
+<li>an <code>:initform</code>, which provides an initial form to be evaluated. This form returns a value, which is the initial value for the slot.
+</a></li><P><a name="29026">
+<li>a <code>:reader</code>, which provides a function for retrieving the value stored in the slot
+</a></li><P><a name="29035">
+<li>a <code>:writer</code>, which provides a function for changing the value stored in the slot
+</a></li><P><a name="29036">
+<li>an <code>:accessor</code>, which combines both <code>:reader</code> and <code>:writer</code> functions.
+</a></li><P><a name="29296">
+<li>an <code>:allocation</code> option, which determines whether the slot is shared by all instances of a class, or whether each instance gets its own unique slot.
+</a></li><P><a name="30654">
+<li>a <code>:type</code> option, which specifies that the contents of the slot will always be of the specified data type.
+</a></li><P></ul><P><a name="29297">
+<h3> Generic Functions</h3>
+</a><a name="29668">
+Generic functions are similar to regular functions, except that they know how to behave based on the nature of the arguments passed to them. For example, the generic function <code>move</code> has several methods, which behave differently when different instances of different classes are passed to them. If you pass a geobody to move, the geometry of that body is modified. If you pass an object, then the object is transformed.<p>
+</a><P><a name="29053">
+Methods are <em>inherited</em> in the sense that a method defined for a given class will work for all of that classes subclasses. This is a particularly powerful aspect of object oriented programming. It means that you only need to code a given method once.<p>
+</a><P><a name="29063">
+When you define a method, you are implicitly defining a generic function as well. There are also ways of defining methods automatically when you define a class,. For example, if you define an accessor method for a given slot, Lisp automatically creates the appropriate method. Inheritance of methods works the same way regardless of whether a method is explicitly or implicitly created.<p>
+</a><P><a name="29056">
+<h3> Defining Classes</h3>
+</a><a name="30875">
+Let's define a few simple classes to illustrate the way that inheritance, generic functions, slots, and methods work. First, you define a class with the <code>defclass</code> form:<p>
+</a><P><a name="30876">
+<code><pre>(</a>defclass BIRD<p>
+</code></pre></a><a name="30880">
+<code><pre>		(sp:name-mixin sp:property-list-mixin)<p>
+</code></pre></a><a name="30881">
+<code><pre>		((body		:initform nil<p>
+</code></pre></a><a name="30882">
+<code><pre>				:initarg :body<p>
+</code></pre></a><a name="30883">
+<code><pre>				:accessor bird-body)<p>
+</code></pre></a><a name="30884">
+<code><pre>		 (beak	:initform nil<p>
+</code></pre></a><a name="30885">
+<code><pre>				:initarg :beak<p>
+</code></pre></a><a name="30886">
+<code><pre>				:accessor bird-beak)))<p>
+</code></pre></a><ul><a name="30878">
+<li>The <em>precedence list</em> defines the classes which are the superclasses of <code>bird</code>. All instances of bird will inherit slots, generic functions, and methods from these classes. For bird, the precedence list includes <code>sp:name-mixin</code> and <code>sp:property-list-mixin</code>, which provide certain useful functions for our objects.
+</a></li><P><a name="29101">
+<li>Class bird has two slots:<code> body</code> and <code>beak</code>. Each slot has three options, <code>:initform</code>, <code>:initarg</code>, and <code>:accessor</code>.
+</a></li><P><a name="29175">
+<li>Note that it is generally good form to include the superclass name and the slot name as the name for slot accessor functions.
+</a></li><P></ul><P><a name="29102">
+Now, we'll define a subclass of <code>bird</code>, called <code>song-bird</code>:<p>
+</a><P><a name="29103">
+<code><pre>(defclass song-bird<p>
+</code></pre></a><a name="29105">
+<code><pre>    (bird)<p>
+</code></pre></a><a name="29106">
+<code><pre>  ((song :initform "Bye Bye Birdie"<p>
+</code></pre></a><a name="29107">
+<code><pre>         :initarg :song<p>
+</code></pre></a><a name="29108">
+<code><pre>         :accessor bird-song)))<p>
+</code></pre></a><a name="29117">
+Class <code>song-bird</code> has class <code>bird</code> in its precedence list, which means that instances of <code>song-bird</code> will have the same slots as class <code>bird</code>. This includes not only <code>body</code> and <code>beak</code>, but <em>all the slots defined for the classes in birds precedence list as well, including sp:name-mixin and sp:property-list-mixin!</em><p>
+</a><P><a name="29118">
+Class <code>song-bird</code> also includes a new slot, <code>song</code>.<p>
+</a><P><a name="29119">
+<h3> Instancing</h3>
+</a><a name="30898">
+Now, we'll make an instance of each of our new classes using the <code>make-instance</code> function.<p>
+</a><P><a name="30924">
+<code><pre><code>(setq bird-obj </code><p>
+</code></pre></a><a name="30925">
+<code><pre><code>     (</a>make-instance bird	:name 'my-bird</code><p>
+</code></pre></a><a name="30926">
+<code><pre><code>                        	:body 'fat</code><p>
+</code></pre></a><a name="30922">
+<code><pre><code>                        	:beak 'long-and-pointy))</code><p>
+</code></pre></a><ul><a name="30891">
+<li>The :name slot is provided by the sp:name-mixin class, specified in the precedence list for class bird. We've named this instance "my-bird".
+</a></li><P><a name="30920">
+<li>We've specified values for the body and beak slots, "fat" and "long-and-pointy" respectively.
+</a></li><P><a name="30921">
+<li>We bound the instance of our class to a variable for ease of handling later on, in this case the variable bird-obj.
+</a></li><P></ul><P><a name="29236">
+Now, use the <code>describe</code> function to examine the object we just created. <p>
+</a><P><a name="29237">
+<code><pre>USER(35): (</a>describe bird-obj)<p>
+</code></pre></a><a name="30737">
+<code><pre>#&lt;BIRD MY-BIRD&gt; is an instance of #&lt;STANDARD-CLASS BIRD&gt;:<p>
+</code></pre></a><a name="30739">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="30740">
+<code><pre>  PROPERTY-LIST   NIL<p>
+</code></pre></a><a name="30741">
+<code><pre>  NAME            MY-BIRD<p>
+</code></pre></a><a name="30742">
+<code><pre>  BEAK            LONG-AND-POINTY<p>
+</code></pre></a><a name="30743">
+<code><pre>  BODY            FAT<p>
+</code></pre></a><a name="30736">
+As you can see, all the slots we defined are described here with the values we assigned. <p>
+</a><P><a name="29156">
+<h3> Manipulating Slot Values</h3>
+</a><a name="29157">
+Both of the slots we defined for class <code>bird</code> have accessor methods we can use to read and change the values in these slots. For example, to return the value of the body slot in our bird, use the <code>get-body</code> method:<p>
+</a><P><a name="29163">
+<code><pre>USER(36): (bird-body bird-obj)<p>
+</code></pre></a><a name="29165">
+<code><pre>FAT<p>
+</code></pre></a><a name="29166">
+Because class bird is a subclass of <code>sp:name-mixin</code>, we can use accessor functions defined for the slots of this class as well, including one which returns the name of the object:<p>
+</a><P><a name="29170">
+<code><pre>USER(41): (sp:get-name bird-obj)<p>
+</code></pre></a><a name="29172">
+<code><pre>MY-BIRD<p>
+</code></pre></a><a name="29173">
+We can also use accessor functions to change slot values:<p>
+</a><P><a name="29174">
+<code><pre>USER(73): (setf (bird-body bird-obj) 'a-fat-bird)<p>
+</code></pre></a><a name="29177">
+<code><pre>A-FAT-BIRD<p>
+</code></pre></a><a name="30757">
+Now, describing <code>bird-obj</code> reveals the new value for the body slot:<p>
+</a><P><a name="30758">
+<code><pre>USER(75): (describe bird-obj)<p>
+</code></pre></a><a name="30759">
+<code><pre>#&lt;BIRD MY-BIRD&gt; is an instance of #&lt;STANDARD-CLASS BIRD&gt;:<p>
+</code></pre></a><a name="30763">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="30764">
+<code><pre>  PROPERTY-LIST   NIL<p>
+</code></pre></a><a name="30765">
+<code><pre>  NAME            MY-BIRD<p>
+</code></pre></a><a name="30766">
+<code><pre>  BEAK            LONG-AND-POINTY<p>
+</code></pre></a><a name="30767">
+<code><pre>  BODY            A-FAT-BIRD<p>
+</code></pre></a><a name="29190">
+<h3> Defining Methods</h3>
+</a><a name="29191">
+Let's create methods for both our new classes. The following code defines two methods called <code>hit-bird</code>:<p>
+</a><P><a name="29192">
+<code><pre>(defmethod HIT-BIRD ((self song-bird) new-song) <p>
+</code></pre></a><a name="29195">
+<code><pre>  (setf (bird-song self) new-song))<p>
+</code></pre></a><a name="29196">
+<code><pre><p>
+</code></pre></a><a name="29197">
+<code><pre>(</a>defmethod HIT-BIRD ((self bird) new-body)<p>
+</code></pre></a><a name="29198">
+<code><pre>  (setf (bird-body self) new-body))<p>
+</code></pre></a><a name="29209">
+Defining these methods results in the implicit definition of a generic function with the same name, <code>hit-bird</code>. When called, <code>hit-bird</code> behaves differently depending on the type of object passed it. In the first case, passing an instance of class <code>song-bird</code> and an argument to <code>hit-bird</code> results in the value of the :song slot being replaced by the argument. In the second case, passing an instance of class <code>bird</code> and an argument to <code>hit-bird</code> results in the value of the body slot being changed to the value of the argument. In each case, the methods invoke the accessor functions for the slots in question to accomplish the change.<p>
+</a><P><a name="29213">
+<h3> Inheritance of Slots and Methods</h3>
+</a><a name="29217">
+In our examples, <code>song-bird</code> is a subclass of <code>bird</code>. Therefor, methods and slots defined for <code>bird</code> are also defined for <code>song-bird</code>. To illustrate this concept:<p>
+</a><P>
+<a name="29223">
+<STRONG>	 1.	 Create an instance of each class
+</STRONG>
+</a><P><a name="29224">
+<code><pre>USER(94): (setq bird-obj (make-instance 'bird))<p>
+</code></pre></a><a name="29308">
+<code><pre>#&lt;BIRD NIL 435420666&gt;<p>
+</code></pre></a><a name="29309">
+<code><pre>USER(95): (setq song-bird-obj (make-instance 'song-bird))<p>
+</code></pre></a><a name="29310">
+<code><pre>#&lt;SONG-BIRD NIL 435437210&gt;<p>
+</code></pre></a><a name="29314">
+<STRONG>	2.	 Use the :accessor function to change the value of the body slot for bird-obj.
+</STRONG>
+</a><P><a name="29315">
+<code><pre>USER(110): (setf (get-body bird-obj) 'a-fat-bird)<p>
+</code></pre></a><a name="29317">
+<code><pre>A-FAT-BIRD<p>
+</code></pre></a><a name="29318">
+<STRONG>	3.	 Use the same accessor function to change the value of the body slot for song-bird-obj.
+</STRONG>
+</a><P><a name="29319">
+<code><pre>USER(113): (setf (get-body song-bird-obj) 'a-fat-song-bird)<p>
+</code></pre></a><a name="29321">
+<code><pre>A-FAT-SONG-BIRD<p>
+</code></pre></a><a name="29322">
+<STRONG>	4.	 Describe each object
+</STRONG>
+</a><P><a name="29323">
+<code><pre>USER(121): (describe bird-obj)<p>
+</code></pre></a><a name="29325">
+<code><pre>#&lt;BIRD NIL 435420666&gt; is an instance of #&lt;STANDARD-CLASS BIRD&gt;:<p>
+</code></pre></a><a name="29326">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="29327">
+<code><pre>  PROPERTY-LIST   NIL<p>
+</code></pre></a><a name="29328">
+<code><pre>  NAME            NIL<p>
+</code></pre></a><a name="29329">
+<code><pre>  BEAK            NIL<p>
+</code></pre></a><a name="29330">
+<code><pre>  BODY            A-FAT-BIRD<p>
+</code></pre></a><dl><a name="29331">
+<dt>and for song-bird</dt>
+</a><P></dl><a name="29336">
+<code><pre>USER(122): (describe song-bird-obj)<p>
+</code></pre></a><a name="29338">
+<code><pre>#&lt;SONG-BIRD NIL 435437210&gt; is an instance of #&lt;STANDARD-CLASS SONG-BIRD&gt;:<p>
+</code></pre></a><a name="29339">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="29340">
+<code><pre>  PROPERTY-LIST   NIL<p>
+</code></pre></a><a name="29341">
+<code><pre>  NAME            NIL<p>
+</code></pre></a><a name="29342">
+<code><pre>  BEAK            NIL<p>
+</code></pre></a><a name="29343">
+<code><pre>  BODY            A-FAT-SONG-BIRD<p>
+</code></pre></a><a name="29344">
+<code><pre>  SONG            "Bye Bye Birdie"<p>
+</code></pre></a>
+<a name="29345">
+<h2><HR> Object Oriented Programming Tools</h2>
+</a><a name="29346">
+If you understand how classes are defined, and how they inherit slot values and methods from one another, you're well positioned to find out how to manipulate objects on your own. Franz Allegro Common Lisp includes several powerful tools which will help you to analyze the components of N&#183;World objects. These tools are included in the Franz Allegro Common Lisp composer. For more information about this powerful tool, see <a href="NWorldDevoEnvironment.html#47833">"Object Oriented Programming Tools," on page &#32;3-7</a><p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="IntrotoWOW.html">[Prev]</a> <a href="NWorldDevoEnvironment.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:40:46 -->
+
+</body>
+</html>

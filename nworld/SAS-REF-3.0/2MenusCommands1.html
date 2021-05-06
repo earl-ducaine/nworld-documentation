@@ -1,0 +1,805 @@
+<html><head><title>Skeletons in N-Geometry</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands.html">[Prev]</a> <a href="2MenusCommands2.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+<h1>Skeletons in N-Geometry (cont.)</h1> 
+<a name="34969">
+<h3> Collapse</h3>
+</a><a name="34970">
+<em>Bones, joints</em><p>
+</a><P><a name="27725">
+When used on a bone, removes the bone from the skeleton, allowing the inferior to fill the resulting "gap."<p>
+</a><P><a name="29091">
+To collapse a bone:<p>
+</a><P>
+<a name="29092">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to remove.
+</STRONG>
+</a><P><a name="29093">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Collapse.
+</STRONG>
+</a><P><dl><a name="29094">
+<dt>The bone is eliminated, and the inferior bone fills the resulting gap, as shown in <a href="2MenusCommands1.html#29085">Figure 2.23</a>.</dt>
+</a><P><a name="29083">
+ <P><img src="2MenusCommands.anc23.gif"><p>
+</a></dl>
+<a name="29085">
+<em>Figure 2.23  &#32; &#32;Collapsing a bone
+</em></a><P><a name="29098">
+If the bone is at the end of a limb, only that bone is eliminated-no other bones are affected. <p>
+</a><P><a name="29099">
+If the selected bone is between two other bones, the bone drops out and the next inferior bone is joined where the collapsed bone used to connect.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Collapsing a bone invalidates any saved base states for the skeleton.</em></font></dd></dt></dl><P>
+<a name="28485">
+When used on a joint, the bone above the joint is removed and the bone inferior to the joint fills the created gap.<p>
+</a><P><a name="28486">
+To collapse a joint:<p>
+</a><P>
+<a name="28487">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint you want to remove.
+</STRONG>
+</a><P><a name="28488">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Collapse.
+</STRONG>
+</a><P><dl><a name="28489">
+<dt>The bone closer to the root is collapsed (eliminated).</dt>
+</a><P><a name="28501">
+ <P><img src="2MenusCommands.anc24.gif"><p>
+</a></dl>
+<a name="28503">
+<em>Figure 2.24  &#32; &#32;When collapsing a joint, the bone closer to the root is eliminated
+</em></a><P><a name="27731">
+<h3> Copy</h3>
+</a><a name="29555">
+<em>Skeletons</em><p>
+</a><P><a name="29556">
+Makes a copy of the selected skeleton. Any attributes of the original skeleton are copied to the second skeleton.<p>
+</a><P><ul><a name="30373">
+<li><strong>(CLICK-L)</strong> to copy the skeleton and move it in global XYZ space
+</a></li><P><a name="30374">
+<li><strong>(CLICK-M)</strong> to copy a skeleton and move it relative to screen
+</a></li><P><a name="30375">
+<li><strong>(CLICK-R)</strong> to copy a skeleton and leave it in the same location as the original
+</a></li><P></ul><P><a name="30402">
+Regardless of which option you select, you are prompted to enter a name for the new copy:<p>
+</a><P><a name="30413">
+ <P><img src="2MenusCommands.anc25.gif"><p>
+</a><a name="30414">
+<em>Figure 2.25  &#32; &#32;Naming a copied skeleton
+</em></a><P><a name="30420">
+Enter a new name, and <strong>(CLICK-L)</strong> on <strong>Add Object</strong> to create the skeleton, or <strong>Abort</strong> if you change your mind. Use <strong>Revert</strong> to restore the default name for the copied skeleton. Copied skeletons are given the name "Copy of Skeleton-Object".<p>
+</a><P><a name="30372">
+If you have any <em>attached objects</em> or <em>skins</em> on the skeleton being copied, you're asked whether those should be copied too:<p>
+</a><P><a name="30447">
+ <P><img src="2MenusCommands.anc26.gif"><p>
+</a><a name="30448">
+<em>Figure 2.26  &#32; &#32;Copying attached objects
+</em></a><P><a name="30449">
+If you want to create copies of any attached objects, <strong>(CLICK-L)</strong> on <strong>Yes</strong>. Copied objects are given the name "Copy of Object".<p>
+</a><P><a name="30392">
+ <P><img src="2MenusCommands.anc27.gif"><p>
+</a><a name="30394">
+<em>Figure 2.27  &#32; &#32;Copying attached skins
+</em></a><P><a name="30371">
+If you want to create a copy of any attached skins, <strong>(CLICK-L)</strong> on <strong>Yes</strong>. Copied objects are given the name "Copy of Skin".<p>
+</a><P><a name="29631">
+<h3> Copy Joint</h3>
+</a><a name="29632">
+<em>Joints</em><p>
+</a><P><a name="29633">
+Copies the DOF limits of one joint to another. You could use this, for example, to copy the DOF limits you defined manually to other similar joints on a custom skeleton.<p>
+</a><P><a name="32323">
+Suppose for example, that you were creating an insect skeleton. You might want to set up all the DOF limits for one leg, then copy those joint characteristics to other like joints. To use <strong>Copy Joint</strong>, you'd do the following:<p>
+</a><P>
+<a name="32334">
+<STRONG>	 1.	 Create the skeleton.
+</STRONG>
+</a><P><a name="32335">
+<STRONG>	2.	 Set up the DOF limits for one joint.
+</STRONG>
+</a><P><a name="32353">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on that joint.
+</STRONG>
+</a><P><a name="32354">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the joint you want to copy the DOF limits to.
+</STRONG>
+</a><P>
+<a name="32366">
+The DOF limits for the second joint are copied from the first.<p>
+</a><P><a name="29554">
+<h3> Cut</h3>
+</a><a name="29125">
+<em>Bones, collections of bones</em><p>
+</a><P><a name="27732">
+Cuts the selected bone into the specified number of pieces:<p>
+</a><P><a name="27736">
+ <P><img src="2MenusCommands.anc28.gif"><p>
+</a><a name="27737">
+<em>Figure 2.28  &#32; &#32;Left, original bone; second, bone cut in half; third, bone cut into thirds; right, bone cut at arbitrary point
+</em></a><P><a name="27738">
+The created bones inherit the axis orientation from the original bone.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When you cut a bone, the bone closest to the root retains the original name of the bone. Newly created bones are named bone_2, bone_3, etc.</em></font></dd></dt></dl><P>
+<a name="27741">
+<h4> Cutting a Bone in Half</h4>
+</a><a name="27742">
+To cut a bone in half:<p>
+</a><P>
+<a name="27743">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><a name="27744">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="27745">
+<dt>The bone is cut in half.</dt>
+</a><P></dl>
+<a name="27747">
+<h4> Cutting a Bone into Thirds</h4>
+</a><a name="27748">
+A bone can be cut equally into thirds or at regular distances using a dialog box:<p>
+</a><P><a name="27749">
+To cut a bone into even thirds:<p>
+</a><P>
+<a name="27750">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><a name="27751">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="27752">
+<dt>The bone is cut into thirds.</dt>
+</a><P></dl>
+<a name="27753">
+To cut a bone into uneven thirds:<p>
+</a><P>
+<a name="27754">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><a name="27755">
+<STRONG>	2.	 <strong>(CTRL-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="27756">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="27760">
+ <P><img src="2MenusCommands.anc29.gif"><p>
+</a></dl>
+<a name="27761">
+<em>Figure 2.29  &#32; &#32;Specifying how to cut a bone into thirds
+</em></a><P><ul><ul>
+<BR><a name="27762">
+<li><strong>Number</strong> of segments specifies how many pieces to cut the bone into.
+</a><P><BR><a name="27763">
+<li><strong>Special End Treatment</strong> specifies how to cut the ends of the bone and still make the specified number of segments.
+</a><P><ul>
+<BR><a name="27764">
+<li><strong>None</strong> divides the bone into the specified number of segments, each of equal length.
+</a><P><BR><a name="27765">
+<li><strong>Segment Ratio</strong> lets you specify the relationship between cut length and the bone's length. If you specify four segments, but a ratio of .333 for a 3" segment, the operation would cut the bone into thirds, then cut one of those segments again to create the requested number of cuts.
+</a><P><BR><a name="27766">
+<li><strong>Distance from Ends</strong> lets you specify how far from the each end the bone is to be cut; the remaining (inner) portion of the bone is cut into equal size pieces.
+</a><P></ul>
+<BR><a name="27767">
+<li><strong>Distance or Ratio</strong> specifies the distance or ratio used for <strong>Segment Ratio</strong> or <strong>Distance from Ends</strong>.
+</a><P></ul>
+</ul>
+<a name="27769">
+<h4> Cutting a Bone Arbitrarily</h4>
+</a><a name="27770">
+To make a single cut in a bone at an arbitrary point along its length:<p>
+</a><P>
+<a name="27771">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><dl><a name="27772">
+<dt>The cursor jumps onto the bone in the N-Geometry window.</dt>
+</a><P></dl><a name="27773">
+<STRONG>	2.	 Move the cursor to the point on the bone where you want to cut it.
+</STRONG>
+</a><P><a name="27774">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> to cut the bone.
+</STRONG>
+</a><P><dl><a name="27775">
+<dt>The bone is cut at the specified point.</dt>
+</a><P></dl>
+<a name="27776">
+To cut a bone into an arbitrary number of sections:<p>
+</a><P>
+<a name="27777">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to cut.
+</STRONG>
+</a><P><a name="27778">
+<STRONG>	2.	 <strong>(CTRL-R)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="27779">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="27783">
+ <P><img src="2MenusCommands.anc30.gif"><p>
+</a></dl>
+<a name="27784">
+<em>Figure 2.30  &#32; &#32;Specifying how to cut a bone
+</em></a><P><ul><ul>
+<BR><a name="27785">
+<li><strong>Unit Spec</strong> lets you specify whether to make the cut as a ratio of the overall length of the bone or as an absolute length.
+</a><P><ul>
+<BR><a name="27786">
+<li><strong>Edge Ratio from Vtx</strong> means to use the value in <strong>Dist/Ratio</strong> as a ratio to use in cutting the segment.
+</a><P><BR><a name="27787">
+<li><strong>Distance from Vtx</strong> means to use the value in <strong>Dist/Ratio</strong> as an absolute distance (in global units) to use in cutting the segment.
+</a><P></ul>
+<BR><a name="27788">
+<li><strong>Dist/Ratio</strong> is the physical amount or ratio (see above) by which to cut the bone.
+</a><P><BR><a name="27789">
+<li><strong>Select Vtx &amp; Cut</strong> closes the dialog and puts you in point sensitivity mode; select the vertex on the segment from which the measurement is to be made.
+</a><P></ul>
+</ul><a name="27790">
+So if you were cutting a 10" bone, a <strong>Dist/Ratio</strong> of .5 would cut the segment in half if you chose <strong>Edge Ratio from Vtx</strong>, or .5" from the selected vertex if you chose <strong>Distance from Vtx</strong>.<p>
+</a><P><a name="26356">
+<h3> Describe</h3>
+</a><a name="29139">
+<em>Skeletons, bones, joints</em><p>
+</a><P><a name="27898">
+Describes the selected element in the UNIX shell window from which N&#183;World was started.<p>
+</a><P><a name="27900">
+<h4> Describing both Geometric and Topological Attributes</h4>
+</a><a name="27901">
+To see both the geometric and topological attributes:<p>
+</a><P>
+<a name="27902">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose attributes you want to view.
+</STRONG>
+</a><P><a name="27903">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Describe.
+</STRONG>
+</a><P>
+<a name="27904">
+(Descriptions of geometric and topological attributes are given below.)<p>
+</a><P><a name="27905">
+<h4> Describing Geometric Attributes Only</h4>
+</a><a name="27906">
+To see only the geometric attributes for a bone:<p>
+</a><P>
+<a name="27907">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose attributes you want to view.
+</STRONG>
+</a><P><a name="27908">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Describe.
+</STRONG>
+</a><P><dl><a name="27909">
+<dt>Shows the number and position of the joints of the bone, the direction of the bone, and its current length.</dt>
+</a><P></dl>
+<a name="27910">
+<h4> Describing Topological Attributes Only</h4>
+</a><a name="27911">
+To see only the topological attributes for a bone:<p>
+</a><P>
+<a name="27912">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone whose attributes you want to view.
+</STRONG>
+</a><P><a name="27913">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Describe.
+</STRONG>
+</a><P><dl><a name="27914">
+<dt>Shows the object to which the bone belongs, plus the number and position of the joints of the bone.</dt>
+</a><P></dl>
+<a name="26212">
+<h3> Disconnect Limb</h3>
+</a><a name="32088">
+<em>Bones</em><p>
+</a><P><a name="32091">
+In the same way that you might create several skeletons that are properly configured and use them in different animations, you may want to create a library of different limbs that can be used over and over in building a skeleton.<p>
+</a><P><a name="32092">
+To detach a limb:<p>
+</a><P>
+<a name="32375">
+<STRONG>	 1.	 Create a skeleton.
+</STRONG>
+</a><P><a name="32376">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the first bone from which the limb should be disconnected.
+</STRONG>
+</a><P><dl><a name="32379">
+<dt>For example, to detach at the shoulder joint, you'd <strong>(SHIFT-L)</strong> on the upper arm bone.</dt>
+</a><P><a name="32462">
+ <P><img src="2MenusCommands.anc31.gif"><p>
+</a></dl>
+<a name="32463">
+<em>Figure 2.31  &#32; &#32;Selecting a bone at which to disconnect the limb
+</em></a><P>
+<a name="32407">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Disconnect Limb.
+</STRONG>
+</a><P><dl><a name="32413">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="32417">
+ <P><img src="2MenusCommands.anc32.gif"><p>
+</a></dl>
+<a name="32418">
+<em>Figure 2.32  &#32; &#32;Dialog box confirming the Detach operation
+</em></a><P>
+<a name="32381">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Yes to disconnect the bone.
+</STRONG>
+</a><P><dl><a name="32419">
+<dt>The bone is disconnected from the original skeleton. The limb is repositioned so that its root is at the global center:</dt>
+</a><P><a name="32427">
+ <P><img src="2MenusCommands.anc33.gif"><p>
+</a></dl>
+<a name="32428">
+<em>Figure 2.33  &#32; &#32;The detached bone
+</em></a><P><a name="32087">
+<h3> DOF Editor</h3>
+</a><a name="29227">
+<em>Skeletons, bones</em><p>
+</a><P><a name="27844">
+In the DOF Editor you can interactively define the degrees of freedom for individual bones on the skeleton. The following elements can be edited:<p>
+</a><P><ul><a name="27845">
+<li>rotational degrees of freedom (<em>can</em> the bone rotate in a selected direction)
+</a></li><P><a name="27846">
+<li>rotation limits (<em>how far</em> can the bone rotate in an allowed direction)
+</a></li><P><a name="27847">
+<li>scale DOF (can the bone be <em>scaled</em>)
+</a></li><P><a name="27848">
+<li>scale limits (<em>how much</em> can the bone be scaled)
+</a></li><P></ul><P><a name="27851">
+<h4> Setting DOF Limits</h4>
+</a><a name="27852">
+<strong>(CLICK-*)</strong> on this command to open the DOF editor. There are four areas to the DOF editor dialog box, each of which is described below:<p>
+</a><P>
+<a name="32710">
+<STRONG>	 1.	 At the far left of the DOF Editor are the bone names on the skeleton and the rotation order.
+</STRONG>
+</a><P><a name="27856">
+ <P><img src="2MenusCommands.anc34.gif"><p>
+</a>
+<a name="27857">
+<em>Figure 2.34  &#32;Setting DOF limits for a bone
+</em></a><P><ul><a name="32627">
+<li><strong>Bone Name</strong> shows the name of any bones that were collected when you chose the <strong>DOF Editor</strong> command. The currently selected bone is displayed in red-you need to make a bone current if you want to update its degrees of freedom using the sliders at the bottom of the dialog box. (All bones are displayed if you selected the skeleton.)
+</a></li><P><dl><a name="32628">
+<dt><strong>(CLICK-L)</strong> on a bone to select it. When you <strong>(CLICK-L)</strong> on a bone name, the bone is highlighted in the N-Geometry window.</dt>
+</a><P></dl><a name="32629">
+<li><strong>RotOrder</strong> displays the directions in which rotations are allowed, and the order in which rotations are applied to the specified bone. Rotation order is significant if you are using a skeleton with motion capture data.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>Changing rotation order invalidates any saved base state. You should do this before saving any poses.</em></font></dd></dt><dl><a name="32631">
+<dt><strong>(CLICK-L)</strong> on the rotation order text box to define the directions in which a bone can rotate. The following menu is displayed:</dt>
+</a><P><a name="32635">
+ <P><img src="2MenusCommands.anc35.gif"><p>
+</a></dl></dl><P>
+<a name="32636">
+<em>Figure 2.35  &#32;Defining allowable rotations for a bone
+</em></a><P><dl><dl><a name="32637">
+<dt>Axes in which bone rotations are allowed are highlighted in blue.</dt>
+</a><P><a name="32638">
+<dt><strong>(CLICK-M)</strong> on the rotation order text box to change the rotation order for a bone. The following menu is displayed:</dt>
+</a><P><a name="32642">
+ <P><img src="2MenusCommands.anc36.gif"><p>
+</a></dl></dl><a name="32643">
+<em>Figure 2.36  &#32;Defining rotation order for a bone
+</em></a><P><dl><dl><a name="32644">
+<dt>To change the rotation order, <strong>(CLICK-L)</strong> and drag the channel whose order you want to change, then <strong>(CLICK-L)</strong> on <strong>Do It</strong> to accept the changes or <strong>Abort</strong> to cancel.</dt>
+</a><P></dl></dl>
+<a name="32623">
+<STRONG>	2.	 In the middle of the screen, the rotational limits for each bone are displayed.
+</STRONG>
+</a><P><a name="32651">
+ <P><img src="2MenusCommands.anc37.gif"><p>
+</a>
+<a name="32652">
+<em>Figure 2.37  &#32;Rotational limits for each bone
+</em></a><P><ul><a name="32665">
+<li><strong>X Min/Max</strong> defines how far the bone is "allowed" to move in the X direction.
+</a></li><P><dl><a name="32666">
+<dt>There are two ways to set the rotation limits for the selected bone:</dt>
+</a><P><a name="32667">
+<dt><strong>(CLICK-L)</strong> to modify the values, or <strong>(CLICK-M)</strong> or <strong>(CLICK-R)</strong> to enter new values.</dt>
+</a><P><a name="32668">
+<dt>or</dt>
+</a><P><a name="32669">
+<dt><strong>(CLICK-L)</strong> and drag the <em>sliders</em> labeled <strong>MinX</strong> and <strong>MaxX</strong> left and right. As you move the sliders, the skeleton's pose is updated in the N-Geometry window to show the current where the current setting would position the skeleton.</dt>
+</a><P></dl><a name="32670">
+<li><strong>Y Min/Max</strong> is identical to X Min/Max, except for the Y direction.
+</a></li><P><a name="32671">
+<li><strong>Z Min/Max</strong> is identical to X Min/Max, except for the Z direction.
+</a></li><P><a name="32672">
+<li><strong>Scale Min/Max</strong> indicates whether the bone can be scaled (resized) to solve an IK move. <strong>(CLICK-L)</strong> on the small button next to the Z Min/Max values for the bone to toggle its "scalability." 
+</a></li><P></ul><P>
+<a name="32684">
+<STRONG>	3.	 At the right of the screen are a series of sliders that can be used to interactively set the DOF limits for the selected bone.
+</STRONG>
+</a><P><a name="32691">
+ <P><img src="2MenusCommands.anc38.gif"><p>
+</a>
+<a name="32692">
+<em>Figure 2.38  &#32;Sliders to set the rotational limits interactively
+</em></a><P><dl><dl><a name="32705">
+<dt>When the bone can be scaled, the white square in the center of the button changes size, and the minimum and maximum values for the bone are displayed in the text edit box. Also, two additional sliders, <strong>MinS</strong> and <strong>MaxS</strong> appear at the bottom of the DOF Editor window.</dt>
+</a><P><a name="32706">
+<dt>There are two ways to set the scale limits for the selected bone:</dt>
+</a><P></dl><ul>
+<BR><a name="32707">
+<li><strong>(CLICK-L)</strong> to modify the values, or <strong>(CLICK-M)</strong> or <strong>(CLICK-R)</strong> to enter a new value.
+</a><P></ul>
+<dl><a name="32708">
+<dt>or</dt>
+</a><P></dl><ul>
+<BR><a name="32709">
+<li><strong>(CLICK-L)</strong> and drag the sliders labeled <strong>MinX</strong> and <strong>MaxX</strong> left and right. As you move the sliders, the skeleton's pose is updated in the N-Geometry window to show the current where the current setting would position the skeleton.
+</a><P></ul>
+</dl>
+<a name="32686">
+<STRONG>	4.	 At the bottom of the screen:
+</STRONG>
+</a><P><ul>
+<BR><a name="27859">
+<li><strong>Save Changes</strong> saves the currently displayed DOF limits.
+</a><P><BR><a name="32698">
+<li><strong>Skeleton</strong> shows the name of the skeleton whose DOF limits you're currently viewing
+</a><P><BR><a name="27860">
+<li><strong>Reinitialize</strong> flushes any unsaved changes that have been made in the current session in the DOF editor.
+</a><P></ul>
+
+<a name="28016">
+<h3> Flip</h3>
+</a><a name="29246">
+<em>Bones</em><p>
+</a><P><a name="28017">
+Flips a bone, changing the location of the root bone. You use this operation to change the location of the root. For example, if you had built a skeleton with a multi-segmented backbone, and decided that you wanted to change the location of the root on that skeleton, you could flip the appropriate bone(s) to change the position of the root.<p>
+</a><P><a name="28018">
+To flip a bone:<p>
+</a><P>
+<a name="28019">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone you want to flip.
+</STRONG>
+</a><P><a name="28020">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Flip.
+</STRONG>
+</a><P><dl><a name="28021">
+<dt>The bone changes its orientation.</dt>
+</a><P><a name="28038">
+ <P><img src="2MenusCommands.anc39.gif"><p>
+</a></dl>
+<a name="28039">
+<em>Figure 2.39  &#32; &#32;Flipping a bone can change a root
+</em></a><P><dl><dl><a name="28040">
+<dt>If you choose a bone that is more than one bone away from the current root, all intermediate bones between the selected bone and the old root are flipped to accommodate the new "root" position.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can only have one root on a skeleton.</em> </font></dd></dt></dl><P>
+<a name="27950">
+<h3> Free Scale</h3>
+</a><a name="29547">
+<em>Skeletons</em><p>
+</a><P><a name="32499">
+Scales the skeleton freely. While <strong>Scale</strong> scales the skeleton as a whole, <strong>Free Scale</strong> can change the scale of the skeleton along each axis independently.<p>
+</a><P><a name="32501">
+<h4> Free Scaling around the Midpoint</h4>
+</a><a name="32502">
+To scale the skeleton around a its midpoint:<p>
+</a><P>
+<a name="32503">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="32504">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on XYZ-Scale.
+</STRONG>
+</a><P><dl><a name="32505">
+<dt>Scales the skeleton independently along each axis around the object's midpoint.</dt>
+</a><P></dl>
+<a name="32507">
+<h4> Free Scaling around an Arbitrary Vertex</h4>
+</a><a name="32508">
+To scale the skeleton around an arbitrary vertex:<p>
+</a><P>
+<a name="32509">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="32510">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on XYZ-Scale.
+</STRONG>
+</a><P><a name="32511">
+<STRONG>	3.	 Select a point (usually on the skeleton) around which to scale the entire skeleton. 
+</STRONG>
+</a><P><dl><a name="32512">
+<dt>That point appears to be "locked" and the skeleton is scaled along each axis around that point.</dt>
+</a><P></dl>
+<a name="32514">
+<h4> Free Scaling around a Selected Location</h4>
+</a><a name="32515">
+To scale the skeleton around a selected location:<p>
+</a><P>
+<a name="32516">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="32517">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on XYZ-Scale.
+</STRONG>
+</a><P><dl><a name="32518">
+<dt>N-Geometry presents a menu that lets you specify how you want to scale the skeleton. For a description of each of the options on the scaling menu, see the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="29546">
+<h3> Hard/Soft</h3>
+</a><a name="29256">
+<em>Bones</em><p>
+</a><P><a name="27951">
+You must have assigned a skin to the skeleton for this command to make sense.<p>
+</a><P><a name="34458">
+Specifies which hard and soft parts are affected (move) as a result of rotating the selected bone. You can also specify that some parts are updated if you move the bone in one direction, but not in another.<p>
+</a><P><a name="27953">
+For example, you might want a soft part around the elbow that is "in effect" if you rotate the forearm around the X axis, but not the Y.<p>
+</a><P><a name="27955">
+<h4> Assigning Hard and Soft Parts to a Bone</h4>
+</a><a name="27956">
+To edit the soft and hard parts associated with a bone:<p>
+</a><P>
+<a name="27957">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone.
+</STRONG>
+</a><P><a name="27958">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Hard/Soft.
+</STRONG>
+</a><P><dl><a name="27959">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="27963">
+ <P><img src="2MenusCommands.anc40.gif"><p>
+</a></dl>
+<a name="27964">
+<em>Figure 2.40  &#32; &#32;Specifying hard and soft parts for a bone
+</em></a><P><ul><a name="27965">
+<li><strong>All Hard Parts</strong> lists which hard parts are affected regardless of the direction in which the bone is moved. If you add a part to this list, it automatically is inserted into the lists for X, Y, and Z.
+</a></li><P><a name="27966">
+<li><strong>Hard Parts X</strong>, <strong>Y</strong>, and <strong>Z</strong> list which hard parts are affected when moving the selected bone in that plane.
+</a></li><P><a name="27967">
+<li><strong>Hard Parts L</strong> lists which hard parts are affected by changing the length of this bone.
+</a></li><P><a name="27968">
+<li><strong>All Soft Parts</strong> lists which parts are affected regardless of the direction in which the bone is moved. If you add a part to this list, it automatically is inserted into the lists for X, Y, and Z.
+</a></li><P><a name="27969">
+<li><strong>Soft Parts X</strong>, <strong>Y</strong>, and <strong>Z</strong> list which parts are affected when moving the selected bone in that plane. For example, if you have a soft joint around the elbow (called "Elbow") associated with the forearm, and want that soft part to be updated only when you move the forearm in the X plane, you'd <strong>(CLICK-L)</strong> on <strong>Soft Parts X</strong> and select the soft part "Elbow." For the other two planes (<strong>Soft Parts Y</strong> and <strong>Soft Parts Z</strong>) you'd <strong>(CLICK-L)</strong> on <strong>Do It</strong> without selecting any soft parts.
+</a></li><P><a name="27970">
+<li><strong>Soft Parts L</strong> lists which soft parts are affected by changing the length of this bone.
+</a></li><P><dl><a name="27971">
+<dt>When you <strong>(CLICK-L)</strong> in any of the text edit boxes in this dialog box, you can choose which parts you want to include:</dt>
+</a><P><a name="27975">
+ <P><img src="2MenusCommands.anc41.gif"><p>
+</a></dl></ul><P><a name="27976">
+<em>Figure 2.41  &#32; &#32;Choosing hard and soft parts
+</em></a><P><a name="27977">
+Choose the skin part that should act as a soft part when you rotate the selected bone in the specified direction.<p>
+</a><P><a name="27979">
+<h4> Displaying/Selecting Hard and Soft Parts for a Bone</h4>
+</a><a name="27980">
+Selects the hard or soft parts for a selected bone:<p>
+</a><P>
+<a name="27981">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the bone.
+</STRONG>
+</a><P><a name="27982">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Hard/Soft.
+</STRONG>
+</a><P><dl><a name="27983">
+<dt>Choose which soft parts you want to display from the following menu:</dt>
+</a><P><a name="27987">
+ <P><img src="2MenusCommands.anc42.gif"><p>
+</a></dl>
+<a name="27988">
+<em>Figure 2.42  &#32; &#32;Selecting which hard/soft parts to display for a bone
+</em></a><P><dl><dl><a name="27989">
+<dt>If no soft parts of the specified type exist on the skin, a message is displayed telling you so. However, if soft parts exist, the following dialog box is displayed:</dt>
+</a><P><a name="27993">
+ <P><img src="2MenusCommands.anc43.gif"><p>
+</a></dl></dl><a name="27994">
+<em>Figure 2.43  &#32; &#32;Confirming the selection of the specified parts
+</em></a><P>
+<a name="27995">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="27996">
+<dt>The points in the specified parts are highlighted in the N-Geometry window.</dt>
+</a><P></dl>
+<a name="28600">
+<h3> IK Move</h3>
+</a><a name="29266">
+<em>Joints</em><p>
+</a><P><a name="28601">
+Move the selected joint using inverse kinematics (IK). IK moves update a skeleton's pose based on constraints placed on bones between the selected joint and the root.<p>
+</a><P><ul><a name="28602">
+<li>If the root is selected, the entire skeleton object is translated.
+</a></li><P><a name="28603">
+<li>If the root and other joints are selected, it translates and updates the selected joints.
+</a></li><P></ul><P><a name="28605">
+<h4> Moving a Bone using the Current IK Set</h4>
+</a><a name="28606">
+To perform an IK move on the selected joint:<p>
+</a><P>
+<a name="28607">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="28608">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on IK Move.
+</STRONG>
+</a><P><dl><a name="28609">
+<dt>To perform an IK move, the joint must use an IK Set. If you have already assigned an IK Set for the joint to use (with the IK Set command), you can move the joint interactively.</dt>
+</a><P><a name="28610">
+<dt>If you haven't defined an IK Set and you try to perform an IK move on a joint, a dialog box appears, which lets you create a new IK Set:</dt>
+</a><P><a name="28614">
+ <P><img src="2MenusCommands.anc44.gif"><p>
+</a></dl>
+<a name="28615">
+<em>Figure 2.44  &#32; &#32;Creating an IK Set
+</em></a><P><dl><dl><a name="28619">
+<dt>Defining an IK Set is described in the section <a href="2MenusCommands2.html#32526">"IK Set," on page &#32;2-51</a>.</dt>
+</a><P></dl></dl><a name="28621">
+<h4> Move Bone using Relax Method</h4>
+</a><ul><a name="34215">
+<li><strong>(CLICK-M)</strong> on <strong>IK Move</strong> to perform the operation using this method.
+</a></li><P></ul><P><a name="28622">
+Similar to a normal IK move, this performs the IK solve using a different algorithm. (The IK solve determines which bones are rotated to accommodate the joint's new position.)<p>
+</a><P><a name="28624">
+<h4> Select an IK Set for an IK Move</h4>
+</a><ul><a name="34218">
+<li><strong>(CLICK-R)</strong> on <strong>IK Move</strong> to select the IK Set to use when performing IK operations on this joint (including dynamic operations in N-Dynamics).
+</a></li><P></ul><P><a name="34216">
+Displays a list of IK sets saved for the joint. <strong>(CLICK-L)</strong> on the IK Set you want to use, then <strong>(CLICK-L)</strong> on <strong>IK Move</strong>.<p>
+</a><P><a name="29280">
+<h3> IK Move 2D</h3>
+</a><a name="29281">
+<em>Joints</em><p>
+</a><P><a name="29282">
+The <strong>IK Move 2D</strong> command, like the <strong>IK Move</strong> command, performs an inverse kinematic move on the specified joint; however, the IK solve is performed using only the two bones superior to the selected joint.<p>
+</a><P><a name="28634">
+<h4> Two Bone IK Move in a Rotating Plane</h4>
+</a><a name="28635">
+A two bone inverse kinematic move in a rotating plane accommodates the change in a joint's position by moving the two bones superior to that joint in any direction.<p>
+</a><P><a name="28636">
+To IK move a joint using this method:<p>
+</a><P>
+<a name="28637">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the joint.
+</STRONG>
+</a><P><a name="28638">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on IK Move 2D.
+</STRONG>
+</a><P><dl><a name="28639">
+<dt>To perform a 2D IK move, you must define whether the selected joint should act like a wrist or an ankle. If you haven't previously specified the joint ID, the following dialog box is displayed:</dt>
+</a><P><a name="28643">
+ <P><img src="2MenusCommands.anc45.gif"><p>
+</a></dl>
+<a name="28644">
+<em>Figure 2.45  &#32; &#32;Choosing a joint identification
+</em></a><P><dl><dl><a name="28645">
+<dt>Choosing either wrist or ankle determines how the two bones superior to the joint move:</dt>
+</a><P></dl><ul>
+<BR><a name="28646">
+<li>like a tibia and a femur if you choose <strong>ankle</strong>
+</a><P><BR><a name="28647">
+<li>like a forearm and upper arm if you choose <strong>wrist</strong>
+</a><P></ul>
+<dl><a name="28648">
+<dt>Essentially, the choice you make here determines which way the joint above the selected joint "bends" to accommodate the IK move</dt>
+</a><P></dl></dl><a name="28649">
+This type of two-bone IK move allows the two superior bones to move in any axes.<p>
+</a><P><a name="28651">
+<h4> Two Bone IK Move in a Fixed Plane</h4>
+</a><a name="28652">
+This is similar to the two bone IK move described above, except that the two bones superior to the joint are constrained to movement in the plane described by those two bones:<p>
+</a><P><a name="28662">
+ <P><img src="2MenusCommands.anc46.gif"><p>
+</a><a name="28663">
+<em>Figure 2.46  &#32; &#32;Constraining a 2D IK move to one plane
+</em></a><P><a name="28664">
+For example, if you <strong>(CLICK-M)</strong> on <strong>IK Move 2D</strong> on a wrist joint, only the forearm and upper arm move, and only as if you were flexing the arm.<p>
+</a><P><a name="28669">
+<h3> IK Move Root</h3>
+</a><a name="29605">
+<em>Joints, collections of joints</em><p>
+</a><P><a name="30484">
+The <strong>IK Move Root</strong> operation lets you move the skeleton's root, pinning one or more joints down in their current position as a "point of reference."<p>
+</a><P><a name="30485">
+Here's the basic concept:<p>
+</a><P><ul><a name="30486">
+<li>"pin down" one or more joints (not the root) on the skeleton
+</a></li><P><a name="30487">
+<li>use the mouse to move the root, trying to keep the pinned joints as close to their original positions as possible (while paying attention to the DOF limits in place for the skeleton)
+</a></li><P></ul><P><a name="30488">
+The <strong>IK Move Root</strong> can be very helpful when setting up pose-to-pose animations, as the root of the skeleton can be moved very intuitively.<p>
+</a><P><a name="30489">
+Try the following:<p>
+</a><P>
+<a name="30490">
+<STRONG>	 1.	 Create a skeleton primitive.
+</STRONG>
+</a><P><a name="30491">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="30492">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the right ankle joint.
+</STRONG>
+</a><P><a name="30493">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on IK Move Root.
+</STRONG>
+</a><P><dl><a name="30494">
+<dt>The IK Set dialog box appears. Make the following changes to the IK Set for the right ankle joint:</dt>
+</a><P></dl><ul>
+<BR><a name="30495">
+<li>Turn off X, Y, and Z rotations for the TopHip
+</a><P><BR><a name="30496">
+<li>Turn off Y and Z rotations for the RightFemur
+</a><P></ul>
+<dl><a name="30497">
+<dt>When you're done, the IK Set should look like this:</dt>
+</a><P><a name="30502">
+ <P><img src="2MenusCommands.anc47.gif"><p>
+</a></dl>
+<a name="30503">
+<em>Figure 2.47  &#32; &#32;Defining an IK Set for an IK Move Root operation
+</em></a><P>
+<a name="30504">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Done to save the IK set.
+</STRONG>
+</a><P><a name="30505">
+<STRONG>	6.	 Enter a name for the IK set in the dialog box that appears and <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><a name="30507">
+<STRONG>	7.	 Move the mouse to pose the skeleton. 
+</STRONG>
+</a><P><dl><a name="34235">
+<dt>Note that the right ankle joint remains fixed:</dt>
+</a><P><a name="30519">
+ <P><img src="2MenusCommands.anc48.gif"><p>
+</a></dl>
+<a name="30520">
+<em>Figure 2.48  &#32; &#32;Left, original skeleton; right, IK Move Root using right ankle joint
+</em></a><P><a name="30521">
+As mentioned above, you can pin down <em>several</em> joints before you do the <strong>IK Move Root</strong> operation. You could, for example, try the following:<p>
+</a><P>
+<a name="30522">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on points in the element sensitivity menu.
+</STRONG>
+</a><P><a name="30523">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on a wrist and ankle joint, then <strong>(CLICK-R)</strong> to end the collection.
+</STRONG>
+</a><P><a name="30524">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the N-Geometry window, then <strong>(CLICK-L)</strong> on IK Move Root.
+</STRONG>
+</a><P><dl><a name="30525">
+<dt>If you haven't done so already, you'll be prompted to specify an IK set for both of the pinned joints, as described above.</dt>
+</a><P></dl><a name="30526">
+<STRONG>	4.	 After the IK sets are defined, you can move the skeleton:
+</STRONG>
+</a><P><a name="30539">
+ <P><img src="2MenusCommands.anc49.gif"><p>
+</a>
+<a name="30540">
+<em>Figure 2.49  &#32; &#32;Left, original skeleton; right, <strong>IK Move Root</strong> pinning wrist and ankle
+</em></a><P><a name="30541">
+You can pin any number of joints before executing the <strong>IK Move Root</strong> operation.<p>
+</a><P><a name="30542">
+<h4> Other Notes on IK Move Root</h4>
+</a><ul><a name="30543">
+<li><strong>(CLICK-M)</strong> on <strong>IK Move Root</strong> to pose the skeleton using the Relax method.
+</a></li><P><a name="30544">
+<li><strong>(CLICK-R)</strong> on <strong>IK Move Root</strong> if you want the fixed joint (the ankle in our example above) to be able to move when posing the skeleton. This variable is called <em>elasticity</em>.
+</a></li><P><dl><a name="30545">
+<dt>Use the slider that pops up to set the flexibility to a value between 0 (totally fixed) and 1 (very flexible).</dt>
+</a><P></dl></ul><P>
+<h2>(CLICK-L) on [Next] to continue...</h2> 
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands.html">[Prev]</a> <a href="2MenusCommands2.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 10:50:17 -->
+
+</body>
+</html>

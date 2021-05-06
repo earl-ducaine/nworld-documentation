@@ -1,0 +1,1084 @@
+<html><head><title>N-Geometry Basics</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2Airplane.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="5677">
+<h1>N-Geometry Basics</h1>
+</a>
+<hr><p><a name="10802">
+<h4> In this chapter you'll learn some of the basic concepts you'll need to work in N-Geometry.</h4>
+</a><a name="11591">
+ <P><img src="1Basics.anc.gif"><p>
+</a><a name="11475">
+<h2><HR> In this Chapter</h2>
+</a><a name="11485">
+You'll learn about:<p>
+</a><P><ul><a name="6723">
+<li>The concept of global 3-D space
+</a></li><P><a name="6377">
+<li>Adding new objects
+</a></li><P><a name="6380">
+<li>Changing objects (transform vs. modify)
+</a></li><P><a name="6665">
+<li>Displaying objects
+</a></li><P><a name="6386">
+<li>Managing objects (reading, saving, copying, killing, and moving)
+</a></li><P><a name="6411">
+<li>Hot keys
+</a></li><P><a name="6392">
+<li>Setting preferences in N-Geometry
+</a></li><P><a name="9543">
+<li>Using the Browser with N-Geometry
+</a></li><P></ul><P><a name="6118">
+<h2><HR> Global 3D Space</h2>
+</a><a name="6462">
+N-Geometry is a 3D modeler-the objects you create can have height, width, <em>and</em> depth. In order to make it easier for you to tell "which way is up," N-Geometry uses a Cartesian coordinate system, similar to the one you may have learned about in high-school algebra. To find our way around, we use a set of global axes, which look something like this:<p>
+</a><P><a name="7245">
+ <P><img src="1Basics.anc1.gif"><p>
+</a><a name="7247">
+<em>Figure 1.1  &#32; &#32;The global coordinate system
+</em></a><P><a name="7256">
+In N-Geometry this coordinate system is "right-handed;" positive y represents "up," positive x is "right," and positive z is "forward."<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Typically, you create objects with a +z orientation; that is, they should face forward. Both the Skeletal Animation System and N-Dynamics are easiest to use if you begin any object with this orientation.</font></dd></dt></dl><P>
+<a name="7248">
+<h3> Local 3D Space</h3>
+</a><a name="7263">
+While this global coordinate system is always in effect, it is possible for objects you create to have <em>their own</em> x, y, and z axes. Such coordinate systems are referred to as <em>local coordinate systems</em>.<p>
+</a><P><a name="11502">
+Local coordinate systems can have a different origin and their axes can point in different directions than the global coordinate system. Local coordinate systems can also be non-Cartesian.The number of local coordinate systems is unlimited.<p>
+</a><P><a name="6119">
+<h2><HR> Adding New Objects</h2>
+</a><a name="6494">
+There are a number of ways to add new objects in N-Geometry. You may build an object from scratch, read it in, or use any of the other techniques described below.<p>
+</a><P><a name="6120">
+<h3> "Virtual Clay"</h3>
+</a><a name="6463">
+How do you start modeling in N-Geometry?<p>
+</a><P><a name="6586">
+Typically, you'll add a <em>primitive object </em>(such as a cube or a <br>cylinder), then start pulling out faces on that object, adding and moving vertices, segments, and faces until your object looks right. It may help to think of the primitive as a piece of "virtual clay," clay that can be infinitely stretched, shrunk, and divided from the same piece of material.<p>
+</a><P><a name="7528">
+<h3> Adding Objects</h3>
+</a><a name="7553">
+The <strong>GeoMenus&gt;File</strong> menu contains commands for creating new objects, reading in objects, and saving and exporting objects.<p>
+</a><P><a name="10706">
+ <P><img src="1Basics.anc2.gif"><p>
+</a><a name="10707">
+<em>Figure 1.2  &#32; &#32;Adding objects to N-Geometry
+</em></a><P><a name="10699">
+To add a new object:<p>
+</a><P>
+<a name="7554">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><dl><a name="7555">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="7543">
+ <P><img src="1Basics.anc3.gif"><p>
+</a></dl>
+<a name="7544">
+<em>Figure 1.3  &#32; &#32;Adding a primitive
+</em></a><P><a name="7560">
+Each primitive is described in more detail in the <em>N-Geometry Reference Guide</em>. <p>
+</a><P><a name="6124">
+<h3> Selecting Objects and their Elements</h3>
+</a><a name="6683">
+The element sensitivity menu stretches across the top of the N-Geometry window:<p>
+</a><P><a name="7342">
+ <P><img src="1Basics.anc4.gif"><p>
+</a><a name="7344">
+<em>Figure 1.4  &#32; &#32;The element sensitivity menu
+</em></a><P><a name="7329">
+You use the element sensitivity menu to select the type of element you want to edit.<p>
+</a><P><a name="11524">
+<h4> collect</h4>
+</a><a name="7363">
+This is used in conjunction with points, segments, faces, bodies, and objects to form collections of that element type.<p>
+</a><P><a name="7354">
+<h4> none</h4>
+</a><a name="7366">
+A quick way to deselect any currently selected elements and exit from collect mode (if you're in it).<p>
+</a><P><a name="7355">
+<h4> points, segments, faces, bodies, and objects</h4>
+</a><a name="7370">
+Specify which element type you want to work with. For example, if you want to modify a face, <strong>(CLICK-L)</strong> on faces.<p>
+</a><P><a name="6448">
+<h4> Highlighting vs. Selecting</h4>
+</a><a name="7322">
+<em>Highlighting</em> lets you see which element will be <em>selected</em> if you click the mouse. To "highlight" an element:<p>
+</a><P>
+<a name="7316">
+<STRONG>	 1.	 Select the type of element you want to work with on the element sensitivity menu.
+</STRONG>
+</a><P><a name="7317">
+<STRONG>	2.	 Move the mouse over an object in the N-Geometry window.
+</STRONG>
+</a><P><dl><a name="7441">
+<dt>As you move the mouse over an object in the scene, elements of the specified type are highlighted. As you move over each element, its corresponding serial number (or bone name if the object is a skeleton) is displayed in the upper left corner of the N-Geometry window:</dt>
+</a><P><a name="7454">
+ <P><img src="1Basics.anc5.gif"><p>
+</a></dl>
+<a name="7455">
+<em>Figure 1.5  &#32; &#32;Highlighting an element
+</em></a><P><dl><dl><a name="7654">
+<dt>This is the element's serial number, and can be of use to users who want to identify a selected element.</dt>
+</a><P></dl></dl><a name="7279">
+<em>Selecting</em> an element, on the other hand, is what you do when you want to work with it. To select an element:<p>
+</a><P>
+<a name="7413">
+<STRONG>	 1.	 Select the type of element you want to modify on the element sensitivity menu.
+</STRONG>
+</a><P><a name="7414">
+<STRONG>	2.	 Move the mouse over the N-Geometry window until the element you want to modify is highlighted.
+</STRONG>
+</a><P><a name="7420">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the element.
+</STRONG>
+</a><P><dl><a name="7484">
+<dt>Selecting an element displays extra information in the upper left corner of the N-Geometry window, such as the midpoint of an object, or, in the case of a bone, things like its length and rotation order):</dt>
+</a><P><a name="7496">
+ <P><img src="1Basics.anc6.gif"><p>
+</a></dl>
+<a name="7497">
+<em>Figure 1.6  &#32; &#32;Selecting an element
+</em></a><P><dl><dl><a name="7665">
+<dt>Note that the color of the element changes, to indicate that it has been selected-this means that operations you select will be applied to this element.</dt>
+</a><P></dl></dl><a name="6666">
+<h2><HR> Bodies vs. Objects</h2>
+</a><a name="11135">
+As described in more detail in the <em>N-Geometry Reference Guide</em>, there are two parts to an N-Geometry object:<p>
+</a><P><ul><a name="11218">
+<li>transformation matrix
+</a></li><P><dl><a name="11540">
+<dt>The transformation matrix describes the object's orientation in 3D space; its center, how it is rotated, and so forth. When you <em>animate</em> an object through space you are working with the <em>object</em>.</dt>
+</a><P></dl><a name="11219">
+<li>body
+</a></li><P><dl><a name="11225">
+<dt>The body describes the actual <em>shape</em> of the object. When you sculpt an object, you are working with the <em>body</em>.</dt>
+</a><P></dl></ul><P><a name="11541">
+It is easy to initialize (reset) the transformation matrix to undo any changes made to an object. Changes made to a body, however, can only be done by subsequent "opposite" changes.<p>
+</a><P><a name="6703">
+<h4> Working with Objects</h4>
+</a><a name="10817">
+To see a list of operations that you can perform on an object:<p>
+</a><P>
+<a name="11259">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>objects</strong> in the element sensitivity menu.
+</STRONG>
+</a><P><dl><a name="10825">
+<dt>When you move the mouse over an object in the N-Geometry window, a bounding box is displayed around the entire object and a set of axes are displayed around the object's origin.</dt>
+</a><P><a name="10837">
+ <P><img src="1Basics.anc7.gif"><p>
+</a></dl>
+<a name="11264">
+<em>Figure 1.7  &#32; &#32;Selecting an object
+</em></a><P><a name="11265">
+If you <strong>(SHIFT-L)</strong> on an object, a list of operations that can be performed on the object is displayed:<p>
+</a><P><a name="10937">
+ <P><img src="1Basics.anc8.gif"><p>
+</a><a name="10938">
+<em>Figure 1.8  &#32; &#32;Object operations (flip menu)
+</em></a><P><a name="10941">
+Operations performed on an object are sometimes referred to collectively as <em>transformations</em>. All of these operations are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="11154">
+Let's create an object and transform it:<p>
+</a><P>
+<a name="11155">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><a name="11156">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11157">
+<STRONG>	3.	 (SHIFT-L) on the cube, then (CLICK-L) on Axis Move&gt;X.
+</STRONG>
+</a><P><dl><a name="11158">
+<dt>Move the cube back and forth along the global x axis. Note that the object's center (shown by the local axes) moves too.</dt>
+</a><P><a name="11166">
+ <P><img src="1Basics.anc9.gif"><p>
+</a></dl>
+<a name="11167">
+<em>Figure 1.9  &#32; &#32;Move the cube object along the X axis
+</em></a><P>
+<a name="11283">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on <strong>Home</strong>.
+</STRONG>
+</a><P><dl><a name="11284">
+<dt>The cube "snaps back" to the global origin.</dt>
+</a><P><a name="11316">
+ <P><img src="1Basics.anc10.gif"><p>
+</a></dl>
+<a name="11317">
+<em>Figure 1.10  &#32; &#32;Use the <strong>Home</strong> command to reset the cube to its default position
+</em></a><P>
+<a name="11285">
+<STRONG>	5.	 Transform the object along the X axis again.
+</STRONG>
+</a><P><a name="11299">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on <strong>Set Home</strong>.
+</STRONG>
+</a><P><dl><a name="11332">
+<dt>This makes the cube object's current position its default, or "Home" position.</dt>
+</a><P></dl><a name="11322">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the cube, then <strong>(CLICK-L)</strong> on <strong>Home</strong> again.
+</STRONG>
+</a><P><dl><a name="11323">
+<dt>This time, the cube stays in its new home. </dt>
+</a><P></dl>
+<a name="11366">
+If you were to animate this object, any animation would be based on this new position.<p>
+</a><P><a name="9129">
+<h4> The Set Home Command</h4>
+</a><a name="9130">
+The <strong>Set Home</strong> command makes the object's current position (as defined by its transformation matrix) its "home" position.<p>
+</a><P><a name="9131">
+To use <strong>Set Home</strong> on an object:<p>
+</a><P>
+<a name="10985">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="10981">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="10977">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Initialize.
+</STRONG>
+</a><P><dl><a name="9134">
+<dt>The object returns to the last defined home position.</dt>
+</a><P></dl><a name="9135">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on the object to initialize the object to its default transformation matrix.
+</STRONG>
+</a><P><dl><a name="9136">
+<dt>If you do this, then use <strong>Home</strong> on the object, the object's home position is cleared to the default-aligned with the global origin.</dt>
+</a><P></dl>
+<a name="9137">
+<h4> The Apply Transformation Command</h4>
+</a><a name="9138">
+The <strong>Apply Transformation</strong> command clears the object's transformation matrix without changing the apparent position of the object. (The effect is if you had modified the body to be in its current location.)<p>
+</a><P><a name="9139">
+Try this:<p>
+</a><P>
+<a name="9140">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="11010">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="9141">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="9143">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Axis Move&gt;X.
+</STRONG>
+</a><P><dl><a name="9144">
+<dt>Move the cube to the right.</dt>
+</a><P></dl><a name="11025">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="9147">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Apply Transformation.
+</STRONG>
+</a><P><dl><a name="9148">
+<dt>Note that the body stays in its new position, but that the transformation matrix is cleared to its default home position.</dt>
+</a><P></dl>
+<a name="11386">
+<h4> Working with Bodies</h4>
+</a><a name="11387">
+Modifications are the operations you normally associate with "sculpting" a model-pulling out faces, cutting segments, and so forth to get the "shape" of the object correct.<p>
+</a><P><a name="11388">
+Try this:<p>
+</a><P>
+<a name="11389">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object&gt;Cube.
+</STRONG>
+</a><P><a name="11390">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11391">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><a name="11392">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Axis Move, then <strong>(CLICK-L)</strong> on X.
+</STRONG>
+</a><P><dl><a name="11393">
+<dt>Drag the cube to the right; note that this time, the transformation matrix is <em>not</em> updated, since you are only modifying the body of the object, not its transformation matrix.</dt>
+</a><P><a name="11401">
+ <P><img src="1Basics.anc11.gif"><p>
+</a></dl>
+<a name="11402">
+<em>Figure 1.11  &#32; &#32;Modifying a cube
+</em></a><P><a name="11413">
+Two complete chapters are devoted to working with objects and working with bodies in the <em>N-Geometry Reference Guide</em>. Before setting up for a project, we recommend familiarizing yourself with the information in that guide.<p>
+</a><P><a name="6129">
+<h2><HR> Viewing Objects</h2>
+</a><a name="6467">
+How do you view objects? <p>
+</a><P><a name="9156">
+Firstly, you look at everything through a <em>camera</em>. The camera is an object, which you can move around like any other object-however, you're always standing behind it, looking through its eyepiece. <p>
+</a><P><ul><a name="11454">
+<li>The <em>N-Geometry Reference Guide</em> describes how to change the camera format (e.g. simulate different volumes of space visible through the camera. 
+</a></li><P><a name="11451">
+<li>Different camera positions can be saved and retrieved as views.
+</a></li><P><a name="9157">
+<li>You can toggle between orthographic and perspective views.
+</a></li><P></ul><P><a name="9158">
+You can also change the viewing characteristics of <em>individual objects</em> in the scene, shading them, displaying their normals, making them invisible, and so forth.<p>
+</a><P><a name="6130">
+<h3> The Camera</h3>
+</a><a name="6456">
+The camera is an object that can be moved around in 3D space. You can zoom, rotate, or translate the camera to change your view.<p>
+</a><P><a name="6468">
+The various camera modes are described in detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="6132">
+<h3> Views</h3>
+</a><a name="6469">
+You can save the current camera position as a "view." Views are useful if you want to:<p>
+</a><P><ul><a name="7729">
+<li>view your object from a known location
+</a></li><P><a name="7731">
+<li>animate the camera between views in an N-Dynamics animation script
+</a></li><P></ul><P><a name="8480">
+<h4> To Save a View</h4>
+</a>
+<a name="8481">
+<STRONG>	 1.	 Move the camera to a position you want to save.
+</STRONG>
+</a><P><dl><a name="11545">
+<dt>To move the camera, <strong>(CLICK-M)</strong> on the N-Geometry window and move the mouse. When the camera is in the position you want to view an object from, <strong>(CLICK-L)</strong> to stop the camera's movement. </dt>
+</a><P><a name="11550">
+<dt>There are a number of camera motion modes, described in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl><a name="8482">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on GeoMenus&gt;Camera&gt;Views.
+</STRONG>
+</a><P><a name="8490">
+<STRONG>	3.	 Enter a name for the camera view in the dialog box that appears:
+</STRONG>
+</a><P><a name="8533">
+ <P><img src="1Basics.anc12.gif"><p>
+</a>
+<a name="8534">
+<em>Figure 1.12  &#32; &#32;Saving a view
+</em></a><P><dl><dl><a name="8546">
+<dt>The default name for the camera view gives a detailed, geometric description of its position; you can substitute a different name for the view if you want.</dt>
+</a><P></dl></dl>
+<a name="8491">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Set Name &amp; Save.
+</STRONG>
+</a><P>
+<a name="8543">
+<h4> To Go to a Saved View</h4>
+</a>
+<a name="8563">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Camera&gt;Views.
+</STRONG>
+</a><P><dl><a name="8580">
+<dt>A menu with several options appears:</dt>
+</a><P><a name="8573">
+ <P><img src="1Basics.anc13.gif"><p>
+</a></dl>
+<a name="8574">
+<em>Figure 1.13  &#32; &#32;Selecting a view
+</em></a><P><ul><ul>
+<BR><a name="8566">
+<li><strong>View before last camera move</strong> goes to the last camera position.
+</a><P><BR><a name="8582">
+<li><strong>Read from file</strong> lets you read a camera view you've saved to disk.
+</a><P><BR><a name="8583">
+<li><strong>Initial Camera View</strong> reinitializes the camera to N-Geometry's default view.
+</a><P><BR><a name="8584">
+<li>Saved views appear at the bottom of the menu-<strong>(CLICK-L)</strong> on the view you want to go to.
+</a><P></ul>
+</ul><a name="8525">
+<h4> View Hot Keys</h4>
+</a><a name="8581">
+There are six hot keys for the saved camera views: 
+<P><Table Border="1">
+<dl>
+<a name="8494">
+<em>Table 1.1  &#32; &#32;Camera hot keys
+</em></a></dl>
+<tr><th align="left"><a name="8498">
+Hot Key
+</a><th align="left"><a name="8500">
+Camera Position (in X, Y, Z order)
+</a>
+<tr><td valign="top"><a name="8502">
+ <strong>X</strong><p>
+</a><td valign="top"><a name="8504">
+ 85, 0, 0<p>
+</a>
+<tr><td valign="top"><a name="8506">
+ <strong>Y</strong><p>
+</a><td valign="top"><a name="8508">
+ 0, 85, 0<p>
+</a>
+<tr><td valign="top"><a name="8510">
+ <strong>Z</strong><p>
+</a><td valign="top"><a name="8512">
+ 0, 0, 85<p>
+</a>
+<tr><td valign="top"><a name="8514">
+ <strong>(CTRL-X)</strong><p>
+</a><td valign="top"><a name="8516">
+ -85, 0, 0<p>
+</a>
+<tr><td valign="top"><a name="8518">
+ <strong>(CTRL-Y)</strong><p>
+</a><td valign="top"><a name="8520">
+ 0, -85, 0<p>
+</a>
+<tr><td valign="top"><a name="8522">
+ <strong>(CTRL-Z)</strong><p>
+</a><td valign="top"><a name="8524">
+ 0, 0, -85<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="7821">
+For all these views, the camera is pointed at the global origin <br>(0, 0, 0). The point at which the camera is aimed is called its <em>aimpoint</em>.<p>
+</a><P><a name="6133">
+<h3> Orthographic vs. Perspective Display</h3>
+</a><a name="6470">
+When viewing scenes in N-Geometry, you can toggle between perspective and orthographic views. An orthographic view attempts to display the true dimensions of an object (regardless of perspective) while a perspective view simulates how an object would appear in the real world.<p>
+</a><P><a name="7873">
+ <P><img src="1Basics.anc14.gif"><p>
+</a><a name="7874">
+<em>Figure 1.14  &#32; &#32;Orthographic vs. perspective views of the same object
+</em></a><P><a name="7893">
+To toggle between orthographic and perspective viewing modes, use the <strong>(SHIFT-O)</strong> hot key.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Because orthographic viewing is based on the camera, toggling between the orthographic and perspective viewing modes affects all objects in the scene.</font></dd></dt><dt><dd><font color=dd000><strong>Note.</strong>	Toggling display modes does not change the actual geometry of an object; only its display characteristics are affected.</font></dd></dt></dl><P>
+<a name="6134">
+<h3> Display Features</h3>
+</a><a name="6471">
+You have quite a bit of control over the way objects are displayed in N-Geometry. Some of the characteristics that can be set for each object include those listed below. <p>
+</a><P><a name="7929">
+All of these characteristics are either on or off. To change the shading of an object, for example:<p>
+</a><P>
+<a name="11046">
+<STRONG>	 1.	 (CLICK-L) on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11047">
+<STRONG>	2.	 (SHIFT-L) on the object.
+</STRONG>
+</a><P><a name="7928">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Shading.
+</STRONG>
+</a><P><a name="7948">
+ <P><img src="1Basics.anc15.gif"><p>
+</a>
+<a name="7949">
+<em>Figure 1.15  &#32; &#32;Select the object you want to change
+</em></a><P><a name="11059">
+To toggle the display parameters for several objects, either collect them and the <strong>(SHIFT-L)</strong> on the collection, or <strong>(CLICK-R)</strong> on <strong>GeoMenus&gt;Object Display&gt;Shading</strong> (for example) and select the objects whose display parameters you want to modify.<p>
+</a><P><a name="6222">
+<h4> Visibility</h4>
+</a><a name="7715">
+Controls whether the object is displayed or not (assuming the object is in the camera's field of view). For example, you might make certain objects temporarily invisible to unclutter your viewing area.<p>
+</a><P><a name="6223">
+<h4> Backfacing</h4>
+</a><a name="6473">
+Determines whether backfacing control is applied to the object. If backfacing is turned on, only faces whose normals face toward the camera are drawn:<p>
+</a><P><a name="7887">
+ <P><img src="1Basics.anc16.gif"><p>
+</a><a name="7888">
+<em>Figure 1.16  &#32; &#32;Left, backfacing on; right, backfacing off
+</em></a><P><a name="6227">
+<h4> Shading</h4>
+</a><a name="8021">
+Toggles shading for the object. Shading is useful if you need to see the contours of an object. Shaded objects are rendered in real time using GL Shade, SGI's built-in hardware renderer. Shaded objects can have color and are affected by any lights in the scene which may hit that object:<p>
+</a><P><a name="8037">
+ <P><img src="1Basics.anc17.gif"><p>
+</a><a name="8038">
+<em>Figure 1.17  &#32; &#32;Left, shading off; right, shading on
+</em></a><P><a name="6228">
+<h4> Hard Edging</h4>
+</a><a name="8059">
+This turns off the display of any edges whose <em>adjacent</em> faces meet at an angle less than the specified number of degrees.<p>
+</a><P><a name="7967">
+ <P><img src="1Basics.anc18.gif"><p>
+</a><a name="7968">
+<em>Figure 1.18  &#32; &#32;Left, original object; right, with hard edging applied
+</em></a><P><a name="6229">
+<h4> Points</h4>
+</a><a name="8075">
+Highlights all points on the selected object when performing a modification on the object. Sometimes this can make it easier to see what vertices belong to a particular object, particularly if you are working with several objects that are in close proximity.<p>
+</a><P><a name="8103">
+ <P><img src="1Basics.anc19.gif"><p>
+</a><a name="8104">
+<em>Figure 1.19  &#32; &#32;Icosahedron with points selected
+</em></a><P><a name="6230">
+<h4> Normals</h4>
+</a><a name="8113">
+Toggles the display of the vertex, edge, or face normals for the selected body (depending on which mouse button is clicked).<p>
+</a><P><a name="8094">
+ <P><img src="1Basics.anc20.gif"><p>
+</a><a name="8095">
+<em>Figure 1.20  &#32; &#32;Left, vertex normals; middle, edge normals; right, face normals
+</em></a><P><a name="6231">
+<h4> Stand-ins</h4>
+</a><a name="8205">
+Stand-ins are useful if you are working with very large objects-because N-Geometry keeps track of all the points on an object, extremely large objects can slow down camera movement significantly.<p>
+</a><P><a name="8613">
+If you choose to use a stand-in for an object, a "substitute" is displayed during the camera move, keeping N-Geometry responsive:<p>
+</a><P><a name="7991">
+ <P><img src="1Basics.anc21.gif"><p>
+</a><a name="7992">
+<em>Figure 1.21  &#32; &#32;Left, object before camera move; middle, stand-in displayed during camera move; right, object after camera move
+</em></a><P><a name="8627">
+The default stand-in is a bounding box for the object-think of it as a box of the size you'd need to hold the object.<p>
+</a><P><a name="6232">
+<h4> Local Axes</h4>
+</a><a name="8118">
+The local axes for an object can be toggled on or off. This is useful if you want to see a set of labeled axes for an object.<p>
+</a><P><a name="8005">
+ <P><img src="1Basics.anc22.gif"><p>
+</a><a name="8006">
+<em>Figure 1.22  &#32; &#32;Local axes displayed for modified and transformed cubes
+</em></a><P><a name="6233">
+<h4> Sensitivity</h4>
+</a><a name="6480">
+Toggles the sensitivity of an object. An object must be sensitive for you to highlight or select it with the mouse.<p>
+</a><P><ul><a name="8123">
+<li>Objects whose sensitivity has been turned off are displayed as a medium gray in the interface.
+</a></li><P><a name="8182">
+<li>Making large objects insensitive speeds up the camera.
+</a></li><P></ul><P><a name="6234">
+<h4> Default Sensitivity Threshold</h4>
+</a><a name="8159">
+You can specify a threshold at which objects read in from disk are made automatically insensitive.<p>
+</a><P>
+<a name="8185">
+<STRONG>	 1.	 Choose GeoMenus&gt;Utilities&gt;Preferences&gt;Objects.
+</STRONG>
+</a><P><a name="8189">
+<STRONG>	2.	 Specify a target number of vertices in the Sensitivity Threshold field.
+</STRONG>
+</a><P><dl><a name="8646">
+<dt>Objects larger than this value appear in the N-Geometry window "insensitive."</dt>
+</a><P></dl>
+<a name="8647">
+<h2><HR> Managing your Objects</h2>
+</a><a name="8666">
+Creating, loading, saving, deleting, and copying objects are all done primarily through the GeoMenus, (although some of these tasks can also be done through the Browser and the object menu.) Each of these tasks is described in more detail below.<p>
+</a><P><a name="8679">
+<h3> Reading in Objects</h3>
+</a><a name="8648">
+To read an object from disk:<p>
+</a><P>
+<a name="8682">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;Open.
+</STRONG>
+</a><P><dl><a name="8695">
+<dt>The file dialog box appears:</dt>
+</a><P><a name="8704">
+ <P><img src="1Basics.anc23.gif"><p>
+</a></dl>
+<a name="8705">
+<em>Figure 1.23  &#32; &#32;Reading in an object
+</em></a><P><ul><a name="8696">
+<li><strong>(CLICK-L)</strong> in the <strong>Filename</strong> field to change the pathname
+</a></li><P><a name="8721">
+<li><strong>(CLICK-M)</strong> in the <strong>Filename</strong> field to clear the displayed filename
+</a></li><P><a name="8720">
+<li><strong>(CLICK-R)</strong> in the <strong>Filename</strong> field to select another directory from one of your projects
+</a></li><P></ul><P>
+<a name="8728">
+<STRONG>	2.	 Enter the following filename:
+</STRONG>
+</a><P><dl><a name="11648">
+<dt><code>/usr/local/ngc/demo/objects/SPACE_SHIP.geo</code></dt>
+</a><P><a name="11649">
+<dt>The specified object appears in the N-Geometry window:</dt>
+</a><P><a name="11654">
+ <P><img src="1Basics.anc24.gif"><p>
+</a></dl>
+<a name="11655">
+<em>Figure 1.24  &#32; &#32;Loading an object into N-Geometry
+</em></a><P><a name="11647">
+The <strong>File&gt;Open</strong> dialog box lets you read in one or more objects, specifying file types and other options which are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="8697">
+<h3> Saving Objects</h3>
+</a><a name="8731">
+To save an object:<p>
+</a><P>
+<a name="8732">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;Save.
+</STRONG>
+</a><P><dl><a name="8733">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="8763">
+ <P><img src="1Basics.anc25.gif"><p>
+</a></dl>
+<a name="8764">
+<em>Figure 1.25  &#32; &#32;Select the objects you want to save
+</em></a><P><dl><dl><a name="8769">
+<dt>After you select the objects you want to save, you specify where and how you want to save it:</dt>
+</a><P><a name="8745">
+ <P><img src="1Basics.anc26.gif"><p>
+</a></dl></dl><a name="8746">
+<em>Figure 1.26  &#32; &#32;Saving an object
+</em></a><P><ul><a name="8747">
+<li><strong>(CLICK-L)</strong> to change the pathname
+</a></li><P><a name="8748">
+<li><strong>(CLICK-M)</strong> to clear the text box
+</a></li><P><a name="8749">
+<li><strong>(CLICK-R)</strong> to select another directory from one of your projects
+</a></li><P></ul><P><a name="8751">
+The various options in this dialog box are described in more detail in the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="8654">
+<h3> Copying Objects</h3>
+</a><a name="8793">
+To make a copy of an object:<p>
+</a><P>
+<a name="8794">
+<STRONG>	 1.	 Select the object.
+</STRONG>
+</a><P><a name="8795">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="8796">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Copy.
+</STRONG>
+</a><P><dl><a name="8838">
+<dt>Enter a name for the copy of the object when prompted to do so. (By default, the second object is named "Copy of Object".)</dt>
+</a><P><a name="8824">
+ <P><img src="1Basics.anc27.gif"><p>
+</a></dl>
+<a name="8825">
+<em>Figure 1.27  &#32; &#32;Original object and copy
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	An object copied in this manner is completely independent from the original.</font></dd></dt></dl><P>
+<a name="8817">
+<h3> Deleting Objects</h3>
+</a><a name="8848">
+If you want to delete an object from N-Geometry, you use the <strong>Delete</strong> command; this removes the object from N-Geometry, but does not delete it from disk.<p>
+</a><P><a name="8849">
+To delete an object:<p>
+</a><P>
+<a name="11080">
+<STRONG>	 1.	 (CLICK-L) on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="11081">
+<STRONG>	2.	 (SHIFT-L) on the object.
+</STRONG>
+</a><P><a name="11082">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Delete.
+</STRONG>
+</a><P>
+<a name="11085">
+If you want to delete several objects at once, collect them all and then choose <strong>Delete</strong>, or use the <strong>GeoMenus&gt;File&gt;Delete</strong> command and select the objects you want to delete from the object list that appears.<p>
+</a><P><a name="8855">
+<h4> Retrieving Deleted Objects</h4>
+</a><a name="8856">
+The <em>last</em> object deleted can be retrieved using the following steps:<p>
+</a><P>
+<a name="8859">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on GeoMenus&gt;File&gt;Delete.
+</STRONG>
+</a><P><dl><a name="8860">
+<dt>A dialog box appears, asking if you want to rescue the last object you deleted.</dt>
+</a><P></dl><a name="8863">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the dialog box to recover the object.
+</STRONG>
+</a><P>
+<a name="6137">
+<h2><HR> Hot Keys</h2>
+</a><a name="8897">
+N-Geometry has a number of keyboard shortcuts or "hot keys" that can be used to perform various operations. These hot keys are listed in Appendix B of the <em>N-Geometry Reference Guide</em>.<p>
+</a><P><a name="9067">
+Press "h" with the cursor over the N-Geometry window to display a list of hot keys.<p>
+</a><P><a name="10754">
+<h2><HR> Setting N-Geometry Preferences</h2>
+</a><a name="6491">
+You can customize your N&#183;World environment, controlling its "look and feel," by setting your <em>preferences</em>.<p>
+</a><P><a name="9114">
+To set your preferences:<p>
+</a><P>
+<a name="9115">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Utilities&gt;Preferences.
+</STRONG>
+</a><P><dl><a name="9545">
+<dt>A multi-page menu appears; the parameters on this menu are described in more detail in the <em>N-Geometry Reference Guide</em>.</dt>
+</a><P></dl>
+<a name="9691">
+<h2><HR> Using the Browser with <br>N-Geometry</h2>
+</a><a name="9546">
+As described in the N&#183;World Getting Started manual, the browser offers an easy way to navigate through hierarchies of objects and perform operations on those elements. The steps below will help you learn how to use the browser with N-Geometry.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You should have several objects loaded in N-Geometry before working through this exercise.</font></dd></dt></dl><P>
+
+<a name="9548">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>Browser </strong>in the configuration bar.
+</STRONG>
+</a><P><dl><a name="9549">
+<dt>The browser window opens on top of any other applications.</dt>
+</a><P></dl>
+<a name="10149">
+Across the top of the Browser window are the various "modes" in which the Browser can operate: 
+<P><Table Border="1">
+<dl>
+<a name="10542">
+<em>Table 1.2  &#32; &#32;Browser modes
+</em></a></dl>
+<tr><th align="left"><a name="10546">
+Mode
+</a><th align="left"><a name="10548">
+Includes
+</a>
+<tr><td valign="top"><a name="10550">
+ Files<p>
+</a><td valign="top"><a name="10552">
+ Directories and other N&#183;World elements<p>
+</a>
+<tr><td valign="top"><a name="10554">
+ Geo<p>
+</a><td valign="top"><a name="10556">
+ Currently loaded objects, parts, and attributes in N-Geometry<p>
+</a>
+<tr><td valign="top"><a name="10558">
+ Materials<p>
+</a><td valign="top"><a name="10560">
+ Currently loaded materials and particle sets<p>
+</a>
+<tr><td valign="top"><a name="10562">
+ Dyna<p>
+</a><td valign="top"><a name="10564">
+ Currently loaded N-Dynamics scripts<p>
+</a>
+<tr><td valign="top"><a name="10566">
+ Skeleton<p>
+</a><td valign="top"><a name="10568">
+ Currently loaded skeletons (plus their IK Sets, poses, and bones)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10161">
+This section describes use of the Browser in <strong>Geo </strong>and <strong>File</strong> mode, since they are the two you'll be using most often in N-Geometry. (The other modes are described in the tutorial for those products.)<p>
+</a><P><a name="10162">
+<h3> Using the Browser in Geo Mode</h3>
+</a>
+<a name="9550">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Geo </strong>in the Browser menu bar.
+</STRONG>
+</a><P><a name="9557">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Recompute.
+</STRONG>
+</a><P><dl><a name="9558">
+<dt>When you do this, the Browser checks to see which objects are loaded into N-Geometry, and displays them in the main part of the window:</dt>
+</a><P><a name="9562">
+ <P><img src="1Basics.anc28.gif"><p>
+</a></dl>
+<a name="9563">
+<em>Figure 1.28  &#32; &#32;Use Recompute to update the display
+</em></a><P><a name="9762">
+<h4> Traversing Objects in the Browser</h4>
+</a><a name="10099">
+The inverted black triangles after each skeleton tells you that there's more information to be found if you <strong>(CLICK-L)</strong> on that element.<p>
+</a><P><a name="9565">
+If an object has an inverted black rectangle next to it, it means that there is more information that can be displayed for an object; the following object information can be displayed in the hierarchy:<p>
+</a><P><ul><a name="9742">
+<li>subobjects
+</a></li><P><a name="9754">
+<li>mappers
+</a></li><P><a name="9734">
+<li>face and vertex parts
+</a></li><P><a name="9736">
+<li>attributes
+</a></li><P></ul><P>
+<a name="9566">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on an object in the Browser window.
+</STRONG>
+</a><P><dl><a name="9567">
+<dt>If the object is not a simple object, a hierarchy opens up:</dt>
+</a><P><a name="9571">
+ <P><img src="1Basics.anc29.gif"><p>
+</a></dl>
+<a name="9572">
+<em>Figure 1.29  &#32; &#32;Hierarchy for an object
+</em></a><P><a name="9580">
+Note two things in the example above:<p>
+</a><P><ul><a name="9581">
+<li>The triangle next to the <strong>Cylinder Group </strong>node is now empty instead of black. This means that all the information contained directly under that branch of the hierarchy is visible.
+</a></li><P><a name="9582">
+<li>The node <strong>Cube </strong>has no triangle next to it at all. This means that it is a terminal node on the hierarchy, and that nothing exists beneath it. Clicking on this node has not effect at all.
+</a></li><P></ul><P><a name="9784">
+In the example above, we can see that the <strong>Cylinder</strong> node still has information to be displayed. Remember, as long as you keep using <strong>(CLICK-L)</strong>, you'll be able to display any information about that node:<p>
+</a><P><a name="9800">
+ <P><img src="1Basics.anc30.gif"><p>
+</a><a name="9801">
+<em>Figure 1.30  &#32; &#32;Object with hierarchy fully open
+</em></a><P><a name="10072">
+If you <strong>(CLICK-L)</strong> on any open node along a branch of the hierarchy (e.g., the <strong>Cylinder</strong> node above), the Browser temporarily collapses the branch below that node; however, the Browser remembers which elements that you had opened, and if you <strong>(CLICK-L)</strong> on the object again, its previous state is restored.<p>
+</a><P><a name="9807">
+<h4> Color Coding of Elements</h4>
+</a><a name="10109">
+In the example above, the <strong>Cylinder</strong> object has three nodes below it:<p>
+</a><P><ul><a name="9814">
+<li>an attribute set (<strong>blue</strong>)
+</a></li><P><a name="9815">
+<li>a face part (<strong>top-face</strong>)
+</a></li><P><a name="9821">
+<li>a vertex part (<strong>top-vertices</strong>)
+</a></li><P></ul><P><a name="9828">
+Note that each of those elements (in fact, every element in the Browser) is color-coded according to its type: 
+<P><Table Border="1">
+<dl>
+<a name="9832">
+<em>Table 1.3 <strong> &#32; &#32;Cololr coding in the browser</strong>
+</em></a></dl>
+<tr><th align="left"><a name="9836">
+Object
+</a><th align="left"><a name="9838">
+Color
+</a>
+<tr><td valign="top"><a name="9840">
+ Light<p>
+</a><td valign="top"><a name="9842">
+ Yellow<p>
+</a>
+<tr><td valign="top"><a name="9844">
+ Object<p>
+</a><td valign="top"><a name="9846">
+ Light blue<p>
+</a>
+<tr><td valign="top"><a name="9848">
+ Face Part<p>
+</a><td valign="top"><a name="9850">
+ Dark blue<p>
+</a>
+<tr><td valign="top"><a name="9881">
+ Vertex Part<p>
+</a><td valign="top"><a name="9883">
+ Dark blue<p>
+</a>
+<tr><td valign="top"><a name="9877">
+ Attribute Set<p>
+</a><td valign="top"><a name="9879">
+ Light green<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9816">
+<h4> Selecting Elements with the Browser</h4>
+</a><a name="9584">
+If you <strong>(CLICK-M)</strong> on an element or "node" in the Browser hierarchy, that element is selected in N-Geometry.<p>
+</a><P>
+<a name="9585">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on an object.
+</STRONG>
+</a><P><dl><a name="9586">
+<dt>The object is highlighted in the N-Geometry viewer window, and can now be manipulated as if you had selected it manually.</dt>
+</a><P><a name="9587">
+<dt>Note too that the node in the browser is highlighted in red when it is selected.</dt>
+</a><P></dl><a name="9588">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on an open area of the Browser window to deselect any selected nodes.
+</STRONG>
+</a><P><dl><a name="9589">
+<dt>This also deselects the element in the N-Geometry window.</dt>
+</a><P></dl>
+<a name="9590">
+<h4> Operations on an Object</h4>
+</a><a name="9591">
+If you <strong>(CLICK-R)</strong> on an object, a menu of operations is displayed that can be performed on that object:<p>
+</a><P>
+<a name="9592">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on an object in the hierarchy.
+</STRONG>
+</a><P><dl><a name="9593">
+<dt>A menu like the following appears:</dt>
+</a><P><a name="9597">
+ <P><img src="1Basics.anc31.gif"><p>
+</a></dl>
+<a name="9598">
+<em>Figure 1.31  &#32; &#32;<strong>(CLICK-R)</strong> on an object to see a list of operations you can perform on it
+</em></a><P><ul><a name="9599">
+<li><strong>Make Visible </strong>makes the object visible in the N-Geometry window.
+</a></li><P><a name="9945">
+<li><strong>Make Invisible </strong>makes the object invisible.
+</a></li><P><a name="9949">
+<li><strong>Aim At </strong>points the camera at the selected object.
+</a></li><P><a name="9953">
+<li><strong>Select Body </strong>selects the object in the N-Geometry window.
+</a></li><P><a name="9979">
+<li><strong>Assign Light Group </strong>selects the light group you want to use to light this object (when rendering).
+</a></li><P><a name="10007">
+<li><strong>Assign Particle Set </strong>selects a particle set to assign to this object.
+</a></li><P><a name="10011">
+<li><strong>Assign Mapper </strong>assigns a mapper (which must already exist) to the object.
+</a></li><P><a name="10015">
+<li><strong>Assign Material </strong>assigns a material to the object's surface.
+</a></li><P><a name="10019">
+<li><strong>Clear Attributes </strong>"detaches" any attributes which may have been assigned to this object.
+</a></li><P><a name="9977">
+<li><strong>Rename</strong> lets you specify a new name for the object.
+</a></li><P><a name="9605">
+<li><strong>Open All</strong> lets you open all nodes below the selected object.
+</a></li><P><a name="9606">
+<li><strong>Describe</strong> displays information about the object in the LISP listener window, just like the Describe function (described in the <em>N-Geometry Reference Guide</em>).
+</a></li><P><a name="9607">
+<li><strong>Delete</strong> kills the object
+</a></li><P></ul><P><a name="9659">
+<h4> Operations on Materials</h4>
+</a><a name="9660">
+If you <strong>(CLICK-R)</strong> on a material (light green node), you get the following menu:<p>
+</a><P><a name="9664">
+ <P><img src="1Basics.anc32.gif"><p>
+</a><a name="9665">
+<em>Figure 1.32  &#32; &#32;<strong>(CLICK-R)</strong> on a material
+</em></a><P><ul><a name="9669">
+<li><strong>Edit Material </strong>opens the Attributes Editor, and loads the selected material. You can edit the material at that point as described in the <em>Attributes Editor User's Guide</em>.
+</a></li><P></ul><P><a name="9670">
+<h4> Other Commands in Geo Mode</h4>
+</a><ul><a name="9671">
+<li><strong>Icons</strong> displays any icons available for the element.
+</a></li><P><a name="9672">
+<li><strong>ReCompute</strong> builds a new hierarchy based on objects that have been added since the last <strong>ReCompute</strong>.
+</a></li><P><a name="9673">
+<li><strong>Up</strong> browses the parent level of the current level.
+</a></li><P></ul><P><a name="10167">
+<h3> Using the Browser in Files Mode</h3>
+</a><a name="10172">
+The Browser can also be used to quickly traverse the contents of a directory structure or load an object:<p>
+</a><P>
+<a name="10168">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on <strong>Files </strong>in the Browser menu bar.
+</STRONG>
+</a><P><a name="10169">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Recompute.
+</STRONG>
+</a><P><a name="10191">
+ <P><img src="1Basics.anc33.gif"><p>
+</a>
+<a name="10192">
+<em>Figure 1.33  &#32; &#32;View of a directory structure in the Browser
+</em></a><P><a name="10362">
+The pathname at the top of the window (/usr/local/ngc in this case) shows the current directory (when first opened, this displays the directory from which you started N&#183;World).<p>
+</a><P><a name="10228">
+If you want to select a path withthe standard UNIX file browser, <strong>(CLICK-L)</strong> on the arrow to the right of the pathname:<p>
+</a><P><a name="10341">
+ <P><img src="1Basics.anc34.gif"><p>
+</a><a name="10342">
+<em>Figure 1.34  &#32; &#32;Using the standard UNIX browser &#32; &#32;
+</em></a><P><a name="10351">
+For more on the UNIX file browser, see your SGI documentation.<p>
+</a><P><a name="10332">
+To specify a new pathname from within N&#183;World:<p>
+</a><P><ul><a name="10229">
+<li><strong>(CLICK-L)</strong> on the pathname text edit box to place your cursor and manually edit the path
+</a></li><P><a name="10165">
+<li><strong>(CLICK-M)</strong> on the pathname to delete it and enter a new path
+</a></li><P><a name="10232">
+<li><strong>(CLICK-R)</strong> on the pathname to display a menu of Directory and Project operations:
+</a></li><P><a name="10238">
+ <P><img src="1Basics.anc35.gif"><p>
+</a></ul><P><a name="10239">
+<em>Figure 1.35  &#32; &#32;Directory and Project operations &#32; &#32;
+</em></a><P><a name="10233">
+The top portion is called the <strong>Directory List</strong>. It lists any directories in the current project, plus any directories you've opened in the current session. Newly opened directories are marked with an "*".<p>
+</a><P><a name="10286">
+if you want to make one of these directories the current directory, <strong>(CLICK-L)</strong> on it.<p>
+</a><P><ul><a name="10251">
+<li><strong>Remove New (*) Directories</strong> lets you selectively remove newly specified directories.
+</a></li><P><a name="10255">
+<li><strong>Specify a New Directory</strong> lets you open a new directory, and adds it to the directory list.
+</a></li><P><a name="10291">
+<li><strong>Set Current Project</strong> lets you make a project current. A project is a list of directories that contains elements you might work with for a given project.
+</a></li><P><dl><a name="10298">
+<dt>If you choose this option, you're prompted to select from a list of projects which is maintained in the current user's home directory.</dt>
+</a><P></dl><a name="10314">
+<li><strong>Edit Current Project</strong> lets you selectively add or remove directories from the current project. If you choose this option, a directory list is displayed:
+</a></li><P><a name="10321">
+ <P><img src="1Basics.anc36.gif"><p>
+</a></ul><P><a name="10322">
+<em>Figure 1.36  &#32; &#32;Editing a project
+</em></a><P><dl><dl><a name="10309">
+<dt>Highlighted directories are included in the project; <strong>(CLICK-L)</strong> on a project to add or remove the directory from the project definition.</dt>
+</a><P></dl></dl><a name="10365">
+<h3> Traversing Directory Structures</h3>
+</a><a name="10366">
+You can traverse a directory structure using the same basic commands that were described in the Geo section earlier inthis chapter:<p>
+</a><P><ul><a name="10375">
+<li><strong>(CLICK-L)</strong> to open a node and display any other elements beneath that node
+</a></li><P><a name="10380">
+<li><strong>(CLICK-M)</strong> to select a node (or multiple nodes). You can select multiple nodes, then perform an operation on all those nodes using <strong>(CLICK-R)</strong>. 
+</a></li><P><dl><a name="10464">
+<dt>To deselect one or more nodes, <strong>(CLICK-M)</strong> on an open area of the Browser window.</dt>
+</a><P></dl></ul><P><a name="10408">
+<h4> Operations on Directories and other Elements</h4>
+</a><a name="10391">
+<strong>(CLICK-R)</strong> on a directory or other element type to display a list of operations that you can perform on it.<p>
+</a><P><a name="10476">
+The following types of elements are displayed when you are in Files mode:<p>
+</a><P><ul><a name="10514">
+<li>directories
+</a></li><P><a name="10515">
+<li>objects
+</a></li><P><a name="10516">
+<li>attribute sets and texture maps
+</a></li><P><a name="10519">
+<li>particle sets
+</a></li><P><a name="10520">
+<li>lights
+</a></li><P><a name="10518">
+<li>images
+</a></li><P><a name="10521">
+<li>scripts
+</a></li><P><a name="10517">
+<li>palettes and tools
+</a></li><P></ul><P><a name="10483">
+If you <strong>(CLICK-R)</strong> on the element, the following menu is displayed:<p>
+</a><P><a name="10505">
+ <P><img src="1Basics.anc37.gif"><p>
+</a><a name="10506">
+<em>Figure 1.37  &#32; &#32;Operations on a directory or element in Files mode
+</em></a><P><ul><a name="10485">
+<li><strong>Load </strong>lets you load an element ???
+</a></li><P><a name="10426">
+<li><strong>Rename</strong> lets you specify a new name for the directory or object.
+</a></li><P><a name="10421">
+<li><strong>Open All</strong> lets you open all nodes below the selected node on the hierarchy.
+</a></li><P><a name="10422">
+<li><strong>Describe</strong> displays information about the element in the LISP listener window, just like the Describe function (described in the <em>N-Geometry Reference Guide</em>).
+</a></li><P><a name="10423">
+<li><strong>Delete</strong> removes the directory or object from the file system.
+</a></li><P></ul><P><a name="10418">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="2Airplane.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 09:28:25 -->
+
+</body>
+</html>

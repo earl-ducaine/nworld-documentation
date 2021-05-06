@@ -1,0 +1,484 @@
+<html><head><title>Animating Displacements</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5Attributes.html">[Prev]</a> <a href="7Skeletons.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Animating Displacements</h1>
+</a>
+<hr><p><a name="10496">
+<h4> In this chapter you'll learn how to animate displacements. A displacement is a saved state of a model; you can animate between displacements, or layer displacements over other types of animation (including skeletal animation) to control things such as facial expressions.</h4>
+</a><a name="10503">
+ <P><img src="6Displacements.anc.gif"><p>
+</a><a name="10498">
+<h2><HR> In this Chapter</h2>
+</a><a name="9591">
+You'll learn how to:<p>
+</a><P><ul><a name="9596">
+<li>animate between displacements on an object
+</a></li><P><a name="9609">
+<li>animate an object, mixing in several displacements at once using one of the template operations in N-Dynamics
+</a></li><P><a name="9594">
+<li>expand a channel to fill the entire script editor window
+</a></li><P><a name="10597">
+<li>create a marker track to tie multiple cues together
+</a></li><P><a name="10576">
+<li>link and unlink cues to a marker
+</a></li><P></ul><P><a name="9624">
+<h2><HR> Displacements</h2>
+</a><a name="9630">
+Displacements, as mentioned before, are saved states of the same model. To create a displacement, you specify an initial state for the object, make your changes, then save the object in its modified state. This displacement is saved as part of the original object in the N-Geometry file format.<p>
+</a><P><a name="9689">
+Creating displacements is described in more detail in both the <em>N-Geometry Reference Guide</em> and the <em>N-Geometry Tutorial</em>.<p>
+</a><P><a name="9635">
+<h3> Working with Displacements</h3>
+</a>
+<a name="9650">
+<STRONG>	 1.	 Load the following object, which has several saved displacements:
+</STRONG>
+</a><P><dl><a name="9651">
+<dt><code>/usr/local/ngc/demo/objects/clown-head-gestures</code></dt>
+</a><P><a name="9652">
+<dt>A clown head appears in the N-Geometry window:</dt>
+</a><P><a name="9653">
+ <P><img src="6Displacements.anc1.gif"><p>
+</a></dl>
+<a name="9657">
+<em>Figure 6.1  &#32; &#32;Clown head
+</em></a><P>
+<a name="9659">
+<STRONG>	2.	 In the N-Geometry window, <strong>(CLICK-L)</strong> on bodies in the element sensitivity menu, then <strong>(SHIFT-L)</strong> on the clown head.
+</STRONG>
+</a><P><a name="9666">
+<STRONG>	3.	 <strong>(CTRL-L)</strong> on <strong>Displace</strong>.
+</STRONG>
+</a><P><dl><a name="9667">
+<dt>We've already saved a number of displacements on this object; when you use the Displace command, a list of saved displacement on the selected object is displayed:</dt>
+</a><P><a name="9684">
+ <P><img src="6Displacements.anc2.gif"><p>
+</a></dl>
+<a name="9685">
+<em>Figure 6.2  &#32; &#32;Saved displacements
+</em></a><P><dl><dl><a name="9705">
+<dt>Using the <strong>CTRL</strong> key lets us specify "how far" to displace the model toward its target state. (A value of <strong>1.0</strong> goes all the way toward the target, while a value of <strong>.5</strong> poses the model halfway between its original state and the target.)</dt>
+</a><P></dl></dl>
+<a name="9675">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>NOSE_UP</strong>.
+</STRONG>
+</a><P><dl><a name="9698">
+<dt>In the dialog box that appears, enter a value of <strong>1.0</strong>. If you swing the camera around to the side of the head, you can see the displacement better:</dt>
+</a><P><a name="9725">
+ <P><img src="6Displacements.anc3.gif"><p>
+</a></dl>
+<a name="9726">
+<em>Figure 6.3  &#32; &#32;Viewing a displacement
+</em></a><P><a name="9732">
+You can animate the model between its saved base state and a saved displacement interactively, too.<p>
+</a><P>
+<a name="9738">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the clown, then <strong>(CLICK-L)</strong> on <strong>EYE_R</strong>.
+</STRONG>
+</a><P><dl><a name="9746">
+<dt>Move the mouse left and right to animate between the base state and the target displacement. Note how the clown's eye opens and closes interactively.</dt>
+</a><P><a name="9774">
+ <P><img src="6Displacements.anc4.gif"><p>
+</a></dl>
+<a name="9775">
+<em>Figure 6.4  &#32; &#32;Animating interactively between displacement states-note the change in the clown's eye
+</em></a><P>
+<a name="9747">
+<STRONG>	6.	 To return the model to its original state, <strong>(SHIFT-L)</strong> on the clown, then <strong>(CLICK-M)</strong> on displace.
+</STRONG>
+</a><P><a name="9756">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the base state to which you want to initialize the model.
+</STRONG>
+</a><P>
+<a name="9790">
+<h3> Gestures</h3>
+</a><a name="9795">
+You can create several displacements, (e.g. mouth open, nose up, left eye open, right eye open) and combine different amounts of each displacement into a <em>gesture</em>. This is a handy way to build expressions that can be animated on a model.<p>
+</a><P><a name="9796">
+To create a gesture for the clown:<p>
+</a><P>
+<a name="9802">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the clown, then <strong>(CLICK-R)</strong> on <strong>Displace&gt;Displace Multiple</strong>.
+</STRONG>
+</a><P><dl><a name="9809">
+<dt>A dialog box like the one below appears:</dt>
+</a><P><a name="9815">
+ <P><img src="6Displacements.anc5.gif"><p>
+</a></dl>
+<a name="9816">
+<em>Figure 6.5  &#32; &#32;Defining a gesture
+</em></a><P>
+<a name="9820">
+<STRONG>	9.	 Drag the sliders as follows:
+</STRONG>
+</a><P><ul>
+<BR><a name="9877">
+<li>Set EYE_R to 1.0
+</a><P><BR><a name="9884">
+<li>Set EYE_L to 1.0
+</a><P><BR><a name="9887">
+<li>Set MOUTH_OPEN to 1.0
+</a><P></ul>
+<dl><a name="9823">
+<dt>As you move the slider for each displacement, the model is updated interactively. Your clown should now look like this:</dt>
+</a><P><a name="9833">
+ <P><img src="6Displacements.anc6.gif"><p>
+</a></dl>
+<a name="9834">
+<em>Figure 6.6  &#32; &#32;Clown head
+</em></a><P>
+<a name="9828">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Save as Gesture</strong>.
+</STRONG>
+</a><P><dl><a name="9840">
+<dt>Enter a name, such as surprise, for the gesture, in the dialog box that appears:</dt>
+</a><P><a name="9847">
+ <P><img src="6Displacements.anc7.gif"><p>
+</a></dl>
+<a name="9848">
+<em>Figure 6.7  &#32; &#32;Naming the gesture
+</em></a><P>
+<a name="9841">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the clown, then <strong>(CLICK-L)</strong> on <strong>Displace</strong>.
+</STRONG>
+</a><P><dl><a name="9856">
+<dt>Choose the newly saved gesture from the list of displacements saved with the object:</dt>
+</a><P><a name="9864">
+ <P><img src="6Displacements.anc8.gif"><p>
+</a></dl>
+<a name="9865">
+<em>Figure 6.8  &#32; &#32;Gestures also appear on the list of displacements
+</em></a><P>
+<a name="9810">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on "<strong>surprise</strong>" and move the mouse back and forth.
+</STRONG>
+</a><P><dl><a name="9869">
+<dt>Note that all three displacements that went into making the gesture "surprise" are now animated.</dt>
+</a><P></dl>
+<a name="9720">
+<h3> Animating Displacements in N-Dynamics</h3>
+</a><a name="9779">
+Now that you have a basic grasp of how displacements and gestures work, let's see how to animate with displacements in N-Dynamics.<p>
+</a><P>
+<a name="9890">
+<STRONG>	 1.	 In N-Dynamics, create a new script.
+</STRONG>
+</a><P><a name="9894">
+<STRONG>	2.	 Give the script two channels.
+</STRONG>
+</a><P><a name="9899">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the first channel to select an operation.
+</STRONG>
+</a><P><a name="9990">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit field, then <strong>(CLICK-L)</strong> on <strong>Geometry&gt;Shape&gt;Set Shape</strong>.
+</STRONG>
+</a><P><dl><a name="9991">
+<dt>Remember that displacements are always saved relative to a base state for the object. This operation lets you specify the base shape.</dt>
+</a><P></dl><a name="10016">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit field, then choose clown-head-gestures from the object list that appears.
+</STRONG>
+</a><P><a name="10017">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on <strong>Shape </strong>, and <strong>(CLICK-L)</strong> on "orig" from the list that appears.
+</STRONG>
+</a><P><dl><a name="10014">
+<dt>The displacement "<strong>orig</strong>" is the absolute displacement, or base state upon which the other displacements are based. Saving an absolute displacement upon which to base displacements is described in both the <em>N-Geometry Reference Guide</em> and the <em>N-Geometry Tutorial</em>. </dt>
+</a><P><a name="10023">
+<dt>Your <strong>Edit Action Properties</strong> dialog box should look like this:</dt>
+</a><P><a name="10027">
+ <P><img src="6Displacements.anc9.gif"><p>
+</a></dl>
+<a name="10028">
+<em>Figure 6.9  &#32; &#32;Specifying the base state with the <strong>Set Shape</strong> operation
+</em></a><P>
+<a name="10011">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the second channel to select an operation.
+</STRONG>
+</a><P><a name="9917">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit field, then <strong>(CLICK-L)</strong> on <strong>Geometry&gt;Shape&gt;Displace Shape</strong>.
+</STRONG>
+</a><P><dl><a name="9950">
+<dt>This operation animates a single displacement. (We'll look later at how to use multiple displacements to create a <em>gesture</em>.)</dt>
+</a><P></dl><a name="9918">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the <strong>Object</strong> text edit field, then choose clown-head-gestures from the object list that appears.
+</STRONG>
+</a><P><a name="9919">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Displacement</strong>, and <strong>(CLICK-L)</strong> on "surprise" from the list that appears.
+</STRONG>
+</a><P><dl><a name="9920">
+<dt>Your <strong>Edit Action Properties</strong> dialog box should look like this:</dt>
+</a><P><a name="9926">
+ <P><img src="6Displacements.anc10.gif"><p>
+</a></dl>
+<a name="9927">
+<em>Figure 6.10  &#32; &#32;Animating a single displacement or gesture
+</em></a><P>
+<a name="9921">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the curve channel for the <strong>Displace</strong> operation, and insert a cue at frame 15.
+</STRONG>
+</a><P><a name="9933">
+<STRONG>	12.	 <strong>(CLICK-M)</strong> on the cue, and enter a value of 1.0.
+</STRONG>
+</a><P><dl><a name="9934">
+<dt>This tells N-Dynamics that we want to displace the clown all the way to the "surprise" gesture at frame 15. Your script should look something like this:</dt>
+</a><P><a name="9960">
+ <P><img src="6Displacements.anc11.gif"><p>
+</a></dl>
+<a name="9961">
+<em>Figure 6.11  &#32; &#32;Animate displacement script
+</em></a><P><dl><dl><a name="9937">
+<dt>In the same way you use the <strong>CTRL</strong> key to animate a known amount toward a target in N-Geometry, you specify a value at a cue to tell N-Dynamics how far you want to animate toward a saved displacement.</dt>
+</a><P></dl></dl>
+<a name="9938">
+<STRONG>	13.	 Animate the script and Playback the animation.
+</STRONG>
+</a><P><dl><a name="9977">
+<dt>With this script, the clown is animated toward the "surprise" gesture until frame 15, then back to its base state at frame 30.</dt>
+</a><P></dl><a name="10064">
+<STRONG>	14.	 Save your work.
+</STRONG>
+</a><P><dl><a name="10065">
+<dt>If you want to, save your script and any referenced objects using the <strong>File&gt;Save Script</strong> command in N-Dynamics.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Remember, you cannot save the clown back into the default objects directory, which is write protected. If you make any changes to the clown and want to save them, save the object to a different directory.</font></dd></dt></dl><P>
+<a name="10061">
+<h3> Animating Several Displacements</h3>
+</a><a name="10060">
+If you want to animate several displacements at once, you can use the <strong>Displace Shape [Template]</strong> operation, which prompts you for all the information you need to animate using any of the saved displacements on a given model.<p>
+</a><P><a name="10080">
+Try this:<p>
+</a><P>
+<a name="10083">
+<STRONG>	 1.	 In N-Dynamics, create a new script.
+</STRONG>
+</a><P><a name="10084">
+<STRONG>	2.	 When prompted, give the script one channel.
+</STRONG>
+</a><P><a name="10085">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the channel to select an operation.
+</STRONG>
+</a><P><a name="10086">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the <strong>Operation</strong> text edit field, then <strong>(CLICK-L)</strong> on <strong>Geometry&gt;Shape&gt;Displace Shape [Template]</strong>.
+</STRONG>
+</a><P><dl><a name="10102">
+<dt>There are a number of "template" operation in N-Dynamics. A template operation automatically creates several channels, assigns them the correct operation type, and arranges them in a proper hierarchy. When you select a template operation, N-Dynamics asks for all the information it needs to create these channels.</dt>
+</a><P></dl><a name="10122">
+<STRONG>	5.	 Select the object you want to animate from the list that appears:
+</STRONG>
+</a><P><a name="10128">
+ <P><img src="6Displacements.anc12.gif"><p>
+</a>
+<a name="10129">
+<em>Figure 6.12  &#32; &#32;Select the object to displace
+</em></a><P><dl><dl><a name="10724">
+<dt>A list of displacements appears after you select an object.</dt>
+</a><P></dl></dl>
+<a name="10123">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the displacements you want to animate.
+</STRONG>
+</a><P><dl><a name="10139">
+<dt>For example, if you want to animate the eyes and the nose, and open the mouth, you'd choose only those displacements, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P><a name="10149">
+ <P><img src="6Displacements.anc13.gif"><p>
+</a></dl>
+<a name="10150">
+<em>Figure 6.13  &#32; &#32;Selecting displacements to animate
+</em></a><P>
+<a name="10144">
+<STRONG>	7.	 After selecting the displacements to use, you're prompted to choose the initial state for the object:
+</STRONG>
+</a><P><a name="10163">
+ <P><img src="6Displacements.anc14.gif"><p>
+</a>
+<a name="10164">
+<em>Figure 6.14  &#32; &#32;Selecting the initial state from which to animate
+</em></a><P><a name="10168">
+When you <strong>(CLICK-L)</strong> on <strong>Do It</strong>, you're returned to the script editor, and your script looks something like this:<p>
+</a><P><a name="10178">
+ <P><img src="6Displacements.anc15.gif"><p>
+</a><a name="10179">
+<em>Figure 6.15  &#32; &#32;Channels generated by Displace Shape [Template] operation
+</em></a><P><a name="10173">
+If you <strong>(CLICK-L)</strong> on the <strong>Multiple Displace Shape</strong> channel, you can see that a curve channel has been created for each of the displacements you selected in step <a href="6Displacements.html#10123">6</a> above:<p>
+</a><P><a name="10201">
+ <P><img src="6Displacements.anc16.gif"><p>
+</a><a name="10202">
+<em>Figure 6.16  &#32; &#32;A different channel is generated for each displacement
+</em></a><P>
+<a name="10195">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on any of the curve channels whose values you want to see.
+</STRONG>
+</a><P>
+<a name="10196">
+<h3> Changing the View</h3>
+</a><a name="10224">
+If you want to see the curves in more detail, you have several options:<p>
+</a><P><ul><a name="10225">
+<li>You can <strong>(CLICK-L)</strong> and drag the edges of the N-Dynamics window to give your self more room, like any other IRIX window.
+</a></li><P><a name="10226">
+<li>You can <strong>(CLICK-R)</strong> on the inverted triangle in the upper right hand corner of a channel to expand the channel to fit the entire window. This is called "zooming in" on a channel:
+</a></li><P><a name="10232">
+ <P><img src="6Displacements.anc17.gif"><p>
+</a></ul><P><a name="10233">
+<em>Figure 6.17  &#32; &#32;A different channel is generated for each displacement
+</em></a><P><dl><dl><a name="10227">
+<dt>Note that if you zoom in on a channel, the name of the channel appears in the title bar of the script.</dt>
+</a><P></dl></dl><a name="10158">
+<h3> Using the Marker Track</h3>
+</a><a name="10081">
+In addition to setting up the proper channels for animating multiple displacements, the <strong>Displace Shape [Template]</strong> operation creates a <em>marker track</em> along the bottom of the parent channel that was created.<p>
+</a><P><a name="10246">
+A marker track is a feature that lets you tie several <em>cues</em> to a marker. When you move the cue, all the cues attached to the marker move too.<p>
+</a><P><a name="10247">
+Try this:<p>
+</a><P>
+<a name="10253">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the curve channels to open them.
+</STRONG>
+</a><P><dl><a name="10257">
+<dt>Move the mouse over the marker track (the dark blue bar along the bottom of the channel) and <strong>(CLICK-L)</strong> at frame 15.</dt>
+</a><P></dl>
+<a name="10263">
+N-Dynamics does two things:<p>
+</a><P><ul><a name="10276">
+<li>Inserts a cue in every curve channel of the parent channel at frame 15.
+</a></li><P><a name="10288">
+<li>Inserts a <em>marker</em> on the marker track. Markers are represented by a white triangle.
+</a></li><P><a name="10272">
+ <P><img src="6Displacements.anc18.gif"><p>
+</a></ul><P><a name="10273">
+<em>Figure 6.18  &#32; &#32;Inserting a marker
+</em></a><P>
+<a name="10264">
+<STRONG>	10.	 <strong>(DRAG-L)</strong> the marker left and right.
+</STRONG>
+</a><P><dl><a name="10311">
+<dt>Note that all the cues that are associated with the marker move too.</dt>
+</a><P></dl><a name="10338">
+<STRONG>	11.	 Insert another cue at frame 22 of the <strong>"MOUTH_OPEN"</strong> curve channel.
+</STRONG>
+</a><P><a name="10343">
+ <P><img src="6Displacements.anc19.gif"><p>
+</a>
+<a name="10344">
+<em>Figure 6.19  &#32; &#32;Add an unlinked cue in the MOUTH_OPEN channel
+</em></a><P>
+<a name="10350">
+<STRONG>	12.	 <strong>(CLICK-R)</strong> on the marker at frame 15.
+</STRONG>
+</a><P><dl><a name="10351">
+<dt>The following menu appears:</dt>
+</a><P><a name="10357">
+ <P><img src="6Displacements.anc20.gif"><p>
+</a></dl>
+<a name="10358">
+<em>Figure 6.20  &#32; &#32;Remembering a marker
+</em></a><P>
+<a name="10352">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on <strong>Remember this Marker</strong>.
+</STRONG>
+</a><P><a name="10364">
+<STRONG>	14.	 <strong>(CLICK-R)</strong> on the cue at frame 22 of the <strong>"MOUTH_OPEN"</strong> channel.
+</STRONG>
+</a><P><dl><a name="10367">
+<dt>The following menu appears:</dt>
+</a><P><a name="10373">
+ <P><img src="6Displacements.anc21.gif"><p>
+</a></dl>
+<a name="10374">
+<em>Figure 6.21  &#32; &#32;Linking a cue to a remembered marker
+</em></a><P>
+<a name="10368">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on <strong>Link to Marker</strong>.
+</STRONG>
+</a><P><dl><a name="10381">
+<dt>The following prompt appears:</dt>
+</a><P><a name="10444">
+ <P><img src="6Displacements.anc22.gif"><p>
+</a></dl>
+<a name="10445">
+<em>Figure 6.22  &#32; &#32;Confirming a link
+</em></a><P>
+<a name="10431">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on <strong>Yes</strong> to link the cue to the marker you just remembered.
+</STRONG>
+</a><P><dl><a name="10382">
+<dt>Now <strong>(DRAG-L)</strong> the marker.</dt>
+</a><P><a name="10394">
+<dt>Note that both the cues that were originally inserted when you added the marker and the newly linked cue move.</dt>
+</a><P><a name="10405">
+<dt>Marker tracks let you link any number of cues together to a single marker. Simply by moving the marker, you can move all the associated cues, ensuring that the time between two cues remains constant.</dt>
+</a><P></dl><a name="10419">
+<STRONG>	17.	 <strong>(CLICK-M)</strong> on several of the cues, and change their values.
+</STRONG>
+</a><P><a name="10422">
+<STRONG>	18.	 Animate the script and playback the animation.
+</STRONG>
+</a><P>
+<a name="10529">
+<h3> Unlinking a Cue</h3>
+</a><a name="10532">
+Sometimes, you may want to move several linked cues, but not others. To unlink a cue from a marker:<p>
+</a><P>
+<a name="10533">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the linked cue.
+</STRONG>
+</a><P><dl><a name="10542">
+<dt>The following menu appears:</dt>
+</a><P><a name="10540">
+ <P><img src="6Displacements.anc23.gif"><p>
+</a></dl>
+<a name="10541">
+<em>Figure 6.23  &#32; &#32;Unlinking a cue
+</em></a><P>
+<a name="10534">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on <strong>Detach from Marker</strong>.
+</STRONG>
+</a><P><dl><a name="10535">
+<dt>The selected cue is detached, but the other cues remain linked to the marker.</dt>
+</a><P></dl>
+<a name="10531">
+<h3> Color Coding Cues Linked to Markers</h3>
+</a><a name="10530">
+You can turn on the <em>color coding</em> feature to see which cues are linked to which markers. To turn on color coding, move the cursor over the marker track and (CTRL-L).<p>
+</a><P><a name="10568">
+ <P><img src="6Displacements.anc24.gif"><p>
+</a><a name="10569">
+<em>Figure 6.24  &#32; &#32;Linked cues are displayed with the same color
+</em></a><P><a name="10561">
+A colored box appears around each marker (including those around the beginning and end of the channel, where markers are automatically inserted). Cues linked to that marker appear in the same color, making it easy to see what's linked to what.<p>
+</a><P><a name="10548">
+<h3> More about Cues and Markers</h3>
+</a><a name="10558">
+Try inserting other markers and cues, experimenting with linking and unlinking cues to a marker. This chapter showed how to link markers and cues with a displacement operation; however, you can link any cues in any type of channel to a marker track.<p>
+</a><P><a name="10595">
+Remember, linking cues lets you maintain a fixed time offset between a linked set of cues.<p>
+</a><P><a name="10461">
+<h2><HR> Congratulations!</h2>
+</a><a name="10462">
+You've now learned the basics of creating displacement based animation. Displacements can be layered over skeletal animation, which is discussed more later in this book, in the <em>Skeletal Animation System Reference Guide</em>, and in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="5Attributes.html">[Prev]</a> <a href="7Skeletons.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 15:18:25 -->
+
+</body>
+</html>

@@ -1,0 +1,501 @@
+<html><head><title>Color Reduction</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Inks.html">[Prev]</a> <a href="8VramEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="14961">
+<h1>Color Reduction</h1>
+</a>
+<hr><p><a name="17009">
+<h4> Most game platforms are limited in the number of colors they can display. N-Paint acknowledges these restrictions, and includes powerful tools for reducing the number of colors in an image without sacrificing detail or overall image quality. Color reduction changes full-color images to color mapped images.</h4>
+</a><a name="17010">
+<h2><HR> In this Chapter</h2>
+</a><a name="17012">
+In this chapter, we'll cover:<p>
+</a><P><ul><a name="17011">
+<li>The theory behind color reduction
+</a></li><P><a name="16320">
+<li>Using color reduction
+</a></li><P><a name="16321">
+<li>Palette operations
+</a></li><P><a name="16322">
+<li>Image operations
+</a></li><P><a name="16323">
+<li>Color reduction operations
+</a></li><P></ul><P><a name="17015">
+<h2><HR> Color Reduction</h2>
+</a><a name="15332">
+Color reduction is the process of mapping the colors in one image to a palette which contains a smaller number of colors. It is an important feature of N-Paint, since many game platforms are limited in the number of colors they can display. Before color reduction, each pixel might require as many as four bytes for color definition (in the case of a 64-bit, four-component image). In a color reduced image, each pixel's color is defined by a pointer 1 byte or less in size, reducing by over 75% the amount of memory needed to store color information. <p>
+</a><P><a name="15335">
+In N-Paint's color reduction system, each color in the image is mapped to a pointer that references a slot in the reduced palette. The pointer is a one-byte (8 bit) data structure, so it can accommodate a maximum of 256 colors.<p>
+</a><P><a name="15342">
+<h3> How Color Reduction Works</h3>
+</a><a name="15343">
+The first step in the color reduction process is to create a histogram portraying the relative frequency of given RGB values in terms of the number of pixels which have these values. RGB colors are defined by three values, but to illustrate the concept we'll consider a grey scale image, where "color" is really just a shade of grey, and is represented in memory by a single (or one dimensional) intensity value. Specifically, we'll take a 5-bit grey scale image, whose pixels have one of 32 different intensities, or "shades of grey", and reduce it to a 2-bit (4-color) image.<p>
+</a><P><a name="15348">
+ <P><img src="7ColorReduction.anc.gif"><p>
+</a><a name="15428">
+<em>Figure 7.1  &#32; &#32;Number of pixels per Intensity Value in the original, 4-bit greyscale image
+</em></a><P><a name="15431">
+To create the histogram, the algorithm first assigns each pixel to one of 4 groups (one group for each color "slot" in the reduced palette). Each "group" must contain the same quantity of pixels, so if our image contains 10,000 pixels (as would an image 100 x 100 pixels in size) then each group contains 10,000/4, or 2500 pixels. <a href="7ColorReduction.html#15441">Figure 7.2</a> shows the resulting distribution of groups:<p>
+</a><P><a name="15440">
+ <P><img src="7ColorReduction.anc1.gif"><p>
+</a><a name="15441">
+<em>Figure 7.2  &#32; &#32;The pixel population diagram, divided into groups
+</em></a><P><a name="15553">
+The next step is to determine the weighted average intensity value for each group. These values translate directly to slot values in the reduced palette, as shown in <a href="7ColorReduction.html#15558">Figure 7.3</a>.<p>
+</a><P><a name="15557">
+ <P><img src="7ColorReduction.anc2.gif"><p>
+</a><a name="15558">
+<em>Figure 7.3  &#32; &#32;Mapping the average intensity value to the reduced palette
+</em></a><P><a name="15559">
+Obviously, the procedure for accomplishing this reduction is much more complex in the three-dimensional RGB color space. It isn't necessary to understand how the histogram is produced in this 3D color space, but you do need to be aware of its role in the generation of the reduced palette.<p>
+</a><P><a name="15636">
+<h3> The Reduced Palette</h3>
+</a><a name="15637">
+The reduced palette (which is called a Color Lookup Table, or CLUT) itself consists of a predefined number of slots. Each pixel in the reduced image has a pointer value which references one of these slots. The slots themselves are arranged according to a specific index, determined by the color-reduction algorithm. You can perform operations on the slots in the palette, including sorting them by their color values, deleting, or inserting slots. When you do this, however, the values referenced by each pixels pointer can change, resulting in changes in the appearance of the image. <p>
+</a><P><a name="15640">
+<h2><HR> Using Color Reduction</h2>
+</a><a name="14968">
+<strong>(CLICK-L)</strong> on the Color Reduction button in the Paint Modes menu to enter Color Reduction mode.<p>
+</a><P><a name="14969">
+ <P><img src="7ColorReduction.anc3.gif"><p>
+</a><a name="14970">
+<em>Figure 7.1  &#32; &#32;The Color Reduction menu
+</em></a><P><a name="14977">
+<h3> File Operations</h3>
+</a><a name="16514">
+You can perform file operations using the magenta <strong>Image</strong> edit field. <strong>(CLICK-L)</strong> on the <strong>Image</strong> field to reveal the Image Operations pop-up menu. <a href="7ColorReduction.html#16527">Table 7.1</a> summarizes each of these operations.<p>
+</a><P><a name="16517">
+ <P><img src="7ColorReduction.anc4.gif"><p>
+</a><a name="16518">
+<em>Figure 7.2  &#32; &#32;The Image Operations pop-up menu
+</em></a><P><a name="16527">
+ <strong> 
+<P><Table Border="1">
+<dl>
+<a name="17208">
+<em>Table 7.1 <strong></strong><em> &#32; &#32;Color Reduction File and Canvas Operations</em>
+</em></a></dl>
+<tr><th align="left"><a name="17212">
+Operation
+</a><th align="left"><a name="17214">
+Description
+</a>
+<tr><td valign="top"><a name="17216">
+ <strong>Select Image &amp; Palette</strong><p>
+</a><td valign="top"><a name="17272">
+ allows you to select a full-color image from among those loaded into memory. Any associated palette is loaded as well, or, in the case of a full color image, is created.<p>
+</a>
+<tr><td valign="top"><a name="17220">
+ <strong>Select Image Only</strong><p>
+</a><td valign="top"><a name="17283">
+ lets you select an image from among those loaded into memory. No palette is loaded or created with the image.<p>
+</a>
+<tr><td valign="top"><a name="17224">
+ <strong>Open Image &amp; Palette</strong><p>
+</a><td valign="top"><a name="17292">
+ lets you open an image file, and load the image into memory.<p>
+</a>
+<tr><td valign="top"><a name="17228">
+ <strong>Open Image Only</strong><p>
+</a><td valign="top"><a name="17301">
+ lets you open an image file and load it onto the Color Reduction canvas, but without creating or loading a palette.<p>
+</a>
+<tr><td valign="top"><a name="17232">
+ <strong>Browse</strong><p>
+</a><td valign="top"><a name="17310">
+ lets you use a browser to select image files.<p>
+</a>
+<tr><td valign="top"><a name="17236">
+ <strong>Revert</strong><p>
+</a><td valign="top"><a name="17319">
+ lets you reload an image from disk. This has the effect of erasing all changes made since the last time the image was saved.<p>
+</a>
+<tr><td valign="top"><a name="17240">
+ <strong>Save Reduced Image</strong><p>
+</a><td valign="top"><a name="17328">
+ lets you save the reduced version of the current image to disk.<p>
+</a>
+<tr><td valign="top"><a name="17244">
+ <strong>Save Full Image</strong><p>
+</a><td valign="top"><a name="17337">
+ lets you save the full-color version of the current image to disk.<p>
+</a>
+<tr><td valign="top"><a name="17248">
+ <strong>Save Full Image As</strong><p>
+</a><td valign="top"><a name="17346">
+ lets you save the full-color version of the current image to a different directory and filename, which you specify.<p>
+</a>
+<tr><td valign="top"><a name="17252">
+ <strong>Save Many</strong><p>
+</a><td valign="top"><a name="17355">
+ lets you save several images at once.<p>
+</a>
+<tr><td valign="top"><a name="17373">
+ <strong>Rename</strong><p>
+</a><td valign="top"><a name="17384">
+ lets you choose a new name for the current image.<p>
+</a>
+<tr><td valign="top"><a name="17369">
+ <strong>Copy</strong><p>
+</a><td valign="top"><a name="17393">
+ lets you create a copy of the current image <em>in memory</em>.<p>
+</a>
+<tr><td valign="top"><a name="17365">
+ <strong>Delete</strong><p>
+</a><td valign="top"><a name="17410">
+ lets you delete images from memory (but not from disk).<p>
+</a>
+<tr><td valign="top"><a name="17361">
+ <strong>Load Matte</strong><p>
+</a><td valign="top"><a name="17419">
+ lets you load a matte from an image in memory onto the current image.<p>
+</a>
+<tr><td valign="top"><a name="17357">
+ <strong>Save Matte</strong><p>
+</a><td valign="top"><a name="17428">
+ allows you to save the matte component of the current image to file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+	</strong><p>
+</a><a name="16513">
+<h4> Saving Reduced Images and Palettes</h4>
+</a><a name="17177">
+When you <strong>(CLICK-L)</strong> on Image&gt;Save Reduced Image, you can choose between one of three color-mapped image formats:<p>
+</a><P><ul><a name="17178">
+<li>LBM
+</a></li><P><a name="17179">
+<li>TIM
+</a></li><P><a name="17180">
+<li>BMP
+</a></li><P></ul><P><a name="17176">
+<h4> Palette Operations</h4>
+</a><a name="15073">
+The current palette is displayed in the central portion of the Color Reduction menu. Several controls in this area provide ways for you to manage this palette, or select another palette.<p>
+</a><P><a name="15032">
+<h4> Palette</h4>
+</a><a name="15067">
+You can use this field to select from among those palettes currently loaded into memory, or to perform several palette operations. <strong>(CLICK-L)</strong> on the Palette edit field to reveal the Palette Operations pop-up menu:<p>
+</a><P><a name="15043">
+ <P><img src="7ColorReduction.anc5.gif"><p>
+</a><a name="15047">
+<em>Figure 7.3  &#32; &#32;The Palette Operations pop-up menu
+</em></a><P><ul><a name="15046">
+<li><strong>(CLICK-L)</strong> on a palette to make it the current palette. The current palette is displayed in the central portion of the color reduction menu.
+</a></li><P><a name="15990">
+<li><strong>Create New Palette</strong> creates a new palette element in memory.
+</a></li><P><a name="15988">
+<li><strong>Delete</strong> deletes the current palette from memory. If you (click-l) on delete, you'll be asked to confirm your choice.
+</a></li><P><a name="15064">
+<li><strong>Rename Palette</strong> allows you to specify a new name for the current palette.
+</a></li><P><a name="15065">
+<li><strong>Copy Palette </strong>copies the current palette to a new palette element.
+</a></li><P><a name="15993">
+<li><strong>Send Palette to Paint</strong> makes the current Color Reduction palette the current palette in Paint.
+</a></li><P></ul><P><a name="15066">
+<h4> Size</h4>
+</a><a name="15045">
+The size of the palette refers to its size in bits. The essence of color reduction lies in reducing the size of a palette. When a large palette is reduced in size, N-Paint's color reduction algorithms can calculate a new palette which provides a "best fit" for the colors in the original palette.<p>
+</a><P><a name="15081">
+<strong>(CLICK-L)</strong> on the Size field to reveal the Choose Palette Size pop-up menu<p>
+</a><P><a name="15083">
+ <P><img src="7ColorReduction.anc6.gif"><p>
+</a><a name="15085">
+<em>Figure 7.4  &#32; &#32;The Choose Palette Size pop-up menu
+</em></a><P><a name="15082">
+<h4> Slot</h4>
+</a><a name="15099">
+This field shows the currently selected slot. The value to the right are the RGB values for the color stored in that slot. You can edit these values directly if you choose.<p>
+</a><P><ul><a name="16334">
+<li><strong>(CLICK-R)</strong> to toggle between relative values (percent) and true values.
+</a></li><P></ul><P><a name="15102">
+<h4> BPG</h4>
+</a><a name="16399">
+Bits per Gun. This field controls the depth of each color in each slot of the palette. By default, this is set to 8 bits each for the R, G, and B channels (symbolized RGB 888). <p>
+</a><P><ul><a name="16403">
+<li><strong>(CLICK-L)</strong> on the BPG field to select a new color space from a pop-up menu.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Currently this is the only color space option available, but NGI plans to release plugins to provide additional color spaces in the near future.</font></dd></dt></dl><P>
+<a name="16398">
+<h4> Using the Palette Menu</h4>
+</a><a name="15103">
+The current palette is displayed in the central portion of the Color reduction menu.<p>
+</a><P><a name="15106">
+ <P><img src="7ColorReduction.anc7.gif"><p>
+</a><a name="15107">
+<em>Figure 7.5  &#32; &#32;The current palette
+</em></a><P><a name="15824">
+The next section describes the operations you can perform on palette slots. Should your actions result in an unwanted change to the current palette, you can undo your changes with a <strong>(CLICK-L)</strong> on the <strong>UnDo</strong> button. Should you change your mind about undoing an action, <strong>(CLICK-L)</strong> on <strong>ReDo</strong> to undo your undo.<p>
+</a><P><a name="15998">
+<h4> Manipulating Slots</h4>
+</a><a name="15999">
+You can manipulate slots directly with the mouse:<p>
+</a><P><ul><a name="15137">
+<li><strong>(CLICK-L)</strong> on a slot to <strong>select </strong>it.
+</a></li><P><ul>
+<BR><a name="15835">
+<li>To <strong>select multiple slots</strong>, hold down <strong>(SHIFT-L)</strong> and drag the cursor across the slots you wish to select.
+</a><P><BR><a name="15922">
+<li><strong>(SHIFT-R)</strong> on a slot to<strong> empty</strong> it.
+</a><P></ul>
+<dl><a name="15836">
+<dt>Note that pixels associated with selected slots are highlighted on the canvas.</dt>
+</a><P><a name="16224">
+ <P><img src="7ColorReduction.anc8.gif"><p>
+</a></dl></ul><P><a name="16226">
+<em>Figure 7.6  &#32; &#32;A selected slot
+</em></a><P><ul><a name="16227">
+<li><strong>(CLICK-R)</strong> on a slot to <strong>edit</strong> it.
+</a></li><P><dl><a name="15140">
+<dt>When you do so, the Edit Selected Slot(s) pop-up menu appears.</dt>
+</a><P><a name="15141">
+ <P><img src="7ColorReduction.anc9.gif"><p>
+</a></dl></ul><P><a name="15142">
+<em>Figure 7.7  &#32; &#32;The Edit Selected Slots(s) pop-up menu
+</em></a><P><ul><a name="15147">
+<li><strong>Cut</strong> removes selected slots from the current palette, and copies them to the Kill Ring (essentially the clipboard).
+</a></li><P><a name="16264">
+<li><strong>Copy</strong> copies selected slots to the kill ring.
+</a></li><P><a name="16265">
+<li><strong>Paste</strong> inserts colors in the kill ring into selected slots, if they are empty.
+</a></li><P><a name="16266">
+<li><strong>Compact</strong> moves empty slots to the end of the selected region.
+</a></li><P><a name="15158">
+<li><strong>Open</strong> moves empty slots from the end of the selected region to the beginning.
+</a></li><P><a name="15159">
+<li><strong>Lock</strong> protects selected slots from modification or deletion. Locked slots have an "L" superimposed on them:
+</a></li><P><a name="15864">
+ <P><img src="7ColorReduction.anc10.gif"><p>
+</a></ul><P><a name="15865">
+<em>Figure 7.8  &#32; &#32;Locked Slots
+</em></a><P><ul><a name="15160">
+<li><strong>Unlock</strong> allows selected slots to be modified or deleted.
+</a></li><P><a name="15161">
+<li><strong>Restrict</strong> protects selected slots from modification or deletion. In addition, restricted slots <em>cannot</em> be assigned to pixels in the image (cf.<strong> LOCK</strong>ed slots, above). Restricted slots have an R superimposed on them:
+</a></li><P><a name="15872">
+ <P><img src="7ColorReduction.anc11.gif"><p>
+</a></ul><P><a name="15873">
+<em>Figure 7.9  &#32; &#32;Restricted Slots
+</em></a><P><ul><a name="15162">
+<li><strong>Unrestrict</strong> removes restriction protection from slots and pixels.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong> 	Restrict and Lock seem very similar. However, LOCK is used when a certain region of the image has been reduced to a certain group of slots, and you want to work on other parts of the image/palette without altering these slots. Restrict is used to prevent certain slots from being used at all. for example, it may be desirable to have a color appear in the palette, but not be used anywhere in the image.</font></dd></dt></dl><P>
+<ul><a name="15163">
+<li><strong>Sort</strong> sorts colors in the palette, using the sort order you specify with the Sort By popup menu:
+</a></li><P><a name="15166">
+ <P><img src="7ColorReduction.anc12.gif"><p>
+</a></ul><P><a name="15167">
+<em>Figure 7.10  &#32; &#32;The Sort By pop-up menu
+</em></a><P><dl><dl><a name="15175">
+<dt><strong>(CLICK-L)</strong> on a parameter to select it. You can also use the <strong>UP</strong> and <strong>DOWN</strong> buttons to control the direction of the sort.</dt>
+</a><P></dl></dl><ul><a name="15176">
+<li><strong>Edit Color </strong>produces a standard color palette, which you can use to modify the RGB and IHS values of the current slot.
+</a></li><P><a name="15177">
+<li><strong>Pick Color </strong>allows you to pick a color value for the slot from the canvas.
+</a></li><P><a name="15178">
+<li><strong>Highlight Canvas </strong>highlights those areas of the canvas whose colors match the currently selected slots.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	If Auto Highlight is toggled on in the N-Paint setup menus, pixels on the canvas which match selected slots will ALWAYS be highlighted. To review how to change this parameter, see <a href="2GettingStarted.html#12271">"Auto Highlight," on page &#32;2-8</a>.</font></dd></dt></dl><P>
+<ul><a name="15179">
+<li><strong>Unhighlight Canvas </strong>removes the highlighting effect.
+</a></li><P></ul><P><a name="15182">
+<h3> The Scratch Palette</h3>
+</a><a name="17149">
+The Scratch Palette serves as a permanent clipboard. You can cut or copy colors from slots in the current palette, then paste them onto the Scratch Palette. You can't save the scratch-palette, nor can you apply it to an image. <p>
+</a><P><a name="17148">
+<h3> Color Reduction Operations</h3>
+</a><a name="15183">
+The right side of the color reduction menu contains the controls you'll use to specify images to reduce, and also to execute color reduction operations on the current canvas.<p>
+</a><P><a name="15184">
+<h4> Image</h4>
+</a><a name="15185">
+<strong>(CLICK-L)</strong> on this field to select an image file from those currently loaded into memory, and load it onto the canvas. <p>
+</a><P><a name="16504">
+<h4> Target</h4>
+</a><a name="15187">
+Each game platform has unique gamma correction and gain values for each color component. You can choose from between several predefined platforms, or define your own. <strong>(CLICK-L)</strong> on this field to select a platform from a pop-up menu:<p>
+</a><P><a name="16345">
+ <P><img src="7ColorReduction.anc13.gif"><p>
+</a><a name="16346">
+<em>Figure 7.11  &#32; &#32;Platform operations menu.
+</em></a><P><ul><a name="16355">
+<li><strong>(CLICK-L)</strong> on a platform to select it.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Changing the Target Platform in the Color Reduction menus applies the gamma and gain corrections for that platform to all N-Paint displays. In other words, it is equivalent to changing the default the Target Platform in the N-Paint Setup menu.</font></dd></dt></dl><P>
+<ul><a name="16356">
+<li><strong>(CLICK-L)</strong> on <strong>Create New</strong> to define a new platform specification:
+</a></li><P><a name="16364">
+ <P><img src="7ColorReduction.anc14.gif"><p>
+</a></ul><P><a name="16365">
+<em>Figure 7.12  &#32; &#32;Create New Platform dialog
+</em></a><P><ul><a name="16370">
+<li><strong>Name</strong> is the name of the platform as it will appear in the <strong>Target</strong> field on the Color Reduction main menu.
+</a></li><P><a name="16371">
+<li><strong>Full Name</strong> is the name of the platform as it will appear in the Platform operations menu (<a href="7ColorReduction.html#16365">Figure 7.12</a>)
+</a></li><P><a name="16378">
+<li><strong>Gamma</strong> is the gamma correction value. Specify it for each channel, with the leftmost field the R channel, the center field the G channel, and the rightmost field the B channel.
+</a></li><P><a name="16379">
+<li><strong>Gain</strong> is the gain multiplier to be applied to each channel. Specify for the RGB channels.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000>Note:	The gamma value affects only the display, not the actual color values of the pixels in the image. This is intended to allow you to preview the image as it will appear on the target platform.</font></dd></dt></dl><P>
+<a name="15764">
+<h4> Display</h4>
+</a><a name="15765">
+You can view either the original, full-color image, or the image as it appears with colors mapped to the current palette. To select a view, <strong>(CLICK-L)</strong> on one of the buttons in the Display section of the Color Reduction menu.<p>
+</a><P><ul><a name="15772">
+<li><strong>Full</strong> displays the original, unreduced image.
+</a></li><P><a name="15767">
+<li><strong>Reduced</strong> displays the image with colors mapped to the reduced palette (the "reduced image".)
+</a></li><P></ul><P><a name="17053">
+<h4> Dithering and Matte Options</h4>
+</a><a name="17134">
+You can control how N-Paint dithers images, as well as control the matte from the Color Reduction Menus. <p>
+</a><P><a name="17132">
+ <P><img src="7ColorReduction.anc15.gif"><p>
+</a><a name="17123">
+<em>Figure 7.13  &#32; &#32;Matte and DIther level controls
+</em></a><P><a name="17066">
+<h4> Dithering</h4>
+</a><a name="17067">
+When toggled, automatically dithers the colors on the canvas as they are remapped. Enter a number between 0 and 1 to control the level of dithering applied to the canvas.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	The dithering method used is specified in the N-Paint Setup menu. To learn more about how to set this parameter, see <a href="2GettingStarted.html#10463">"Color Reduction Parameters," on page &#32;2-8</a>.</font></dd></dt></dl><P>
+<a name="17058">
+<h4> Matte</h4>
+</a><a name="17095">
+Controls whether the matte is used to control which areas of the canvas are affected by the Color Reduction operation. <strong>(CLICK-L)</strong> on the Matte toggle to activate the matte.<p>
+</a><P><ul><a name="17105">
+<li><strong>View </strong>makes the matte visible<strong>.</strong>
+</a></li><P><a name="17051">
+<li><strong>Rev</strong> reverses the matte.
+</a></li><P></ul><P><a name="17137">
+The <strong>Clip at</strong> variable controls the global opacity of the matte for color reduction operations. For example, if your image has a matte which varies in opacity, but you wish to use it to influence color reduction operations, you can override its native opacity and specify a new value in the <strong>Clip at</strong> field.<p>
+</a><P><a name="17155">
+<h4> Matte Display</h4>
+</a><a name="17156">
+The <strong>Matte Display</strong> button brings up the Matte Display pop -up menu. You can use this menu to change the <em>appearance</em> attributes of the matte (color, tranparency, etc.). The behavior of these options is exactly the same as for the <strong>Matte Display</strong> button in the Tools menu. To review these options, see <a href="4ToolsMode.html#691418">"Display," on page &#32;3-5</a>.<p>
+</a><P><a name="15188">
+<h4> Oper </h4>
+</a><a name="15189">
+<strong>(CLICK-L)</strong> on the Oper (operations) field to reveal the Color-Reduction Operation menu:<p>
+</a><P><a name="15190">
+ <P><img src="7ColorReduction.anc16.gif"><p>
+</a><a name="15191">
+<em>Figure 7.14  &#32; &#32;The Select Color-Reduction Operation pop-up menu
+</em></a><P><a name="15196">
+Each operation has it's own set of parameters, and the menu changes to reflect this. To execute an operation:<p>
+</a><P>
+<a name="15197">
+<STRONG>	 1.	 Select the operation from the Color-Reduction pop-up menu.
+</STRONG>
+</a><P><a name="15198">
+<STRONG>	2.	 Configure the parameters for that operation.
+</STRONG>
+</a><P><a name="15199">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P>
+<a name="15200">
+<h4> Color Reduction Operations</h4>
+</a><a name="15293">
+<h4> Set Palette Slots &amp; Remap</h4>
+</a><a name="15201">
+This operation generates the color histogram for the selected area (see "Canvas" below), sets the selected slots (see "Slots" below) to these color values, and then remaps the colors on the canvas to match those in the newly generated palette.<p>
+</a><P><a name="15205">
+<h4> Slots</h4>
+</a><ul><a name="15206">
+<li><strong>All</strong> fills all unlocked slots in the current palette.
+</a></li><P><a name="15207">
+<li><strong>Selected</strong> fill only the selected slots in the current palette.
+</a></li><P><a name="15208">
+<li><strong>Empty</strong> fills only empty slots in the current palette.
+</a></li><P></ul><P><a name="15215">
+<h4> Canvas</h4>
+</a><ul><a name="15216">
+<li><strong>Full</strong> assigns colors from the full canvas to the current palette.
+</a></li><P><a name="15219">
+<li><strong>Rect</strong> assigns colors from a rectangular area of the canvas, which you specify.
+</a></li><P><a name="15220">
+<li><strong>Poly</strong> assigns colors from a polygonal area of the canvas, which you specify.
+</a></li><P></ul><P><a name="16006">
+<h4> Shapes</h4>
+</a><a name="16011">
+N-Paint remembers shapes that you define when you use the <strong>Rect</strong> or <strong>Poly</strong> options to define a canvas area. When these canvas options are selected, four new commands are available next to the <strong>Do It</strong> button:<p>
+</a><P><ul><a name="16016">
+<li><strong>Repeat</strong> executes the current operation on the last shape defined you defined on the canvas.
+</a></li><P><a name="16017">
+<li><strong>Show</strong> draws the outline of the current shape on the canvas. <strong>(CLICK-L)</strong> on the left and right facing arrows to browse through the list of shapes that N-Paint has remembered for you.
+</a></li><P></ul><P><a name="15221">
+<h4> Remap Canvas to Palette</h4>
+</a><a name="15222">
+This operation remaps colors on the canvas using the current palette. Unlike the <strong>Set Palette &amp; Remap</strong> operation, it does not generate a new palette based on the canvas first.<p>
+</a><P><a name="15226">
+The parameters for this operation are identical to those described above.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	When the Auto Remap parameter is toggled on in the N-Paint Setup menu, images are automatically remapped to the current palette when they are loaded or selected.</font></dd></dt></dl><P>
+<a name="15274">
+<h4> Histogram Operations</h4>
+</a><a name="15275">
+<strong>Set Palette Slots &amp;</strong> <strong>Remap Canvas </strong>and <strong>Remap Canvas to Palette </strong>create a new histogram each time they are invoked. Sometimes, though, you'll want to build a histogram and reduced palette from more than one image. For example, you may wish to create your histogram from a series of number image files in an animation. You can use histogram operations to build such a cumulative histogram.<p>
+</a><P><a name="15644">
+<h4> Clear Histogram</h4>
+</a><a name="15323">
+This operation deletes the current histogram from memory.<p>
+</a><P><a name="15276">
+<h4> Add Colors to Histogram</h4>
+</a><a name="15647">
+This operation adds pixel color/population information to the current histogram, and automatically recalculates the weighted average for each group.<p>
+</a><P><a name="15279">
+<h4> Canvas</h4>
+</a><ul><a name="15280">
+<li><strong>Full</strong> adds all pixel values to the current histogram
+</a></li><P><a name="15281">
+<li><strong>Rect</strong> adds pixel values to the current histogram from a rectangular area, which you define.
+</a></li><P><a name="15282">
+<li><strong>Poly</strong> adds pixel values to the current histogram from a polygonal area, which you define.
+</a></li><P></ul><P><a name="15277">
+<h4> Set Palette Slots from Histogram</h4>
+</a><a name="15814">
+Sets selected palette slots from values in the current histogram.<p>
+</a><P><a name="15813">
+<h3> Palette Operations</h3>
+</a><a name="15648">
+Each pixel in the reduced image is mapped to a slot in the reduced palette. These slots can be sorted or rearranged by a variety of operations. This can result in unpredictable changes in an image's appearance. <p>
+</a><P><a name="15291">
+<h4> Reorder Image Indexes</h4>
+</a><a name="15292">
+Redirects pointers from their current slot to the slot which contained the color they pointed to originally. This original state is reinitialized by Reset Index History. You'll need to perform this operation if you move slots from their original positions. <p>
+</a><P><dl>
+<dt><dd><font color=dd000>Note:	If Auto Remap is selected in the Paint Setup menus, then palette slot indices are reordered automatically.</font></dd></dt></dl><P>
+<a name="15663">
+<h4> Reset Index History</h4>
+</a><a name="15325">
+Redefines base state for pointer assignments. After you reset Index history, <strong>Reorder Image Indexes</strong> returns to this new order.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Inks.html">[Prev]</a> <a href="8VramEditor.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/27/96 11:20:17 -->
+
+</body>
+</html>

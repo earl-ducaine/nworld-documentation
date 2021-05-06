@@ -1,0 +1,1138 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="IntroToN-Objects.html">[Prev]</a> <a href="ExpObjData.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="27582">
+You can use Lisp functions to create and manipulate N&#183;World objects. You can also create objects interactively in the Geometry window, and manipulate them using Lisp. This chapter focuses on basic concepts, including techniques for:<p>
+</a><P><ul><a name="27583">
+<li>creating bodies and objects
+</a></li><P><a name="27589">
+<li>selecting single and multiple objects
+</a></li><P><a name="27590">
+<li>traversing and collecting the elements of bodies and objects
+</a></li><P></ul><P><a name="24960">
+<h2><HR> A Quick Review of Bodies and Objects</h2>
+</a><a name="26653">
+Bodies contain geometrical information which defines the basic relationships between the components of an entity, such as a polyhedron. <p>
+</a><P><a name="28172">
+When you modify a <em>body</em>, you are changing the basic geometrical relationships between the points, vertices, and faces which comprise that body. For example, if you select a body in the geometry window, and then move it, the changes you make affect the underlying definition of that body.<p>
+</a><P><a name="26637">
+<em>Objects</em>, on the other hand, are constructed of bodies, a transformation matrix, and a body-display-item (bdi). When you modify a body, you are changing the relationship between the components of that body with respect to its local coordinate system. Objects, on the other hand, can be <em>transformed</em>. Transforming means to change the relationship between and objects local coordinate system and the global coordinate system. <p>
+</a><P><a name="26636">
+<h2><HR> Getting Started</h2>
+</a><a name="26856">
+Three dimensional objects are created in N&#183;World using N-Geometry. Using Lisp programs, you can expand this interface or delve beneath it to gain greater control over the objects you create.<p>
+</a><P><a name="26896">
+For the following examples, run N&#183;World from within Xemacs in the manner described in <a href="NWorldDevoEnvironment.html#48504">Chapter &#32;3, "Creating N&#183;World Code." &#32;</a> <p>
+</a><P><a name="28184">
+Arrange your desktop windows so that you can see Xemacs and a Geometry window at the same time. When N&#183;World has fully loaded, you'll need to tell Xemacs that you wish to use the GEOMETRY package. Type the following command at the Lisp PROMPT:<p>
+</a><P><a name="26897">
+<code><pre>USER(6): :pa GEOMETRY<p>
+</code></pre></a><a name="26904">
+<code><pre>GEOMETRY(7):<p>
+</code></pre></a><a name="26898">
+The prompt changes to show you that you are now in the GEOMETRY package. The GEOMETRY package (also called the 3D package) contains most of the functions related to creating and selecting objects. Being "in" a package means that you can call functions in that package without special colon syntax.<p>
+</a><P><a name="24958">
+<h2><HR> Creating Simple Objects</h2>
+</a><a name="26663">
+To review, simple objects which are viewable in N&#183;World have three major components:<p>
+</a><P><ul><a name="28190">
+<li>A body
+</a></li><P><a name="28192">
+<li>A transformation matrix
+</a></li><P><a name="28196">
+<li>A bdi
+</a></li><P></ul><P><a name="28200">
+The procedure for creating a simple object using Lisp mirrors this structural hierarchy:<p>
+</a><P>
+<a name="25191">
+<STRONG>	 1.	 Create a body.
+</STRONG>
+</a><P><a name="25193">
+<STRONG>	2.	 Use the body to make an object.
+</STRONG>
+</a><P><a name="25194">
+<STRONG>	3.	 Make the new object viewable.
+</STRONG>
+</a><P>
+<a name="25199">
+<h3> Make Functions for Polyhedra</h3>
+</a><a name="26857">
+The functions which create bodies are called <em>make-functions</em>. Each geometric primitive has  its own make function. All of these functions take at least one argument, usually the radius of the completed body. In our examples, we'll be creating a tetrahedron with a radius of 10.0 units. Some objects, like cylinders and spheres, take additional arguments to define.<p>
+</a><P><a name="25159">
+To create a new tetrahedron:<p>
+</a><P>
+<a name="25068">
+<STRONG>	 1.	 Create a body with <code>3D:MAKE-TETRAHEDRON</code> function.
+</STRONG>
+</a><P><dl><a name="25155">
+<dt>For example, to create a tetrahedron with a radius of 10 units, evaluate the following form:</dt>
+</a><P></dl><a name="26926">
+<code><pre>(3D:MAKE-TETRAHE<a 3D:MAKE-TETRAHEDRON>DRON 10.0)<p>
+</code></pre></a><dl><a name="26933">
+<dt>This function returns a value like:</dt>
+</a><P></dl><a name="26935">
+<code><pre>#&lt;POLYHEDRON 7&gt;<p>
+</code></pre></a>
+<a name="27974">
+This value is the printed representation of the body you just created. It serves as a sort of label to identify the body, but has no intrinsic significance.<p>
+</a><P><a name="25094">
+If you check the 3D editor window for your new tetrahedron, you'll notice that it isn't there. It does exist, but only as an abstract data structure, an <em>instance</em> of a certain type of Lisp class which contains the geometric information describing a tetrahedron with a radius of 10.0 units. It is possible to manipulate this tetrahedron using Lisp functions without ever actually seeing it in the geometry window. Usually, though, you'll want to use the geometry window to monitor the results generated by the code you create.<p>
+</a><P><a name="25202">
+<h4> Binding Bodies to Variables</h4>
+</a><a name="28576">
+In this example, however, we just called the make function without making any provisions for keeping track of the resulting body afterward. Fortunately, Lisp remembers the last three values returned by user functions. Lisp assigns the most recent value to the variable <code>*</code>, the second-most recent to <code>**</code>, and the third most recent to <code>***</code>.<p>
+</a><P>
+<a name="25205">
+<STRONG>	 1.	 Bind a new body to a variable.
+</STRONG>
+</a><P><a name="25206">
+<code><pre>GEOMETRY(12): (setf mytetra *)<p>
+</code></pre></a><a name="26937">
+<code><pre>#&lt;POLYHEDRON 7&gt;<p>
+</code></pre></a>
+<a name="25207">
+Again, Lisp returns the printed representation of the body we created. However, the variable <code>mytetra</code> is now bound to the actual body of the object represented by <code>*</code>, not the printed representation.<p>
+</a><P><a name="28005">
+You can also bind a new body to a variable when you create it. For example:<p>
+</a><P><a name="25210">
+<code><pre>GEOMETRY(13): (setf mytetra (make-tetrahedron 10.0))<p>
+</code></pre></a><a name="26941">
+<code><pre>#&lt;POLYHEDRON 8&gt;<p>
+</code></pre></a><dl><a name="28006">
+<dt>Note that the printed representation is different, indicating we have just created a new body.</dt>
+</a><P></dl><a name="26819">
+Evaluating <code>mytetra</code> will return the same value, namely, the printed representation of the tetrahedron's body. Binding a variable to a body is not the most efficient method for keeping track of it. However, for now it provides a handy way of referring to the bodies and objects we're creating.<p>
+</a><P><a name="28634">
+<h2><HR> Creating Objects</h2>
+</a><a name="25212">
+Use <code>3D:MAKE-OBJECT</code> to create objects which reference bodies:<p>
+</a><P><a name="302341">
+<code><pre>(<a 3D:MAKE-OBJECT body &OPTIONAL name class>3D:MAKE-OBJECT body &amp;OPTIONAL <em>name class</em>)<p>
+</code></pre></a><a name="302340">
+To create an object which references the tetrahedron we just created:<p>
+</a><P><a name="25219">
+<code><pre>GEOMETRY(19): (MAKE-OBJECT mytetra)<p>
+</code></pre></a><a name="26950">
+<code><pre>#&lt;OBJECT "Polyhedron-Object" (dead) @ #x19ad85d2&gt;<p>
+</code></pre></a><dl><a name="25234">
+<dt>To facilitate working with this object later, we'll bind it to a variable:</dt>
+</a><P></dl><a name="26962">
+<code><pre>GEOMETRY(20): (setf mytetraobject (MAKE-OBJECT mytetra))<p>
+</code></pre></a><a name="26970">
+<code><pre>#&lt;OBJECT "Polyhedron-Object" (dead) @ #x19ae953a&gt;<p>
+</code></pre></a><a name="26964">
+<h3> Naming Objects</h3>
+</a><a name="27622">
+Optionally, you can give your object a name at this point. Object names are what the 3D editor shows uses to build menu lists in N-Geometry. You can also search for objects by their names. The following example creates an object with the name "My Tetrahedron."<p>
+</a><P><a name="25228">
+<code><pre>GEOMETRY(21):(setf mytetraobject<p>
+</code></pre></a><a name="26979">
+<code><pre>			(make-object mytetra "My Tetrahedron"))<p>
+</code></pre></a><a name="27652">
+<code><pre>#&lt;OBJECT "My Tetrahedron" (dead) @ #x19b11962&gt;<p>
+</code></pre></a><a name="27653">
+<h3> Viewing Objects</h3>
+</a><a name="302662">
+Why is our tetrahedron "dead"? It hasn't yet been added to the view.<p>
+</a><P>
+<a name="27628">
+<STRONG>	 1.	 Use 3D:<code>ADD-OBJECT-TO-VIEW</code> to make the object viewable in the geometry window.
+</STRONG>
+</a><P><a name="25245">
+<code><pre>GEOMETRY(22): (<a 3D:ADD-OBJECT-TO-VIEW>3D:ADD-OBJECT-TO-VIEW mytetraobject)<p>
+</code></pre></a>
+<a name="26983">
+Lisp returns<p>
+</a><P><a name="301413">
+<code><pre>Adding My Tetrahedron, and inserting bdi.<p>
+</code></pre></a><a name="26984">
+<code><pre>#&lt;OBJECT "My Tetrahedron" @ #x19b11962&gt;<p>
+</code></pre></a><dl><a name="27204">
+<dt>A quick check of the Geometry window shows a brand new tetrahedron, centered on the origin, and with a radius of 10 units. When you select this new body, you can see that it has the name "My Tetrahedron."</dt>
+</a><P></dl>
+<a name="26410">
+<STRONG>	2.	 If your object is not immediately visible, redraw the scene with <code>3D:REDRAW-SCENE</code>.
+</STRONG>
+</a><P><a name="26996">
+<code><pre>GEOMETRY(23): (<a 3D:REDRAW-SCENE>3D:REDRAW-SCENE *camera*)<p>
+</code></pre></a><dl><a name="301419">
+<dt>Or simply move the camera.</dt>
+</a><P></dl>
+<a name="301420">
+<code>3D:ADD-OBJECT-TO-VIEW</code> does not return a value, but it does produce two important side-effects:<p>
+</a><P><ul><a name="301429">
+<li>It inserts a bdi between the object and its body.
+</a></li><P><a name="301430">
+<li>It adds the object to the list of objects known to exist by N-Geometry. This list is bound to the global variable 3D:<code>*GLOBAL-OBJECT-LIST*</code>.
+</a></li><P></ul><P><a name="25295">
+<h2><HR> Selecting Items</h2>
+</a><a name="26379">
+Once you've created an object, you'll need to have a means of referring to it before you can manipulate it. You can reference bodies and objects explicitly by binding them to symbols, as we did in the examples above. However, this requires that you remember which symbol you assigned to an object, and type its name every time you wish to manipulate it. You can avoid this tedium by selecting an item interactively in the geometry window. <p>
+</a><P><a name="26375">
+<h3> Selecting Bodies Interactively</h3>
+</a><a name="25366">
+Whenever you select an item in the geometry window, the special variable <code>?</code> is set to that object. In fact, Lisp keeps track of the last three items you've selected. Two question marks (<code>??</code>) refer to the second-to-last item selected, while three (<code>???</code>) refer to the item selected third-to-last. You can use this symbol to "grab" an item and perform some operation on it. For example;<p>
+</a><P><a name="25314">
+To select the body of the tetrahedron we created in the example above:<p>
+</a><P>
+<a name="25397">
+<STRONG>	 1.	 <strong>(click-l)</strong> on bodies in the sensitivity element menu bar at the top of the Geometry window.
+</STRONG>
+</a><P><a name="25392">
+<STRONG>	2.	 <strong>(Click-l)</strong> on the body of the tetrahedron in the Geometry window.
+</STRONG>
+</a><P><a name="25319">
+<STRONG>	3.	 In Xemacs, evaluate the value of <code>?</code>.
+</STRONG>
+</a><P><a name="26241">
+<code><pre>GEOMETRY(25): ?<p>
+</code></pre></a><a name="27003">
+<code><pre>#&lt;POLYHEDRON 8&gt;<p>
+</code></pre></a><dl><a name="27687">
+<dt>Lisp returns the printed representation of the body. </dt>
+</a><P></dl><a name="27689">
+<STRONG>	4.	 Select an edge of your polyhedron and evaluate <code>?</code> again.
+</STRONG>
+</a><P><a name="26247">
+<code><pre>GEOMETRY(26): ?<p>
+</code></pre></a><a name="27010">
+<code><pre>#&lt;EDGE 1&gt;<p>
+</code></pre></a><a name="26249">
+<STRONG>	5.	 Repeat this process for a face.
+</STRONG>
+</a><P><a name="25323">
+<code><pre>GEOMETRY(27): ?<p>
+</code></pre></a><a name="27012">
+<code><pre>#&lt;FACE 1&gt;<p>
+</code></pre></a><dl><a name="26266">
+<dt>Now, if you evaluate <code>??</code>, Lisp returns the printed representation of the edge you selected earlier:</dt>
+</a><P></dl><a name="26270">
+<code><pre>GEOMETRY(28): ??<p>
+</code></pre></a><a name="27018">
+<code><pre>#&lt;EDGE 1&gt;<p>
+</code></pre></a><dl><a name="26271">
+<dt>If you evaluate <code>???</code>, Lisp returns the body you selected first.</dt>
+</a><P></dl><a name="26272">
+<code><pre>GEOMETRY(29): ???<p>
+</code></pre></a><a name="27027">
+<code><pre>#&lt;POLYHEDRON 8&gt;<p>
+</code></pre></a>
+<a name="27695">
+The expressions which Lisp returns in these examples are printed representations of the instance of the item in question. At best, these serve as a sort of label for that item. You cannot use these names in performing operations; you must use a variable bound to the object you wish to manipulate. In other words,<p>
+</a><P><a name="26273">
+<code><pre>(<a 3D:move><a 3D:OBJECT-NAMED>move ? 10.0 10.0 10.0)<p>
+</code></pre></a><a name="26274">
+is a valid Lisp command, whereas<p>
+</a><P><a name="26275">
+<code><pre>(move #&lt;EDGE 3&gt; 1 1 1)<p>
+</code></pre></a><a name="26276">
+will result in an error. <p>
+</a><P><a name="26277">
+<h3> Referencing Elements Symbolically</h3>
+</a><a name="26359">
+You can also specify an item by referencing the variable whose value you set to that item. For example, when we created the tetrahedron, we bound the variable <code>mytetra</code> to  its body. If you evaluate this variable, Lisp returns the printed representation of the body.<p>
+</a><P><a name="26289">
+<code><pre>GEOMETRY(32): mytetra<p>
+</code></pre></a><a name="27036">
+<code><pre>#&lt;POLYHEDRON 8&gt;<p>
+</code></pre></a><a name="27053">
+Our example tetrahedron also has the variable <code>mytetraobject</code> bound to  its object. We can reference the body or the object of our tetrahedron separately if we choose to do so. For example, you can transform the object by moving it with the move command.<p>
+</a><P><a name="26371">
+<code><pre>(move mytetraobject 10.0 10.0 10.0)<p>
+</code></pre></a><a name="26372">
+You can also modify the geometry of the body by moving it:<p>
+</a><P><a name="26373">
+<code><pre>(move mytetra 10.0 10.0 10.0)<p>
+</code></pre></a><a name="26374">
+<h4> Referencing Objects by Name</h4>
+</a><a name="27127">
+Binding variables to objects and bodies provides an easy way of refer to these items. However, it fails to take advantage of Lisp's ability to accept the values returned by one function as arguments to another. <p>
+</a><P><a name="27130">
+We gave our tetrahedron object the name "My Tetrahedron" when we created it. <code>3D:OBJECT-NAMED</code> returns an object with a given name:<p>
+</a><P><a name="27143">
+<code><pre>GEOMETRY(53): (3D:OBJECT-NAMED "My Tetrahedron")<p>
+</code></pre></a><a name="27145">
+<code><pre>#&lt;OBJECT "My Tetrahedron" @ #x1a183a42&gt;<p>
+</code></pre></a><a name="27155">
+Lisp returns the printed representation of the object.<p>
+</a><P><a name="27198">
+<h4> Selecting Objects From a Menu</h4>
+</a><a name="27199">
+Earlier we learned that one of the side-effects of <code>add-object-to-view</code> was to add an object to the list of known objects, bound to the global variable <code>*global-object-list*</code>. <code>3D:CHOOSE-OBJECT</code> uses this list to build a pop-up menu, from which you can select an object.<p>
+</a><P><a name="27213">
+<code><pre>GEOMETRY(64): (<a 3D:CHOOSE-OBJECT>3D:CHOOSE-OBJECT t)<p>
+</code></pre></a><dl><a name="27215">
+<dt>A choose-object menu like the one in <a href="CreatingBodsAndObjs.html#27363">Figure 7.1</a> appears:</dt>
+</a><P><a name="27355">
+ <P><img src="CreatingBodsAndObjs.anc.gif"><p>
+</a></dl><a name="27363">
+<em>Figure 7.1  &#32; &#32;The Choose Object menu
+</em></a><P>
+<a name="27226">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on an object to select it.
+</STRONG>
+</a><P><a name="27239">
+<STRONG>	7.	 The function returns the object.
+</STRONG>
+</a><P><a name="27244">
+<code><pre>GEOMETRY(175): : (3d:choose-object t)<p>
+</code></pre></a><a name="302359">
+<code><pre>#&lt;OBJECT "Polyhedron-Object" @ #x19147cc2&gt;<p>
+</code></pre></a><a name="302360">
+<code><pre>#&lt;OBJECT-MENU-FIELD "Polyhedron-Object" :OFF 3105301062&gt;<p>
+</code></pre></a><a name="302361">
+<code><pre>#(USER-INTERFACE:MOUSE-BUTTON :LEFT 0<p>
+</code></pre></a><dl><a name="27126">
+<dt>If you move the mouse pointer off of this menu without selecting an item, the menu disappears, and the function returns NIL.</dt>
+</a><P></dl>
+<a name="27413">
+<h2><HR> Choosing Multiple Objects</h2>
+</a><a name="27295">
+<code>3D:CHOOSE-OBJECTS</code> works much the same way as choose-object, but can return a list of objects. Evaluating this function:<p>
+</a><P><a name="27301">
+<code><pre>GEOMETRY(189): (3D:CHOOSE-OBJEC<a 3D:CHOOSE-OBJECTS>TS t)<p>
+</code></pre></a><a name="27377">
+produces a menu like this one:<p>
+</a><P><a name="27381">
+ <P><img src="CreatingBodsAndObjs.anc1.gif"><p>
+</a><a name="27382">
+<em>Figure 7.2  &#32; &#32;The Choose Objects menu
+</em></a><P>
+<a name="27386">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the objects you wish to select
+</STRONG>
+</a><P><dl><a name="27387">
+<dt>Selected objects are highlighted.</dt>
+</a><P><a name="27388">
+<dt>To deselect a highlighted object<strong>, (CLICK-L)</strong> on it again.</dt>
+</a><P></dl><a name="27389">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Do It to complete your selection.
+</STRONG>
+</a><P><dl><a name="27390">
+<dt>The function returns a list of the objects you selected.</dt>
+</a><P></dl><a name="27391">
+<code><pre>GEOMETRY(204): (choose-objects t)<p>
+</code></pre></a><a name="27393">
+<code><pre>(SELECTED #&lt;OBJECT "My Tetrahedron" (multiple) @ #x13d4229a&gt;<p>
+</code></pre></a><a name="27394">
+<code><pre> #&lt;OBJECT "Polyhedron-Object" (multiple) @ #x13d4227a&gt;<p>
+</code></pre></a><a name="27399">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Abort to escape without selecting anything.
+</STRONG>
+</a><P><dl><a name="27400">
+<dt>If you choose to abort, the function returns NIL. </dt>
+</a><P></dl>
+<a name="27492">
+<h3> Working with Lists of Multiple Objects</h3>
+</a><a name="27454">
+Unlike the functions we have used until now, the <code>choose-objects</code> function returns a list of objects instead of a single object. As a result, be careful that any functions to which you pass the result of <code>choose-objects</code> are prepared for a list. See <a href="CreatingBodsAndObjs.html#301782"></a><a href="CreatingBodsAndObjs.html#301782">"Getting the Objects of a Compound Object," on page &#32;7-20</a> for examples of traversing lists of objects.<p>
+</a><P><a name="28599">
+<h2><HR> Finding Out about Objects with Describe</h2>
+</a><a name="28674">
+There are several powerful tools you can use to find out details about the internal structure of an object. Among the simplest to use is the <code>USER:DESCRIBE</code> function. Use it to examine our sample compound object in more detail.<p>
+</a><P>
+<a name="28675">
+<STRONG>	 1.	 (CLICK-L) on Object in the Sensitivity bar.
+</STRONG>
+</a><P><a name="28602">
+<STRONG>	2.	 (CLICK-L) on the compound object you created earlier.
+</STRONG>
+</a><P><dl><a name="28603">
+<dt>The special variable ? is now bound to the compound object.</dt>
+</a><P></dl><a name="28604">
+<STRONG>	3.	 Type (describe ?) at the Lisp prompt.
+</STRONG>
+</a><P><dl><a name="28605">
+<dt>Lisp returns detailed information about the object.</dt>
+</a><P></dl><a name="28606">
+<code><pre>GEOMETRY(6): (d ?)<p>
+</code></pre></a><a name="28607">
+<code><pre>#&lt;OBJECT "Octahedron Group" (multiple) @ #x1a6b1ae2&gt; is an instance of<p>
+</code></pre></a><a name="28608">
+<code><pre>    #&lt;STANDARD-CLASS OBJECT&gt;:<p>
+</code></pre></a><a name="28609">
+<code><pre> The following slots have :INSTANCE allocation:<p>
+</code></pre></a><a name="28610">
+<code><pre>  PROPERTY-LIST     (:HIGHLIGHTED NIL :MENU-FIELD<p>
+</code></pre></a><a name="28611">
+<code><pre>                     #&lt;OBJECT-MENU-FIELD "Octahedron Group" :OFF 3234642052&gt;<p>
+</code></pre></a><a name="28612">
+<code><pre>                     VIEWABLE T)<p>
+</code></pre></a><a name="28613">
+<code><pre>  NAME              "Octahedron Group"<p>
+</code></pre></a><a name="28614">
+<code><pre>  REGISTER-P        T<p>
+</code></pre></a><a name="28615">
+<code><pre>  CACHED-TAG        NIL<p>
+</code></pre></a><a name="28616">
+<code><pre>  UNIQUE-ID         ("/ngc7/people/bryan/" :OBJECT "Octahedron Group")<p>
+</code></pre></a><a name="28617">
+<code><pre>  SUPERIOR          NIL<p>
+</code></pre></a><a name="28618">
+<code><pre>  BODY              (#&lt;OBJECT "Octahedron" @ #x1a61176a&gt;<p>
+</code></pre></a><a name="28619">
+<code><pre>                     #&lt;OBJECT "Tetrahedron" @ #x1a6025c2&gt;<p>
+</code></pre></a><a name="28620">
+<code><pre>                     #&lt;OBJECT "Cube" @ #x1a5da90a&gt;)<p>
+</code></pre></a><a name="28621">
+<code><pre>  ATTRIBUTE-PLIST   NIL<p>
+</code></pre></a><a name="28622">
+<code><pre>  INIT-MATRIX       NIL<p>
+</code></pre></a><a name="28623">
+<code><pre>  BODY-MATRIX       #(1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0<p>
+</code></pre></a><a name="28624">
+<code><pre>                      0.0 0.0 1.0 3.644722e-40)<p>
+</code></pre></a><a name="28625">
+<code><pre>  BASE-MATRIX       #(1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0<p>
+</code></pre></a><a name="28626">
+<code><pre>                      0.0 0.0 1.0 3.644722e-40)<p>
+</code></pre></a><a name="28627">
+<code><pre>#&lt;OBJECT "Octahedron Group" (multiple) @ #x1a6b1ae2&gt;<p>
+</code></pre></a>
+<a name="26593">
+You can see that the object "Octahedron Group" is an instance of the class OBJECT. You can see the values stored at each of the slots on the object, such as its name ("Octahedron Group"), its superiors (in this case, none), and the components of it's body. In this case, the body of "Octahedron Group" is actually itself composed of three objects.<p>
+</a><P><a name="301466">
+<h2><HR> Traversing Elements of Polyhedra</h2>
+</a><a name="301467">
+The elements of a polyhedron are vertices, edges, and faces. These elements are stored in a circular, double-pointed list. These lists are called element-rings. The element rings are ordered in "last-added-first" order. In other words, the last element added to the polyhedron is the first element in the list. When traversing elements, you'll need to decide whether to proceed in this order or in the reverse order, "first-added-first."<p>
+</a><P><a name="301468">
+The primary tool you'll use for traversing elements of polyhedra are special loop iteration forms developed by Nichimen Graphics, and referred to collectively as LOOP macro forms. These forms are described in detail in <a href="LoopPaths.html#26535">Chapter &#32;11, "Traversing Elements," &#32;</a><p>
+</a><P><a name="301473">
+<h3> Traversing Vertices</h3>
+</a><a name="301475">
+To traverse the vertices of a polyhedron in "last-added-first" order, use the <code><a VERTEX-RING-ELEMENTS loop path>VERTEX-RING-ELEMENTS</code> loop iteration path. For example, <p>
+</a><P><a name="301477">
+<code><pre>(lo<a loop>op for verts being the vertex-ring-elements of-polyhedron (make-tetrahedron 10.0)<p>
+</code></pre></a><a name="301478">
+<code><pre>                        do<p>
+</code></pre></a><a name="301479">
+<code><pre>                        (format t "Vertex: ~a~%" verts))<p>
+</code></pre></a><a name="301480">
+returns printed representations for each vertex:<p>
+</a><P><a name="301481">
+<code><pre>Vertex: #&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301482">
+<code><pre>Vertex: #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301483">
+<code><pre>Vertex: #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<p>
+</code></pre></a><a name="301484">
+<code><pre>Vertex: #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;<p>
+</code></pre></a><a name="301485">
+<code><pre>NIL<p>
+</code></pre></a><a name="301487">
+To traverse the elements in first-added-first order, use the <code>VERTEX-REVERSE-ELEMENTS</code> loop iteration path:<p>
+</a><P><a name="301488">
+<code><pre>				(loop for verts being the vertex-reverse-elements of-polyhedron <p>
+</code></pre></a><a name="301489">
+<code><pre>					(make-tetrahedron 10.0)<p>
+</code></pre></a><a name="301490">
+<code><pre>                        do<p>
+</code></pre></a><a name="301491">
+<code><pre>                        (format t "Vertex: ~a~%" verts))<p>
+</code></pre></a><a name="301492">
+Which returns:<p>
+</a><P><a name="301493">
+<code><pre>Vertex: #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;<p>
+</code></pre></a><a name="301494">
+<code><pre>Vertex: #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<p>
+</code></pre></a><a name="301495">
+<code><pre>Vertex: #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301496">
+<code><pre>Vertex: #&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301497">
+<code><pre>NIL<p>
+</code></pre></a><a name="301498">
+Obviously, you can perform whatever operation you like on the vertices in the body of the loop. Remember that the variable you assign the vertices to in the body of the macro (<code>verts</code> in this example) is defined only within the body of the macro.<p>
+</a><P><a name="301500">
+<h3> Traversing Faces</h3>
+</a><a name="301501">
+You traverse faces of a polyhedron in last-added-first order in much the same way using the <code>face-ring-elements</code> loop iteration path:<p>
+</a><P><a name="301502">
+<code><pre>(loop for faces being the face-ring-elements of-polyhedron (make-tetrahedron 10.0)<p>
+</code></pre></a><a name="301503">
+<code><pre>                        do<p>
+</code></pre></a><a name="301504">
+<code><pre>                        (format t "Face: ~a~%" faces))<p>
+</code></pre></a><a name="301505">
+returns a printed representation for each face:<p>
+</a><P><a name="301506">
+<code><pre>Face: #&lt;FACE 4&gt;<p>
+</code></pre></a><a name="301507">
+<code><pre>Face: #&lt;FACE 3&gt;<p>
+</code></pre></a><a name="301508">
+<code><pre>Face: #&lt;FACE 2&gt;<p>
+</code></pre></a><a name="301509">
+<code><pre>Face: #&lt;FACE 1&gt;<p>
+</code></pre></a><a name="301510">
+<code><pre>NIL<p>
+</code></pre></a><a name="301511">
+Using the <code><a FACE-REVERSE-ELEMENTS loop path>FACE-REVERSE-ELEMENTS</code> loop iteration path produces a list in first-added-first order.<p>
+</a><P><a name="301513">
+<h3> Traversing Elements of a Face</h3>
+</a><a name="301514">
+You can traverse through the vertices which make up a face by looping through the faces of a polyhedron, and then through the vertices of each face, e.g.<p>
+</a><P><a name="301515">
+<code><pre>(loop for faces being the face-ring-elements of-polyhedron <p>
+</code></pre></a><a name="301516">
+<code><pre>          (make-tetrahedron 10.0)<p>
+</code></pre></a><a name="301517">
+<code><pre>          do<p>
+</code></pre></a><a name="301518">
+<code><pre>          (format t "Face: ~a~%" faces)<p>
+</code></pre></a><a name="301519">
+<code><pre>			(loop for verts being the component-vertices of-face faces<p>
+</code></pre></a><a name="301520">
+<code><pre>			do<p>
+</code></pre></a><a name="301521">
+<code><pre>				(format t "Vert: ~a~%" verts)))<p>
+</code></pre></a><a name="301522">
+returns:<p>
+</a><P><a name="301523">
+<code><pre>Face: #&lt;FACE 4&gt;<p>
+</code></pre></a><a name="301524">
+<code><pre>Vert: #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<p>
+</code></pre></a><a name="301525">
+<code><pre>Vert: #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301526">
+<code><pre>Vert: #&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301527">
+<code><pre>Face: #&lt;FACE 3&gt;<p>
+</code></pre></a><a name="301528">
+<code><pre>Vert: #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;<p>
+</code></pre></a><a name="301529">
+<code><pre>Vert: #&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301530">
+<code><pre>Vert: #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301531">
+<code><pre>Face: #&lt;FACE 2&gt;<p>
+</code></pre></a><a name="301532">
+<code><pre>Vert: #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;<p>
+</code></pre></a><a name="301533">
+<code><pre>Vert: #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<p>
+</code></pre></a><a name="301534">
+<code><pre>Vert: #&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301535">
+<code><pre>Face: #&lt;FACE 1&gt;<p>
+</code></pre></a><a name="301536">
+<code><pre>Vert: #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;<p>
+</code></pre></a><a name="301537">
+<code><pre>Vert: #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301538">
+<code><pre>Vert: #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<p>
+</code></pre></a><a name="301539">
+<code><pre>NIL<p>
+</code></pre></a><a name="301540">
+You can list the vertices in first-added-first order by using the <code>CCW-COMPONENT-VERTICES</code> path.<p>
+</a><P><a name="301542">
+<h2><HR> Collecting the Elements of Polyhedra</h2>
+</a><a name="301543">
+Loop forms such as the ones we've just described are useful for stepping through the components of a polyhedron. Because these are macro forms, however, the data they retrieve is limited in scope to within the body of the macro form. Occasionally, you may want to create more lasting collections of elements in the form of lists. It is correct to use the <code>collect</code> function within the body of a macro to create lists of elements. However, the polyhedron class has built-in generic functions for collecting the elements of polyhedra. These generally take the form <code>COLLECT-MY-{target-element}</code>.<p>
+</a><P><a name="301544">
+<h3> Collecting Faces Given a Body</h3>
+</a><a name="301545">
+You can collect the faces of a polyhedron using <code>3D:COLLECT-MY-FACES</code>:<p>
+</a><P><a name="301546">
+<code><pre>(setf list-of-faces (<a 3d:collect-my-faces>3d:collect-my-faces (make-tetrahedron 10.0)))<p>
+</code></pre></a><a name="301547">
+Which returns a list of printed representations:<p>
+</a><P><a name="301548">
+<code><pre>(#&lt;FACE 4&gt; #&lt;FACE 3&gt; #&lt;FACE 2&gt; #&lt;FACE 1&gt;)<p>
+</code></pre></a><a name="302552">
+<h3> Collecting Faces GIven an Edge</h3>
+</a><a name="302553">
+Given an edge, you can collect the faces to the left and to the right with these two functions:<p>
+</a><P><a name="302554">
+<code><pre>(<a 3D:GET-LEFT-FACE>GET-LEFT-FACE edge)<p>
+</code></pre></a><a name="302555">
+<code><pre>(<a 3D:GET-RIGHT-FACE>GET-RIGHT-FACE edge)<p>
+</code></pre></a><a name="301549">
+<h3> Collecting Vertices</h3>
+</a><a name="301550">
+You can collect the vertices of a face using <code><a 3D:COLLECT-MY-POINTS>3D:COLLECT-MY-POINTS</code>.<p>
+</a><P><a name="301551">
+<code><pre>(3d:collect-my-points (make-tetrahedron 10.0))<p>
+</code></pre></a><a name="301552">
+Which returns the list:<p>
+</a><P><a name="301553">
+<code><pre>(#&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt; #&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<p>
+</code></pre></a><a name="301554">
+<code><pre> #&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt; #&lt;VERTEX 1 (   0.00   10.00    0.00)&gt;)<p>
+</code></pre></a><a name="301555">
+To return the vertices which comprise a given face, just pass a face to <code>COLLECT-MY-POINTS</code>.<p>
+</a><P><a name="301556">
+<code><pre>(3D:COLLECT-MY-POINTS (first (collect-my-faces (make-tetrahedron 10.0))))<p>
+</code></pre></a><a name="302376">
+<code><pre>Which returns the list:<br>(#&lt;VERTEX 2 (   0.00   -3.33    9.43)&gt;<br>#&lt;VERTEX 3 (   8.16   -3.33   -4.71)&gt;<br>#&lt;VERTEX 4 (  -8.16   -3.33   -4.71)&gt;)<p>
+</code></pre></a><a name="301560">
+<h2><HR> Traversing Grids</h2>
+</a><a name="301561">
+Grids behave identically to polyhedra for the purposes of collecting elements. All of the loop iteration paths and collect functions specified above will work with grids as well as polyhedra.<p>
+</a><P><a name="301564">
+<h2><HR> Traversing Wireframes and Skeletons</h2>
+</a><a name="301565">
+Wireframes are non-hierarchical lists of segments. You can return a list of the segments which make up a wire frame with the <code><a 3D:GET-SEGMENT-LIST>3D:GET-SEGMENT-LIST</code> function:<p>
+</a><P><a name="301567">
+<code><pre>(3d:get-segment-list<p>
+</code></pre></a><a name="301570">
+<code><pre>		(3d:make-wire-frame-from-wire (3d:make-wire)))<p>
+</code></pre></a><a name="301571">
+Which returns the list:<p>
+</a><P><a name="301572">
+<code><pre>(#&lt;WF-SEGMENT 50&gt; #&lt;WF-SEGMENT 49&gt; #&lt;WF-SEGMENT 48&gt; #&lt;WF-SEGMENT 47&gt;#&lt;WF-SEGMENT 46&gt; #&lt;WF-SEGMENT 45&gt; #&lt;WF-SEGMENT 44&gt; #&lt;WF-SEGMENT 43&gt; #&lt;WF-SEGMENT 42&gt; #&lt;WF-SEGMENT 41&gt; ...)<p>
+</code></pre></a><a name="301573">
+The same function will return the elements of a skeleton:<p>
+</a><P><a name="301575">
+<code><pre>(3d:get-segment-list (3d:make-human-skeleton))<p>
+</code></pre></a><a name="301576">
+Which returns the list:<p>
+</a><P><a name="301577">
+<code><pre>(#&lt;BONE "Head" 435382370&gt; #&lt;BONE "Neck" 435381146&gt; #&lt;BONE "Chest" 435379922&gt; #&lt;BONE "RightHand" 435378314&gt; #&lt;BONE "RightForeArm" 435377090&gt; #&lt;BONE "RightUpperArm" 435375866&gt; #&lt;BONE "RightCollar" 435374642&gt; #&lt;BONE "RightChest" 435373418&gt; #&lt;BONE "LeftHand" 435371922&gt; #&lt;BONE "LeftForeArm" 435370698&gt; ...)<p>
+</code></pre></a><a name="301578">
+Placing the function within a loop allows you to traverse the elements:<p>
+</a><P><a name="301579">
+<code><pre>(loop for bone in (get-segment-list (make-human-skeleton))<p>
+</code></pre></a><a name="301580">
+<code><pre>                                 do<p>
+</code></pre></a><a name="301581">
+<code><pre>                     (format t "Bone: ~a~%" bone))<p>
+</code></pre></a><a name="301582">
+Which returns:<p>
+</a><P><a name="301583">
+<code><pre>Bone: #&lt;BONE "Head" 435523058&gt;<p>
+</code></pre></a><a name="301584">
+<code><pre>Bone: #&lt;BONE "Neck" 435521834&gt;<p>
+</code></pre></a><a name="301585">
+<code><pre>Bone: #&lt;BONE "Chest" 435520610&gt;<p>
+</code></pre></a><a name="301586">
+<code><pre>Bone: #&lt;BONE "RightHand" 435519002&gt;<p>
+</code></pre></a><a name="301587">
+<code><pre>Bone: #&lt;BONE "RightForeArm" 435517778&gt;<p>
+</code></pre></a><a name="301588">
+<code><pre>Bone: #&lt;BONE "RightUpperArm" 435516554&gt;<p>
+</code></pre></a><a name="301589">
+<code><pre>Bone: #&lt;BONE "RightCollar" 435515330&gt;<p>
+</code></pre></a><a name="301590">
+<code><pre>Bone: #&lt;BONE "RightChest" 435514106&gt;<p>
+</code></pre></a><a name="301591">
+<code><pre>Bone: #&lt;BONE "LeftHand" 435512610&gt;<p>
+</code></pre></a><a name="301592">
+<code><pre>Bone: #&lt;BONE "LeftForeArm" 435511386&gt;<p>
+</code></pre></a><a name="301593">
+<code><pre>Bone: #&lt;BONE "LeftUpperArm" 435510162&gt;<p>
+</code></pre></a><a name="301594">
+<code><pre>Bone: #&lt;BONE "LeftCollar" 435508938&gt;<p>
+</code></pre></a><a name="301595">
+<code><pre>Bone: #&lt;BONE "LeftChest" 435507714&gt;<p>
+</code></pre></a><a name="301596">
+<code><pre>Bone: #&lt;BONE "TopHip" 435506490&gt;<p>
+</code></pre></a><a name="301597">
+<code><pre>Bone: #&lt;BONE "RightToes" 435504786&gt;<p>
+</code></pre></a><a name="301598">
+<code><pre>Bone: #&lt;BONE "RightFootTop" 435503562&gt;<p>
+</code></pre></a><a name="301599">
+<code><pre>Bone: #&lt;BONE "RightFoot" 435502170&gt;<p>
+</code></pre></a><a name="301600">
+<code><pre>Bone: #&lt;BONE "RightTibia" 435500946&gt;<p>
+</code></pre></a><a name="301601">
+<code><pre>Bone: #&lt;BONE "RightFemur" 435499722&gt;<p>
+</code></pre></a><a name="301602">
+<code><pre>Bone: #&lt;BONE "RightHip" 435498498&gt;<p>
+</code></pre></a><a name="301603">
+<code><pre>Bone: #&lt;BONE "LeftToes" 435497034&gt;<p>
+</code></pre></a><a name="301604">
+<code><pre>Bone: #&lt;BONE "LeftFootTop" 435495810&gt;<p>
+</code></pre></a><a name="301605">
+<code><pre>Bone: #&lt;BONE "LeftFoot" 435494418&gt;<p>
+</code></pre></a><a name="301606">
+<code><pre>Bone: #&lt;BONE "LeftTibia" 435493194&gt;<p>
+</code></pre></a><a name="301607">
+<code><pre>Bone: #&lt;BONE "LeftFemur" 435491970&gt;<p>
+</code></pre></a><a name="301608">
+<code><pre>Bone: #&lt;BONE "LeftHip" 435490746&gt;<p>
+</code></pre></a><a name="301609">
+<code><pre>NIL<p>
+</code></pre></a><a name="301610">
+Skeletons are hierarchical objects. You can return the components of skeletons in a way which reflects this internal hierarchy using <code>3D:</code><code>GET-BONES-IN-MODIFICATION-ORDER</code>.<p>
+</a><P><a name="301612">
+<code><pre>(loop for bones in (<a 3D:get-bones-in-modification-order>get-bones-in-modification-order (make-human-skeleton))<p>
+</code></pre></a><a name="301613">
+<code><pre>                     do<p>
+</code></pre></a><a name="301614">
+<code><pre>                     (format t "Bone: ~a~%" bones))<p>
+</code></pre></a><a name="301615">
+Which returns the list:<p>
+</a><P><a name="301616">
+<code><pre>Bone: #&lt;BONE "TopHip" 436228498&gt;<p>
+</code></pre></a><a name="301617">
+<code><pre>Bone: #&lt;BONE "Chest" 436242618&gt;<p>
+</code></pre></a><a name="301618">
+<code><pre>Bone: #&lt;BONE "Neck" 436243842&gt;<p>
+</code></pre></a><a name="301619">
+<code><pre>Bone: #&lt;BONE "Head" 436245066&gt;<p>
+</code></pre></a><a name="301620">
+<code><pre>Bone: #&lt;BONE "LeftCollar" 436230946&gt;<p>
+</code></pre></a><a name="301621">
+<code><pre>Bone: #&lt;BONE "LeftUpperArm" 436232170&gt;<p>
+</code></pre></a><a name="301622">
+<code><pre>Bone: #&lt;BONE "LeftForeArm" 436233394&gt;<p>
+</code></pre></a><a name="301623">
+<code><pre>Bone: #&lt;BONE "LeftHand" 436234618&gt;<p>
+</code></pre></a><a name="301624">
+<code><pre>Bone: #&lt;BONE "RightCollar" 436237338&gt;<p>
+</code></pre></a><a name="301625">
+<code><pre>Bone: #&lt;BONE "RightUpperArm" 436238562&gt;<p>
+</code></pre></a><a name="301626">
+<code><pre>Bone: #&lt;BONE "RightForeArm" 436239786&gt;<p>
+</code></pre></a><a name="301627">
+<code><pre>Bone: #&lt;BONE "RightHand" 436241010&gt;<p>
+</code></pre></a><a name="301628">
+<code><pre>Bone: #&lt;BONE "LeftFemur" 436213978&gt;<p>
+</code></pre></a><a name="301629">
+<code><pre>Bone: #&lt;BONE "LeftTibia" 436215202&gt;<p>
+</code></pre></a><a name="301630">
+<code><pre>Bone: #&lt;BONE "LeftFoot" 436216426&gt;<p>
+</code></pre></a><a name="301631">
+<code><pre>Bone: #&lt;BONE "LeftToes" 436219042&gt;<p>
+</code></pre></a><a name="301632">
+<code><pre>Bone: #&lt;BONE "RightFemur" 436221730&gt;<p>
+</code></pre></a><a name="301633">
+<code><pre>Bone: #&lt;BONE "RightTibia" 436222954&gt;<p>
+</code></pre></a><a name="301634">
+<code><pre>Bone: #&lt;BONE "RightFoot" 436224178&gt;<p>
+</code></pre></a><a name="301635">
+<code><pre>Bone: #&lt;BONE "RightToes" 436226794&gt;<p>
+</code></pre></a><a name="301636">
+<code><pre>NIL<p>
+</code></pre></a><a name="301637">
+This function returns bones starting from the node and travelling upwards. When it reaches a branch, it travels in the following order<p>
+</a><P>
+<a name="301638">
+<STRONG>	 1.	 to locked bones
+</STRONG>
+</a><P><a name="301639">
+<STRONG>	2.	 to Bones for which DOFs have been specified
+</STRONG>
+</a><P><a name="301640">
+<STRONG>	3.	 alphabetically (e.g., LeftFemur before RightFemur)
+</STRONG>
+</a><P>
+<a name="301641">
+<h3> More Ways to Collect Elements</h3>
+</a><a name="301645">
+Be sure to review <a href="LoopPaths.html#26535">Chapter &#32;11, "Traversing Elements," &#32;</a>for a more complete description of loop paths, as well as information about time-saving short forms you can use.<p>
+</a><P><a name="301646">
+<h2><HR> Manipulating Objects</h2>
+</a><a name="301647">
+Multiple, or compound, objects have other objects as their bodies instead of polyhedra. Before you can work efficiently with multiple objects, you'll need to know how to find your way around in an object hierarchy. Before we begin, you might want to review <a href="IntroToN-Objects.html#26576">Figure 6.5</a>, which shows an example of the structure of a top-level, compound object.<p>
+</a><P><a name="301651">
+To illustrate these concepts, we've created a simple compound object consisting of a cube, a tetrahedron, and an octahedron. If you like, you can use the following procedure to create a similar object, which you can use in the following examples.<p>
+</a><P><a name="301652">
+To create the example object:<p>
+</a><P>
+<a name="301653">
+<STRONG>	 1.	 (CLICK-L) on Add New Object in the Geometry menu.
+</STRONG>
+</a><P><a name="301654">
+<STRONG>	2.	 (CLICK-L) on Create.
+</STRONG>
+</a><P><a name="301655">
+<STRONG>	3.	 (CLICK-L) on Cube.
+</STRONG>
+</a><P><a name="301656">
+<STRONG>	4.	 Repeat steps 1-3 to create a cube, a tetrahedron, and an octahedron.
+</STRONG>
+</a><P><a name="301657">
+<STRONG>	5.	 (CLICK-L) on Restructure in the Geometry menu.
+</STRONG>
+</a><P><dl><a name="301661">
+<dt>The restructure menu appears.<P><img src="CreatingBodsAndObjs.anc2.gif"></dt>
+</a><P></dl>
+<a name="301662">
+<em>Figure 7.1  &#32; &#32;The Restructure Objects dialog.
+</em></a><P>
+<a name="301663">
+<STRONG>	6.	 (CLICK-L) on each of the three objects in the dialog, then (CLICK-L) on Do It.
+</STRONG>
+</a><P><dl><a name="301664">
+<dt>Another dialog appears with options for restructuring.</dt>
+</a><P><a name="301668">
+ <P><img src="CreatingBodsAndObjs.anc3.gif"><p>
+</a></dl>
+<a name="301669">
+<em>Figure 7.2  &#32; &#32;Restructuring options.
+</em></a><P>
+<a name="301670">
+<STRONG>	7.	 (CLICK-L) on New Object
+</STRONG>
+</a><P><dl><a name="301671">
+<dt>A dialog appears for you to name your new object.</dt>
+</a><P><a name="301675">
+ <P><img src="CreatingBodsAndObjs.anc4.gif"><p>
+</a></dl>
+<a name="301676">
+<em>Figure 7.3  &#32; &#32;Name your new object
+</em></a><P>
+<a name="301677">
+<STRONG>	8.	 Type the name of your new object and (CLICK-L) on Restructure.
+</STRONG>
+</a><P><dl><a name="301678">
+<dt>If you don't type a name, Geometry uses the default name (in this case, "Octahedron Group")</dt>
+</a><P></dl>
+<a name="301680">
+<h4> Basic Object Hierarchy Concepts</h4>
+</a><a name="301681">
+When you're dealing with object hierarchies, it's helpful to keep a few basic concepts in mind. <p>
+</a><P><ul><a name="301682">
+<li>Wires, wireframes, polyhedra, grids, and skeletons are geobodies, and have no inferiors
+</a></li><P><a name="301683">
+<li>A geobody can be the body of more than one terminal object.
+</a></li><P><a name="301684">
+<li>Each terminal object in an object hierarchy has one and only one BDI.
+</a></li><P></ul><P><a name="301686">
+<h3> Determining Position in a Hierarchy</h3>
+</a><a name="301687">
+Before you can work efficiently with compound objects, you'll need to be able to reliably and efficiently determine<p>
+</a><P><ul><a name="301688">
+<li>The position of any given object in a hierarchy
+</a></li><P><a name="301689">
+<li>The superior and inferior objects of a given object in a hierarchy
+</a></li><P></ul><P><a name="301690">
+To determine whether our example object is a top-level object, bind it to the question mark variable and evaluate <code><a 3D:TOP-LEVEL-OBJECT-P>3D:TOP-LEVEL-OBJECT-P</code> on it:<p>
+</a><P><a name="301692">
+<code><pre>(3D:TOP-LEVEL-OBJECT-P ?)<p>
+</code></pre></a><a name="301693">
+which returns:<p>
+</a><P><a name="301694">
+<code><pre>T<p>
+</code></pre></a><a name="301695">
+Lisp returns "T", because our object is a top level object. Otherwise, the function returns <code>NIL</code>. There is a corresponding function for determining whether a given object resides at the bottom of a hierarchy, <code><a 3D:TERMINAL-OBJECT-P>3D:TERMINAL-OBJECT-P</code>.<p>
+</a><P><a name="301697">
+<code><pre>(3D:TERMINAL-OBJECT-P ?)<p>
+</code></pre></a><a name="301698">
+<code><pre>NIL<p>
+</code></pre></a><a name="301700">
+<h3> Finding Superior and Inferior Objects</h3>
+</a><a name="301701">
+For any given object in a hierarchy which is not a top-level object, superior objects are those which include the object in their body. In our example, the cube, tetrahedron, and icosahedron all have "Octahedron Group" as their superior objects. Use 3D:<code>GET-SUPERIOR</code> function to return the superior object of these objects.<p>
+</a><P>
+<a name="302468">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Objects in the Geometry sensitivity bar.
+</STRONG>
+</a><P><a name="302473">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Cube.
+</STRONG>
+</a><P><a name="301711">
+<STRONG>	3.	 Evaluate <code><a 3D:GET-SUPERIORS>3D:GET-SUPERIORS</code> on ?<code>.</code>
+</STRONG>
+</a><P>
+<a name="302488">
+<code>3D:GET-SUPERIORS</code> returns a list of all objects superior to the cube object:<p>
+</a><P><a name="301713">
+<code><pre>(3D:GET-SUPERIORS ?)<p>
+</code></pre></a><a name="301714">
+<code><pre>(#&lt;OBJECT "Octahedron Group" (multiple) @ #x13b1a9ea&gt;)<p>
+</code></pre></a><a name="301716">
+You can find an objects inferiors in much the same way with 3D:<code>GET-INFERIORS</code>. Try <code>get-inferiors</code> with the cube object:<p>
+</a><P><a name="301717">
+<code><pre>(<a 3d:get-inferiors>3d:get-inferiors ?)<p>
+</code></pre></a><a name="301718">
+which returns:<p>
+</a><P><a name="301719">
+<code><pre>NIL<p>
+</code></pre></a><a name="301720">
+If we want to see <code>get-inferiors</code> work, we'll have to set ? to a compound object. <p>
+</a><P>
+<a name="301721">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on Objects in the geometry main menu.
+</STRONG>
+</a><P><a name="301722">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on "Octahedron Group" to select it.
+</STRONG>
+</a><P><dl><a name="301723">
+<dt>? is now equivalent to the compound object.</dt>
+</a><P></dl><a name="301724">
+<STRONG>	3.	 Evaluate get-inferiors on ?.
+</STRONG>
+</a><P><a name="301725">
+<code><pre>(get-inferiors ?)<p>
+</code></pre></a><dl><a name="301726">
+<dt>which returns:</dt>
+</a><P></dl><a name="301727">
+<code><pre>(#&lt;OBJECT "Octahedron" @ #x13b1a9fa&gt; #&lt;OBJECT "Tetrahedron" @ #x13b1a9da&gt; #&lt;OBJECT "Cube" @ #x13b1a812&gt;)<p>
+</code></pre></a>
+<a name="301728">
+Lisp returns a list of three objects, all of which comprise the body of "Octahedron Group." <p>
+</a><P><a name="301729">
+Now try evaluating get-superiors on "Octahedron Group"<p>
+</a><P><a name="301730">
+<code><pre>(get-superiors ?)<p>
+</code></pre></a><a name="301731">
+returns:<p>
+</a><P><a name="301732">
+<code><pre>NIL<p>
+</code></pre></a><a name="301733">
+Lisp returns <code>NIL</code>, because "Octahedron Group" is a top-level object with no superiors<p>
+</a><P><a name="301734">
+<h4> Finding the Body of an Object</h4>
+</a><a name="301735">
+The <code>find-body </code>function returns the body of a terminal object, bdi, body, or element of a body. However, if you pass a compound object to <code>find-body</code>, the function returns NIL. This behavior provides a handy way of determining whether an object is a terminal object or not. For example, if we evaluate find-body on our compound object "Octahedron Group", the function returns NIL. <p>
+</a><P><a name="302580">
+If you want to find the bodies in a compound object, you'll have to use <code><a 3d:collect-bodies>3d:collect-bodies</code>. Assuming we've bound ? to our octahedron group, this function returns a flat list of bodies, e.g.<p>
+</a><P><a name="301737">
+<code><pre>(3d:collect-bodies (object-named "Octahedron_Group"))<p>
+</code></pre></a><a name="302606">
+Returns the list<p>
+</a><P><a name="301738">
+<code><pre>(#&lt;POLYHEDRON 11&gt; #&lt;POLYHEDRON 9&gt; #&lt;POLYHEDRON 7&gt;)<p>
+</code></pre></a><a name="302597">
+So, we can combine both functions to provide an ironclad way of finding bodies of any objects we might pass to it:<p>
+</a><P><a name="302598">
+<code><pre>(cond			((setq bod (<a 3D:find-body>find-body object)))<p>
+</code></pre></a><a name="302602">
+<code><pre>			((setq bod (collect-bodies object)))<p>
+</code></pre></a><a name="302605">
+<code><pre>)<p>
+</code></pre></a><a name="301739">
+<h4> Finding Objects of a Body</h4>
+</a><a name="301740">
+Bind ? to the tetrahedron in the Geometry window. <code>3D:FIND-OBJECTS-OF-BODY</code> returns a list of all objects which reference the tetrahedron.<p>
+</a><P><a name="301741">
+<code><pre>(<a 3D:FIND-OBJECTS-OF-BODY>3D:FIND-OBJECTS-OF-BODY ?)<p>
+</code></pre></a><a name="301743">
+returns:<p>
+</a><P><a name="302191">
+<code><pre>(#&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<p>
+</code></pre></a><a name="301744">
+<code><pre>#&lt;OBJECT "Tetrahedron" @ #x13b1c3ea&gt;)<p>
+</code></pre></a><a name="301745">
+Which are a terminal object and a top-level object, respectively.<p>
+</a><P><a name="301747">
+<h4> Finding BDIs of a Body</h4>
+</a><a name="301748">
+BDIs can also serve as pointers to objects which reference a given body. 3<a 3D:GET-SISTERS>D:<code>GET-SISTERS</code> returns a list of BDIs which reference a given body. Again, for the tetrahedron:<p>
+</a><P><a name="301750">
+<code><pre><code>(3D:GET-SISTERS ?)</code><p>
+</code></pre></a><a name="301751">
+<code>which</code> returns a list of the BDIs that reference the tetrahedron:<p>
+</a><P><a name="301752">
+<code><pre><code>(#&lt;BDI (Tetrahedron) @ #x13b25452&gt;</code><p>
+</code></pre></a><a name="301753">
+<code><pre><code>#&lt;BDI (Tetrahedron) @ #x13b31082&gt;</code><p>
+</code></pre></a><a name="301755">
+<h4> Finding the Body Referenced by a BDI</h4>
+</a><a name="301756">
+Given a BDI, you can obtain the body that BDI points with <code>3D:GET-BODY</code>. To use the following example, you must first bind a variable to a BDI.<p>
+</a><P><a name="301757">
+<code><pre>(setq testbdi (first (3d:get-sisters ?)))<p>
+</code></pre></a><a name="301758">
+Now, evaluate <code>get-body</code> with the variable <code>testbdi</code>.<p>
+</a><P><a name="301759">
+<code><pre>(3d:get-body testbdi)<p>
+</code></pre></a><a name="301760">
+which returns:<p>
+</a><P><a name="301761">
+<code><pre>#&lt;POLYHEDRON 17&gt;<p>
+</code></pre></a><a name="301762">
+<h4> Finding the Object Referenced by a BDI</h4>
+</a><a name="301763">
+Given a BDI, you can obtain the object which that BDI points to (its superior) using<a 3D:GET-OBJECT> <code>3D:GET-OBJECT</code> function.<p>
+</a><P><a name="301765">
+<code><pre>(get-object testbdi)<p>
+</code></pre></a><a name="301766">
+which returns:<p>
+</a><P><a name="301767">
+<code><pre>#&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<p>
+</code></pre></a><a name="301768">
+<h4> Finding Top-Level Objects of a BDI</h4>
+</a><a name="301769">
+Given a BDI,<a 3D:GET-TOP-LEVEL-OBJECT> <code>3D:GET-TOP-LEVEL-OBJECT </code>returns the top-level object in the hierarchy which references the BDI. For example:<p>
+</a><P><a name="301771">
+<code><pre>(3D:GET-TOP-LEVEL-OBJECT testbdi)<p>
+</code></pre></a><a name="301772">
+which returns the top-level object:<p>
+</a><P><a name="301773">
+<code><pre>#&lt;OBJECT "Octahedron Group" (multiple) @ #x13b20832&gt;<p>
+</code></pre></a><a name="301775">
+<h2><HR> Traversing Object Hierarchies</h2>
+</a><a name="301776">
+Loop macros are the key to traversing Object Hierarchies. Using combinations of loop macro forms, or nested loops, you can grab any object, body, or bdi in a given object hierarchy. You can use loop macros to return:<p>
+</a><P><ul><a name="301777">
+<li>Objects in a hierarchy
+</a></li><P><a name="301778">
+<li>Terminal objects
+</a></li><P><a name="301779">
+<li>BDIs
+</a></li><P><a name="301780">
+<li>Bodies
+</a></li><P></ul><P><a name="301782">
+<h4> Getting the Objects of a Compound Object</h4>
+</a><a name="301783">
+For the following examples, we've bound our sample compound object ("Octahedron object") to ?. We can loop through and print a list of the objects which make up "Octahedron objects" using the following loop macro form:<p>
+</a><P><a name="301784">
+<code><pre>(loop for objvar of-object ?<br>		do<br>		(format t "Body object:~a~%" objvar))<p>
+</code></pre></a><a name="301785">
+Which returns a list of the objects that make up "Octahedron Group":<p>
+</a><P><a name="301786">
+<code><pre>Body object:#&lt;OBJECT "Octahedron Group" (multiple) @ #x13b20832&gt;<br>Body object:#&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<br>Body object:#&lt;OBJECT "Octahedron" @ #x13b25602&gt;<br>Body object:#&lt;OBJECT "Cube" @ #x13b27a82&gt;<br>NIL<p>
+</code></pre></a><a name="301787">
+This particular form includes the compound object itself. You can avoid listing the compound object itself by limiting the loop to the inferior objects of the compound object. You can use <code>get-inferiors</code> to access the inferior objects, but this function returns a list. Fortunately, you can use the preposition <code>in</code> to direct the loop within a list:<p>
+</a><P><a name="301788">
+<code><pre>(loop for objvar being the objects in (get-inferiors ?)<p>
+</code></pre></a><a name="301789">
+<code><pre>		do<p>
+</code></pre></a><a name="301790">
+<code><pre>			(format t "Body object:~a~%"objvar))<p>
+</code></pre></a><a name="301791">
+Which returns a list of inferior objects:<p>
+</a><P><a name="301792">
+<code><pre>Body object:#&lt;OBJECT "Cube" @ #x13b27a82&gt;<p>
+</code></pre></a><a name="301793">
+<code><pre>Body object:#&lt;OBJECT "Octahedron" @ #x13b25602&gt;<p>
+</code></pre></a><a name="301794">
+<code><pre>Body object:#&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<p>
+</code></pre></a><a name="301795">
+<code><pre>NIL<p>
+</code></pre></a><a name="301797">
+<h4> Getting the Terminal Objects of a Hierarchy</h4>
+</a><a name="301798">
+Loop macros will also return the terminal objects of a hierarchy. For example<p>
+</a><P><a name="301799">
+<code><pre>(loop for termobjs being the terminal-objects of-object ?<p>
+</code></pre></a><a name="301800">
+<code><pre>		do<p>
+</code></pre></a><a name="301801">
+<code><pre>			(format t "Terminal object:~a~%" termobjs))<p>
+</code></pre></a><a name="301802">
+Returns the terminal objects:<p>
+</a><P><a name="301803">
+<code><pre>Terminal object:#&lt;OBJECT "Cube" @ #x13b27a82&gt;<p>
+</code></pre></a><a name="301804">
+<code><pre>Terminal object:#&lt;OBJECT "Octahedron" @ #x13b25602&gt;<p>
+</code></pre></a><a name="301805">
+<code><pre>Terminal object:#&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<p>
+</code></pre></a><a name="301806">
+<code><pre>NIL<p>
+</code></pre></a><a name="301808">
+<h4> Getting the Bodies of Objects in a Hierarchy</h4>
+</a><a name="301809">
+Use the <code>bodies</code> path to return the bodies of objects in an object hierarchy.<p>
+</a><P><a name="301810">
+<code><pre>(loop for geobodies being the bodies of-object ?<p>
+</code></pre></a><a name="301811">
+<code><pre>		do<p>
+</code></pre></a><a name="301812">
+<code><pre>			(format t "Geobody:~a~%" geobodies))<p>
+</code></pre></a><a name="301813">
+Returns a list of bodies:<p>
+</a><P><a name="301814">
+<code><pre>Geobody:#&lt;POLYHEDRON 13&gt;<p>
+</code></pre></a><a name="301815">
+<code><pre>Geobody:#&lt;POLYHEDRON 15&gt;<p>
+</code></pre></a><a name="301816">
+<code><pre>Geobody:#&lt;POLYHEDRON 17&gt;<p>
+</code></pre></a><a name="301817">
+<code><pre>NIL<p>
+</code></pre></a><a name="301819">
+<h4> Getting the BDIs in a Hierarchy</h4>
+</a><a name="301820">
+Use the <code>bdis</code> path to return the BDIs in a hierarchy.<p>
+</a><P><a name="301821">
+<code><pre>(loop for bdivar being the bdis of-object ?<p>
+</code></pre></a><a name="301822">
+<code><pre>			do<p>
+</code></pre></a><a name="301823">
+<code><pre>				(format t "BDI: ~a~%" bdivar))<p>
+</code></pre></a><a name="301824">
+Returns:<p>
+</a><P><a name="301825">
+<code><pre>BDI: #&lt;BDI (Cube) @ #x13b31042&gt;<p>
+</code></pre></a><a name="301826">
+<code><pre>BDI: #&lt;BDI (Octahedron) @ #x13b30fe2&gt;<p>
+</code></pre></a><a name="301827">
+<code><pre>BDI: #&lt;BDI (Tetrahedron) @ #x13b25452&gt;<p>
+</code></pre></a><a name="301828">
+<code><pre>NIL<p>
+</code></pre></a><a name="301829">
+<h4> Loop Paths for Object Hierarchies Summarized</h4>
+</a><a name="301830">
+The loop paths we've just presented should give you access to all the components of any object hierarchy. <a href="CreatingBodsAndObjs.html#301860">Figure 7.4</a> summarizes loop macro forms for traversing objects<p>
+</a><P><a name="301858">
+ <P><img src="CreatingBodsAndObjs.anc5.gif"><p>
+</a><a name="301860">
+<em>Figure 7.4  &#32; &#32;Loop path forms for traversing objects.
+</em></a><P><a name="301861">
+<h3> Non-Standard Loop Paths</h3>
+</a><a name="301862">
+You may occasionally need to traverse hierarchies along paths which are not specified in existing loop macro forms. You'll need to be creative in figuring out how to accomplish these tasks as they arise, but here are a few examples.<p>
+</a><P><a name="301863">
+<h4> Getting Superior Objects of a Body</h4>
+</a><a name="301864">
+You can combine the <code>objects</code> path and the preposition <code>in</code> to return the objects which reference a body. For example, if we set ? to the tetrahedron by selecting the tetrahedron in the Geometry frame:<p>
+</a><P><a name="301865">
+<code><pre>				(loop for Superobjs being the objects in (find-objects-of-body ?)<p>
+</code></pre></a><a name="301866">
+<code><pre>						do<p>
+</code></pre></a><a name="301867">
+<code><pre>							(format t "Superior Objects: ~a~%" Superobjs))<p>
+</code></pre></a><a name="301868">
+Returns the superior objects:<p>
+</a><P><a name="301869">
+<code><pre>Superior Objects: #&lt;OBJECT "Tetrahedron" @ #x13b1c3ea&gt;<p>
+</code></pre></a><a name="301870">
+<code><pre>Superior Objects: #&lt;OBJECT "Tetrahedron" @ #x13b25612&gt;<p>
+</code></pre></a><a name="301871">
+<code><pre>NIL<p>
+</code></pre></a><a name="301872">
+<h4> Getting Top Level Objects of a Body</h4>
+</a><a name="301873">
+There are no loop forms for returning top level objects given a body. However, you can use standard loop paths to return top-level objects. The key is to use the <code>get-sisters</code> function to return the BDIs which point to the body in question. Given these BDIs, you can use <code>GET-TOP-LEVEL-OBJECT</code> to return all the top-level objects which reference a given body.<p>
+</a><P><a name="301874">
+<code><pre>				(loop for bdi in (get-sisters ?) for topobj = (get-top-level-object bdi)<p>
+</code></pre></a><a name="301875">
+<code><pre>						do<p>
+</code></pre></a><a name="301876">
+<code><pre>						(format t "~a~%" topobj)<p>
+</code></pre></a><a name="301877">
+<code><pre>)<p>
+</code></pre></a><a name="301878">
+Returns the top level objects of ?:<p>
+</a><P><a name="301879">
+<code><pre>#&lt;OBJECT "Octahedron Group" (multiple) @ #x13b20832&gt;<p>
+</code></pre></a><a name="301880">
+<code><pre>#&lt;OBJECT "Octahedron Group&lt;2&gt;" (multiple) @ #x13b1c41a&gt;<p>
+</code></pre></a><a name="301881">
+<code><pre>NIL<p>
+</code></pre></a><a name="301882">
+You can replace the format section with your own code. You may also wish to return a list of these top-level objects, in which case you replace the <code>do</code> with <code>COLLECT</code>.<p>
+</a><P><a name="301883">
+<code><pre>(loop for bdi in (get-sisters ?) collect (get-top-level-object (get-object bdi)))<p>
+</code></pre></a><a name="301884">
+which returns a list:<p>
+</a><P><a name="301885">
+<code><pre>(#&lt;OBJECT "Octahedron Group" (multiple) @ #x13b20832&gt;<br> &#32;#&lt;OBJECT "Octahedron Group&lt;2&gt;" (multiple) @ #x13b1c41a&gt;)<p>
+</code></pre></a><a name="301463">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="IntroToN-Objects.html">[Prev]</a> <a href="ExpObjData.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:11:39 -->
+
+</body>
+</html>

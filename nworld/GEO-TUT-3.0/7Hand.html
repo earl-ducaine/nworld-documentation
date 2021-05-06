@@ -1,0 +1,410 @@
+<html><head><title>Hand</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Dungeon.html">[Prev]</a> <a href="8Text.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Hand</h1>
+</a>
+<hr><p><a name="14890">
+<h4> In this chapter you'll learn how to build a hand. You can use the technique described here to create both hands and feet on most types of creatures.</h4>
+</a><a name="9046">
+ <P><img src="7Hand.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="14901">
+You'll learn the following techniques:<p>
+</a><P><ul><a name="8410">
+<li>Proper modeling practices for joints
+</a></li><P></ul><P><a name="14603">
+<h3> New Commands</h3>
+</a><ul><a name="14608">
+<li>Lift from Edge
+</a></li><P><a name="12972">
+<li>Rotate face(s) around segment
+</a></li><P><a name="13706">
+<li>Merge Region
+</a></li><P><a name="13707">
+<li>Sphericize
+</a></li><P><a name="14609">
+<li>Using the 3D lasso
+</a></li><P></ul><P><a name="13681">
+<h2><HR> Pulling Out the Fingers</h2>
+</a>
+<a name="13689">
+<STRONG>	 1.	 Create a cube.
+</STRONG>
+</a><P><a name="13688">
+<STRONG>	2.	 Select the face on the positive X side of the cube.
+</STRONG>
+</a><P><a name="13737">
+ <P><img src="7Hand.anc1.gif"><p>
+</a>
+<a name="13552">
+<em>Figure 7.1  &#32; &#32;Select the face on the side of the cube
+</em></a><P>
+<a name="13740">
+<STRONG>	3.	 Extrude the face three times.
+</STRONG>
+</a><P><dl><a name="13741">
+<dt>This will create four segments; each of these will eventually be a finger.</dt>
+</a><P><a name="13756">
+ <P><img src="7Hand.anc2.gif"><p>
+</a></dl>
+<a name="13757">
+<em>Figure 7.2  &#32; &#32;After extruding it three times
+</em></a><P>
+<a name="13751">
+<STRONG>	4.	 Collect the faces along the front.
+</STRONG>
+</a><P><a name="13769">
+ <P><img src="7Hand.anc3.gif"><p>
+</a>
+<a name="13770">
+<em>Figure 7.3  &#32; &#32;Collect the faces on the front of the body
+</em></a><P>
+<a name="13781">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong>, then <strong>(CLICK-L)</strong> on Extrude to move the faces forward.
+</STRONG>
+</a><P><dl><a name="13815">
+<dt>This extrusion will form the first bone on each finger, so you may want to adjust your camera so you can see how long your fingers will be.</dt>
+</a><P><a name="13785">
+ <P><img src="7Hand.anc4.gif"><p>
+</a></dl>
+<a name="13786">
+<em>Figure 7.4  &#32; &#32;Extrude the faces to form the first bone on the finger
+</em></a><P>
+<a name="13795">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong>, then <strong>(CLICK-L)</strong> on Scale to scale the faces.
+</STRONG>
+</a><P><a name="13804">
+ <P><img src="7Hand.anc5.gif"><p>
+</a>
+<a name="13805">
+<em>Figure 7.5  &#32; &#32;Scale the tips of the fingers
+</em></a><P>
+<a name="13829">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong>, then <strong>(CLICK-M)</strong> on Rotate.
+</STRONG>
+</a><P><ul>
+<BR><a name="13830">
+<li><strong>(CLICK-L)</strong> on <strong>Select a segment</strong> from the menu that appears. 
+</a><P><dl><a name="13853">
+<dt>Now, if you move the cursor over the N-Geometry window, different segments are highlighted.<p>
+</a><P></dl><BR><a name="13799">
+<li><strong>(CLICK-L)</strong> on a segment at the bottom of one of the finger tips (as shown in <a href="7Hand.html#13837">Figure 7.6</a>).
+</a><P><dl><a name="13856">
+<dt>The segment you select will be used as the <em>rotational axis</em> around which the selected faces will be rotated.<p>
+</a><P></dl><BR><a name="13831">
+<li>Move the mouse slightly to the left to tip the fingers slightly downward.
+</a><P><a name="13836">
+ <P><img src="7Hand.anc6.gif"><p>
+</a></ul>
+
+<a name="13837">
+<em>Figure 7.6  &#32; &#32;Rotate the tips of the fingers downward
+</em></a><P>
+<a name="13917">
+<STRONG>	8.	 Extrude the faces again.
+</STRONG>
+</a><P><dl><a name="13980">
+<dt>This will form the second joint of the fingers.</dt>
+</a><P><a name="13998">
+ <P><img src="7Hand.anc7.gif"><p>
+</a></dl>
+<a name="13999">
+<em>Figure 7.7  &#32; &#32;The second finger bone
+</em></a><P>
+<a name="14621">
+<STRONG>	9.	 Rotate the faces down again, like you did in step <a href="7Hand.html#13829">7</a>.
+</STRONG>
+</a><P><dl><a name="14645">
+<dt>This time, rotate them a little more so that the fingertips really point down.</dt>
+</a><P><a name="14626">
+ <P><img src="7Hand.anc8.gif"><p>
+</a></dl>
+<a name="14627">
+<em>Figure 7.8  &#32; &#32;The second finger bone
+</em></a><P>
+<a name="14005">
+<STRONG>	10.	 Repeat step <a href="7Hand.html#13917">8</a> to create the last finger joint on the hand, then scale the tips.
+</STRONG>
+</a><P><a name="14011">
+ <P><img src="7Hand.anc9.gif"><p>
+</a>
+<a name="14012">
+<em>Figure 7.9  &#32; &#32;The basic fingers
+</em></a><P><a name="14006">
+<h2><HR> The Thumb</h2>
+</a><a name="14050">
+To pull out the thumb, we'll take advantage of one of N-Geometry's nice polygonal tools.<p>
+</a><P>
+<a name="14051">
+<STRONG>	11.	 Move the camera so that you're looking at the underside of the hand.
+</STRONG>
+</a><P><ul>
+<BR><a name="14052">
+<li><strong>(SHIFT-L)</strong> the face shown in <a href="7Hand.html#14066">Figure 7.10</a>:
+</a><P><a name="14065">
+ <P><img src="7Hand.anc10.gif"><p>
+</a></ul>
+
+<a name="14066">
+<em>Figure 7.10  &#32; &#32;Starting the thumb
+</em></a><P>
+<a name="14053">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Lift from Edge.
+</STRONG>
+</a><P><dl><a name="14079">
+<dt>The <strong>Lift from Edge</strong> command lifts a face from a body, using one segment along the perimeter of the selected face as a "hinge."</dt>
+</a><P></dl><a name="14080">
+<STRONG>	13.	 Move the cursor over the selected face, and <strong>(CLICK-L)</strong> on the segment on the back of the thumb.
+</STRONG>
+</a><P><dl><a name="14103">
+<dt>After selecting the segment move the mouse to the left to pull out a starting point for the thumb:</dt>
+</a><P><a name="14109">
+ <P><img src="7Hand.anc11.gif"><p>
+</a></dl>
+<a name="14110">
+<em>Figure 7.11  &#32; &#32;Pulling down the thumb
+</em></a><P>
+<a name="14104">
+<STRONG>	14.	 Repeat step <a href="7Hand.html#14080">13</a>, making sure the face toward the front of the hand is big enough to pull out as a thumb.
+</STRONG>
+</a><P><a name="14124">
+ <P><img src="7Hand.anc12.gif"><p>
+</a>
+<a name="14125">
+<em>Figure 7.12  &#32; &#32;Creating the face from which to pull out the thumb
+</em></a><P>
+<a name="14131">
+<STRONG>	15.	 Now pull out the bones on the thumb like you did for the finger, as described in steps <a href="7Hand.html#13917">8</a> and <a href="7Hand.html#14621">9</a>.
+</STRONG>
+</a><P><a name="14158">
+<STRONG>	16.	 Scale the tip of the thumb when you're done:
+</STRONG>
+</a><P><a name="14163">
+ <P><img src="7Hand.anc13.gif"><p>
+</a>
+<a name="14164">
+<em>Figure 7.13  &#32; &#32;Completed thumb
+</em></a><P><a name="14155">
+<h2><HR> The Hand and Wrist</h2>
+</a><a name="14173">
+Now lets finish working on the back part of the hand.<p>
+</a><P>
+<a name="14180">
+<STRONG>	17.	 Turn the camera around so that you're looking at the back of the hand, then collect the faces along the back.
+</STRONG>
+</a><P><a name="14189">
+ <P><img src="7Hand.anc14.gif"><p>
+</a>
+<a name="14190">
+<em>Figure 7.14  &#32; &#32;Collect the faces opposite those from which you pulled out the fingers
+</em></a><P>
+<a name="14203">
+<STRONG>	18.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Merge Region.
+</STRONG>
+</a><P><dl><a name="14204">
+<dt>The faces are combined into a single face.</dt>
+</a><P><a name="14211">
+ <P><img src="7Hand.anc15.gif"><p>
+</a></dl>
+<a name="14212">
+<em>Figure 7.15  &#32; &#32;Merge the collected faces into one face with Merge Region
+</em></a><P>
+<a name="14218">
+<STRONG>	19.	 Extrude the rear face straight back, then Scale it.
+</STRONG>
+</a><P><a name="14229">
+ <P><img src="7Hand.anc16.gif"><p>
+</a>
+<a name="14230">
+<em>Figure 7.16  &#32; &#32;Build the "hand" with an Extrude then a Scale operation
+</em></a><P>
+<a name="14224">
+<STRONG>	20.	 Extrude the face slightly to create a wrist joint.
+</STRONG>
+</a><P><a name="14247">
+ <P><img src="7Hand.anc17.gif"><p>
+</a>
+<a name="14248">
+<em>Figure 7.17  &#32; &#32;Extrude again to create a wrist joint
+</em></a><P>
+<a name="14242">
+<STRONG>	21.	 Extrude the back face out, so that it's off the screen.
+</STRONG>
+</a><P><a name="14269">
+ <P><img src="7Hand.anc18.gif"><p>
+</a>
+<a name="14270">
+<em>Figure 7.18  &#32; &#32;Extrude the face off the edge of the screen
+</em></a><P><a name="14184">
+Now, because the face is still selected, you can use the "a" hot key to aim the camera at that element.<p>
+</a><P>
+<a name="14280">
+<STRONG>	22.	 Press the "a" hot key.
+</STRONG>
+</a><P><a name="14286">
+ <P><img src="7Hand.anc19.gif"><p>
+</a>
+<a name="14287">
+<em>Figure 7.19  &#32; &#32;You can use the aim camera hot key even if the element is beyond the window's edge
+</em></a><P><a name="14281">
+Adjust the camera so that you have a better view of the hand.<p>
+</a><P><a name="14320">
+ <P><img src="7Hand.anc20.gif"><p>
+</a><a name="14321">
+<em>Figure 7.20  &#32; &#32;Move the camera so you can see the back of the hand
+</em></a><P>
+<a name="14313">
+<STRONG>	23.	 <strong>(SHIFT-L)</strong> on the back face, then <strong>(CLICK-L)</strong> on Sphericize.
+</STRONG>
+</a><P><dl><a name="14332">
+<dt>A menu appears, asking you to specify the midpoint for the <strong>Sphericize</strong> operation. Sphericize moves all the points the same distance from some other point. So we need to pick both the center and a point that defines the radius.</dt>
+</a><P><a name="14337">
+<dt><strong>(CLICK-L)</strong> on <strong>This Element's Midpoint</strong>.</dt>
+</a><P></dl><a name="14339">
+<STRONG>	24.	 Now, move the mouse over the selected face, and pick one of the corner points.
+</STRONG>
+</a><P><dl><a name="14343">
+<dt>This defines our "radius." When you sphericize the face, all the points along its perimeter are moved the same radius from the face's midpoint as the selected point.</dt>
+</a><P><a name="14365">
+<dt>When asked to specify a factor, use the default of <strong>1.0</strong>, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>. The back face is sphericized-note that the number of vertices on the selected element will determine how "spherical" something can be. Generally, you'll get better results with more vertices, but only to a degree. You need to experiment with the trade-offs of adding geometry and getting smoother results.</dt>
+</a><P><a name="14355">
+ <P><img src="7Hand.anc21.gif"><p>
+</a></dl>
+<a name="14356">
+<em>Figure 7.21  &#32; &#32;Rounding the back of the forearm
+</em></a><P>
+<a name="14306">
+<STRONG>	25.	 Extrude the back of the forearm slightly once more.
+</STRONG>
+</a><P><a name="14419">
+ <P><img src="7Hand.anc22.gif"><p>
+</a>
+<a name="14420">
+<em>Figure 7.22  &#32; &#32;Extrude the back face one final time
+</em></a><P><dl><dl><a name="14368">
+<dt>(When we smooth the hand later, this helps maintain definition on this portion of the model.)</dt>
+</a><P></dl></dl><a name="14367">
+<h2><HR> Smoothing w/History</h2>
+</a><a name="13993">
+Like we did in our earlier tutorial with the cube, let's create a smoothed copy of the object that can be controlled with our lo-res version.<p>
+</a><P>
+<a name="14905">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14387">
+<STRONG>	27.	 <strong>(SHIFT-L)</strong> on the hand.
+</STRONG>
+</a><P><a name="14394">
+<STRONG>	28.	 <strong>(CTRL-L)</strong> on Smooth.
+</STRONG>
+</a><P><dl><a name="14388">
+<dt>In the dialog box that appears:</dt>
+</a><P></dl><ul>
+<BR><a name="14389">
+<li>Leave Iterations at 1
+</a><P><BR><a name="14390">
+<li>Set Copy w/History? to Yes
+</a><P><BR><a name="14391">
+<li><strong>(CLICK-L)</strong> on the Smooth button
+</a><P></ul>
+<dl><a name="14698">
+<dt>(Note that the rear of the model retained its shape, thanks to the last extrude we performed. If we hadn't performed that Extrude, the entire end of the arm would have been smoothed down to a "dome." See the section <a href="11AddingGeometry.html#14707">"Smoothing Tips," on page &#32;11-22</a>.)</dt>
+</a><P></dl><a name="14384">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on objects on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14803">
+<STRONG>	30.	 <strong>(SHIFT-L)</strong> on the smoothed copy of the hand.
+</STRONG>
+</a><P><a name="14800">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on Axis Move&gt;Y to move the smoothed copy up along the Y axis.
+</STRONG>
+</a><P><a name="14407">
+ <P><img src="7Hand.anc23.gif"><p>
+</a>
+<a name="14408">
+<em>Figure 7.23  &#32; &#32;Transform the smoothed copy up along the Y axis
+</em></a><P><a name="14434">
+<h2><HR> Using the 3D Lasso</h2>
+</a><a name="14435">
+Sometimes you want to collect all the elements (points, segments, faces) in a three-dimensional area. You can use N-Geometry's 3D lasso to make such a collection.<p>
+</a><P><a name="14436">
+Suppose for example, that we want to rotate the thumb upward:<p>
+</a><P>
+<a name="14402">
+<STRONG>	32.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="14437">
+<STRONG>	33.	 <strong>(CTRL+ALT-L)</strong> on the N-Geometry window to enter the 3D collect mode.
+</STRONG>
+</a><P><a name="14444">
+<STRONG>	34.	 <strong>(DRAG-L)</strong> to draw a lasso around the faces you want to select.
+</STRONG>
+</a><P><dl><a name="14457">
+<dt>Collect the faces around the tip of the thumb on the lo-res hand:</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Remember, this is a 3D lasso! Any visible elements of the specified type that fall within the lasso you draw will be collected.</font></dd></dt><a name="14462">
+ <P><img src="7Hand.anc24.gif"><p>
+</a></dl><P>
+<a name="14463">
+<em>Figure 7.24  &#32; &#32;Select the faces on the tip of the thumb
+</em></a><P>
+<a name="14431">
+<STRONG>	35.	 <strong>(SHIFT-L)</strong>, then <strong>(CLICK-M)</strong> on Rotate.
+</STRONG>
+</a><P><ul>
+<BR><a name="14475">
+<li><strong>(CLICK-L)</strong> on Select segment.
+</a><P><BR><a name="14478">
+<li><strong>(CLICK-L)</strong> on a segment near the inside hinge of the thumb.
+</a><P><a name="14488">
+ <P><img src="7Hand.anc25.gif"><p>
+</a></ul>
+
+<a name="14556">
+<em>Figure 7.25  &#32; &#32;Choosing a segment about which to rotate
+</em></a><P>
+<a name="14557">
+<STRONG>	36.	 Move the mouse left and right to rotate the faces on the control object, driving the hi-res object.
+</STRONG>
+</a><P><a name="14574">
+ <P><img src="7Hand.anc26.gif"><p>
+</a>
+<a name="14575">
+<em>Figure 7.26  &#32; &#32;Drive the hi-res version of the object using the lo-res version
+</em></a><P><a name="14699">
+Repeat the Rotate command, selecting different portions of the hand and different segments around which to pose the fingers.<p>
+</a><P><a name="14700">
+You might also try selecting all the faces on the front part of the hand and rotating from the wrist joint.<p>
+</a><P><a name="14558">
+<h2><HR> Congratulations!</h2>
+</a><a name="14559">
+You've now learned how to create a basic hand for any type of creature. The same techniques can be used, expanded, and enhanced to create more complex hands, feet, pods, tentacles, or whatever kind of appendage your character may require.<p>
+</a><P><a name="14709">
+Again, creating both a hi-res and lo-res version of an object can speed up test-animations, and also makes it easy to create a low polygon count character for game export and a higher resolution version for any full motion video you may want to create of the same character!<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="6Dungeon.html">[Prev]</a> <a href="8Text.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 11:10:26 -->
+
+</body>
+</html>

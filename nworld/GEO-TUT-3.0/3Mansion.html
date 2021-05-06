@@ -1,0 +1,809 @@
+<html><head><title>Building a Mansion</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Airplane.html">[Prev]</a> <a href="4Cube.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11574">
+<h1>Building a Mansion</h1>
+</a>
+<hr><p><a name="11793">
+<h4> In this chapter, you'll learn how to use some additional N-Geometry tools to build a building.</h4>
+</a><a name="11794">
+ <P><img src="3Mansion.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="11690">
+You'll learn about the following topics:<p>
+</a><P><ul><a name="9004">
+<li>Scale XYZ
+</a></li><P><a name="8410">
+<li>Flatten
+</a></li><P><a name="11375">
+<li>Cut
+</a></li><P><a name="8411">
+<li>Mirror
+</a></li><P><a name="8412">
+<li>Plane Cut&gt;Truncate
+</a></li><P><a name="8413">
+<li>Axis Move
+</a></li><P><a name="11358">
+<li>Extrude Region
+</a></li><P></ul><P><a name="8426">
+<h3> Before You Begin</h3>
+</a><ul><a name="9034">
+<li><strong>(CLICK-L) </strong>on <strong>GeoMenus&gt;Camera&gt;Modes&gt;Labeled Axes</strong>.
+</a></li><P><dl><a name="9035">
+<dt>Note the orientation of the Z-axis; we'll build the mansion so that it's facing forward (along the Z axis)</dt>
+</a><P></dl></ul><P><a name="8432">
+If you get lost while working on this tutorial, try re-starting it from the beginning. Eventually you'll make your way to the end and you'll have practiced everything many more times than if you'd done it perfectly the first time.<p>
+</a><P><a name="8454">
+<h2><HR> The Main Floor</h2>
+</a>
+<a name="8459">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;New Object.
+</STRONG>
+</a><P><a name="8465">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on cube.
+</STRONG>
+</a><P><dl><a name="8467">
+<dt>A cube appears in your N-Geometry window.</dt>
+</a><P><a name="9731">
+ <P><img src="3Mansion.anc1.gif"><p>
+</a></dl>
+<a name="9732">
+<em>Figure 3.1  &#32; &#32;Start with a cube again
+</em></a><P>
+<a name="8473">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8475">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the cube.
+</STRONG>
+</a><P><dl><a name="11341">
+<dt>The modification menu for bodies appears.</dt>
+</a><P></dl><a name="8477">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Free Scale.
+</STRONG>
+</a><P><dl><a name="10808">
+<dt>This operation scales axes independently around the midpoint of the object. Move your mouse to the left and right or up and down to scale the cube in the x and y directions. If you <strong>(HOLD-M)</strong> the cube also scales in z. </dt>
+</a><P><a name="11782">
+<dt>Scale the object so that it is wider than it is deep, and not quite as tall as it was when you started; something like this:</dt>
+</a><P><a name="11787">
+ <P><img src="3Mansion.anc2.gif"><p>
+</a></dl>
+<a name="11788">
+<em>Figure 3.2  &#32; &#32;Free Scale the cube
+</em></a><P>
+<a name="8482">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on segments on the element sensitivity bar.
+</STRONG>
+</a><P><dl><a name="8486">
+<dt>Select the top and bottom segments of the front face.</dt>
+</a><P><a name="9746">
+ <P><img src="3Mansion.anc3.gif"><p>
+</a></dl>
+<a name="9747">
+<em>Figure 3.3  &#32; &#32;Select the segments to cut
+</em></a><P><a name="8490">
+Remember, <strong>(CLICK-R)</strong> or wave off the N-Geometry window to finish a collection and before performing any operation on the collection. <p>
+</a><P>
+<a name="8493">
+<STRONG>	7.	 <strong>(SHIFT-L)</strong> on the collection, then (CTRL<strong>-M)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="11590">
+<dt>We used <strong>(CTRL-M)</strong> instead of <strong>(CLICK-L)</strong> because we want to specify additional parameters for the operation.</dt>
+</a><P></dl><a name="8501">
+<STRONG>	8.	 <strong>(CLICK-M)</strong> on the "Number of Segments" text edit box to clear it.
+</STRONG>
+</a><P><dl><a name="8503">
+<dt>Enter <strong>9</strong> for the target number of segments:</dt>
+</a><P><a name="9755">
+ <P><img src="3Mansion.anc4.gif"><p>
+</a></dl>
+<a name="9756">
+<em>Figure 3.4  &#32; &#32;Cutting one segment into a number of shorter segments
+</em></a><P>
+<a name="8507">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on <strong>Cut</strong>.
+</STRONG>
+</a><P><dl><a name="8509">
+<dt>You have now divided both of the selected segments into 9 segments.</dt>
+</a><P></dl><a name="8511">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity bar.
+</STRONG>
+</a><P><a name="8513">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the front face, then <strong>(CLICK-L)</strong> on <strong>Cut</strong>.
+</STRONG>
+</a><P><dl><a name="8517">
+<dt>When you move the cursor over the face, different vertices on the face are highlighted. N-Geometry is waiting for you to select a pair of vertices between which it should make a cut.</dt>
+</a><P><a name="11824">
+<dt><strong>(CLICK-L)</strong> on one vertex along the top edge, then its corresponding vertex on the bottom edge.</dt>
+</a><P><a name="11848">
+ <P><img src="3Mansion.anc5.gif"><p>
+</a></dl>
+<a name="10858">
+<em>Figure 3.5  &#32; &#32;Front face cut once
+</em></a><P><dl><dl><a name="11834">
+<dt>Repeat this procedure, cutting between each pair of vertices on the top and bottom edges of the front face. You may want to use the repeat key which will save you from having to select <strong>Cut</strong> from the menu 8 more times. Your object should look like this when you've made all the cuts:</dt>
+</a><P><a name="11876">
+ <P><img src="3Mansion.anc6.gif"><p>
+</a></dl></dl><a name="11877">
+<em>Figure 3.6  &#32; &#32;Front face cut nine times
+</em></a><P>
+<a name="8532">
+<STRONG>	12.	 Collect these nine front faces.
+</STRONG>
+</a><P><a name="11885">
+ <P><img src="3Mansion.anc7.gif"><p>
+</a>
+<a name="9774">
+<em>Figure 3.7  &#32; &#32;Collected faces
+</em></a><P>
+<a name="8536">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="10547">
+<dt>Use the default value of 2.0, then <strong>(CLICK-L)</strong> on the green Inset button.</dt>
+</a><P><a name="9782">
+ <P><img src="3Mansion.anc8.gif"><p>
+</a></dl>
+<a name="9783">
+<em>Figure 3.8  &#32; &#32;The Inset menu
+</em></a><P><a name="11891">
+ <P><img src="3Mansion.anc9.gif"><p>
+</a><a name="9792">
+<em>Figure 3.9  &#32; &#32;Inset the windows on the main floor
+</em></a><P><a name="8546">
+Notice that the Inset command creates a new face inside each of the collected faces. The <em>new</em> faces are now the ones currently selected.<p>
+</a><P>
+<a name="8549">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><a name="8553">
+<STRONG>	15.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="8557">
+<dt>This time change the Inset Width value from 2.0 to .5</dt>
+</a><P><a name="9803">
+ <P><img src="3Mansion.anc10.gif"><p>
+</a></dl>
+<a name="9804">
+<em>Figure 3.10  &#32; &#32;Insetting smaller faces on the windows
+</em></a><P><a name="8563">
+We can now use this "floor" as a building block to create the entire mansion.<p>
+</a><P><a name="8565">
+<h2><HR> Save your Work</h2>
+</a><a name="10563">
+It's time to save your work.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	It's a good idea to save your work periodically, after you complete each logical step in a model.</font></dd></dt></dl><P>
+
+<a name="8570">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;File&gt;Save.
+</STRONG>
+</a><P><a name="8572">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on "Cube".
+</STRONG>
+</a><P><dl><a name="8574">
+<dt>In the Object Name box replace "Cube" with <br>"mansion-floor-module".</dt>
+</a><P></dl><a name="8576">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on the Write Object File button.
+</STRONG>
+</a><P>
+<a name="8578">
+<h2><HR> Creating a Second Story</h2>
+</a><a name="10583">
+Now we'll create an instant second story using the Mirror command.<p>
+</a><P>
+<a name="8580">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8582">
+<STRONG>	20.	 <strong>(SHIFT-L)</strong> on the mansion, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><dl><a name="11900">
+<dt>N-Geometry goes into face select mode. As you move the cursor over the object, the face under the cursor is highlighted. N-Geometry is waiting for you to tell it which object it should mirror the object around.</dt>
+</a><P></dl><a name="8586">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on the top face of the first floor. 
+</STRONG>
+</a><P><dl><a name="11903">
+<dt>This doubles the geometry of the object, mirroring it from the selected face. The resulting object is still a single object:</dt>
+</a><P><a name="9819">
+ <P><img src="3Mansion.anc11.gif"><p>
+</a></dl>
+<a name="9820">
+<em>Figure 3.11  &#32; &#32;The mansion, now with a completed second floor
+</em></a><P><a name="8590">
+<h2><HR> Pulling Down the Foundation</h2>
+</a><a name="10649">
+Now we can use <strong>Extrude</strong> to pull out the face on the bottom of the mansion to form a foundation.<p>
+</a><P>
+<a name="8593">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8595">
+<STRONG>	23.	 <strong>(SHIFT-L)</strong> on the face at the bottom of the mansion.
+</STRONG>
+</a><P><a name="8597">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on Extrude and pull the ground floor down so it looks something like <a href="3Mansion.html#9829">Figure 3.12</a>:
+</STRONG>
+</a><P><a name="11925">
+ <P><img src="3Mansion.anc12.gif"><p>
+</a>
+<a name="9829">
+<em>Figure 3.12  &#32; &#32;Pulling down the ground floor
+</em></a><P><a name="8602">
+<h2><HR> The Roof</h2>
+</a><a name="8604">
+Now it's time for the roof. First, we'll pull up two side towers then the center of our mansion. The side towers will each be the width of one window unit.<p>
+</a><P><a name="8608">
+Move your camera <strong>(CLICK-M)</strong> so that you are looking down at the top of the building:<p>
+</a><P><a name="9837">
+ <P><img src="3Mansion.anc13.gif"><p>
+</a><a name="9838">
+<em>Figure 3.13  &#32; &#32;Modify your view so you're looking down at the mansion
+</em></a><P>
+<a name="8613">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8615">
+<STRONG>	26.	 <strong>(SHIFT-L)</strong> on the back segment along the back of the roof.
+</STRONG>
+</a><P><a name="11932">
+ <P><img src="3Mansion.anc14.gif"><p>
+</a>
+<a name="9850">
+<em>Figure 3.14  &#32; &#32;Selecting the element to cut
+</em></a><P>
+<a name="8619">
+<STRONG>	27.	 <strong>(CLICK-M)</strong> on Cut.
+</STRONG>
+</a><P>
+<a name="8621">
+Now we`ll use the <strong>Flatten</strong> command to align one point with another in a selected plane.<p>
+</a><P>
+<a name="8624">
+<STRONG>	28.	 <strong>(SHIFT-L)</strong> on the new point shown in <a href="3Mansion.html#9859">Figure 3.15</a>.
+</STRONG>
+</a><P><a name="11945">
+ <P><img src="3Mansion.anc15.gif"><p>
+</a>
+<a name="9859">
+<em>Figure 3.15  &#32; &#32;Select the element you want to move into a common plane with another element
+</em></a><P>
+<a name="8628">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><a name="8630">
+<STRONG>	30.	 <strong>(CLICK-L) </strong>on X.
+</STRONG>
+</a><P><a name="8632">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on the first point from the left along the front segment of the roof:
+</STRONG>
+</a><P><a name="9870">
+ <P><img src="3Mansion.anc16.gif"><p>
+</a>
+<a name="9871">
+<em>Figure 3.16  &#32; &#32;Select the element with which you want to align the first element
+</em></a><P><dl><dl><a name="8636">
+<dt>The two points are now aligned in the x axis-if you move the mouse over the back edge of the roof, you'll see that the point has been moved, or "flattened" into the same plane as the vertex on the front edge of the roof:</dt>
+</a><P><a name="11972">
+ <P><img src="3Mansion.anc17.gif"><p>
+</a></dl></dl><a name="11963">
+<em>Figure 3.17  &#32; &#32;The two points are aligned with each other
+</em></a><P><a name="8638">
+Now do the same thing on the other side of the mansion:<p>
+</a><P>
+<a name="8640">
+<STRONG>	32.	 <strong>(SHIFT-L)</strong> on the second new point along the back edge of the roof.
+</STRONG>
+</a><P><a name="8644">
+<STRONG>	33.	 <strong>(CLICK-L)</strong> on Flatten.
+</STRONG>
+</a><P><dl><a name="11981">
+<dt>A list of axes appears.</dt>
+</a><P></dl><a name="8646">
+<STRONG>	34.	 <strong>(CLICK-L)</strong> on X.
+</STRONG>
+</a><P><a name="8648">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on the second point from the right along the front edge of the mansion.
+</STRONG>
+</a><P><dl><a name="8652">
+<dt>Like the other pair of points, these two points are now "flattened" in the x axis.</dt>
+</a><P></dl>
+<a name="8654">
+Now we can cut out our roof to create two towers. We'll work on the left (-x) side of the mansion first.<p>
+</a><P>
+<a name="8660">
+<STRONG>	36.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8662">
+<STRONG>	37.	 <strong>(SHIFT-L)</strong> on the top face.
+</STRONG>
+</a><P><a name="8664">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> on cut.
+</STRONG>
+</a><P><a name="8666">
+<STRONG>	39.	 <strong>(CLICK-L)</strong> on the two points shown in <a href="3Mansion.html#11963">Figure 3.17</a>.
+</STRONG>
+</a><P><dl><a name="8668">
+<dt>Your roof should look like this:</dt>
+</a><P><a name="9909">
+ <P><img src="3Mansion.anc18.gif"><p>
+</a></dl>
+<a name="9910">
+<em>Figure 3.18  &#32; &#32;Cut the face between the two flattened points
+</em></a><P><a name="8672">
+Now repeat steps <a href="3Mansion.html#8660">36</a> through <a href="3Mansion.html#8664">38</a> for the two points on the right side of the roof:<p>
+</a><P><a name="11999">
+ <P><img src="3Mansion.anc19.gif"><p>
+</a><a name="9919">
+<em>Figure 3.19  &#32; &#32;Make a similar cut on the other side
+</em></a><P><a name="8677">
+Now we'll extrude these new faces.<p>
+</a><P>
+<a name="8679">
+<STRONG>	40.	 <strong>(CLICK-R)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8681">
+<STRONG>	41.	 <strong>(CLICK-L)</strong> on the two faces.
+</STRONG>
+</a><P><dl><a name="8683">
+<dt>Remember that if you are in collect mode you must <strong>(CLICK-R)</strong> or wave off the N-Geometry window to end an element collection before performing any operation. If you don't end the collection N-Geometry assumes you are still collecting.</dt>
+</a><P></dl><a name="8687">
+<STRONG>	42.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Extrude.
+</STRONG>
+</a><P><dl><a name="8691">
+<dt>Move the mouse until your towers look like this:</dt>
+</a><P><a name="12005">
+ <P><img src="3Mansion.anc20.gif"><p>
+</a></dl>
+<a name="9931">
+<em>Figure 3.20  &#32; &#32;Pulling up the towers
+</em></a><P><a name="8695">
+Now we'll create some windows in the towers by repeating what we did earlier using Inset and Edge Subdivide.<p>
+</a><P>
+<a name="8698">
+<STRONG>	43.	 <strong>(CLICK-L)</strong> on none to clear your current face collection.
+</STRONG>
+</a><P><dl><a name="8700">
+<dt>Collect the two front faces shown in <a href="3Mansion.html#9940">Figure 3.21</a>:</dt>
+</a><P><a name="12013">
+ <P><img src="3Mansion.anc21.gif"><p>
+</a></dl>
+<a name="9940">
+<em>Figure 3.21  &#32; &#32;Selecting the faces you want to put the windows on
+</em></a><P>
+<a name="8704">
+<STRONG>	44.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="12017">
+<dt>The <strong>Inset</strong> menu appears.</dt>
+</a><P></dl><a name="8708">
+<STRONG>	45.	 <strong>(CLICK-L)</strong> on the Inset button.
+</STRONG>
+</a><P><dl><a name="8710">
+<dt>Notice that Inset creates a new face inside the borders of the original face. You may want to scale the faces to match with the other windows.</dt>
+</a><P></dl><a name="8713">
+<STRONG>	46.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="8717">
+<dt>Move the mouse to shrink and/or enlarge the selected faces so that they look "correct" for the building.</dt>
+</a><P></dl><a name="8719">
+<STRONG>	47.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Edge Subdivide.
+</STRONG>
+</a><P><a name="8723">
+<STRONG>	48.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="8727">
+<dt>Change the <strong>Inset Width</strong> from <strong>2.0</strong> to <strong>.5</strong>.</dt>
+</a><P></dl><a name="8729">
+<STRONG>	49.	 <strong>(CLICK-L)</strong> on Inset (the green button).
+</STRONG>
+</a><P><a name="12022">
+ <P><img src="3Mansion.anc22.gif"><p>
+</a>
+<a name="9949">
+<em>Figure 3.22  &#32; &#32;Windows added to the towers
+</em></a><P><a name="8733">
+Now let's create some peaks for the towers.<p>
+</a><P>
+<a name="8735">
+<STRONG>	50.	 <strong>(CLICK-L)</strong> on none to deselect the faces.
+</STRONG>
+</a><P><a name="8737">
+<STRONG>	51.	 <strong>(CLICK-R)</strong> on faces.
+</STRONG>
+</a><P><a name="8739">
+<STRONG>	52.	 <strong>(CLICK-L)</strong> on the two tower roof tops, then <strong>(CLICK-R)</strong> to end your collection.
+</STRONG>
+</a><P><a name="8743">
+<STRONG>	53.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Vertex Subdivide.
+</STRONG>
+</a><P><dl><a name="12024">
+<dt>The top of your towers should look like this:</dt>
+</a><P><a name="12029">
+ <P><img src="3Mansion.anc23.gif"><p>
+</a></dl>
+<a name="9960">
+<em>Figure 3.23  &#32; &#32;Creating a peak to pull up from the roof
+</em></a><P>
+<a name="8749">
+<STRONG>	54.	 <strong>(CLICK-R)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8751">
+<STRONG>	55.	 <strong>(CLICK-L)</strong> on the two new points in the center of each tower roof, then <strong>(CLICK-R)</strong> to end the collection.
+</STRONG>
+</a><P><a name="8753">
+<STRONG>	56.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-M)</strong> on Axis Move.
+</STRONG>
+</a><P><dl><a name="10972">
+<dt>Choose the Y axis from the menu, then move your mouse so that the towers look something like this:</dt>
+</a><P><a name="12037">
+ <P><img src="3Mansion.anc24.gif"><p>
+</a></dl>
+<a name="9975">
+<em>Figure 3.24  &#32; &#32;The Vertex Subdivide command makes it easy to pull out points from a square face
+</em></a><P><a name="8763">
+Now we will work on the roof top.<p>
+</a><P>
+<a name="8765">
+<STRONG>	57.	 <strong>(SHIFT-L)</strong> on the face between the two towers.
+</STRONG>
+</a><P><a name="12043">
+ <P><img src="3Mansion.anc25.gif"><p>
+</a>
+<a name="8767">
+<em>Figure 3.25  &#32; &#32;Select the face between the two towers
+</em></a><P>
+<a name="8769">
+<STRONG>	58.	 <strong>(CLICK-L)</strong> on Vertex Subdivide.
+</STRONG>
+</a><P><dl><a name="12045">
+<dt>Don't worry that there are more segments attached to the center from the front than from the back; we'll fix that in a minute.</dt>
+</a><P></dl><a name="8771">
+<STRONG>	59.	 <strong>(SHIFT-L)</strong> on the new center point.
+</STRONG>
+</a><P><a name="8773">
+<STRONG>	60.	 <strong>(CLICK-M)</strong> on Axis Move.
+</STRONG>
+</a><P><a name="8775">
+<STRONG>	61.	 <strong>(CLICK-L)</strong> on Y.
+</STRONG>
+</a><P><dl><a name="8777">
+<dt>Raise the center point over the towers.</dt>
+</a><P><a name="12050">
+ <P><img src="3Mansion.anc26.gif"><p>
+</a></dl>
+<a name="9997">
+<em>Figure 3.26  &#32; &#32;Completed roof
+</em></a><P><a name="8781">
+Now let's move the center point of our roof back along the z-axis<p>
+</a><P>
+<a name="8783">
+<STRONG>	62.	 <strong>(CLICK-L)</strong> on the "y" hot key.
+</STRONG>
+</a><P><dl><a name="11001">
+<dt>This aligns the camera along the Y axis so that you're looking at the mansion from above:</dt>
+</a><P><a name="10011">
+ <P><img src="3Mansion.anc27.gif"><p>
+</a></dl>
+<a name="10012">
+<em>Figure 3.27  &#32; &#32;Top view of the mansion
+</em></a><P>
+<a name="8787">
+<STRONG>	63.	 <strong>(SHIFT-L)</strong> on the point, then <strong>(CLICK-M)</strong> on Axis Move and choose the Z axis.
+</STRONG>
+</a><P><dl><a name="8793">
+<dt>Move the mouse so that the point is over the global origin:</dt>
+</a><P><a name="12065">
+ <P><img src="3Mansion.anc28.gif"><p>
+</a></dl>
+<a name="10021">
+<em>Figure 3.28  &#32; &#32;Move the peak of the roof over the roof's center
+</em></a><P>
+<a name="8797">
+<STRONG>	64.	 Press the "z" hot key to view your building from the front.
+</STRONG>
+</a><P>
+<a name="8799">
+<h2><HR> The Portico</h2>
+</a><a name="8801">
+We will now add a front foyer and staircase.<p>
+</a><P>
+<a name="8803">
+<STRONG>	65.	 <strong>(CLICK-L)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8806">
+<STRONG>	66.	 <strong>(SHIFT-L)</strong> on the segment shown in <a href="3Mansion.html#10033">Figure 3.29</a>:
+</STRONG>
+</a><P><a name="12074">
+ <P><img src="3Mansion.anc29.gif"><p>
+</a>
+<a name="10033">
+<em>Figure 3.29  &#32; &#32;Front view of the mansion
+</em></a><P>
+<a name="8810">
+<STRONG>	67.	 <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><dl><a name="8812">
+<dt>The <strong>Dissolve</strong> command removes segments from the object, while attempting to retain the object's geometric integrity.</dt>
+</a><P></dl>
+<a name="11048">
+Now we want to start out stairs by cutting the new, larger face we just created.<p>
+</a><P>
+<a name="12123">
+<STRONG>	68.	 <strong>(SHIFT-L)</strong> on this face:
+</STRONG>
+</a><P><a name="12127">
+ <P><img src="3Mansion.anc30.gif"><p>
+</a>
+<a name="12128">
+<em>Figure 3.30  &#32; &#32;Choose the larger face created by the Dissolve operation
+</em></a><P>
+<a name="12149">
+<STRONG>	69.	 <strong>(CLICK-L)</strong> on Cut.
+</STRONG>
+</a><P><dl><a name="12150">
+<dt>Choose the bottom left and upper right vertices of the face to make a diagonal cut.</dt>
+</a><P></dl><a name="12151">
+<STRONG>	70.	 <strong>(CLICK-L)</strong> on segments on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8828">
+<STRONG>	71.	 <strong>(SHIFT-L)</strong> on the new segment.
+</STRONG>
+</a><P><a name="12134">
+ <P><img src="3Mansion.anc31.gif"><p>
+</a>
+<a name="10051">
+<em>Figure 3.31  &#32; &#32;Choose the new segment
+</em></a><P>
+<a name="8832">
+<STRONG>	72.	 (CTRL-M) on Cut.
+</STRONG>
+</a><P><dl><a name="8834">
+<dt>Cut this segment into 21 smaller segments in the dialog box that appears.</dt>
+</a><P></dl><a name="12166">
+<STRONG>	73.	 <strong>(SHIFT-L)</strong> on the face above the middle window and cut it horizontally.
+</STRONG>
+</a><P><a name="12158">
+ <P><img src="3Mansion.anc32.gif"><p>
+</a>
+<a name="12159">
+<em>Figure 3.32  &#32; &#32;Cut the face over the door horizontally
+</em></a><P><a name="8838">
+Now you are going to collect a group of faces and extrude them the same distance. Up until now you've been collecting small collections.<p>
+</a><P><a name="8848">
+<h2><HR> Using the 2D Lasso</h2>
+</a><a name="11100">
+N-Geometry has a handy lasso tool which simplifies the creation of collections.<p>
+</a><P>
+<a name="11099">
+<STRONG>	74.	 Press the "z" hot key.
+</STRONG>
+</a><P><dl><a name="11096">
+<dt>You should now be looking straight at the front of the building.</dt>
+</a><P></dl><a name="11087">
+<STRONG>	75.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="11106">
+<STRONG>	76.	 Hold down the ALT key and <strong>(CLICK-L)</strong> on the N-Geometry window.
+</STRONG>
+</a><P><a name="11107">
+<STRONG>	77.	 <strong>(HOLD-L)</strong> and drag a lasso around the faces shown in <a href="3Mansion.html#10069">Figure 3.33</a>:
+</STRONG>
+</a><P><dl><a name="11108">
+<dt>You'll notice that when you release the mouse button, you've been put automatically into collect mode.</dt>
+</a><P><a name="10068">
+ <P><img src="3Mansion.anc33.gif"><p>
+</a></dl>
+<a name="10069">
+<em>Figure 3.33  &#32; &#32;Collect the faces shown above using the 2D lasso tool
+</em></a><P><a name="8854">
+Next we'll Extrude the region of these faces.<p>
+</a><P>
+<a name="8860">
+<STRONG>	78.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-L)</strong> on Extrude Region.
+</STRONG>
+</a><P><dl><a name="11142">
+<dt>Extrude the collected faces out from the building, then reposition your camera for a better view:</dt>
+</a><P><a name="10080">
+ <P><img src="3Mansion.anc34.gif"><p>
+</a></dl>
+<a name="10081">
+<em>Figure 3.34  &#32; &#32;Extruding the portico
+</em></a><P><a name="8869">
+<h2><HR> Creating Stairs</h2>
+</a><a name="12179">
+To create the stairs, first zoom in on that area with the camera.<p>
+</a><P>
+<a name="8871">
+<STRONG>	79.	 Collect every other segment running along the z axis on the future staircase face.
+</STRONG>
+</a><P><a name="10089">
+ <P><img src="3Mansion.anc35.gif"><p>
+</a>
+<a name="10090">
+<em>Figure 3.35  &#32; &#32;Select every other segment along the stairs
+</em></a><P>
+<a name="8874">
+<STRONG>	80.	 Press the "z" hot key.
+</STRONG>
+</a><P><dl><a name="12184">
+<dt>This aligns the camera along the Z axis.</dt>
+</a><P></dl><a name="8878">
+<STRONG>	81.	 <strong>(SHIFT-L)</strong> on the collection, then <strong>(CLICK-M)</strong> on Axis Move and choose the Y axis.
+</STRONG>
+</a><P><dl><a name="11169">
+<dt>This pulls the stairs up.</dt>
+</a><P></dl><a name="8884">
+<STRONG>	82.	 <strong>(CLICK-M)</strong> on Axis Move and choose the X axis.
+</STRONG>
+</a><P><dl><a name="11170">
+<dt>This pulls the stairs out.</dt>
+</a><P></dl>
+<a name="8888">
+Your stairs should now look something like this:<p>
+</a><P><a name="10098">
+ <P><img src="3Mansion.anc36.gif"><p>
+</a><a name="10099">
+<em>Figure 3.36  &#32; &#32;Stairs nearly complete
+</em></a><P><dl><dl><a name="8892">
+<dt>Notice that the bottom step still needs a little work.</dt>
+</a><P></dl></dl>
+<a name="8894">
+<STRONG>	83.	 <strong>(SHIFT-L)</strong> on this segment, then <strong>(CLICK-L)</strong> on Dissolve.
+</STRONG>
+</a><P><a name="12198">
+<STRONG>	84.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="12210">
+ <P><img src="3Mansion.anc37.gif"><p>
+</a>
+<a name="12211">
+<em>Figure 3.37  &#32; &#32;Select the face at the bottom of the stairs &#32; &#32;
+</em></a><P>
+<a name="12201">
+<STRONG>	85.	 <strong>(SHIFT-L)</strong> on the face at the bottom of the stairs, then <strong>(CLICK-L)</strong> on <strong>Flatten</strong>.
+</STRONG>
+</a><P><a name="12205">
+<STRONG>	86.	 <strong>(CLICK-L)</strong> on X, then <strong>(CLICK-L)</strong> on the point at the bottom of the stairs.
+</STRONG>
+</a><P><dl><a name="12223">
+<dt>The face is flattened on the X axis:</dt>
+</a><P><a name="12230">
+ <P><img src="3Mansion.anc38.gif"><p>
+</a></dl>
+<a name="12231">
+<em>Figure 3.38  &#32; &#32;Flattened face
+</em></a><P><a name="12224">
+<h2><HR> Create a Front Door</h2>
+</a>
+<a name="12225">
+<STRONG>	87.	 Press the "z" hot key.
+</STRONG>
+</a><P><a name="8906">
+<STRONG>	88.	 <strong>(CLICK-L)</strong> on faces on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8908">
+<STRONG>	89.	 <strong>(SHIFT-L)</strong> on the face shown in <a href="3Mansion.html#11204">Figure 3.39</a>.
+</STRONG>
+</a><P><a name="12239">
+ <P><img src="3Mansion.anc39.gif"><p>
+</a>
+<a name="11204">
+<em>Figure 3.39  &#32; &#32;Building a door
+</em></a><P>
+<a name="8910">
+<STRONG>	90.	 <strong>(CLICK-L)</strong> on Inset.
+</STRONG>
+</a><P><dl><a name="11214">
+<dt>Use an Inset width of .5.</dt>
+</a><P></dl><a name="8913">
+<STRONG>	91.	 <strong>(SHIFT-L)</strong> on the face, then <strong>(CLICK-L)</strong> on Scale and scale the door down.
+</STRONG>
+</a><P><a name="12245">
+ <P><img src="3Mansion.anc40.gif"><p>
+</a>
+<a name="12247">
+<em>Figure 3.40  &#32; &#32;Scaling the inset door
+</em></a><P>
+<a name="8917">
+<STRONG>	92.	 <strong>(SHIFT-L)</strong> on the face, then <strong>(CLICK-M)</strong> on Axis Move. 
+</STRONG>
+</a><P><a name="8921">
+<STRONG>	93.	 <strong>(CLICK-L)</strong> on Y.
+</STRONG>
+</a><P><dl><a name="8923">
+<dt>Move the mouse to lower the door down to the ground.</dt>
+</a><P><a name="12259">
+ <P><img src="3Mansion.anc41.gif"><p>
+</a></dl>
+<a name="10114">
+<em>Figure 3.41  &#32; &#32;Moving the door down
+</em></a><P><a name="8928">
+<h2><HR> Finishing the Mansion</h2>
+</a><a name="8930">
+Our staircase is a little lop-sided. A nice technique for duplicating the geometry on one side of an object to the other side is to use the <strong>Plane Cut</strong> command to slice the object in half, then use the <strong>Mirror</strong> around the created face.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	It's a good idea to save your work before making a major modification like a plane cut.</font></dd></dt></dl><P>
+
+<a name="8933">
+<STRONG>	94.	 Select bodies on the element sensitivity menu.
+</STRONG>
+</a><P><a name="8935">
+<STRONG>	95.	 <strong>(SHIFT-L)</strong> on the mansion, then <strong>(CLICK-M)</strong> on Plane Cut.
+</STRONG>
+</a><P><a name="8941">
+<STRONG>	96.	 <strong>(CLICK-L)</strong> in the data entry box for Plane Normal.
+</STRONG>
+</a><P><a name="8943">
+<STRONG>	97.	 <strong>(CLICK-L)</strong> on X to plane cut the object along the X axis.
+</STRONG>
+</a><P><a name="8945">
+<STRONG>	98.	 <strong>(CLICK-L)</strong> on Negative to keep the side of the Mansion containing the finished staircase.
+</STRONG>
+</a><P><a name="8948">
+<STRONG>	99.	 <strong>(CLICK-L)</strong> on the green Truncate button.
+</STRONG>
+</a><P><dl><a name="8950">
+<dt>You should see something like this:</dt>
+</a><P><a name="10134">
+ <P><img src="3Mansion.anc42.gif"><p>
+</a></dl>
+<a name="10135">
+<em>Figure 3.42  &#32; &#32;The mansion following the Plane Cut operation
+</em></a><P>
+<a name="8954">
+<STRONG>	100.	 <strong>(SHIFT-L)</strong> on the body, then <strong>(CLICK-L)</strong> on Mirror.
+</STRONG>
+</a><P><a name="8958">
+<STRONG>	101.	 <strong>(CLICK-L)</strong> on the face created by the plane cut.
+</STRONG>
+</a><P><a name="10143">
+ <P><img src="3Mansion.anc43.gif"><p>
+</a>
+<a name="10144">
+<em>Figure 3.43  &#32; &#32;Completed mansion
+</em></a><P><a name="11306">
+<h2><HR> Congratulations!</h2>
+</a><a name="11307">
+You've now created a basic structure. The tools you've learned to use here can be used to create other types of buildings and inorganic structures.<p>
+</a><P><a name="11322">
+You've learned how to:<p>
+</a><P><ul><a name="11308">
+<li>create a primitive
+</a></li><P><a name="11309">
+<li>extrude faces
+</a></li><P><a name="11310">
+<li>scale and rotate faces
+</a></li><P><a name="11311">
+<li>move faces along axes
+</a></li><P><a name="11312">
+<li>mirror an object around a face
+</a></li><P><a name="11314">
+<li>plane cut and truncate an object
+</a></li><P></ul><P><a name="11294">
+If you'd like, go ahead and add some more detail to your mansion before saving it off a final time.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2Airplane.html">[Prev]</a> <a href="4Cube.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 10:00:13 -->
+
+</body>
+</html>

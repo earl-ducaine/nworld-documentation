@@ -1,0 +1,859 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="LoopPaths.html">[Prev]</a> <a href="AASCIIObjectFileFormat.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="29902">
+N&#183;World includes many tools for optimizing your Lisp code. In this chapter, you'll learn how to:<p>
+</a><P><ul><a name="28526">
+<li>increase math performance with anti-generic functions
+</a></li><P><a name="28527">
+<li>create ftriplets, single-dimensional floating point arrays you'll encounter often in N&#183;world
+</a></li><P></ul><P><a name="27898">
+<h2><HR> Optimizing Math with Anti-Generic Functions</h2>
+</a><a name="27230">
+Compared to a language like C, Lisp is a fairly high-level language. As a result, Lisp programmers do not have to be as explicit in Lisp about how certain operations are to be performed. Lisp itself steps in wherever it can to make decisions for you. For example, the following simple Lisp addition function with three integer arguments:<p>
+</a><P><a name="27291">
+<code><pre>(+ 1 2 3)<p>
+</code></pre></a><a name="27240">
+returns the value<p>
+</a><P><a name="27256">
+<code><pre>6<p>
+</code></pre></a><a name="27284">
+which is also of type <code>integer.</code>The addition function itself is <em>generic</em>, which means that its' arguments do not have to be of a specific type. However, Lisp must still make internal decisions about the types of the arguments so it can allocate storage space and determine the type of the result. In our example, this was fairly simple, since we provided the function with constants as arguments. Lisp knew ahead of time that these arguments were integers, and it was able to determine that the result of this operation with integers is another integer.<p>
+</a><P><a name="27336">
+However, suppose you provide arguments of different types, e.g.<p>
+</a><P><a name="27285">
+<code><pre>(+ 1 2 3.0)<p>
+</code></pre></a><a name="27286">
+The value 3.0 is of type float. Lisp recognizes this and returns<p>
+</a><P><a name="27263">
+<code><pre>6.0<p>
+</code></pre></a><a name="27267">
+When Lisp evaluates the function, it determines that one of the arguments is of the type float. As a result the function returns a value of type float. The manner in which Lisp makes these decisions can generate processor overhead. To understand how, first consider how Lisp evaluates a simple form like the one above.<p>
+</a><P><a name="27279">
+First, Lisp must break function down into it's basic components. The basic addition function in Lisp is designed to work with two arguments. If more than two arguments are passed to this function, as in our example, they must first be divided into a series of nested pairs. For our example addition function, <code>(+ 1 2 3)</code>, this process yields:<p>
+</a><P><a name="27282">
+<code><pre>(+ (+ 1 (+ 2 3)))<p>
+</code></pre></a><a name="27385">
+A more complex example yeilds a longer list, for example:<p>
+</a><P><a name="27386">
+<code><pre>(+ 1 2 3 4 5)<p>
+</code></pre></a><a name="27387">
+becomes<p>
+</a><P><a name="27388">
+<code><pre>(+ 1(+2 (+3 (+ 4 5)<p>
+</code></pre></a><a name="27243">
+Again, because we have provided Lisp with constant values, it knows that the value returned by this function must be an integer. However, suppose we had defined a function which accepted three arguments and then summed them?<p>
+</a><P><a name="27399">
+<code><pre>(defun foo (a b c)<p>
+</code></pre></a><a name="27401">
+<code><pre>(+ a b c))<p>
+</code></pre></a><a name="27400">
+Lisp assumes that all of the arguments are numbers because addition is a math operation, but it knows nothing more specific about the values it is passed. Lisp can only conclude that the response must be a number between +infinity and -infinity, but cannot be more specific. As a result, it allocates a large amount of memory to handle this value, as well as the arguments passed to the function. In addition, this penalty is incurred twice, because the operation<p>
+</a><P><a name="27409">
+<code><pre>(+ a b c)<p>
+</code></pre></a><a name="27411">
+expands after compiling to<p>
+</a><P><a name="27412">
+<code><pre>(+ (+ a b) c))<p>
+</code></pre></a><a name="27410">
+Lisp uses the unbounded type number to hold the intermediate values of the sum of b and c, as well as the eventual result. You can see explicitly how Lisp makes these decisions by compiling our example with a declare statement:<p>
+</a><P><a name="27421">
+<code><pre>(compile<p>
+</code></pre></a><a name="27423">
+<code><pre>		(defun foo (a b c)<p>
+</code></pre></a><a name="27424">
+<code><pre>		(declare (:explain :types))<p>
+</code></pre></a><a name="27425">
+<code><pre>				(+ a b c)))<p>
+</code></pre></a><a name="27426">
+Lisp returns the following descriptive data:<p>
+</a><P><a name="27478">
+<code><pre>;Examining a call to +_2OP with arguments:<p>
+</code></pre></a><a name="27480">
+<code><pre>;  call to +_2OP type (NUMBER * *)<p>
+</code></pre></a><a name="27481">
+<code><pre>;  symeval C type T<p>
+</code></pre></a><a name="27482">
+<code><pre>; which returns a value of type (NUMBER * *)<p>
+</code></pre></a><a name="27483">
+<code><pre>;Examining a call to +_2OP with arguments:<p>
+</code></pre></a><a name="27484">
+<code><pre>1;  symeval A type T<p>
+</code></pre></a><a name="27485">
+<code><pre>1;  symeval B type T<p>
+</code></pre></a><a name="27486">
+<code><pre>2; which returns a value of type (NUMBER * *)<p>
+</code></pre></a><a name="27487">
+<code><pre>FOO<p>
+</code></pre></a><a name="27488">
+<code><pre>NIL<p>
+</code></pre></a><a name="27489">
+<code><pre>NIL<p>
+</code></pre></a><a name="27520">
+First, Lisp breaks our list of three arguments into two nested pairs<p>
+</a><P><a name="27521">
+<code><pre>(+ a (+ b c))<p>
+</code></pre></a><a name="27529">
+and evaluates them separately with two calls to the function +_2OP. In the first addition, Lisp cannot predict what type A and B are going to be when passed to the function, so it evaluates them as type T, which means essentially any type. However, Lisp knows that the result of this operation must be a number, and expresses this conclusion in the statement on line 2. However, Lisp has no idea how large or small these numbers might end up being, so it assigns them an infinite range with the symbol (* *). <p>
+</a><P><a name="27532">
+The result of the first addition is passed, along with argument c, to the +2_OP operation a second time. Lisp follows the same logic, assigning type T to c, and type Number to the result of the first addition operation. The result of this addition will also be a number.<p>
+</a><P><a name="27543">
+Although Lisp relieves you of the responsibility of explicitly declaring the type of your arguments when you create an expression like <code>(+ a b c)</code>, it must still evaluate the true types of your arguments in order to perform the addition at machine code level. It is this process of evaluating the types of the arguments in a function, which, though concealed from you, expands the size of the compiled code and consumes processor time. This expansion of the code can be graphically illustrated by deassembling a seemingly simple function like <code>foo</code>. <p>
+</a><P>
+<a name="27673">
+<STRONG>	 1.	 Use <code>disassemble</code> to view a compiled function in assembly language
+</STRONG>
+</a><P><a name="27676">
+<code><pre>(disassemble `foo)<p>
+</code></pre></a>
+<a name="27679">
+The result is well over 100 lines of machine code. Nearly all of this code is devoted to determining the types of the arguments supplied to foo, and routing these arguments to the correct algorithms for evaluation. <p>
+</a><P><a name="27680">
+You can dramatically reduce the amount of machine code generated when a function is compiled by explicitly informing the compiler of the types you wish to pass to a function. For example, try compiling and disassembling the following version of <code>foo</code><p>
+</a><P><a name="27684">
+<code><pre>(compile<p>
+</code></pre></a><a name="27686">
+<code><pre>		(defun foo ()<p>
+</code></pre></a><a name="27687">
+<code><pre>		(declare (:explain :types))<p>
+</code></pre></a><a name="27688">
+<code><pre>				(+ 1 2 3)))<p>
+</code></pre></a><a name="27690">
+Disassembling this function yields only a few lines of machine code. Because there are no arguments to foo, and the operands to be added are all integers, Lisp is able to forego the complex process of deciding how to treat variables of unknown type. Instead, it passes the values 1, 2, and 3 directly to the appropriate function.<p>
+</a><P><a name="29840">
+Unfortunately, you will rarely be building functions with constants. You can still obtain nearly the same performance, however, by declaring your functions argument types in the function itself. Doing so means that these functions will operate correctly if passed values of a specific type. Because this is the opposite of standard Lisp, these are called anti-generic function. <p>
+</a><P><a name="27829">
+In an anti-generic function, you use macros which combine the math operation being performed with the type of the arguments involved. Generally, these types are <code>f</code> for floats and <code>i</code> for integers. In addition, these macros take care of arranging your arguments in the optimal pattern for Lisp to evaluate. For example, the expression<p>
+</a><P><a name="27830">
+<code><pre>(f+ a b c)<p>
+</code></pre></a><a name="27819">
+expands first into<p>
+</a><P><a name="29833">
+<code><pre>(f! (+ (f! (+ (f! a) (f! b))) (f! c)))<p>
+</code></pre></a><a name="27833">
+The original form expands fully into this form:<p>
+</a><P><a name="29835">
+<code><pre>(th</a>e single-float<p>
+</code></pre></a><a name="29823">
+<code><pre>  (+ (the single-float<p>
+</code></pre></a><a name="29824">
+<code><pre>       (+ (the single-float a)<p>
+</code></pre></a><a name="29825">
+<code><pre>          (the single-float b)))<p>
+</code></pre></a><a name="29826">
+<code><pre>     (the single-float c)))<p>
+</code></pre></a><a name="29829">
+The <code>f+</code> macro expands the addition operation into nested pairs, and also explicitly types the arguments passed to it. In addition, the first declaration instructs the compiler to return a value of type single-float.<p>
+</a><P><a name="28538">
+<h3> NCL Anti-Generic Functions</h3>
+</a><a name="28542">
+Nichimen Common Lisp (NCL) includes a wide array of anti-generic functions intended for use with float, double float, and fixnum arguments. Each of these is exported by the NCL package. They can be used without package specifiers in nearly all situtations. <p>
+</a><P><a name="28545">
+There are 7 basic groups of anti-generic functions:<p>
+</a><P><ul><a name="28546">
+<li><strong>Declarations</strong> 
+</a></li><P><a name="28547">
+<li><strong>Relational</strong> operators
+</a></li><P><a name="28548">
+<li><strong>Predicates</strong>
+</a></li><P><a name="28794">
+<li><strong>Arithmetic </strong>operators
+</a></li><P><a name="28549">
+<li><strong>Trigonometric</strong> operators
+</a></li><P><a name="28561">
+<li><strong>Math</strong> utilities
+</a></li><P><a name="29498">
+<li><strong>Multiple-value-bind </strong>utilities
+</a></li><P></ul><P><a name="28543">
+<h4> Declarations</h4>
+</a><a name="30166">
+These forms are shorthand macros for the various type definition forms. For example, the I! macro is equivalent to "The fixnum ...".  
+<P><Table Border="1">
+<dl>
+<a name="30169">
+<em>Table 12.1 <strong></strong> &#32; &#32;Anti-generic declarations.
+</em></a></dl>
+<tr><th align="left"><a name="30177">
+Fixnum
+</a><th align="left"><a name="30179">
+Float
+</a><th align="left"><a name="30181">
+Double Float
+</a><th align="left"><a name="30183">
+Comments
+</a>
+<tr><td valign="top"><a name="30185">
+ <code><a I!>I!</code><p>
+</a><td valign="top"><a name="30187">
+ <code><a F!>F!</code><p>
+</a><td valign="top"><a name="30189">
+ <code><a D!>D!</code><p>
+</a><td valign="top"><a name="30191">
+ All accept single FLOAT args.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="30368">
+<h4> Relational Operators 
+<P><Table Border="1">
+<dl>
+<a name="30195">
+<em>Table 12.2  &#32; &#32;Anti-generic relational operators.
+</em></a></dl>
+<tr><th align="left"><a name="30203">
+Fixnum
+</a><th align="left"><a name="30205">
+Float
+</a><th align="left"><a name="30207">
+Double Float
+</a><th align="left"><a name="30209">
+Comments
+</a>
+<tr><td valign="top"><a name="30211">
+ <code><a I=>I=</code><p>
+</a><td valign="top"><a name="30213">
+ <code><a F=>F=</code><p>
+</a><td valign="top"><a name="30215">
+ <code><a D=>D=</code><p>
+</a><td valign="top"><a name="30217">
+ Equivalent to =. Accept multiple args.<p>
+</a>
+<tr><td valign="top"><a name="30219">
+ <code><a I/=>I/=</code><p>
+</a><td valign="top"><a name="30221">
+ <code><a F/=>F/=</code><p>
+</a><td valign="top"><a name="30223">
+ <code><a D/=>D/=</code><p>
+</a><td valign="top"><a name="30225">
+ Returns T if all args are different.<p>
+</a>
+<tr><td valign="top"><a name="30227">
+ <code><a I>>I&gt;</code><p>
+</a><td valign="top"><a name="30229">
+ <code><a F>>F&gt;</code><p>
+</a><td valign="top"><a name="30231">
+ <code><a D>>D&gt;</code><p>
+</a><td valign="top"><a name="30233">
+ Equivalent to &gt;.<p>
+</a>
+<tr><td valign="top"><a name="30235">
+ <code><a I<>I&lt;</code><p>
+</a><td valign="top"><a name="30237">
+ <code><a F<>F&lt;</code><p>
+</a><td valign="top"><a name="30239">
+ <code><a D<>D&lt;</code><p>
+</a><td valign="top"><a name="30241">
+ Equivalent to &lt;.<p>
+</a>
+<tr><td valign="top"><a name="30243">
+ <code><a I>=>I&gt;=</code><p>
+</a><td valign="top"><a name="30245">
+ <code><a F>=>F&gt;=</code><p>
+</a><td valign="top"><a name="30247">
+ <code><a D>=>D&gt;=</code><p>
+</a><td valign="top"><a name="30249">
+ Equivalent to &gt;=<p>
+</a>
+<tr><td valign="top"><a name="30251">
+ <code><a I<=>I&lt;=</code><p>
+</a><td valign="top"><a name="30253">
+ <code><a F<=>F&lt;=</code><p>
+</a><td valign="top"><a name="30255">
+ <code><a D<-=>D&lt;-=</code><p>
+</a><td valign="top"><a name="30257">
+ Equivalent to &lt;=<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="28640">
+<h4> Predicates 
+<P><Table Border="1">
+<dl>
+<a name="28799">
+<em>Table 12.3  &#32; &#32;Anti-generic predicates.
+</em></a></dl>
+<tr><th align="left"><a name="28807">
+Fixnum
+</a><th align="left"><a name="28809">
+Float
+</a><th align="left"><a name="28811">
+Double Float
+</a><th align="left"><a name="28813">
+Comments
+</a>
+<tr><td valign="top"><a name="28815">
+ <code><a IPLUSP>IPLUSP</code><p>
+</a><td valign="top"><a name="28817">
+ <code><a FPLUSP>FPLUSP</code><p>
+</a><td valign="top"><a name="28819">
+ <code><a DPLUSP>DPLUSP</code><p>
+</a><td valign="top"><a name="28821">
+ Equivalent to PLUSP.<p>
+</a>
+<tr><td valign="top"><a name="28823">
+ <code><a IMINUSP>IMINUSP</code><p>
+</a><td valign="top"><a name="28825">
+ <code><a FMINUSP>FMINUSP</code><p>
+</a><td valign="top"><a name="28827">
+ <code><a DMINUSP>DMINUSP</code><p>
+</a><td valign="top"><a name="28829">
+ Equivalent to MINUSP<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="29001">
+<h4> Arithmetic Operators 
+<P><Table Border="1">
+<dl>
+<a name="29050">
+<em>Table 12.4  &#32; &#32;Anti-generic arithmetic operators.
+</em></a></dl>
+<tr><th align="left"><a name="29058">
+Fixnum
+</a><th align="left"><a name="29060">
+Float
+</a><th align="left"><a name="29062">
+Double Float
+</a><th align="left"><a name="29064">
+Comments
+</a>
+<tr><td valign="top"><a name="29088">
+ <code><a I+>I+</code><p>
+</a><td valign="top"><a name="29068">
+ <code><a F+>F+</code><p>
+</a><td valign="top"><a name="29070">
+ <code><a D+>D+</code><p>
+</a><td valign="top"><a name="29072">
+ Equivalent to +<p>
+</a>
+<tr><td valign="top"><a name="29074">
+ <code><a I->I-</code><p>
+</a><td valign="top"><a name="29076">
+ <code><a F->F-</code><p>
+</a><td valign="top"><a name="29078">
+ <code><a D->D-</code><p>
+</a><td valign="top"><a name="29080">
+ Equivalent to -<p>
+</a>
+<tr><td valign="top"><a name="29132">
+ <code><a I*>I*</code><p>
+</a><td valign="top"><a name="29134">
+ <code><a F*>F*</code><p>
+</a><td valign="top"><a name="29136">
+ <code><a D*>D*</code><p>
+</a><td valign="top"><a name="29138">
+ Equivalent to *<p>
+</a>
+<tr><td valign="top"><a name="29124">
+ <code><a I/>I/</code><p>
+</a><td valign="top"><a name="29126">
+ <code><a F/>F/</code><p>
+</a><td valign="top"><a name="29128">
+ <code><a D/>D/</code><p>
+</a><td valign="top"><a name="29130">
+ Equivalent to /.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="29174">
+<h4> Trigonometric Functions 
+<P><Table Border="1">
+<dl>
+<a name="29366">
+<em>Table 12.5  &#32; &#32;Anti-generic trigonometric operators.
+</em></a></dl>
+<tr><th align="left"><a name="29372">
+Float
+</a><th align="left"><a name="29374">
+Double Float
+</a><th align="left"><a name="29376">
+Comments
+</a>
+<tr><td valign="top"><a name="29378">
+ <code><a FSIN>FSIN</code><p>
+</a><td valign="top"><a name="29380">
+ <code><a DSIN>DSIN</code><p>
+</a><td valign="top"><a name="29382">
+ Equivalent to SIN<p>
+</a>
+<tr><td valign="top"><a name="29384">
+ <code><a FCOS>FCOS</code><p>
+</a><td valign="top"><a name="29386">
+ <code><a DCOS>DCOS</code><p>
+</a><td valign="top"><a name="29388">
+ Equivalent to COS<p>
+</a>
+<tr><td valign="top"><a name="29390">
+ <code><a FTAN>FTAN</code><p>
+</a><td valign="top"><a name="29392">
+ <code><a DTAN>DTAN</code><p>
+</a><td valign="top"><a name="29394">
+ Equivalent to TAN<p>
+</a>
+<tr><td valign="top"><a name="29396">
+ <code><a FASIN>FASIN</code><p>
+</a><td valign="top"><a name="29398">
+ <code><a DASIN>DASIN</code><p>
+</a><td valign="top"><a name="29400">
+ Equivalent to ASIN<p>
+</a>
+<tr><td valign="top"><a name="29402">
+ <code><a FACOS>FACOS</code><p>
+</a><td valign="top"><a name="29404">
+ <code><a DACOS>DACOS</code><p>
+</a><td valign="top"><a name="29406">
+ Equivalent to ACOS<p>
+</a>
+<tr><td valign="top"><a name="29408">
+ <code><a FATAN>FATAN</code><p>
+</a><td valign="top"><a name="29410">
+ <code><a DATAN>DATAN</code><p>
+</a><td valign="top"><a name="29412">
+ Equivalent to TAN<p>
+</a>
+<tr><td valign="top"><a name="29414">
+ <code><a FSIND>FSIND</code><p>
+</a><td valign="top"><a name="29416">
+ <code><a DSIND>DSIND</code><p>
+</a><td valign="top"><a name="29418">
+ Sine of number in degrees<p>
+</a>
+<tr><td valign="top"><a name="29420">
+ <code><a FCOSD>FCOSD</code><p>
+</a><td valign="top"><a name="29422">
+ <code><a DCOSD>DCOSD</code><p>
+</a><td valign="top"><a name="29424">
+ Cosine of number in degrees.<p>
+</a>
+<tr><td valign="top"><a name="29426">
+ <code><a FTAND>FTAND</code><p>
+</a><td valign="top"><a name="29428">
+ <code><a DTAND>DTAND</code><p>
+</a><td valign="top"><a name="29430">
+ Tangent of number in degrees.<p>
+</a>
+<tr><td valign="top"><a name="29477">
+ <code><a FDEGREES>FDEGREES</code><p>
+</a><td valign="top"><a name="29479">
+ <code><a DDEGREES>DDEGREES</code><p>
+</a><td valign="top"><a name="29481">
+ Radians to degrees<p>
+</a>
+<tr><td valign="top"><a name="29471">
+ <code><a FRADIANS>FRADIANS</code><p>
+</a><td valign="top"><a name="29473">
+ <code><a DRADIANS>DRADIANS</code><p>
+</a><td valign="top"><a name="29475">
+ Degrees to radians<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</h4>
+</a><a name="28793">
+<h4> Math Utilities</h4>
+</a><a name="29514">
+  
+<P><Table Border="1">
+<dl>
+<a name="29518">
+<em>Table 12.6  &#32; &#32;Anti-generic math utilities..
+</em></a></dl>
+<tr><th align="left"><a name="29710">
+Fixnum
+</a><th align="left"><a name="29524">
+Float
+</a><th align="left"><a name="29526">
+Double Float
+</a><th align="left"><a name="29528">
+Comments
+</a>
+<tr><td valign="top"><a name="29712">
+ <code></code><p>
+</a><td valign="top"><a name="29530">
+ <code><a FEXPT>FEXPT</code><p>
+</a><td valign="top"><a name="29532">
+ <code><a DEXPT>DEXPT</code><p>
+</a><td valign="top"><a name="29534">
+ Equivalent to EXPT<p>
+</a>
+<tr><td valign="top"><a name="29714">
+ <code></code><p>
+</a><td valign="top"><a name="29536">
+ <code><a FFIX>FFIX</code><p>
+</a><td valign="top"><a name="29538">
+ <code><a DFIX>DFIX</code><p>
+</a><td valign="top"><a name="29540">
+ Truncates to next least fixnum: (ncl:FFIX 1.9)=&gt;1<p>
+</a>
+<tr><td valign="top"><a name="29716">
+ <code></code><p>
+</a><td valign="top"><a name="29542">
+ <code><a FFIXR>FFIXR</code><p>
+</a><td valign="top"><a name="29544">
+ <code><a DFIXR>DFIXR</code><p>
+</a><td valign="top"><a name="29546">
+ Rounds to nearest fixnum (ncl:FFIXR 1.9) =&gt;2<p>
+</a>
+<tr><td valign="top"><a name="29718">
+ <code></code><p>
+</a><td valign="top"><a name="29548">
+ <code><a FSQRT>FSQRT</code><p>
+</a><td valign="top"><a name="29550">
+ <code><a DSQRT>DSQRT</code><p>
+</a><td valign="top"><a name="29552">
+ Equivalent to SQRT<p>
+</a>
+<tr><td valign="top"><a name="29720">
+ <code><a IABS>IABS</code><p>
+</a><td valign="top"><a name="29554">
+ <code><a FABS>FABS</code><p>
+</a><td valign="top"><a name="29556">
+ <code><a DABS>DABS</code><p>
+</a><td valign="top"><a name="29558">
+ Eqvivalent to ABS.<p>
+</a>
+<tr><td valign="top"><a name="29722">
+ <code><a IMIN>IMIN</code><p>
+</a><td valign="top"><a name="29560">
+ <code><a FMIN>FMIN</code><p>
+</a><td valign="top"><a name="29562">
+ <code><a DMIN>DMIN</code><p>
+</a><td valign="top"><a name="29564">
+ Equivalent to MIN<p>
+</a>
+<tr><td valign="top"><a name="29724">
+ <code><a IMAX>IMAX</code><p>
+</a><td valign="top"><a name="29566">
+ <code><a FMAX>FMAX</code><p>
+</a><td valign="top"><a name="29568">
+ <code><a DMAX>DMAX</code><p>
+</a><td valign="top"><a name="29570">
+ Equivalent to MAX<p>
+</a>
+<tr><td valign="top"><a name="29726">
+ <code><a IINCF>IINCF</code><p>
+</a><td valign="top"><a name="29572">
+ <code></code><p>
+</a><td valign="top"><a name="29574">
+ <code></code><p>
+</a><td valign="top"><a name="29576">
+ Increments arg by 1.<p>
+</a>
+<tr><td valign="top"><a name="29728">
+ <code><a IDECF>IDECF</code><p>
+</a><td valign="top"><a name="29578">
+ <code></code><p>
+</a><td valign="top"><a name="29580">
+ <code></code><p>
+</a><td valign="top"><a name="29582">
+ Decrements arg by 1<p>
+</a>
+<tr><td valign="top"><a name="29730">
+ <code><a IAVG>IAVG</code><p>
+</a><td valign="top"><a name="29584">
+ <code><a FAVG>FAVG</code><p>
+</a><td valign="top"><a name="29586">
+ <code></code><p>
+</a><td valign="top"><a name="29588">
+ Returns rounded average for fixnums, average for floats.<p>
+</a>
+<tr><td valign="top"><a name="29732">
+ <code></code><p>
+</a><td valign="top"><a name="29590">
+ <code><a FSQR>FSQR</code><p>
+</a><td valign="top"><a name="29592">
+ <code></code><p>
+</a><td valign="top"><a name="29594">
+ Squares argument. <p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="29513">
+<h4> Multiple Values Bind Utilities</h4>
+</a><a name="29789">
+Use these functions to parse ftriplets and other structures which contain several values:<p>
+</a><P><ul><a name="29792">
+<li><code><a MULTIPLE-IVALUE-BIND>MULTIPLE-IVALUE-BIND</code> - for fixnums.
+</a></li><P><a name="29793">
+<li><code><a MULTIPLE-FVALUE-BIND>MULTIPLE-FVALUE-BIND</code> - for floats.
+</a></li><P><a name="29794">
+<li><code><a MULTIPLE-DVALUE-BIND>MULTIPLE-DVALUE-BIND</code> - for double-floats.
+</a></li><P></ul><P><a name="29797">
+The following syntax is for multiple-ivalue-bind, but all three share the same general syntax:<p>
+</a><P><a name="29798">
+<code><pre>(multiple-ivalue-bind vars form &amp;BODY body)<p>
+</code></pre></a><ul><a name="29801">
+<li><strong>Vars</strong> is a list of variables
+</a></li><P><a name="29802">
+<li><strong>Form</strong> is the form which contains the values (e.g. a vector).
+</a></li><P></ul><P><a name="29795">
+Values bound with these macros have scope only within the calling form. Here's an example of a multiple binding:<p>
+</a><P><a name="29796">
+(multiple-ivalue-bind (a b c<p>
+</a><P><a name="29788">
+<h2><HR> Optimization with Floating Point Vectors</h2>
+</a><a name="27906">
+A vector is a single dimensional array. Vectors and lists are very similar. However, the processor time required to access any given component of a list increases with the length of the list, whereas the time required to access a vector component is constant. However, it takes a constant amount of time to add items to the front of a list, while the time required to add elements to an array increases proportionately with the length of the array.<p>
+</a><P><a name="27919">
+The NGCL contains built in facilities for creating and manipulating several different types of floating-point vectors. Vector types include:<p>
+</a><P><ul><a name="27924">
+<li><strong>doublet</strong> - Vector with two floating point elements.
+</a></li><P><a name="29805">
+<li><strong>ftriplet</strong> - Vector with three floating point elements
+</a></li><P><a name="27925">
+<li><strong>fquad</strong> - Vector with four floating point elements
+</a></li><P></ul><P><a name="27926">
+<h3> Ftriplets</h3>
+</a><a name="27936">
+An ftriplet is a vector with with three floating point elements. Although you may use ftriplets for any purpose, they are typically used to store 3D cartesian coordinates. Regardless of the type of any values you pass to functions which create ftriplets, they are converted into floating-point values.<p>
+</a><P><a name="27940">
+<h4> Creating Ftriplets</h4>
+</a><a name="27941">
+Create ftriplets with <code>3D:MAKE-FTRIPLET!</code>:<p>
+</a><P><a name="27970">
+<code><pre>(<a 3D:MAKE-FTRIPLET!>3D:MAKE-FTRIPLET! &amp;OPTIONAL<em> x y z</em>)<p>
+</code></pre></a><a name="27982">
+where x, y, and z must be of the <strong>real</strong> type.<p>
+</a><P><a name="30350">
+For example, to make an ftriplet with 1.0, 2.0, and 3.0:<p>
+</a><P><a name="30351">
+<code><pre>(3d:make-ftriplet! 1.0 2.0 3.0)<p>
+</code></pre></a><a name="30352">
+returns an ftriplet:<p>
+</a><P><a name="27943">
+<code><pre>#(1.0 2.0 3.0)<p>
+</code></pre></a><a name="27978">
+The three numeric arguments are optional. Failure to supply an argument results in that element of the vector defaulting to 0.0:<p>
+</a><P><a name="27979">
+<code><pre>(3d:make-ftriplet! 1.0 2.0)<p>
+</code></pre></a><a name="28273">
+returns an ftriplet:<p>
+</a><P><a name="27980">
+<code><pre>#(1.0 2.0 0.0)<p>
+</code></pre></a><a name="27981">
+Failure to supply any arguments to this macro results in an array with 0.0 in each element:<p>
+</a><P><a name="27985">
+<code><pre>(3d:make-ftriplet!)<p>
+</code></pre></a><a name="28274">
+returns an ftriplet:<p>
+</a><P><a name="27986">
+<code><pre>#(0.0 0.0 0.0)<p>
+</code></pre></a><a name="28001">
+<h4> Creating Origin Ftriplets</h4>
+</a><a name="28229">
+You can quickly and easily create an ftriplet with x, y, and z values of 0 with <code><a 3D:ORIGIN-FTRIPLET>3D:ORIGIN-FTRIPLET</code>:<p>
+</a><P><a name="28230">
+<code><pre>(3D:ORIGIN-FTRIPLET)<p>
+</code></pre></a><a name="28231">
+returns an ftriplet:<p>
+</a><P><a name="28235">
+<code><pre>#(0.0 0.0 0.0)<p>
+</code></pre></a><a name="28228">
+<h4> Creating Ftriplets Interactively</h4>
+</a><a name="28005">
+You can also use a pop-up menu to create ftriplets. 3D:MENU-GET-FTRIPLET generates a pop-up menu like the one in <a href="OptimizingCode.html#28007">Figure 12.1</a><p>
+</a><P><a name="28006">
+ <P><img src="OptimizingCode.anc.gif"><p>
+</a><a name="28007">
+<em>Figure 12.1  &#32; &#32;The menu-get-ftriplet pop-up menu (default)
+</em></a><P><a name="28016">
+<a 3D:MENU-GET-FTRIPLET>3D:MENU-GET-FTRIPLET has the following form:<p>
+</a><P><a name="28017">
+<code><pre>(3d:menu-get-ftriplet initial-value &amp;OPTIONAL<p>
+</code></pre></a><a name="28068">
+<code><pre><code>		label-string value-string do-it-method </code><p>
+</code></pre></a><a name="28069">
+<code><pre><code>		precision relative?)</code><p>
+</code></pre></a><a name="28070">
+<code><pre>)<p>
+</code></pre></a><ul><a name="28071">
+<li>initial-value must be a variable bound to an ftriplet, or an ftriplet created with <code>:</code>, e.g.
+</a></li><P><a name="28072">
+<code><pre>(3d:menu-get-ftriplet (3d:make-ftriplet! 0.0 0.0 0.0))<p>
+</code></pre></a></ul><P><a name="27945">
+<h4> Reading Ftriplets</h4>
+</a><a name="27992">
+Because ftriplets are arrays, all of the standard Lisp functions for accessing arrays (such as aref) will work with ftriplets. However, the NGCL provides some handy tools for returning ftriplets and for returning individual elements of ftriplets. <p>
+</a><P><a name="28104">
+<h4> Returning Parts of Ftriplets</h4>
+</a><a name="28105">
+You can return the x, y, or z elements of an ftriplet singly with one of three similar macros:<p>
+</a><P><ul><a name="28106">
+<li><code>3D:FTRIPLE<a 3D:FTRIPLET-X>T-X ftriplet</code> - returns the first element of the array
+</a></li><P><a name="28107">
+<li><code>3D:FTRIPL<a 3D:FTRIPLET-Y>ET-Y ftriplet</code> - returns the second element of the array
+</a></li><P><a name="28108">
+<li><code>3D:FTRIP<a 3D:FTRIPLET-Z>LET-Z ftriplet</code> - returns the third element of the array
+</a></li><P></ul><P><a name="28109">
+For example:<p>
+</a><P><a name="28110">
+<code><pre>(<a 3D:FTRIPLET-X>3D:FTRIPLET-X (3d:make-ftriplet! 1.0 2.0 3.0))<p>
+</code></pre></a><a name="28111">
+returns 1.0.<p>
+</a><P><a name="27993">
+<h4> Binding Multiple Values</h4>
+</a><a name="28116">
+You can bind the components of ftriplets to variables using the macro <code>3D:FTRIPLET-VALUES-BIND</code>.<p>
+</a><P><a name="27946">
+<code><pre>(ftriplet-values-bind (x y z) (make-ftriplet! 1.0 2.0 3.0) <p>
+</code></pre></a><a name="27947">
+<code><pre>                (format t "X=~d~%" x)<p>
+</code></pre></a><a name="27948">
+<code><pre>                (format t "Y=~d~%" y)<p>
+</code></pre></a><a name="27949">
+<code><pre>                (format t "Z=~d~%" z)<p>
+</code></pre></a><a name="27950">
+<code><pre>                )<p>
+</code></pre></a><a name="27951">
+which returns<p>
+</a><P><a name="27952">
+<code><pre>X=1.0<p>
+</code></pre></a><a name="27953">
+<code><pre>Y=2.0<p>
+</code></pre></a><a name="27954">
+<code><pre>Z=3.0<p>
+</code></pre></a><a name="27955">
+<code><pre>NIL<p>
+</code></pre></a><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	Because ftriplet-values-bind is a macro, the values extracted from the ftriplet (x, y, and z in this example) are only defined within the scope of the macro. You must bind these values to variables with wider scope to use them outside of the macro!</font></dd></dt></dl><P>
+<a name="27927">
+<h4> Modifying Ftriplets</h4>
+</a><a name="28117">
+Several functions allow for the modification of ftriplets after they are initialized. You can scale, displace, and replace values in ftriplets. These functions are particularly useful when you are manipulating coordinate values during object translations and transformations.<p>
+</a><P><a name="28129">
+<h4> Replacing Ftriplet Elements</h4>
+</a><a name="28130">
+Let's assume we've defined an ftriplet with x, y, and z values of 1.0, 2.0, and 3.0, and bound it to <code>ftvar</code>. <p>
+</a><P><a name="28131">
+<code><pre>(setf ftvar (3d:make-ftriplet! 1.0 2.0 3.0))<p>
+</code></pre></a><a name="28132">
+<code><pre>#(1.0 2.0 3.0)<p>
+</code></pre></a><a name="28134">
+You can change any element of the array by adding a setf form to one of the macros which returns the individual elements of the ftriplet. For example:<p>
+</a><P><a name="28135">
+<code><pre>(setf (ftriplet-z ftvar) 6.6)<p>
+</code></pre></a><a name="28136">
+changes the value of the ftriplet to<p>
+</a><P><a name="28137">
+<code><pre>#(1.0 2.0 6.6)<p>
+</code></pre></a><a name="28139">
+You can also use <code>3D:FILL-FTRIPLET</code> function to manipulate individual elements of ftriplets. For example, the following form changes the y value of ftvar (as first defined above) to 6.6:<p>
+</a><P><a name="28142">
+<code><pre>(<a 3D:FILL-FTRIPLET>3D:FILL-FTRIPLET ftvar nil 6.6 nil)<p>
+</code></pre></a><a name="28143">
+The ftvar variable now evaluates to<p>
+</a><P><a name="28144">
+<code><pre>#(1.0 6.6 3.0)<p>
+</code></pre></a><a name="28145">
+<h4> Scaling Ftriplet Values</h4>
+</a><a name="28146">
+<code>3D:SCALE-FTRIPLET</code> applies a scaling factor to each element of an ftriplet, and returns the result in a new ftriplet. You can apply a single scaling factor to one or all elements of the ftriplet. You can also apply different scaling factors to each element of the array. <code>3D:SCALE-FTRIPLET</code> has the following basic form:<p>
+</a><P><a name="28156">
+<code><pre>(<a 3d:scale-ftriplet>3d:scale-ftriplet <code>triplet-var</code> <p>
+</code></pre></a><a name="28159">
+<code><pre>			(x-factor &amp;OPTIONAL<em> y-factor z-factor</em>)<p>
+</code></pre></a><a name="28160">
+<code><pre>			(&amp;OPTIONAL into-triplet-var)<p>
+</code></pre></a><a name="28161">
+<code><pre>)<p>
+</code></pre></a><a name="28138">
+For example, given ftvar as described above, the following form doubles all the elements of the ftriplet:<p>
+</a><P><a name="28164">
+<code><pre>(3d:scale-ftriplet ftvar (2))<p>
+</code></pre></a><a name="28165">
+<code><pre>#(2.0 4.0 6.0)<p>
+</code></pre></a><a name="28183">
+If you provide two scale-factors to the <code>scale-ftriplet</code> macro, the first factor will be applied to the x-element of the ftriplet, and the second factor will be applied to the y and z elements of the ftriplet. For example, given <code>ftvar</code> as defined above:<p>
+</a><P><a name="28184">
+<code><pre>(3d:scale-ftriplet ftvar (2 4))<p>
+</code></pre></a><dl><a name="28185">
+<dt>returns</dt>
+</a><P></dl><a name="28186">
+<code><pre>#(2.0 8.0 12.0)<p>
+</code></pre></a><a name="28187">
+Finally, providing three scale factors results in each element of the ftriplet being scaled by the corresponding factor. For example, given <code>ftvar</code> as defined above:<p>
+</a><P><a name="28188">
+<code><pre>(3d:scale-ftriplet ftvar (2 3 4))<p>
+</code></pre></a><dl><a name="28189">
+<dt>returns</dt>
+</a><P></dl><a name="28190">
+<code><pre>#(2.0 6.0 12.0)<p>
+</code></pre></a><a name="28197">
+This example changes the values in ftvar. The following example does not alter the values of <code>ftvar</code>, but stores the result of the scale in another ftriplet, <code>nuftvar</code>:<p>
+</a><P><a name="28198">
+<code><pre>(3d:scale-ftriplet ftvar (2) nuftvar)<p>
+</code></pre></a><a name="28199">
+<code><pre>#(2.0 4.0 6.0)<p>
+</code></pre></a><a name="28195">
+Note that <code>into-triplet-var</code> must be bound to a defined ftriplet, or the macro returns an error. Of course, you could create <code>into-triplet-var</code> within the <code>scale-ftriplet</code> form, but this is cumbersome.<p>
+</a><P><a name="28208">
+<h4> Moving Ftriplet Values</h4>
+</a><a name="28209">
+You can apply displacement to ftriplet values in much the same way that you scale them. You can use <code>3D:MOVE-FTRIPLET</code> to apply a displacement to the elements of an ftriplet:<p>
+</a><P><a name="28215">
+<code><pre>(<a 3D:MOVE-FTRIPLET>3D:MOVE-FTRIPLET <em>ftriplet-var</em> (x-displacement<em> </em>&amp;OPTIONAL<p>
+</code></pre></a><a name="28216">
+<code><pre>		<em>y-displacement z-displacement)</em> &amp;OPTIONAL <em>into-triplet-var</em>)<p>
+</code></pre></a><a name="28218">
+For example, given <code>ftvar</code> as first defined above, the following form adds 10.0 to all elements of the ftriplet:<p>
+</a><P><a name="28219">
+<code><pre>(3d:move-ftriplet ftvar (10.0 10.0 10.0))<p>
+</code></pre></a><dl><a name="28220">
+<dt>Lisp returns the new value of ftvar:</dt>
+</a><P></dl><a name="28223">
+<code><pre>#(11.0 12.0 13.0)<p>
+</code></pre></a><a name="28224">
+Unlike scale-ftriplet, you must provide x, y, and z displacements to <code>move-ftriplet</code>, or the macro returns an error.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="LoopPaths.html">[Prev]</a> <a href="AASCIIObjectFileFormat.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 14:32:34 -->
+
+</body>
+</html>

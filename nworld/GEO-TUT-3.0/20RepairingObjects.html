@@ -1,0 +1,167 @@
+<html><head><title>Fixing objects</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="19Unmodeling.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="8404">
+<h1>Fixing objects</h1>
+</a>
+<hr><p><a name="18722">
+<h4> This chapter describes several techniques for fixing objects that have something wrong with them.</h4>
+</a><a name="9046">
+ <P><img src="20RepairingObjects.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="16907">
+Although N-Geometry is extremely good at maintaining object integrity, it's still possible to "break" an object, or to read in an broken object (e.g., an object built in a different system that does not contain enough information to work like an N-Geometry object).<p>
+</a><P><a name="16900">
+This chapter is aimed not at fixing objects that are poorly modeled, but rather objects whose data is structurally unsound.<p>
+</a><P><a name="18362">
+In discussing how to fix objects, we'll describe several commands:<p>
+</a><P><ul><a name="16901">
+<li>Undo
+</a></li><P><a name="18472">
+<li>Bless
+</a></li><P><a name="16946">
+<li>Cull Elements
+</a></li><P><a name="18374">
+<li>Describe
+</a></li><P><a name="18481">
+<li>Revert
+</a></li><P></ul><P><a name="18450">
+<h2><HR> Undo</h2>
+</a><a name="18452">
+The <strong>Undo</strong> command is one of the most powerful features in N-Geometry.<p>
+</a><P><a name="18518">
+<strong>Undo</strong> undoes multiple modifications that have been performed on a cube, essentially reversing any modeling work you may have done, until the object eventually returns to its original state. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<strong>Undo</strong> applies only to body modifications, not to object transformations. You cannot undo any changes made to an object while objects is selected in the element sensitivity menu.</font></dd></dt></dl><P>
+<a name="18629">
+When the object cannot be undone any further, a message is displayed, telling you that the object is in its most primitive state and cannot be undone any further.<p>
+</a><P><a name="18453">
+To undo a modification:<p>
+</a><P>
+<a name="18454">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on any element that was affected by the last operation.
+</STRONG>
+</a><P><dl><a name="18455">
+<dt>For example, if you extruded a face, you could choose one of the extruded points, faces, or the body itself.</dt>
+</a><P></dl><a name="18456">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Undo.
+</STRONG>
+</a><P><dl><a name="18457">
+<dt>The object returns to its state before the last operation.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	You can also use the "<strong>u</strong>" hot key for the Undo command.</font></dd></dt></dl><P>
+<a name="17129">
+<h2><HR> Bless</h2>
+</a><a name="18387">
+The <strong>Bless</strong> command verifies that all elements within an encoded polyhedron have been correctly connected. Errors are listed in the UNIX shell from which N-Geometry was started. Minor problems, such as an element's missing pointer, are corrected if other references to the element are located.<p>
+</a><P><a name="18548">
+If you get an error message that reads:<p>
+</a><P><a name="18549">
+<code><pre>"Complaints drawing object."<p>
+</code></pre></a><a name="18550">
+Try using the <strong>Bless</strong> command to repair the object.<p>
+</a><P><a name="17186">
+<h2><HR> Cull Elements</h2>
+</a><a name="18422">
+The <strong>Cull Elements</strong> command lets you "clean up" a polyhedron. To cull elements on a polyhedra:<p>
+</a><P>
+<a name="18496">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the body or object, then <strong>(CLICK-L)</strong> on Cull Elements.
+</STRONG>
+</a><P><dl><a name="18486">
+<dt>The following menu opens:</dt>
+</a><P><a name="18426">
+ <P><img src="20RepairingObjects.anc1.gif"><p>
+</a></dl>
+<a name="18427">
+<em>Figure 20.1  &#32; &#32;Cull elements menu
+</em></a><P><a name="18500">
+<strong>(CLICK-L)</strong> on the type of element you want to search for. If N-Geometry finds an element of the specified type on the object, it removes it. Each of the options on this element are described below:<p>
+</a><P><ul><a name="18428">
+<li><strong>Empty displacements </strong>removes displacements that reflect no changes.
+</a></li><P><a name="18429">
+<li><strong>Empty Parts</strong> removes named parts that contain no elements.
+</a></li><P><a name="18430">
+<li><strong>Small Faces</strong> collapses all faces of polyhedron smaller than a specified area.
+</a></li><P><a name="18431">
+<li><strong>Floating Faces</strong> removes faces from polyhedron that have no neighboring faces.
+</a></li><P><a name="18432">
+<li><strong>Dead Faces</strong> removes collapsed faces from a polyhedron's database.
+</a></li><P><a name="18433">
+<li><strong>Short Segments</strong> collapses all segments shorter than a specified length.
+</a></li><P><a name="18434">
+<li><strong>Doubled Edges</strong> removes two sided faces by dissolving all edges sharing the same endpoints.
+</a></li><P><a name="18435">
+<li><strong>Soft Edges</strong> dissolves all edges separating faces that meet at less than the specified angle.
+</a></li><P><a name="18436">
+<li><strong>Isolated Vertices</strong> collapse all vertices shared by only two edges.
+</a></li><P><a name="18437">
+<li><strong>Coincident Points</strong> merges coincident vertices (not necessarily connected by an edge) on all faces of polyhedron.
+</a></li><P><a name="18438">
+<li><strong>Spikes</strong> removes portions of all faces that have coincident edges.
+</a></li><P></ul><P><a name="18389">
+<h2><HR> Describe</h2>
+</a><a name="18393">
+The <strong>Describe</strong> command prints a description of <em>any type</em> of selected element in the UNIX shell window from which N&#183;World was started.<p>
+</a><P><a name="18416">
+To describe an element, <strong>(SHIFT-L)</strong> on the element and make the appropriate mouse click:<p>
+</a><P><ul><a name="18394">
+<li><strong>(CLICK-L)</strong> prints a description of the topological and geometric information of a selected element.
+</a></li><P><a name="18395">
+<li><strong>(CLICK-M)</strong> prints only the geometric information of a selected element.
+</a></li><P><a name="18396">
+<li><strong>(CLICK-R)</strong> prints only the topological information of a selected element.
+</a></li><P></ul><P><a name="18397">
+The following example shows how N-Geometry describes one face of a cube:<p>
+</a><P><a name="18398">
+<code><pre>#&lt;FACE 1&gt;<p>
+</code></pre></a><a name="18399">
+<code><pre>  body: #&lt;POLYHEDRON 1&gt;<p>
+</code></pre></a><a name="18400">
+<code><pre>  objs: ("CUBE")<p>
+</code></pre></a><a name="18401">
+<code><pre>  -edges- -opp. faces- -cw vertices-  (impinging edges:)<p>
+</code></pre></a><a name="18402">
+<code><pre>#&lt;EDGE 1&gt; #&lt;FACE 6&gt; #&lt;VERTEX 2 ( -10.0 10.0 10.0)&gt; (#&lt;EDGE 9&gt;)<p>
+</code></pre></a><a name="18403">
+<code><pre>#&lt;EDGE 2&gt; #&lt;FACE 3&gt; #&lt;VERTEX 3 ( 10.0 10.0 10.0)&gt; (#&lt;EDGE 10&gt;)<p>
+</code></pre></a><a name="18404">
+<code><pre>#&lt;EDGE 3&gt; #&lt;FACE 5&gt; #&lt;VERTEX 4 ( 10.0 -10.0 10.0)&gt; (#&lt;EDGE 12&gt;)<p>
+</code></pre></a><a name="18405">
+<code><pre>#&lt;EDGE 4&gt; #&lt;FACE 4&gt; #&lt;VERTEX 1 ( -10.0 -10.0 10.0)&gt; (#&lt;EDGE11&gt;)<br><p>
+</code></pre></a><a name="18407">
+<em>Figure 20.2  &#32; &#32;Description of face on a polyhedron
+</em></a><P><a name="18477">
+<h2><HR> Revert</h2>
+</a><a name="18478">
+The <strong>Revert</strong> command rereads the last saved version of this object's body, if one has been previously saved. If you're working with an object that you've read in, but can't get it back into the state you want, you can use this command to read in the last saved version.<p>
+</a><P><a name="18517">
+Remember, save your work often!<p>
+</a><P><a name="18390">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="19Unmodeling.html">[Prev]</a> <a href="BookIX.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 16:00:14 -->
+
+</body>
+</html>

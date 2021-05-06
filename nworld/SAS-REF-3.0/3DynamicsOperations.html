@@ -1,0 +1,953 @@
+<html><head><title>Dynamic Operations</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands3.html">[Prev]</a> <a href="3DynamicsOperations1.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="28100">
+<h1>Dynamic Operations</h1>
+</a>
+<hr><p><a name="8240">
+<h4> This chapter describes the various operations available in N-Dynamics to animate skeletons, skins, and attached objects.</h4>
+</a><a name="28491">
+ <P><img src="3DynamicsOperations.anc.gif"><p>
+</a><a name="28275">
+<h2><HR> Skeletal Animation and N-Dynamics</h2>
+</a><a name="15321">
+N-Dynamics devotes an entire class of operations to the Skeletal Animation System. The basic concepts behind N-Dynamics are described in the <em>N-Dynamics Reference Manual</em> and <em>N-Dynamics Tutorial</em>; it is an animation choreographer, and is an ideal tool for animating and working with skeletons and motion capture data.<p>
+</a><P><a name="25130">
+This chapter assumes you have some familiarity with both N-Dynamics and N-Geometry.<p>
+</a><P><a name="26040">
+<h4> Skeletal Operation Order in N-Dynamics Scripts</h4>
+</a><a name="26041">
+As with any other N-Dynamics script, scripts containing skeletal operations execute from top to bottom, moving right at each frame. There are two types of skeletal operations in N-Dynamics:<p>
+</a><P><ul><a name="27203">
+<li>Operations that are applied to a skeleton but don't alter its pose except with the <strong>Update Skeleton</strong> operation-all operations of this type are <em>additive.</em>
+</a></li><P><a name="27204">
+<li>Operations that alter the skeleton's pose or ar executed immediately (such as <strong>IK Move to Object</strong>).
+</a></li><P><a name="27217">
+ <P><img src="3DynamicsOperations.anc1.gif"><p>
+</a></ul><P><a name="27218">
+<em>Figure 3.1  &#32; &#32;When skeletal operations update the skeleton
+</em></a><P><a name="27209">
+Any of the changes described by the operations in the "Applied Later" column of <a href="3DynamicsOperations.html#27218">Figure 3.1</a> are applied to the skeleton using the <strong>Update Skeleton</strong> operation.<p>
+</a><P><a name="27212">
+There are two ways to organize your skeletal operations in a script:<p>
+</a><P><ul><a name="27306">
+<li>Place operations which must be applied by an <strong>Update Skeleton</strong> operation earlier in the script.
+</a></li><P><a name="27314">
+<li>Make the <strong>Update Skeleton</strong> operation a parent channel, and insert any operations from the "Applied Later" column inside that channel as subchannels
+</a></li><P><a name="26064">
+ <P><img src="3DynamicsOperations.anc2.gif"><p>
+</a></ul><P><a name="26065">
+<em>Figure 3.2  &#32; &#32;Left, operations in a script arranged in a linear fashion; right; the same operations arranged hierarchically
+</em></a><P><a name="26066">
+The method shown on the right in <a href="3DynamicsOperations.html#26065">Figure 3.2</a> is generally easier to work with, although both are completely acceptable. Also, if you create an <strong>Update Skeleton</strong> parent channel and specify the skeleton to update <em>before</em> inserting subchannels, any subchannel specified automatically assumes you want to update the same skeleton, and defaults to the same skeleton.<p>
+</a><P><a name="27407">
+If you're animating more than one skeleton, you'll need to include an <strong>Update Skeleton</strong> operation for each of them.<p>
+</a><P><a name="26067">
+If you don't include the <strong>Update Skeleton</strong> operation, your script will execute, but none of the operations specified in the left column in <a href="3DynamicsOperations.html#27218">Figure 3.1</a> will appear to have an effect.<p>
+</a><P><a name="15322">
+<h3> Operations</h3>
+</a><a name="25111">
+To best understand how these operations work, create a new script with at least one subaction (as described in the N-Dynamics reference manual. <strong>(CLICK-M)</strong> on the channel, then <strong>(CLICK-L)</strong> on the text box next to <strong>Operation</strong>. The Dynamic Operation Class menu is displayed.<p>
+</a><P><a name="25125">
+In the Geometry module, <strong>(CLICK-L)</strong> on Skeleton Animation to display the skeletal animation operations:<p>
+</a><P><a name="15326">
+ <P><img src="3DynamicsOperations.anc3.gif"><p>
+</a><a name="15327">
+<em>Figure 3.1  &#32; &#32;N-Dynamics skeletal animation operations
+</em></a><P><a name="25132">
+<strong>(CLICK-L)</strong> on an operation to assign it to the current channel. Each of these operations is described in more detail below.<p>
+</a><P><a name="15869">
+<h2><HR> Animate Multiple Poses</h2>
+</a><a name="25133">
+Animate a skeleton layering multiple poses. You specify the poses you want to use to animate the skeleton.<p>
+</a><P><a name="25188">
+This operation creates dynamic value channels for each pose selected. The value of the pose is dynamic over the length of the channel:<p>
+</a><P><a name="25156">
+ <P><img src="3DynamicsOperations.anc4.gif"><p>
+</a><a name="25157">
+<em>Figure 3.2  &#32; &#32;Animate Multiple Poses layers several poses over one another; each pose is dynamic
+</em></a><P><a name="26384">
+The <strong>Animate Multiple Poses</strong> operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="16243">
+<em>Table 3.1  &#32; &#32;Animate Multiple Poses parameters
+</em></a></dl>
+<tr><th align="left"><a name="16247">
+Parameter
+</a><th align="left"><a name="24581">
+Dynamic?
+</a><th align="left"><a name="16249">
+Description
+</a>
+<tr><td valign="top"><a name="16251">
+ Skeleton<p>
+</a><td valign="top"><a name="24583">
+ No<p>
+</a><td valign="top"><a name="16253">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="16255">
+ Poses<p>
+</a><td valign="top"><a name="24585">
+ No<p>
+</a><td valign="top"><a name="16257">
+ The poses for which dynamic values are created. Individual subchannels are created for each pose selected.<p>
+</a>
+<tr><td valign="top"><a name="16259">
+ Translate<p>
+</a><td valign="top"><a name="24587">
+ No<p>
+</a><td valign="top"><a name="30166">
+ A multiplier applied to the root translations for the pose.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15909">
+<h2><HR> Animate Pose</h2>
+</a><a name="15870">
+Animate the skeleton to a single pose. You need to specify the skeleton to be animated and its target pose. The value for the pose is dynamic.<p>
+</a><P><a name="25202">
+ <P><img src="3DynamicsOperations.anc5.gif"><p>
+</a><a name="25228">
+<em>Figure 3.3  &#32; &#32;Animate Pose animates the skeleton to a single pose
+</em></a><P><a name="26396">
+The <strong>Animate Pose </strong>operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="25232">
+<em>Table 3.2 <strong></strong><em> &#32; &#32;Animate Pose parameters</em>
+</em></a></dl>
+<tr><th align="left"><a name="25238">
+Parameter
+</a><th align="left"><a name="25240">
+Dynamic?
+</a><th align="left"><a name="25242">
+Description
+</a>
+<tr><td valign="top"><a name="25244">
+ Skeleton<p>
+</a><td valign="top"><a name="25246">
+ No<p>
+</a><td valign="top"><a name="25248">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="25250">
+ Pose<p>
+</a><td valign="top"><a name="25252">
+ No<p>
+</a><td valign="top"><a name="25254">
+ The target pose (only one pose may be specified for this operation).<p>
+</a>
+<tr><td valign="top"><a name="25256">
+ Value<p>
+</a><td valign="top"><a name="25258">
+ Yes<p>
+</a><td valign="top"><a name="25260">
+ The dynamic value for that pose.<p>
+</a>
+<tr><td valign="top"><a name="25262">
+ Translate Value<p>
+</a><td valign="top"><a name="25264">
+ Can be<p>
+</a><td valign="top"><a name="25266">
+ A multiplier applied to the root translations for the pose.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="25268">
+<h2><HR> Animate Pose to Pose</h2>
+</a><a name="15737">
+Animate the skeleton using a number of poses. The poses can be previously named poses or you can copy the skeleton's current pose interactively from N-Geometry into a selected cue.<p>
+</a><P><a name="28502">
+In the [POSE] channel, you insert cues wherever you want the skeleton to hit a target pose:<p>
+</a><P><a name="15741">
+ <P><img src="3DynamicsOperations.anc6.gif"><p>
+</a><a name="25325">
+<em>Figure 3.4  &#32; &#32;Animate Pose to Pose moves animates from one pose to another
+</em></a><P><a name="25289">
+<strong>(CLICK-M)</strong> on a cue to specify the target pose for that cue; a list of poses saved for the skeleton is displayed:<p>
+</a><P><a name="25332">
+ <P><img src="3DynamicsOperations.anc7.gif"><p>
+</a><a name="25333">
+<em>Figure 3.5  &#32; &#32;Selecting a pose to associate with a cue
+</em></a><P><ul><a name="25324">
+<li><strong>Copy Pose</strong> copies the current pose into the dynamics cue, but does not save it with the skeleton.
+</a></li><P><a name="28452">
+<li><strong>Copy and Save Pose</strong> copies the current pose into the dynamics cue, and saves it as a normal pose with the skeleton.
+</a></li><P><a name="28453">
+<li><strong>Copy Difference Pose</strong> lets you insert a "difference pose" which can be used to layer poses over motion capture data. Using difference poses is described in more detail in the <em>Skeletal Animation System Tutorial</em>.
+</a></li><P><a name="28454">
+<li><strong>Copy Base</strong> copies the base "pose" into the cue.
+</a></li><P><a name="28455">
+<li>Other poses saved with the skeleton appear at the bottom of the menu.
+</a></li><P></ul><P><a name="25321">
+<h3> Making the Pose value Dynamic</h3>
+</a><a name="25388">
+Note that by default, <strong>Value</strong> is local, with a value of 1.0 (the skeleton animates from one target pose to another). If you make Value dynamic, you can create cues in the Value channel for each pose, then insert a marker track to tie the two cues together. <p>
+</a><P><a name="25377">
+You should do this <em>before</em> you insert any cues in the <strong>Pose</strong> channel:<p>
+</a><P>
+<a name="25370">
+<STRONG>	 1.	 In the Edit Action Properties dialog box, <strong>(CLICK-L)</strong> on Source and choose Dynamic Value for Value.
+</STRONG>
+</a><P><a name="25373">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><a name="25391">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the Animate Pose to Pose channel and choose Add Marker Track.
+</STRONG>
+</a><P><a name="25392">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> in several positions along the track where you'd like to insert cues.
+</STRONG>
+</a><P><dl><a name="25400">
+<dt>Note that cues are inserted into both the <strong>Pose</strong> and <strong>Value</strong> channels. Each of these cues is tied to its corresponding marker on the marker track.</dt>
+</a><P></dl><a name="25374">
+<STRONG>	5.	 Open the Pose and Value channels in the script editor.
+</STRONG>
+</a><P><a name="25403">
+<STRONG>	6.	 <strong>(CLICK-M)</strong> on the first cue you inserted in the Pose channel.
+</STRONG>
+</a><P><dl><a name="25404">
+<dt>You're prompted to select the target pose for that cue.</dt>
+</a><P></dl><a name="25405">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the first cue you inserted in the Value channel.
+</STRONG>
+</a><P><dl><a name="25408">
+<dt>Adjust the value for the cue using the sliders and controls in the <strong>Adjust Parameter Value</strong> dialog box:</dt>
+</a><P><a name="25417">
+ <P><img src="3DynamicsOperations.anc8.gif"><p>
+</a></dl>
+<a name="25418">
+<em>Figure 3.6  &#32; &#32;Adjusting the value for a cue
+</em></a><P><dl><dl><a name="25424">
+<dt>As you adjust the slider, the skeleton is updated in the N-Geometry window.</dt>
+</a><P></dl><ul>
+<BR><a name="25412">
+<li><strong>(DRAG-L)</strong> to update the skeleton after you've moved the slider.
+</a><P><BR><a name="25427">
+<li><strong>(DRAG-M)</strong> to update the skeleton interactively.
+</a><P></ul>
+</dl><a name="25428">
+After adjusting the cues and values, the <strong>Animate Pose to Pose</strong> channel will look something like this:<p>
+</a><P><a name="25437">
+ <P><img src="3DynamicsOperations.anc9.gif"><p>
+</a><a name="25438">
+<em>Figure 3.7  &#32; &#32;Animate Pose to Pose with dynamic values
+</em></a><P><a name="25432">
+Now, both the cue and its value can be dragged left or right by sliding the marker tied to those cues. 
+<P><Table Border="1">
+<dl>
+<a name="15745">
+<em>Table 3.3  &#32; &#32;Animate Pose to Pose parameters
+</em></a></dl>
+<tr><th align="left"><a name="15749">
+Parameter
+</a><th align="left"><a name="24607">
+
+</a><th align="left"><a name="29055">
+Dynamic?
+</a><th align="left"><a name="15751">
+Description
+</a>
+<tr><td valign="top"><a name="15753">
+ <p>
+</a><td valign="top"><a name="29059">
+ Skeleton<p>
+</a><td valign="top"><a name="29042">
+ No<p>
+</a><td valign="top"><a name="15755">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="15757">
+ <p>
+</a><td valign="top"><a name="29061">
+ Bones<p>
+</a><td valign="top"><a name="29044">
+ No<p>
+</a><td valign="top"><a name="15759">
+ The bones on the selected skeleton that should be affected by the Animate Pose to Pose operation<p>
+</a>
+<tr><td valign="top"><a name="15761">
+ <p>
+</a><td valign="top"><a name="29063">
+ Pose<p>
+</a><td valign="top"><a name="29046">
+ Can be<p>
+</a><td valign="top"><a name="15763">
+ Insert a cue for each target pose.<p>
+</a>
+<tr><td valign="top"><a name="15765">
+ <p>
+</a><td valign="top"><a name="29065">
+ Pose Value<p>
+</a><td valign="top"><a name="29048">
+ Can be<p>
+</a><td valign="top"><a name="15770">
+ The dynamic value for the pose.<br>(0 = none, 1 = 100%)<p>
+</a>
+<tr><td valign="top"><a name="30182">
+ <p>
+</a><td valign="top"><a name="30184">
+ Mode<p>
+</a><td valign="top"><a name="30186">
+ No<p>
+</a><td valign="top"><a name="30188">
+ Set animates the skeleton to the specified pose.<p>
+</a><a name="30199">
+ Add adds the pose to the skeleton's current position.<p>
+</a><a name="30200">
+ Blend animates part way between the skeleton's current position and the saved pose-blending the two complex values.<p>
+</a>
+<tr><td valign="top"><a name="29101">
+ Root Translation<p>
+</a><td valign="top"><a name="29103">
+ <p>
+</a><td valign="top"><a name="29105">
+ <p>
+</a><td valign="top"><a name="29107">
+ <p>
+</a>
+<tr><td valign="top"><a name="29093">
+ <p>
+</a><td valign="top"><a name="30176">
+ Translate Value<p>
+</a><td valign="top"><a name="30178">
+ Can be<p>
+</a><td valign="top"><a name="30180">
+ A multiplier applied to the root translations for the pose.<p>
+</a>
+<tr><td valign="top"><a name="29085">
+ Root Alignment<p>
+</a><td valign="top"><a name="29087">
+ <p>
+</a><td valign="top"><a name="29089">
+ <p>
+</a><td valign="top"><a name="29091">
+ <p>
+</a>
+<tr><td valign="top"><a name="29077">
+ <p>
+</a><td valign="top"><a name="29079">
+ Spin Angle<p>
+</a><td valign="top"><a name="29081">
+ Can be<p>
+</a><td valign="top"><a name="29083">
+ An arbitrary angle by which the skeleton should be rotated (around the skeleton's local Y axis). This is used primarily in Motion Blending, as described in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a>
+<tr><td valign="top"><a name="29069">
+ <p>
+</a><td valign="top"><a name="29071">
+ Offset<p>
+</a><td valign="top"><a name="29073">
+ Can be<p>
+</a><td valign="top"><a name="29075">
+ An arbitrary set of translations to add to the pose; also used primarily in Motion Blending, as described above.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+ <p>
+</a><P><a name="15781">
+<h4> Using Animate Pose to Pose with Motion Capture Data</h4>
+</a><a name="15782">
+The <strong>Animate Pose to Pose</strong> operation can be used in conjunction with the various<strong> </strong>"read motion capture data" operations.<p>
+</a><P><a name="25507">
+This means that you can start with a skeleton that has a basic "look-and-feel" and "customize" it by defining poses that are "layered" on top of the motion capture data in a separate channel.<p>
+</a><P><a name="25508">
+You could, for example, add an <strong>Animate Pose to Pose</strong> that makes the skeleton turn its head toward the camera. If you layered this together with a channel that animated the skeleton through a walk cycle, the skeleton would go through the walk cycle, but would also turn toward the camera when the appropriate cue was reached! This technique is called "difference posing," and is described in more detail in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="15373">
+<h2><HR> IK Move along Trajectory</h2>
+</a><a name="25548">
+Moves a node on the selected skeleton along a trajectory created in N-Geometry. <p>
+</a><P><a name="26074">
+This is similar to <strong>IK Move along Wire</strong>, except that the selected joint moves to a position along the trajectory specified as a dynamic value (<strong>Fraction</strong>). A value of 0.0 is the beginning of the wire, a value of 1.0 is the end of the wire.<p>
+</a><P><a name="26968">
+For example, to move smoothly along the trajectory, you could use a dynamic value for <strong>Fraction</strong> that was a linear curve with a start value of 0.0 and an end value 1.0.<p>
+</a><P><a name="26408">
+The <strong>IK Move along Trajectory </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="16296">
+<em>Table 3.4  &#32; &#32;IK Move along Trajectory parameters
+</em></a></dl>
+<tr><th align="left"><a name="16300">
+Parameter
+</a><th align="left"><a name="24625">
+Dynamic?
+</a><th align="left"><a name="16302">
+Description
+</a>
+<tr><td valign="top"><a name="16304">
+ Skeleton<p>
+</a><td valign="top"><a name="24627">
+ No<p>
+</a><td valign="top"><a name="26931">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="16308">
+ Bone<p>
+</a><td valign="top"><a name="24629">
+ No<p>
+</a><td valign="top"><a name="26933">
+ The bone being moved along the wire (the joint further away from the root follows the path).<p>
+</a>
+<tr><td valign="top"><a name="16312">
+ IK Set<p>
+</a><td valign="top"><a name="24631">
+ No<p>
+</a><td valign="top"><a name="26935">
+ The degrees of freedom for the joint moving along the trajectory.<p>
+</a>
+<tr><td valign="top"><a name="16356">
+ Trajectory<p>
+</a><td valign="top"><a name="24633">
+ No<p>
+</a><td valign="top"><a name="16358">
+ The trajectory along which the skeleton is moved.<p>
+</a>
+<tr><td valign="top"><a name="16352">
+ Fraction<p>
+</a><td valign="top"><a name="24635">
+ Yes<p>
+</a><td valign="top"><a name="16354">
+ The position (0.0 - 1.0) of the object along the trajectory.<p>
+</a>
+<tr><td valign="top"><a name="16348">
+ Type<p>
+</a><td valign="top"><a name="24637">
+ No<p>
+</a><td valign="top"><a name="16350">
+ Whether the curve is a B-spline or interpolating spline.<p>
+</a>
+<tr><td valign="top"><a name="16344">
+ Tension<p>
+</a><td valign="top"><a name="24639">
+ Can be<p>
+</a><td valign="top"><a name="16346">
+ The tightness of the trajectory near the control points.<p>
+</a>
+<tr><td valign="top"><a name="16340">
+ Cyclic<p>
+</a><td valign="top"><a name="24641">
+ No<p>
+</a><td valign="top"><a name="16342">
+ Whether the tangent of the trajectory and curvature of the trajectory at each endpoint will match.<p>
+</a>
+<tr><td valign="top"><a name="16336">
+ Offset<p>
+</a><td valign="top"><a name="24643">
+ Can be<p>
+</a><td valign="top"><a name="16338">
+ An offset, measured from the trajectory, used to modify the position to which the joint is updated.<p>
+</a>
+<tr><td valign="top"><a name="16332">
+ Use Previous?<p>
+</a><td valign="top"><a name="24645">
+ No<p>
+</a><td valign="top"><a name="26778">
+ Should the IK move be calculated on the previous position of the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="16328">
+ Use Fast Solve?<p>
+</a><td valign="top"><a name="24647">
+ No<p>
+</a><td valign="top"><a name="26780">
+ Should the IK move be performed using the fast solve method?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="26546">
+<h2><HR> IK Move along Wire</h2>
+</a><a name="26627">
+This operation causes a selected joint to follow the path of a specified wire. The <strong>IK Move along Wire</strong> operation can be layered over motion capture data to fine tune the motion of your character.<p>
+</a><P><a name="28389">
+To use this operation you'll typically perform the following steps:<p>
+</a><P>
+<a name="26636">
+<STRONG>	 1.	 Generate a wire for the selected bone joint(s) using the <strong>Make Wire from Joint Motion</strong> operation.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>It's generally a good idea to generate motion from a joint with limited degrees of freedom, such as a wrist or ankle (both of which are typically limited to X rotations). This will produce a straighter wire than a bone with more degrees of freedom.</em></font></dd></dt></dl><P>
+
+<a name="26637">
+<STRONG>	2.	 Modify the wire in N-Geometry.
+</STRONG>
+</a><P><dl><a name="26638">
+<dt>For example, if you wanted the skeleton in <a href="3DynamicsOperations.html#26612">Figure 3.8</a> to step higher, you could modify the wire generated from the right toe as shown:</dt>
+</a><P><a name="26611">
+ <P><img src="3DynamicsOperations.anc10.gif"><p>
+</a></dl>
+<a name="26612">
+<em>Figure 3.8  &#32; &#32;Modifying a generated wire for an IK Move along Wire operation
+</em></a><P>
+<a name="26667">
+<STRONG>	3.	 Set up the degrees of freedom for the joint being moved along the wire.
+</STRONG>
+</a><P><dl><a name="26668">
+<dt>Only the bones whose motion you want to be affected by the <strong>IK Move along Wire</strong> should have degrees of freedom enabled.</dt>
+</a><P><a name="27150">
+<dt>If you don't set this up ahead of time, you're prompted to define the degrees of freedom for the bone when you try to animate the script.</dt>
+</a><P></dl><a name="26674">
+<STRONG>	4.	 With Points selected in the Sensitivity element menu, <strong>(SHIFT-L)</strong> on the joint being moved along the wire.
+</STRONG>
+</a><P><dl><a name="27151">
+<dt>For this example, choose the joint at the bottom of the tibia.</dt>
+</a><P></dl><a name="26685">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on IK Set.
+</STRONG>
+</a><P><dl><a name="26704">
+<dt>For example, if we want to adjust the motion of the joint along the wire, but want that adjustment to be made only by modifying the position of the tibia and femur, we'd use an IK Set that looked like this:</dt>
+</a><P><a name="26722">
+ <P><img src="3DynamicsOperations.anc11.gif"><p>
+</a></dl>
+<a name="26723">
+<em>Figure 3.9  &#32; &#32;IK Set for joint moving along wire
+</em></a><P><dl><dl><a name="27163">
+<dt>(Note that the tibia is constrained to movement in the X plane (to simulate movement around the knee joint)).</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you don't limit the degrees of freedom appropriately for this operation, your skeleton might jerk from frame to frame as each IK move is performed. Make sure the appropriate bones are included in the IK Set for the joint being animated along the wire.</em></font></dd></dt></dl><P>
+<a name="26737">
+In a script using this operation, you'd have a <strong>Read Biovision Data</strong> or <strong>Read Acclaim Data</strong>, followed by an <strong>Update Skeleton</strong> operation. After the <strong>Update Skeleton</strong> operation, you'd insert the <strong>IK Move along Wire</strong> operation.<p>
+</a><P><a name="26977">
+When you reanimated, the joint would follow (as closely as possible, within the limits of the IK solve) the path described by the modified wire:<p>
+</a><P><a name="26713">
+ <P><img src="3DynamicsOperations.anc12.gif"><p>
+</a><a name="26620">
+<em>Figure 3.10  &#32; &#32;The IK Move along wire makes the specified joint follow the new path
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>IK Move along Wire </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="26552">
+<em>Table 3.5  &#32; &#32;IK Move along Wire parameters
+</em></a></dl>
+<tr><th align="left"><a name="26558">
+Parameter
+</a><th align="left"><a name="26560">
+Dynamic?
+</a><th align="left"><a name="26562">
+Description
+</a>
+<tr><td valign="top"><a name="26564">
+ Skeleton<p>
+</a><td valign="top"><a name="26566">
+ No<p>
+</a><td valign="top"><a name="26568">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="26570">
+ Bone<p>
+</a><td valign="top"><a name="26572">
+ No<p>
+</a><td valign="top"><a name="26574">
+ The bone being moved along the wire (the joint further away from the root follows the wire).<p>
+</a>
+<tr><td valign="top"><a name="26576">
+ IK Set<p>
+</a><td valign="top"><a name="26578">
+ No<p>
+</a><td valign="top"><a name="26580">
+ The degrees of freedom for the joint moving along the wire.<p>
+</a>
+<tr><td valign="top"><a name="26582">
+ Wire<p>
+</a><td valign="top"><a name="26584">
+ No<p>
+</a><td valign="top"><a name="26586">
+ The wire along which the joint is animated.<p>
+</a>
+<tr><td valign="top"><a name="26588">
+ Offset<p>
+</a><td valign="top"><a name="26590">
+ Can be<p>
+</a><td valign="top"><a name="26762">
+ An offset, measured from the joint, used to modify the position to which the joint is updated.<p>
+</a>
+<tr><td valign="top"><a name="26594">
+ Use Previous?<p>
+</a><td valign="top"><a name="26596">
+ No<p>
+</a><td valign="top"><a name="26598">
+ Should the IK move be calculated based on the previous position of the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="26600">
+ Use Fast Solve?<p>
+</a><td valign="top"><a name="26602">
+ No<p>
+</a><td valign="top"><a name="26604">
+ Should the IK move be performed using the fast solve method?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</font></dd></dt></dl><P>
+<a name="15913">
+<h2><HR> IK Move to Object</h2>
+</a><a name="29980">
+Moves the selected joint on a skeleton toward an object using a specified IK set. What the IK move looks like depends on the IK set defined for that joint.<p>
+</a><P><a name="25666">
+Suppose, for example, you wanted a character to reach for an object with his right hand. You might want to set up an IK set that let him move his hand and arm bones in any direction, but his right collarbone only around the Y axis:<p>
+</a><P><a name="25681">
+ <P><img src="3DynamicsOperations.anc13.gif"><p>
+</a><a name="25682">
+<em>Figure 3.11  &#32; &#32;A typical IK Set for a Move to Object operation
+</em></a><P><a name="25672">
+By default, the operation moves the specified joint to the center of the specified object. In the example below, the skeleton is reaching for the center of the octahedron object (indicated by the local axes):<p>
+</a><P><a name="25655">
+ <P><img src="3DynamicsOperations.anc14.gif"><p>
+</a><a name="25656">
+<em>Figure 3.12  &#32; &#32;An IK Move to Object operation; the skeleton reaches for the object using the IK Set in effect
+</em></a><P><ul><a name="25565">
+<li><strong>Offset</strong> defines an offset measured from the center of the object, that the joint reaches for. This parameter can be useful if you want the joint to stop when it is a certain distance from the center of the object (e.g., to simulate touching the object's surface).
+</a></li><P><a name="25708">
+<li><strong>Fraction</strong> is a dynamic value that defines how far toward the goal the IK move is solved over time.
+</a></li><P></ul><P><a name="26436">
+The <strong>IK Move to Object </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="25569">
+<em>Table 3.6  &#32; &#32;IK Move to Object parameters
+</em></a></dl>
+<tr><th align="left"><a name="25575">
+Parameter
+</a><th align="left"><a name="25577">
+Dynamic?
+</a><th align="left"><a name="25579">
+Description
+</a>
+<tr><td valign="top"><a name="25581">
+ Skeleton<p>
+</a><td valign="top"><a name="25583">
+ No<p>
+</a><td valign="top"><a name="25585">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="25587">
+ Bone<p>
+</a><td valign="top"><a name="25589">
+ No<p>
+</a><td valign="top"><a name="25591">
+ The joint to move toward the center of the target object.<p>
+</a>
+<tr><td valign="top"><a name="25593">
+ IK Set<p>
+</a><td valign="top"><a name="25595">
+ No<p>
+</a><td valign="top"><a name="25597">
+ The IK Set used to solve the IK move.<p>
+</a>
+<tr><td valign="top"><a name="25599">
+ Object<p>
+</a><td valign="top"><a name="25601">
+ No<p>
+</a><td valign="top"><a name="25603">
+ The target object.<p>
+</a>
+<tr><td valign="top"><a name="25605">
+ Offset<p>
+</a><td valign="top"><a name="25607">
+ Can be<p>
+</a><td valign="top"><a name="25609">
+ An offset toward which the skeleton reaches, measured from the object center.<p>
+</a>
+<tr><td valign="top"><a name="25611">
+ Fraction<p>
+</a><td valign="top"><a name="25613">
+ Can be<p>
+</a><td valign="top"><a name="25615">
+ A value, specifying how far toward the target object the joint reaches.<p>
+</a>
+<tr><td valign="top"><a name="25617">
+ Use Previous?<p>
+</a><td valign="top"><a name="25619">
+ No<p>
+</a><td valign="top"><a name="26782">
+ Should the IK move be calculated on the previous position of the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="25623">
+ Use Fast Solve?<p>
+</a><td valign="top"><a name="25625">
+ No<p>
+</a><td valign="top"><a name="26784">
+ Should the IK move be performed using the fast solve method?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="25662">
+<h2><HR> IK Move to Part</h2>
+</a><a name="25740">
+Similar to <strong>IK Move to Object</strong>, except that the specified target is a skin part.<p>
+</a><P><a name="25741">
+This operation could be used, for example, to make a character raise his hand to his chin.<p>
+</a><P><a name="25745">
+Note, however, that the part specified need not be on the skin attached to the skeleton. You could also use this operation to make a skeleton reach toward a doorknob on a door or a steering wheel on a car, as long as those elements were specified as parts on their respective objects.<p>
+</a><P><a name="28517">
+ <P><img src="3DynamicsOperations.anc15.gif"><p>
+</a><a name="28518">
+<em>Figure 3.13  &#32; &#32;An IK Move to Part operation
+</em></a><P><a name="26448">
+The <strong>IK Move to Part </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="16498">
+<em>Table 3.7  &#32; &#32;IK Move to Part parameters
+</em></a></dl>
+<tr><th align="left"><a name="16502">
+Parameter
+</a><th align="left"><a name="24697">
+Dynamic?
+</a><th align="left"><a name="16504">
+Description
+</a>
+<tr><td valign="top"><a name="16506">
+ Skeleton<p>
+</a><td valign="top"><a name="24699">
+ No<p>
+</a><td valign="top"><a name="16508">
+ The skeleton being animated.<p>
+</a>
+<tr><td valign="top"><a name="16510">
+ Bone<p>
+</a><td valign="top"><a name="24701">
+ No<p>
+</a><td valign="top"><a name="16512">
+ The joint to move toward the center of the target part.<p>
+</a>
+<tr><td valign="top"><a name="16514">
+ IK Set<p>
+</a><td valign="top"><a name="24703">
+ No<p>
+</a><td valign="top"><a name="16516">
+ The IK Set used to solve the IK move.<p>
+</a>
+<tr><td valign="top"><a name="24973">
+ Object<p>
+</a><td valign="top"><a name="24975">
+ No<p>
+</a><td valign="top"><a name="24977">
+ The object on which the target part is located.<p>
+</a>
+<tr><td valign="top"><a name="16518">
+ Part<p>
+</a><td valign="top"><a name="24705">
+ No<p>
+</a><td valign="top"><a name="16520">
+ The target part-this can be any part on any object.<p>
+</a>
+<tr><td valign="top"><a name="16522">
+ Offset<p>
+</a><td valign="top"><a name="24707">
+ Can be<p>
+</a><td valign="top"><a name="25764">
+ An offset toward which the skeleton reaches, measured from the object center.<p>
+</a>
+<tr><td valign="top"><a name="16526">
+ Fraction<p>
+</a><td valign="top"><a name="24709">
+ Can be<p>
+</a><td valign="top"><a name="25766">
+ A dynamic value, specifying how much of the IK move is performed.<p>
+</a>
+<tr><td valign="top"><a name="16530">
+ Use Previous?<p>
+</a><td valign="top"><a name="24711">
+ No<p>
+</a><td valign="top"><a name="26786">
+ Should the IK move be calculated on the previous position of the skeleton?<p>
+</a>
+<tr><td valign="top"><a name="16534">
+ Use Fast Solve?<p>
+</a><td valign="top"><a name="24713">
+ No<p>
+</a><td valign="top"><a name="26788">
+ Should the IK move be performed using the fast solve method?<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15398">
+<h2><HR> Lengthen Bone</h2>
+</a><a name="15399">
+Stretches an individual bone, either <em>to</em> a specified length (using <strong>Set</strong>), or <em>by</em> a specified length (using <strong>Add</strong>). This technique can be used on several bones to create cartoonish effects, as described in the <em>Skeletal Animation System Tutorial</em>.<p>
+</a><P><a name="28507">
+ <P><img src="3DynamicsOperations.anc16.gif"><p>
+</a><a name="28508">
+<em>Figure 3.14  &#32; &#32;Lengthening a bone
+</em></a><P><a name="26464">
+The <strong>Lengthen Bone </strong>operation should come before the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="15407">
+<em>Table 3.8  &#32; &#32;Lengthen Bone parameters
+</em></a></dl>
+<tr><th align="left"><a name="15411">
+Parameter
+</a><th align="left"><a name="24721">
+Dynamic?
+</a><th align="left"><a name="15413">
+Description
+</a>
+<tr><td valign="top"><a name="15415">
+ Skeleton<p>
+</a><td valign="top"><a name="24723">
+ No<p>
+</a><td valign="top"><a name="15417">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="15419">
+ Bone<p>
+</a><td valign="top"><a name="24725">
+ No<p>
+</a><td valign="top"><a name="15421">
+ The bone you want to lengthen.<p>
+</a>
+<tr><td valign="top"><a name="16551">
+ Mode<p>
+</a><td valign="top"><a name="24727">
+ No<p>
+</a><td valign="top"><a name="16553">
+ There are two modes for this operation. The mode selected determines how the dynamic value in Value is used to modify the bone:<p>
+</a><a name="25769">
+ <strong>Set</strong> uses the value in <strong>Value</strong> as an absolute.<p>
+</a><a name="16557">
+ <strong>Add</strong> adds the value in <strong>Value</strong> to the length of the bone.<p>
+</a>
+<tr><td valign="top"><a name="15423">
+ Value<p>
+</a><td valign="top"><a name="24729">
+ Yes<p>
+</a><td valign="top"><a name="15428">
+ The dynamic value used to change the bone's length.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="15494">
+<h2><HR> Lock Feet</h2>
+</a><a name="27450">
+This operation can be used to lock feet from frame to frame. The operation locks the X and Z motion of the lowest joint on the skeleton to its position in the previous frame (usually, the foot on the ground in a walk cycle).<p>
+</a><P><a name="27799">
+You can define an imaginary plane to define the "ground" using the <strong>Lock Height </strong>variable; even though in a walk cycle, the foot is approximately at 0, you may want define a maximum height at which that lowest joint is still assumed to be on the ground. Locking the feet is typically necessary if the scale of the skeleton and the motion capture data don't match exactly. <p>
+</a><P><a name="27740">
+The <strong>Lock Feet </strong>operation should come after the <strong>Update Skeleton</strong> operation. 
+<P><Table Border="1">
+<dl>
+<a name="27744">
+<em>Table 3.9  &#32; &#32;Lock Feet parameters
+</em></a></dl>
+<tr><th align="left"><a name="27750">
+Parameter
+</a><th align="left"><a name="27752">
+Dynamic?
+</a><th align="left"><a name="27754">
+Description
+</a>
+<tr><td valign="top"><a name="27756">
+ Skeleton<p>
+</a><td valign="top"><a name="27758">
+ No<p>
+</a><td valign="top"><a name="27760">
+ The skeleton on which this operation is performed.<p>
+</a>
+<tr><td valign="top"><a name="27762">
+ Use ball/heel?<p>
+</a><td valign="top"><a name="27764">
+ No<p>
+</a><td valign="top"><a name="27766">
+ Locks feet based on the joint ID of ball and heel (if they exist).<p>
+</a>
+<tr><td valign="top"><a name="27776">
+ Lock Slippage?<p>
+</a><td valign="top"><a name="27778">
+ Yes<p>
+</a><td valign="top"><a name="27780">
+ Locks slippage on skeleton due to motion not matching the skeleton size. When turned on, the lowest joint of the skeleton is locked to its position in the previous frame (in the X and Z plane).<p>
+</a>
+<tr><td valign="top"><a name="28529">
+ Lock Height<p>
+</a><td valign="top"><a name="28531">
+ Can be<p>
+</a><td valign="top"><a name="28533">
+ Height below which to lock the lowest joint on the skeleton.<p>
+</a>
+<tr><td valign="top"><a name="28523">
+ Lock to Ground<p>
+</a><td valign="top"><a name="28525">
+ No<p>
+</a><td valign="top"><a name="28527">
+ Lock feet to an imaginary ground plane of specified height.<p>
+</a>
+<tr><td valign="top"><a name="29999">
+ Ground Height<p>
+</a><td valign="top"><a name="30001">
+ Can be<p>
+</a><td valign="top"><a name="30003">
+ Height for ground plane (on the Y axis).<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="2MenusCommands3.html">[Prev]</a> <a href="3DynamicsOperations1.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 10:49:52 -->
+
+</body>
+</html>

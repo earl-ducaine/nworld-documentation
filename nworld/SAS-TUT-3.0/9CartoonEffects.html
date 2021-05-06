@@ -1,0 +1,163 @@
+<html><head><title>Cartoon Effects</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="8WalkCycleEnhancements.html">[Prev]</a> <a href="10EditingMCData.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Cartoon Effects</h1>
+</a>
+<hr><p><a name="11329">
+<h4> This chapter describes how to stretch or scale bones to create cartoonish effects with skeletons in N-Dynamics.</h4>
+</a><a name="11333">
+ <P><img src="9CartoonEffects.anc.gif"><p>
+</a><a name="11219">
+<h2><HR> In this Chapter</h2>
+</a><a name="11220">
+You'll learn how to:<p>
+</a><P><ul><a name="11232">
+<li>animate the lengthening of a bone (or bones) over the course of a script-a handy technique for creating some very "cartoonish" effects using the Skeletal Animation System
+</a></li><P></ul><P><a name="10809">
+<h2><HR> Animating Changes in Bone Length</h2>
+</a><a name="10827">
+Because each bone can be referenced directly, you can use N-Dynamics to animate the change of a bone's length over the course of an animation script.<p>
+</a><P><a name="10836">
+Suppose for example, that you want a character's arms or torso to change size over time. There are built in functions designed to animate just such an effect.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you animate changes in the length of bones that affect motion capture (e.g. the femurs in a walk cycle), you may throw off the motion capture.</font></dd></dt></dl><P>
+<a name="10853">
+To see such an animation:<p>
+</a><P>
+<a name="10852">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><dl><dl><a name="10857">
+<dt><code>/usr/local/ngc/demo/scripts/lengthen-bone</code><p>
+</a><P></dl></dl><dl><a name="10858">
+<dt>There are four channels in the script:</dt>
+</a><P></dl><ul>
+<BR><a name="10865">
+<li>The <strong>Set View</strong> channel positions the camera
+</a><P><BR><a name="10866">
+<li>The <strong>Read Acclaim Data</strong> channel reads in the motion capture data that we'll use to drive the skeleton
+</a><P><BR><a name="10867">
+<li>The <strong>Scale Bone</strong> channel animates the change in lenght of a selected bone (this is the channel we're most interested in for this example).
+</a><P><BR><a name="10878">
+<li>The <strong>Update Skeleton</strong> channel applies the motion capture data to the skeleton.
+</a><P></ul>
+<dl><a name="10891">
+<dt>Notice that the <strong>Scale Bone</strong> channel is turned off when the script is read in; we'll turn it on after we've animated the script once so that you can see its effect.</dt>
+</a><P></dl><a name="10890">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="10898">
+<dt>The cat walks from left to right across the N-Geometry window.</dt>
+</a><P></dl><a name="10902">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on the "Lengthen Bone" channel.
+</STRONG>
+</a><P><a name="10919">
+ <P><img src="9CartoonEffects.anc1.gif"><p>
+</a>
+<a name="10922">
+<em>Figure 9.1  &#32; &#32;Lengthen Bone operation properties
+</em></a><P><dl><dl><a name="10924">
+<dt>To animate the lengthening of a bone, you need to specify:</dt>
+</a><P></dl><ul>
+<BR><a name="10929">
+<li>The <strong>Skeleton</strong> that contains the bone to lengthen
+</a><P><BR><a name="10932">
+<li>The <strong>Bone</strong> you want to lengthen. (You can <strong>(CLICK-L)</strong> on the bone in the N-Geometry window to see its name displayed in the upper left corner of that window).
+</a><P><dl><a name="10962">
+<dt>If you <strong>(CLICK-L)</strong> on the text edit box, a menu appears, showing all bones on the selected skeleton; <strong>(CLICK-L)</strong> on the bone you want to lengthen.<p>
+</a><P></dl><BR><a name="10943">
+<li>The <strong>Lengthen</strong> mode:
+</a><P><ul>
+<BR><a name="10945">
+<li><strong>Set</strong> uses the value in the curve channel underneath this operation as the absolute value of the bone.
+</a><P><BR><a name="10956">
+<li><strong>Add</strong> adds the value in the curve channel to the bone's current length.
+</a><P></ul>
+</ul>
+</dl>
+<a name="10965">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It after you've reviewed the parameters for this channel.
+</STRONG>
+</a><P><a name="10969">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Lengthen Bone channel, then on the curve channel under it.
+</STRONG>
+</a><P><dl><a name="10984">
+<dt>Note that we inserted a number of cues in the channel.</dt>
+</a><P><a name="10975">
+ <P><img src="9CartoonEffects.anc2.gif"><p>
+</a></dl>
+<a name="10976">
+<em>Figure 9.2  &#32; &#32;Cues for Lengthen Bone channel
+</em></a><P><dl><dl><a name="10970">
+<dt>The cues represent the value used to lengthen the bone at that point in the script (using either the <strong>Set</strong> or <strong>Add</strong> mode described earlier).</dt>
+</a><P><a name="10999">
+<dt>(If you want to modify the values of the cues in the channel, you can either <strong>(SHIFT-L)</strong> on the cue itself, or <strong>(CLICK-R)</strong> on the curve channel and select the <strong>Edit all Cue Values</strong> operation.)</dt>
+</a><P></dl></dl>
+<a name="10996">
+<STRONG>	6.	 Move the mouse over the "Lengthen Bone" channel and press "a" on the keyboard.
+</STRONG>
+</a><P><dl><a name="11014">
+<dt>This makes the <strong>Lengthen Bone</strong> channel active.</dt>
+</a><P></dl><a name="11015">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics again.
+</STRONG>
+</a><P><dl><a name="11016">
+<dt>This time the cat walks across the screen, but the torso bone stretches up and down to follow the cue values in the <strong>Lengthen Bone</strong> channel.</dt>
+</a><P><a name="11039">
+<dt>(It may be easier for you to see the actual change being made to the skeleton if you <strong>(CLICK-M)</strong> on the <strong>Update Skeleton</strong> channel and turn <strong>Skins&gt;Update?</strong> to <strong>No</strong>.)</dt>
+</a><P><a name="11022">
+ <P><img src="9CartoonEffects.anc3.gif"><p>
+</a></dl>
+<a name="11023">
+<em>Figure 9.3  &#32; &#32;Left, original animation; right, after animating change in bone length of torso bone
+</em></a><P><dl><dl><a name="11017">
+<dt>Of course, any skins attached to the bone stretch too; this is where you might want to create soft parts based on the change in a bone's length.</dt>
+</a><P></dl></dl><a name="11056">
+<h3> Animating Changes in Bone Scale</h3>
+</a><a name="11057">
+Animating a change in bone length lets you set an absolute value for a bone or group or bones at each frame of the animation.<p>
+</a><P><a name="11151">
+If you want to animate a change in a bone's scale (that is, specify a multiplier for the default bone length at each frame), you can do that too.<p>
+</a><P><a name="11064">
+Try loading the following script:<p>
+</a><P><dl><dl><a name="11065">
+<dt><code>/usr/local/ngc/demo/scripts/scale-bone</code></dt>
+</a><P></dl></dl><a name="11066">
+This script is very similar to the <strong>lengthen-bone</strong> script we animated in the previous section, with one exception-if you <strong>(CLICK-M)</strong> on the <strong>Scale Bone</strong> channel, you can see that there is an additional option for how to use the value in the curve channel for the operation:<p>
+</a><P><ul><a name="11070">
+<li><strong>Set</strong> and <strong>Add</strong> are the same as for <strong>Lengthen Bone</strong>
+</a></li><P><a name="11072">
+<li><strong>Multiply</strong> uses the curve value as a multiplier-the current bone length is multiplied by the value in the curve channel
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	If you use the multiply option, you should be careful when defining cue values-it's easy to specify a multiplier that would scale a bone to an amazing degree.</font></dd></dt></dl><P>
+<a name="11174">
+If you look at the cue values in the curve channel of the <strong>Scale Bone</strong> channel, you can see that some of the cues specify a value of 2.0, while others specify a value of 4.0; this is why the cat stretches more at certain points in the script than in others.<p>
+</a><P><a name="11373">
+<h2><HR> Congratulations!</h2>
+</a><a name="11374">
+You've now learned to how to animate the stretching of bones (and skins if attached!) on a character.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="8WalkCycleEnhancements.html">[Prev]</a> <a href="10EditingMCData.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 20:44:04 -->
+
+</body>
+</html>

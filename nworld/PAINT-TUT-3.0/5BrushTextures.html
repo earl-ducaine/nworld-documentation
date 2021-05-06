@@ -1,0 +1,441 @@
+<html><head><title>Customizing N-Paint Elements</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4CompositingImages.html">[Prev]</a> <a href="6SeamlessMap.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11896">
+<h1>Customizing N-Paint Elements</h1>
+</a>
+<hr><p><a name="11897">
+<h4> N-Paint provides you with a rich palette of predefined brush textures to choose from. You can also create your own custom brush textures for unique 2D effects.</h4>
+</a><a name="11360">
+ <P><img src="5BrushTextures.anc.gif"><p>
+</a><a name="11041">
+<h2><HR> In This Chapter</h2>
+</a><a name="12653">
+You'll learn how to:<p>
+</a><P><ul><a name="11906">
+<li>Create a brush texture template matte
+</a></li><P><a name="11346">
+<li>Use brush texture template matte to create new brush textures
+</a></li><P><a name="11347">
+<li>Set and use different brush texture types
+</a></li><P><a name="12419">
+<li>Create and save a custom palette
+</a></li><P></ul><P><a name="12421">
+<h2><HR> Creating a Custom Brush Texture</h2>
+</a><a name="12422">
+In Chapters 1 and 2 we created a scene with a samurai against a backdrop of moonlight and stone. Now, we'll revisit that scene to add the finishing touch; stars in the evening sky. As is the case with many N-Paint operations, there is more than one approach to this task.<p>
+</a><P><a name="12424">
+In the next section, you'll learn how to create your own brush texture, which you can use in conjunction with the brush and a color ink to quickly and easily add a field of stars to the background of the image.<p>
+</a><P><a name="12431">
+<h3> Creating a Matte for a Brush Texture</h3>
+</a><a name="12432">
+Brush textures are basically opacity mattes, seperate from an images alpha channel, which modify the pattern in which ink is applied to the canvas. Think of texture opacity mattes as local mattes placed between the brush and the canvas. <p>
+</a><P><a name="12674">
+Brush textures work like mattes, so any matte image can be used to create a brush texture. In this case, we'll start with a fresh new image and create the matte we need.<p>
+</a><P>
+<a name="12246">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on<strong> File:&gt;Create New</strong>.
+</STRONG>
+</a><P><dl><a name="12247">
+<dt>Fill in the Create New Image dialog with a path and filename for the new image. Specify 720 for both width and 486 for height, then <strong>(CLICK-L)</strong> on Do It.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note:	</strong>The size of the canvas doesn't matter if you want to use your brush texture with Random or Dragged offsets. However, if you wish to use your brush with a Tiled offset, it must be at least as large as the image you're using it on. 720x486 is a standard video resolution, so it's a good standard dimension to choose.</font></dd></dt></dl><P>
+
+<a name="12248">
+<STRONG>	2.	 Select the Brush tool.
+</STRONG>
+</a><P><a name="12309">
+<STRONG>	3.	 Select the Color ink.
+</STRONG>
+</a><P><dl><a name="12695">
+<dt>If you're using a different color, choose white.</dt>
+</a><P><a name="12249">
+<dt>We're going to create a random starfield with two sizes of star. For the first group, set the brush <strong>Size</strong> to about <strong>4</strong>, <strong>Hard</strong> to about <strong>40%</strong>. Paint a few stars on a portion of the image.</dt>
+</a><P><a name="12253">
+ <P><img src="5BrushTextures.anc1.gif"><p>
+</a></dl>
+<a name="12254">
+<em>Figure 5.1  &#32; &#32;The first stars in the star field
+</em></a><P>
+<a name="12255">
+<STRONG>	4.	 Set <strong>size</strong> to 2 and create several more smaller stars.
+</STRONG>
+</a><P><dl><a name="12256">
+<dt>When you've finished your image should look something like this:</dt>
+</a><P><a name="12260">
+ <P><img src="5BrushTextures.anc2.gif"><p>
+</a></dl>
+<a name="12261">
+<em>Figure 5.2  &#32; &#32;More stars
+</em></a><P>
+<a name="12317">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the cutout brush in the tool box.
+</STRONG>
+</a><P><a name="12326">
+ <P><img src="5BrushTextures.anc3.gif"><p>
+</a>
+<a name="12327">
+<em>Figure 5.3  &#32; &#32;The cutout brush
+</em></a><P><dl><dl><a name="12328">
+<dt>The cutout brush parameters menu appears:</dt>
+</a><P><a name="12332">
+ <P><img src="5BrushTextures.anc4.gif"><p>
+</a></dl></dl><a name="12333">
+<em>Figure 5.4  &#32; &#32;Cutout brush parameters
+</em></a><P>
+<a name="12334">
+<STRONG>	6.	 Select the pattern ink.
+</STRONG>
+</a><P><dl><a name="12335">
+<dt>The Pattern ink parameters menu appears:</dt>
+</a><P><a name="12339">
+ <P><img src="5BrushTextures.anc5.gif"><p>
+</a></dl>
+<a name="12340">
+<em>Figure 5.5  &#32; &#32;Pattern ink parameters
+</em></a><P>
+<a name="12341">
+<STRONG>	7.	 <strong>(CLICK-L) </strong>on the Tile checkbox in the Pattern ink parameters menu.
+</STRONG>
+</a><P><a name="12342">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Create Cutout in the Cutout Brush parameters section.
+</STRONG>
+</a><P><dl><a name="12343">
+<dt>The Create Cutout pop-up menu appears:</dt>
+</a><P><a name="12347">
+ <P><img src="5BrushTextures.anc6.gif"><p>
+</a></dl>
+<a name="12348">
+<em>Figure 5.6  &#32; &#32;The Create Cutout pop-up menu
+</em></a><P>
+<a name="12350">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Using Rectangle.
+</STRONG>
+</a><P><a name="12352">
+<STRONG>	10.	 <strong>D</strong>raw a rectangle around the stars, and <strong>(CLICK-L)</strong> again.
+</STRONG>
+</a><P><dl><a name="12353">
+<dt>This creates the cutout pattern, which the pattern ink will tile across the canvas.</dt>
+</a><P></dl><a name="12354">
+<STRONG>	11.	 Press and hold the left mouse button, then drag the cutout brush across the canvas. 
+</STRONG>
+</a><P><dl><a name="12355">
+<dt>Your starfield pattern should now cover the canvas, like this:</dt>
+</a><P><a name="12359">
+ <P><img src="5BrushTextures.anc7.gif"><p>
+</a></dl>
+<a name="12262">
+<em>Figure 5.7  &#32; &#32;The canvas covered with the star field
+</em></a><P><a name="12314">
+If you like, you can use the round brush again to add more stars and make the overall pattern a little more random. <p>
+</a><P>
+<a name="12381">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on <strong>Add</strong> and <strong>View</strong> in the matte modes section of the menu.
+</STRONG>
+</a><P><a name="12264">
+<STRONG>	13.	 Select the Quad tool and the Swap RGBA ink.
+</STRONG>
+</a><P><dl><a name="12265">
+<dt>The Swap RGBA ink allows you to transfer the contents of one of the four channels of the image into another channel. </dt>
+</a><P><a name="12269">
+ <P><img src="5BrushTextures.anc8.gif"><p>
+</a></dl>
+<a name="12271">
+<em>Figure 5.8  &#32; &#32;The Swap RGBA parameters
+</em></a><P>
+<a name="12272">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the <strong>Red gets</strong> field, and select <strong>Red</strong> from the resulting pop-up menu.
+</STRONG>
+</a><P><dl><a name="12273">
+<dt>Repeat this process for all four channels, so that all four are being replaced by the contents of the Red channel, as shown in <a href="5BrushTextures.html#12271">Figure 5.8</a>.</dt>
+</a><P></dl><a name="12277">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on <strong>Do Full Canvas</strong> in the Quad Tool parameters section of the menu.
+</STRONG>
+</a><P><dl><a name="12439">
+<dt>Copying the red channel into the green, blue, and then the red channel creates a matte that matches exactly any non-black areas of the image.</dt>
+</a><P><a name="12714">
+<dt>If the matte does not appear, make sure that the matte is in Add and View modes. If it isn't, <strong>(CLICK-L)</strong> on Undo, set the matte modes, then <strong>(CLICK-L)</strong> on Redo.</dt>
+</a><P></dl><a name="12278">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on File: field, then <strong>(CLICK-L)</strong> on Save Matte.
+</STRONG>
+</a><P><dl><a name="12279">
+<dt>Save the matte to memory (or to file if you want a permanent copy).</dt>
+</a><P></dl><a name="12280">
+<STRONG>	17.	 Load the following image file:
+</STRONG>
+</a><P><dl><a name="12377">
+<dt><code>/usr/local/ngc/demo/images/<a hero-twilight.rgba>hero-twilight.rgba</code></dt>
+</a><P></dl><a name="12284">
+<STRONG>	18.	 Select the Brush tool.
+</STRONG>
+</a><P><a name="12732">
+<STRONG>	19.	 Select the Color ink.
+</STRONG>
+</a><P><a name="12285">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the <strong>Texture&gt;Use Texture</strong> in the Texture options section of the menu.
+</STRONG>
+</a><P><a name="12286">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on <strong>Image</strong> in the Texture options section of the menu.
+</STRONG>
+</a><P><dl><a name="12440">
+<dt>A list of single-component images currently loaded into memory appears. <strong>(CLICK-L)</strong> on the matte star image you just created.</dt>
+</a><P></dl><a name="12288">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on <strong>Texture&gt;Offset&gt;Tiled</strong> in the Texture options section of the menu.
+</STRONG>
+</a><P><a name="12289">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on<strong> Track&gt;Continuous</strong> in the Options section of the menu.
+</STRONG>
+</a><P><a name="12290">
+<STRONG>	24.	 Make sure that <strong>Use</strong> and <strong>View</strong> are selected in the matte modes section of the menu.
+</STRONG>
+</a><P><a name="12291">
+<STRONG>	25.	 Paint on the image with the Brush.
+</STRONG>
+</a><P><dl><a name="12292">
+<dt>Your background is filled with stars as you drag the brush across the canvas!</dt>
+</a><P></dl><a name="12293">
+<STRONG>	26.	 Save your completed image
+</STRONG>
+</a><P><dl><a name="12386">
+<dt>Here's what our image looked like after we added our star field.</dt>
+</a><P><a name="12387">
+ <P><img src="5BrushTextures.anc9.gif"><p>
+</a></dl>
+<a name="12388">
+<em>Figure 5.9  &#32; &#32;The hero with stars
+</em></a><P><a name="11292">
+<h2><HR> Experiment With Different Effects</h2>
+</a><a name="11322">
+With Texture Offset set to <strong>Tiled</strong>, the matte image is revealed through the brush in a regular pattern.<p>
+</a><P><a name="11293">
+Setting the <strong>Texture Offset</strong> to <strong>Random</strong> uses a random portion of the matte through which to apply ink. As you move the brush, the random area changes, so your brush appears very "active," resulting in an effect like <a href="5BrushTextures.html#11295">Figure 5.10</a>:<p>
+</a><P><a name="11294">
+ <P><img src="5BrushTextures.anc10.gif"><p>
+</a><a name="11295">
+<em>Figure 5.10  &#32; &#32;Drawing with random texture offset
+</em></a><P><a name="11300">
+Setting the <strong>Texture Offset </strong>to <strong>Dragged</strong> prevents the texture in the brush from changing. The result is something like this:<p>
+</a><P><a name="11301">
+ <P><img src="5BrushTextures.anc11.gif"><p>
+</a><a name="11938">
+<em>Figure 5.11  &#32; &#32;Drawing with the dragged Texture Offset
+</em></a><P><a name="11940">
+<h3> Using Shadow Effects</h3>
+</a><a name="11941">
+Using shadow effects in conjunction with custom brush textures opens up an almost infinite range of possibilities for using textured brushes.<p>
+</a><P><a name="11942">
+To set shadow parameters:<p>
+</a><P>
+<a name="11943">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Shadow checkbox in the Drawing Parameters section.
+</STRONG>
+</a><P><a name="11944">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Set to adjust shadow parameters.
+</STRONG>
+</a><P><dl><a name="11945">
+<dt>The Specify Shadow Parameters menu appears:</dt>
+</a><P><a name="11949">
+ <P><img src="5BrushTextures.anc12.gif"><p>
+</a></dl>
+<a name="11950">
+<em>Figure 5.12  &#32; &#32;The Specify Shadow Parameters menu
+</em></a><P><a name="11951">
+Experiment with different values for these parameters. By combining shadow parameters with custom textures, you can quickly and easily achieve almost any brush texture.<p>
+</a><P><a name="11935">
+<h2><HR> Creating a Custom Palette</h2>
+</a><a name="11955">
+The standard N-Paint palette contains 48 colors and 208 empty color slots. Frequently, you'll want to create and use palettes that contain colors all your own. You can create custom colors, build palettes from colors in the current image, save your palettes to disk, open them, and select from among several palettes loaded into memory.<p>
+</a><P><a name="11958">
+<h3> Palette Structure</h3>
+</a><a name="11964">
+<a href="5BrushTextures.html#11960">Figure 5.13</a> shows the basic components of the palette:<p>
+</a><P><a name="11959">
+ <P><img src="5BrushTextures.anc13.gif"><p>
+</a><a name="11960">
+<em>Figure 5.13  &#32; &#32;Anatomy of a palette
+</em></a><P><a name="12010">
+<h3> Creating a Custom Color</h3>
+</a><a name="12011">
+You can create a custom color easily by editing an existing color. For example, to create a custom shade of green:<p>
+</a><P>
+<a name="12012">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Palette Menus icon in the Commands section of the N-Paint menu.
+</STRONG>
+</a><P><a name="12015">
+ <P><img src="5BrushTextures.anc14.gif"><p>
+</a>
+<a name="12016">
+<em>Figure 5.14  &#32; &#32;The Palette Menus icon
+</em></a><P>
+<a name="12014">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on a shade of green that looks close to the shade you hope to end up with.
+</STRONG>
+</a><P><a name="12013">
+<STRONG>	3.	 Using the IHS sliders, adjust the intensity, hue, and saturation of the current color.
+</STRONG>
+</a><P><dl><a name="12027">
+<dt>You can create a wide range of colors using these sliders. The color is displayed in the current color box at the right side of the palette.</dt>
+</a><P></dl><a name="12045">
+<STRONG>	4.	 When the color looks the way you like, use the paging controls to expose an empty palette slot.
+</STRONG>
+</a><P><dl><a name="12046">
+<dt><strong>(CLICK-L)</strong> on the downward arrow to display an empty palette row.</dt>
+</a><P><a name="12049">
+ <P><img src="5BrushTextures.anc15.gif"><p>
+</a></dl>
+<a name="12050">
+<em>Figure 5.15  &#32; &#32;Empty palette slots
+</em></a><P>
+<a name="12064">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on one of the empty slots.
+</STRONG>
+</a><P><dl><a name="12065">
+<dt>The current color is copied into that slot!</dt>
+</a><P></dl>
+<a name="12066">
+<h3> Saving your Custom Palette</h3>
+</a><a name="12067">
+Now that you've added a custom color to your palette, you can save it to file in case you want to use it again later.<p>
+</a><P><a name="12068">
+To save your palette:<p>
+</a><P>
+<a name="12069">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the magenta Palette field.
+</STRONG>
+</a><P><dl><a name="12075">
+<dt>The Palette operations menu appears:</dt>
+</a><P><a name="12076">
+ <P><img src="5BrushTextures.anc16.gif"><p>
+</a></dl>
+<a name="12077">
+<em>Figure 5.16  &#32; &#32;Palette operations
+</em></a><P>
+<a name="12083">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Save As.
+</STRONG>
+</a><P><dl><a name="12084">
+<dt>Use the dialog box to specify a name and directory for your palette. When you've done so, <strong>(CLICK-L)</strong> on <strong>Save</strong>.</dt>
+</a><P></dl>
+<a name="12085">
+<h3> Creating a New Palette</h3>
+</a><a name="12086">
+To create a <em>new</em> palette:<p>
+</a><P>
+<a name="12090">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Palette Field, then <strong>(CLICK-L)</strong> on Create New.
+</STRONG>
+</a><P><dl><a name="12091">
+<dt>Enter a directory and name for yourpalette in the appropriate fields, then <strong>(CLICK-L)</strong> on <strong>Do It</strong>.</dt>
+</a><P></dl>
+<a name="12092">
+<h3> Deleting a Color</h3>
+</a><a name="12097">
+To delete a color from the palette:<p>
+</a><P>
+<a name="12100">
+<STRONG>	 1.	 <strong>(CLICK-R) </strong>on the slot.
+</STRONG>
+</a><P><dl><a name="12101">
+<dt>The color in the slot disappears.</dt>
+</a><P></dl>
+<a name="12102">
+<h3> Creating a Palette Row</h3>
+</a><a name="12103">
+In this short example, we'll place colors at either end of a palette row, then let N-Paint create a gradient of colors between them.<p>
+</a><P>
+<a name="12104">
+<STRONG>	 1.	 <strong>Using the sliders, adjust the current color until it is black.</strong>
+</STRONG>
+</a><P><dl><a name="12107">
+<dt><strong>(DRAG-L)</strong> the sliders all the way to the left.</dt>
+</a><P></dl><a name="12108">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the leftmost slot in the empty palette row.
+</STRONG>
+</a><P><a name="12109">
+<STRONG>	3.	 Using the Intensity slider, adjust the current color until it is white.
+</STRONG>
+</a><P><dl><a name="12110">
+<dt><strong>(DRAG-L)</strong> the Intensity slider all the way to the right, but leave the Hue and Saturation sliders all the way to the left.</dt>
+</a><P></dl><a name="12111">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the rightmost slot in the empty palette row.
+</STRONG>
+</a><P>
+<a name="12112">
+Your palette row now has two different colors at opposite ends, similar to the one shown in <a href="5BrushTextures.html#12114">Figure 5.17</a><p>
+</a><P><a name="12113">
+ <P><img src="5BrushTextures.anc17.gif"><p>
+</a><a name="12114">
+<em>Figure 5.17  &#32; &#32;The two new colors
+</em></a><P>
+<a name="12123">
+<STRONG>	5.	 Place the cursor in the middle of the row and <strong>(CLICK-M)</strong>.
+</STRONG>
+</a><P><dl><a name="12124">
+<dt>N-Paint automatically fills in the row with the intermediate colors!</dt>
+</a><P><a name="12125">
+ <P><img src="5BrushTextures.anc18.gif"><p>
+</a></dl>
+<a name="12130">
+<em>Figure 5.18  &#32; &#32;The new interpolated row
+</em></a><P><a name="12135">
+<h3> Creating a Palette from the Colors in an Image</h3>
+</a><a name="12444">
+You can also create a palette that contains the colors in a portion of the current image, which you can specify. To do so,<p>
+</a><P>
+<a name="12447">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Palette field, then <strong>(CLICK-L)</strong> on Create New. 
+</STRONG>
+</a><P><dl><a name="12812">
+<dt>Enter a name for your new palette in the dialog box.</dt>
+</a><P></dl><a name="12448">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Color Picker tool.
+</STRONG>
+</a><P><dl><a name="12449">
+<dt>The Color Picker parameters menu appears:</dt>
+</a><P><a name="12450">
+ <P><img src="5BrushTextures.anc19.gif"><p>
+</a></dl>
+<a name="12451">
+<em>Figure 5.19  &#32; &#32;Color Picker tool parameters menu
+</em></a><P>
+<a name="12456">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Get Canvas Colors.
+</STRONG>
+</a><P><dl><a name="12460">
+<dt>Using the cursor, <strong>(CLICK-L)</strong> on two points to create a rectangle of the area of the canvas from which you want to create a palette.</dt>
+</a><P></dl><a name="12462">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on another tool (such as the brush tool) to reveal the commands menu again.
+</STRONG>
+</a><P><a name="12463">
+<STRONG>	5.	 Save your palette.
+</STRONG>
+</a><P>
+<a name="12443">
+<h2><HR> Congratulations!</h2>
+</a><a name="12136">
+You now know how to create custom brush textures and custom palettes. Customization in N-Paint is simple and easy, and it offers a way for you to increase your productivity with a minimum of extra effort.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="4CompositingImages.html">[Prev]</a> <a href="6SeamlessMap.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 09:40:54 -->
+
+</body>
+</html>

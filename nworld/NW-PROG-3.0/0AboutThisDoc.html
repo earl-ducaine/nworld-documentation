@@ -1,0 +1,128 @@
+<html><head><title>About this Document</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="BookTOC.html">[Prev]</a> <a href="IntrotoWOW.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="2122">
+<h1>About this Document</h1>
+</a>
+<hr><p><a name="2123">
+The Nichimen Open World Programmer's guide is designed to provide a broad understanding of the concepts necessry to develop Lisp programs for N&#183;World.<p>
+</a><P><a name="2124">
+<h2><HR> Contents of This Document</h2>
+</a><ul><a name="2128">
+<li><a href="IntrotoWOW.html#30925">Chapter &#32;1</a>, <a href="IntrotoWOW.html#30925">"Welcome to Nichimen's Wide Open World"</a> is the place to go for a quick start with Wide Open World. It provides a brief introduction to WOW, it's major components, and to Lisp programming.
+</a></li><P><a name="2239">
+<li><a href="LispFundamentals.html#30848">Chapter &#32;2</a>, <a href="LispFundamentals.html#30848">"Lisp Fundamentals"</a> provides a brief overview of important Lisp concepts, including the Lisp interpreter, symbols, forms and syntax, lists, and functions
+</a></li><P><a name="1972">
+<li><a href="NWorldDevoEnvironment.html#48504">Chapter &#32;3</a>, <a href="NWorldDevoEnvironment.html#48504">"Creating N&#183;World Code"</a> describes how to launch Xemacs, run N&#183;World from Xemacs, and how to create, compile, and store your own code as plug-ins. It also includes an introduction to N&#183;World packages.
+</a></li><P><a name="1981">
+<li><a href="DefForeignFunctions.html#28100">Chapter &#32;4</a>, <a href="DefForeignFunctions.html#28100">"Defining Foreign Functions"</a> summarizes the procedure for defining foreign functions in N&#183;World.
+</a></li><P><a name="1961">
+<li><a href="CreatingMenus.html#24653">Chapter &#32;5</a>, <a href="CreatingMenus.html#24653">"Building Interfaces with the UI-Toolkit"</a> describes how to use the N&#183;World UI Toolkit to build menus, pop-up dialog boxes, and other tools for interacting with users.
+</a></li><P><a name="1985">
+<li><a href="IntroToN-Objects.html#27938">Chapter &#32;6</a>, <a href="IntroToN-Objects.html#27938">"Introduction to N&#183;World Objects"</a> describes the basic structure of an N-Geometry object, the N-Geometry object hierarchy, and N-Geometry coordinate systems.
+</a></li><P><a name="1685">
+<li><a href="CreatingBodsAndObjs.html#302491">Chapter &#32;7</a>, <a href="CreatingBodsAndObjs.html#302491">"Creating, Manipulating, and Traversing Bodies and Objects"</a> includes important concepts for creating, selecting, viewing, and manipulating bodies, objects, and groups of elements.
+</a></li><P><a name="2006">
+<li><a href="ExpObjData.html#10723">Chapter &#32;8</a>, <a href="ExpObjData.html#10723">"Exporting Object Data"</a> describes how to export basic geometrical data, UV coordinate data, and transformation information from bodies, elements of bodies, objects, and object hierarchy. It also describes some basic techniques for directing and formatting this data.
+</a></li><P><a name="1814">
+<li><a href="RenderingOperations.html#12340">Chapter &#32;9</a>, <a href="RenderingOperations.html#12340">"Rendering Operations"</a> describes basic techniques for defining new attribute domains, attribute sets, and attributes. This chapter also covers adding your new domain to the Attributes Editor
+</a></li><P><a name="1830">
+<li><a href="ExtendingDynamics.html#22526">Chapter &#32;10</a>, <a href="ExtendingDynamics.html#22526">"Extending Applications"</a>describes how to extend N-Geometry by defining new edmethods. It also shows how to extend N-Dynamics by defining your own dynamics operations. Dynamics operations are performed on objects in each frame of a Dynamics animation.
+</a></li><P><a name="1844">
+<li><a href="LoopPaths.html#26535">Chapter &#32;11</a>, <a href="LoopPaths.html#26535">"Traversing Elements"</a>describes the predefined iteration paths used to traverse elements of N-Geometry's database.
+</a></li><P><a name="2086">
+<li><a href="OptimizingCode.html#29901">Chapter &#32;12</a>, <a href="0AboutThisDoc.html#2122">"About this Document"</a> describes how you can increase the performance of your code with anti-generic functions. It also describes how to create and manipulate ftriplets.
+</a></li><P><a name="1703">
+<li><a href="AASCIIObjectFileFormat.html#25775">Appendix &#32;A</a>, <a href="AASCIIObjectFileFormat.html#25775">"ASCII Object File Format"</a> describes the file format for objects saved in ASCII format.
+</a></li><P><a name="2246">
+<li><a href="B-2.1-3.0RenamedFunctions.html#25337">Appendix &#32;B</a>, <a href="B-2.1-3.0RenamedFunctions.html#25337">"N&#183;World 2.1 - 3.0 Renamed Functions"</a> is a concordance showing the new names for functions and symbols which were renamed during the upgrade to N&#183;World 3.0.
+</a></li><P></ul><P><a name="1591">
+<h2><HR> Document Style Conventions</h2>
+</a><a name="1592">
+This document contains a number of style conventions designed to make it easier to use. Different typefaces indicate such things as screen messages and operator entries. The following sections describe the style conventions used.<p>
+</a><P><a name="1593">
+<h3> Functions</h3>
+</a><a name="2047">
+Functions are presented in capital letters when first presented. Packages are always included with double-colon syntax. This syntax is not always required, but including it ensures that functions will perform as written regardless of the current Lisp package.<p>
+</a><P><a name="2053">
+<h4> Arguments</h4>
+</a><a name="2054">
+Optional arguments, which are not required for the function to work, are in italic text. Punctuation outside of the braces must be included, while everything inside the braces is purely descriptive. In this example:<p>
+</a><P><a name="2055">
+<code><pre>(PackageA::FooFunc arg-1 :arg-2 `<em>arg-3 (list)</em>)<p>
+</code></pre></a><ul><a name="2058">
+<li>Arg-1 is required
+</a></li><P><a name="2059">
+<li>Arg-2 is also required, and must be preceded by a colon (it is a keyword).
+</a></li><P><a name="2060">
+<li>Arg-3 is optional. If provided, it must be quoted.
+</a></li><P><a name="2061">
+<li>List symbolizes an argument that is a list. 
+</a></li><P></ul><P><a name="2043">
+<h3> Notes</h3>
+</a><a name="1594">
+Notes of special interest are set off from the text within horizontal rules:<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Notes provide information that is important enough to demand special attention. The information may be relevant to the current discussion but awkward to include without disrupting the flow of information.</em></font></dd></dt></dl><P>
+<a name="1596">
+<h3> Mouse and Keyboard Notation</h3>
+</a><a name="1617">
+The following conventions are used in the text: 
+<P><Table Border="1">
+<dl>
+<a name="1602">
+<em>Table 1 <strong></strong> &#32; &#32;Style conventions
+</em></a></dl>
+<tr><th align="left"><a name="1606">
+Style
+</a><th align="left"><a name="1608">
+Description
+</a>
+<tr><td valign="top"><a name="1610">
+ <strong>(shift-L)<br></strong><p>
+</a><a name="1611">
+ <strong>(CTRL-L) (ALT-L)<br></strong><p>
+</a><a name="1612">
+ <strong>(Shift-ctrl-L)</strong><p>
+</a><td valign="top"><a name="1614">
+ Key combinations are enclosed in parentheses. <strong>(shift-L)</strong> means to click the left mouse button while holding down the <strong>shift</strong> key.<p>
+</a><a name="1615">
+ Special modifier keys are also enclosed in parentheses.<br><p>
+</a><a name="1616">
+ Combinations of modifier keys are also possible.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="1618">
+<h4> Menu Notation</h4>
+</a><a name="1619">
+In N-Geometry, menu items that are preceded and followed by a period have multiple selections, which you select by clicking left, middle, or right on the mouse. (The different options are shown on the mouse documentation line, displayed at the bottom of the screen.)<strong></strong><p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="BookTOC.html">[Prev]</a> <a href="IntrotoWOW.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:38:44 -->
+
+</body>
+</html>

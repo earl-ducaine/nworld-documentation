@@ -1,0 +1,1092 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="NWorldDevoEnvironment.html">[Prev]</a> <a href="CreatingMenus.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="27997">
+N&#183;World's ability to handle foreign functions means you can utilize your existing C libraries to enhance your N&#183;world code. In this chapter, you'll learn how to:<p>
+</a><P><ul><a name="28079">
+<li>compile and link shared object files
+</a></li><P><a name="28080">
+<li>map C variable types to Lisp
+</a></li><P><a name="28083">
+<li>define foreign functions in-line and as callback
+</a></li><P></ul><P><a name="28076">
+<h2><HR> Handling Foreign Functions</h2>
+</a><a name="24825">
+For the purposes of N&#183;World development, foreign functions are those functions coded in a language other than Lisp, such as Fortran, Pascal, or C. Although ANSI Common Lisp does not provide for defining foreign functions, most Lisp compilers contain some facility for loading (dynamic linking) compiled foreign code into Lisp images. <p>
+</a><P><a name="31203">
+Unfortunately, the precise implementation of this interface varies between different Lisp compilers. Nichimen Graphics WOW includes Nichimen Foreign Functions (NFF), which is intended to serve as a generic interface between N&#183;World and the underlying Lisp implementation. <p>
+</a><P><a name="26270">
+There are four major steps to making your foreign functions callable in Lisp:<p>
+</a><P>
+<a name="26271">
+<STRONG>	 1.	 Compiling and linking shared object (.so) files
+</STRONG>
+</a><P><a name="26272">
+<STRONG>	2.	 Loading .so files into Lisp
+</STRONG>
+</a><P><a name="26273">
+<STRONG>	3.	 <a href="DefForeignFunctions.html#">Mapping</a> C argument and return value types to Lisp variable types
+</STRONG>
+</a><P><a name="26274">
+<STRONG>	4.	 Defining the foreign function using <code>NFF:DEFINE-FOREIGN-FUNCTION.</code>
+</STRONG>
+</a><P><dl><a name="31210">
+<dt>In addition, NFF includes a facility which allows you to create C data types, as well as create and manipulate C data objects in C or Lisp memory space.</dt>
+</a><P></dl>
+<a name="26443">
+Each of these steps is described in the sections below.<p>
+</a><P><a name="24851">
+<h2><HR> Compiling and Linking Shared Object Files</h2>
+</a><a name="24852">
+For SGI IRIX 5.3 and above, all foreign code is loaded as <em>shared-object </em>(.so) files. Foreign code must be compiled and linked as shared object files before they can be loaded into a running Lisp world. Functions contained within the .so files can then be made callable in Lisp by defining them as foreign functions.<p>
+</a><P><a name="24859">
+To create a shared object (.so) file using the c source file <strong>foo.c</strong>:<p>
+</a><P>
+<a name="24869">
+<STRONG>	 1.	 Compile your code with the UNIX C compiler (cc).
+</STRONG>
+</a><P><dl><a name="24870">
+<dt>Assuming the file foo.c is in the directory <code>/usr/foo-dir/</code></dt>
+</a><P></dl><a name="24878">
+<code><pre>cd /usr/foo-dir<p>
+</code></pre></a><a name="24879">
+<code><pre>cc -c foo.c<p>
+</code></pre></a><dl><a name="24880">
+<dt>UNIX compiles foo.c and creates an object (.o) file called <strong>foo.o</strong></dt>
+</a><P></dl><a name="24881">
+<STRONG>	2.	 Use the UNIX link-editor (ld) command to create a shared-object (.so) file.
+</STRONG>
+</a><P><dl><a name="24884">
+<dt>Use the -shared option with the ld command:</dt>
+</a><P></dl><a name="24888">
+<code><pre>ld -o foo.so -shared foo.o<p>
+</code></pre></a><dl><a name="24889">
+<dt>The result is the shared object file <strong>foo.so</strong>. </dt>
+</a><P></dl>
+<a name="26281">
+<h4> Compiler Options</h4>
+</a><a name="26282">
+Although there is no definitively "best" syntax for compiling code, Nichimen Graphics has enjoyed consistently good performance using the following syntax to compile shared object files:<p>
+</a><P><a name="26283">
+<code><pre>cc -c -O -KPIC foo.c<br>ld -o foo.so -shared -all foo.so<p>
+</code></pre></a><a name="26552">
+(See below for an explanation of the function of each flag).<p>
+</a><P><a name="26284">
+<h4> Including C Libraries</h4>
+</a><a name="26285">
+You can include system (C) libraries referenced by the code in the compile and load command, as in this example:<p>
+</a><P><a name="26286">
+<code><pre>cc -c -O -KPIC foo.c -lm -lgl_s<br>ld -o foo.so -shared -all foo.so -lm -lgl_s<p>
+</code></pre></a><a name="26537">
+For the <code>cc</code> command:<p>
+</a><P><ul><a name="26538">
+<li><code>-c</code> suppresses the loading phase of the compilation and forces an object file to be produced even if only one program is compiled.
+</a></li><P><a name="26539">
+<li><code>-O</code> Invokes the global ucode optimizer
+</a></li><P><a name="26540">
+<li><code>-KPIC</code> Generates position-independent code. This is necessary for programs to link with dynamic shared libraries
+</a></li><P></ul><P><a name="26541">
+In the <code>ld</code> command:<p>
+</a><P><ul><a name="26542">
+<li><code>-o</code> outfile produces an output object file with the specified filename
+</a></li><P><a name="26543">
+<li><code>-shared</code> produces a shared object file. This includes creating all of the tables for run-time linking and resolving references to other specified shared objects.
+</a></li><P><a name="26544">
+<li><code>-all</code> links in all of the objects from all archives following this flag. This option is used in conjunction with -shared option to create a shared object.
+</a></li><P></ul><P><a name="26287">
+Consult your system documentation for additional details about compiling files on your system.<p>
+</a><P><a name="24906">
+<h4> Loading Shared Object Files</h4>
+</a><a name="26290">
+Once you've created a shared-object file, you must load it into the current Lisp world. <p>
+</a><P><a name="24907">
+To load the shared-object file <strong>foo.so:</strong><p>
+</a><P>
+<a name="24908">
+<STRONG>	 1.	 Use the Lisp (load) function.
+</STRONG>
+</a><P><dl><a name="24909">
+<dt>At the lisp prompt, type:</dt>
+</a><P><a name="26575">
+<dt><code>(load "/usr/foo-dir/foo.so")</code></dt>
+</a><P></dl>
+<a name="24911">
+C functions within this file can now be made callable in Lisp using the function <code>NFF:DEFINE-FOREIGN-FUNCTION.</code><p>
+</a><P><dl>
+<dt><dd><font color=dd000>Note.	<em>The Franz ACL manual states that it is possible to define foreign functions before loading the shared object file which contains them. However, Nichimen Graphics recommends always loading the .so file first before attempting to define any foreign functions</em>.</font></dd></dt></dl><P>
+<a name="27954">
+<h2><HR> Defining C Types</h2>
+</a><a name="27964">
+In many cases, you need to access C data objects. WOW's NFF interface provides an easy way for you to define C data types in Lisp, and use these types to create C data objects in static (C-like) memory space or in dynamic (Lisp) memory space.<p>
+</a><P><a name="31216">
+You define C-types with <code>NFF:DEFINE-C-TYPE</code>:<p>
+</a><P><a name="31217">
+<code><pre><a NFF:DEFINE-C-TYPE (NAME DEFINITION &KEY ALLOCATION CONSTRUCTOR ACCESSORS)>NFF:DEFINE-C-TYPE						(NAME DEFINITION &amp;KEY ALLOCATION<br>	CONSTRUCTOR ACCESSORS)<p>
+</code></pre></a><a name="28178">
+	This function returns a pointer to the new type in either Lisp space or in C space, depending on the value of the allocation keyword. By default,C-types are allocated in foreign space. The arguments for the function are:<p>
+</a><P><ul><a name="28179">
+<li><strong>Name</strong> - A symbol, the name of the type.
+</a></li><P><a name="28213">
+<li><strong>Definition</strong> - the definition of the type. The definition can be a simple mapping to a C-type, or a more complex user-defined structure.
+</a></li><P><a name="28319">
+<li><strong>Allocation - </strong>A keyword, which can have one of two values, <strong>:lisp</strong> or <strong>:foreign</strong>.
+</a></li><P><ul>
+<BR><a name="31491">
+<li><strong>:lisp</strong> - Objects allocated in :LISP space are allocated in dynamic memory. These C objects are moved around in memory by the garbage collector.
+</a><P><BR><a name="31502">
+<li><strong>:foreign</strong> - The default value. C objects allocated in :FOREIGN space are allocated in static memory space, as if they were allocated with malloc.
+</a><P></ul>
+<a name="28465">
+<li><strong>Constructors</strong> and <strong>Accessors</strong> - Boolean values. When true, then constructors and/or accessors are automatically created for the C-type. If <code>&lt;name&gt;</code> is the name of the type, then the reader is named <code>&lt;name&gt;</code>, and the the writer is <code>(SETF &lt;NAME&gt;)</code>. The constructor is <code>MAKE-&lt;NAME&gt;</code>.
+</a></li><P><dl><a name="31519">
+<dt>Use constructors to create `instances' of your C-types, and the accessors to access or modify the values in your C objects.</dt>
+</a><P></dl></ul><P><a name="31547">
+<h3> Typedefs</h3>
+</a><a name="31548">
+You can also use NFF to typedef C-types. A C-type defined with typedef does not have constructors or allocators, and they cannot be allocated. They are intended to serve as placeholders for C-types in code for the purpose of declaring variable or return types. You can use typedefs in C-type definitions. To create a C typedef:<p>
+</a><P><a name="31556">
+<code><pre>(nff:define-c-typedef name definition)<p>
+</code></pre></a><a name="28840">
+<h4> Type Checking</h4>
+</a><a name="28841">
+WOW's NFF interface has compile time type checking, which prevents you from defining a C-type based on an undefined type.<p>
+</a><P><a name="31528">
+<h4> Example</h4>
+</a><a name="31539">
+In this example, we'll create a simple C-type called <code>my-c-type</code>, and define it as the C-type unsigned char.<p>
+</a><P><a name="31530">
+<code><pre>USER(101): (nff:define-c-type MY-C-TYPE :unsigned-char)<p>
+</code></pre></a><a name="31531">
+<code><pre>MY-C-TYPE<p>
+</code></pre></a><a name="31532">
+Lisp returns the name of our new type. By default, this type will be allocated in foreign (static) memory space, and accessors and a constructor will be created for it. Execute an apropos on your new type to see the two new functions:<p>
+</a><P><a name="31533">
+<code><pre>USER(102): (apropos `my-c-type :user)<p>
+</code></pre></a><a name="31534">
+<code><pre>my-c-type 						[function] (X)<p>
+</code></pre></a><a name="31535">
+<code><pre>my-c-type 						[function] (&amp;KEY NUMBER IN-FOREIGN-SPACE)<p>
+</code></pre></a><a name="31536">
+A writer was also defined for this type, of the form<p>
+</a><P><a name="31537">
+<code><pre>(setf my-c-type)<p>
+</code></pre></a><a name="31538">
+which stores a Lisp value in an object of type my-c-type.<p>
+</a><P><a name="28215">
+  
+<P><Table Border="1">
+<dl>
+<a name="28425">
+<em>Table 4.1 <strong></strong> &#32; &#32;NFF C-type keyword arguments.
+</em></a></dl>
+<tr><th align="left"><a name="28429">
+Return Type
+</a><th align="left"><a name="28431">
+Comments
+</a>
+<tr><td valign="top"><a name="28574">
+ :FLOAT<p>
+</a><td colspan=1 rowspan=5><a name="28435">
+ Floating point types<p>
+</a>
+<tr><td valign="top"><a name="28438">
+ :SHORT-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="28443">
+ :SINGLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="28447">
+ :DOUBLE<p>
+</a>
+<tr><td valign="top"><a name="28452">
+ :LONG-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="28457">
+ :UNSIGNED-CHAR<p>
+</a><td colspan=1 rowspan=14><a name="28459">
+ Integer types<p>
+</a>
+<tr><td valign="top"><a name="28461">
+ :UNSIGNED-BYTE<p>
+</a>
+<tr><td valign="top"><a name="28621">
+ :CHAR<p>
+</a>
+<tr><td valign="top"><a name="28617">
+ :SIGNED-CHAR<p>
+</a>
+<tr><td valign="top"><a name="28613">
+ :BYTE<p>
+</a>
+<tr><td valign="top"><a name="28609">
+ :SIGNED-BYTE<p>
+</a>
+<tr><td valign="top"><a name="28605">
+ :UNSIGNED-SHORT<p>
+</a>
+<tr><td valign="top"><a name="28601">
+ :SHORT<p>
+</a>
+<tr><td valign="top"><a name="28597">
+ :SIGNED-SHORT<p>
+</a>
+<tr><td valign="top"><a name="28593">
+ :UNSIGNED<p>
+</a>
+<tr><td valign="top"><a name="28589">
+ :UNSIGNED-INT<p>
+</a>
+<tr><td valign="top"><a name="28585">
+ :LONG<p>
+</a>
+<tr><td valign="top"><a name="28673">
+ :SIGNED-LONG<p>
+</a>
+<tr><td valign="top"><a name="28669">
+ :VOID<p>
+</a>
+<tr><td valign="top"><a name="28696">
+ :ARRAY (c-type dim &amp;rest dims)<p>
+</a><td colspan=1 rowspan=5><a name="28698">
+ Compound Types<p>
+</a>
+<tr><td valign="top"><a name="28692">
+ :BIT (dim)<p>
+</a>
+<tr><td valign="top"><a name="28688">
+ :POINTER (c-type)<p>
+</a>
+<tr><td valign="top"><a name="28684">
+ :STRUCTURE (&amp;rest slots)<p>
+</a>
+<tr><td valign="top"><a name="28680">
+ :UNION (&amp;rest slots)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="28781">
+<h4> Creating a C Object</h4>
+</a><a name="28782">
+Use the constructor function to instantiate an object of the new type:<p>
+</a><P><a name="28783">
+<code><pre>USER(103): (make-my-c-type)<p>
+</code></pre></a><a name="28757">
+<code><pre>523960144<p>
+</code></pre></a><a name="28758">
+The function returns a C pointer to an object of type <code>my-c-type</code>. For convenience, we'll bind an object to a lisp variable:<p>
+</a><P><a name="28775">
+<code><pre>USER(104): (setf my-value (make-my-c-type))<p>
+</code></pre></a><a name="28777">
+<code><pre>573721680<p>
+</code></pre></a><a name="28785">
+<h4> Getting the Value of a C Object from Lisp</h4>
+</a><a name="28786">
+Use the accessor function to obtain the value contained in the memory location referred to by the pointer:<p>
+</a><P><a name="28789">
+<code><pre>USER(105): (my-c-type my-value)<p>
+</code></pre></a><a name="31224">
+<code><pre>0<p>
+</code></pre></a><dl>
+<dt><dd><font color=dd000><em>Note:</em>	Values for C data objects are not initialized!!</font></dd></dt></dl><P>
+<a name="28793">
+<h4> Setting the Value of a C Object from Lisp</h4>
+</a><a name="28794">
+Use the writer to place a value in the object referred to by the pointer bound to <code>my-value</code>. <p>
+</a><P><a name="28795">
+<code><pre>USER(106): (setf (my-c-type my-value) 255)<p>
+</code></pre></a><a name="28798">
+<code><pre>255<p>
+</code></pre></a><a name="28808">
+<h3> Data Types and Clipping</h3>
+</a><a name="28809">
+An overflow will occur If you pass a value to a C object which is greater than the maximum allowable value for that type. When a value overflows, the modulus of the value is passed. For example:<p>
+</a><P><a name="28810">
+<code><pre>USER(109): (setf (my-c-type my-value) 256)<p>
+</code></pre></a><a name="28812">
+<code><pre>256<p>
+</code></pre></a><a name="28822">
+When we examine the value of the object referenced by this pointer, we see that it has been clipped to fit the bounds of the unsigned-char C-type:<p>
+</a><P><a name="28816">
+<code><pre>USER(110): (my-c-type my-value)<p>
+</code></pre></a><a name="28817">
+<code><pre>0<p>
+</code></pre></a><a name="31730">
+You must use caution when overflowing C objects, since this behavior has not been tested by Nichimen and may not be entirely stable or predictable.<p>
+</a><P><a name="28826">
+<h3> Defining a Type in Lisp Space</h3>
+</a><a name="28827">
+When you define a C-type in Lisp space, the resulting objects are allocated dynamically in Lisp memory. This means that they can be moved around by Lisp just like any other Lisp data object. The advantage of this approach is that it avoids many of the memory fragmentation issues associated with static memory allocation techniques like <code>malloc</code>. The disadvantage is that the physical location of the C object is not guaranteed to be the same every time for the C code which makes use of it. The key, therefore, is to pass objects allocated in Lisp memory space into your foreign functions each time you call them, rather than depending on your C code to "remember" where they are between calls.<p>
+</a><P><a name="28831">
+You can override the default allocation for a type by using the :in-foreign-space argument to the constructor for the type:<p>
+</a><P><a name="28832">
+<code><pre>USER(113):(setf my-value (make-my-c-type in-foreign-space nil))<p>
+</code></pre></a><a name="28834">
+<code><pre>#(560185050 301689879)<p>
+</code></pre></a><a name="28835">
+This time, the pointer returned is a Lisp structure (in essence, an array determining some allocated memoy).<p>
+</a><P><a name="31575">
+The default value of <code>:in-foreign-space</code> is determined by the value of the allocation argument to the relevant <code>define-c-type</code> form. For example, for types allocated in Lisp space, <code>:in-foreign-space</code> is <code>nil</code> by default. The <code>:in-foreign-space</code> argument allows you to bypass the default allocation specified in the type definition.<p>
+</a><P><a name="28836">
+<h3> Defining More Complex C Structures</h3>
+</a><a name="28837">
+You can use the :structure keyword to create more complex C-types. Slot definition for the structure follow the keyword in the definition:<p>
+</a><P><a name="28847">
+<code><pre>USER(119): (nff:define-c-type MY-STRUCTURE<p>
+</code></pre></a><a name="28849">
+<code><pre>               (:structure<p>
+</code></pre></a><a name="28850">
+<code><pre>                (mouse-x     :long)<p>
+</code></pre></a><a name="28851">
+<code><pre>                (mouse-y     :long)<p>
+</code></pre></a><a name="28852">
+<code><pre>                (mouse-click :int)<p>
+</code></pre></a><a name="28853">
+<code><pre>                ))<p>
+</code></pre></a><a name="29587">
+This structure is equivalent to this C structure:<p>
+</a><P><a name="31434">
+<code><pre>typedef struct my_structure <p>
+</code></pre></a><a name="31773">
+<code><pre>{<p>
+</code></pre></a><a name="29589">
+<code><pre>		long		mouse-x;<p>
+</code></pre></a><a name="29590">
+<code><pre>		long		mouse-y;<p>
+</code></pre></a><a name="29591">
+<code><pre>		int		mouse-click;<p>
+</code></pre></a><a name="29593">
+<code><pre>} <p>
+</code></pre></a><a name="28857">
+The slots themselves accept type definitions from <a href="DefForeignFunctions.html#28215">Table 4.1</a>, or you can use any type you've defined yourself. For example, if we defined the type my-c-type, then the following structure definition is perfectly valid:<p>
+</a><P><a name="28863">
+<code><pre>USER(119): (nff:define-c-type MY-STRUCTURE<p>
+</code></pre></a><a name="28864">
+<code><pre>               (:structure<p>
+</code></pre></a><a name="28865">
+<code><pre>                (mouse-x 										my-c-type)<p>
+</code></pre></a><a name="28866">
+<code><pre>                (mouse-y 										my-c-type)<p>
+</code></pre></a><a name="28867">
+<code><pre>                (mouse-click 										my-c-type)<p>
+</code></pre></a><a name="28868">
+<code><pre>                ))<p>
+</code></pre></a><a name="28871">
+<h4> Manipulating Slots in Structures</h4>
+</a><a name="28882">
+When you create a structure using the NFF interface, all of the standard accessors and constructors are defined as well. Accessors for individual slots are defined as well. For example, given the structure MY-STRUCTURE we defined in the previous example:<p>
+</a><P><a name="28883">
+<code><pre>USER(120): (setf my-struct (make-my-structure))<p>
+</code></pre></a><a name="28885">
+<code><pre>573722000<p>
+</code></pre></a><a name="28906">
+Where <code>&lt;structure&gt;</code> is the name of the structure and <code>&lt;slot&gt;</code> the name of the slot, the name of the accessor is <code>&lt;structure&gt;-&lt;slot&gt;</code>.Thus, for the mouse-x slot:<p>
+</a><P><a name="28886">
+<code><pre>USER(122): (my-structure-mouse-x my-struct)<p>
+</code></pre></a><a name="28887">
+<code><pre>0<p>
+</code></pre></a><a name="28899">
+Slot writers follow a similar naming convention, i.e. <code>(setf (&lt;slot accessor&gt; &lt;object&gt;)</code>:<p>
+</a><P><a name="28888">
+<code><pre>USER(123): (setf (my-structure-mouse-x my-struct) 12345)<p>
+</code></pre></a><a name="28889">
+<code><pre>12345<p>
+</code></pre></a><a name="28892">
+Now, using the accessor function to get the value of the <code>mouse-x</code> slot yields its new value:<p>
+</a><P><a name="28912">
+<code><pre>USER(125): (my-structure-mouse-x my-struct)<p>
+</code></pre></a><a name="28893">
+<code><pre>12345<p>
+</code></pre></a><a name="28915">
+<h4> Defining Arrays</h4>
+</a><a name="28916">
+You can define C arrays using WOW's NFF interface. Each element of an array has a type. For example, to create a one-dimensional array with five elements, each of which is of type <code>my-structure</code> (which we defined in the previous example):<p>
+</a><P><a name="28918">
+<code><pre>USER(127): (nff:define-c-type MY-ARRAY<p>
+</code></pre></a><a name="28920">
+<code><pre>               (:array my-structure 5))<p>
+</code></pre></a><a name="28921">
+<code><pre>MY-ARRAY<p>
+</code></pre></a><a name="28922">
+Now, we can create an object of type <code>my-array</code> and bind it to a Lisp variable:<p>
+</a><P><a name="28926">
+<code><pre>USER(129): (setf my-array-var (make-my-array))<p>
+</code></pre></a><a name="28928">
+<code><pre>573698832<p>
+</code></pre></a><a name="28935">
+Lisp returns the memory location for the object. Now, we can use the accessor to obtain the <em>address</em> of an element in the array:<p>
+</a><P><a name="28936">
+<code><pre>USER(130): (my-array my-array-var 0)<p>
+</code></pre></a><a name="28938">
+<code><pre>573698832<p>
+</code></pre></a><a name="28959">
+The elements in this array are themselves structures, so to get the value of a slot in one of the elements of the array we have to specify both the array element<em> and</em> the appropriate slot accessor function:<p>
+</a><P><a name="28960">
+<code><pre>USER(131): (my-structure-mouse-click (my-array my-array-var<br>								0))<p>
+</code></pre></a><a name="28976">
+<code><pre>0<p>
+</code></pre></a><a name="28986">
+And to set the value of a slot, use the writer function:<p>
+</a><P><a name="28978">
+<code><pre>USER(132): (setf (my-structure-mouse-click (my-array <br>						my-array-var 0)) 1)<p>
+</code></pre></a><a name="28980">
+<code><pre>1<p>
+</code></pre></a><a name="28726">
+<h3> C-Type Utilities</h3>
+</a><a name="29014">
+WOW's NFF interface includes several useful utilities you can use to manage your foreign types and foreign functions.<p>
+</a><P><a name="29630">
+<h4> Listing C Types</h4>
+</a><a name="29631">
+The global variable <code>NFF:*C-TYPES*</code> is a list of all currently defined c-types. You can print this variable (or use a suitable <code>FORMAT</code> form) to print the list of currently defined C-types.<p>
+</a><P><a name="29634">
+You can also use the<code> NFF:MAP-C-TYPES</code> utility to apply a function to the list of C-types. The following example prints a list of all the NFF C-types which are built-in (not user defined):<p>
+</a><P><a name="29635">
+<code><pre>USER(40): (<a nff:map-c-types>nff:map-c-types #'(lambda (c-type)<br>		(when (typep c-type `nff:built-in-c-type)<br>		(print c-type))))<p>
+</code></pre></a><a name="29640">
+<code><pre><p>
+</code></pre></a><a name="29648">
+<code><pre>#&lt;BUILT-IN-C-TYPE :UNION&gt; <p>
+</code></pre></a><a name="29642">
+<code><pre>#&lt;BUILT-IN-C-TYPE :STRUCTURE&gt; <p>
+</code></pre></a><a name="29643">
+<code><pre>#&lt;BUILT-IN-C-TYPE :POINTER&gt; <p>
+</code></pre></a><a name="29644">
+<code><pre>#&lt;BUILT-IN-C-TYPE :BIT&gt; <p>
+</code></pre></a><a name="29645">
+<code><pre>#&lt;BUILT-IN-C-TYPE :ARRAY&gt; <p>
+</code></pre></a><a name="29646">
+<code><pre>#&lt;BUILT-IN-C-TYPE :VOID&gt; <p>
+</code></pre></a><a name="29647">
+<code><pre>#&lt;BUILT-IN-C-TYPE :SIGNED-LONG&gt; <p>
+</code></pre></a><a name="29649">
+<code><pre><p>
+</code></pre></a><dl><dl><a name="29650">
+<dt>etc....<p>
+</a><P></dl></dl><a name="29692">
+You could use the <code>(not (typep c-type `nff:built-in-c-type))</code> predicate to return a list of all user defined C-types.<p>
+</a><P><a name="29660">
+Finally, you can find a specific C-type using <code>NFF:FIND-C-TYPE</code>:<p>
+</a><P><a name="29662">
+<code><pre>USER(41):(nff:define-c-type MY-TYPE :char)<p>
+</code></pre></a><a name="29663">
+<code><pre>MY-TYPE<p>
+</code></pre></a><a name="29664">
+<code><pre>USER(42):(<a nff:find-c-type>nff:find-c-type `my-type)<p>
+</code></pre></a><a name="29665">
+<code><pre>#&lt;C-TYPE MY-TYPE&gt;<p>
+</code></pre></a><a name="29699">
+<h4> Examining C Types</h4>
+</a><a name="29697">
+You can use the <code>describe</code> function to examine C-types in more detail.<p>
+</a><P><a name="29679">
+<code><pre>USER(43): (describe (nff:find-c-type `my-type))<p>
+</code></pre></a><a name="29668">
+<code><pre>#&lt;C-TYPE MY-TYPE&gt; is the c-type named MY-TYPE.<p>
+</code></pre></a><a name="29670">
+<code><pre>Its definition is :CHAR.<p>
+</code></pre></a><a name="29678">
+This can be particularly useful for more complex data structures, like the MY-STRUCTURE structure we defined earlier:<p>
+</a><P><a name="29702">
+<code><pre>USER(44): (describe (nff:find-c-type `my-structure))<p>
+</code></pre></a><a name="29704">
+<code><pre>#&lt;C-TYPE MY-STRUCTURE&gt; is the c-type named MY-STRUCTURE.<p>
+</code></pre></a><a name="29705">
+<code><pre>Its definition is<p>
+</code></pre></a><a name="29706">
+<code><pre>(:STRUCTURE (MOUSE-X :LONG) (MOUSE-Y :LONG) (MOUSE-CLICK :INT)).<p>
+</code></pre></a><a name="29710">
+Describe reveals the each slot and its type.<p>
+</a><P><a name="29661">
+<h2><HR> Using FF Types</h2>
+</a><a name="29001">
+Lisp does not require explicit typing of variables, but C does. Each argument you pass to a foreign function, or value returned from one, must be typed. FF types are merely easy-to-use names for Lisp types, which unify naming conventions for argument, return-value, and array-types. FF types also provide for compile-time consistency (which is not provided by the underlying ACL foreign-function interface.)<p>
+</a><P><a name="31623">
+Some, such as :VOID, can only be used to specify return values. In <a href="DefForeignFunctions.html#29724">Table 4.2</a>, this information is listed as a set of one or more letters in parentheses after the Category listing in the rightmost column. <p>
+</a><P><ul><a name="29718">
+<li>A = Argument
+</a></li><P><a name="29722">
+<li>R = Return value
+</a></li><P><a name="29723">
+<li>a = Array
+</a></li><P></ul><P><a name="29724">
+So, (ARa) means a type can be used in all three contexts, whereas (AR) means the type can only be used as an argument or return value type. 
+<P><Table Border="1">
+<dl>
+<a name="29156">
+<em>Table 4.2  &#32; &#32;WOW NFF Foreign Function (FF) types
+</em></a></dl>
+<tr><th align="left"><a name="29160">
+FF Type
+</a><th align="left"><a name="29162">
+Lisp type
+</a><th align="left"><a name="29190">
+Category 
+</a>
+<tr><td valign="top"><a name="29164">
+ :FLOAT<p>
+</a><td valign="top"><a name="29166">
+ single-float<p>
+</a><td colspan=1 rowspan=6><a name="29192">
+ Floating point types <br>(ARa)<p>
+</a>
+<tr><td valign="top"><a name="29168">
+ :SHORT-FLOAT<p>
+</a><td valign="top"><a name="29170">
+ short-float (!!) (In ACL 4.3 is equivalent to sin<br>gle-float)<p>
+</a>
+<tr><td valign="top"><a name="29172">
+ :SINGLE-FLOAT<p>
+</a><td valign="top"><a name="29174">
+ single-float<p>
+</a>
+<tr><td valign="top"><a name="29176">
+ :DOUBLE<p>
+</a><td valign="top"><a name="29178">
+ double-float<p>
+</a>
+<tr><td valign="top"><a name="29180">
+ :LONG-FLOAT<p>
+</a><td valign="top"><a name="29182">
+ long-float  (!!) Equivalent to double-float for ACL 4.3.<p>
+</a>
+<tr><td valign="top"><a name="29184">
+ :DOUBLE-FLOAT<p>
+</a><td valign="top"><a name="29186">
+ double-float<p>
+</a>
+<tr><td valign="top"><a name="29225">
+ :FIXNUM <p>
+</a><td valign="top"><a name="29227">
+ fixnum<p>
+</a><td colspan=1 rowspan=4><a name="29229">
+ Integer Types<br>(ARa)<p>
+</a>
+<tr><td valign="top"><a name="29219">
+ :INTEGER <p>
+</a><td valign="top"><a name="29221">
+  integer - as an array type is (signed-byte 32)<p>
+</a>
+<tr><td valign="top"><a name="29213">
+ :UNSIGNED-INTEGER<p>
+</a><td valign="top"><a name="29215">
+  integer - as an array type is (unsigned-byte 32)<p>
+</a>
+<tr><td valign="top"><a name="29207">
+ :CHARACTER <p>
+</a><td valign="top"><a name="29209">
+  character<p>
+</a>
+<tr><td valign="top"><a name="29297">
+ :SIGNED-8BIT<p>
+</a><td valign="top"><a name="29299">
+  as an array type is (signed-byte 8)<p>
+</a><td colspan=1 rowspan=6><a name="29301">
+ Byte Types (Aa)<p>
+</a>
+<tr><td valign="top"><a name="29291">
+ :UNSIGNED-8BIT<p>
+</a><td valign="top"><a name="29293">
+  as an array type is (unsigned-byte 8)<p>
+</a>
+<tr><td valign="top"><a name="29285">
+ :SIGNED-16BIT <p>
+</a><td valign="top"><a name="29287">
+  as an array type is (signed-byte 16)<p>
+</a>
+<tr><td valign="top"><a name="29279">
+ :UNSIGNED-16BIT<p>
+</a><td valign="top"><a name="29281">
+  as an array type is (unsigned-byte 16)<p>
+</a>
+<tr><td valign="top"><a name="29273">
+ :SIGNED-32BIT <p>
+</a><td valign="top"><a name="29275">
+  as an array type is (signed-byte 32)<p>
+</a>
+<tr><td valign="top"><a name="29267">
+ :UNSIGNED-32BIT<p>
+</a><td valign="top"><a name="29269">
+  as an array type is (unsigned-byte 32)<p>
+</a>
+<tr><td valign="top"><a name="29347">
+ :STRING <p>
+</a><td valign="top"><a name="29349">
+  string<p>
+</a><td colspan=1 rowspan=3><a name="29351">
+ String types<br>(AR)<p>
+</a>
+<tr><td valign="top"><a name="29341">
+ :SIMPLE-STRING <p>
+</a><td valign="top"><a name="29343">
+  simple-string<p>
+</a>
+<tr><td valign="top"><a name="29335">
+ :FOREIGN-STRING<p>
+</a><td valign="top"><a name="29337">
+ [a pointer to a null terminated string]<p>
+</a>
+<tr><td valign="top"><a name="29381">
+ :ARRAY <br>(ff-type &amp; rest dims)<p>
+</a><td valign="top"><a name="29383">
+ array<p>
+</a><td colspan=1 rowspan=3><a name="29385">
+ Array<br>(A)<p>
+</a>
+<tr><td valign="top"><a name="29375">
+ :SIMPLE-ARRAY <br>(ff-type &amp; rest dims)<p>
+</a><td valign="top"><a name="29377">
+ simple-array<p>
+</a>
+<tr><td valign="top"><a name="29369">
+ :SIMPLE-VECTOR <br>(ff-type)<p>
+</a><td valign="top"><a name="29371">
+ simple array of rank 1<p>
+</a>
+<tr><td valign="top"><a name="29420">
+ :BOOLEAN<p>
+</a><td valign="top"><a name="29422">
+ Lisp Boolean (not NIL / NIL)<p>
+</a><td valign="top"><a name="29424">
+ Booleans<br>(AR)<p>
+</a>
+<tr><td valign="top"><a name="29414">
+ :LISP<p>
+</a><td valign="top"><a name="29416">
+ A Lisp object (implementation specific)<p>
+</a><td valign="top"><a name="29418">
+ Lisp<br>(AR)<p>
+</a>
+<tr><td valign="top"><a name="29408">
+ :POINTER (c-type)<p>
+</a><td valign="top"><a name="29410">
+ a pointer to a C-TYPE (defined with NFF:DEFINE-C-TYPE or NFF:DEFINE-C-TYPEDEF<p>
+</a><td valign="top"><a name="29412">
+ Pointers<br>(AR)<p>
+</a>
+<tr><td valign="top"><a name="29402">
+ :VOID<p>
+</a><td valign="top"><a name="29404">
+ void (no return value)<p>
+</a><td valign="top"><a name="29406">
+ Void<br>(R)<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="29011">
+<h3> Defining New FF Types</h3>
+</a><a name="29469">
+Although the WOW NFF interface includes a comprehensive suite of C-types, you may want to define your own FF type. To do so, use NFF:DEFINE-FF-TYPE:<p>
+</a><P><a name="29470">
+<code><pre>(<a nff:define-ff-type>nff:define-ff-type name definition)<p>
+</code></pre></a><a name="29471">
+For example:<p>
+</a><P><a name="29472">
+<code><pre>(<a nff:define-ff-type>nff:define-ff-type MYBOOLEAN :unsigned-char)<p>
+</code></pre></a><a name="29711">
+<h4> FF Type Utilities</h4>
+</a><a name="29712">
+The same utilities exist for FF-types as for C-types, only with slightly different names.<p>
+</a><P><a name="29725">
+<code><pre><a nff:find-ff-types>nff:find-ff-types<p>
+</code></pre></a><a name="29726">
+<code><pre><a nff:map-ff-types>nff:map-ff-types<p>
+</code></pre></a><a name="29727">
+<code><pre><a nff:*FF-TYPES*>nff:*FF-TYPES*<p>
+</code></pre></a><a name="29468">
+<h4> Managing Strings</h4>
+</a><a name="31107">
+C strings are null terminated, whereas Lisp strings are not. WOW's NFF interface includes two handy utilities for translating between foreign and Lisp strings. To translate a Lisp string to a foreign (null terminated) string:<p>
+</a><P><a name="31108">
+<code><pre>USER(44):(<a nff:string-to-foreign-string>nff:string-to-foreign-string "A test string")<p>
+</code></pre></a><a name="31109">
+<code><pre>268766640<p>
+</code></pre></a><a name="31111">
+The function returns a pointer to the null terminated string. You can pass this function an address if you choose to do so. <p>
+</a><P><a name="31115">
+To translate a foreign string to a lisp string, just pass the pointer to a null terminated string to <code>NFF:FOREIGN-STRING-TO-STRING</code>:<p>
+</a><P><a name="31116">
+<code><pre>USER(45): (<a nff:foreign-string-to-string>nff:foreign-string-to-string *)<p>
+</code></pre></a><a name="31119">
+<code><pre>"A test string"<p>
+</code></pre></a><a name="31106">
+<h2><HR> Defining Foreign Functions</h2>
+</a><a name="29496">
+Use <code>NFF:DEFINE-FOREIGN-FUNCTION</code> to define foreign functions:<p>
+</a><P><a name="29497">
+<code><pre><a (nff:define-foreign-function (NAME ARGLIST &KEY LANGUAGE ENTRY-POINT ARG-CHECKING RETURN-TYPE CALL-DIRECT CALLBACK PROTOTYPE DOCUMENTATION)>(nff:define-foreign-function (NAME ARGLIST &amp;KEY LANGUAGE<br>ENTRY-POINT ARG-CHECKING RETURN-TYPE CALL-DIRECT CALLBACK<br>PROTOTYPE DOCUMENTATION)<p>
+</code></pre></a><ul><a name="29504">
+<li><strong>name</strong> - A symbol, the Lisp name for the foreign function.
+</a></li><P><a name="29505">
+<li><strong>arglist</strong> - Arguments to the function. These are specified in pairs, with the name first, followed by the FF type, e.g.:
+</a></li><P><a name="31135">
+<code><pre>((arg1 :fixnum)(arg2 :character))<p>
+</code></pre></a><a name="31136">
+<li><strong>language</strong> - A keyword, specifies the language of the foreign function. Options include <code>:fortran</code>, <code>:c</code>, and <code>:ansi-c</code>.
+</a></li><P><a name="29510">
+<li><strong>entry-point</strong> - A string, specifies the foreign name of the foreign function. If not supplied, NFF will attempt to construct an entry point from the Lisp function name.
+</a></li><P><a name="29511">
+<li><strong>arg-checking</strong> - Boolean. When true, a dynamic argument type check is performed. The default is stored in the global variable <code>nff:*default-check-args*</code>.
+</a></li><P><a name="29516">
+<li><strong>call-direct</strong> - Boolean. When true, any calls to the foreign function are inlined, provided that the underlying Foreign Function Interface (Franz ACL, for N&#183;World 3.0) allows it. See your Lisp documentation for more information. Default is stored in global variable<code> nff:*default-call-direct*</code>.
+</a></li><P><a name="29517">
+<li><strong>callback</strong> - Boolean. Default value is stored in global variable <code>nff:*default-callback*</code>. Refer to ACL documentation for more details about callbacks.
+</a></li><P><a name="29519">
+<li><strong>return-type</strong> - An FF type.
+</a></li><P></ul><P><a name="29520">
+<h4> Example:</h4>
+</a><a name="29525">
+Assume that you are working with the following C function, <code>read_token</code><strong>:</strong><p>
+</a><P><a name="29537">
+<code><pre>int read_token(FILE* stream, char* buffer, int size)<p>
+</code></pre></a><a name="29538">
+<code><pre>{<p>
+</code></pre></a><a name="29550">
+<code><pre>...<p>
+</code></pre></a><a name="31658">
+<code><pre>}<p>
+</code></pre></a><a name="29551">
+Let's assume you've compiled and linked this function in the shared object file <code>read-token.so</code>. To define the foreign function:<p>
+</a><P><a name="29576">
+<code><pre>(nff:define-foreign-function C-READ-TOKEN-INTERNAL<br>		((c-stream :long)(buffer :char)(size :int)) <br>		:entry-point "read_token" <p>
+</code></pre></a><a name="29583">
+<code><pre>		:return-type :int)<p>
+</code></pre></a><a name="29556">
+You can now call the C function <code>read_token</code> as the Lisp function <code>C-READ-TOKEN-INTERNAL</code>. For example, the file pointer <code>stream</code> becomes the Lisp variable <code>c-stream</code>, of type <code>integer</code>.<p>
+</a><P><a name="28995">
+<h2><HR> General Issues With Foreign Functions</h2>
+</a><a name="29611">
+<h4> Watch out for Bignums &amp; C Pointers</h4>
+</a><a name="26333">
+There are several important points to remember when specifying types for variables passed from Lisp to C:<p>
+</a><P><ul><a name="26059">
+<li>Pay attention to the size of the variables you pass. For example, the C-type <code>int</code> can accommodate values up to 32 bits in size (-231&lt;=x&lt;=231 - 1), but the Lisp type <code>fixnum</code> can accommodate variables no larger than 30 bits (-229&lt;=x&lt;=229-1). For ints which may be larger than 30 bits, use the <code>type integer</code> or <code>bignum</code>.
+</a></li><P><a name="26065">
+<li>Pointers are always 32 bit structures. Don't pass a pointer to Lisp as type <code>fixnum.</code> Instead, use C-type <code>:pointer</code>.
+</a></li><P></ul><P><a name="25923">
+NFF is based on ACL's <code>defforeign</code> foreign function interface. If you want to learn more about foreign functions, you can macroexpand the NFF forms, then refer to the ACL documentation to learn more about how the ACL interface works.<p>
+</a><P><a name="26638">
+<h4> When to Recompile Your Lisp Code</h4>
+</a><a name="26686">
+If <code>calldirect</code> is used, any callers of the foreign function must be recompiled whenever there is a change in either the original C function definition, or the Lisp n<code>ff:define-foreign-function </code>definition. If you specify <code>:callback</code>, you can make changes to your C source code without recompiling calling Lisp functions. Simply create and load an updated .so file which contains the C functions you modify. However, if changes to the C code affect the arguments of a foreign function, you MUST create an updated .so file AND recompile calling Lisp functions.<p>
+</a><P><a name="26101">
+<h4> .SO Load Order</h4>
+</a><a name="29618">
+Although the Franz documentation indicates that load order does not matter, Nichimen Graphics has found that random, inexplicable breaks can occur if foreign functions are defined before the relevant .so files are loaded. Load .so files first, then define foreign functions.<p>
+</a><P><a name="29621">
+<h4> .SO Files Cannot Reference External Definitions</h4>
+</a><a name="29622">
+Each .so file must be complete in itself; all routines must either be defined in that .so file or must be in a library compiled with the .so file.<p>
+</a><P><a name="27825">
+<h2><HR> Converting N&#183;World 2.1 Foreign Functions</h2>
+</a><a name="29728">
+N&#183;World 2.1 relied strictly on the ACL foreign function interface. <a href="DefForeignFunctions.html#29728">Table 4.3</a> shows the mapping between NFF and ACL arglist type arguments, while <a href="DefForeignFunctions.html#31071">Table 4.4</a> shows the concordance between return types: 
+<P><Table Border="1">
+<dl>
+<a name="30762">
+<em>Table 4.3  &#32; &#32;WOW NFF and ACL 4.3 argument types
+</em></a></dl>
+<tr><th align="left"><a name="30768">
+WOW NFF type
+</a><th align="left"><a name="30770">
+ACL 4.3 type
+</a><th align="left"><a name="30772">
+Category
+</a>
+<tr><td valign="top"><a name="30774">
+ :SINGLE-FLOAT<p>
+</a><td valign="top"><a name="30776">
+ SINGLE-FLOAT<p>
+</a><td colspan=1 rowspan=6><a name="30778">
+ Floating Point Types<p>
+</a>
+<tr><td valign="top"><a name="30780">
+  :DOUBLE-FLOAT<p>
+</a><td valign="top"><a name="30782">
+ DOUBLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30786">
+  :SHORT-FLOAT<p>
+</a><td valign="top"><a name="30788">
+ SHORT-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30792">
+  :LONG-FLOAT<p>
+</a><td valign="top"><a name="30794">
+ LONG-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30798">
+  :FLOAT<p>
+</a><td valign="top"><a name="30800">
+ SINGLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30804">
+  :DOUBLE<p>
+</a><td valign="top"><a name="30806">
+ DOUBLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30816">
+  :FIXNUM<p>
+</a><td valign="top"><a name="30818">
+ FIXNUM<p>
+</a><td colspan=1 rowspan=3><a name="30820">
+ Integer types<p>
+</a>
+<tr><td valign="top"><a name="30822">
+  :INTEGER<p>
+</a><td valign="top"><a name="30824">
+ INTEGER<p>
+</a>
+<tr><td valign="top"><a name="30828">
+  :CHARACTER<p>
+</a><td valign="top"><a name="30830">
+ CHARACTER<p>
+</a>
+<tr><td valign="top"><a name="30840">
+  :STRING<p>
+</a><td valign="top"><a name="30842">
+ STRING<p>
+</a><td colspan=1 rowspan=2><a name="30844">
+ Character types<p>
+</a>
+<tr><td valign="top"><a name="30846">
+  :SIMPLE-STRING<p>
+</a><td valign="top"><a name="30848">
+ SIMPLE-STRING<p>
+</a>
+<tr><td valign="top"><a name="30858">
+  :ARRAY<p>
+</a><td valign="top"><a name="30860">
+ ARRAY<p>
+</a><td colspan=1 rowspan=4><a name="30862">
+ Arrays<p>
+</a>
+<tr><td valign="top"><a name="30864">
+  :SIMPLE-ARRAY<p>
+</a><td valign="top"><a name="30866">
+ SIMPLE-ARRAY<p>
+</a>
+<tr><td valign="top"><a name="30870">
+  :SIMPLE-VECTOR<p>
+</a><td valign="top"><a name="30872">
+ SIMPLE-ARRAY<p>
+</a>
+<tr><td valign="top"><a name="30882">
+  (:ARRAY TYPE DIMS)<p>
+</a><td valign="top"><a name="30884">
+ (ARRAY TYPE DIMS)<p>
+</a>
+<tr><td valign="top"><a name="30894">
+  :BOOLEAN<p>
+</a><td valign="top"><a name="30896">
+ (FIXNUM (IF &lt;argument&gt; 1 0)))<p>
+</a><td valign="top"><a name="30898">
+ Boolean types<p>
+</a>
+<tr><td valign="top"><a name="30906">
+  (:POINTER C-TYPE)<p>
+</a><td valign="top"><a name="30908">
+ FF:FOREIGN-ADDRESS<p>
+</a><td valign="top"><a name="30910">
+ Pointers<p>
+</a>
+<tr><td valign="top"><a name="30918">
+  :FOREIGN-STRING<p>
+</a><td valign="top"><a name="30920">
+ FF:FOREIGN-ADDRESS<p>
+</a><td valign="top"><a name="30922">
+ Strings<p>
+</a>
+<tr><td valign="top"><a name="30930">
+  :LISP<p>
+</a><td valign="top"><a name="30932">
+ :LISP<p>
+</a><td valign="top"><a name="30934">
+ Lisp Object<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="31071">
+  
+<P><Table Border="1">
+<dl>
+<a name="30946">
+<em>Table 4.4  &#32; &#32;WOW NFF and ACL 4.3 return types
+</em></a></dl>
+<tr><th align="left"><a name="30952">
+WOW NFF type
+</a><th align="left"><a name="30954">
+ACL 4.3 type
+</a><th align="left"><a name="30956">
+Category
+</a>
+<tr><td valign="top"><a name="30958">
+ :SINGLE-FLOAT<p>
+</a><td valign="top"><a name="30960">
+ SINGLE-FLOAT<p>
+</a><td colspan=1 rowspan=6><a name="30962">
+ Floating Point Types<p>
+</a>
+<tr><td valign="top"><a name="30964">
+  :DOUBLE-FLOAT<p>
+</a><td valign="top"><a name="30966">
+ DOUBLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30970">
+  :SHORT-FLOAT<p>
+</a><td valign="top"><a name="30972">
+ SHORT-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30976">
+  :LONG-FLOAT<p>
+</a><td valign="top"><a name="30978">
+ LONG-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30982">
+  :FLOAT<p>
+</a><td valign="top"><a name="30984">
+ SINGLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30988">
+  :DOUBLE<p>
+</a><td valign="top"><a name="30990">
+ DOUBLE-FLOAT<p>
+</a>
+<tr><td valign="top"><a name="30994">
+  :FIXNUM<p>
+</a><td valign="top"><a name="30996">
+ FIXNUM<p>
+</a><td colspan=1 rowspan=4><a name="30998">
+ Integer types<p>
+</a>
+<tr><td valign="top"><a name="31000">
+  :INTEGER<p>
+</a><td valign="top"><a name="31002">
+ INTEGER<p>
+</a>
+<tr><td valign="top"><a name="31006">
+  :CHARACTER<p>
+</a><td valign="top"><a name="31008">
+ CHARACTER<p>
+</a>
+<tr><td valign="top"><a name="31073">
+ :UNSIGNED-INTEGER<p>
+</a><td valign="top"><a name="31075">
+ :UINTEGER<p>
+</a>
+<tr><td valign="top"><a name="31012">
+  :STRING<p>
+</a><td valign="top"><a name="31014">
+ :INTEGER (FF:CHAR*-TO-STRING &lt;result&gt;))<p>
+</a><td colspan=1 rowspan=2><a name="31016">
+ Character types<p>
+</a>
+<tr><td valign="top"><a name="31018">
+  :SIMPLE-STRING<p>
+</a><td valign="top"><a name="31084">
+ :INTEGER (FF:CHAR*-TO-STRING &lt;result&gt;))<p>
+</a>
+<tr><td valign="top"><a name="31024">
+  :ARRAY<p>
+</a><td valign="top"><a name="31026">
+ ARRAY<p>
+</a><td colspan=1 rowspan=4><a name="31028">
+ Arrays<p>
+</a>
+<tr><td valign="top"><a name="31030">
+  :SIMPLE-ARRAY<p>
+</a><td valign="top"><a name="31032">
+ SIMPLE-ARRAY<p>
+</a>
+<tr><td valign="top"><a name="31036">
+  :SIMPLE-VECTOR<p>
+</a><td valign="top"><a name="31038">
+ SIMPLE-ARRAY<p>
+</a>
+<tr><td valign="top"><a name="31042">
+  (:ARRAY TYPE DIMS)<p>
+</a><td valign="top"><a name="31044">
+ (ARRAY TYPE DIMS)<p>
+</a>
+<tr><td valign="top"><a name="31048">
+  :BOOLEAN<p>
+</a><td valign="top"><a name="31050">
+ (INTEGER (NOT (ZEROP &lt;result&gt;)))<p>
+</a><td valign="top"><a name="31052">
+ Boolean types<p>
+</a>
+<tr><td valign="top"><a name="31054">
+  (:POINTER C-TYPE)<p>
+</a><td valign="top"><a name="31056">
+ FF:FOREIGN-ADDRESS<p>
+</a><td valign="top"><a name="31058">
+ Pointers<p>
+</a>
+<tr><td valign="top"><a name="31060">
+  :FOREIGN-STRING<p>
+</a><td valign="top"><a name="31062">
+ FF:FOREIGN-ADDRESS<p>
+</a><td valign="top"><a name="31064">
+ Strings<p>
+</a>
+<tr><td valign="top"><a name="31092">
+ :VOID<p>
+</a><td valign="top"><a name="31094">
+ :VOID<p>
+</a><td valign="top"><a name="31096">
+ Void (no return value)<p>
+</a>
+<tr><td valign="top"><a name="31066">
+  :LISP<p>
+</a><td valign="top"><a name="31068">
+ :LISP<p>
+</a><td valign="top"><a name="31070">
+ Lisp objects<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><a name="29731">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="NWorldDevoEnvironment.html">[Prev]</a> <a href="CreatingMenus.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 13:47:30 -->
+
+</body>
+</html>

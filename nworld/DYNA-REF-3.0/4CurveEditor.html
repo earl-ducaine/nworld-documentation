@@ -1,0 +1,1032 @@
+<html><head><title>Working with Curves</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3ScriptEditor.html">[Prev]</a> <a href="5Operations.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="15856">
+<h1>Working with Curves</h1>
+</a>
+<hr><p><a name="11047">
+<h4> This chapter describes how to work with data in curve channels. Curve channels contain dynamic data that is used to execute operations with which the curve channel is associated.</h4>
+</a><a name="16029">
+ <P><img src="4CurveEditor.anc.gif"><p>
+</a><a name="16018">
+<h2><HR> Curves</h2>
+</a><a name="16034">
+Curves are channels that contain data only. Typically, a curve exists in a channel parallel to an action, and regulates how the operation is performed by that action over time.<p>
+</a><P><a name="11646">
+There are any number of ways for you to modify the data in a curve channel: by specifying a value explicitly, defining the curve type used for the action, or even what kind of "treatment" is used on the curve.<p>
+</a><P><a name="11801">
+A curve generally exists inside an action; that is, it's a subchannel to the action:<p>
+</a><P><a name="11810">
+ <P><img src="4CurveEditor.anc1.gif"><p>
+</a><a name="11811">
+<em>Figure 4.1  &#32; &#32;A sample action, showing associated curve data
+</em></a><P><a name="11292">
+The <em>type</em> of curve assigned to the action appears in parentheses after the <em>name</em> of the curve if the curve channel is closed:<p>
+</a><P><a name="11855">
+ <P><img src="4CurveEditor.anc2.gif"><p>
+</a><a name="11856">
+<em>Figure 4.2  &#32; &#32;A closed curve has its name and type in the channel's label
+</em></a><P><a name="13809">
+Curves may also contain cues. A cue is a marker that contains a value (either a simple value like a number, or a complex value like a pose or camera view). Values between cues are interpreted differently depending on the curve type specified for the curve. Cues appear as vertical bars across the curve channel:<p>
+</a><P><a name="13829">
+ <P><img src="4CurveEditor.anc3.gif"><p>
+</a><a name="13830">
+<em>Figure 4.3  &#32; &#32;Cues represent a value and time
+</em></a><P><a name="11325">
+<h2><HR> Working with Curves</h2>
+</a><a name="12023">
+N-Dynamics lets you specify a variety of basic curve types. The curve type specified for an action can drastically affect how the associated action is animated.<p>
+</a><P><a name="16062">
+There are a number of ways to work with curves:<p>
+</a><P><ul><a name="16063">
+<li><strong>(CLICK-L)</strong> on the curve channel opens the channel (if it's closed)
+</a></li><P><a name="16064">
+<li><strong>(CLICK-M)</strong> on the curve channel to open the <strong>Edit Curve Properties</strong> dialog box
+</a></li><P><a name="16065">
+<li><strong>(CLICK-R)</strong> anywhere in the channel to bring up the <strong>Curve Operations</strong> menu
+</a></li><P></ul><P><a name="13576">
+<h3> Editing Curve Properties</h3>
+</a><a name="13577">
+To edit the channel properties of a curve, <strong>(CLICK-M)</strong> on the curve channel; the <strong>Edit Curve Properties</strong> dialog box appears:<p>
+</a><P><a name="13597">
+ <P><img src="4CurveEditor.anc4.gif"><p>
+</a><a name="13490">
+<em>Figure 4.4  &#32; &#32;Edit Curve Properties dialog box
+</em></a><P><a name="13554">
+Note that the <strong>Edit Curve Properties</strong> dialog box is actually divided into two sections:<p>
+</a><P><ul><a name="13560">
+<li>the properties of the curve channel
+</a></li><P><a name="13562">
+<li>the properties of the curve itself
+</a></li><P></ul><P><a name="13573">
+The parameters you specify for the curve channel are the same for any type of curve; the actual curve properties vary slightly depending on the type of curve you are editing.<p>
+</a><P><a name="13458">
+<h4> Curve Channel Properties</h4>
+</a><a name="13532">
+A curve's channel properties are used for more script oriented tasks; that is, they don't affect the shape of the data curve directly, but rather how the curve channel is displayed in or used by the script.<p>
+</a><P><ul><a name="13531">
+<li><strong>Name</strong> lets you specify the label name for the channel-this is the name that appears on the channel in the script editor. You may want to give a curve channel a descriptive name like "bell" or "big_noise" so you can find it quickly when looking at a script.
+</a></li><P><a name="13459">
+<li><strong>Channel Variable</strong> lets you specify a name for the value of the curve over the length of the channel. You might, for instance, name the variable for an <br>X Rotate operation X-Rot. As the script executed, the value in X-Rot would change to reflect the value of the curve at that point in time. That variable could be referenced by other channels that could trigger actions when the value in X-Rot was of a certain value.
+</a></li><P><a name="13460">
+<li><strong>Subchannel ID</strong> indicates the dynamic value contained in the channel. For example, if you are working with an XYZ Rotate operation, each subchannel is assigned a subchannel ID-the X Rotate, Y Rotate, and Z Rotate curves are each assigned a unique subchannel ID.
+</a></li><P><a name="13461">
+<li><strong>Trace Channel?</strong> lets you display the value for the curve (at some point in the script) in the LISP listener window. If you turn this on, you can display the value of a curve over time, for example, as the script animates, or for a single frame by using <strong>(CLICK-L)</strong> on the frame range area.
+</a></li><P></ul><P><a name="13611">
+The curve properties dialog box also lets you select the type of curve you want to use to animate the operation.<p>
+</a><P><a name="16088">
+<strong>(CLICK-L)</strong> in the <strong>Curve type</strong> field to specify the type of curve you want to use:<p>
+</a><P><a name="16080">
+ <P><img src="4CurveEditor.anc5.gif"><p>
+</a><a name="16081">
+<em>Figure 4.5  &#32; &#32;Curve types
+</em></a><P><ul><a name="16101">
+<li><strong>Linear</strong> produces a simple ramp (constant velocity, no acceleration).
+</a></li><P><a name="16102">
+<li><strong>Hold </strong>curves can be used to specify a constant value for the duration of the curve, or between cues<strong>.</strong>
+</a></li><P><a name="16105">
+<li><strong>Conic Spline</strong> produces a series of local spline curves that approximates a path through cues but undershoots actual cue values; tension and end treatment can be controlled.
+</a></li><P><a name="13468">
+<li><strong>Kochanek Spline</strong> produces an interpolated spline that passes directly through cue values but overshoots these values in the legs of the spline.
+</a></li><P><a name="13469">
+<li><strong>Sketched Curve </strong>lets you hand-draw a curve of arbitrary shape, or generate curves with known characteristics (like a sine-wave curve) using a series of pre-defined operations.
+</a></li><P><a name="13470">
+<li><strong>Filtered </strong>produces a smoothed series of linear ramps through cues; the degree of smoothing can be controlled by filter width.
+</a></li><P><a name="13471">
+<li><strong>Slow In</strong> gradually increases the value before a cue.
+</a></li><P><a name="13472">
+<li><strong>Slow Out</strong> gradually decrease values after a cue.
+</a></li><P><a name="16113">
+<li><strong>Slow In/Out </strong>curves have values that gradually increase before a cue, and decrease after a cue.
+</a></li><P><a name="16116">
+<li><strong>Spherical Linear </strong>is another type of linear curve; this option is sometimes used with certain operations in the Skeletal Animation System to avoid gimbal lock.
+</a></li><P></ul><P><a name="13785">
+The parameters for each type of curve are described in the section <a href="4CurveEditor.html#13781">"Curve Types," on page &#32;4-6</a>.<p>
+</a><P><a name="13759">
+There are three buttons at the bottom of the dialog box:<p>
+</a><P><ul><a name="13767">
+<li><strong>Do It</strong> applies the specified properties to the curve
+</a></li><P><a name="13768">
+<li><strong>Edit Curve</strong> applies the specified properties to the curve and displays the curve in the curve editor (as described in <a href="4CurveEditor.html#11954">"The Curve Editor," on page &#32;4-22</a>.
+</a></li><P><a name="13778">
+<li><strong>Abort</strong> exits from the dialog box without applying any changes.
+</a></li><P></ul><P><a name="13781">
+<h2><HR> Curve Types</h2>
+</a><a name="13616">
+<h3> Linear Curves</h3>
+</a><a name="12050">
+A linear curve is one whose value changes from cue to cue in a linear fashion. If you use a linear curve, you specify the following parameters:<p>
+</a><P><a name="12065">
+ <P><img src="4CurveEditor.anc6.gif"><p>
+</a><a name="12066">
+<em>Figure 4.6  &#32; &#32;Linear curve parameters
+</em></a><P><ul><a name="12132">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="12133">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="12134">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="12135">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P></ul><P><a name="12809">
+A sample linear curve (one with cues only at the beginning and end of the channel), looks like this:<p>
+</a><P><a name="12076">
+ <P><img src="4CurveEditor.anc7.gif"><p>
+</a><a name="12077">
+<em>Figure 4.7  &#32; &#32;A sample linear curve
+</em></a><P><a name="12509">
+If you add additional cues to the curve, the value changes from cue to cue in a linear fashion:<p>
+</a><P><a name="12107">
+ <P><img src="4CurveEditor.anc8.gif"><p>
+</a><a name="12108">
+<em>Figure 4.8  &#32; &#32;A linear curve containing several cues
+</em></a><P><a name="12051">
+<h3> Hold Curves</h3>
+</a><a name="12052">
+A hold curve can be used to specify a constant value for the duration of the curve, or between cues:<p>
+</a><P><a name="12089">
+ <P><img src="4CurveEditor.anc9.gif"><p>
+</a><a name="12090">
+<em>Figure 4.9  &#32; &#32;Hold curve parameters
+</em></a><P><ul><a name="12825">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="12827">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="12828">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P></ul><P><a name="12829">
+A sample hold curve (one with cues only at the beginning and end of the channel), looks like this:<p>
+</a><P><a name="12094">
+ <P><img src="4CurveEditor.anc10.gif"><p>
+</a><a name="12095">
+<em>Figure 4.10  &#32; &#32;A sample hold curve
+</em></a><P><a name="12507">
+If you add additional cues to a hold curve channel, the value remains constant until a new cue is reached:<p>
+</a><P><a name="12121">
+ <P><img src="4CurveEditor.anc11.gif"><p>
+</a><a name="16149">
+<em>Figure 4.11  &#32; &#32;A sample hold curve with several cues
+</em></a><P><a name="16152">
+<h3> Conic Spline Curves</h3>
+</a><a name="16153">
+Conic splines curves derive their shape from the cues in the curve. The shape of the curve behaves like a springy piece of material; by changing the <em>tension</em> on this spring both inside and outside the sequence, you can modify the shape. Conic splines do not pass <em>through</em> the value at the cue; they merely try to approximate it.<p>
+</a><P><a name="12913">
+Conic splines can be manipulated by cue location as well as <em>tension</em> and <em>end treatment</em>.<p>
+</a><P><a name="12151">
+ <P><img src="4CurveEditor.anc12.gif"><p>
+</a><a name="12152">
+<em>Figure 4.12  &#32; &#32;Conic spline curve parameters
+</em></a><P><ul><a name="12153">
+<li><strong>Bias</strong> controls the ramping of the curve before and after cues; a value over .5 weights the curve to the right of the cues; values under .5 weigh the curve to the left of the cues.
+</a></li><P><a name="12959">
+<li><strong>Tension</strong> controls how linear the curve appears between cues. Increasing the tension of a spline curve makes the curve <em>more</em> linear. The default value for the tension parameter is 0%, which yields a smooth curve. As you increase tension, the shape of the curve moves toward a series of ramps.
+</a></li><P><a name="12873">
+<li><strong>End Treatment</strong> changes a pair of "imaginary" cues before and after the ends of the channel. These cues control the acceleration or deceleration of the animated object as it enters and leaves the sequence. Four cues affect the curve at any point: the cues at the beginning and end of the sequence, and the cues before the start and after the end. There are several types of end treatment available:
+</a></li><P><a name="12241">
+ <P><img src="4CurveEditor.anc13.gif"><p>
+</a></ul><P><a name="12242">
+<em>Figure 4.13  &#32; &#32;End treatments for conic spline curves
+</em></a><P><ul><ul>
+<BR><a name="12228">
+<li><strong>Relaxed</strong> is the default. The object has no acceleration at the beginning or end of the sequence-the motion before and after the channel is at a constant velocity.
+</a><P><BR><a name="12229">
+<li><strong>Clamped</strong> is the opposite of Relaxed. Clamped end treatment maintains the same acceleration as the rest of the curve. At the end of the frame, the object is still accelerating (as opposed to relaxed end treatment, where the object appears to be coasting).
+</a><P><BR><a name="12231">
+<li><strong>Cyclic</strong> matches up the ends of the curve. Cyclic end treatment can be useful for animating repetitive action, by copying a cyclic sequence several times, to animate an action such as a pendulum or a walk cycle. The values of the cues at the beginning and end of the channel are averaged when this end treatment is chosen.
+</a><P><dl><a name="14604">
+<dt>This can be useful if you have two similar (but not exact) keyposes at the start and end of a script; choosing a cyclic end treatment averages the two keyposes into a single in-between keypose, so that looped sequences are seamless.<p>
+</a><P></dl><BR><a name="12233">
+<li><strong>Slow in/out</strong> gives zero slope at the <em>ends</em> of the sequence. Using slow in-out gives the appearance that the object accelerates at the beginning of the channel, then slows down near the end.
+</a><P><BR><a name="12234">
+<li><strong>Held</strong> curves use the value of the cues at the start and end cues for the two "ghost" cues beyond the start and end channel.
+</a><P><a name="14625">
+ <P><img src="4CurveEditor.anc14.gif"><p>
+</a></ul>
+</ul>
+<a name="14626">
+<em>Figure 4.14  &#32; &#32;Sample end treatments
+</em></a><P><ul><a name="12856">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="12857">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="12858">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="12859">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P></ul><P><a name="12860">
+A sample spline curve (one with cues only at the beginning and end of the channel), looks like this:<p>
+</a><P><a name="12159">
+ <P><img src="4CurveEditor.anc15.gif"><p>
+</a><a name="12160">
+<em>Figure 4.15  &#32; &#32;A sample conic spline curve, with bias and tension set to zero
+</em></a><P><a name="12866">
+By changing the bias and tension of individual cues on the curve, you can change its shape:<p>
+</a><P><a name="12164">
+ <P><img src="4CurveEditor.anc16.gif"><p>
+</a><a name="12165">
+<em>Figure 4.16  &#32; &#32;The same conic spline curve with modified bias and tension values
+</em></a><P><a name="11973">
+<h3> Kochanek Spline Curves</h3>
+</a><a name="13038">
+The Kochanek curve is smoother than a conic spline and passes directly through the cue values. While smoother is generally better, a spline that passes through its cues is a mixed blessing. On one hand, it means that there is a direct and obvious relation between the cue values and the value of the curve at that cue-they are equivalent. On the other hand, there is the issue of "overshoot," which is an important difference between conic and Kochanek splines.<p>
+</a><P><a name="13039">
+The two curve types offer a trade-off: better control at the cue points (Kochanek splines) or between them (conic splines). Kochanek spline curves have the additional property of "continuity," described below.<p>
+</a><P><a name="12188">
+ <P><img src="4CurveEditor.anc17.gif"><p>
+</a><a name="12189">
+<em>Figure 4.17  &#32; &#32;Kochanek spline curve parameters
+</em></a><P><ul><a name="12190">
+<li><strong>Bias</strong> is the same as described for conic spline curves, above.
+</a></li><P><a name="13045">
+<li><strong>Continuity</strong> determines the "pointiness" of each cue.
+</a></li><P><a name="13046">
+<li><strong>Tension</strong> is the same as described for conic spline curves, above.
+</a></li><P><a name="13047">
+<li><strong>End Treatment</strong> is the same as described for conic spline curves, above.
+</a></li><P><a name="13049">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="13050">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="13051">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="13052">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P></ul><P><a name="13097">
+A sample Kochanek spline curve (one with two cues, but default bias, tension, and continuity), looks like this:<p>
+</a><P><a name="12196">
+ <P><img src="4CurveEditor.anc18.gif"><p>
+</a><a name="12197">
+<em>Figure 4.18  &#32; &#32;A sample kochanek spline curve
+</em></a><P><a name="12521">
+The cues on a Kochanek spline curve can be manipulated directly in the curve editor. Each cue has a pair of handles associated with it; you can set the bias, tension, and continuity for each cue by dragging the red handle on either side of the cue itself.<p>
+</a><P><a name="12283">
+ <P><img src="4CurveEditor.anc19.gif"><p>
+</a><a name="12284">
+<em>Figure 4.19  &#32; &#32;A sample kochanek spline curve; bias and continuity have been modified on both cues
+</em></a><P><a name="11979">
+<h3> Sketched Curves</h3>
+</a><a name="11980">
+Sketched curves are drawn by hand or generated using one of a set of pre-defined operations; sketched curves can be of any shape.<p>
+</a><P><a name="13119">
+Sketched curves have the following parameters:<p>
+</a><P><a name="12624">
+ <P><img src="4CurveEditor.anc20.gif"><p>
+</a><a name="12625">
+<em>Figure 4.20  &#32; &#32;Sketched curve parameters
+</em></a><P><ul><a name="12648">
+<li><strong>LUT Directory</strong> is the directory in which you want to save or load a curve from.
+</a></li><P><a name="13120">
+<li><strong>LUT Name</strong> is the name of the file containing (or to contain) the curve data.
+</a></li><P><a name="13121">
+<li><strong>Interpolate</strong> specifies whether the curve should be smoothed; when you use a low number of samples, interpolating between the values produces a smoother appearance.
+</a></li><P><a name="13122">
+<li><strong>LUT Size</strong> specifies the number of samples (elements in the curve's lookup-table) in the sketched curve. The default value is 128; a higher number of samples produces smoother motion; a lower number of samples produces "jerkier" motion.
+</a></li><P><dl><a name="14322">
+<dt>Changing the number of samples is useful for very long sequences to avoid motion artifacts due to an inadequate number of samples. If a sequence was 1000 frames long, the interpolation between each pair of samples in a 128-sample sketched curve might produce discontinuous or "jerky" motion. (Of course, reducing the number of samples can also be used to deliberately obtain a jerky motion effect.)</dt>
+</a><P></dl><a name="13124">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="13125">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P></ul><P><a name="13109">
+A sample sketched curve looks like this:<p>
+</a><P><a name="12632">
+ <P><img src="4CurveEditor.anc21.gif"><p>
+</a><a name="12633">
+<em>Figure 4.21  &#32; &#32;A sample sketched curve
+</em></a><P><a name="12634">
+If you smooth the curve several times, its jagged edges are reduced and transitions over the course of the channel are smoother:<p>
+</a><P><a name="12638">
+ <P><img src="4CurveEditor.anc22.gif"><p>
+</a><a name="12639">
+<em>Figure 4.22  &#32; &#32;The same sketched curve, smoothed several times
+</em></a><P><a name="11987">
+<h3> Filtered Curves</h3>
+</a><a name="13227">
+The shape of filtered curves is set by modifying cue values or by adjusting the <em>filter width</em>. Like conic splines, filtered curves do not pass <em>through</em> cues that determine their shape, they merely approximate their position.<p>
+</a><P><a name="13204">
+When you set a cue value, you are specifying the point on the vertical axis where you want the object's motion to take it at that time. When you adjust the filter width, you specify the degree of smoothing that occurs over the curve. The filter width is expressed as a percentage of the parent sequence width and is shown as both the percentage and the time that it represents.<p>
+</a><P><a name="13160">
+In filtered curves, the smoothing is over a specific duration of time (hence a specific width on the diagram regardless of sequence length). A filter width of 0% gives linear ramps between cues. As the filter width increases, the curve becomes smoother.<p>
+</a><P><a name="13161">
+While the cues of the curve specify the same values at the same place for both the 25% and 100% filter widths, the curves will be quite different-the 25% filter produces a longer straight section between shorter curves, while the 100% filter width produces continual curves with no noticeable linear sections.<p>
+</a><P><a name="13162">
+As filter width increases, so does deviation from the cue value. A filter width of zero gives a curve that consists of a series of linear ramps between cues, while a filter width of 100% gives a smooth curve that deviates strongly from the exact cue values.<p>
+</a><P><a name="12667">
+ <P><img src="4CurveEditor.anc23.gif"><p>
+</a><a name="13172">
+<em>Figure 4.23  &#32; &#32;Filtered curve parameters
+</em></a><P><ul><a name="13173">
+<li><strong>Filter width </strong>specifies the smoothness of the curve around cues in the channel (see the description above).
+</a></li><P><a name="13183">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="13184">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="13185">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="13186">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P><a name="12675">
+ <P><img src="4CurveEditor.anc24.gif"><p>
+</a></ul><P><a name="12676">
+<em>Figure 4.24  &#32; &#32;A sample filtered curve, with a filter width of .25
+</em></a><P><a name="12677">
+Reducing the value of the filter width produces a more linear appearance at each defined cue, since less of the curve is "smoothed:"<p>
+</a><P><a name="12681">
+ <P><img src="4CurveEditor.anc25.gif"><p>
+</a><a name="12682">
+<em>Figure 4.25  &#32; &#32;The same filtered curve, with a filter width of .1
+</em></a><P><a name="11994">
+<h3> Slow In Curves</h3>
+</a><a name="13265">
+A Slow In curve is <em>exponential</em>; you define the shape of the curve (how slow the "in" effect of the curve is) by changing the exponent value for the curve.<p>
+</a><P><a name="13266">
+The default exponent is 2.5. Adjusting this value determines just how slow the Slow-In is. An exponent of 1 gives a linear ramp. Larger values correspond to proportionately higher rates of acceleration.<p>
+</a><P><a name="12751">
+ <P><img src="4CurveEditor.anc26.gif"><p>
+</a><a name="13296">
+<em>Figure 4.26  &#32; &#32;Slow In curve parameters
+</em></a><P><ul><a name="13307">
+<li><strong>Exponent </strong>determines the shape of the curve. Higher values produce a more accelerated effect.
+</a></li><P><a name="13308">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="13309">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="13310">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="13311">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P><a name="13303">
+ <P><img src="4CurveEditor.anc27.gif"><p>
+</a></ul><P><a name="12760">
+<em>Figure 4.27  &#32; &#32;A sample Slow In curve
+</em></a><P><a name="11998">
+<h3> Slow Out Curves</h3>
+</a><a name="13330">
+A Slow Out curve (like the Slow In), is an <em>exponential</em> curve; you define the shape of the curve (how slow the "out" effect of the curve is) by changing the exponent value for the curve.<p>
+</a><P><a name="13331">
+The default exponent is 2.5. Adjusting this value determines just how slow the Slow-Out is. An exponent of 1 gives a linear ramp. Larger values correspond to proportionately higher rates of acceleration.<p>
+</a><P><a name="12767">
+ <P><img src="4CurveEditor.anc28.gif"><p>
+</a><a name="12768">
+<em>Figure 4.28  &#32; &#32;Slow Out curve parameters
+</em></a><P><ul><a name="13320">
+<li><strong>Exponent </strong>determines the shape of the curve. Higher values produce a more accelerated effect.
+</a></li><P><a name="13321">
+<li><strong>Start Value</strong> is the value of the cue at the beginning of the channel.
+</a></li><P><a name="13322">
+<li><strong>End Value</strong> is the value of the cue at the end of the channel.
+</a></li><P><a name="13323">
+<li><strong>Min Plot Value</strong> is the minimum value that can be plotted in the channel.
+</a></li><P><a name="13324">
+<li><strong>Max Plot Value</strong> is the maximum value that can be plotted in the channel.
+</a></li><P><a name="12775">
+ <P><img src="4CurveEditor.anc29.gif"><p>
+</a></ul><P><a name="12776">
+<em>Figure 4.29  &#32; &#32;A sample Slow Out curve
+</em></a><P><a name="16161">
+<h3> Spherical Linear Curves</h3>
+</a><a name="16162">
+Spherical linear curves use quaternion notation (four values) to record each cue value. This curve type is most often used with certain operations in the Skeletal Animation System to avoid gimbal lock.<p>
+</a><P><a name="16180">
+ <P><img src="4CurveEditor.anc30.gif"><p>
+</a><a name="16181">
+<em>Figure 4.30  &#32; &#32;Spherical Linear curve parameters
+</em></a><P><a name="16159">
+Parameters for this curve are identical to those for the Linear curve type, described in the section <a href="4CurveEditor.html#13616">"Linear Curves," on page &#32;4-6</a>.<p>
+</a><P><a name="11954">
+<h2><HR> The Curve Editor</h2>
+</a><a name="12294">
+If you want to edit a curve directly, you need to use the <strong>Curve Editor</strong>. In the Curve Editor, you can slide cues, change the value of cues, and for certain types of curves, change the bias, tension, and continuity of cues.<p>
+</a><P><a name="13655">
+Before using the curve editor, you should select the basic curve type for the channel using the <strong>Edit Curve Properties</strong> dialog box described in the section <a href="4CurveEditor.html#13781">"Curve Types," on page &#32;4-6</a>.<p>
+</a><P><a name="13702">
+Next, enter the basic parameters for the selected curve type, as described in the section <a href="4CurveEditor.html#13781">"Curve Types," on page &#32;4-6</a>.<p>
+</a><P><a name="13686">
+Once you've done the basic setup for the curve channel, you're ready to use the Curve Editor. To open the curve editor:<p>
+</a><P>
+<a name="13717">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the curve.
+</STRONG>
+</a><P><a name="13725">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Edit Curve button at the bottom of the Edit Curve Properties dialog box.
+</STRONG>
+</a><P><dl><a name="12298">
+<dt>The channel containing the curve expands to fill the entire window; the type of data shown in the channel depends on the curve type selected. Suppose you had created a linear curve in a 30 frame channel with cues at frames 10 and 20. The curve might look something like this in the Script Editor:</dt>
+</a><P><a name="12304">
+ <P><img src="4CurveEditor.anc31.gif"><p>
+</a></dl>
+<a name="12306">
+<em>Figure 4.31  &#32; &#32;A simple conic spline curve with two cues
+</em></a><P><a name="13802">
+If you were to view the same curve in the Curve Editor, it would look something like this:<p>
+</a><P><a name="13744">
+ <P><img src="4CurveEditor.anc32.gif"><p>
+</a><a name="13746">
+<em>Figure 4.32  &#32; &#32;A simple linear curve with two cues
+</em></a><P><a name="13951">
+Note that the cues are represented by points along the curve in the Curve Editor. This lets you move the cues either left or right (to change their position in time) or up and down (to change their value).<p>
+</a><P><a name="14355">
+The various commands in the Curve Editor are described below:<p>
+</a><P><a name="15080">
+<h3> Exit</h3>
+</a><a name="14364">
+Exit from the curve editor after you have made any changes to the curve.<p>
+</a><P><a name="14365">
+<h3> Reset</h3>
+</a><a name="14366">
+Resets the curve to its shape when first opened in the Curve Editor, regardless of the number of changes you have made to it.<p>
+</a><P><a name="14367">
+If you want to escape from the Curve Editor without saving your changes, choose <strong>Reset</strong>, then <strong>Exit</strong>.<p>
+</a><P><a name="14349">
+<h3> Fit</h3>
+</a><a name="14350">
+<strong>Fit</strong> and <strong>Graph Min/Max</strong> are used in conjunction with one another to adjust the scale of the curve. If, for example, you want to use values between 1 and 50 in this curve:<p>
+</a><P>
+<a name="14429">
+<STRONG>	 1.	 Enter those values as your minimum and maximum in the Graph Min/Max text edit boxes.
+</STRONG>
+</a><P><a name="14351">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> or <strong>(CLICK-M)</strong> on Fit.
+</STRONG>
+</a><P><dl><a name="14433">
+<dt>The display is adjusted so that the highest and lowest points in the curve are visible in the channel. (<strong>(CLICK-M)</strong> adds a little padding above and below the highest and lowest points.)</dt>
+</a><P></dl>
+<a name="14389">
+<h3> Graph Min/Max</h3>
+</a><a name="14390">
+Specifies the lowest and highest values displayed in the curve channel. Changing these values does not affect the values of any samples in the curve; only the portion displayed in the curve editor.<p>
+</a><P><a name="13371">
+<h3> Shifting or Scaling the Entire Curve</h3>
+</a><a name="15634">
+In the curve editor, the following commands can be used to shift a curve in time or value, or to scale it in value:<p>
+</a><P><ul><a name="15640">
+<li><strong>(DRAG-M)</strong> interactively slides the curve in value (moves it up or down).
+</a></li><P><a name="15643">
+<li><strong>(SHIFT-DRAG-M)</strong> interactively factors the values in the curve (moves it up or down exponentially).
+</a></li><P><a name="15644">
+<li><strong>(DRAG-R)</strong> slides the curve left or right in time (for sketched curves only).
+</a></li><P></ul><P><a name="15633">
+<h2><HR> Working with Cues in Curve Channels</h2>
+</a><a name="14401">
+As mentioned at the beginning of this chapter, a cue is a marker in a curve channel with a specific value. The <em>shape</em> of the curve is bound by the value in those cues and the curve type.<p>
+</a><P><a name="14411">
+Cues in the curve channels can be modified as follows:<p>
+</a><P><a name="12308">
+<h3> Adding a Cue</h3>
+</a><a name="13935">
+To add a cue:<p>
+</a><P>
+<a name="13936">
+<STRONG>	 1.	 Move the mouse over the curve channel.
+</STRONG>
+</a><P><a name="13937">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the channel at the point you want to add the cue.
+</STRONG>
+</a><P><a name="16273">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Add Cue.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> <em>You can also use the hot key "s" to add a cue.</em></font></dd></dt></dl><P>
+<a name="13850">
+<h3> Moving a Cue</h3>
+</a><a name="13945">
+Moving a cue left or right changes its position in time; moving it up or down changes its value.<p>
+</a><P><a name="13946">
+To move a cue:<p>
+</a><P>
+<a name="13950">
+<STRONG>	 1.	 Move the mouse over the cue.
+</STRONG>
+</a><P><a name="13858">
+<STRONG>	2.	 <strong>(DRAG-L)</strong> to move the cue left and right in time.
+</STRONG>
+</a><P><dl><a name="13956">
+<dt>If you are in the curve editor, you can also move the cue up or down (changing its value)-the new value is displayed in the label at the top of the curve editor.</dt>
+</a><P></dl>
+<a name="13846">
+<h3> Editing a Cue's Value</h3>
+</a><a name="13874">
+To edit the value of a cue, <strong>(CLICK-M)</strong> directly on the cue; the type of dialog box that appears depends on whether the cue contains a simple value (like a number) or a complex value (like a pose or camera position).<p>
+</a><P><a name="15497">
+<h4> Cue Type #1: The Cue contains a Simple Value</h4>
+</a><a name="15501">
+Cues that specify a simple value like degrees of rotation, or a scaling factor can be modified as follows:<p>
+</a><P>
+<a name="13958">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><dl><a name="13902">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="13908">
+ <P><img src="4CurveEditor.anc33.gif"><p>
+</a></dl>
+<a name="13910">
+<em>Figure 4.33  &#32; &#32;Using the slider to edit values
+</em></a><P><ul><a name="14592">
+<li><strong>(DRAG-L)</strong> on the slider to change the value for the cue, then display the object's new state.
+</a></li><P><a name="14593">
+<li><strong>(CLICK-M)</strong> and drag to interactively update the object in the N-Geometry window.
+</a></li><P></ul><P><a name="14594">
+Each of the elements on the Adjust Parameter Value dialog box are described below:<p>
+</a><P><ul><a name="13911">
+<li><strong>Value</strong> shows the currently set value. Drag the vertical bar on the slider left or right to change the value.
+</a></li><P><a name="13912">
+<li><strong>Min</strong> and <strong>Max</strong> show the range of values that can be set using the current slider.
+</a></li><P><a name="13913">
+<li><strong>Shrink</strong> reduces the range (the min and max values for the curve channel).
+</a></li><P><a name="13914">
+<li><strong>Expand</strong> increases the range (the min and max values for the curve channel).
+</a></li><P><a name="13915">
+<li><strong>Recenter</strong> recenters the slider, but does not change its value (useful if you've changed the range for the curve).
+</a></li><P></ul><P><a name="15505">
+<h4> Cue Type #2: The Cue contains a Complex Value</h4>
+</a><a name="15506">
+Cues that specify a complex value such as a displacement, skeleton pose, or camera view, are modified as follows:<p>
+</a><P>
+<a name="15507">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the cue.
+</STRONG>
+</a><P><dl><a name="15508">
+<dt>A dialog box or list prompting you to select a displacement, pose, or view from a known list of such variables is displayed:</dt>
+</a><P><a name="15512">
+ <P><img src="4CurveEditor.anc34.gif"><p>
+</a></dl>
+<a name="15514">
+<em>Figure 4.34  &#32; &#32;Using the slider to edit values
+</em></a><P><dl><dl><a name="15538">
+<dt>Note that you also have the choice of copying the current state of the camera, skeleton, or model into the cue, so that you can interactively set up your animation.</dt>
+</a><P></dl></dl><a name="13847">
+<h3> Editing Concurrent Cues</h3>
+</a><a name="15223">
+Cues that occur at the same time are said to be concurrent.<p>
+</a><P><a name="16318">
+The method described above is useful if you want to edit a single cue. If you want to edit several cues that occur at the same time in the script, you can use the following method:<p>
+</a><P>
+<a name="15237">
+<STRONG>	 1.	 Open the parent channel that contains the curves whose cues you want to modify.
+</STRONG>
+</a><P><a name="15316">
+<STRONG>	2.	 <strong>(SHIFT-M)</strong> on the one of the concurrent cue you want to modify.
+</STRONG>
+</a><P><dl><a name="15250">
+<dt>You can <strong>(SHIFT-M) </strong>on either a cue or, if you have a marker track, on the marker with which the cue is associated. When you <strong>(SHIFT-M)</strong> on the cue, it and any other cues at that <em>position</em> are temporarily highlighted in red. (This is a toggle-use <strong>(SHIFT-M)</strong> again to deselect the marker.)</dt>
+</a><P><a name="15266">
+<dt>For example, if you were working with the curves in an XYZ Rotate cube action, <strong>(SHIFT-M)</strong> on the marker would highlight any other cues at that position:</dt>
+</a><P><a name="15278">
+ <P><img src="4CurveEditor.anc35.gif"><p>
+</a></dl>
+<a name="15279">
+<em>Figure 4.35  &#32; &#32;<strong>(SHIFT-M)</strong> on a cue to highlight all cues at that position and bring up sliders to modify those cues
+</em></a><P><a name="15263">
+Sliders appear in each channel with a selected cue. There are two ways to update the value of the selected cue; both methods display the updated object in the N-Geometry window:<p>
+</a><P><ul><a name="15302">
+<li><strong>(CLICK-L)</strong> and drag side to side to update the object after changing the cue value.
+</a></li><P><a name="15310">
+<li><strong>(CLICK-M)</strong> and drag side to side to update the object interactively.
+</a></li><P></ul><P><a name="15325">
+Cues are selected based on their position in time, not whether they are linked; this means cues in other open curve channels that exist at the same time as the selected marker can be highlighted (and can be updated) as well.<p>
+</a><P><a name="16337">
+ <P><img src="4CurveEditor.anc36.gif"><p>
+</a><a name="16338">
+<em>Figure 4.36  &#32; &#32;<strong>(SHIFT-M)</strong> edits cues at the same time, regardless of whether they're linked or not. Note that the first channel contains a view, while the others contain values; you can edit all at the same time using this technique.
+</em></a><P><a name="13849">
+<h3> Deleting a Cue</h3>
+</a><a name="13993">
+To delete a cue from a curve channel:<p>
+</a><P>
+<a name="12311">
+<STRONG>	 1.	 Move the mouse over the cue you want to delete.
+</STRONG>
+</a><P><a name="14014">
+<STRONG>	2.	 <strong>(SHIFT-R)</strong> on the cue.
+</STRONG>
+</a><P><a name="16342">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Delete.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> <em>You can also use the "Shift-D" hot key to add a cue.</em></font></dd></dt></dl><P>
+<a name="12420">
+<h3> Editing Sketched Curves</h3>
+</a><a name="12421">
+Editing sketched curves is slightly different than editing the other curve types supported by N-Dynamics. When you load a sketched curve into the Curve Editor, only the data contained in the curve itself and a menu bar are displayed:<p>
+</a><P><a name="12424">
+ <P><img src="4CurveEditor.anc37.gif"><p>
+</a><a name="12425">
+<em>Figure 4.37  &#32; &#32;Editing a sketched curve
+</em></a><P><a name="14037">
+To edit the shape of a curve manually:<p>
+</a><P>
+<a name="14045">
+<STRONG>	 1.	 Move the mouse over the curve channel.
+</STRONG>
+</a><P><a name="14046">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> and drag to change the shape of the curve.
+</STRONG>
+</a><P><dl><a name="14047">
+<dt>As you draw, a series of black dots show the new shape of the curve; when you let up on the mouse button, the shape of the curve is updated.</dt>
+</a><P></dl>
+<a name="14039">
+The rest of the menu buttons along the bottom of the curve channel are described below:<p>
+</a><P><a name="12428">
+<h4> Exit</h4>
+</a><a name="16364">
+Exits from the Curve Editor.<p>
+</a><P><a name="16363">
+<h4> Reset</h4>
+</a><a name="16365">
+Resets the curve to its state when you entered the Curve Editor.<p>
+</a><P><a name="16362">
+<h4> Smooth</h4>
+</a><a name="14066">
+Smoothes the drawn curve (reducing jaggies and making motion smoother). When you smooth a curve, the following dialog box appears:<p>
+</a><P><a name="14071">
+ <P><img src="4CurveEditor.anc38.gif"><p>
+</a><a name="14073">
+<em>Figure 4.38  &#32; &#32;Smooth options
+</em></a><P><ul><a name="12429">
+<li><strong>Wrap Around</strong> smoothes the curve so that its start and end values move closer to one another.
+</a></li><P><a name="12430">
+<li><strong>No Wrap</strong> smoothes the curve without any special end treatment.
+</a></li><P></ul><P><a name="14504">
+You can repeatedly smooth the curve by holding down the appropriate mouse button:<p>
+</a><P><ul><a name="14505">
+<li><strong>(HOLD-M)</strong> repeatedly smoothes the curve with wrap around.
+</a></li><P><a name="14506">
+<li><strong>(HOLD-R)</strong> repeatedly smoothes the curve with no wrap around.
+</a></li><P></ul><P><a name="12431">
+<h4> Operations</h4>
+</a><a name="14093">
+The operations button lets you perform operations that affect the overall shape of the sketched curve:<p>
+</a><P><a name="14088">
+ <P><img src="4CurveEditor.anc39.gif"><p>
+</a><a name="14089">
+<em>Figure 4.39  &#32; &#32;Sketched curve operations
+</em></a><P><a name="14098">
+Each of these operations is described below:<p>
+</a><P><a name="12432">
+<h4> Change Phase</h4>
+</a><a name="14101">
+Shifts the entire curve either right or left in time:<p>
+</a><P><ul><a name="14106">
+<li>Positive values shift the curve from right to left
+</a></li><P><a name="14107">
+<li>Negative values shift the curve from left to right
+</a></li><P></ul><P><a name="14108">
+A value of 1 returns the curve to its original position.<p>
+</a><P><a name="14127">
+ <P><img src="4CurveEditor.anc40.gif"><p>
+</a><a name="14128">
+<em>Figure 4.40  &#32; &#32;Top, original curve; middle, same curve with phase change of .75; bottom, with phase change of .5
+</em></a><P><a name="12434">
+<h4> Change Value</h4>
+</a><a name="12435">
+Shifts the entire curve up or down by adding or subtracting the specified amount from the entire curve:<p>
+</a><P><ul><a name="14114">
+<li>Positive values are added uniformly to the curve.
+</a></li><P><a name="14115">
+<li>Negative values are subtracted uniformly from the curve.
+</a></li><P></ul><P><a name="14116">
+If you add or subtract too much to the curve, you may want to use the <strong>Reset</strong> command to return the curve to its original state, or expand the displayable range of value using the <strong>Graph Min/Max</strong> boxes (described below).<p>
+</a><P><a name="14138">
+ <P><img src="4CurveEditor.anc41.gif"><p>
+</a><a name="14139">
+<em>Figure 4.41  &#32; &#32;Top, original curve; bottom, same curve with reduced value
+</em></a><P><a name="12436">
+<h4> Decircularize</h4>
+</a><a name="14443">
+In some curves, particularly those dealing with rotations, data can be cyclical; for example, a cube rotated 180 degrees looks the same as a cube rotated 540 degrees. In skeletal motion capture files, for example, it's not unusual for a skeleton to think that a bone has rotated 1 1/2 times rather than 1/2 a time; interpolating the position of a skeleton using the data will cause a "jump" when that point in the curve is encountered.<p>
+</a><P><a name="15101">
+Look at the following curve:<p>
+</a><P><a name="15110">
+ <P><img src="4CurveEditor.anc42.gif"><p>
+</a><a name="15111">
+<em>Figure 4.42  &#32; &#32;Curve showing jump in data
+</em></a><P><a name="15102">
+The data starts in a fairly straight line, then makes a large jump and continues along in a straight line.<p>
+</a><P><a name="15123">
+To decircularize the data in the curve:<p>
+</a><P>
+<a name="15124">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the curve in the script editor.
+</STRONG>
+</a><P><a name="16381">
+<STRONG>	2.	 <strong>(CLICK-L)</strong><strong> on Edit Curve.</strong>
+</STRONG>
+</a><P><a name="15134">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Operations button in the curve editor.
+</STRONG>
+</a><P><a name="15137">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Decircularize.
+</STRONG>
+</a><P><dl><a name="15148">
+<dt>The following dialog box is displayed:</dt>
+</a><P><a name="15160">
+ <P><img src="4CurveEditor.anc43.gif"><p>
+</a></dl>
+<a name="15161">
+<em>Figure 4.43  &#32; &#32;Decircularize curve parameters
+</em></a><P><ul><a name="15103">
+<li><strong>Threshold</strong> specifies how big the jump between adjacent samples must be for the decircularization filter to be applied.
+</a></li><P><a name="12438">
+<li><strong>Cycle Size</strong> is the point at which data is considered to be "cyclic." For rotation, for example, this would probably be set to 360; if 106% looked had the same effect as 6%, the cycle size would be 100.
+</a></li><P></ul><P><a name="15194">
+When the curve decircularized, it is automatically made to fit the channel, so the variations along the surface of the curve are more pronounced. If you set the Graph Min/Max range to match the original curve, you can see the effect more clearly:<p>
+</a><P><a name="15203">
+ <P><img src="4CurveEditor.anc44.gif"><p>
+</a><a name="15204">
+<em>Figure 4.44  &#32; &#32;Top, original curve; bottom, same curve after decircularize operation
+</em></a><P><a name="12439">
+<h4> Invert Curve in Time</h4>
+</a><a name="12440">
+Flips the curve left to right.<p>
+</a><P><a name="14151">
+ <P><img src="4CurveEditor.anc45.gif"><p>
+</a><a name="14152">
+<em>Figure 4.45  &#32; &#32;Top, original curve; bottom, same curve inverted in time (flipped left to right)
+</em></a><P><a name="12442">
+<h4> Invert Curve in Value</h4>
+</a><a name="12443">
+Flips the curve upside down.<p>
+</a><P><a name="14171">
+ <P><img src="4CurveEditor.anc46.gif"><p>
+</a><a name="14172">
+<em>Figure 4.46  &#32; &#32;Top, original curve; bottom, same curve with inverted value (flipped up/down)
+</em></a><P><a name="12444">
+<h4> Noise Curve</h4>
+</a><a name="12445">
+Adds random noise to the curve. Adding noise help eliminate some of the "artificial" feel of some computer animation by adding various levels of randomness to the controlled behavior.<p>
+</a><P><a name="14184">
+The current minimum and maximum values are displayed in the upper and lower left corner of the curve channel respectively. When you add noise you can specify the following parameters:<p>
+</a><P><ul><a name="12446">
+<li><strong>Min Value</strong> and <strong>Max Value</strong> are context specific depending on the combination specified:
+</a></li><P><ul>
+<BR><a name="14211">
+<li><strong>Add</strong> changes the shape of the curve by <em>adding</em> or <em>subtracting</em> randomly to each sample in the curve.
+</a><P><dl><a name="14233">
+<dt><strong>Min Value</strong> specifies the maximum amount that can be subtracted from the curve at any point; <strong>Max Value</strong> specifies the maximum amount that can be added.<p>
+</a><P><a name="14279">
+<dt>Specify a negative Min Value if you want to create noise below the current line of the curve.<p>
+</a><P></dl><BR><a name="12450">
+<li><strong>Mult</strong> changes the shape of the curve by multiplying each sample in the curve by a random amount.
+</a><P><dl><a name="14244">
+<dt><strong>Min Value</strong> specifies the lowest value by which any sample can be multiplied; <strong>Max Value</strong> specifies the maximum amount by which any sample can be multiplied.<p>
+</a><P><a name="14273">
+<dt>Specify a negative <strong>Min Value</strong> if you want to create noise below the current line of the curve.<p>
+</a><P></dl><BR><a name="12451">
+<li><strong>Set</strong> ignores the previous values in the curve; each sample in the curve channel is set to a random value between the specified <strong>Min Value</strong> and <strong>Max Value</strong>.
+</a><P><a name="14297">
+ <P><img src="4CurveEditor.anc47.gif"><p>
+</a></ul>
+</ul><P><a name="14298">
+<em>Figure 4.47  &#32; &#32;Top, original curve; bottom, same curve with noise added
+</em></a><P><a name="12452">
+<h4> Sawtooth Curve</h4>
+</a><a name="14495">
+Sawtooth curves are a simple way to create cyclical motion (such as repeated rotations) over the length of a channel.<p>
+</a><P><a name="14532">
+A sawtooth curve looks something like this:<p>
+</a><P><a name="14541">
+ <P><img src="4CurveEditor.anc48.gif"><p>
+</a><a name="14542">
+<em>Figure 4.48  &#32; &#32;Top, sawtooth curve with five cycles; middle, same curve with modified value exponent; bottom, with modified time exponent
+</em></a><P><a name="14534">
+The effect is most obvious if you use the Set combination (described below), which will create regular "teeth" on the new curve. Making an existing curve into a sawtooth curve creates the sawtooth effect along the existing shape of the curve.<p>
+</a><P><ul><a name="12453">
+<li><strong>Phase Start</strong> specifies the initial value for the curve, which determines the position of the "teeth" in the curve.
+</a></li><P><a name="12454">
+<li><strong>Cycles</strong> specifies how many teeth there should be in the sawtooth effect.
+</a></li><P><a name="12455">
+<li><strong>Min Value</strong> and <strong>Max Value</strong> have different effects depending on the combination chosen (described below).
+</a></li><P><a name="12457">
+<li><strong>Value Exponent</strong> describes how quickly each tooth reaches the maximum value.
+</a></li><P><a name="12458">
+<li><strong>Time Exponent</strong> specifies lets you control the length of the phase
+</a></li><P><a name="14464">
+<li><strong>Combination</strong> lets you specify whether you want to create a sawtooth effect for an existing curve or create a new (more regular) sawtooth curve. Add, multiply, and set operate as described above for the Noise curve: <strong>Add</strong> adds or subtracts values to each sample, <strong>Mult</strong> multiplies each value, and <strong>Set</strong> creates samples between the specified range.
+</a></li><P></ul><P><a name="14465">
+<h4> Sine Wave Curve</h4>
+</a><a name="14701">
+Creates a series of sine waves over the length of the curve. This is useful for repetitive "in/out" or "side to side" motion.<p>
+</a><P><a name="14710">
+ <P><img src="4CurveEditor.anc49.gif"><p>
+</a><a name="14711">
+<em>Figure 4.49  &#32; &#32;Top, sine wave curve with five cycles; bottom, with modified time exponent
+</em></a><P><a name="14722">
+For a description of the various sine wave parameters, see the description of the sawtooth curve above.<p>
+</a><P><a name="13442">
+<h2><HR> Curve Operations Menu</h2>
+</a><a name="14854">
+The curve operations menu performs a number of curve related operations; moving and resizing curves, working with cues inside the curve, and other various options.<p>
+</a><P><a name="14855">
+<strong>(CLICK-R)</strong> on a curve channel to see the curve operations menu:<p>
+</a><P><a name="11329">
+ <P><img src="4CurveEditor.anc50.gif"><p>
+</a><a name="11330">
+<em>Figure 4.50  &#32; &#32;The curve operations menu
+</em></a><P><a name="14861">
+Each of these commands is described in the sections below.<p>
+</a><P><a name="11332">
+<h3> Cut</h3>
+</a><a name="16397">
+Cuts the curve in half, creating two sequential curves.<p>
+</a><P><a name="16405">
+ <P><img src="4CurveEditor.anc51.gif"><p>
+</a><a name="16407">
+<em>Figure 4.51  &#32;Cutting a curve
+</em></a><P><a name="16411">
+The cue at which the two sequential curves meet shares a single value with both:<p>
+</a><P><a name="16419">
+ <P><img src="4CurveEditor.anc52.gif"><p>
+</a><a name="16420">
+<em>Figure 4.52  &#32;Sequential curves share a cue
+</em></a><P><a name="16399">
+<h3> Delete</h3>
+</a><a name="16400">
+Deletes the curve channel from the script. Note that an operation that normally expects to find a curve channel for the script use whatever local value is available to execute the operation.<p>
+</a><P><a name="11333">
+<h3> Insert Parent</h3>
+</a><a name="12549">
+Inserts a parent channel around the selected curve channel. The inserted channel is given the same operation type as the current parent channel. For example, in <a href="4CurveEditor.html#14877">Figure 4.53</a>, if the channel <strong>zzz</strong> is a <strong>Z Rotate</strong> operation, the inserted parent is also a <strong>Z Rotate</strong> operation:<p>
+</a><P><a name="14876">
+ <P><img src="4CurveEditor.anc53.gif"><p>
+</a><a name="14877">
+<em>Figure 4.53  &#32;Top, channel with curve; bottom, parent inserted around curve
+</em></a><P><a name="11334">
+<h3> Replace with Action</h3>
+</a><a name="11631">
+Replaces the selected channel with an action. The action assigned an operation type of <strong>None</strong>.<p>
+</a><P><a name="14917">
+To replace a curve with an action:<p>
+</a><P>
+<a name="14918">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the curve you want to replace.
+</STRONG>
+</a><P><a name="14919">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Replace with Action.
+</STRONG>
+</a><P><dl><a name="14920">
+<dt>The curve is converted into an action:</dt>
+</a><P><a name="14903">
+ <P><img src="4CurveEditor.anc54.gif"><p>
+</a></dl>
+<a name="14904">
+<em>Figure 4.54  &#32; &#32;Top, channel with curve; bottom, curve replaced by operation
+</em></a><P><a name="14926">
+<h3> Replace with Copy</h3>
+</a><a name="14927">
+Replaces the selected curve with the last channel remembered with the <strong>Remember </strong>command.<p>
+</a><P><a name="11335">
+<h3> Replace with Variable</h3>
+</a><a name="14971">
+A curve channel may take its value at any point, by evaluating a variable that has been defined in another channel. If you want to use a variable in one channel that has been created in another:<p>
+</a><P><a name="16463">
+This command is described in more detail in the section <a href="3ScriptEditor.html#18906">"Replace with Variable," on page &#32;3-44</a>.<p>
+</a><P><a name="16469">
+<h3> Replace with Sequential Curves</h3>
+</a><a name="16471">
+Inserts a parent channel (named Sequential Curves) around the selected curve channel (of type Return Value). Sequential curves must be contained in a parent channel.<p>
+</a><P><a name="16477">
+This command is described in more detail in the section <a href="3ScriptEditor.html#19067">"Replace with Sequential Curves," on page &#32;3-46</a>.<p>
+</a><P><a name="11337">
+<h3> Extend</h3>
+</a><a name="11616">
+This is identical to the operation for actions described in <a href="3ScriptEditor.html#11618">"Extend Curves," on page &#32;3-55</a>.<p>
+</a><P><a name="11338">
+<h3> Freeze Cues/Unfreeze Cues</h3>
+</a><a name="11629">
+Freeze or unfreeze all cues contained in the current channel.<p>
+</a><P><a name="16501">
+Frozen cues are described in more detail in the section <a href="3ScriptEditor.html#14345">"Freeze/Unfreeze," on page &#32;3-27</a>.<p>
+</a><P><a name="11339">
+<h3> Respace Cues</h3>
+</a><a name="11628">
+Redistributes the curves in a channel evenly over the length of the channel. To respace the cues in a curve channel:<p>
+</a><P>
+<a name="15046">
+<STRONG>	 1.	 Move the cursor over the curve.
+</STRONG>
+</a><P><a name="15050">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the curve.
+</STRONG>
+</a><P><a name="15051">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Respace Cues Evenly.
+</STRONG>
+</a><P><a name="15034">
+ <P><img src="4CurveEditor.anc55.gif"><p>
+</a>
+<a name="15035">
+<em>Figure 4.55  &#32; &#32;Top, curve with random cue positions; bottom, cues respaced evenly
+</em></a><P><a name="11340">
+<h3> Set Timeline</h3>
+</a><a name="15062">
+This is identical to the operation for actions described in <a href="3ScriptEditor.html#11620">"Set Timeline," on page &#32;3-57</a>.<p>
+</a><P><a name="11341">
+<h3> Slide this Curve</h3>
+</a><a name="15069">
+This is identical to the operation for actions described in <a href="3ScriptEditor.html#20749">"Slide," on page &#32;3-55</a>.<p>
+</a><P><a name="11343">
+<h3> Add Cue</h3>
+</a><a name="11625">
+Adds a new cue to a curve channel. To add a new cue:<p>
+</a><P>
+<a name="14790">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the curve channel where you want to insert the cue.
+</STRONG>
+</a><P><a name="14791">
+<STRONG>	2.	 Choose the Add New Cue command.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can also add cues to the curve using the "s" hot key.</em></font></dd></dt></dl><P>
+<a name="11344">
+<h3> Add Multiple Cues</h3>
+</a><a name="11624">
+Adds the specified number of cues to the channel, spacing them evenly over the length of the channel.<p>
+</a><P><a name="14800">
+ <P><img src="4CurveEditor.anc56.gif"><p>
+</a><a name="14801">
+<em>Figure 4.56  &#32; &#32;Curve Channel With Five Cues Added, Using Add Multiple Cues
+</em></a><P><a name="11345">
+<h3> Edit all Cues</h3>
+</a><a name="15591">
+Edit values for all cues in the selected curve channel. The interaction is slightly different depending on whether the channel contains simple values (e.g. rotation angle, scaling factor) or complex values (e.g., camera view, displacement state, or skeleton pose).<p>
+</a><P><a name="15592">
+<h4> Cue Type #1: Cues in the Channel Represent Simple Values</h4>
+</a><a name="15593">
+Cues that specify a simple value like degrees of rotation, or a scaling factor can be modified as follows:<p>
+</a><P>
+<a name="14835">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the curve whose cue values you want to edit.
+</STRONG>
+</a><P><a name="14836">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Edit all Cue Values.
+</STRONG>
+</a><P><dl><a name="14837">
+<dt>A menu similar to the one in <a href="4CurveEditor.html#14826">Figure 4.57</a> appears:</dt>
+</a><P><a name="14825">
+ <P><img src="4CurveEditor.anc57.gif"><p>
+</a></dl>
+<a name="14826">
+<em>Figure 4.57  &#32; &#32;You can edit the values for all cues in a given curve channel
+</em></a><P>
+<a name="14843">
+<STRONG>	3.	 Modify any or all of the values by clicking in the appropriate text box.
+</STRONG>
+</a><P><ul>
+<BR><a name="14845">
+<li><strong>(CLICK-L)</strong> to modify the existing value.
+</a><P><BR><a name="14846">
+<li><strong>(CLICK-M)</strong> to clear the box and enter a new value.
+</a><P><BR><a name="14847">
+<li><strong>(CLICK-R)</strong> to update the slider dialog box described in the section <a href="4CurveEditor.html#13846">"Editing a Cue's Value," on page &#32;4-25</a>.
+</a><P></ul>
+<a name="14844">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on Do It when you're finished.
+</STRONG>
+</a><P>
+<a name="15597">
+<h4> Cue Type #2: Cues in the Channel Represent Complex Values</h4>
+</a><a name="15598">
+Cues that represent a complex value such as a camera position, displacement state, or skeletal pose display the same dialog box shown in <a href="4CurveEditor.html#14826">Figure 4.57</a>; however, <em>any</em> mouse click brings up a list of saved positions, displacement states, or poses that can be inserted at that cue.<p>
+</a><P><a name="11346">
+<h3> Empty of Cues</h3>
+</a><a name="11622">
+Removes all cues from the curve (except for the default cues at the beginning and end of the channel).<p>
+</a><P><a name="12595">
+<h3> Deactivate </h3>
+</a><a name="11621">
+Temporarily deactivates the curve (in most cases, causing the operation to have no effect).<p>
+</a><P><a name="14770">
+In the Script Editor, the text label of a deactivated channel is black; the text for active channels is white.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>You can also use the "a" hot key to deactivate the channel currently under the mouse.</em></font></dd></dt></dl><P>
+<a name="11349">
+<h3> Remember</h3>
+</a><a name="11620">
+Remembers the selected curve channel, so that it can be copied into another channel in the script with the <strong>Replace with Copy</strong> command. All cues and their values are copied into the target channel.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="3ScriptEditor.html">[Prev]</a> <a href="5Operations.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/28/96 11:36:41 -->
+
+</body>
+</html>

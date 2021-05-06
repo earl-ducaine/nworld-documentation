@@ -1,0 +1,381 @@
+<html><head><title>Mappers</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="17CopyReinstMult.html">[Prev]</a> <a href="19Unmodeling.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+<a name="19757">
+<h1>Mappers</h1>
+</a>
+<hr><p><a name="19898">
+<h4> This chapter describes the concept of mappers and how to attach them to an object. A mapper is used to apply an image (such as a texture map, bump map, or opacity map) to all or part of an object.</h4>
+</a><a name="9046">
+ <P><img src="18Mappers.anc.gif"><p>
+</a><a name="8999">
+<h2><HR> In this Chapter</h2>
+</a><a name="19904">
+You'll learn about:<p>
+</a><P><ul><a name="19905">
+<li>the various types of mappers
+</a></li><P><a name="19906">
+<li>how to attach mappers to an object (or to a part)
+</a></li><P><a name="19907">
+<li>the various states a mapper can be in
+</a></li><P><a name="19908">
+<li>how to use the materials editor to apply a map to an object
+</a></li><P></ul><P><a name="18470">
+Mappers are N-Geometry objects through which you can project different types of images (such as texture maps) onto a 3D object.<p>
+</a><P><a name="19794">
+Mappers are a special class of object that can be transformed and animated, but have no body.<p>
+</a><P><a name="18354">
+The shape, orientation, and bounds of a mapper determines how the image is "projected" onto the object. You can, for example, project an image from one direction, wrap it around an entire object, or limit the projection to pre-defined face parts of an object.<p>
+</a><P><a name="18798">
+The type of maps that can be applied to an object depend on the render domain you are using to render the object. For example, the GL Shade domain supports few mapping options, but can display an object interactively on the SGI. N&#183;World's default N-Render domain supports texture, bump, opacity, reflection, and refraction maps, but must render objects a single frame at a time.<p>
+</a><P><a name="19784">
+You specify the image to be projected onto an image in the <strong>Attributes Editor</strong> to project or wrap an <em>image</em> onto an object. When projected onto an object, an image is referred to as a <em>map</em> because the pixels in the 2D image are "mapped" to different locations on the 3D object.<p>
+</a><P><a name="17129">
+<h2><HR> Types of Mappers</h2>
+</a><a name="17100">
+N&#183;World lets you attach the following types of mappers to an object or face part:<p>
+</a><P><ul><a name="17325">
+<li>planar
+</a></li><P><a name="17265">
+<li>cylindrical
+</a></li><P><a name="19144">
+<li>spherical
+</a></li><P></ul><P><a name="19145">
+These mappers can be dynamic or frozen (as described in the section <a href="18Mappers.html#20074">"Dynamic vs. Frozen Mappers," on page &#32;18-11</a>).<p>
+</a><P><a name="18562">
+<h3> Mapper Icons</h3>
+</a><a name="18734">
+Each type of mapper is represented in the N-Geometry window by an <em>icon</em>. The lines of the mapper icon describe the location of the mapping image's edges in the projection. <p>
+</a><P><ul><a name="18563">
+<li>For <em>cylindrical</em> and <em>spherical</em> mappers, a line indicates where the left and right edges of the image meet in the projection. The UV coordinate origin (where U=0 and V=0) is indicated by the location of a triangular shape in the object. 
+</a></li><P><a name="18564">
+<li>For <em>planar</em> and <em>cylindrical</em> mapper, the triangle points in the direction of increasing U values. 
+</a></li><P><a name="18565">
+<li>For a <em>spherical</em> mapper, the triangle takes the form of an arc that sweeps 90&#176; from the image seam to U=.25.
+</a></li><P></ul><P><a name="18567">
+<h4> Planar Mappers</h4>
+</a><a name="18568">
+In a planar mapper, points in the image are projected in parallel lines through space in the direction defined to be perpendicular to the mapper. This resembles how objects look when they are placed in the path of a slide projector beam.<p>
+</a><P><a name="18569">
+To define how points in the image correspond to points in the mapper, pairs of numbers called UV coordinates are used. The U coordinate expresses the distance in the image from left to right, with 0 indicating the left side and 1 indicating the right side. The V coordinate describes positions from top to bottom, with 0 for the top and 1 for the bottom. <a href="18Mappers.html#18589">Figure 18.1</a> shows a planar mapper with its UV coordinates labeled, and a planar mapper bounding an octahedron.<p>
+</a><P><a name="18587">
+ <P><img src="18Mappers.anc1.gif"><p>
+</a><a name="18589">
+<em>Figure 18.1  &#32; &#32;Left, a planar mapper with its UV coordinates labeled; right, a planar mapper bounding an octahedron
+</em></a><P><a name="18591">
+<h4> Cylindrical Mappers</h4>
+</a><a name="18592">
+In a cylindrical mapper, the image is wrapped cylindrically around the object; the left edge of the image "wraps around" the object until it meets the right edge. <p>
+</a><P><a name="18746">
+The image thus appears to be "wrapped" around the object like the label of a can of soup, with the left edge of the image abutting the right edge. <a href="18Mappers.html#18615">Figure 18.2</a> shows a cylindrical mapper with its UV coordinates labeled, and a cylindrical mapper bounding a cube.<p>
+</a><P><a name="18613">
+ <P><img src="18Mappers.anc2.gif"><p>
+</a><a name="18615">
+<em>Figure 18.2  &#32; &#32;Left, a cylindrical mapper with its UV coordinates labeled; right, a cylindrical mapper bounding a cube
+</em></a><P><a name="18617">
+<h4> Spherical Mappers</h4>
+</a><a name="18618">
+In a spherical mapper, the UV coordinates are arranged like the longitude and latitude lines of a globe. The relationship between the image and the mapper is therefore like the relationship between a grid of horizontal and vertical lines and a set of longitude and latitude lines on a globe. <p>
+</a><P><a name="18749">
+The portions of the image near the top and bottom are compressed at the top and bottom of the spherical region of the mapper. <a href="18Mappers.html#18555">Figure 18.3</a> shows a spherical mapper with its UV coordinates labeled, and a spherical mapper bounding a cube.<p>
+</a><P><a name="18646">
+ <P><img src="18Mappers.anc3.gif"><p>
+</a><a name="18555">
+<em>Figure 18.3  &#32; &#32;Left, a spherical mapper with its UV coordinates labeled; right, a spherical mapper bounding a cube.
+</em></a><P><a name="18556">
+<h2><HR> Attaching Mappers</h2>
+</a><a name="18807">
+To attach a mapper to an object:<p>
+</a><P>
+<a name="18811">
+<STRONG>	 1.	 Create an icosahedron in N-Geometry.
+</STRONG>
+</a><P><a name="20271">
+ <P><img src="18Mappers.anc4.gif"><p>
+</a>
+<a name="20273">
+<em>Figure 18.4  &#32; &#32;Create an icosahedron
+</em></a><P>
+<a name="19926">
+<STRONG>	2.	 Open the Browser.
+</STRONG>
+</a><P><dl><a name="19950">
+<dt>The <strong>Browser</strong> is described in more detail in <em>Getting Started</em>.</dt>
+</a><P></dl><a name="19925">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Geo.
+</STRONG>
+</a><P><a name="19930">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on Icosahedron.
+</STRONG>
+</a><P><a name="20281">
+ <P><img src="18Mappers.anc5.gif"><p>
+</a>
+<a name="20282">
+<em>Figure 18.5  &#32; &#32;Select the object
+</em></a><P><dl><dl><a name="20298">
+<dt>The following menu appears:</dt>
+</a><P><a name="20308">
+ <P><img src="18Mappers.anc6.gif"><p>
+</a></dl></dl><a name="20309">
+<em>Figure 18.6  &#32; &#32;Creating a mapper
+</em></a><P>
+<a name="19931">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on <strong>Create Mapper</strong>.
+</STRONG>
+</a><P><dl><a name="20315">
+<dt>The following dialog box appears</dt>
+</a><P><a name="20326">
+ <P><img src="18Mappers.anc7.gif"><p>
+</a></dl>
+<a name="20327">
+<em>Figure 18.7  &#32; &#32;Selecting the type of mapper
+</em></a><P><dl><dl><a name="20017">
+<dt>Use the default parameters to generate the mapper; these parameters are described in detail in the <em>N-Geometry Reference Guide</em>, then <strong>(CLICK-L)</strong> on the <strong>Make Mapper</strong> button.</dt>
+</a><P></dl></dl>
+<a name="19956">
+<STRONG>	6.	 Look at the structure of the object in the browser.
+</STRONG>
+</a><P><dl><a name="20353">
+<dt>Note that <strong>Icosahedron</strong> changes to <strong>Icosahedron Group</strong>. The mapper is automatically attached to the object and restructured into a group.</dt>
+</a><P><a name="20360">
+ <P><img src="18Mappers.anc8.gif"><p>
+</a></dl>
+<a name="20361">
+<em>Figure 18.8  &#32; &#32;The new object structure is reflected in the browser
+</em></a><P>
+<a name="20354">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the black triangle next to Icosahedron group.
+</STRONG>
+</a><P><dl><a name="20355">
+<dt>You can see that both the original object and the mapper have been restructured into the group.</dt>
+</a><P><a name="20369">
+ <P><img src="18Mappers.anc9.gif"><p>
+</a></dl>
+<a name="20370">
+<em>Figure 18.9  &#32; &#32;The object and the mapper are grouped
+</em></a><P>
+<a name="20027">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the black triangle next to the Icosahedron.
+</STRONG>
+</a><P><dl><a name="20042">
+<dt>The browser also shows you which mapper is currently assigned to the object.</dt>
+</a><P><a name="20385">
+ <P><img src="18Mappers.anc10.gif"><p>
+</a></dl>
+<a name="20386">
+<em>Figure 18.10  &#32; &#32;The object and the mapper are grouped
+</em></a><P>
+<a name="20001">
+<STRONG>	9.	 <strong>(CLICK-R)</strong> on the object in the Browser hierarchy again.
+</STRONG>
+</a><P><a name="20012">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Assign Material</strong>.
+</STRONG>
+</a><P><dl><a name="20512">
+<dt>Select from the list of currently loaded materials. (A number of preset materials are loaded every time N&#183;World starts.)</dt>
+</a><P><a name="20523">
+ <P><img src="18Mappers.anc11.gif"><p>
+</a></dl>
+<a name="20524">
+<em>Figure 18.11  &#32; &#32;Selecting a material
+</em></a><P><dl><dl><a name="20534">
+<dt>If the material has more than one map associated with it (e.g. a texture map and a bump map, you need to specify the mapper through which each map should be applied:</dt>
+</a><P><a name="20546">
+ <P><img src="18Mappers.anc12.gif"><p>
+</a></dl></dl><a name="20547">
+<em>Figure 18.12  &#32; &#32;Specifying mappers for each map in the material
+</em></a><P><dl><dl><a name="20537">
+<dt>If there is only one mapper on the object, you can only apply the material through that mapper; however, if you have multiple mappers on an object, you can <strong>(CLICK-R)</strong> on the appropriate mapper field to specify the mapper through which each map should be applied.</dt>
+</a><P></dl></dl>
+<a name="20514">
+<STRONG>	11.	 Look in the browser again.
+</STRONG>
+</a><P><dl><a name="20560">
+<dt>If the material has an icon associated with it (has been previously saved), it is displayed in the hierarchy:</dt>
+</a><P><a name="20570">
+ <P><img src="18Mappers.anc13.gif"><p>
+</a></dl>
+<a name="20571">
+<em>Figure 18.13  &#32; &#32;Object hierarchy displaying material
+</em></a><P>
+<a name="20559">
+<STRONG>	12.	 In N-Geometry, <strong>(CLICK-L)</strong> on <strong>objects</strong> on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20008">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on <strong>Shading</strong> to display the object in shaded mode.
+</STRONG>
+</a><P><a name="20582">
+ <P><img src="18Mappers.anc14.gif"><p>
+</a>
+<a name="20583">
+<em>Figure 18.14  &#32; &#32;Mapped object
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Objects must be shaded for GL Shade mapping to be visible.</font></dd></dt></dl><P>
+<a name="20074">
+<h2><HR> Dynamic vs. Frozen Mappers</h2>
+</a><a name="20075">
+When you create a mapper, it is by default <em>dynamic</em>-it can be animated just like any other object, independently of the object to which it was assigned. There is no fixed relationship between the object and the mapper. However, N-Geometry also lets you fix the relationship between the mapper and the object through a process called "Freezing" the mapper.<p>
+</a><P><a name="20081">
+<h3> Dynamic Mappers</h3>
+</a><a name="20082">
+When you first create a mapper, that mapper is <em>dynamic</em>-that is, it is an object that can still be transformed or animated. If you transform a mapper, you change how the image is projected onto the surface of the object.<p>
+</a><P><a name="20083">
+A dynamic mapper can be <em>animated</em> in N-Dynamics like other objects. With a dynamic planar mapper, for example, if the object's transformation is animated differently than that of the mapper, the mapped image will <em>slide</em> along the surface of the object, and the object will look like it's passing through the beam of a slide projector.<p>
+</a><P><a name="20084">
+You can use dynamic mappers to your advantage to simulate motion without ever moving the object; for example, you could project a map of a wheel onto the wheel of a car model, then rotate the mapper to create the illusion that the wheel was spinning.<p>
+</a><P><a name="20142">
+Try this:<p>
+</a><P>
+<a name="20148">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on objects on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20149">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the mapper in the N-Geometry window, then <strong>(CLICK-L)</strong> on <strong>Rotate&gt;Y</strong>.
+</STRONG>
+</a><P><dl><a name="20154">
+<dt>Move the mouse back and forth...note that the mapper icon rotates, as does the projection of the image onto the object.</dt>
+</a><P><a name="20165">
+ <P><img src="18Mappers.anc15.gif"><p>
+</a></dl>
+<a name="20166">
+<em>Figure 18.15  &#32; &#32;Left, untransformed mapper; right, mapper rotated on its Y axis
+</em></a><P><a name="20169">
+As mentioned above, animating a mapper is an easy way to create the illusion of movement for an object.<p>
+</a><P><a name="20647">
+Here's one more experiment that may help you understand the relationship between a dynamic mapper and an object :<p>
+</a><P>
+<a name="20638">
+<STRONG>	3.	 In the N-Geometry window, <strong>(SHIFT-L)</strong> on the Icosahedron's spherical mapper, then <strong>(CLICK-L)</strong> on Home.
+</STRONG>
+</a><P><dl><a name="20641">
+<dt>This returns the mapper to its original position.</dt>
+</a><P></dl><a name="20642">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20643">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the point on top of the icosahedron, then <strong>(CLICK-L)</strong> on <strong>Move</strong>.
+</STRONG>
+</a><P><dl><a name="20717">
+<dt>Move the point around. Note that the point appears to move "underneath" the projected map.</dt>
+</a><P><a name="20655">
+ <P><img src="18Mappers.anc16.gif"><p>
+</a></dl>
+<a name="20656">
+<em>Figure 18.16  &#32; &#32;Left, original object; right, moving a point on the object
+</em></a><P><a name="20644">
+With a dynamic mapper, the image is projected inward from the mapper in the same way, even if you modify the geometry of the object.<p>
+</a><P><a name="20048">
+<h2><HR> Freezing the Mapper</h2>
+</a><a name="20117">
+You might prefer, however, to <em>fix</em> the relationship of the mapper image to the surface of the object. If the surface of your object is going to deform (like the skin on a skeleton), you'll probably want to <em>freeze</em> the mapper so that the same portion of the map always stays with the same face.<p>
+</a><P><a name="20118">
+When you freeze a mapper, N-Geometry actually creates a <em>copy</em> of the dynamic mapper and applies it to the object. That way, you can always revert to the dynamic mapper if you wish to do so.<p>
+</a><P><a name="20120">
+When you animate an object with a frozen mapper, the map image <em>always</em> remains in the same position on the surface of the object. Because a frozen mapper represents a fixed mapping relationship, no visible mapper icon exists for a frozen mapper. You cannot animate a frozen mapper.<p>
+</a><P><a name="20121">
+Let's freeze the mapper on our icosahedron:<p>
+</a><P>
+<a name="20210">
+<STRONG>	 1.	 Open the Browser.
+</STRONG>
+</a><P><a name="20211">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on Icosahedron in the hierarchy.
+</STRONG>
+</a><P><a name="20214">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Freeze Mappers</strong>.
+</STRONG>
+</a><P>
+<a name="20215">
+If you look at the hierarchy, you can see that a nerw mapper has been added to the object's structure:<p>
+</a><P><a name="20744">
+ <P><img src="18Mappers.anc17.gif"><p>
+</a><a name="20745">
+<em>Figure 18.17  &#32; &#32;Frozen mapper added to hierarchy
+</em></a><P><a name="20754">
+When you freeze a mapper, it is automatically made the mapper currently assigned to the object.<p>
+</a><P><a name="20766">
+If you look in the N-Geometry window, you won't find any new icon for the frozen mapper, because it cannot be transformed separately from the object to which it is frozen.<p>
+</a><P>
+<a name="20761">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on points on the element sensitivity menu.
+</STRONG>
+</a><P><a name="20762">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the point on top of the icosahedron, then <strong>(CLICK-L)</strong> on <strong>Move</strong>.
+</STRONG>
+</a><P><dl><a name="20763">
+<dt>Move the point around. Note that this time, the map's coordinates remain fixed onto the surface of the object:</dt>
+</a><P><a name="20775">
+ <P><img src="18Mappers.anc18.gif"><p>
+</a></dl>
+<a name="20776">
+<em>Figure 18.18  &#32; &#32;Left, original object; right, moving a point on the object with a fixed mapper
+</em></a><P><a name="20757">
+<h2><HR> Positioning Mappers</h2>
+</a><a name="20245">
+Only dynamic mappers can be repositioned. Remember that when you freeze a mapper, you actually create a new mapper that does not have an icon and cannot be repositioned.<p>
+</a><P><a name="20246">
+If it turns out that a frozen mapper is not positioned quite correctly:<p>
+</a><P>
+<a name="20247">
+<STRONG>	 1.	 Delete the frozen mapper.
+</STRONG>
+</a><P><a name="20248">
+<STRONG>	2.	 Reposition the dynamic mapper.
+</STRONG>
+</a><P><a name="20249">
+<STRONG>	3.	 Refreeze the dynamic mapper in its new position.
+</STRONG>
+</a><P>
+<a name="18850">
+<h2><HR> Attaching Mappers to Face Parts</h2>
+</a><a name="20790">
+You can apply mappers to a face part in the same way you apply them to an object.<p>
+</a><P><a name="20799">
+To attach a mapper to a face part:<p>
+</a><P>
+<a name="20798">
+<STRONG>	 1.	 In the Browser, <strong>(CLICK-L)</strong> on the triangle to the right of the object containing the face part.
+</STRONG>
+</a><P><a name="20814">
+ <P><img src="18Mappers.anc19.gif"><p>
+</a>
+<a name="20815">
+<em>Figure 18.19  &#32; &#32;Object with face parts
+</em></a><P>
+<a name="20800">
+<STRONG>	2.	 <strong>(CLICK-R)</strong> on the face part to which you want to assign a mapper.
+</STRONG>
+</a><P><a name="20801">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Create Mapper</strong>.
+</STRONG>
+</a><P>
+<a name="20804">
+After locating the face part in the object hierarchy, creating and assigning a mapper to a face part is identical to doing the same for an object.<p>
+</a><P><a name="19631">
+<h2><HR> Congratulations!</h2>
+</a><a name="19632">
+You've now created and assigned a mapper to an object, transformed a dynamic mapper, and frozen a dynamic mapper. You've also learned how to assign mappers to both objects or face parts, and how to reposition mappers.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="17CopyReinstMult.html">[Prev]</a> <a href="19Unmodeling.html">[Next]</a> <a href="BookIX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/26/96 14:55:42 -->
+
+</body>
+</html>

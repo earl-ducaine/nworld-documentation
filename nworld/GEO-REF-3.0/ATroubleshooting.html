@@ -1,0 +1,157 @@
+<html><head><title>Troubleshooting</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="7Utilities.html">[Prev]</a> <a href="BHotKeys.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="12272">
+<h1>Troubleshooting</h1>
+</a>
+<hr><p><a name="11365">
+<h3> Faces with Holes</h3>
+</a><a name="11366">
+Most operations that function with simple faces can also be used with faces that have holes.<p>
+</a><P><a name="11715">
+One of the most important considerations, however, is that faces with holes do not render properly. This means you have to make sure that none of the faces on your objects contain holes. <p>
+</a><P><a name="11722">
+The editor disallows some operations on such faces, because the effects are either counterintuitive or produce geometrically invalid shapes. The following operations, performed on faces with holes, yield unpredictable results:<p>
+</a><P><ul><a name="11368">
+<li><strong>Sphericize</strong>
+</a></li><P><a name="11370">
+<li><strong>Smooth</strong>
+</a></li><P><a name="11372">
+<li><strong>Fractalize</strong>
+</a></li><P><a name="11374">
+<li><strong>Interp</strong> <strong>Smooth</strong>
+</a></li><P><a name="11376">
+<li><strong>Bridge</strong>
+</a></li><P></ul><P><a name="11377">
+If you attempt to use any of these operations on a face with a hole, a warning is displayed, which you must acknowledge before continuing with the operation.<p>
+</a><P><a name="11727">
+Topological operations not supported are <strong>Edge Subdivide</strong> and <strong>Vertex Subdivide</strong>. If you attempt to apply one of them to a polyhedron that has faces with holes, N-Geometry rejects the operation with a warning. Once all faces with holes have been removed (by cutting), the operations will work.<p>
+</a><P><a name="11378">
+The only currently supported topological operations are:<p>
+</a><P><ul><a name="11379">
+<li><strong>Extrude</strong>
+</a></li><P><a name="11380">
+<li><strong>Lift from Vertex</strong>
+</a></li><P><a name="11381">
+<li><strong>Lift from Edge</strong> 
+</a></li><P><a name="11382">
+<li><strong>Cut</strong>
+</a></li><P></ul><P><a name="11383">
+<strong>Extrude</strong>, <strong>Lift from Vertex</strong>, and <strong>Lift from Edge</strong> work as they do for simple faces. <p>
+</a><P><a name="11384">
+When you <strong>Cut</strong> a face with one hole, there are three types of cuts you can make:<p>
+</a><P><ul><a name="11407">
+<li>from one point on the outer perimeter to another
+</a></li><P><a name="11415">
+<li>from one point on the inner perimeter to another
+</a></li><P><a name="11418">
+<li>from a point on the inner parameter to a point on the outer perimeter
+</a></li><P></ul><P><a name="11421">
+In the first two cases, the cut operation is normal, creating an edge between the two selected points and a new (simple) face on one side.<p>
+</a><P><a name="11425">
+ <P><img src="ATroubleshooting.anc.gif"><p>
+</a><a name="11429">
+<em>Figure A.1  &#32; &#32;Cutting a face from inner to inner, and outer to outer
+</em></a><P><a name="11505">
+While the faces with holes still need to be cut to render properly, the face does not have any double edges, as occurs in a cut of the third type:<p>
+</a><P><a name="11477">
+ <P><img src="ATroubleshooting.anc1.gif"><p>
+</a><a name="11478">
+<em>Figure A.2  &#32; &#32;Cutting from the inner to outer parameter on the face
+</em></a><P><a name="11497">
+When this type of cut is made, the cut creates two edges that share the same position on the face; while this shape is topologically edge, a double edge on a face cause the face to render improperly.<p>
+</a><P><a name="11528">
+The solution is to make a second cut somewhere else on the face:<p>
+</a><P><a name="11540">
+ <P><img src="ATroubleshooting.anc2.gif"><p>
+</a><a name="11541">
+<em>Figure A.3  &#32; &#32;Making a second cut on the face
+</em></a><P><a name="11430">
+Finally, one of the edges in the double edge should be deleted:<p>
+</a><P><a name="11567">
+ <P><img src="ATroubleshooting.anc3.gif"><p>
+</a><a name="11568">
+<em>Figure A.4  &#32; &#32;Dissolving one of the coincident edges
+</em></a><P><a name="11559">
+Double edges have now been removed from the face, and you now have two faces that can be properly rendered.<p>
+</a><P><a name="11588">
+<h3> The Dehole Operation</h3>
+</a><a name="11666">
+If the face you are working with has only a single hole, you can choose the <strong>Dehole</strong> operation to break the face into a renderable set of faces. This performs the same set of operations as described above with only a single click. However, the <strong>Dehole</strong> operation may not cut the face where you want it to break; if you don't care where the face gets cut, you may wish to just use the <strong>Dehole</strong> function. Also, the Dehole operation may not work properly if the hole is concave; again, you may want to use the <strong>Cut</strong> operation to make cuts explicitly.<p>
+</a><P><a name="11667">
+<h3> Using Cull Elements to Get Rid of Double Edges</h3>
+</a><a name="11611">
+Note that for faces with multiple holes, it may become difficult to determine whether a given edge is double or not:<p>
+</a><P><a name="11626">
+ <P><img src="ATroubleshooting.anc4.gif"><p>
+</a><a name="11627">
+<em>Figure A.5  &#32; &#32;Faces with multiple holes and enough cuts
+</em></a><P><a name="11592">
+When you make the cuts shown in <a href="ATroubleshooting.html#11627">Figure A.5</a>, both of them create double edges; but because double edges don't show any differently than single edges, you might not realize you have a double edge until you render the shape, and if you are making numerous cuts on a face, it may become very confusing.<p>
+</a><P><a name="11652">
+The easiest thing to do to check such edges is to use the Cull Elements command to check the face's integrity:<p>
+</a><P>
+<a name="11653">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the face.
+</STRONG>
+</a><P><a name="11657">
+<STRONG>	2.	 Choose Cull Elements.
+</STRONG>
+</a><P><dl><a name="11680">
+<dt>A submenu appears with several items to check for.</dt>
+</a><P></dl><a name="11658">
+<STRONG>	3.	 Choose Double Edges.
+</STRONG>
+</a><P><dl><a name="11681">
+<dt>In the UNIX shell window, you're notified if any double edges were corrected.</dt>
+</a><P></dl>
+<a name="11686">
+The Cull Elements command is not limited to use on faces with more than one hole; it can be used on any face to check for the existence of double edges.<p>
+</a><P><a name="11736">
+<h3> Non-Planar Faces</h3>
+</a><a name="11737">
+Non-planar faces are often caused by two types of operations:<p>
+</a><P><ul><a name="11738">
+<li>operations in which vertices are moved (such as <strong>Move</strong>)
+</a></li><P><a name="11739">
+<li>operations in which new faces are formed (such as <strong>Dissolve</strong> and <strong>Collapse</strong>).
+</a></li><P></ul><P><a name="11743">
+The nonplanar face in <a href="ATroubleshooting.html#11749">Figure A.6</a> was created using <strong>Move</strong> on a point on the cube.<p>
+</a><P><a name="11747">
+ <P><img src="ATroubleshooting.anc5.gif"><p>
+</a><a name="11749">
+<em>Figure A.6  &#32; &#32;Cube with a nonplanar face
+</em></a><P><a name="11750">
+Normally you don't have to worry about <em>slightly</em> nonplanar faces. Most renderers triangularize all faces before rendering them so that the shading of such faces is constant over an animation. If you have a severely warped face, however, the renderer might subdivide a non-planar face in a manner you did not intend.<p>
+</a><P><a name="11754">
+<a href="ATroubleshooting.html#11761">Figure A.7</a> illustrates the two ways in which a nonplanar face might be cut, and the two are rendered quite differently.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you have such warped faces, it is best to cut them explicitly yourself by selecting the non-planar face, then using the Cut operation and choosing the two points along which the face should be cut.</em></font></dd></dt><a name="11759">
+ <P><img src="ATroubleshooting.anc6.gif"><p>
+</a></dl><P>
+<a name="11761">
+<em>Figure A.7  &#32; &#32;Two ways to cut a nonplanar face
+</em></a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="7Utilities.html">[Prev]</a> <a href="BHotKeys.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 11:24:43 -->
+
+</body>
+</html>

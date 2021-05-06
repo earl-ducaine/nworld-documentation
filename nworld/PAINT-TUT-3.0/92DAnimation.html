@@ -1,0 +1,572 @@
+<html><head><title>Animating Paint Operations</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="83dPaintMode.html">[Prev]</a> <a href="10ColorReduction.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="11994">
+<h1>Animating Paint Operations</h1>
+</a>
+<hr><p><a name="11995">
+<h4> In this chapter, you'll learn how to drive N-Paint operations from N-Dynamics. You'll learn how to perform such tasks as loading and saving sequences of images, how to modify a loaded image from a script, and how to composite images in N-Paint.</h4>
+</a><a name="11999">
+ <P><img src="92DAnimation.anc.gif"><p>
+</a><a name="12000">
+<h2><HR> In this Chapter</h2>
+</a><a name="12272">
+You'll lean how to:<p>
+</a><P><ul><a name="12002">
+<li>Load one or more images into N-Paint
+</a></li><P><a name="12003">
+<li>Perform N-Paint operations on an image
+</a></li><P><a name="12004">
+<li>Save images to disk from N-Paint
+</a></li><P><a name="12005">
+<li>Composite images in N-Paint using N-Dynamics
+</a></li><P></ul><P><a name="12275">
+This chapter assumes that you have some basic familiarity with N-Dynamics, Nichimen Graphics' animation module. If you're not familiar with N-Dynamics, you may want to read the first two chapters of the <em>N-Dynamics Tutorial</em> before you try this tutorial.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This chapter also appears in the N-Dynamics Tutorial.</font></dd></dt></dl><P>
+<a name="12006">
+<h2><HR> Calling N-Paint Operations</h2>
+</a><a name="12007">
+Because N&#183;World is completely integrated, you can drive any of its applications from N-Dynamics. In the same way that you use it to animate skeletons with the Skeletal Animation System, or objects in N-Geometry, you can work with images in N-Paint.<p>
+</a><P><a name="12008">
+This section walks you through the process of building a script that will drive N-Paint to perform some simple operations. In this script, we'll do the following:<p>
+</a><P><ul><a name="12009">
+<li>Load the same image in each frame
+</a></li><P><a name="12010">
+<li>Use the <strong>Scatter</strong> ink to create a special effect
+</a></li><P><a name="12011">
+<li>Save out each frame
+</a></li><P><a name="12012">
+<li>Write out a movie file, allowing us to preview our animation
+</a></li><P></ul><P><a name="12013">
+<h3> Copy the Source Image</h3>
+</a><a name="12448">
+We'll be using the following image file for this example:<p>
+</a><P><dl><dl><a name="12449">
+<dt><code>/usr/local/ngc/demo/images/hero.tif</code></dt>
+</a><P></dl></dl><a name="12450">
+Part of the process will involve writing files to the directory which contains the source image. Because users typically don't have enough UNIX file permissions to write to /usr/local/ngc/demo/images, this can lead to a problem when it comes time to animate the script. To avoid this problem:<p>
+</a><P>
+<a name="12451">
+<STRONG>	 1.	 Copy the source image to a directory for which you have adequate write permissions.
+</STRONG>
+</a><P><dl><a name="12452">
+<dt>Usually your home directory will be adequate. To copy the file, open a UNIX shell and execute this command:</dt>
+</a><P></dl>
+<a name="12453">
+<code>unix 13% cp /usr/local/ngc/demo/images/hero.tif ~</code><p>
+</a><P><dl><dl><a name="12454">
+<dt>If you encounter any problems with write permissions or other UNIX issues, see your system administrator.</dt>
+</a><P></dl></dl><a name="12447">
+<h3> Create a New Script</h3>
+</a>
+<a name="12014">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Create New Script.
+</STRONG>
+</a><P><dl><a name="12015">
+<dt>Name the script <strong>PAINT-FILTER</strong> and specify <em>four</em> channels when prompted.</dt>
+</a><P></dl>
+<a name="12016">
+<h3> Loading Images into a Window</h3>
+</a><a name="12017">
+In the first channel in the script, you'll set up the parameters for reading in a new image each frame:<p>
+</a><P>
+<a name="12018">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the first channel in the script.
+</STRONG>
+</a><P><a name="12019">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Operation field.
+</STRONG>
+</a><P><a name="12020">
+<STRONG>	4.	 In the Dynamics section of the Operations menu, <strong>(CLICK-L)</strong> on Image Operations&gt;Load Image into Window.
+</STRONG>
+</a><P><dl><a name="12372">
+<dt>The Load Image into Window</dt>
+</a><P></dl><a name="12021">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Directory field and enter the following directory:
+</STRONG>
+</a><P><dl><dl><a name="12022">
+<dt><code>/usr/local/ngc/demo/images</code><p>
+</a><P></dl></dl><dl><a name="12023">
+<dt>Note that the default names shows a "padding" scheme which can be used to load a sequence of numbered images. If you are loading in a sequence of images, they should have a name like this:</dt>
+</a><P><dl><a name="12024">
+<dt><code>filename-nnnn.ext</code><p>
+</a><P></dl><a name="12025">
+<dt>where <strong>filename</strong> is the image name, <strong>nnnn</strong> is the frame number, and <strong>ext</strong> is the extension for the images.</dt>
+</a><P></dl><a name="12026">
+<STRONG>	6.	 <strong>(CLICK-R)</strong> on the Names field and select the following image:
+</STRONG>
+</a><P><dl><dl><a name="12027">
+<dt><code>hero.tif</code><p>
+</a><P></dl></dl><a name="12028">
+<STRONG>	7.	 <strong>(CLICK-M)</strong> on the Increment field and enter a value of 0.
+</STRONG>
+</a><P><dl><a name="12029">
+<dt>This is used if you are reading in a numbered series of images and don't want to use every image in the sequence.</dt>
+</a><P></dl><ul>
+<BR><a name="12030">
+<li>If you want to read in only a single image, use an increment of <strong>0</strong>.
+</a><P><BR><a name="12031">
+<li>If you want to read in every image in the sequence, use an increment of <strong>1</strong>.
+</a><P><BR><a name="12032">
+<li>If you want to read in every other image, use an increment of <strong>2</strong>.
+</a><P></ul>
+<a name="12457">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the Window field and select Paint Canvas.
+</STRONG>
+</a><P><dl><a name="12376">
+<dt>This specifies where you are loading the image <em>to</em>.</dt>
+</a><P><a name="12377">
+<dt>Your parameters should look something like this when you're done:</dt>
+</a><P><a name="12381">
+ <P><img src="92DAnimation.anc1.gif"><p>
+</a></dl>
+<a name="12382">
+<em>Figure 9.1  &#32; &#32;Loading an image into N-Paint
+</em></a><P>
+<a name="12373">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	There are other operations for loading images into particular N-Paint buffers; see the section <a href="92DAnimation.html#12138">"Using the Composite Images Operation," on page &#32;9-14</a> for more information.</font></dd></dt></dl><P>
+<a name="12046">
+<h3> Performing N-Paint Operations</h3>
+</a><a name="12047">
+In the second channel, we'll do something relatively simple; we'll apply a <strong>Scatter</strong> ink to the entire image. However, we want the effect to be cumulative over the course of the animation. This means that the values which determine how much the image is scattered must be made dynamic-they should change over time:<p>
+</a><P>
+<a name="12048">
+<STRONG>	10.	 <strong>(CLICK-M)</strong> on the second channel in your script.
+</STRONG>
+</a><P><a name="12049">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on the Operation field.
+</STRONG>
+</a><P><a name="12050">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Filtering&gt;Scatter in the Paint section of the Operations menu.
+</STRONG>
+</a><P><dl><a name="12051">
+<dt>The Scatter ink Action Properties menu appears:</dt>
+</a><P><a name="12297">
+ <P><img src="92DAnimation.anc2.gif"><p>
+</a></dl>
+<a name="12298">
+<em>Figure 9.2  &#32; &#32;The Scatter Ink Action Properties menu
+</em></a><P>
+<a name="12052">
+<STRONG>	13.	 For both the <strong>Horizontal</strong> and <strong>Vertical</strong> fields, <strong>(CLICK-L)</strong> on <strong>Source</strong> and choose <strong>DynamicValue</strong> from the menu that appears. 
+</STRONG>
+</a><P><dl><a name="12646">
+<dt>The <strong>Scatter</strong> ink moves pixels in the image in both directions by an amount you specify with the <strong>Horizontal</strong> and <strong>Vertical</strong> parameters.</dt>
+</a><P><a name="12647">
+<dt>By making these parameters values <em>dynamic</em>, you create subchannels under the operation that let you specify how much horizontal and vertical scattering occurs over time.</dt>
+</a><P></dl><a name="12054">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P><dl><a name="12653">
+<dt>The new channel appears in your script. It has two subchannels, one to control horizontal movement, the other to control vertical movement.</dt>
+</a><P><a name="12661">
+ <P><img src="92DAnimation.anc3.gif"><p>
+</a></dl>
+<a name="12662">
+<em>Figure 9.3  &#32; &#32;Adding dynamic channels for the Scatter operation
+</em></a><P>
+<a name="12062">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on the [Horizontal] (Linear) subchannel of the Scatter channel.
+</STRONG>
+</a><P><dl><a name="12305">
+<dt>This opens the subchannel, revealing the curve channel that it contains:</dt>
+</a><P><a name="12306">
+ <P><img src="92DAnimation.anc4.gif"><p>
+</a></dl>
+<a name="12307">
+<em>Figure 9.4  &#32; &#32;Revealing a curve subchannel
+</em></a><P>
+<a name="12063">
+<STRONG>	16.	 <strong>(CLICK-M)</strong> on the curve channel.
+</STRONG>
+</a><P><dl><a name="12333">
+<dt>The Curve Properties menu appears. You can use this menu to define the shape and behavior of the curve.</dt>
+</a><P><a name="12334">
+ <P><img src="92DAnimation.anc5.gif"><p>
+</a></dl>
+<a name="12335">
+<em>Figure 9.5  &#32; &#32;Edit Curve Properties menu
+</em></a><P>
+<a name="12064">
+<STRONG>	17.	 Specify a <strong>Start Value</strong> of <strong>0</strong> and an <strong>End Value</strong> of <strong>150</strong>.
+</STRONG>
+</a><P><a name="12065">
+<STRONG>	18.	 Repeat steps <a href="92DAnimation.html#12062">15</a> - <a href="92DAnimation.html#12064">17</a> for the Vertical subchannel curve.
+</STRONG>
+</a><P><dl><a name="12066">
+<dt>Your channels should now look something like this:</dt>
+</a><P><a name="12070">
+ <P><img src="92DAnimation.anc6.gif"><p>
+</a></dl>
+<a name="12071">
+<em>Figure 9.6  &#32; &#32;Dynamic values for the Scatter operation
+</em></a><P><a name="12072">
+<h3> Saving Images</h3>
+</a><a name="12073">
+In this script, we're going to both save the images <em>and</em> create a movie file (in the next section). Movie files are good for previewing, but if you actually want to create an individual, editable image file for each new frames, you should save each image after it's been modified:<p>
+</a><P>
+<a name="12074">
+<STRONG>	19.	 <strong>(CLICK-M)</strong> on the third channel in your script.
+</STRONG>
+</a><P><a name="12075">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on the Operation field.
+</STRONG>
+</a><P><a name="12076">
+<STRONG>	21.	 <strong>(CLICK-L)</strong> on Image Operations&gt;Save Window to File in the Dynamics section of the Operations menu.
+</STRONG>
+</a><P><dl><a name="12077">
+<dt>The Edit Action Properties for this operation appears:</dt>
+</a><P><a name="12358">
+ <P><img src="92DAnimation.anc7.gif"><p>
+</a></dl>
+<a name="12359">
+<em>Figure 9.7  &#32; &#32;Edit Action Properties menu for Save Window to File operation
+</em></a><P><dl><dl><a name="12357">
+<dt>This operation lets you save images to file from any of three windows:</dt>
+</a><P></dl><ul>
+<BR><a name="12078">
+<li>N-Geometry window
+</a><P><BR><a name="12079">
+<li>Render window
+</a><P><BR><a name="12080">
+<li>Paint Canvas
+</a><P></ul>
+</dl>
+<a name="12081">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on the Directory field and enter the directory where you want to save the images.
+</STRONG>
+</a><P><a name="12082">
+<STRONG>	23.	 <strong>(CLICK-R)</strong> on the Names field and specify the name and padding scheme for the image.
+</STRONG>
+</a><P><dl><a name="12083">
+<dt>Note that the default names shows a "padding" scheme which can be used to load a numbered sequence of images. If you are loading in a sequence of images, they should have a name like this:</dt>
+</a><P><dl><a name="12084">
+<dt><code>filename-nnnn.ext</code><p>
+</a><P></dl><a name="12085">
+<dt>where <strong>filename</strong> is the image name, <strong>nnnn</strong> is the frame number, and <strong>ext</strong> is the extension for the images. For example, we used <code>hero-movie-0001.tif</code>.</dt>
+</a><P></dl><a name="12086">
+<STRONG>	24.	 <strong>(CLICK-M)</strong> on the Increment field and enter a value of 0.
+</STRONG>
+</a><P><dl><a name="12087">
+<dt>The increment controls how images written out to disk are numbered. If you specify an increment of 1, frames numbers are incremented by 1. </dt>
+</a><P><a name="12088">
+<dt>For example, if you use a Name of image-001 and an Increment of 1, images will be named like this:</dt>
+</a><P><dl><a name="12089">
+<dt><code>image-001<br>image-002<br>image-003<br></code><p>
+</a><P></dl><a name="12090">
+<dt>...and so forth.</dt>
+</a><P></dl><a name="12091">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on the <strong>Input</strong> field and select <strong>Paint Canvas</strong>.
+</STRONG>
+</a><P><dl><a name="12092">
+<dt>This specifies where the image you want to write to disk is sitting. Since we're performing N-Paint operations, we want to save the active paint image or <em>paint canvas</em>.</dt>
+</a><P></dl><a name="12093">
+<STRONG>	26.	 <strong>(CLICK-M)</strong> on the <strong>Scale </strong>field and enter a value of 1.0.
+</STRONG>
+</a><P><dl><a name="12094">
+<dt>If you want to scale the output images (either smaller or larger) enter the factor by which they should be scaled in the <strong>Scale</strong> field. </dt>
+</a><P></dl><a name="12095">
+<STRONG>	27.	 <strong>(CLICK-L)</strong> on the <strong>Format </strong>field and select the file format to use when writing out the images.
+</STRONG>
+</a><P><a name="12096">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on <strong>Yes</strong> or <strong>No</strong> next to <strong>Alpha</strong> to specify whether or not to save the alpha channel with the images.
+</STRONG>
+</a><P><dl><a name="12399">
+<dt>Remember, to save the alpha channel you must choose a four-component image format like .tpx or .tif.</dt>
+</a><P><a name="12403">
+<dt>When you've finished, your parameters should look like those in <a href="92DAnimation.html#12359">Figure 9.7</a>.</dt>
+</a><P></dl><a name="12402">
+<STRONG>	29.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P>
+<a name="12098">
+<h4> Saving a Movie</h4>
+</a><a name="12099">
+In order to preview the effect of N-Paint's Scatter filer, you should write out a movie file:<p>
+</a><P>
+<a name="12100">
+<STRONG>	30.	 <strong>(CLICK-M)</strong> on the last empty channel.
+</STRONG>
+</a><P><a name="12431">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Image Operations&gt;Record Movie Image</strong> in the Dynamics section of the Operations menu.
+</STRONG>
+</a><P><dl><a name="12432">
+<dt>The Edit Action Properties menu for the Record Movie Operation appears</dt>
+</a><P><a name="12434">
+ <P><img src="92DAnimation.anc8.gif"><p>
+</a></dl>
+<a name="12435">
+<em>Figure 9.8  &#32; &#32;Recoid Movie Image Action properties menu
+</em></a><P><ul><ul>
+<BR><a name="12102">
+<li>In the <strong>Directory</strong> field, specify the directory into which the movie file should be written.
+</a><P><BR><a name="12103">
+<li><strong>Movie Name</strong> is the name of the clip (by default the same as the script name). The file has the extension <strong>.clip</strong>.
+</a><P><BR><a name="12104">
+<li><strong>Input</strong> is the window from which each frame is captured. Choose <strong>Paint Canvas</strong>.
+</a><P></ul>
+<dl><a name="12417">
+<dt>When you're finished, your parameters should look something like those in <a href="92DAnimation.html#12435">Figure 9.8</a>.</dt>
+</a><P><a name="12105">
+<dt>Writing a movie file is described in more detail in the <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P><a name="12671">
+<dt>Your script should look like this:</dt>
+</a><P><a name="12113">
+ <P><img src="92DAnimation.anc9.gif"><p>
+</a></dl></ul><a name="12114">
+<em>Figure 9.9  &#32; &#32;Script for filtering a series of images
+</em></a><P>
+<a name="12115">
+<STRONG>	32.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in the N-Dynamics window.
+</STRONG>
+</a><P>
+<a name="12116">
+To play back the animation:<p>
+</a><P>
+<a name="12117">
+<STRONG>	33.	 Open a UNIX shell.
+</STRONG>
+</a><P><a name="12118">
+<STRONG>	34.	 Go to the directory into which you wrote the movie clip.
+</STRONG>
+</a><P><dl><a name="12119">
+<dt>Movies have the extension <strong>.clip</strong>. You should see a file that looks like this in the directory you specified above:</dt>
+</a><P><dl><a name="12120">
+<dt><code>script-name.clip</code><p>
+</a><P></dl></dl><a name="12121">
+<STRONG>	35.	 Enter the following command at the UNIX prompt:
+</STRONG>
+</a><P><dl><dl><a name="12122">
+<dt><code>movieplayer script-name.clip</code><p>
+</a><P></dl></dl><dl><a name="12123">
+<dt>The image is scattered both vertically and horizontally. </dt>
+</a><P></dl>
+<a name="12124">
+You can use this approach to create interesting transitions between sequences, or simply to edit a sequence of images. Try working with other inks to create other interesting effects!<p>
+</a><P><a name="12674">
+<h2><HR> Compositing Images</h2>
+</a><a name="12126">
+One task that you're likely to perform quite a bit is the compositing of one series of images over another, using the alpha channel of the image being composited as a "mask."<p>
+</a><P><a name="12127">
+In N-Dynamics, you can build a script that lets you composite a sequence of images over the same background image or one series of images over another.<p>
+</a><P><a name="12128">
+In this script, we'll:<p>
+</a><P><ul><a name="12129">
+<li>Load the <em>background</em> image in each frame
+</a></li><P><a name="12130">
+<li>Load the <em>foreground</em> image in each frame (the image being copied onto the background)
+</a></li><P><a name="12131">
+<li>Use the <strong>Copy Image </strong>operation to composite the foreground over the background
+</a></li><P><a name="12132">
+<li>Save out the composited frame
+</a></li><P><a name="12133">
+<li>Write out a movie file so we can preview our animation
+</a></li><P></ul><P><a name="12134">
+<h3> Copy Source Image Files</h3>
+</a><a name="12521">
+For this example, we'll be using the following two image files:<p>
+</a><P><dl><dl><a name="12522">
+<dt><code>/usr/local/ngc/demo/images/hero-scaled.rgba</code></dt>
+</a><P><a name="12537">
+<dt><code>/usr/local/ngc/demo/images/background.rgb</code></dt>
+</a><P></dl></dl><a name="12523">
+You'll need to copy these files to a directory for which you have write permission. Otherwise, Dynamics will be unable to write certain temporary files, and an error will result.<p>
+</a><P><a name="12520">
+<h3> Create a New Script</h3>
+</a>
+<a name="12135">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on File&gt;Create New Script.
+</STRONG>
+</a><P><dl><a name="12136">
+<dt>Name the script <strong>COMPOSITE </strong>and specify <em>two </em>channels when prompted.</dt>
+</a><P></dl>
+<a name="12138">
+<h3> Using the Composite Images Operation</h3>
+</a><a name="12139">
+In the previous script, we didn't need to do any "layering" operations; it was simple enough to load our image into N-Paint, perform the operation on the image, and save it back out.<p>
+</a><P><a name="12140">
+In this script, however, we need to work with two images, a background and a foreground. We'll use a new N-Dynamics operation to load an image into a particular buffer in N-Paint:<p>
+</a><P>
+<a name="12141">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the first channel in the script.
+</STRONG>
+</a><P><dl><a name="12679">
+<dt>The Edit Action Properties menu appears:</dt>
+</a><P><a name="12497">
+ <P><img src="92DAnimation.anc10.gif"><p>
+</a></dl>
+<a name="12498">
+<em>Figure 9.10  &#32; &#32;The Edit Action Properties menu
+</em></a><P>
+<a name="12142">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the Operation field.
+</STRONG>
+</a><P><a name="12143">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on <strong>Canvas Operations&gt;Composite Images</strong> in the Paint section of the Operations menu.
+</STRONG>
+</a><P><dl><a name="12144">
+<dt>The parameters for the operation look something like this:</dt>
+</a><P><a name="12148">
+ <P><img src="92DAnimation.anc11.gif"><p>
+</a></dl>
+<a name="12149">
+<em>Figure 9.11  &#32; &#32;Composite Images operations parameters
+</em></a><P>
+<a name="12150">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Yes next to PreMultiplied.
+</STRONG>
+</a><P><dl><a name="12151">
+<dt>The <strong>PreMultiplied</strong> field determines whether the matte of the foreground image is used in the compositing operation. If set to <strong>Yes</strong>, only the area with a matte is composited onto the background image.</dt>
+</a><P><a name="12152">
+<dt><strong>Opacity</strong> is a multiplier that can be used to make the composited foreground image partially opaque.</dt>
+</a><P></dl>
+<a name="12153">
+<h4> Loading the Foreground Image</h4>
+</a>
+<a name="12154">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the File button next to Foreground.
+</STRONG>
+</a><P><dl><a name="12546">
+<dt>Doing so exposes new menu items, which you'll use to specify the foreground image file you want to use:</dt>
+</a><P><a name="12547">
+ <P><img src="92DAnimation.anc12.gif"><p>
+</a></dl>
+<a name="12548">
+<em>Figure 9.12  &#32; &#32;Foreground image parameters
+</em></a><P>
+<a name="12155">
+<STRONG>	7.	 Specify the directory and file name of the foreground image
+</STRONG>
+</a><P><dl><a name="12557">
+<dt>For this example, select the following image</dt>
+</a><P><dl><a name="12156">
+<dt><code>hero-scaled.rgba</code><p>
+</a><P></dl><a name="12157">
+<dt>Specify an increment of 0.</dt>
+</a><P><a name="12483">
+<dt>If you were loading in a series of images (like a walk-cycle), you'd specify a padding scheme in the filename. See the section on the <strong>Composite</strong> command <em>N-Dynamics Reference Guide</em> for more information about loading sequential files.</dt>
+</a><P></dl>
+<a name="12516">
+<h4> Loading the Background Image</h4>
+</a>
+<a name="12159">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on the File button next to Background.
+</STRONG>
+</a><P><dl><a name="12160">
+<dt>Specify the directory and file name of the background image. For this example, select the following image:</dt>
+</a><P><dl><a name="12161">
+<dt><code>background.rgb</code><p>
+</a><P></dl><a name="12162">
+<dt>If you were loading in a series of images (like a walk-cycle), you'd specify a padding scheme in the filename. See the section on the <strong>Composite</strong> command <em>N-Dynamics Reference Guide</em> for more information about loading sequential files.</dt>
+</a><P></dl>
+<a name="12163">
+<h4> Saving the Composited Images</h4>
+</a><a name="12164">
+To save the composited images:<p>
+</a><P>
+<a name="12165">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on the Canvas button next to Destination.
+</STRONG>
+</a><P><dl><a name="12166">
+<dt>Specify the directory and file name to which the composited images should be written. Be sure to choose a directory for which you have write permisson!</dt>
+</a><P><a name="12589">
+<dt>If you were saving a series of images, you'd specify a padding scheme in the filename as described in the section on the <strong>Composite</strong> command <em>N-Dynamics Reference Guide</em>.</dt>
+</a><P><a name="12574">
+<dt>Here's what our parameters looked like:</dt>
+</a><P><a name="12575">
+ <P><img src="92DAnimation.anc13.gif"><p>
+</a></dl>
+<a name="12576">
+<em>Figure 9.13  &#32; &#32;Our finished composite parameters
+</em></a><P>
+<a name="12168">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on <strong>Do It</strong>.
+</STRONG>
+</a><P>
+<a name="12169">
+<h4> Saving a Movie</h4>
+</a><a name="12170">
+If you want to play back the composited frames in sequence, you should write out a movie file:<p>
+</a><P>
+<a name="12171">
+<STRONG>	11.	 <strong>(CLICK-M)</strong> on the second channel.
+</STRONG>
+</a><P><a name="12172">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on <strong>Operation&gt;Dynamics&gt;Image Operations&gt;Record Movie Image</strong>.
+</STRONG>
+</a><P><ul>
+<BR><a name="12173">
+<li>In the <strong>Directory</strong> field, specify the directory into which the movie file should be written
+</a><P><BR><a name="12174">
+<li><strong>Movie Name</strong> is the name of the clip ( by default the same as the script name)
+</a><P><BR><a name="12175">
+<li><strong>Input</strong> is the window from which each frame is captured. Choose <strong>Paint Canvas</strong>.
+</a><P></ul>
+
+<a name="12519">
+Your completed script should look like this:<p>
+</a><P><a name="12184">
+ <P><img src="92DAnimation.anc14.gif"><p>
+</a><a name="12185">
+<em>Figure 9.14  &#32; &#32;Script for compositing images
+</em></a><P>
+<a name="12186">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on the <strong>Animate</strong> button in the N-Dynamics window.
+</STRONG>
+</a><P>
+<a name="12187">
+<h4> Playing Back the Animation</h4>
+</a><a name="12188">
+To play back the animation:<p>
+</a><P>
+<a name="12189">
+<STRONG>	14.	 Open a UNIX shell.
+</STRONG>
+</a><P><a name="12190">
+<STRONG>	15.	 Change to the directory into which you wrote the movie clip.
+</STRONG>
+</a><P><dl><a name="12191">
+<dt>Movies have the extension <strong>.clip</strong>. You should see a file that looks like this in the directory you specified above:</dt>
+</a><P><dl><a name="12192">
+<dt><code>script-name.clip</code><p>
+</a><P></dl></dl><a name="12193">
+<STRONG>	16.	 Enter the following command at the UNIX prompt:
+</STRONG>
+</a><P><dl><dl><a name="12194">
+<dt><code>movieplayer script-name.clip</code><p>
+</a><P></dl></dl><dl><a name="12195">
+<dt>The foreground image is composited over the background image at each frame.</dt>
+</a><P></dl>
+<a name="12196">
+<h2><HR> Congratulations!</h2>
+</a><a name="12197">
+You've now learned to how to load and save images into and out of N-Paint using an N-Dynamics script. You've also learned how to modify an image while it's on the canvas and how to composite images.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="83dPaintMode.html">[Prev]</a> <a href="10ColorReduction.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 22:49:57 -->
+
+</body>
+</html>

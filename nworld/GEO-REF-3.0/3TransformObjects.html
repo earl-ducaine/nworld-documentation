@@ -1,0 +1,862 @@
+<html><head><title>Working with Objects</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects2.html">[Prev]</a> <a href="4ModifyingBodies.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="3639">
+<h1>Working with Objects</h1>
+</a>
+<hr><p><a name="4059">
+As described earlier, an object is made up of two elements:<p>
+</a><P><ul><a name="4060">
+<li>a body, which describes the topology of the object
+</a></li><P><a name="4061">
+<li>a transformation matrix, which describes the object's orientation in 3D space
+</a></li><P></ul><P><a name="4062">
+If you want to make changes to the <em>location </em>and<em> orientation </em>of an object without altering its body, you want to work with the object.<p>
+</a><P><a name="4063">
+To edit an object:<p>
+</a><P>
+<a name="4064">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on objects in the element sensitivity menu.
+</STRONG>
+</a><P><a name="4065">
+<STRONG>	2.	 Move the mouse over the object you want to transform in N-Geometry.
+</STRONG>
+</a><P><dl><a name="4172">
+<dt>You'll be able to tell you're working with an object in N-Geometry if both a bounding box and the local axes for that that object are displayed:</dt>
+</a><P><a name="4189">
+ <P><img src="3TransformObjects.anc.gif"><p>
+</a></dl>
+<a name="4190">
+<em>Figure 3.1  &#32; &#32;Objects are highlighted in a bounding box; local axes are also displayed at the object's origin
+</em></a><P>
+<a name="4066">
+<STRONG>	3.	 When the object you want to transform is highlighted, <strong>(SHIFT-L)</strong>.
+</STRONG>
+</a><P><dl><a name="4067">
+<dt>After you <strong>(SHIFT-L)</strong> on the object, a context-sensitive menu of transformation operations is displayed; only transformation operations are displayed on this menu:</dt>
+</a><P><a name="4070">
+ <P><img src="3TransformObjects.anc1.gif"><p>
+</a></dl>
+<a name="4071">
+<em>Figure 3.2  &#32; &#32;Transform object flip menus
+</em></a><P><dl><dl><a name="4072">
+<dt>The mouse is automatically positioned over the menu. As you move the mouse up and down over the different operations, the mouse documentation line at the bottom of the screen tells you what happens if you <strong>(CLICK-L)</strong>, <strong>(CLICK-M)</strong>, or <strong>(CLICK-R)</strong> when you select an operation.</dt>
+</a><P><a name="6516">
+<dt>This menu is divided into two sections:</dt>
+</a><P></dl><ul>
+<BR><a name="6521">
+<li>The operations on the left are the <em>transformations</em> you can use to move, scale, rotate, or otherwise position an object
+</a><P><BR><a name="6524">
+<li>The operations on the right are <em>utilities</em>; they include operations to rename, restructure, and change display characteristics for objects
+</a><P></ul>
+</dl><a name="4219">
+<h2><HR> Object Transform Operations</h2>
+</a><a name="5271">
+This section describes the operations that let you change an object's transformation matrix- an object's transformation matrix determines its <em>location</em>, <em>scale</em>, and <em>orientation.</em><p>
+</a><P><a name="4180">
+Each of the object-transformation operations is described in more detail in this section. Additional "utility" operations that can be performed on an object are described in the section <a href="3TransformObjects.html#4433">"Object Utilities," on page &#32;3-28</a>.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Object transformation cannot be undone using the <strong>Undo</strong> command. This command is for body modifications <strong>only</strong>.</font></dd></dt></dl><P>
+<a name="5591">
+<h4> Apply Transform</h4>
+</a><a name="5592">
+Applies the matrix transformations to <em>each vertex</em> on the object's body, then reinitializes the matrix, making its previously transformed position its home position. This has the effect of shifting the object to coincide with the object's home position without changing the apparent location of the object.<p>
+</a><P><a name="5593">
+Try this:<p>
+</a><P>
+<a name="5594">
+<STRONG>	 1.	 Create a tetrahedron and transform it away from the global center.
+</STRONG>
+</a><P><dl><a name="5595">
+<dt>Note that right now its local axes are at the center of the object.</dt>
+</a><P><a name="5603">
+ <P><img src="3TransformObjects.anc2.gif"><p>
+</a></dl>
+<a name="5604">
+<em>Figure 3.3  &#32; &#32;Transformed tetrahedron
+</em></a><P>
+<a name="5605">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the object, then <strong>(CLICK-L)</strong> on Apply Transform.
+</STRONG>
+</a><P><dl><a name="5606">
+<dt>The local axes are returned to their home position, but the body of the object stays in its current position.</dt>
+</a><P><a name="5614">
+ <P><img src="3TransformObjects.anc3.gif"><p>
+</a></dl>
+<a name="5615">
+<em>Figure 3.4  &#32; &#32;The matrix is reinitialized to its home position
+</em></a><P><a name="5616">
+The home position will be the global center unless you have used the <strong>Set Home</strong> command to save a new home position for the object.<p>
+</a><P><a name="5617">
+Now, if you transform the object, those transforms are measured from the home position for the object. Consider a simple <strong>Rotate</strong> transform around the Y axis:<p>
+</a><P><a name="5621">
+ <P><img src="3TransformObjects.anc4.gif"><p>
+</a><a name="5622">
+<em>Figure 3.5  &#32; &#32;Transformations are measured from an object's local axes
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>Apply Transform</strong> operation <em>cannot</em> be undone.</font></dd></dt></dl><P>
+<ul><a name="5624">
+<li><strong>(CLICK-L)</strong> propagates the transformation to all bodies.
+</a></li><P><a name="5625">
+<li><strong>(CLICK-M)</strong> propagates the transformation to next-level matrices only.
+</a></li><P><a name="5626">
+<li><strong>(CLICK-R)</strong> propagates the transformation to all terminal object matrices.
+</a></li><P></ul><P><a name="4183">
+<h4> Axis Move</h4>
+</a><a name="4457">
+Moves the object along a specified axis. <strong>(SHIFT-L)</strong> on the object, then choose the axis along which you want to translate it.<p>
+</a><P><a name="4471">
+In <a href="3TransformObjects.html#4463">Figure 3.6</a>, we used <strong>Axis Move&gt;X</strong> to move the sphere along the <strong>X</strong> axis.<p>
+</a><P><a name="4462">
+ <P><img src="3TransformObjects.anc5.gif"><p>
+</a><a name="4463">
+<em>Figure 3.6  &#32; &#32;Axis move
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="6130">
+<h4> Axis Scale</h4>
+</a><a name="6131">
+Scales the selected object(s) along a selected axis. <strong>Axis Scale</strong> has different capabilities, depending on which mouse button you use:<p>
+</a><P><ul><a name="3904">
+<li><strong>(CLICK-L)</strong> scales the object from its origin along an axis (selected from a menu). 
+</a></li><P><a name="4553">
+<li><strong>(CLICK-M)</strong> scales the object from a selected point along a selected axis.
+</a></li><P><a name="4554">
+<li><strong>(CLICK-R)</strong> scales the object from a selected point along a selected axis with constant volume.
+</a></li><P><dl><a name="4555">
+<dt>This features is commonly referred to as "squash and stretch" (since the object retains its fixed volume). If you were creating different states for an object to be used in a "bouncing ball" type animation, you'd probably want to transform the object using this command.</dt>
+</a><P><a name="4446">
+ <P><img src="3TransformObjects.anc6.gif"><p>
+</a></dl></ul><P><a name="4447">
+<em>Figure 3.7  &#32; &#32;Left, original object; middle, normal Axis Scale along the X axis; right, using <strong>(CLICK-R)</strong> to retain volume
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="7235">
+<h4> Copy From</h4>
+</a><a name="7236">
+This option lets you copy the transformation matrix from one object to the current object.<p>
+</a><P><ul><a name="7237">
+<li><strong>(CLICK-L)</strong> to select the object whose transformation matrix you want to copy
+</a></li><P><a name="7238">
+<li><strong>(CLICK-M)</strong> to do the same thing, copying all inferiors (must be conformal).
+</a></li><P></ul><P><a name="7239">
+To copy a transformation matrix from one object to the currently selected object:<p>
+</a><P>
+<a name="7240">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object whose matrix you want to change.
+</STRONG>
+</a><P><dl><a name="7241">
+<dt>A list of objects in the scene is displayed:</dt>
+</a><P></dl><a name="7242">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the object whose matrix you want to copy.
+</STRONG>
+</a><P><dl><a name="7243">
+<dt>A list of objects in the scene is displayed:</dt>
+</a><P><a name="7247">
+ <P><img src="3TransformObjects.anc7.gif"><p>
+</a></dl>
+<a name="7248">
+<em>Figure 3.8  &#32; &#32;Select the object whose transformation matrix you want to copy
+</em></a><P>
+<a name="7249">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the object whose transformation matrix you want to copy.
+</STRONG>
+</a><P><dl><a name="7250">
+<dt>If you want to copy the identity matrix, <strong>(CLICK-L)</strong> on <strong>global</strong>.</dt>
+</a><P></dl>
+<a name="6031">
+<h4> Free Rotate</h4>
+</a><a name="6032">
+Rotates the object independently around three orthogonal axes. <p>
+</a><P><ul><a name="6033">
+<li><strong>(CLICK-L)</strong> rotates the object freely using the local axes as its reference for X, Y, and Z.
+</a></li><P><a name="6034">
+<li><strong>(CLICK-M)</strong> rotates the object freely using the global axes as its reference for X, Y, and Z.
+</a></li><P><a name="6035">
+<li><strong>(CLICK-R)</strong> rotates the object freely around a selected point.
+</a></li><P><a name="6043">
+ <P><img src="3TransformObjects.anc8.gif"><p>
+</a></ul><P><a name="6045">
+<em>Figure 3.9  &#32; &#32;Two examples of rotating an object around a selected axis: left, original cube; middle, rotating around global y; right, rotating around edge selected
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="6047">
+<h4> Free Scale</h4>
+</a><a name="6048">
+Scales an object independently along each axis in the object's local coordinate system. <p>
+</a><P><ul><a name="6080">
+<li><strong>(CLICK-L)</strong> scales the object freely using the object's local axes as its reference for X, Y, and Z.
+</a></li><P><a name="6081">
+<li><strong>(CLICK-M)</strong> scales the object freely using the global coordinates as its reference for X, Y, and Z.
+</a></li><P><a name="6082">
+<li><strong>(CLICK-R)</strong> scales the object freely around a selected point.
+</a></li><P><a name="6055">
+ <P><img src="3TransformObjects.anc9.gif"><p>
+</a></ul><P><a name="6057">
+<em>Figure 3.10  &#32; &#32;Left, original cube; right, transformed using <strong>Free Scale</strong>, which scales interactively along all three axes
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="3678">
+<h4> Home</h4>
+</a><a name="3679">
+Resets the object's transformation matrix back to its home position. The home position is by default the global center; if you have used the <strong>Set Home</strong> command to save a new home position, the transformation matrix is set to that position.<p>
+</a><P><a name="5419">
+To see how the <strong>Home</strong> command works:<p>
+</a><P>
+<a name="5428">
+<STRONG>	 1.	 Create a tetrahedron and use Axis Move to transform it along the X axis:
+</STRONG>
+</a><P><a name="4965">
+ <P><img src="3TransformObjects.anc10.gif"><p>
+</a>
+<a name="4966">
+<em>Figure 3.11  &#32; &#32;Tetrahedron object translated along X axis
+</em></a><P>
+<a name="5444">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the tetrahedron object and <strong>(CLICK-L)</strong> on Axis Scale&gt;Y.
+</STRONG>
+</a><P><dl><a name="5464">
+<dt>Stretch the tetrahedron.</dt>
+</a><P><a name="5449">
+ <P><img src="3TransformObjects.anc11.gif"><p>
+</a></dl>
+<a name="5450">
+<em>Figure 3.12  &#32; &#32;Tetrahedron object Axis Scaled along Y axis
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>Home</strong> command clears not only translations, but also any scaling, skewing or other transformations that may have been applied to the object.</font></dd></dt></dl><P>
+
+<a name="5469">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the tetrahedron object and <strong>(CLICK-L)</strong> on Home.
+</STRONG>
+</a><P><dl><a name="5470">
+<dt>The object is "reinitialized" to its home position (which, since no new home has been specified, is still the global center).</dt>
+</a><P><a name="5479">
+ <P><img src="3TransformObjects.anc12.gif"><p>
+</a></dl>
+<a name="5480">
+<em>Figure 3.13  &#32; &#32;Tetrahedron returned to its home position with <strong>Home</strong>
+</em></a><P><a name="3917">
+<h4> Local Skew</h4>
+</a><a name="3918">
+This option distorts an object along a selected local axis (x, y, or z).<p>
+</a><P><ul><a name="3919">
+<li><strong>(CLICK-L)</strong> skews the object along its local x axis:
+</a></li><P><a name="3923">
+ <P><img src="3TransformObjects.anc13.gif"><p>
+</a></ul><P><a name="3924">
+<em>Figure 3.14  &#32; &#32;Local skew along X axis
+</em></a><P><ul><a name="3925">
+<li><strong>(CLICK-M)</strong> skews the object along its local y axis:
+</a></li><P><a name="3929">
+ <P><img src="3TransformObjects.anc14.gif"><p>
+</a></ul><P><a name="3930">
+<em>Figure 3.15  &#32; &#32;Local skew along Y axis
+</em></a><P><ul><a name="3931">
+<li><strong>(CLICK-R)</strong> skews the object along its local z axis:
+</a></li><P><a name="3935">
+ <P><img src="3TransformObjects.anc15.gif"><p>
+</a></ul><P><a name="3936">
+<em>Figure 3.16  &#32; &#32;Local skew along Z axis
+</em></a><P><a name="3937">
+Use <strong>(CTRL-L)</strong>, <strong>(CTRL-M)</strong>, <strong>(CTRL-R)</strong> to display a menu that lets you specify the amount of skew numerically rather than with the mouse. <p>
+</a><P><a name="5515">
+Suppose you want to displace in y half the distance its vertices are from the origin in x. The x-component of the y-shear would be 0.5. If you wanted the object to displace upward (positive y) on the negative x side (and vice-versa), the x-component would be -0.5.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="3686">
+<h4> Move</h4>
+</a><a name="3687">
+Move the object freely in the x, y, or z direction. Move the mouse left and right to move in the X, up and down to move in the Y, and <strong>(HOLD-M)</strong> to move in the Z; which XYZ coordinate system is used depends on which mouse click you use:<p>
+</a><P><ul><a name="3688">
+<li><strong>(CLICK-L)</strong> uses the object's local coordinate system to determine x, y, and z.
+</a></li><P><a name="3689">
+<li><strong>(CLICK-M)</strong> uses the global coordinate system to determine x, y, and z.
+</a></li><P><a name="3690">
+<li><strong>(CLICK-R)</strong> lets you select an axis along which to move the object.
+</a></li><P><a name="4335">
+ <P><img src="3TransformObjects.anc16.gif"><p>
+</a></ul><P><a name="4336">
+<em>Figure 3.17  &#32; &#32;Moving an object
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="3692">
+<h4> Move Away</h4>
+</a><a name="6186">
+<strong>Move Away</strong> scales the distance between two or more selected objects. <p>
+</a><P><a name="6231">
+To scale the distance between several objects:<p>
+</a><P>
+<a name="6238">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on objects in the elements sensitivity menu.
+</STRONG>
+</a><P><dl><a name="6245">
+<dt>Collect the objects you want to move away from each other.</dt>
+</a><P><a name="6161">
+ <P><img src="3TransformObjects.anc17.gif"><p>
+</a></dl>
+<a name="6162">
+<em>Figure 3.18  &#32; &#32;Original set of objects
+</em></a><P>
+<a name="6246">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Move Away.
+</STRONG>
+</a><P><a name="6247">
+<STRONG>	3.	 From the menu that appears, choose an anchor point from which all the selected objects are moved.
+</STRONG>
+</a><P><dl><a name="6250">
+<dt><a href="3TransformObjects.html#6173">Figure 3.19</a> shows the move away operation using the global center as the "anchor point," moving four tetrahedra away from each other.</dt>
+</a><P><a name="6172">
+ <P><img src="3TransformObjects.anc18.gif"><p>
+</a></dl>
+<a name="6173">
+<em>Figure 3.19  &#32; &#32;<strong>Move Away</strong> moves objects away (or toward) each other (here with respect to the global center)
+</em></a><P><a name="6272">
+Choosing a point other than the global center will create different effects; for example, if you choose Select Element from the menu described above, then choose a point on one of the tetrahedra, the distance between the objects is scaled from that point, as shown in <a href="3TransformObjects.html#6288">Figure 3.20</a>:<p>
+</a><P><a name="6286">
+ <P><img src="3TransformObjects.anc19.gif"><p>
+</a><a name="6288">
+<em>Figure 3.20  &#32; &#32;You can select various points from which to base the <strong>Move Away</strong> operation
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return object to their saved home state. To make the new positions the objects' new home positions, select the objects and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="5773">
+<h4> Move Origin</h4>
+</a><a name="6455">
+The <strong>Move Origin</strong> command lets you move an object's origin without moving the object's body.<p>
+</a><P><ul><a name="6456">
+<li><strong>(CLICK-L)</strong> to move the object's origin interactively with the mouse
+</a></li><P><a name="6457">
+<li><strong>(CLICK-R)</strong> to move the object's center to a location selected from a menu
+</a></li><P></ul><P><a name="6467">
+To move the origin of an object:<p>
+</a><P>
+<a name="6468">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the object whose origin you want to move.
+</STRONG>
+</a><P><a name="6477">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Move Origin.
+</STRONG>
+</a><P><dl><a name="6469">
+<dt>Move the mouse freely to adjust the local origin for the object.</dt>
+</a><P><a name="6447">
+ <P><img src="3TransformObjects.anc20.gif"><p>
+</a></dl>
+<a name="6448">
+<em>Figure 3.21  &#32; &#32;Left, cube with unaltered origin; right, <strong>(CLICK-L)</strong> on <strong>Move Origin</strong> to move the origin interactively
+</em></a><P><a name="6482">
+If you want to select the position for the origin from a menu:<p>
+</a><P>
+<a name="6485">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on the object whose origin you want to move.
+</STRONG>
+</a><P><a name="6486">
+<STRONG>	4.	 <strong>(CLICK-R)</strong> on Move Origin.
+</STRONG>
+</a><P><dl><a name="6487">
+<dt>Choose the new location for the object's origin.</dt>
+</a><P><a name="6463">
+ <P><img src="3TransformObjects.anc21.gif"><p>
+</a></dl>
+<a name="6464">
+<em>Figure 3.22  &#32; &#32;Left, cube before <strong>Move Origin</strong>; right, <strong>(CLICK-L)</strong> on <strong>Move Origin</strong> and <strong>(CLICK-M)</strong> on <strong>Origin</strong> (to select global origin)
+</em></a><P><a name="6059">
+<h4> Move To</h4>
+</a><a name="6336">
+<strong>Move To</strong> moves an object's center (or a selected point on the object's body) to another point.<p>
+</a><P><ul><a name="6325">
+<li><strong>(CLICK-L)</strong> to move an object's center to a new location (selected from a menu)
+</a></li><P><a name="6326">
+<li><strong>(CLICK-M)</strong> to move an object's center to a new location by referencing some point on that object's body
+</a></li><P></ul><P><a name="6342">
+Consider an example like the one in <a href="3TransformObjects.html#6331">Figure 3.24</a>; you could use this feature to make the tetrahedron's center co-local with one of the corners of the cube:<p>
+</a><P><a name="6361">
+ <P><img src="3TransformObjects.anc22.gif"><p>
+</a><a name="6363">
+<em>Figure 3.23  &#32; &#32;A tetrahedron inside of a cube
+</em></a><P>
+<a name="6349">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><a name="6350">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Move To.
+</STRONG>
+</a><P><a name="6351">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Select Element.
+</STRONG>
+</a><P><a name="6354">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the cube's upper right corner.
+</STRONG>
+</a><P><a name="6330">
+ <P><img src="3TransformObjects.anc23.gif"><p>
+</a>
+<a name="6331">
+<em>Figure 3.24  &#32; &#32;The tetrahedron's object is moved to the selected location
+</em></a><P><a name="6373">
+If you <strong>(CLICK-M)</strong> on <strong>Move To</strong>, you are given even more flexibility in moving an object. <p>
+</a><P>
+<a name="6384">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the tetrahedron.
+</STRONG>
+</a><P><a name="6385">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on Move To.
+</STRONG>
+</a><P><a name="6386">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Select Element.
+</STRONG>
+</a><P><a name="6387">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the tetrahedron's upper right corner.
+</STRONG>
+</a><P><dl><a name="6392">
+<dt>A menu appears, asking where you want to place the selected point.</dt>
+</a><P></dl><a name="6395">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Select Element.
+</STRONG>
+</a><P><a name="6396">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the cube's upper right corner.
+</STRONG>
+</a><P><dl><a name="6399">
+<dt>You should see something like this:</dt>
+</a><P><a name="6404">
+ <P><img src="3TransformObjects.anc24.gif"><p>
+</a></dl>
+<a name="6406">
+<em>Figure 3.25  &#32; &#32;You can align objects based on some element of the object as well (like a point)
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="5772">
+<h4> Plane Move</h4>
+</a><a name="3693">
+Moves an object around on a selected plane, with local rotations <em>perpendicular</em> to the chosen plane.<p>
+</a><P><a name="4618">
+ <P><img src="3TransformObjects.anc25.gif"><p>
+</a><a name="4619">
+<em>Figure 3.26  &#32; &#32;Plane move on the Y plane
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="7215">
+<h4> Remember</h4>
+</a><a name="7216">
+Lets you temporarily save the transformation matrix of the currently selected object. To remember a transformation matrix:<p>
+</a><P>
+<a name="7217">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object whose transformation matrix you want to remember.
+</STRONG>
+</a><P><dl><a name="7218">
+<dt>A dialog box appears:</dt>
+</a><P><a name="7222">
+ <P><img src="3TransformObjects.anc26.gif"><p>
+</a></dl>
+<a name="7223">
+<em>Figure 3.27  &#32; &#32;Remember
+</em></a><P><a name="7224">
+Once an object's transformation matrix has been saved, you can click on <strong>Use Remembered </strong>to get a menu of all saved transformation matrices for all loaded objects. To save a transformation matrix to <em>file</em>, <strong>(CLICK-R)</strong> on <strong>Select</strong>.<p>
+</a><P><a name="3970">
+<h4> Rotate</h4>
+</a><a name="3971">
+Rotates the object around a selected axis.<p>
+</a><P><ul><a name="3972">
+<li><strong>(CLICK-L)</strong> to rotate the current object around a pre-defined axis.
+</a></li><P><a name="3973">
+<li><strong>(CLICK-R)</strong> rotates the current object around an axis direction and a selected point.
+</a></li><P><a name="4627">
+ <P><img src="3TransformObjects.anc27.gif"><p>
+</a></ul><P><a name="4628">
+<em>Figure 3.28  &#32; &#32;Left, original object; middle, similar object rotated on Y axis; right, rotated on Z axis
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="3695">
+<h4> Scale</h4>
+</a><a name="3696">
+This option scales the object along three axes uniformly in the object's local coordinate system.<p>
+</a><P><ul><a name="3697">
+<li><strong>(CLICK-L)</strong> scales the object uniformly around the local origin along each of the major axes.
+</a></li><P><a name="3698">
+<li><strong>(CLICK-M)</strong> scales the object uniformly around a scaling center or the global origin along each of the major axes.
+</a></li><P><a name="3699">
+<li><strong>(CLICK-R)</strong> scales the object around a selected element.
+</a></li><P><a name="3711">
+ <P><img src="3TransformObjects.anc28.gif"><p>
+</a></ul><P><a name="3713">
+<em>Figure 3.29  &#32; &#32;Object scaled around object center with <strong>(CLICK-L)</strong>
+</em></a><P><a name="5656">
+ <P><img src="3TransformObjects.anc29.gif"><p>
+</a><a name="5658">
+<em>Figure 3.30  &#32; &#32;Object scaled around a selected vertex with <strong>(CLICK-R)</strong>
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="3911">
+<h4> Scale to Fit</h4>
+</a><a name="3912">
+This operation scales one object to match the size of another object.<p>
+</a><P><a name="4375">
+Scales the <em>scale</em> portion of an object's transformation matrix to match that of another object. In <a href="3TransformObjects.html#4383">Figure 3.31</a>, assume that you want the sphere to be the same scale as the tetrahedron:<p>
+</a><P><a name="4382">
+ <P><img src="3TransformObjects.anc30.gif"><p>
+</a><a name="4383">
+<em>Figure 3.31  &#32; &#32;Scale to fit (before)
+</em></a><P>
+<a name="4397">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the sphere object.
+</STRONG>
+</a><P><a name="4400">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Scale to Fit.
+</STRONG>
+</a><P><a name="4401">
+<STRONG>	3.	 Choose the target object from the list that appears.
+</STRONG>
+</a><P><dl><a name="4408">
+<dt>If you were to choose the tetrahedron shown above as the target object, you'd get results that looked something like this:</dt>
+</a><P><a name="4419">
+ <P><img src="3TransformObjects.anc31.gif"><p>
+</a></dl>
+<a name="4421">
+<em>Figure 3.32  &#32; &#32;Scale to fit (after)
+</em></a><P><a name="4430">
+Note that the object is translated as well. <p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="7184">
+<h4> Select</h4>
+</a><a name="7185">
+The <strong>Select</strong> command lets you replace the current object's transformation matrix with a previously remembered matrix.<p>
+</a><P><ul><a name="7186">
+<li><strong>(CLICK-L)</strong> replaces the current object's transformation with a previously saved transformation matrix (created with the <strong>Remember </strong>command).
+</a></li><P><a name="7190">
+ <P><img src="3TransformObjects.anc32.gif"><p>
+</a></ul><P><a name="7191">
+<em>Figure 3.33  &#32; &#32;Using a "remembered" transformation matrix
+</em></a><P><a name="7195">
+See the section <a href="3TransformObjects.html#7215">"Remember," on page &#32;3-20</a> for instructions on how to save a transformation matrix.<p>
+</a><P><ul><a name="7196">
+<li><strong>(CLICK-R)</strong> brings up the Named Transformations menu with the following choices:
+</a></li><P><a name="7200">
+ <P><img src="3TransformObjects.anc33.gif"><p>
+</a></ul><P><a name="7201">
+<em>Figure 3.34  &#32; &#32;Transformation matrix operations
+</em></a><P><ul><ul>
+<BR><a name="7202">
+<li><strong>Read from File</strong> chooses a file of transformations to be added to the list of previously saved transformation matrices.
+</a><P><BR><a name="7203">
+<li><strong>Save This</strong> saves the transformation matrix of the currently selected object to file.
+</a><P><BR><a name="7204">
+<li><strong>Use</strong> selects a remembered transformation matrix and assigns it to this object.
+</a><P><BR><a name="7205">
+<li><strong>Rename</strong> renames a remembered transformation matrix.
+</a><P><BR><a name="7206">
+<li><strong>Delete</strong> deletes a remembered transformation matrix.
+</a><P><BR><a name="7207">
+<li><strong>Write to File</strong> lets you select one or more transformation matrices and saves them to a file.
+</a><P></ul>
+</ul><a name="4944">
+<h4> Set Home</h4>
+</a><a name="4945">
+<strong>Set Home</strong> makes the current transformation matrix the "home" matrix for the object. This will be the transformation to which an object returns when you use <strong>Home</strong> on the object.<p>
+</a><P><ul><a name="4946">
+<li><strong>(CLICK-L)</strong> makes the object's current position its "home."
+</a></li><P><a name="4947">
+<li><strong>(CLICK-M)</strong> does the same thing, but for all inferior objects as well.
+</a></li><P><a name="4948">
+<li><strong>(CLICK-R)</strong> clears the "home" position to the default identity matrix (the global center).
+</a></li><P></ul><P><a name="3997">
+<h4> Skew</h4>
+</a><a name="3998">
+<strong>Skew</strong> resembles <strong>Local Skew</strong>, but the axes are defined according to the axes of the superior object.<p>
+</a><P><ul><a name="3999">
+<li><strong>(CLICK-L)</strong> shears along the superior's x axis.
+</a></li><P><a name="4000">
+<li><strong>(CLICK-M)</strong> shears along the superior's y axis.
+</a></li><P><a name="4001">
+<li><strong>(CLICK-R)</strong> shears along the superior's z axis.
+</a></li><P></ul><P><a name="5735">
+To see how <strong>Skew</strong> works, try this:<p>
+</a><P>
+<a name="5738">
+<STRONG>	 1.	 Create a new tetrahedron object.
+</STRONG>
+</a><P><a name="5739">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the object and <strong>(CLICK-L)</strong> on Axis Move&gt;X.
+</STRONG>
+</a><P><dl><a name="5740">
+<dt>Move the object away from the global center.</dt>
+</a><P></dl><a name="5745">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the object and <strong>(CLICK-L)</strong> on Rotate&gt;Y.
+</STRONG>
+</a><P><dl><a name="5752">
+<dt>Your tetrahedron should look something like this:</dt>
+</a><P><a name="5701">
+ <P><img src="3TransformObjects.anc34.gif"><p>
+</a></dl>
+<a name="5703">
+<em>Figure 3.35  &#32; &#32;Original object and copy translated along X and rotated on its local Y axis
+</em></a><P><dl><dl><a name="5755">
+<dt>Note that the local axes for the transformed tetrahedron are no longer aligned with the global center.</dt>
+</a><P></dl></dl>
+<a name="5756">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the transformed tetrahedron, and <strong>(CLICK-R)</strong> on Skew.
+</STRONG>
+</a><P><dl><a name="5757">
+<dt>Move the mouse left and right to skew the object; note, however, that instead of using the object's local coordinate system, it uses that of its superior (which in this case is the global coordinate system).</dt>
+</a><P><a name="5728">
+ <P><img src="3TransformObjects.anc35.gif"><p>
+</a></dl>
+<a name="5729">
+<em>Figure 3.36  &#32; &#32;The object is skewed along the object's superior (in this case, the global center)
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Use <strong>Home</strong> to return the object to its saved home state. To make this the object's new home position, select the object and use the <strong>Set Home</strong> command. </font></dd></dt></dl><P>
+<a name="4433">
+<h2><HR> Object Utilities</h2>
+</a><a name="6136">
+The object utilities are some generalized features that you commonly perform on an object:<p>
+</a><P><ul><a name="6148">
+<li>restructuring, renaming, copying, exporting, and deleting
+</a></li><P><a name="6149">
+<li>display characteristics
+</a></li><P><a name="6150">
+<li>saving and copying transformation matrices between objects
+</a></li><P></ul><P><a name="6143">
+Each of these operations is described (in alphabetical order) in the sections below.<p>
+</a><P><a name="5166">
+<h4> Backfacing</h4>
+</a><a name="6552">
+Toggles the backfacing on/off for the selected object's body. If turned on, N-Geometry displays only those faces whose normals point toward the camera.<p>
+</a><P><a name="6553">
+Toggling backfacing on is useful whenever you want to hide the faces pointing away from the camera. With backfacing turned on, an object feels more "solid" than "wireframe."<p>
+</a><P><a name="6554">
+To toggle the backfacing of an object's body:<p>
+</a><P>
+<a name="6555">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="6556">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Backfacing.
+</STRONG>
+</a><P><a name="6560">
+ <P><img src="3TransformObjects.anc36.gif"><p>
+</a>
+<a name="6561">
+<em>Figure 3.37  &#32; &#32;Left, object with backfacing off; right, backfacing on
+</em></a><P><a name="5154">
+<h4> Copy</h4>
+</a><a name="5232">
+Makes a discrete copy of the selected object(s). For more information, see the section <a href="2CreatingObjects2.html#32024">"Copy," on page &#32;2-59</a>.<p>
+</a><P><a name="5236">
+<h4> Delete</h4>
+</a><a name="5237">
+Deletes the selected object(s) from the scene. For more information, refer to the section <a href="2CreatingObjects2.html#32063">"Delete," on page &#32;2-68</a>.<p>
+</a><P><a name="5019">
+<h4> Describe</h4>
+</a><a name="5869">
+Prints out the object's transformation matrix in the UNIX shell window from which N&#183;World was started. You may find it helpful at times to be able to read the transformation matrix of an object (for example, to see if an operation you performed actually did what you think it did). <p>
+</a><P><a name="5021">
+A transformation matrix looks something like this:<p>
+</a><P><a name="5022">
+<code><pre>32 (move)<p>
+</code></pre></a><a name="5023">
+<code><pre>  1.0000 &#32; &#32; &#32; &#32; &#32;.0000 &#32; &#32;  &#32; &#32;.0000 &#32; &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="5024">
+<code><pre>   .0000 &#32; &#32; &#32; &#32;1.0000 &#32; &#32;  &#32; &#32;.0000 &#32; &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="5025">
+<code><pre>   .0000 &#32; &#32;  &#32; &#32;.0000 &#32; &#32; &#32; &#32;1.0000  &#32; &#32; &#32; &#32;.0000<p>
+</code></pre></a><a name="5026">
+<code><pre>   12.26 &#32; &#32; &#32; &#32; &#32; &#32;2.00 &#32; &#32; &#32; &#32; &#32; &#32;5.50 &#32; &#32; &#32; 1.0000<p>
+</code></pre></a><a name="5805">
+The values in a transformation matrix are arranged as follows:<p>
+</a><P><ul><a name="5872">
+<li>The bottom line (first three values) is translation x y z-the object above has been moved 12.26 units in the X, 2 units in the Y, and 5.5 units in the Z.
+</a></li><P><a name="5836">
+<li>Reading diagonally from upper left, the values represent the X, Y, and Z scale. All the scales for this object are at 1.0000.
+</a></li><P><a name="5842">
+<li>Rotations and skews are "embedded" in the upper left 3x3 slots.
+</a></li><P><a name="5882">
+<li>The right column is not used for objects.
+</a></li><P></ul><P><a name="5853">
+Except for translations, which are always on the bottom, rotations, skews, and scales affect more than one component of the matrix, so it's not necessarily possible to point to a slot and say what it contains-multiple transform operations affect more than one component.<p>
+</a><P><a name="5835">
+<h4> Export</h4>
+</a><a name="5256">
+Exports the selected object in one of the formats described in the section <a href="2CreatingObjects2.html#24563">"Export," on page &#32;2-53</a>.<p>
+</a><P><a name="5242">
+<h4> Hard Edging</h4>
+</a><a name="6607">
+<strong>Hard Edging</strong> toggles the <em>display</em> of edges whose adjacent faces meet at an angle <em>greater</em> than a specified value. This option is useful when animating (with N-Dynamics) if you want to turn off the display of some edges. This operation does not affect the geometry of the object, only its display!<p>
+</a><P><a name="6650">
+ <P><img src="3TransformObjects.anc37.gif"><p>
+</a><a name="6652">
+<em>Figure 3.38  &#32; &#32;Left, original object; right, with hard edging of 10 degrees
+</em></a><P><a name="6645">
+A higher value will turn off the display of more edges; if you're experimenting, start with a value of 10 degrees, and go up in 10 degree increments from there.<p>
+</a><P><a name="6611">
+<a href="3TransformObjects.html#6617">Figure 3.39</a> shows an object in its original state, and with hard edging turned on to reduce the number of displayed edges:<p>
+</a><P><a name="6615">
+ <P><img src="3TransformObjects.anc38.gif"><p>
+</a><a name="6617">
+<em>Figure 3.39  &#32; &#32;Left, original object; right, with hard edging of 10 degrees
+</em></a><P><a name="5243">
+<h4> List</h4>
+</a><a name="5258">
+The <strong>List</strong> command displays a list of elements in the selected object(s). This list is printed in the UNIX shell window from which N&#183;World was started.<p>
+</a><P><a name="6677">
+A list for a complex object might look like this:<p>
+</a><P><a name="6657">
+<code><pre>----------------- SELECTED OBJECTS --------------------<p>
+</code></pre></a><a name="6659">
+<code><pre>"2-Subobjects" <p>
+</code></pre></a><a name="6660">
+<code><pre>   "Copy of Torus"  #&lt;POLYHEDRON 94&gt;:   648pts  1296edges   648faces.<p>
+</code></pre></a><a name="6661">
+<code><pre>   "Torus"          #&lt;POLYHEDRON 91&gt;:   648pts  1296edges   648faces.<p>
+</code></pre></a><a name="6662">
+<code><pre><p>
+</code></pre></a><a name="6663">
+<code><pre>Element totals:  1296 pts, 2592 segments, 1296 faces.<p>
+</code></pre></a><a name="5244">
+<h4> Local Axes</h4>
+</a><a name="7304">
+Toggle the display labeled local axes of terminal objects. Displaying local axes makes it easy to see where an object's origin is (see <a href="3TransformObjects.html#7327">Figure 3.40</a>.) This feature makes it easier to visualize transformations, many of which are relative to the local axes.<p>
+</a><P><a name="7325">
+ <P><img src="3TransformObjects.anc39.gif"><p>
+</a><a name="7327">
+<em>Figure 3.40  &#32; &#32;Displaying local axes makes it easy to see how a transform operation will work
+</em></a><P><a name="7300">
+This is identical to the Local Axes command described in the section <a href="6DisplayingObjects.html#4289">"Local Axes," on page &#32;6-5</a>.<p>
+</a><P><a name="7299">
+<h4> Multiply</h4>
+</a><a name="5259">
+Creates multiple versions of the selected object(s), allowing you to create complex lattices of various shapes. For more information, see the section <a href="2CreatingObjects2.html#31805">"Multiply," on page &#32;2-61</a>.<p>
+</a><P><a name="5245">
+<h4> Normals</h4>
+</a><a name="6695">
+Toggles the display of normals for the selected object; you can display normals for points, edges, or faces, depending on which button you click:<p>
+</a><P><ul><a name="6696">
+<li><strong>(CLICK-L)</strong> to display an object's vertex normals.
+</a></li><P><a name="6697">
+<li><strong>(CLICK-M)</strong> to display an object's edge normals.
+</a></li><P><a name="6698">
+<li><strong>(CLICK-R)</strong> to display an object's face normals.
+</a></li><P><a name="6703">
+ <P><img src="3TransformObjects.anc40.gif"><p>
+</a></ul><P><a name="6704">
+<em>Figure 3.41  &#32; &#32;Left, cube with point normals displayed; middle, edge normals; right, face normals
+</em></a><P><a name="5246">
+<h4> Points</h4>
+</a><a name="6718">
+The <strong>Points</strong> operation toggles highlighting of the object's vertices (see <a href="3TransformObjects.html#6728">Figure 3.42</a>.) This type of presentation is especially useful with wires or with objects that have many vertices with only two adjacent edges, which might appear to blend together if the angle between them is fairly small.<p>
+</a><P><a name="6722">
+The highighted point radius can be set using <strong>Utilities&gt;Preferences&gt;Objects&gt;Point Display Radius</strong>.<p>
+</a><P><a name="6726">
+ <P><img src="3TransformObjects.anc41.gif"><p>
+</a><a name="6728">
+<em>Figure 3.42  &#32; &#32;Object with point display turned on
+</em></a><P><a name="5247">
+<h4> Reinstance</h4>
+</a><a name="5262">
+Creates a new instance of the selected object; the reinstance and the original object share the same body, so that changes made to the body in one place are reflected in every reinstance. For more information, see the section <a href="2CreatingObjects2.html#31758">"Reinstance," on page &#32;2-59</a>.<p>
+</a><P><a name="5248">
+<h4> Rename</h4>
+</a><a name="5263">
+Renames the selected object. When you select the object to be renamed, a dialog box appears with the object's current name in it.<p>
+</a><P><a name="6773">
+ <P><img src="3TransformObjects.anc42.gif"><p>
+</a><a name="6775">
+<em>Figure 3.43  &#32; &#32;Object with point display turned on
+</em></a><P><a name="6766">
+<strong>(CLICK-L)</strong> to position the cursor in the text edit box, or <strong>(CLICK-M)</strong> to clear out the text edit box completely and enter a new name. <strong>(CLICK-L)</strong> on <strong>Rename</strong> when you're done.<p>
+</a><P><a name="5249">
+<h4> Restructure</h4>
+</a><a name="5264">
+Restructures the selected object into a different level in the object hierarchy. Restructuring, and object hierarchy in general, are described in more detail in the section <a href="7Utilities.html#5442">"Restructure," on page &#32;7-2</a>.<p>
+</a><P><a name="7354">
+Restructuring using a click and drag approach is also possible through the use of the Browser, as described in <em>Getting Started</em>.<p>
+</a><P><a name="5250">
+<h4> Save</h4>
+</a><a name="7289">
+Save the selected object. This is identical to the Save command described in the section <a href="2CreatingObjects2.html#24582">"Save," on page &#32;2-50</a>.<p>
+</a><P><a name="7288">
+<h4> Sensitivity</h4>
+</a><a name="5964">
+Toggles the sensitivity on/off for the selected object's body. If turned on, the object's body is made temporarily "insensitive;" it cannot be modified (with any of the body modification operations). The insensitive body is displayed in a lighter gray in the N-Geometry window.<p>
+</a><P><a name="5977">
+Toggling sensitivity is useful if you have several overlapping bodies, and want to be able to work on one without affecting another.<p>
+</a><P><a name="5965">
+To toggle the sensitivity of an object's body:<p>
+</a><P>
+<a name="5966">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="5967">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Sensitivity.
+</STRONG>
+</a><P><a name="5971">
+ <P><img src="3TransformObjects.anc43.gif"><p>
+</a>
+<a name="5972">
+<em>Figure 3.44  &#32; &#32;Left, insensitive body; right, sensitive body
+</em></a><P><a name="5251">
+<h4> Shading</h4>
+</a><a name="5266">
+Toggles the shading on/off for the selected object. If turned on, the object is hardware-rendered in the N-Geometry window using GL Shade.<p>
+</a><P><a name="5899">
+To toggle an object's shading:<p>
+</a><P>
+<a name="5900">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="5901">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Shading.
+</STRONG>
+</a><P><a name="5907">
+ <P><img src="3TransformObjects.anc44.gif"><p>
+</a>
+<a name="5908">
+<em>Figure 3.45  &#32; &#32;Original and shaded object
+</em></a><P><a name="7340">
+<h4> Stand-ins</h4>
+</a><a name="7342">
+The <strong>Stand-ins</strong> command displays a "substitute" box instead of the object itself whenever you move the camera or transform the object.<p>
+</a><P><a name="7343">
+The substitute is essentially a bounding box which encompasses the object. The use of substitute boxes greatly increases the speed with which camera movements and transformations for more complicated objects are performed, because fewer lines need to be drawn.<p>
+</a><P><a name="7344">
+This is identical to the <strong>Stand-ins</strong> command as described in the section <a href="6DisplayingObjects.html#4320">"Stand-ins," on page &#32;6-8</a>.<p>
+</a><P><a name="5252">
+<h4> Visibility</h4>
+</a><a name="5914">
+Makes the selected object invisible.<p>
+</a><P><a name="5915">
+To toggle an object's visibility:<p>
+</a><P>
+<a name="5916">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on the object.
+</STRONG>
+</a><P><a name="5917">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Visibility.
+</STRONG>
+</a><P>
+<a name="5937">
+Once you've made an object invisible, you can no longer select it directly; to make an invisible object visible again, use <strong>GeoMenus&gt;Object Display&gt;Visibility</strong>.<p>
+</a><P><a name="5254">
+This displays a list of all objects in the scene; depending on which mouse click you use, you can make one or more elements visible.<p>
+</a><P><a name="5959">
+For more information, see the section <a href="6DisplayingObjects.html#2622">"Visibility," on page &#32;6-8</a>.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2CreatingObjects2.html">[Prev]</a> <a href="4ModifyingBodies.html">[Next]</a> <a href="IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/23/96 09:36:26 -->
+
+</body>
+</html>

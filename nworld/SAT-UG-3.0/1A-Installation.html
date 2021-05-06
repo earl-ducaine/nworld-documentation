@@ -1,0 +1,103 @@
+<html><head><title>Installing the Sega Cartdev</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="1ExportAndCompile.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9493">
+<h1>Installing the Sega Cartdev</h1>
+</a>
+<hr><p><a name="9914">
+<h4> This chapter describes how to setup your Sega Cartdev and get started using Saturn Express.</h4>
+</a><a name="9855">
+<h2><HR> Hooking up Your Sega Saturn Cartdev</h2>
+</a>
+<a name="9856">
+<STRONG>	 1.	 Place the Cartdev upside down next to your computer.
+</STRONG>
+</a><P><a name="9857">
+<STRONG>	2.	 Place the Sega Saturn on top of the Cartdev box.
+</STRONG>
+</a><P><a name="9858">
+<STRONG>	3.	 Insert the little cable from the back of the Saturn into the jack marked "Saturn Control Interface"
+</STRONG>
+</a><P><a name="9859">
+<STRONG>	4.	 Insert the cartridge with the ribbon cable on it into the Saturn's cartridge slot.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>When powering the cartdev on or off, </em>make sure<em> that the Saturn is turned off. Failure to do so can damage the cartdev</em></font></dd></dt></dl><P>
+
+<a name="9861">
+<STRONG>	5.	 Insert the power cables into the Saturn and cartdev box.
+</STRONG>
+</a><P><a name="9863">
+<STRONG>	6.	 Set the SCSI ID for the cartdev to a unique value using the dial on the back of the box.
+</STRONG>
+</a><P><dl><a name="9864">
+<dt>You can find out which IDs are currently in use by entering the <strong>hinv</strong> command in a UNIX shell window:</dt>
+</a><P><dl><a name="9865">
+<dt><code>unix&gt;</code>hinv<p>
+</a><P></dl></dl><a name="9866">
+<STRONG>	7.	 Change the permissions for the SCSI port on the SGI:
+</STRONG>
+</a><P><dl><dl><a name="9867">
+<dt><code>cd /dev/scsi<br>chmod +rw sc</code>&lt;controller-num&gt;<code>d</code>&lt;dev-num&gt;<code>l0</code><p>
+</a><P></dl></dl><dl><a name="9869">
+<dt>Where the <strong>&lt;controller-num&gt;</strong> is the SCSI controller number and the <strong>&lt;dev-num&gt;</strong> is the device number you chose in step <a href="1A-Installation.html#9863">6</a>.</dt>
+</a><P></dl><a name="9873">
+<STRONG>	8.	 Change the permissions for the Sega plugin directory and the monitor file:
+</STRONG>
+</a><P><dl><dl><a name="9874">
+<dt><code>su<br>chmod 777 /usr/local/ngc/plugin/sega<br>chmod 777 /usr/local/ngc/plugin/sega/nichimenlog</code><p>
+</a><P></dl></dl><a name="9877">
+<STRONG>	9.	 Connect the cartdev and the SGI using the supplied SCSI cable.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you have a video capture board on your SGI and you want to display the output of the Saturn on the SGI, plug the video composite cable into the board and run the program "</em>capture<em>" from a UNIX shell window.</em></font></dd></dt><dl><a name="9879">
+<dt>The Sega startup screens are displayed in the capture window (the flying particles followed by the control panel).</dt>
+</a><P></dl></dl><P>
+
+<a name="9880">
+<STRONG>	10.	 Turn on the Cartdev.
+</STRONG>
+</a><P><a name="9881">
+<STRONG>	11.	 Turn on the Saturn.
+</STRONG>
+</a><P>
+<a name="9882">
+<h2><HR> Installing the Sega Compiler</h2>
+</a><a name="9883">
+The Sega compiler, an SGL 1.0 compiler that will compile on the SGI, is included in the following distribution directory:<p>
+</a><P><dl><dl><a name="9884">
+<dt><code>/usr/local/ngc/express/sega</code></dt>
+</a><P></dl></dl><a name="9885">
+The file is called:<p>
+</a><P><dl><dl><a name="9886">
+<dt><code>sega-compiler.tar.Z</code></dt>
+</a><P></dl></dl><a name="9887">
+If you want to use this compiler, you'll need to decompress and untar the file.<p>
+</a><P><a name="9853">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0AboutThisDoc.html">[Prev]</a> <a href="1ExportAndCompile.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 11:42:01 -->
+
+</body>
+</html>

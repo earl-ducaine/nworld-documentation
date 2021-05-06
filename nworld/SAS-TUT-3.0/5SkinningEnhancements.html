@@ -1,0 +1,683 @@
+<html><head><title>Skinning Enhancements</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="4UsingSkins.html">[Prev]</a> <a href="6Posing.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="10714">
+<h1>Skinning Enhancements</h1>
+</a>
+<hr><p><a name="10771">
+<h4> In this chapter, you'll learn how to make additional modifications to a skeleton's skin to change how it interacts with an animated skeleton.</h4>
+</a><a name="12583">
+ <P><img src="5SkinningEnhancements.anc.gif"><p>
+</a><a name="12576">
+<p>
+</a><P><a name="12549">
+<h2><HR> In this Chapter</h2>
+</a><a name="12557">
+You'll learn how to:<p>
+</a><P><ul><a name="12564">
+<li>create soft parts, for natural looking skin deformations around joints
+</a></li><P><a name="12614">
+<li>create skin displacements, natural looking deformations that enhance the appearance of skins on skeletons (such as muscle bulges driven by a bone's rotation)
+</a></li><P><a name="12565">
+<li>attach "extra" bones to a skeleton to easily animate additional skin displacements
+</a></li><P></ul><P><a name="12743">
+<h2><HR> Soft Parts</h2>
+</a><a name="10772">
+After you attach a skin to a skeleton, you can make specific <em>parts</em> of the skin "soft."<p>
+</a><P><a name="10773">
+If you used the <strong>Make Skin Parts</strong> command to divide the skin attached to a skeleton into individual parts, those parts are <em>hard</em>. Hard parts are named for the bone they are linked to, and have a somewhat "robotic" feel; such parts try to retain their shape when the bone they are attached to is moved.<p>
+</a><P><a name="10774">
+Soft parts, on the other hand, are designed to deform naturally, and are most often used on the areas around <em>hinge</em> joints (such as a knee or elbow) on a moving model. The skin around a knee joint, for example, reacts differently when the lower leg is contracted than the skin around the shin. You need to make the area around the knee a <em>soft part</em>.<p>
+</a><P><a name="11153">
+<h3> Making a Soft Part on a Knee Joint</h3>
+</a><a name="10777">
+This section shows how to make the skin around a knee joint soft. (Soft parts are also discussed in the <em>Skeletal Animation System Reference Guide</em>.)<p>
+</a><P><a name="10778">
+When designing a soft part, it's important to include enough points around a joint to actually <em>build</em> the soft part. Around a knee, for example, it makes sense to have several "loops" of points around the joint, some above and some below the knee. Increasing the number of points on a soft part make it easier to make the joint "softer."<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Hint.</strong>	<em>If you are limited in the number of faces on your model, save some of that complexity for soft parts (if you need to create natural looking deformations around joint areas), as shown in <a href="5SkinningEnhancements.html#10789">Figure 5.1</a>.</em></font></dd></dt><a name="10787">
+ <P><img src="5SkinningEnhancements.anc1.gif"><p>
+</a></dl><P>
+<a name="10789">
+<em>Figure 5.1  &#32; &#32;Left, poor candidate for soft knee part; right, added vertices make a better candidate
+</em></a><P><a name="10790">
+<h4> Before you Start</h4>
+</a><a name="10791">
+	A word of warning: adding vertices around a joint for a better soft part after you've already saved a base state for the skin invalidates the base state.<p>
+</a><P><a name="10792">
+Ideally, you should add complexity for soft parts <em>before</em> you first attach the skin. However, if you find you need to add vertices on the skin to create a better soft part, do the following:<p>
+</a><P>
+<a name="10793">
+<STRONG>	 1.	 <strong>(SHIFT-L)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="10794">
+<dt>This returns the skeleton and the attached skin to their saved base positions.</dt>
+</a><P></dl><a name="10795">
+<STRONG>	2.	 <strong>(SHIFT-L)</strong> on the skeleton.
+</STRONG>
+</a><P><a name="10796">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on Skin.
+</STRONG>
+</a><P><dl><a name="10797">
+<dt>A list of skins attached to the skeleton is displayed:</dt>
+</a><P><a name="10801">
+ <P><img src="5SkinningEnhancements.anc2.gif"><p>
+</a></dl>
+<a name="10802">
+<em>Figure 5.2  &#32; &#32;Selecting a skin to detach
+</em></a><P>
+<a name="10803">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the skin you want to detach and <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="10804">
+<dt>This detaches the skin from the skeleton. When you detach the skin, you're also given the option of deleting the default skin parts that were created when you first used the Skin command to attach the skin:</dt>
+</a><P><a name="10808">
+ <P><img src="5SkinningEnhancements.anc3.gif"><p>
+</a></dl>
+<a name="10809">
+<em>Figure 5.3  &#32; &#32;Optionally delete skin parts
+</em></a><P>
+<a name="10810">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><dl><a name="10811">
+<dt>This deletes only the default skin parts that were created (not any other vertex parts you may have defined).</dt>
+</a><P></dl>
+<a name="10812">
+The skin is now detached from the skeleton, and any of the default skin parts created have been deleted.<p>
+</a><P><a name="11082">
+<h4> Delete any Save Base States for the Skin</h4>
+</a><a name="11083">
+In addition, since the base state saved for the skin are no longer valid, you should delete any saved base state for the skeleton:<p>
+</a><P>
+<a name="11084">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the skin.
+</STRONG>
+</a><P><a name="11085">
+<STRONG>	7.	 <strong>(CLICK-R)</strong> on Displace.
+</STRONG>
+</a><P><a name="11086">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Delete.
+</STRONG>
+</a><P><dl><a name="11087">
+<dt>Delete any saved base displacements that correspond to the skin with its previous number of vertices.</dt>
+</a><P></dl><a name="11105">
+<STRONG>	9.	 Make a new base state for the skin.
+</STRONG>
+</a><P><a name="11106">
+<STRONG>	10.	 Reattach and test the skin.
+</STRONG>
+</a><P>
+<a name="11096">
+You may repeat this process several times, although as mentioned above, it's a good idea to try to add the amount of complexity that you'll need around a joint before attaching the skin.<p>
+</a><P><a name="10814">
+<h4> When to Use Soft Parts</h4>
+</a><a name="10815">
+When you bend a hinge joint without a soft part, you're likely to get a shearing effect when rotating the bone below the joint:<p>
+</a><P><a name="10823">
+ <P><img src="5SkinningEnhancements.anc4.gif"><p>
+</a><a name="10824">
+<em>Figure 5.4  &#32; &#32;Left, original knee; right, knee bent with no soft part defined
+</em></a><P><a name="10825">
+Because there is no sense of "collision" between vertices on the skin, vertices attached to a bone always retain a fixed relationship to that bone.<p>
+</a><P><a name="11107">
+You can create soft parts around such joints by selecting vertices above and below the joint and collecting them into a soft part that reacts based on the movement of a selected bone, as described in the following section.<p>
+</a><P><a name="10826">
+<h4> Defining the Part</h4>
+</a><a name="10827">
+To build a soft part:<p>
+</a><P>
+<a name="10828">
+<STRONG>	 1.	 Collect the points on the skin around the selected joint.
+</STRONG>
+</a><P><dl><a name="10829">
+<dt>There are several methods for collecting vertices in N-Geometry; consult the <em>N-Geometry Reference Guide</em> for more details on collecting elements.</dt>
+</a><P><a name="10835">
+ <P><img src="5SkinningEnhancements.anc5.gif"><p>
+</a></dl>
+<a name="10836">
+<em>Figure 5.5  &#32; &#32;Select the points to include in a soft part
+</em></a><P>
+<a name="10837">
+<STRONG>	2.	 After you've completed the collection, <strong>(SHIFT-L)</strong> on the collection.
+</STRONG>
+</a><P><a name="10838">
+<STRONG>	3.	 <strong>(CLICK-M)</strong> on Add to Part.
+</STRONG>
+</a><P><dl><a name="10839">
+<dt>In this step, you're going to remove the selected vertices from any of the other default skin parts to which they were originally assigned.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you're using a model on which you've already defined other vertex parts (e.g., for animating displacements), make sure </em>not<em> to remove the points from those vertex parts.</em></font></dd></dt><dl><a name="10840">
+<dt>A list appears, displaying any parts to which the selected points belong:</dt>
+</a><P><a name="10844">
+ <P><img src="5SkinningEnhancements.anc6.gif"><p>
+</a></dl></dl><P>
+<a name="10845">
+<em>Figure 5.6  &#32; &#32;Removing points in a soft part from other parts
+</em></a><P><ul><ul>
+<BR><a name="10846">
+<li>If the vertices you have selected are in more than one skin part, the choice <strong>All Parts</strong> appears at the top of the list, so you can quickly remove the points from any parts to which they belong.
+</a><P><BR><a name="10847">
+<li>If the selected points all belong to one part, you can simply <strong>(CLICK-L)</strong> on that part.
+</a><P></ul>
+</ul>
+<a name="10849">
+<STRONG>	4.	 With the points <em>still selected</em>, <strong>(SHIFT-L)</strong> on the Nichimen Geometry window.
+</STRONG>
+</a><P><a name="10850">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Add to Part.
+</STRONG>
+</a><P><a name="10851">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Make New Part.
+</STRONG>
+</a><P><dl><a name="10852">
+<dt>This option appears at the top of the menu. Later, if you're modifying the soft parts on a skeleton, you can remove the selected vertices from existing parts and reassign them to an existing soft part.</dt>
+</a><P></dl><a name="10854">
+<STRONG>	7.	 Give the soft part a name and <strong>(CLICK-L)</strong> on Make Part.
+</STRONG>
+</a><P><dl><a name="10855">
+<dt>Use a descriptive name, such as <strong>soft-left-knee</strong>.</dt>
+</a><P><a name="10859">
+ <P><img src="5SkinningEnhancements.anc7.gif"><p>
+</a></dl>
+<a name="10860">
+<em>Figure 5.7  &#32; &#32;Select the points to include in a soft part
+</em></a><P>
+<a name="10861">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Make Part.
+</STRONG>
+</a><P><dl><a name="10862">
+<dt>The soft part has now been defined.</dt>
+</a><P></dl>
+<a name="10863">
+<h4> Associating the Soft Part with the Proper Bone</h4>
+</a><a name="10864">
+After you've defined the soft part, you need to associate it with the proper bone. This is typically the bone directly <em>below</em> the joint. For example, if you're building a soft part around a knee, select the tibia bone.<p>
+</a><P>
+<a name="10865">
+<STRONG>	9.	 <strong>(CLICK-L)</strong> on Segments in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="10866">
+<STRONG>	10.	 <strong>(SHIFT-L)</strong> on the bone directly below the soft joint.
+</STRONG>
+</a><P><a name="10867">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Hard/Soft.
+</STRONG>
+</a><P><dl><a name="10868">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="10872">
+ <P><img src="5SkinningEnhancements.anc8.gif"><p>
+</a></dl>
+<a name="10874">
+<em>Figure 5.8  &#32; &#32;Defining axes for a soft part
+</em></a><P><dl><dl><a name="10875">
+<dt>This dialog box lets you specify which soft parts are affected by changes in the bone's X, Y, or Z orientation or Length.</dt>
+</a><P><a name="10876">
+<dt>When you attached a skin and made default skin parts, remember that skin parts are made soft on the Y axis (the typical axis that follows a bone's length, and around which it twists) and length. If the bone twists or is scaled, the default associated skin part acts like a soft part. </dt>
+</a><P><a name="10877">
+<dt>However, when the bone rotates on either of the other two axes, the skin acts like a hard part-it retains its volume and shape.</dt>
+</a><P><a name="10881">
+<dt><a href="5SkinningEnhancements.html#10874">Figure 5.8</a> shows the defaults for the left-tibia, which reflect the default assignments- hard in X and Z, soft in Y and length.</dt>
+</a><P><a name="10882">
+<dt>Now that you've created a new soft part, you need to specify <em>when</em> the part should act like a soft part.</dt>
+</a><P></dl></dl>
+<a name="10883">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the text edit box next to All Soft Parts.
+</STRONG>
+</a><P><a name="10890">
+ <P><img src="5SkinningEnhancements.anc9.gif"><p>
+</a>
+<a name="10891">
+<em>Figure 5.9  &#32; &#32;Select the soft part to associate with the bone
+</em></a><P>
+<a name="10895">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on the soft part you specified in step <a href="5SkinningEnhancements.html#10854">7</a> from the list that appears.
+</STRONG>
+</a><P><a name="10897">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on Do It.
+</STRONG>
+</a><P><dl><a name="10898">
+<dt>The hard and soft parts dialog box is updated to reflect the soft part's new association with the tibia:</dt>
+</a><P><a name="10902">
+ <P><img src="5SkinningEnhancements.anc10.gif"><p>
+</a></dl>
+<a name="10903">
+<em>Figure 5.10  &#32; &#32;The part is now "soft" around all axes and in length
+</em></a><P>
+<a name="10904">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P>
+<a name="10905">
+The part is now soft around all axes and in length. This means that the joint will exhbit its soft characteristics no matter which axis you rotate the tibia around (or if you scale the tibia).<p>
+</a><P><a name="10906">
+<h4> Testing the Soft Part</h4>
+</a><a name="10907">
+Now that the soft part has been associated with the tibia, rotate the tibia back and forth to make sure you've selected enough points to make a good part:<p>
+</a><P>
+<a name="10908">
+<STRONG>	16.	 (<strong>SHIFT-L)</strong> on the tibia.
+</STRONG>
+</a><P><a name="10909">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><dl><a name="10910">
+<dt>Rotate the leg back to check your joint:</dt>
+</a><P><a name="10917">
+ <P><img src="5SkinningEnhancements.anc11.gif"><p>
+</a></dl>
+<a name="10918">
+<em>Figure 5.11  &#32; &#32;Left, original knee; right, knee bent with added soft part
+</em></a><P><a name="10972">
+<h2><HR> Skin Displacements</h2>
+</a><a name="10973">
+While the skin moves in response to the motion of the skeleton, you may want to create additional skin displacements, to emulate muscle expansion under the skin, facial expressions, or other topological changes to the skin when the skeleton moves to a given pose.<p>
+</a><P><a name="10974">
+For example, when you rotate a forearm up in the x-plane, you may want to make the bicep for that arm gradually swell. You would define this type of "secondary motion" using a skin displacement.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.	</strong><em>Skin displacements are associated with the rotation of the selected bone in only one axis.</em></font></dd></dt></dl><P>
+<a name="10977">
+<h4> Making a Skin Displacement</h4>
+</a>
+<a name="10978">
+<STRONG>	 1.	 Load the following sample object:
+</STRONG>
+</a><P><a name="10979">
+<code><pre>/usr/local/ngc/demo/objects/arm.geo<p>
+</code></pre></a><dl><a name="10980">
+<dt>The arm and skeleton should look like this:</dt>
+</a><P><a name="10984">
+ <P><img src="5SkinningEnhancements.anc12.gif"><p>
+</a></dl>
+<a name="10985">
+<em>Figure 5.12  &#32; &#32;Arm with skeleton
+</em></a><P>
+<a name="10986">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on Segments in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="10987">
+<STRONG>	3.	 <strong>(SHIFT-L)</strong> on the forearm.
+</STRONG>
+</a><P><a name="10988">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on XYZ Rotate and rotate the forearm up (as if the skeleton were flexing its bicep muscle).
+</STRONG>
+</a><P><dl><a name="10989">
+<dt><strong>(CLICK-L)</strong> when the model is in the position where you'd want the maximum effect of the skin displacement:</dt>
+</a><P><a name="10993">
+ <P><img src="5SkinningEnhancements.anc13.gif"><p>
+</a></dl>
+<a name="10994">
+<em>Figure 5.13  &#32; &#32;Rotate the bone around one axis
+</em></a><P><dl><dl><a name="10995">
+<dt>The next step is to modify the skin so that it matches the bone's new position:</dt>
+</a><P></dl></dl>
+<a name="10996">
+<STRONG>	5.	 Collect the segments around the middle of the bicep:
+</STRONG>
+</a><P><a name="11000">
+ <P><img src="5SkinningEnhancements.anc14.gif"><p>
+</a>
+<a name="11001">
+<em>Figure 5.14  &#32; &#32;Collecting the segments around the bicep
+</em></a><P>
+<a name="11002">
+<STRONG>	6.	 <strong>(SHIFT-L)</strong> on the Nichimen Geometry window.
+</STRONG>
+</a><P><a name="11003">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on the Scale command.
+</STRONG>
+</a><P><dl><a name="11004">
+<dt>Drag the mouse left to expand the bicep:</dt>
+</a><P><a name="11008">
+ <P><img src="5SkinningEnhancements.anc15.gif"><p>
+</a></dl>
+<a name="11009">
+<em>Figure 5.15  &#32; &#32;Modify the skin to the target position that should correspond to the bone's current rotation
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong> 	<em>If you change the number of points on the skin when defining the skin displacement, you invalidate its base state for the skin. If you add geometry to accommodate a skin displacement, you'll need to detach then reattach the skin if you want to automatically generate new skin parts.</em></font></dd></dt></dl><P>
+
+<a name="11011">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Segments in the sensitivity element menu along the top of the 3D editor window.
+</STRONG>
+</a><P><a name="11012">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the forearm bone.
+</STRONG>
+</a><P><a name="11013">
+<STRONG>	10.	 <strong>(CLICK-M)</strong> on Skin Displacement.
+</STRONG>
+</a><P><dl><a name="11014">
+<dt>As pointed out in the mouse documentation line, this step links the current shape of the skin (with the swelled bicep) with the current rotation value for the forearm bone in a single plane.</dt>
+</a><P></dl><a name="11015">
+<STRONG>	11.	 Enter the name of the Skin Displacement in the dialog box that appears.
+</STRONG>
+</a><P><a name="11019">
+ <P><img src="5SkinningEnhancements.anc16.gif"><p>
+</a>
+<a name="11020">
+<em>Figure 5.16  &#32; &#32;Enter the name for the skin displacement
+</em></a><P><dl><dl><a name="11021">
+<dt>You might give it a name like "Rotate Forearm X" or some other descriptive name. Including the rotation axis in the name of the displacement can be helpful when later trying to remember what a displacement does (e.g., when building a script in N-Dynamics).</dt>
+</a><P></dl></dl>
+<a name="11022">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Done.
+</STRONG>
+</a><P><dl><a name="11023">
+<dt>The skin displacement is now associated with the selected bone's current rotation.</dt>
+</a><P></dl>
+<a name="11024">
+<h4> Testing a Skin Displacement</h4>
+</a><a name="11025">
+After you've defined your skin displacement, make sure that it's doing what you want:<p>
+</a><P>
+<a name="11026">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the forearm bone.
+</STRONG>
+</a><P><a name="11027">
+<STRONG>	14.	 <strong>(SHIFT-L)</strong> on XYZ Rotate and rotate the bone (as if the skeleton were flexing its bicep muscle).
+</STRONG>
+</a><P><dl><a name="11028">
+<dt>As you drag the mouse left and right, you should see the bicep swell accordingly:</dt>
+</a><P><a name="11034">
+ <P><img src="5SkinningEnhancements.anc17.gif"><p>
+</a></dl>
+<a name="11035">
+<em>Figure 5.17  &#32; &#32;The skin displacement in action
+</em></a><P>
+<a name="11036">
+<STRONG>	15.	 Save your work.
+</STRONG>
+</a><P><dl><a name="11037">
+<dt><strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;File&gt;Save</strong>.</dt>
+</a><P></dl>
+<a name="11038">
+<h4> Using Skin Displacements with Soft Parts</h4>
+</a><a name="11039">
+Skin displacements may also be of particular use when creating soft parts; in fact, using skin displacements in <em>conjunction</em> with soft parts (e.g., around a joint) lets you create the effect of a bone moving under the skin.<p>
+</a><P><a name="11040">
+For example, if you animated the rotation of a forearm toward the bicep, you might define a soft part around the elbow, plus skin displacements for boththe flexing bicep and the slightly protruding elbow.<p>
+</a><P><a name="11285">
+<h2><HR> Using Extra Bones to Drive <br>Skin Displacements</h2>
+</a><a name="11313">
+This section describes a simple technique to drive secondary animations (those not based directly on motion capture data) by adding extra bones to a skeleton. A secondary animation can be something as simple as the blinking of an eye or the wiggling of an ear.<p>
+</a><P>
+<a name="12071">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><dl><dl><a name="11333">
+<dt><code>/usr/local/ngc/demo/scripts/cat-walk</code><p>
+</a><P></dl></dl><dl><a name="11355">
+<dt>The cat's skeleton and skin appear in the N-Geometry window:</dt>
+</a><P><a name="11344">
+ <P><img src="5SkinningEnhancements.anc18.gif"><p>
+</a></dl>
+<a name="11345">
+<em>Figure 5.18  &#32; &#32;Cat skin with skeleton
+</em></a><P>
+<a name="11334">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P>
+<a name="11379">
+The cat walks toward the camera, but appears somewhat robotic; there are no facial expressions, no rough edges to make the animation more realistic.<p>
+</a><P><a name="11389">
+In this script, we are applying a motion capture file to the skeleton, which in turn drives the cat's skin. <p>
+</a><P><a name="12374">
+Remember that motion capture data drives bones on a skeleton by referencing their <em>names</em>. While this means we don't want to change the names of the bones on a skeleton, it also gives us the ability to do a couple of interesting things:<p>
+</a><P><ul><a name="11402">
+<li>we can append bones to a skeleton without changing how the skeleton is animated
+</a></li><P><a name="11412">
+<li>we can base skin displacments on rotations of those added bones
+</a></li><P></ul><P><a name="11294">
+Suppose for example, that we want to make the ears of the cat wiggle independently while he walks. We can add a couple of extra bones to the skeleton, rotate those extra bones, and drive skin displacements based on the rotation of those bones.<p>
+</a><P><a name="11425">
+<h4> Adding the Extra Bones</h4>
+</a><a name="11298">
+The first step is to add the extra bones to the skeleton.<p>
+</a><P>
+<a name="11454">
+<STRONG>	3.	 Zoom the camera in on the head area of the skeleton.
+</STRONG>
+</a><P><a name="11460">
+ <P><img src="5SkinningEnhancements.anc19.gif"><p>
+</a>
+<a name="11461">
+<em>Figure 5.19  &#32; &#32;Cat skin with skeleton
+</em></a><P>
+<a name="11491">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on GeoMenus&gt;Visibility&gt;acclaim_walk_cat to make only the skeleton visible.
+</STRONG>
+</a><P><a name="11499">
+ <P><img src="5SkinningEnhancements.anc20.gif"><p>
+</a>
+<a name="11500">
+<em>Figure 5.20  &#32; &#32;Cat skeleton
+</em></a><P>
+<a name="11492">
+<STRONG>	5.	 <strong>(SHIFT-L)</strong> on the second joint from the top of the head (shown below), then <strong>(CLICK-L)</strong> on Add.
+</STRONG>
+</a><P><dl><a name="12411">
+<dt>This selects the joint to which you want to add the bone.</dt>
+</a><P><a name="11518">
+ <P><img src="5SkinningEnhancements.anc21.gif"><p>
+</a></dl>
+<a name="11519">
+<em>Figure 5.21  &#32; &#32;Select the joint shown
+</em></a><P>
+<a name="11513">
+<STRONG>	6.	 Move the cursor up and to the right, then <strong>(CLICK-L)</strong> to actually add the bone.
+</STRONG>
+</a><P><a name="11574">
+ <P><img src="5SkinningEnhancements.anc22.gif"><p>
+</a>
+<a name="11575">
+<em>Figure 5.22  &#32; &#32;Adding the first bone
+</em></a><P>
+<a name="11548">
+<STRONG>	7.	 Repeat steps <a href="5SkinningEnhancements.html#11492">5</a> and <a href="5SkinningEnhancements.html#11513">6</a>.
+</STRONG>
+</a><P><dl><a name="11564">
+<dt>You might want to draw the second bone in another direction, so you can easily select them:</dt>
+</a><P><a name="11603">
+ <P><img src="5SkinningEnhancements.anc23.gif"><p>
+</a></dl>
+<a name="11604">
+<em>Figure 5.23  &#32; &#32;Adding the second bone
+</em></a><P><a name="11642">
+Remember that even though we added two extra bones, <em>all</em> of the bones referenced by the motion capture file still have the same name. The extra bones were <em>added</em>, so they do not replace other bones on the skeleton. When the skeleton is animated, the newly attached bones move along, but since no motion data reference them by name, they aren't animated at all.<p>
+</a><P><a name="11669">
+<h4> Resaving the Base State for the Skeleton</h4>
+</a><a name="12436">
+Because you've added extra joints to the skeleton, you need to resave the base state.<p>
+</a><P>
+<a name="11682">
+<STRONG>	8.	 <strong>(SHIFT-L)</strong> on the skeleton, then <strong>(CLICK-M)</strong> on Base.
+</STRONG>
+</a><P><dl><a name="11683">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11694">
+ <P><img src="5SkinningEnhancements.anc24.gif"><p>
+</a></dl>
+<a name="11695">
+<em>Figure 5.24  &#32; &#32;Resaving the base state
+</em></a><P><dl><dl><a name="11702">
+<dt><strong>(CLICK-L)</strong> on <strong>Done</strong>. The old base state is renamed <br>"<strong>old-Base</strong>"; the skeleton with the extra bones is given the name <strong>Base</strong>.</dt>
+</a><P></dl></dl>
+<a name="11622">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the first bone you added, then <strong>(CLICK-L)</strong> on Rename.
+</STRONG>
+</a><P><a name="11656">
+ <P><img src="5SkinningEnhancements.anc25.gif"><p>
+</a>
+<a name="11657">
+<em>Figure 5.25  &#32; &#32;Renaming a bone
+</em></a><P>
+<a name="11428">
+<STRONG>	10.	 <strong>(CLICK-M)</strong> on the text edit box, then enter a descriptive name for the new bone.
+</STRONG>
+</a><P><dl><a name="12441">
+<dt>Enter something like "left-ear-bone".</dt>
+</a><P><a name="11674">
+ <P><img src="5SkinningEnhancements.anc26.gif"><p>
+</a></dl>
+<a name="11675">
+<em>Figure 5.26  &#32; &#32;New bone name
+</em></a><P><dl><dl><a name="11681">
+<dt>Repeat this process for the other bone you added.</dt>
+</a><P></dl></dl><a name="11704">
+You're now ready to create the skin displacements that you want to associate with bone rotations.<p>
+</a><P><a name="11668">
+<h4> Creating the Skin Displacements</h4>
+</a>
+<a name="11299">
+<STRONG>	11.	 <strong>(SHIFT-L)</strong> on the left ear bone.
+</STRONG>
+</a><P><a name="11711">
+<STRONG>	12.	 <strong>(CTRL-R)</strong> on XYZ Rotate.
+</STRONG>
+</a><P><dl><a name="11714">
+<dt>Enter a Z-rotation value of <strong>-45</strong> in the dialog box that appears, then <strong>(CLICK-L)</strong> on <strong>Done</strong>.</dt>
+</a><P><a name="11720">
+ <P><img src="5SkinningEnhancements.anc27.gif"><p>
+</a></dl>
+<a name="11721">
+<em>Figure 5.27  &#32; &#32;Rotating the bone
+</em></a><P><dl><dl><a name="11715">
+<dt>The bone rotates down 45 degrees:</dt>
+</a><P><a name="11734">
+ <P><img src="5SkinningEnhancements.anc28.gif"><p>
+</a></dl></dl><a name="11735">
+<em>Figure 5.28  &#32; &#32;The rotated bone
+</em></a><P><a name="11754">
+Now we need to create a skin displacement on the cat to associate with the extra bone. The skin displacement can be any type of skin deformation you want to animate over time-for example, if you want the left ear to prick up several times, you need to make a displacement for that secondary gesture.<p>
+</a><P>
+<a name="11763">
+<STRONG>	13.	 <strong>(SHIFT-L)</strong> on the point at the tip of the cat's ear.
+</STRONG>
+</a><P><a name="11729">
+<STRONG>	14.	 <strong>(ALT-M)</strong> on Axis Move, then <strong>(CLICK-L)</strong> on Y.
+</STRONG>
+</a><P><dl><a name="11783">
+<dt>You use the <strong>ALT</strong> key with N-Geometry commands to define an area of influence for an operation (called a magnet move). Magnet moves are described in more detail in the <em>N-Geometry Tutorial Guide</em>. </dt>
+</a><P><a name="11790">
+<dt>N-Geometry goes into point-collect mode.</dt>
+</a><P></dl><a name="11784">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on the point where the ear and the jaw meet, then move the mouse up.
+</STRONG>
+</a><P><a name="11779">
+ <P><img src="5SkinningEnhancements.anc29.gif"><p>
+</a>
+<a name="11780">
+<em>Figure 5.29  &#32; &#32;Defining the limits for the magnet move
+</em></a><P><dl><dl><a name="11771">
+<dt>Stretch the ear until it looks something like this:</dt>
+</a><P><a name="11801">
+ <P><img src="5SkinningEnhancements.anc30.gif"><p>
+</a></dl></dl><a name="11802">
+<em>Figure 5.30  &#32; &#32;The stretched ear
+</em></a><P>
+<a name="11708">
+<STRONG>	16.	 <strong>(SHIFT-L)</strong> on the left ear bone, then <strong>(CLICK-M)</strong> on Skin Displacement.
+</STRONG>
+</a><P><dl><a name="11821">
+<dt>In the dialog box that appears, enter a name for the skin displacement:</dt>
+</a><P><a name="11834">
+ <P><img src="5SkinningEnhancements.anc31.gif"><p>
+</a></dl>
+<a name="11835">
+<em>Figure 5.31  &#32; &#32;Naming the skin displacement
+</em></a><P><dl><dl><a name="11826">
+<dt>After specifying the name, <strong>(CLICK-L)</strong> on <strong>Done</strong>.</dt>
+</a><P></dl></dl><a name="11841">
+Repeat steps <a href="5SkinningEnhancements.html#11299">11</a> through <a href="5SkinningEnhancements.html#11708">16</a> for the other ear to create a similar skin displacement.<p>
+</a><P><a name="11432">
+<h4> Animating the Skin Displacements in N-Dynamics</h4>
+</a><a name="11901">
+Now, you'll need to add some extra channels to rotate the extra bones over the course of the script. Because skin displacements are driven by the rotation of an associated bone (in this case, the "ear" bones we added earlier), we can drive different skin displacements with individual channels.<p>
+</a><P>
+<a name="11902">
+<STRONG>	17.	 In N-Dynamics, move the cursor over the black title bar and press "s" twice to add two more channels.
+</STRONG>
+</a><P><dl><a name="11903">
+<dt>The <strong>Make Visible</strong> channels are added to the bottom of the script.</dt>
+</a><P></dl><a name="11904">
+<STRONG>	18.	 <strong>(CLICK-R)</strong> on the black title bar, then <strong>(CLICK-L)</strong> on Reorder Subchannels.
+</STRONG>
+</a><P><dl><a name="11905">
+<dt>Drag the two <strong>Make Visible</strong> channels to the top of the list.</dt>
+</a><P></dl><a name="11906">
+<STRONG>	19.	 Change the Make Visible channels to Z Rotate Bone channels.
+</STRONG>
+</a><P><dl><a name="11907">
+<dt>The <strong>Z Rotate Bone</strong> operation is under the <strong>Skeletal Animation</strong> operation class.</dt>
+</a><P></dl><a name="11908">
+<STRONG>	20.	 In each channel, select the acclaim_walk_cat skeleton and one of the two bones you added to the skeleton.
+</STRONG>
+</a><P><a name="11924">
+<STRONG>	21.	 Now, add several cues to each of the curve channels under the Z Rotate Bone channels.
+</STRONG>
+</a><P><dl><a name="11928">
+<dt>The cues should alternate back and forth between values of 0 and the value of the cue specified in step <a href="5SkinningEnhancements.html#11428">10</a> above.</dt>
+</a><P></dl><a name="12014">
+<STRONG>	22.	 Verify that the Read Acclaim Data is pointing to the correct skeleton and motion capture file.
+</STRONG>
+</a><P><dl><a name="12017">
+<dt>If you renamed the skeleton as described earlier, before you animate you need to specify which skeleton, .asf, and .amc files are to be used to animate:</dt>
+</a><P></dl><ul>
+<BR><a name="12022">
+<li><strong>Skeleton</strong> should be acclaim_walk_cat (the name of your renamed skeleton)
+</a><P><BR><a name="12026">
+<li>for .<strong>asf File Name</strong> should be acclaim_walk_cat.asf (the name of the skeleton on which the motion file is based)
+</a><P><BR><a name="12030">
+<li>for <strong>.amc File Name</strong>, specify acclaim_walk_cycle.amc (the name fo the motion file)
+</a><P><a name="12010">
+ <P><img src="5SkinningEnhancements.anc32.gif"><p>
+</a></ul>
+
+<a name="12011">
+<em>Figure 5.32  &#32; &#32;Specifying the right skeleton and motion capture file
+</em></a><P>
+<a name="11927">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics.
+</STRONG>
+</a><P><dl><a name="11909">
+<dt>Your script should look something like this when completed:</dt>
+</a><P><a name="11947">
+ <P><img src="5SkinningEnhancements.anc33.gif"><p>
+</a></dl>
+<a name="11948">
+<em>Figure 5.33  &#32; &#32;The completed script
+</em></a><P><dl>
+<dt><dd><font color=dd000><strong>Hint.</strong>	After animating the script, you may want to slide the cues back and forth so that the skin displacements correspond to other motions. For example, you may want the left ear to go up when the right foot falls-slide the cues to any position in the channel (even between frames)</font></dd></dt></dl><P>
+<a name="11266">
+<h2><HR> Congratulations!</h2>
+</a><a name="12575">
+You've now learned some techniques for enhancing your skinned objects.<p>
+</a><P><a name="11277">
+<p>
+</a><P><a name="11248">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="4UsingSkins.html">[Prev]</a> <a href="6Posing.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 19:31:11 -->
+
+</body>
+</html>

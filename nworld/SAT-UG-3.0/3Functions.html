@@ -1,0 +1,878 @@
+<html><head><title>Functions</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2ExportAndCompile.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="9749">
+<h1>Functions</h1>
+</a>
+<hr><p><a name="9750">
+<h4> This section describes the Lisp functions you'll need to extend and customize Saturn Express to satisfy your specific requirements.</h4>
+</a><a name="9751">
+<h2><HR> Setting up for Development Work</h2>
+</a><a name="9752">
+If you're going to doing any development work (e.g., to extend the functionality of the Saturn Express), you'll need to make sure you start N&#183;World properly.<p>
+</a><P><a name="9755">
+<h3> Starting in Debug Mode</h3>
+</a><a name="9756">
+Starting in debug mode gives you access to the interactive LISP listener.<p>
+</a><P><a name="9757">
+To start N&#183;World in debug mode, use the following commands at a prompt in a UNIX shell window:<p>
+</a><P><a name="9758">
+<code><pre>unix&gt;nworld-3-0 -debug t<p>
+</code></pre></a><a name="9759">
+where "3-0" is the release version of the current N&#183;World product.<p>
+</a><P><a name="9760">
+<h3> Style Conventions</h3>
+</a><a name="9761">
+In the following examples, a pound sign followed by an "x" preceding a value indicates that the value is in hexadecimal format. For example:<p>
+</a><P><a name="9762">
+<code><pre>#x10<p>
+</code></pre></a><a name="9763">
+is equivalent to decimal 16.<p>
+</a><P><a name="9765">
+<h3> Keyword Arguments</h3>
+</a><a name="9766">
+Keyword or "optional" arguments are specified in pairs, using the following syntax:<p>
+</a><P><a name="9767">
+<code><pre>:name value<p>
+</code></pre></a><a name="9768">
+Such arguments are specified <em>after</em> all required arguments.<p>
+</a><P><a name="9769">
+<h2><HR> Sega Function Definitions</h2>
+</a><a name="9771">
+<h4> OPEN-SEGA-CONNECTION</h4>
+</a><a name="9772">
+Establishes a SCSI connection to the Sega Cartdev.<p>
+</a><P><a name="9773">
+<strong>Required Arguments:</strong><p>
+</a><P><dl><dl><a name="9774">
+<dt>	None.</dt>
+</a><P></dl></dl><a name="9775">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9776">
+<dt><code>-1</code> if the connection could not be made.</dt>
+</a><P><a name="9777">
+<dt>or</dt>
+</a><P><a name="9778">
+<dt>A positive number that corresponds to the SCSI address of the CartDev.</dt>
+</a><P></dl></dl><a name="10326">
+<strong>Sample Syntax:</strong>	<p>
+</a><P><dl><dl><a name="10327">
+<dt><code>(sega:open-sega-connection)</code></dt>
+</a><P></dl></dl><a name="10329">
+<h4> CLOSE-SEGA-CONNECTION </h4>
+</a><a name="9783">
+Closes the SCSI connection to the Sega CartDev (if open).<p>
+</a><P><a name="9784">
+<strong>Required Arguments:</strong><p>
+</a><P><dl><dl><a name="9785">
+<dt>None.</dt>
+</a><P></dl></dl><a name="9786">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9787">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9788">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9789">
+<dt><code>(sega:close-sega-connection)</code></dt>
+</a><P></dl></dl><a name="9791">
+<h4> CONTROL-GAME</h4>
+</a><a name="9792">
+Sends a game control command to the cartdev.  (These commands are described in the Sega SGL manual.)<p>
+</a><P><a name="9793">
+For example, <code>0x00 0x16</code> performs a system reset.<p>
+</a><P><a name="9819">
+<strong>Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="9796">
+<em>Table 4.1 <strong></strong><em> &#32; &#32;Required arguments</em>
+</em></a></dl>
+<tr><th align="left"><a name="9802">
+Argument
+</a><th align="left"><a name="9804">
+Type
+</a><th align="left"><a name="9806">
+Description
+</a>
+<tr><td valign="top"><a name="9808">
+ category<p>
+</a><td valign="top"><a name="9810">
+ value<p>
+</a><td colspan=1 rowspan=2><a name="9812">
+ Possible values are described in the <em>MARS/SATURN CartDev SCSI Interface Specification</em> on pp. 3-9.<p>
+</a>
+<tr><td valign="top"><a name="9814">
+ command<p>
+</a><td valign="top"><a name="9816">
+ value<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9820">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9821">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9822">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9823">
+<dt><code>(sega:control-game #x00 #x16)</code></dt>
+</a><P></dl></dl><a name="9825">
+<h4> GET-REGISTER</h4>
+</a><a name="9826">
+Get the status of the registers on the Sega Saturn.<p>
+</a><P><a name="9827">
+<strong>Required Arguments:</strong><p>
+</a><P><dl><dl><a name="9828">
+<dt>None</dt>
+</a><P></dl></dl><a name="9829">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9830">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9831">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9832">
+<dt><code>(sega:get-register)</code></dt>
+</a><P></dl></dl><a name="9834">
+<h4> SET-REGISTER</h4>
+</a><a name="9835">
+Sets the value of a register on the Sega Saturn.<p>
+</a><P><a name="9849">
+<strong>Required </strong>Arguments: 
+<P><Table Border="1">
+<dl>
+<a name="9838">
+<em>Table 4.2  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="9842">
+Argument
+</a><th align="left"><a name="9844">
+Type
+</a>
+<tr><td valign="top"><a name="9846">
+ register-name<p>
+</a><td valign="top"><a name="9848">
+ value<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9850">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9851">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9852">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9853">
+<dt><code>(sega:set-register "PC" #x06004000)</code></dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The value following </em><code>set-register</code><em> must be enclosed in quotation marks.</em></font></dd></dt></dl><P>
+<a name="9856">
+<h4> DUMP-MEMORY</h4>
+</a><a name="9857">
+Dump the memory on the Sega.<p>
+</a><P><a name="9892">
+<strong>Optional arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="9860">
+<em>Table 4.3  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="9866">
+Argument
+</a><th align="left"><a name="9868">
+Type
+</a><th align="left"><a name="9870">
+Default
+</a>
+<tr><td valign="top"><a name="9872">
+ command<p>
+</a><td valign="top"><a name="9874">
+ value ("db", "dw", or "dl")<p>
+</a><a name="9875">
+ "db" = dump byte<p>
+</a><a name="9876">
+ "dw" = dump word<p>
+</a><a name="9877">
+ "dl" = dump long<p>
+</a><td valign="top"><a name="9879">
+ "db"<p>
+</a>
+<tr><td valign="top"><a name="9881">
+ address<p>
+</a><td valign="top"><a name="9883">
+ number<p>
+</a><td valign="top"><a name="9885">
+ 0<p>
+</a>
+<tr><td valign="top"><a name="9887">
+ count<p>
+</a><td valign="top"><a name="9889">
+ number<p>
+</a><td valign="top"><a name="9891">
+ #x20<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9893">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9894">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9895">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9896">
+<dt><code>(sega:dump-memory :address #x06004000 :command "db")</code></dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The value following </em><code>:command </code><em>must be enclosed in quotation marks.</em></font></dd></dt></dl><P>
+<a name="9899">
+<h4> FILL-MEMORY</h4>
+</a><a name="9900">
+Fill an area in Sega Saturn memory with a single value (e.g., to clear a memory area).<p>
+</a><P><a name="9918">
+<strong>Required Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="9903">
+<em>Table 4.4  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="9907">
+Argument
+</a><th align="left"><a name="9909">
+Type
+</a>
+<tr><td valign="top"><a name="9911">
+ address<p>
+</a><td valign="top"><a name="9913">
+ number<p>
+</a>
+<tr><td valign="top"><a name="9915">
+ data<p>
+</a><td valign="top"><a name="9917">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9947">
+<strong>Optional Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="9921">
+<em>Table 4.5  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="9927">
+Argument
+</a><th align="left"><a name="9929">
+Type
+</a><th align="left"><a name="9931">
+Default
+</a>
+<tr><td valign="top"><a name="9933">
+ command<p>
+</a><td valign="top"><a name="9935">
+ value ("fb", "fw", or "fl")<p>
+</a><a name="9936">
+ "fb" = fill byte<p>
+</a><a name="9937">
+ "fw" = fill word<p>
+</a><a name="9938">
+ "fl" = fill long<p>
+</a><td valign="top"><a name="9940">
+ "fb"<p>
+</a>
+<tr><td valign="top"><a name="9942">
+ data<p>
+</a><td valign="top"><a name="9944">
+ number<p>
+</a><td valign="top"><a name="9946">
+ 1<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9948">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9949">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9950">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9951">
+<dt><code>(sega:fill-memory #x06004000 0 :count 20 :command "fb")</code></dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The value following </em><code>:command </code><em>must be enclosed in quotation marks.</em></font></dd></dt></dl><P>
+<a name="9954">
+<h4> FILL-MEMORY-BLOCK</h4>
+</a><a name="9955">
+Fill a memory block on the Sega Saturn from an array in c-memory (e.g., with an XTIM array).<p>
+</a><P><a name="9977">
+<strong>Required Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="9958">
+<em>Table 4.6  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="9962">
+Argument
+</a><th align="left"><a name="9964">
+Type
+</a>
+<tr><td valign="top"><a name="9966">
+ address<p>
+</a><td valign="top"><a name="9968">
+ number<p>
+</a>
+<tr><td valign="top"><a name="9970">
+ data<p>
+</a><td valign="top"><a name="9972">
+ c array<p>
+</a>
+<tr><td valign="top"><a name="9974">
+ count<p>
+</a><td valign="top"><a name="9976">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="9978">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="9979">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9980">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9981">
+<dt><code>(sega:fill-memory-block #x06004000 xtim-array 100)</code></dt>
+</a><P></dl></dl><a name="9983">
+<h4> GO-SEGA</h4>
+</a><a name="9984">
+Start the Sega Saturn running at the address pointed to by the register "PC".<p>
+</a><P><a name="9985">
+<strong>Required </strong>Arguments:<p>
+</a><P><dl><dl><a name="9986">
+<dt>None</dt>
+</a><P></dl></dl><a name="9987">
+<strong>Returns :</strong><p>
+</a><P><dl><dl><a name="9988">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="9989">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="9990">
+<dt><code>(sega:go-sega)</code></dt>
+</a><P></dl></dl><a name="9992">
+<h4> STOP-SEGA</h4>
+</a><a name="9993">
+Stop the Sega Saturn from running the current program.<p>
+</a><P><a name="9994">
+<strong>Required Arguments:</strong><p>
+</a><P><dl><dl><a name="9995">
+<dt>None</dt>
+</a><P></dl></dl><a name="9996">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10338">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10339">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10340">
+<dt><code>(sega:stop-sega)</code></dt>
+</a><P></dl></dl><a name="10001">
+<h4> DISASSEMBLE-SEGA</h4>
+</a><a name="10002">
+Disassemble an area in Sega Saturn memory.<p>
+</a><P><a name="10020">
+<strong>Optional arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10005">
+<em>Table 4.7  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="10009">
+Argument
+</a><th align="left"><a name="10011">
+Type
+</a>
+<tr><td valign="top"><a name="10013">
+ address<p>
+</a><td valign="top"><a name="10015">
+ number<p>
+</a>
+<tr><td valign="top"><a name="10017">
+ count<p>
+</a><td valign="top"><a name="10019">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10021">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10022">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10023">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10024">
+<dt><code>(sega:disassemble-sega :address #x06004000)</code></dt>
+</a><P></dl></dl><a name="10026">
+<h4> LOAD-MONITOR</h4>
+</a><a name="10027">
+Load the Sega Saturn's command monitor into the Sega Saturn.<p>
+</a><P><a name="10047">
+<strong>Optional arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10030">
+<em>Table 4.8  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="10036">
+Argument
+</a><th align="left"><a name="10038">
+Type
+</a><th align="left"><a name="10040">
+Default
+</a>
+<tr><td valign="top"><a name="10042">
+ pathname<p>
+</a><td valign="top"><a name="10044">
+ pathname<p>
+</a><td valign="top"><a name="10046">
+ "/usr/local/ngc/plugin/sega/satmon.bin"<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10048">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10049">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10050">
+Sample Syntax:<p>
+</a><P><dl><dl><a name="10051">
+<dt><code>(sega:load-monitor)</code></dt>
+</a><P></dl></dl><a name="10053">
+<h4> LOAD-BINARY</h4>
+</a><a name="10054">
+Load a binary file into the Sega Saturn.<p>
+</a><P><a name="10072">
+<strong>Required </strong>Arguments: 
+<P><Table Border="1">
+<dl>
+<a name="10057">
+<em>Table 4.9  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10061">
+Argument
+</a><th align="left"><a name="10063">
+Type
+</a>
+<tr><td valign="top"><a name="10065">
+ pathname<p>
+</a><td valign="top"><a name="10067">
+ pathname<p>
+</a>
+<tr><td valign="top"><a name="10069">
+ address<p>
+</a><td valign="top"><a name="10071">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10073">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10074">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10075">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10076">
+<dt><code>(sega:load-binary "/usr/local/ngc/plugin/sega/satmon.bin" #x06000000)</code></dt>
+</a><P></dl></dl><a name="10078">
+<h4> LOAD-COFF</h4>
+</a><a name="10079">
+Loads a COFF file into the Sega Saturn.<p>
+</a><P><a name="10105">
+<strong>Required </strong>Arguments: 
+<P><Table Border="1">
+<dl>
+<a name="10082">
+<em>Table 4.10  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10088">
+Argument
+</a><th align="left"><a name="10090">
+Type
+</a><th align="left"><a name="10092">
+Description
+</a>
+<tr><td valign="top"><a name="10094">
+ pathname<p>
+</a><td valign="top"><a name="10096">
+ pathname<p>
+</a><td valign="top"><a name="10098">
+ <p>
+</a>
+<tr><td valign="top"><a name="10100">
+ executep<p>
+</a><td valign="top"><a name="10102">
+ boolean<p>
+</a><td valign="top"><a name="10104">
+ This sets the "pc" register to the start position of the COFF file (either <code>t</code> or <code>nil</code>).<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10106">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10107">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10108">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10109">
+<dt><code>(sega:load-coff "/usr/local/ngc/plugin/sega/nichimen.cof" nil)</code></dt>
+</a><P></dl></dl><a name="10111">
+<h4> NMI</h4>
+</a><a name="10112">
+Send a non-maskable interrupt to the Sega Saturn.<p>
+</a><P><a name="10132">
+<strong>Required </strong>Arguments: 
+<P><Table Border="1">
+<dl>
+<a name="10115">
+<em>Table 4.11  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10121">
+Argument
+</a><th align="left"><a name="10123">
+Type
+</a><th align="left"><a name="10125">
+Description
+</a>
+<tr><td valign="top"><a name="10127">
+ count<p>
+</a><td valign="top"><a name="10129">
+ number<p>
+</a><td valign="top"><a name="10131">
+ The number of interrupts being sent.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10133">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10134">
+<dt><code>0</code></dt>
+</a><P></dl></dl><a name="10135">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10136">
+<dt><code>(sega:nmi 5)</code></dt>
+</a><P></dl></dl><a name="10138">
+<h4> MAKE-SEGA-COLOR</h4>
+</a><a name="10139">
+Create a 16-bit color for the Sega Saturn.<p>
+</a><P><a name="10140">
+A Sega color is a 16-bit representation of an RGB color, using 5 bits for each component, in the order of B-G-R, with the most significant bit set.<p>
+</a><P><a name="10141">
+For example:<p>
+</a><P><a name="10142">
+<code><pre>1 00000 00000 11111<p>
+</code></pre></a><a name="10143">
+would be a pure red.<p>
+</a><P><a name="10157">
+<strong>Required Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10146">
+<em>Table 4.12  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10150">
+Argument
+</a><th align="left"><a name="10152">
+Type
+</a>
+<tr><td valign="top"><a name="10154">
+ color<p>
+</a><td valign="top"><a name="10156">
+ color<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10158">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10159">
+<dt>A 16-bit representation of the color.</dt>
+</a><P></dl></dl><a name="10160">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10161">
+<dt><code>(sega:make-sega-color (gi::make-rgb-color 1 0 0))</code></dt>
+</a><P></dl></dl><a name="10163">
+<h4> MAKE-SEGA-FLOAT</h4>
+</a><a name="10164">
+Create a floating point decimal number in the representation that the Sega Saturn expects.<p>
+</a><P><a name="10165">
+Sega floats are described in the Sega Saturn <em>Programmer's Tutorial</em>, on p. 1-8.<p>
+</a><P><a name="10179">
+<strong>Required Arguments</strong>: 
+<P><Table Border="1">
+<dl>
+<a name="10168">
+<em>Table 4.13  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10172">
+Argument
+</a><th align="left"><a name="10174">
+Type
+</a>
+<tr><td valign="top"><a name="10176">
+ number<p>
+</a><td valign="top"><a name="10178">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10180">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10181">
+<dt>A Sega float.</dt>
+</a><P></dl></dl><a name="10182">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10183">
+<dt><code>(sega:make-sega-float 16.5)</code></dt>
+</a><P></dl></dl><a name="10185">
+<h4> MAKE-SEGA-ANGLE</h4>
+</a><a name="10186">
+Create an angle in the representation that the Sega Saturn expects.<p>
+</a><P><a name="10187">
+Sega angles are described in the Sega Saturn <em>Programmer's Tutorial</em>, on p. 1-8.<p>
+</a><P><a name="10201">
+<strong>Required Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10190">
+<em>Table 4.14  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10194">
+Argument
+</a><th align="left"><a name="10196">
+Type
+</a>
+<tr><td valign="top"><a name="10198">
+ angle<p>
+</a><td valign="top"><a name="10200">
+ number<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10202">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10203">
+<dt>A Sega angle.</dt>
+</a><P></dl></dl><a name="10204">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10205">
+<dt><code>(sega:make-sega-angle 45)</code></dt>
+</a><P></dl></dl><a name="10207">
+<h4> WRITE-GEO-OBJECT-TO-SEGA-FILE</h4>
+</a><a name="10208">
+Write a terminal geometry object to file in the SGL format.<p>
+</a><P><a name="10222">
+<strong>Required Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10211">
+<em>Table 4.15  &#32; &#32;Required arguments
+</em></a></dl>
+<tr><th align="left"><a name="10215">
+Argument
+</a><th align="left"><a name="10217">
+Type
+</a>
+<tr><td valign="top"><a name="10219">
+ object<p>
+</a><td valign="top"><a name="10221">
+ A terminal geometry object<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10242">
+<strong>Optional Arguments:</strong> 
+<P><Table Border="1">
+<dl>
+<a name="10225">
+<em>Table 4.16  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="10231">
+Argument
+</a><th align="left"><a name="10233">
+Type
+</a><th align="left"><a name="10235">
+Default
+</a>
+<tr><td valign="top"><a name="10237">
+ pathname<p>
+</a><td valign="top"><a name="10239">
+ pathname<p>
+</a><td valign="top"><a name="10241">
+ "/tmp/sega/"<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10243">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10244">
+<dt>None</dt>
+</a><P></dl></dl><a name="10245">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10246">
+<dt><code>(sega:write-geo-object-to-sega-file object)</code></dt>
+</a><P></dl></dl><a name="10248">
+<h4> START-SEGA</h4>
+</a><a name="10249">
+Reset or establish the connection to the Sega CartDev.<p>
+</a><P><a name="10250">
+<strong>Required Arguments:</strong><p>
+</a><P><dl><dl><a name="10251">
+<dt>None</dt>
+</a><P></dl></dl><a name="10252">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10253">
+<dt>None</dt>
+</a><P></dl></dl><a name="10254">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10255">
+<dt><code>(sega:start-sega)</code></dt>
+</a><P></dl></dl><a name="10257">
+<h4> SEGAFY</h4>
+</a><a name="10258">
+Convert and send a geometry object to the sega.<p>
+</a><P><a name="10272">
+<strong>Optional </strong>Arguments: 
+<P><Table Border="1">
+<dl>
+<a name="10261">
+<em>Table 4.17  &#32; &#32;Optional arguments
+</em></a></dl>
+<tr><th align="left"><a name="10265">
+Argument
+</a><th align="left"><a name="10267">
+Type
+</a>
+<tr><td valign="top"><a name="10269">
+ object<p>
+</a><td valign="top"><a name="10271">
+ A terminal geometry object<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+<p>
+</a><P><a name="10273">
+<strong>Returns:</strong><p>
+</a><P><dl><dl><a name="10274">
+<dt>nil</dt>
+</a><P></dl></dl><a name="10275">
+<strong>Sample Syntax:</strong><p>
+</a><P><dl><dl><a name="10276">
+<dt><code>(sega:segafy)</code></dt>
+</a><P></dl></dl><a name="10278">
+<h3> Saturn Express Variables</h3>
+</a><a name="10279">
+<h4> *scsi-id*</h4>
+</a><a name="10280">
+This is the current SCSI ID# for the Sega CartDev.<p>
+</a><P><a name="7249">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="2ExportAndCompile.html">[Prev]</a> <a href="BookIX.doc.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/04/96 12:00:24 -->
+
+</body>
+</html>

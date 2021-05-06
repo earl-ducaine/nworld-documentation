@@ -1,0 +1,651 @@
+<html><head><title>Introduction to N-Paint</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0About.html">[Prev]</a> <a href="2UsingInks.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+<a name="14399">
+<h1>Introduction to N-Paint</h1>
+</a>
+<hr><p><a name="14404">
+<h4> In this chapter, we'll Introduce N-Paint, briefly introduce you to its interface, and create a simple 2D image.</h4>
+</a><a name="15175">
+ <P><img src="1FirstImage.anc.gif"><p>
+</a><a name="14416">
+<h2><HR> In This Chapter</h2>
+</a><a name="14417">
+You'll learn techniques for:<p>
+</a><P><ul><a name="13171">
+<li>Opening an image
+</a></li><P><a name="15205">
+<li>Scaling an image
+</a></li><P><a name="15206">
+<li>Saving an image
+</a></li><P><a name="15207">
+<li>Viewing the matte of an image
+</a></li><P><a name="15208">
+<li>Using the Polygon tool and color ink
+</a></li><P><a name="15209">
+<li>Using the Gradient 2 ink
+</a></li><P><a name="15210">
+<li>Picking colors from the canvas
+</a></li><P><a name="15211">
+<li>Editing colors
+</a></li><P><a name="15212">
+<li>Using and repeating shapes
+</a></li><P><a name="15213">
+<li>Using the fill tool
+</a></li><P><a name="15214">
+<li>Using the cutout brush and pattern ink
+</a></li><P><a name="15215">
+<li>Saving multiple images
+</a></li><P></ul><P><a name="13173">
+<h2><HR> Getting Started</h2>
+</a><a name="13962">
+<h3> What is N-Paint?</h3>
+</a><a name="13963">
+You can use N-Paint to create digital images, such as backgrounds or detailed texture maps. Of course, it's loaded with features to enhance your productivity, like special brushes and custom Tool Boxes. With N-Paint, you can:<p>
+</a><P><ul><a name="13967">
+<li>Apply <em>any</em> ink through <em>any</em> brush or to the <em>entire</em> canvas. Use inks like recolor, equalize, posterize, colorize, randomize, blur, sharpen, shrink, expand, noise, mosaic, distort, warp, shift, flip, mirror, magnify, emboss, and more.
+</a></li><P><a name="13968">
+<li>Perform image processing, including equalize, IHS or RGB recolor (using a built-in curve editor), or apply powerful despeckle filters for dust removal.
+</a></li><P><a name="13969">
+<li>Pull mattes using edge detection or chroma keys.
+</a></li><P><a name="13970">
+<li>Composite rendered images directly onto a paint canvas (using N-Dynamics).
+</a></li><P><a name="13971">
+<li>Save your images in 3 or 4 component TIFF, SGI (RGB/RGBA/BW), or TPX formats.
+</a></li><P></ul><P><a name="13972">
+N-Paint is also completely drivable by N-Dynamics, Nichmen's animation choreography package, which means that just about any 2D operation can be animated from a script.<p>
+</a><P><a name="13973">
+<h3> N-Paint Windows</h3>
+</a><a name="13974">
+There are two primary N-Paint windows; the Canvas window and the Menu window. The canvas contains the image you're working on, and the menu window contains the tools you use to manipulate the image.<p>
+</a><P><a name="13983">
+ <P><img src="1FirstImage.anc1.gif"><p>
+</a><a name="13984">
+<em>Figure 1.1  &#32; &#32;N-Paint windows; top, the N-Paint canvas, bottom, N-Paint menu
+</em></a><P><a name="13998">
+<h3> N-Paint Modes</h3>
+</a><a name="14054">
+The four buttons across the top of the N-Paint menu let you select the current N-Paint mode. To change modes, <strong>(CLICK-L)</strong> on a button. The menu area changes to reflect commands for the current mode.<p>
+</a><P><ul><a name="14001">
+<li><strong>Tools</strong> mode lets you modify the currently loaded image. Use the tools in the Tool Box area to create and alter images. You control the various tools with either the mouse or tablet stylus.
+</a></li><P><a name="14008">
+<li><strong>Color Reduction</strong> mode lets you create color-mapped images from full color images. You can change bit-depth and perform other palette manipulations on an image.
+</a></li><P><a name="14427">
+<li><strong>VRAM Editor</strong> invokes the VRAM Editor utility, which lets you create TIM images for use on the Sony Playstation. You can also manage the location of TIM image tiles and CLUTs in PlayStation VRAM.
+</a></li><P><a name="14010">
+<li><strong>Setup</strong> is used to set the defaults which modify some basic behaviors of N-Paint.
+</a></li><P></ul><P><a name="13960">
+<h3> Selecting Tools</h3>
+</a><a name="13199">
+<strong>(CLICK-L)</strong> on the <strong>Tools</strong> button to display the tools menu. The tools menu has two primary sections: the Tool Box and the parameters section. Which menu items appear in the parameters section depends on which tool in the Tool Box is selected.<p>
+</a><P><a name="13204">
+ <P><img src="1FirstImage.anc2.gif"><p>
+</a><a name="13205">
+<em>Figure 1.2  &#32; &#32;The Tools Menu
+</em></a><P><ul><a name="15083">
+<li>The <strong>Tool box </strong>contains the brushes and shapes you'll use to apply inks to images. To select a tool, <strong>(CLICK-L) </strong>on its icon in the Tool Box.
+</a></li><P><a name="15084">
+<li><strong>Tool Parameters</strong> is where you define the behavior of the tool you're using.
+</a></li><P><a name="15085">
+<li><strong>Ink Parameters</strong> is where you select and control the ink you're applying to the canvas. To select an ink, <strong>(CLICK-L)</strong> on the Ink text edit box and select an ink from the menu.
+</a></li><P><a name="15086">
+<li><strong>Texture Options</strong> lets you specify an additional matte through which ink is applied to the image, creating a "textured" feel.
+</a></li><P><a name="15087">
+<li><strong>Drawing Options</strong> determine how the brush or shape is "tracked" across the canvas.
+</a></li><P></ul><P><a name="15088">
+See the <em>N-Paint Reference Guide</em> for more information about the specific tools or parameters on the N-Paint menus.<p>
+</a><P><a name="13206">
+<h3> Working with Images</h3>
+</a><a name="13224">
+Occasionally, you'll need to do things like erase an entire image, save an image to a file, or undo a mistake. These commands are located in the Commands section of the tools menu.<p>
+</a><P><a name="13234">
+ <P><img src="1FirstImage.anc3.gif"><p>
+</a><a name="13235">
+<em>Figure 1.3  &#32; &#32;The Commands section of the Tools menu
+</em></a><P><ul><a name="15112">
+<li>The <strong>Icons</strong> on the left edge of the commands menu bring up different menus you'll use to control the Canvas, Palettes, Shape History, and the Grid.
+</a></li><P><a name="15113">
+<li><strong>Modes</strong> determine whether N-Paint is operating in normal 2D paint mode, 3D Mode, Distortion mode, or Pasteup mode.
+</a></li><P><a name="15114">
+<li><strong>Matte</strong> commands control the matte element of a four component image. You can save the matte to a backup channel, erase it, or reverse it. You can also use the six buttons under <strong>Display</strong> to control how the matte is used or displayed.
+</a></li><P><a name="15115">
+<li><strong>Image</strong> commands control the image on the canvas. You can Erase the Canvas, save it to a backup channel, and load or swap the image on the canvas with the one in the backup channel.
+</a></li><P></ul><P><a name="15370">
+<h3> Images and the Canvas</h3>
+</a><a name="15371">
+When you select an image to work on, it becomes the <em>current image</em>. You can have more than one image loaded into memory at any one time, but only one image can be the current image. <p>
+</a><P><a name="15384">
+The <em>canvas</em> is the N-Paint workspace. It is not associated with any single image. You can think of the current image as being loaded onto the N-Paint canvas, much as a painter has only one work at time on his easel. <p>
+</a><P><a name="15381">
+In addition to the current image, you can have an image on the <em>backup</em> canvas. You can swap images back and forth between the canvas and the backup canvas. <p>
+</a><P><a name="13243">
+<h2><HR> Opening an Image</h2>
+</a><a name="14467">
+We're ready to begin painting! For this first session, we'll load and modify an existing image on disk. <p>
+</a><P>
+<a name="13245">
+<STRONG>	 1.	 <strong>(CLICK-L)</strong> on the Tools mode button.
+</STRONG>
+</a><P><dl><a name="13247">
+<dt>The Tools button is the leftmost of the N-Paint mode buttons.</dt>
+</a><P></dl><a name="13246">
+<STRONG>	2.	 In the Commands section of the tools menu, <strong>(CLICK-L)</strong> on the magenta edit field to the right of the word File. 
+</STRONG>
+</a><P><dl><a name="15402">
+<dt>The Operations pop-up menu appears:</dt>
+</a><P><a name="14430">
+ <P><img src="1FirstImage.anc4.gif"><p>
+</a></dl>
+<a name="14431">
+<em>Figure 1.4  &#32; &#32;The image operations pop-up menu
+</em></a><P>
+<a name="13268">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on <strong>Open</strong>.
+</STRONG>
+</a><P><dl><a name="14439">
+<dt>A dialog appears for you to specify a file to load:</dt>
+</a><P><a name="13269">
+ <P><img src="1FirstImage.anc5.gif"><p>
+</a></dl>
+<a name="13270">
+<em>Figure 1.5  &#32; &#32;The Choose Directory and Filename dialog box
+</em></a><P>
+<a name="13280">
+<STRONG>	4.	 <strong>(CLICK-M)</strong> on the Directory field and enter the following directory:<strong></strong>
+</STRONG>
+</a><P><dl><dl><a name="15406">
+<dt><code>/usr/local/ngc/demo/images/</code><p>
+</a><P></dl></dl><a name="16492">
+<STRONG>	5.	 <strong>(CLICK-R)</strong> on the Name field and select the following image from the list that appears:
+</STRONG>
+</a><P><dl><dl><a name="16490">
+<dt><code>hero.tif</code><p>
+</a><P></dl></dl><a name="13283">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Do It to load the image.
+</STRONG>
+</a><P><dl><a name="14466">
+<dt>The image, hero.tif, appears on the canvas. It is also loaded into memory. With N-Paint, you can have several images loaded in memory, but only one of these can be displayed on the canvas at any given moment.</dt>
+</a><P></dl>
+<a name="14474">
+<h2><HR> Modifying the Image</h2>
+</a><a name="14478">
+As you can see, the image is rather large, so let's scale it down to a more manageable size:<p>
+</a><P>
+<a name="14483">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on File: again.
+</STRONG>
+</a><P><a name="14484">
+<STRONG>	8.	 <strong>(CLICK-L)</strong> on Scale.
+</STRONG>
+</a><P><dl><a name="14485">
+<dt>The Create Scaled Image dialog appears:</dt>
+</a><P><a name="14486">
+ <P><img src="1FirstImage.anc6.gif"><p>
+</a></dl>
+<a name="14487">
+<em>Figure 1.6  &#32; &#32;Create Scaled Image dialog
+</em></a><P>
+<a name="14492">
+<STRONG>	9.	 Change <strong>Width</strong> to 333 and Height to 500.
+</STRONG>
+</a><P><dl><a name="14497">
+<dt><strong>(CLICK-L)</strong> on the fields to edit them. If Numeric Keypads have been activated in the Setup menu, a numeric keypad will appear:</dt>
+</a><P><a name="14498">
+ <P><img src="1FirstImage.anc7.gif"><p>
+</a></dl>
+<a name="14499">
+<em>Figure 1.7  &#32; &#32;A numerical keypad
+</em></a><P><ul><a name="14504">
+<li>Use the mouse to select numbers. When you're finished entering numbers, <strong>(CLICK-L)</strong> on Enter.
+</a></li><P><a name="14505">
+<li>To erase the last number, <strong>(CLICK-L)</strong> on Rubout.
+</a></li><P><a name="14506">
+<li>To completely clear the entry, <strong>(CLICK-L)</strong> on Clear.
+</a></li><P><a name="14507">
+<li>To dismiss the keypad without entering any value, <strong>(CLICK-L)</strong> on Abort.
+</a></li><P></ul><P><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	When you scale an image, you usually want to retain the image's aspect ratio. Aspect ratio is basically the relationship between an image's height and width. To avoid distortion when scaling, you'll want to maintain aspect ratio. If you scale an image horizontally by 50%, scale it vertically by the same factor!</font></dd></dt></dl><P>
+<a name="14508">
+<h2><HR> Saving the Image</h2>
+</a><a name="14509">
+Now that we've created a scaled down version of our original image, we'll need to save it so that we can work on it in the future. <p>
+</a><P>
+<a name="14510">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the <strong>File:</strong> field.
+</STRONG>
+</a><P><dl><a name="14512">
+<dt>The Image Operations pop-up menu appears.</dt>
+</a><P></dl><a name="14511">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Save As.
+</STRONG>
+</a><P><dl><a name="14514">
+<dt>The Save Canvas to File dialog appears:</dt>
+</a><P><a name="14515">
+ <P><img src="1FirstImage.anc8.gif"><p>
+</a></dl>
+<a name="14516">
+<em>Figure 1.8  &#32; &#32;The Save Canvas to FIle dialog box
+</em></a><P><dl><dl><a name="14526">
+<dt>Specify a directory and filename for the new image.</dt>
+</a><P></dl></dl><dl>
+<dt><dd><font color=dd000><strong>Note:</strong>	N&#183;World is distributed with the directories under /usr/local/ngc/ write-protected. This means an error will result if you try to save anything to these directories. While you're working through this tutorial, be sure to save items to directories for which you have adequate permissions. Usually, your home directory is a safe choice. Consult you system administrator if you have any questions.</font></dd></dt><dt><dd><font color=dd000><strong>Note:</strong>	If you want to save an image to its original filename, just (<strong>CLICK-L)</strong> on File&gt;Save. N-Paint saves the image with no additional input from you.</font></dd></dt></dl><P>
+
+<a name="14527">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on the <strong>Format</strong> field.
+</STRONG>
+</a><P><dl><a name="14531">
+<dt>The Image Format pop-up menu appears. You can choose from five file formats:</dt>
+</a><P><a name="14532">
+ <P><img src="1FirstImage.anc9.gif"><p>
+</a></dl>
+<a name="14533">
+<em>Figure 1.9  &#32; &#32;Image Format pop-up menu
+</em></a><P>
+<a name="14538">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on RGBA.
+</STRONG>
+</a><P><dl><a name="14539">
+<dt>The image is now saved in RGBA format. </dt>
+</a><P></dl>
+<a name="14540">
+<h2><HR> Viewing the Matte</h2>
+</a><a name="14541">
+Most color computer images are made of three layers (sometimes called "channels"). There are separate channels for the Red, Green, and Blue color components of the image (hence "RGB"). Some formats, such as TIFF, RGBA, and TPX, support a fourth, or matte, channel (sometimes called the "Alpha" channel).<p>
+</a><P><a name="14547">
+Like an airbrusher's stencil, the matte protects the area beneath it from being painted on. Real stencils, however, have only two modes: they either completely prevent paint from reaching portions of an image, or they do nothing. Digital mattes, however, can allow some of the ink through. Opacity is the characteristic which controls how much paint actually gets through the matte to the canvas. <p>
+</a><P><a name="15432">
+Our new image already has a matte defined for it, but in a later section we'll learn how to pull our own mattes using several different methods.<p>
+</a><P><a name="14548">
+You control the matte with the Matte commands, which are located in the Commands section on the far right of the Tools menu.<p>
+</a><P><a name="16537">
+ <P><img src="1FirstImage.anc10.gif"><p>
+</a><a name="16538">
+<em>Figure 1.10  &#32; &#32;Matte commands
+</em></a><P>
+<a name="14555">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on <strong>View </strong>in the Matte section.
+</STRONG>
+</a><P><dl><a name="14563">
+<dt>The matte channel appears over your image, displayed in red. (We'll describe how to change the matte's display color later.)</dt>
+</a><P></dl><a name="14564">
+<STRONG>	15.	 <strong>(CLICK-L)</strong> on Use in the Matte section.
+</STRONG>
+</a><P><dl><a name="14569">
+<dt><strong>Use</strong> makes the matte active, protecting the area under the matte from being painted on. (See the <em>N-Paint Reference Guide</em> to learn how the other matte modes work.)</dt>
+</a><P></dl>
+<a name="14579">
+<h2><HR> Painting</h2>
+</a><a name="14580">
+We're ready to modify this image in accordance with our producer's wishes. She has asked that we provide a moon in the scene over the hero's right shoulder. And she's asked us to do something to spruce up the background a bit, so we'll add some mountains and other details.<p>
+</a><P><a name="14577">
+<h3> Creating the Background</h3>
+</a><a name="13905">
+We'll use the polygon brush to draw some jagged rocks and a mountain path into the background of the image. <p>
+</a><P>
+<a name="14593">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Polygon tool in the Tool Box.
+</STRONG>
+</a><P><a name="14601">
+ <P><img src="1FirstImage.anc11.gif"><p>
+</a>
+<a name="14602">
+<em>Figure 1.11  &#32; &#32;The Polygon tool
+</em></a><P><dl><dl><a name="14603">
+<dt>The <strong>Polygon</strong> tool allows you to define a series of points, which are then connected into a polygonal solid. </dt>
+</a><P></dl></dl>
+<a name="14605">
+<STRONG>	17.	 <strong>(CLICK-L)</strong> on the Ink field.
+</STRONG>
+</a><P><dl><a name="14622">
+<dt>A menu of inks available for the <strong>Polygon</strong> tool appears:</dt>
+</a><P><a name="14623">
+ <P><img src="1FirstImage.anc12.gif"><p>
+</a></dl>
+<a name="14624">
+<em>Figure 1.12  &#32; &#32;Inks for Shape Operations
+</em></a><P>
+<a name="14621">
+<STRONG>	18.	 <strong>(CLICK-L)</strong> on the Color ink.
+</STRONG>
+</a><P><dl><a name="14607">
+<dt>The ink parameters section of the menu changes to reflect the new ink:</dt>
+</a><P><a name="14643">
+ <P><img src="1FirstImage.anc13.gif"><p>
+</a></dl>
+<a name="14644">
+<em>Figure 1.13  &#32; &#32;Color ink parameters
+</em></a><P>
+<a name="14652">
+<STRONG>	19.	 <strong>(CLICK-L)</strong> on the Color field in the Ink Parameters section of the menu.
+</STRONG>
+</a><P><dl><a name="14642">
+<dt>The Color Editor menu appears. You'll use this often while working in N-Paint to select colors. </dt>
+</a><P><a name="14611">
+ <P><img src="1FirstImage.anc14.gif"><p>
+</a></dl>
+<a name="14612">
+<em>Figure 1.14  &#32; &#32;The Color Editor
+</em></a><P>
+<a name="14613">
+<STRONG>	20.	 <strong>(CLICK-L)</strong> on a shade of grey to use for the mountains in the background, then <strong>(CLICK-L)</strong> on Exit.<strong></strong>
+</STRONG>
+</a><P><dl><a name="14614">
+<dt>The Color Editor can be used in a variety of different ways. You can select colors:</dt>
+</a><P></dl><ul>
+<BR><a name="14615">
+<li>Directly from the palette
+</a><P><BR><a name="14616">
+<li>By picking them from the canvas
+</a><P><BR><a name="14617">
+<li>By creating your own colors using interactive sliders
+</a><P></ul>
+<dl><a name="14618">
+<dt>For more details about using sliders, see the<em> N-Paint Reference Guide</em>. (We'll experiment with the Color Editor later on in this book.)</dt>
+</a><P></dl><a name="14659">
+<STRONG>	21.	 Use the Polygon tool to draw the outline of the rocks.
+</STRONG>
+</a><P><dl><a name="14660">
+<dt><strong>(CLICK-L)</strong> on the first point of your polygon (<a href="1FirstImage.html#14687">Figure 1.16</a> shows a sample progression of mouse clicks for creating a simple outline). Each successive <strong>(CLICK-L)</strong> defines a new point in the polygon, until you terminate the operation with a <strong>(CLICK-M). </strong></dt>
+</a><P><a name="14694">
+ <P><img src="1FirstImage.anc15.gif"><p>
+</a></dl>
+<a name="14695">
+<em>Figure 1.15  &#32; &#32;The Polygon tool cursor
+</em></a><P><a name="14685">
+ <P><img src="1FirstImage.anc16.gif"><p>
+</a><a name="14687">
+<em>Figure 1.16  &#32; &#32;Drawing the mountains
+</em></a><P><dl><dl><a name="14657">
+<dt>Note that the mountains are not drawn over the portions of the character protected by the matte.</dt>
+</a><P></dl></dl><a name="15184">
+<h3> Undoing your Painting</h3>
+</a><a name="15465">
+If you want to unpaint some of the paint you've applied to the canvas, just (<strong>CLICK-L)</strong> on the <strong>Undo</strong> button in the commands section of the menu:<p>
+</a><P><a name="15186">
+ <P><img src="1FirstImage.anc17.gif"><p>
+</a><a name="15187">
+<em>Figure 1.17  &#32; &#32;The Undo and Redo buttons
+</em></a><P><dl><dl><a name="15200">
+<dt>The Undo button undoes painting incrementally; you can undo as many actions as you like, up to the limit specified in the Paint Setup menus. If you undo something you wish you hadn't, you can (<strong>CLICK-L)</strong> on Redo to reapply the change.</dt>
+</a><P></dl></dl><a name="15474">
+<h3> Repeating Shapes</h3>
+</a><a name="15477">
+Grey mountains are kind of flat and uninteresting. Because N-Paint keeps a history of any shape operations applied to an image, we can redraw the same shape with a different kind of ink.<p>
+</a><P>
+<a name="14752">
+<STRONG>	22.	 <strong>(CLICK-L)</strong> on Inks, and select the Gradient 2 ink.
+</STRONG>
+</a><P><dl><a name="14753">
+<dt>The gradient ink is designed to create a gradient using two colors across a shape. You pick the two colors and the direction of the gradient. </dt>
+</a><P><a name="14754">
+ <P><img src="1FirstImage.anc18.gif"><p>
+</a></dl>
+<a name="14755">
+<em>Figure 1.18  &#32; &#32;The Gradient Ink parameters
+</em></a><P>
+<a name="14772">
+<STRONG>	23.	 <strong>(CLICK-L)</strong> on the <strong>Top</strong> color field, and use the Color Editor to select an appropriate color for moonlit stone.
+</STRONG>
+</a><P><a name="14774">
+<STRONG>	24.	 <strong>(CLICK-L)</strong> on the Bottom field.
+</STRONG>
+</a><P><dl><a name="14776">
+<dt>A Color Editor appears. For the bottom color we'll choose the same color we used to draw the mountains in the first place.</dt>
+</a><P></dl><a name="14775">
+<STRONG>	25.	 <strong>(CLICK-L)</strong> on the Pick button at the bottom of the Color Editor.
+</STRONG>
+</a><P><dl><a name="14780">
+<dt>When you <strong>(CLICK-L)</strong> on <strong>Pick</strong>, the color picker tool appears:</dt>
+</a><P><a name="14795">
+ <P><img src="1FirstImage.anc19.gif"><p>
+</a></dl>
+<a name="14797">
+<em>Figure 1.19  &#32; &#32;The color picker tool
+</em></a><P><dl><dl><a name="14798">
+<dt>The selection point covers a single pixel. The color of that pixel is shown in the large box attached to the selection point. To pick a color, move the color picker tool until the color in the Selection Box matches the color you're looking for. When it does, <strong>(CLICK-L)</strong> to select the color. </dt>
+</a><P><a name="14801">
+<dt>For now, move the selection point onto the mountains and <strong>(CLICK-L)</strong>. The mountain's shade of grey now occupies the bottom color field.</dt>
+</a><P></dl></dl>
+<a name="14802">
+<STRONG>	26.	 <strong>(CLICK-L)</strong> on the <P><img src="1FirstImage.anc20.gif"> symbol to select a vertical gradient.
+</STRONG>
+</a><P><dl><a name="14807">
+<dt>You can also draw gradients horizontally, radially (from the center of a circular area) or both horizontally and vertically at the same time.</dt>
+</a><P></dl>
+<a name="14812">
+Now, we'll want to use the exact same shape we used earlier to define the outline of the mountains. We could attempt to trace the mountains with the cursor or we could just reuse the shape for our new drawing operation.<p>
+</a><P>
+<a name="14813">
+<STRONG>	27.	 (CLICK-L) on the right facing arrow next to Show in the Tool Parameters section of the menu.
+</STRONG>
+</a><P><a name="14836">
+ <P><img src="1FirstImage.anc21.gif"><p>
+</a>
+<a name="14837">
+<em>Figure 1.20  &#32; &#32;Show Shape commands
+</em></a><P><dl><dl><a name="14849">
+<dt>The <strong>Show</strong> command toggles shape highlighting on and off, and highlights the last shape you drew on the canvas. In this case, the mountains themselves are highlighted. You can perform paint operations on this shape as if you had just drawn it.</dt>
+</a><P></dl></dl>
+<a name="14852">
+<STRONG>	28.	 <strong>(CLICK-L)</strong> on the Repeat button.
+</STRONG>
+</a><P><dl><a name="14853">
+<dt>The Gradient ink is applied to the canvas through the same shape you used earlier to define the mountains. N-Paint remembers all the shapes you create during an N-Paint session. <strong>(CLICK-L)</strong> on the left and right arrows next to the Show button to cycle through them.</dt>
+</a><P></dl>
+<a name="14857">
+<h2><HR> Using the Fill Tool</h2>
+</a><a name="14858">
+Now we'll add a path through the mountains for our hero to walk on.<p>
+</a><P>
+<a name="14859">
+<STRONG>	29.	 Select the Polygon tool from the Tool Box.
+</STRONG>
+</a><P><a name="14860">
+<STRONG>	30.	 <strong>(CLICK-L)</strong> on Outline.
+</STRONG>
+</a><P><dl><a name="14861">
+<dt>In outline mode, the tool will only draw an outline around the shape you define. You can control the width of the outline.</dt>
+</a><P></dl><a name="14866">
+<STRONG>	31.	 <strong>(CLICK-L)</strong> on Width; change the value to 0.2
+</STRONG>
+</a><P><a name="14867">
+<STRONG>	32.	 <strong>(CLICK-L)</strong> on the Color field, and select an appropriate color for a dirt path.
+</STRONG>
+</a><P><a name="16687">
+<STRONG>	33.	 <strong>(CLICK-L)</strong> on Spline.
+</STRONG>
+</a><P><dl><a name="14868">
+<dt>When spline is toggled, the hard corners of shapes you draw are "softened" using a spline algorithm.</dt>
+</a><P></dl><a name="14869">
+<STRONG>	34.	 Draw the path on the image.
+</STRONG>
+</a><P><dl><a name="14870">
+<dt>Here's what ours looked like.</dt>
+</a><P><a name="14871">
+ <P><img src="1FirstImage.anc22.gif"><p>
+</a></dl>
+<a name="14872">
+<em>Figure 1.21  &#32; &#32;The road
+</em></a><P><a name="15643">
+Now we'll fill the path in with an appropriate color using the gradient ink again, this time applied with the Fill tool.<p>
+</a><P>
+<a name="15644">
+<STRONG>	35.	 <strong>(CLICK-L)</strong> on the FIll tool.
+</STRONG>
+</a><P><a name="14884">
+ <P><img src="1FirstImage.anc23.gif"><p>
+</a>
+<a name="14885">
+<em>Figure 1.22  &#32; &#32;The Fill tool icon
+</em></a><P><dl><dl><a name="14894">
+<dt>You can configure the fill tool to fill an area <strong>Until</strong> it encounters a different color, or <strong>While</strong> the area being filled remains the same color. You can adjust the precision with which these edges are determined by changing the values for <strong>Range</strong> and <strong>Soft</strong>.</dt>
+</a><P></dl></dl>
+<a name="14904">
+<STRONG>	36.	 Select the Gradient 2 ink again.
+</STRONG>
+</a><P><dl><a name="14905">
+<dt>Let's choose a nice brown to use for our dirt path. This color will serve as the color at the bottom of the image, nearest to our hero. </dt>
+</a><P></dl><a name="14906">
+<STRONG>	37.	 <strong>(CLICK-L)</strong> on Top, and use the Color Editor choose a shade of brown.
+</STRONG>
+</a><P>
+<a name="14907">
+Now we'll use the same color for the bottom of the gradient, but we'll use the color editor to change the intensity of the color to simulate it fading into the distance.<p>
+</a><P>
+<a name="14908">
+<STRONG>	38.	 <strong>(CLICK-L)</strong> on Bottom.
+</STRONG>
+</a><P><dl><a name="14909">
+<dt><strong>(CLICK-L)</strong> in the previous color rectangle to select the color you just chose for the top of the gradient, as shown in <a href="1FirstImage.html#14913">Figure 1.23</a>.</dt>
+</a><P></dl><a name="15657">
+<STRONG>	39.	 <strong>(CLICK-L)</strong> on the Edit button at the bottom of the Color Editor.
+</STRONG>
+</a><P><dl><a name="15658">
+<dt>A row of sliders appears, which you can use to manipulate the Intensity (I), Hue (H), and Saturation (S) of the color. In this case we'll just bring the intensity down a bit.</dt>
+</a><P><a name="14912">
+ <P><img src="1FirstImage.anc24.gif"><p>
+</a></dl>
+<a name="14913">
+<em>Figure 1.23  &#32; &#32;Editing Colors
+</em></a><P>
+<a name="14928">
+<STRONG>	40.	 <strong>(DRAG-L) </strong>on the I slider, moving it to the left.
+</STRONG>
+</a><P><dl><a name="14929">
+<dt>As you move the slider, the color in the current color bar darkens.</dt>
+</a><P></dl><a name="14938">
+<STRONG>	41.	 <strong>(CLICK-L)</strong> on Exit when the color looks right.
+</STRONG>
+</a><P>
+<a name="14939">
+Now that we've selected the two colors to use for our gradient, we're ready to fill in the polygon and create the road.<p>
+</a><P>
+<a name="14940">
+<STRONG>	42.	 Move the Selection box of the Fill Ink cursor to the interior of the road, and <strong>(CLICK-L)</strong>.
+</STRONG>
+</a><P><dl><a name="16643">
+<dt>The area confined within the outlines of the road is filled with a gradual color ramp.</dt>
+</a><P></dl>
+<a name="14945">
+<h2><HR> Compositing an Image</h2>
+</a><a name="14946">
+For the last step in this part of the tutorial, we'll composite an image of the moon over our hero's right shoulder. You can have a go at creating your own moon, or use ours.<p>
+</a><P>
+<a name="14954">
+<STRONG>	43.	 Load the following image file:
+</STRONG>
+</a><P><dl><a name="15793">
+<dt><code>/usr/local/ngc/demo/images/moon.rgb</code></dt>
+</a><P><a name="15671">
+<dt>Whether you use our moon or one you painted yourself, you must have both the moon image and the hero image loaded into memory in order to perform the composite.</dt>
+</a><P></dl><a name="14973">
+<STRONG>	44.	 Select the Cutout brush from the Tool Box.
+</STRONG>
+</a><P><a name="14960">
+ <P><img src="1FirstImage.anc25.gif"><p>
+</a>
+<a name="14961">
+<em>Figure 1.24  &#32; &#32;The Cutout brush
+</em></a><P>
+<a name="14970">
+<STRONG>	45.	 Select the Pattern ink.
+</STRONG>
+</a><P><dl><a name="14971">
+<dt>The Pattern ink parameters appear in the ink parameters section of the menu:</dt>
+</a><P><a name="14972">
+ <P><img src="1FirstImage.anc26.gif"><p>
+</a></dl>
+<a name="14974">
+<em>Figure 1.25  &#32; &#32;Pattern ink parameters menu
+</em></a><P>
+<a name="14984">
+<STRONG>	46.	 <strong>(CLICK-L)</strong> on the current pattern square.
+</STRONG>
+</a><P><dl><a name="14985">
+<dt>A pop-up menu appears listing all the images loaded into memory. <strong>(CLICK-L)</strong> on the moon.rgb image.</dt>
+</a><P></dl><a name="14986">
+<STRONG>	47.	 <strong>(CLICK-L)</strong> on File&gt;Select&gt;hero to make the hero image active again.
+</STRONG>
+</a><P><dl><a name="16689">
+<dt>The moon image will be replaced by the hero image on the canvas.</dt>
+</a><P></dl><a name="16688">
+<STRONG>	48.	 Make sure that the matte is in Use mode.
+</STRONG>
+</a><P><dl><a name="15673">
+<dt>If necessary, <strong>(CLICK-L) </strong>on the <strong>Use</strong> button.</dt>
+</a><P></dl><a name="15672">
+<STRONG>	49.	 Move the cursor over the canvas, and place the moon just over the hero's right shoulder. 
+</STRONG>
+</a><P><dl><a name="14987">
+<dt>When it's in position, <strong>(CLICK-L)</strong>. The hero's matte will prevent the moon from being drawn over his body, so the moon looks like it actually behind the hero.</dt>
+</a><P></dl>
+<a name="14959">
+Here's what our hero looks like with the mountains, the road, and the moon added to the scene.<p>
+</a><P><a name="14990">
+ <P><img src="1FirstImage.anc27.gif"><p>
+</a><a name="14991">
+<em>Figure 1.26  &#32; &#32;The hero with the moon and mountains added to the scene
+</em></a><P><a name="14996">
+<h2><HR> Saving Your Work</h2>
+</a><a name="15008">
+We'll be working with this image in the next section, so let's save our new images to disk.<p>
+</a><P>
+<a name="15013">
+<STRONG>	50.	 <strong>(CLICK-L)</strong> on File: &gt; Save Many.
+</STRONG>
+</a><P><dl><a name="15014">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="15015">
+ <P><img src="1FirstImage.anc28.gif"><p>
+</a></dl>
+<a name="15016">
+<em>Figure 1.27  &#32; &#32;Save images dialog
+</em></a><P><ul><a name="14997">
+<li><strong>Name</strong> is the filename that the image will be saved to
+</a></li><P><a name="15116">
+<li><strong>Directory</strong> is where the image will be stored
+</a></li><P><a name="15117">
+<li>An asterisk in the <strong>Mod</strong> column indicates that the image has been changed since it was last saved, or that the image was created in the current session.
+</a></li><P><a name="15118">
+<li>A check mark under <strong>Save</strong> indicates that you wish to save the image. <strong>(CLICK-L)</strong> on the check mark to mark images for saving.
+</a></li><P><a name="15119">
+<li><strong>Type</strong> describes the element type being saved (in this example, all are images).
+</a></li><P></ul><P>
+<a name="15120">
+<STRONG>	51.	 Make sure the paths and filenames are correct, then <strong>(CLICK-L)</strong> on Save.
+</STRONG>
+</a><P><dl><a name="15121">
+<dt>Your images will be stored safely on disk.</dt>
+</a><P></dl>
+<a name="15126">
+<h2><HR> Congratulations!</h2>
+</a><a name="15127">
+You've modified and saved an image in N-Paint! The important thing to remember from this chapter is how inks and shape tools work together to provide you with lots of flexibility to be creative. <p>
+</a><P><a name="15683">
+In the next chapter we'll work with brushes, experiment with some effects and recolor inks, and learn how to pull a matte<p>
+</a><P><a name="15131">
+<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="BookTOC.html">[Book Contents]</a> <a href="0About.html">[Prev]</a> <a href="2UsingInks.html">[Next]</a> <a href="Book IX.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 09/03/96 20:56:30 -->
+
+</body>
+</html>

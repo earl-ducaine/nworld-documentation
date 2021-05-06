@@ -1,0 +1,1015 @@
+<html><head><title>Editing Motion Capture Data</title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="9CartoonEffects.html">[Prev]</a> <a href="11MotionBlending.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+<a name="11251">
+<h1>Editing Motion Capture Data</h1>
+</a>
+<hr><p><a name="11869">
+<h4> This chapter describes several techniques for modifying motion capture data, including methods for layering artist specified motion, decomposing motion capture data into rotational components or poses, and blending poses into motion capture. It also describes how to use the Motion Transform command to use the same motion data on skeletons of different sizes and proportions.</h4>
+</a><a name="11885">
+ <P><img src="10EditingMCData.anc.gif"><p>
+</a><a name="11257">
+<h2><HR> In this Chapter</h2>
+</a><a name="11345">
+You'll learn how to:<p>
+</a><P><ul><a name="11346">
+<li>layer artist's motion with motion capture data
+</a></li><P><a name="12330">
+<li>use the <strong>Motion Transform</strong> operation, which lets you use motion capture data from one skeleton to animate a second skeleton
+</a></li><P><a name="11347">
+<li>decompose motion data into rotational or pose data
+</a></li><P><a name="11348">
+<li>write out decomposed motion data into an .amc file
+</a></li><P><a name="11921">
+<li>use "Difference Posing" to quickly alter saved motion capture data
+</a></li><P><a name="11922">
+<li>use the N-Dynamics Lock Feet operation to lock your character's feet at or below an imaginary ground plane
+</a></li><P></ul><P><a name="11923">
+<h2><HR> Layering Artist's Motion with <br>Motion Capture Data</h2>
+</a><a name="10818">
+Now that you have a basic script, let's show how you can layer other skeletal operations over existing motion capture data. <p>
+</a><P><a name="10819">
+Suppose, for example, that you were animating a character using a motion capture file for a "run." You may have gone to a motion capture facility, captured a good run cycle, and applied it to your skeleton; however, you decide later that it would have been nice if you could make the character wave his arms, turn his head, or reach out for an object as he passes by. What do you do then?<p>
+</a><P><a name="10820">
+Rather than recapturing an entire motion sequence, you could layer artist created motions using the Skeletal Animation System to add these "secondary" motions to the captured motion data.<p>
+</a><P><a name="10821">
+<h2><HR> Layering Rotations with <br>Motion Capture</h2>
+</a><a name="10822">
+You can "layer" simple bone rotation or bone scale operations over motion capture data so that both are used to update the skeleton's position over time.<p>
+</a><P><a name="10823">
+Try this:<p>
+</a><P>
+<a name="10824">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P>
+<a name="10825">
+<code>/usr/local/ngc/demo/scripts/layer-mc-and-rotations</code><p>
+</a><P><dl><dl><a name="10827">
+<dt>In this script, we'll use motion capture data from Acclaim to animate the skeleton.</dt>
+</a><P><a name="10828">
+<dt>This script has four channels:</dt>
+</a><P></dl><ul>
+<BR><a name="10829">
+<li>A <strong>Set View</strong> channel, which positions the camera.
+</a><P><BR><a name="10830">
+<li>A <strong>Read Acclaim Data</strong> channel which reads the motion capture used to animate the skeleton.
+</a><P><BR><a name="10831">
+<li>A user-named parent channel, called "<strong>Layered Bone Rotations</strong>," which contains several children channels of bone rotations.
+</a><P><dl><a name="10832">
+<dt>Note that this channel is initially deactivated; we'll turn it on later to show you the effect of the layered motion.<p>
+</a><P></dl><BR><a name="10833">
+<li>An <strong>Update Skeleton</strong> channel, which applies both the motion capture data and the layered bone rotations to the skeleton.
+</a><P></ul>
+</dl><a name="10834">
+The script should look something like this:<p>
+</a><P><a name="10838">
+ <P><img src="10EditingMCData.anc1.gif"><p>
+</a><a name="10839">
+<em>Figure 10.1  &#32; &#32;A script layering artist motion with motion capture data
+</em></a><P>
+<a name="10840">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="10841">
+<dt>The skeleton walks forward toward the camera, with no extra movements of any kind.</dt>
+</a><P></dl><a name="10842">
+<STRONG>	3.	 Move the mouse over the "Layered Bone Rotations" channel and press "a" on the keyboard.
+</STRONG>
+</a><P><dl><a name="10843">
+<dt>This makes the channel active. Note that the text changes from black to white (text color indicates the active status of the channel).</dt>
+</a><P></dl><a name="10844">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Animate button to reanimate the skeleton.
+</STRONG>
+</a><P><dl><a name="10845">
+<dt>Note that this time, the skeleton lifts its arms as it walks; this motion was layered <em>on top of</em> the motion capture data read in by the <strong>Read Acclaim Data</strong> channel.</dt>
+</a><P></dl>
+<a name="10846">
+<h4> Layering Motion</h4>
+</a><a name="10847">
+Let's take a look at how we layered our own motion on top of the "canned" motion capture data.<p>
+</a><P>
+<a name="10848">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on the Layered Bone Rotations channel.
+</STRONG>
+</a><P><dl><a name="10849">
+<dt>This opens the parent channel so that you can see the subchannels it contains.</dt>
+</a><P><a name="10853">
+ <P><img src="10EditingMCData.anc2.gif"><p>
+</a></dl>
+<a name="10854">
+<em>Figure 10.2  &#32; &#32; Rotations nested inside a parent channel
+</em></a><P><dl><dl><a name="10855">
+<dt>In this script, we created channels that added rotation to both the left upper arm and the right upper arm.</dt>
+</a><P></dl></dl>
+<a name="10856">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the first subchannel (Z Rotate Bone: h_left_up_arm).
+</STRONG>
+</a><P><dl><a name="10857">
+<dt>The black triangle in the upper right corner of the channel tells you that the channel contains addition subchannels which are not currently visible.</dt>
+</a><P><a name="10861">
+ <P><img src="10EditingMCData.anc3.gif"><p>
+</a></dl>
+<a name="10862">
+<em>Figure 10.3  &#32; &#32; Curve channel associated with Rotate Bone operation
+</em></a><P><dl><dl><a name="10863">
+<dt>The two vertical lines in the channel are "cues," which are described in more detail in the <em>N-Dynamics Reference Guide</em>. They represent a value for the rotation operation at a specific point in time.</dt>
+</a><P></dl></dl>
+<a name="10864">
+<STRONG>	7.	 <strong>(CLICK-L</strong>) on the curve channel.
+</STRONG>
+</a><P><dl><a name="10865">
+<dt>The curve data looks like this:</dt>
+</a><P><a name="10869">
+ <P><img src="10EditingMCData.anc4.gif"><p>
+</a></dl>
+<a name="10870">
+<em>Figure 10.4  &#32; &#32; Curve data for the bone rotation
+</em></a><P>
+<a name="10871">
+<STRONG>	8.	 <strong>(CLICK-M)</strong> on the cue to see its value.
+</STRONG>
+</a><P><dl><a name="10872">
+<dt>A dialog box shows the current value for the selected cue (at frame 16):</dt>
+</a><P><a name="10876">
+ <P><img src="10EditingMCData.anc5.gif"><p>
+</a></dl>
+<a name="10877">
+<em>Figure 10.5  &#32; &#32; Rotations nested inside a parent channel
+</em></a><P><dl><dl><a name="10878">
+<dt>As described in the Skeletal Animation System Reference Guide, all the modifications made to a skeleton (including applied motion capture and rotations) are <em>additive</em>. This means at frame 16, 112 degrees will be added to the Z rotation of the left upper arm.</dt>
+</a><P><a name="10879">
+<dt>Try this:</dt>
+</a><P></dl></dl>
+<a name="10880">
+<STRONG>	9.	 Deactivate the Layered Bone Rotations channel.
+</STRONG>
+</a><P><dl><a name="10881">
+<dt>Move the cursor over the channel and press "a".</dt>
+</a><P></dl><a name="10882">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on the time line at frame 16.
+</STRONG>
+</a><P><dl><a name="10883">
+<dt>The skeleton should look something like this:</dt>
+</a><P><a name="10887">
+ <P><img src="10EditingMCData.anc6.gif"><p>
+</a></dl>
+<a name="10888">
+<em>Figure 10.6  &#32; &#32; Unmodified walk cycle at frame 16
+</em></a><P>
+<a name="10889">
+<STRONG>	11.	 Reactivate the Layered Bone Rotations channel.
+</STRONG>
+</a><P><dl><a name="10890">
+<dt>Move the cursor over the channel and press "a".</dt>
+</a><P></dl><a name="10891">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on frame 16 on the time line again.
+</STRONG>
+</a><P><dl><a name="10892">
+<dt>The skeleton should now have his left arm raised:</dt>
+</a><P><a name="10896">
+ <P><img src="10EditingMCData.anc7.gif"><p>
+</a></dl>
+<a name="10897">
+<em>Figure 10.7  &#32; &#32; Walk cycle at frame 16 with layered bone rotations
+</em></a><P><a name="10898">
+<h4> Things to Remember about Layering Motion</h4>
+</a><ul><a name="10899">
+<li>Layered bone rotations can be applied to any bone on the skeleton.
+</a></li><P><a name="10900">
+<li>Rotations should be applied before the <strong>Update Skeleton</strong> operation.
+</a></li><P><a name="10901">
+<li>Layered rotations are additive; if you have two rotation channels for the same bone, the two are added together.
+</a></li><P><a name="10902">
+<li>It may be handy (but not necessary) to nest rotations and other user-defined modifications in one channel. In this sample script, we created a parent channel with an operation class of <strong>None</strong>, then assigned it a <strong>Name</strong> of <strong>Layered Bone Rotations</strong>. For more information on building scripts, see the <em>N-Dynamics Reference Guide</em>.
+</a></li><P></ul><P><a name="10903">
+<h2><HR> Layering IK Moves with<br>Motion Capture</h2>
+</a><a name="10965">
+In the same way that you layer simple bone rotation or bone scale operations over motion capture data, you can layer inverse kinematic operations.<p>
+</a><P><a name="10966">
+In this script, we make the skeleton reach out for a panel as it walks by. You could use a script like this, for example, to make a character running down a hallway reach out for some object as it walks past.<p>
+</a><P><a name="11037">
+Try this:<p>
+</a><P>
+<a name="10967">
+<STRONG>	 1.	 Load the following script:
+</STRONG>
+</a><P><dl><dl><a name="10968">
+<dt><code>/usr/local/ngc/demo/scripts/layer-mc-and-IK</code><p>
+</a><P></dl></dl><dl><a name="10970">
+<dt>In this script, we'll use motion capture data from Acclaim to animate the skeleton.</dt>
+</a><P><a name="10971">
+<dt>This script has four channels:</dt>
+</a><P></dl><ul>
+<BR><a name="10972">
+<li>A <strong>Set View</strong> channel, which positions the camera.
+</a><P><BR><a name="10973">
+<li>A <strong>Read Acclaim Data</strong> channel which reads the motion capture used to animate the skeleton.
+</a><P><BR><a name="11008">
+<li>An <strong>Update Skeleton</strong> channel, which applies the motion capture data to the skeleton.
+</a><P><BR><a name="11017">
+<li>An <strong>IK Move to Object</strong> channel, which makes a specified bone on a skeleton (like a hand or foot) reach for an object
+</a><P><dl><a name="11032">
+<dt>Note that this channel is initially deactivated; we'll turn it on later to show you the effect of the layered motion.<p>
+</a><P></dl><BR><a name="10974">
+<li>A <strong>Make Visible</strong> channel to make the object the skeleton is reaching for visible
+</a><P></ul>
+
+<a name="10977">
+The script should look something like this:<p>
+</a><P><a name="10981">
+ <P><img src="10EditingMCData.anc8.gif"><p>
+</a><a name="10982">
+<em>Figure 10.8  &#32; &#32;A script layering an IK move with motion capture data
+</em></a><P>
+<a name="10983">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Animate button in the N-Dynamics window.
+</STRONG>
+</a><P><dl><a name="10984">
+<dt>You'll see the skeleton and the small panel in the N-Geometry window, but as the skeleton goes by, he does nothing. We want the skeleton to reach out for the panel.</dt>
+</a><P></dl><a name="10985">
+<STRONG>	3.	 Move the mouse over the "IK Move to Object" channel and press "a" on the keyboard.
+</STRONG>
+</a><P><dl><a name="10986">
+<dt>This makes the channel active. Note that the text changes from black to white (text color indicates the active status of the channel).</dt>
+</a><P></dl><a name="10987">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Animate button to reanimate the skeleton.
+</STRONG>
+</a><P><dl><a name="10988">
+<dt>Note that this time, the skeleton reaches out for the panel; this IK move was layered <em>on top of</em> the motion capture data read in by the <strong>Read Acclaim Data</strong> channel.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	The <strong>IK Move to Object</strong> operation should come after the <strong>Update Skeleton</strong> operation.</font></dd></dt></dl><P>
+
+<a name="11062">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the IK Move to Object channel.
+</STRONG>
+</a><P><dl><a name="11076">
+<dt>In the channel, you specify the bone to move (in this case, the left hand), the DOF set used to complete the IK move, and the target object you are reaching for.</dt>
+</a><P><a name="11090">
+ <P><img src="10EditingMCData.anc9.gif"><p>
+</a></dl>
+<a name="11091">
+<em>Figure 10.9  &#32; &#32;Specify both the bone, DOF set, and target in the operation
+</em></a><P><dl><dl><a name="11123">
+<dt>Close the channel when you're done.</dt>
+</a><P></dl></dl>
+<a name="11082">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on the curve channel under the IK Move to Object channel, then <strong>(CLICK-L)</strong> again on the curve channel beneath it.
+</STRONG>
+</a><P><dl><a name="11145">
+<dt>We used a linear curve with two cues:</dt>
+</a><P><a name="11163">
+ <P><img src="10EditingMCData.anc10.gif"><p>
+</a></dl>
+<a name="11164">
+<em>Figure 10.10  &#32; &#32;Sample curve for the IK Move to Object operation
+</em></a><P><dl><dl><a name="11157">
+<dt>if you <strong>(CLICK-M) </strong>on the first cue, you can see that its value is 1.0.</dt>
+</a><P><a name="11148">
+ <P><img src="10EditingMCData.anc11.gif"><p>
+</a></dl></dl><a name="11149">
+<em>Figure 10.11  &#32; &#32;Editing a cue value
+</em></a><P><dl><dl><a name="11177">
+<dt>This cue is located at frame 33. This means that at frame 33, the specified bone will have moved all the way to the specified object in the script.</dt>
+</a><P><a name="11178">
+<dt>The second cue in the script (the one at frame 76) is set to a value of &#32; &#32;0. From this point until the end of the script, the IK Move to Object operation has no more effect (since the operation has a value of 0.</dt>
+</a><P></dl></dl><a name="11195">
+You can layer any number of IK Move to Object operations on top of motion capture. You may, for example, want the character to reach for a gun on a table, then reach for a drawer that he/she will open.<p>
+</a><P><a name="11214">
+As noted before, remember that any IK operations should come after the <strong>Update Skeleton</strong> operation in your script.<p>
+</a><P><a name="12175">
+<h2><HR> Copying Motion Data between Skeletons</h2>
+</a><a name="12176">
+This section describes N-Geometry's <strong>Motion Transform</strong> function. This operation lets you transform the motion capture data captured for one skeleton so that it can be used to animate a second skeleton.<p>
+</a><P><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	Because motion capture data is bone-name dependent, you should only use this operation to copy motion data between skeletons from the same vendor.</font></dd></dt></dl><P>
+
+<a name="12178">
+<STRONG>	 1.	 Read in the skeleton for the motion capture file you want to animate.
+</STRONG>
+</a><P><a name="12182">
+ <P><img src="10EditingMCData.anc12.gif"><p>
+</a>
+<a name="12183">
+<em>Figure 10.12  &#32; &#32;Read in the skeleton from the motion capture file you want to animate
+</em></a><P>
+<a name="12184">
+<STRONG>	2.	 Read in the skin you want to animate.
+</STRONG>
+</a><P><a name="12185">
+<STRONG>	3.	 Align the hips of the skin with the root of the skeleton.
+</STRONG>
+</a><P><a name="12193">
+ <P><img src="10EditingMCData.anc13.gif"><p>
+</a>
+<a name="12194">
+<em>Figure 10.13  &#32; &#32;Move the skin so that its hips are aligned with the skeleton's root
+</em></a><P>
+<a name="12196">
+<STRONG>	4.	 <strong>(SHIFT-L)</strong> on the skin, then <strong>(CLICK-L)</strong> an Make Displacement.
+</STRONG>
+</a><P><dl><a name="12197">
+<dt>Make an <strong>Absolute</strong> displacement on the skin and call it "Base". (This is described in the <em>N-Geometry Reference Guide</em>.)</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Moving the root of the skeleton out of the global origin will likely cause unwanted behavior when interpolating the motion data.  If it is necessary to move the skeleton away from global zero, you should do so in a dynamics transform-root channel.)</em></font></dd></dt></dl><P>
+
+<a name="12199">
+<STRONG>	5.	 Using N-Geometry's skeletal operations, modify the skeleton so that it fits your skin.
+</STRONG>
+</a><P><dl><a name="12200">
+<dt>Use the various rotate and scaling commands, or the pose editor, to match the skeleton to the skin.</dt>
+</a><P><a name="12204">
+ <P><img src="10EditingMCData.anc14.gif"><p>
+</a></dl>
+<a name="12205">
+<em>Figure 10.14  &#32; &#32;Align the skeleton with the skin
+</em></a><P>
+<a name="12206">
+<STRONG>	6.	 Save a new base state for the modified skeleton.
+</STRONG>
+</a><P><dl><a name="12207">
+<dt><strong>(SHIFT-L)</strong> on the skeleton, then <strong>(CLICK-L)</strong> on <strong>Base</strong>. Use the same name for the base state of the skeleton that you used for the skin in step <a href="10EditingMCData.html#12196">4</a>.</dt>
+</a><P><a name="12214">
+ <P><img src="10EditingMCData.anc15.gif"><p>
+</a></dl>
+<a name="12215">
+<em>Figure 10.15  &#32; &#32;Save the base state for the skeleton
+</em></a><P><dl><dl><a name="12216">
+<dt><strong>(CLICK-L)</strong> on the <strong>Done</strong> button to save the base state.</dt>
+</a><P></dl></dl><a name="12217">
+Now that you have aligned the skin and posed the skeleton to match it, you can perform the motion transform procedure on the altered skeleton.<p>
+</a><P>
+<a name="12218">
+<STRONG>	7.	 Rename your altered skeleton with a distinct name. 
+</STRONG>
+</a><P><ul>
+<BR><a name="12219">
+<li><strong>(CLICK-L)</strong> on <strong>GeoMenus&gt;Rename</strong>.
+</a><P><BR><a name="12220">
+<li><strong>(CLICK-L)</strong> on the skeleton.
+</a><P><BR><a name="12221">
+<li>Enter a new name for the skeleton in the dialog box that appears
+</a><P><a name="12225">
+ <P><img src="10EditingMCData.anc16.gif"><p>
+</a></ul>
+
+<a name="12226">
+<em>Figure 10.16  &#32; &#32;Rename the skeleton
+</em></a><P><a name="12227">
+At this point, you have two elements in memory:<p>
+</a><P><ul><a name="12228">
+<li>The skin
+</a></li><P><a name="12229">
+<li>The altered skeleton
+</a></li><P></ul><P><a name="12230">
+To complete the transform, you must reread the original skeleton back into N-Geometry:<p>
+</a><P>
+<a name="12231">
+<STRONG>	8.	 Reread the original skeleton from the motion capture file.
+</STRONG>
+</a><P><dl><a name="12232">
+<dt>You should see both skeletons in the N-Geometry window:</dt>
+</a><P><a name="12236">
+ <P><img src="10EditingMCData.anc17.gif"><p>
+</a></dl>
+<a name="12237">
+<em>Figure 10.17  &#32; &#32;Original and altered skeleton
+</em></a><P>
+<a name="12238">
+<STRONG>	9.	 <strong>(SHIFT-L)</strong> on the altered skeleton, then <strong>(CLICK-L)</strong> on <strong>Motion Transform</strong>.
+</STRONG>
+</a><P><a name="12245">
+<STRONG>	10.	 Select the original (unaltered) skeleton from the object list that appears. 
+</STRONG>
+</a><P><dl><a name="12246">
+<dt>You're next asked if you want to select a bone on which to base the transformation of the translation data.</dt>
+</a><P><a name="12250">
+ <P><img src="10EditingMCData.anc18.gif"><p>
+</a></dl>
+<a name="12251">
+<em>Figure 10.18  &#32; &#32;Choosing a bone to compare translation
+</em></a><P>
+<a name="12252">
+<STRONG>	11.	 <strong>(CLICK-L)</strong> on Yes.
+</STRONG>
+</a><P><a name="12253">
+<STRONG>	12.	 You're next prompted to select the bone on the altered skeleton that the translations should be based on.
+</STRONG>
+</a><P><ul>
+<BR><a name="12254">
+<li>For a walk cycle, select a femur.
+</a><P><BR><a name="12255">
+<li>For motion data in which the arms generate the movement (e.g., swinging from vine to vine), select an upper arm.
+</a><P></ul>
+
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>When doing a Motion Transform, try to keep the bones which are dependent on for the motion transform in close proportion to the same bones on the original skeleton. You can still </em>scale<em> the entire skeleton (e.g., to copy the motion from a man to a dwarf), but don't change the proportion of the bone to the overall skeleton.<br><br>For example, if you are doing a walk cycle and do not want any slippage or Y translation, try to keep the bones of the legs in the altered skeleton proportionate to the bones of the legs in the original skeleton. If you need more consistency in the motion of the arms, then keep the upper arm bones proportionate.<br><br>In general, avoid using any Scaling operations on just the bone being used on the motion transform.</em></font></dd></dt><dl><a name="12257">
+<dt>Once you've completed the transform:</dt>
+</a><P></dl></dl><P>
+
+<a name="12258">
+<STRONG>	13.	 Create an N-Dynamics script with at least two channels:
+</STRONG>
+</a><P><ul>
+<BR><a name="12259">
+<li><strong>Read Acclaim Data</strong> or <strong>Read Biovision Data</strong>
+</a><P><BR><a name="12260">
+<li><strong>Update Skeleton</strong>
+</a><P></ul>
+<a name="12261">
+<STRONG>	14.	 Edit the Read Motion Data channel.
+</STRONG>
+</a><P><dl><a name="12262">
+<dt>If you're working with an Acclaim skeleton, use <strong>Read Acclaim Data</strong>, and complete it like this:</dt>
+</a><P><a name="12266">
+ <P><img src="10EditingMCData.anc19.gif"><p>
+</a></dl>
+<a name="12267">
+<em>Figure 10.19  &#32; &#32;Using Acclaim data
+</em></a><P><ul><ul>
+<BR><a name="12268">
+<li>For <strong>Skeleton</strong>, specify the altered skeleton
+</a><P><BR><a name="12269">
+<li>For the <strong>.asf</strong> file, specify the original skeleton.
+</a><P><BR><a name="12270">
+<li>For the <strong>.amc</strong> file, choose the motion file.
+</a><P></ul>
+<dl><a name="12271">
+<dt>If you're working with a Biovision skeleton, use <strong>Read Biovision Data</strong>, and complete it like this:</dt>
+</a><P><a name="12275">
+ <P><img src="10EditingMCData.anc20.gif"><p>
+</a></dl></ul><a name="12276">
+<em>Figure 10.20  &#32; &#32;Using Biovision data
+</em></a><P><ul><ul>
+<BR><a name="12277">
+<li>For <strong>Skeleton</strong>, specify the altered skeleton
+</a><P><BR><a name="12278">
+<li>For the <strong>.bvh</strong> file, choose the motion file.
+</a><P></ul>
+</ul>
+<a name="12279">
+<STRONG>	15.	 Edit the Update Skeleton channel.
+</STRONG>
+</a><P><dl><a name="12280">
+<dt>In the Update Skeleton channel, make sure you select the altered skeleton:</dt>
+</a><P><a name="12284">
+ <P><img src="10EditingMCData.anc21.gif"><p>
+</a></dl>
+<a name="12285">
+<em>Figure 10.21  &#32; &#32;Select the altered skeleton in the Update Skeleton channel
+</em></a><P>
+<a name="12286">
+<STRONG>	16.	 <strong>(CLICK-L)</strong> on the Animate button to animate your script.
+</STRONG>
+</a><P><dl><a name="12287">
+<dt>After testing the motion transform on the new skeleton, you can proceed to skin the skeleton as described in the following chapters.</dt>
+</a><P></dl>
+<a name="12288">
+<h4> Notes on Using Motion Transform</h4>
+</a><dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>Moving the root of the skeleton out of the global origin will likely cause unwanted behavior when interpolating the motion data.  If it is necessary to move the skeleton away from global zero, you should do so in a dynamics transform-root channel.</em></font></dd></dt></dl><P>
+<a name="11306">
+<h2><HR> Decomposing Motion Data</h2>
+</a><a name="11624">
+N-Dynamics can be used to decompose motion capture data into its component units:<p>
+</a><P><ul><a name="11625">
+<li>rotational components (for each bone on the skeleton)
+</a></li><P><a name="11626">
+<li>individual poses (as in the <strong>Animate Pose to Pose</strong> operation)
+</a></li><P></ul><P><a name="11627">
+Typically, this operation is performed on a channel containing one of the following skeletal operations:<p>
+</a><P><ul><a name="11628">
+<li><strong>Read Acclaim Data</strong>
+</a></li><P><a name="11629">
+<li><strong>Read Biovision Data</strong>
+</a></li><P><a name="11734">
+<li><strong>Read Motion Analysis Data</strong>
+</a></li><P><a name="11630">
+<li><strong>Animate Pose to Pose</strong>
+</a></li><P></ul><P><a name="11631">
+As described later on in this section, animation data that has been decomposed into poses can be <em>further</em> decomposed into <em>their</em> rotational components.<p>
+</a><P><a name="11634">
+<h3> Decomposing Motion Data into <br>Rotational Components</h3>
+</a><a name="11635">
+To decompose a motion capture file into its rotational components:<p>
+</a><P>
+<a name="11636">
+<STRONG>	 1.	 Add a channel to your script that reads motion capture data for a skeleton.
+</STRONG>
+</a><P><a name="11637">
+<STRONG>	2.	 Specify the skeleton and any motion capture file you want to decompose.
+</STRONG>
+</a><P><dl><a name="11638">
+<dt>For an Acclaim skeleton, specify both the .asf and .amc files; for a BioVision skeleton, specify the .bvh file.</dt>
+</a><P></dl><a name="11639">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the channel containing the motion.
+</STRONG>
+</a><P><dl><a name="11640">
+<dt>The Action Operations menu appears.</dt>
+</a><P></dl><a name="11641">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Decompose command.
+</STRONG>
+</a><P><dl><a name="11642">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="11646">
+ <P><img src="10EditingMCData.anc22.gif"><p>
+</a></dl>
+<a name="11647">
+<em>Figure 10.22  &#32; &#32;Decomposing a motion capture file
+</em></a><P>
+<a name="11648">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Separate rotation channels.
+</STRONG>
+</a><P><dl><a name="11649">
+<dt>When you choose this option several things occur:</dt>
+</a><P></dl><ul>
+<BR><a name="11650">
+<li>The channel changes from a <strong>Read Acclaim Data</strong> or <strong>Read Biovision Data</strong> into a <strong>Decomposed Motion</strong> channel (where <strong>Motion</strong> is the name of the .bvh or .amc file).
+</a><P><BR><a name="11651">
+<li>Subchannels are created for different parts of the skeleton: arms, legs, other bones, and a separate channel for the root transforms.
+</a><P></ul>
+<dl><a name="11652">
+<dt>Open the script to see the rotational components for each bone:</dt>
+</a><P><a name="11656">
+ <P><img src="10EditingMCData.anc23.gif"><p>
+</a></dl>
+<a name="11658">
+<em>Figure 10.23  &#32; &#32;Motion capture file decomposed into rotational components
+</em></a><P>
+<a name="12342">
+<STRONG>	6.	 Open any of the channels to see the bones included in that channel.
+</STRONG>
+</a><P><a name="12354">
+ <P><img src="10EditingMCData.anc24.gif"><p>
+</a>
+<a name="12356">
+<em>Figure 10.24  &#32; &#32;Motion capture file decomposed-showing separate bones
+</em></a><P><dl><dl><a name="12349">
+<dt>You can continue opening channels until the actual curve data for a given bone is displayed; this curve data can be manipulated just like any other curve data in N-Dynamics:</dt>
+</a><P><a name="12365">
+ <P><img src="10EditingMCData.anc25.gif"><p>
+</a></dl></dl><a name="12367">
+<em>Figure 10.25  &#32; &#32;Curve data for decomposed bone rotations
+</em></a><P><a name="11661">
+<h3> Decomposing Motion Data into Poses</h3>
+</a><a name="11662">
+To decompose a motion capture file into a number of poses:<p>
+</a><P>
+<a name="11663">
+<STRONG>	 1.	 Add a channel to your script that reads motion capture data for a skeleton.
+</STRONG>
+</a><P><a name="11664">
+<STRONG>	2.	 Specify the skeleton and any motion capture file you want to decompose.
+</STRONG>
+</a><P><dl><a name="11665">
+<dt>For an Acclaim skeleton, specify both the .asf and .amc files; for a BioVision skeleton, specify the .bvh file.</dt>
+</a><P></dl><a name="11666">
+<STRONG>	3.	 <strong>(CLICK-R)</strong> on the channel containing the motion.
+</STRONG>
+</a><P><dl><a name="11667">
+<dt>The Action Operations menu appears.</dt>
+</a><P></dl><a name="11668">
+<STRONG>	4.	 <strong>(CLICK-L)</strong> on the Decompose command.
+</STRONG>
+</a><P><dl><a name="11669">
+<dt>The following menu is displayed:</dt>
+</a><P><a name="11673">
+ <P><img src="10EditingMCData.anc26.gif"><p>
+</a></dl>
+<a name="11674">
+<em>Figure 10.26  &#32; &#32;Decomposing a motion capture file
+</em></a><P>
+<a name="11675">
+<STRONG>	5.	 <strong>(CLICK-L)</strong> on Pose to pose.
+</STRONG>
+</a><P><dl><a name="11676">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11680">
+ <P><img src="10EditingMCData.anc27.gif"><p>
+</a></dl>
+<a name="11681">
+<em>Figure 10.27  &#32; &#32;Specify the number of frames between poses
+</em></a><P>
+<a name="11682">
+<STRONG>	6.	 Enter the number of frames between each pose.
+</STRONG>
+</a><P><dl><a name="11683">
+<dt>When you choose this option, several things occur:</dt>
+</a><P></dl><ul>
+<BR><a name="11684">
+<li>The channel changes from a <strong>Read Acclaim Data</strong> or <strong>Read Biovision Data</strong> into a <strong>Decomposed motion </strong>channel (where <strong>motion</strong> is the name of the .bvh or .amc file).
+</a><P><BR><a name="11685">
+<li>A single pose to pose subchannels is inserted into that channel. Cues are inserted evenly spaced over the length of the channel.
+</a><P></ul>
+
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>The values shown for the cues are "dummy" values (as described in the Animate Pose to Pose operation). The peaks and valleys are created only to make it easier to see each cue.</em></font></dd></dt><dl><a name="11690">
+<dt>Open the script to see the cues that are inserted for each pose:</dt>
+</a><P><a name="11694">
+ <P><img src="10EditingMCData.anc28.gif"><p>
+</a></dl></dl><P>
+<a name="11695">
+<em>Figure 10.28  &#32; &#32;Motion capture file decomposed into poses
+</em></a><P><a name="11696">
+<h3> Decompose Motion Data from Pose to Pose into Rotational Data</h3>
+</a><a name="11697">
+Data that has been decomposed into pose data (using the <strong>Decompose Pose to Pose</strong> method described above) can be further decomposed into its rotational components:<p>
+</a><P>
+<a name="11698">
+<STRONG>	 1.	 <strong>(CLICK-R)</strong> on the Decomposed motion channel.
+</STRONG>
+</a><P><a name="11699">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the Decompose command.
+</STRONG>
+</a><P><a name="11700">
+<STRONG>	3.	 <strong>(CLICK-L)</strong> on Separate rotational channels.
+</STRONG>
+</a><P><dl><a name="11701">
+<dt>Doing this converts the data in the pose to pose channel into rotational component subchannels, much like those described in <a href="10EditingMCData.html#11658">Figure 10.23</a>; however, note that the cues inserted into the subchannels are preserved, and that a marker track is inserted for the channel, which makes it easy to slide poses in time and still be able to edit their values:</dt>
+</a><P><a name="11708">
+ <P><img src="10EditingMCData.anc29.gif"><p>
+</a></dl>
+<a name="11709">
+<em>Figure 10.29  &#32; &#32;Pose to pose channel decomposed into rotational components
+</em></a><P><a name="11710">
+Sliding the individual cues slightly left or right in such a decomposed channel can lessen the "robotic" feel of some motion capture files.<p>
+</a><P><a name="11730">
+<h2><HR> Writing out Your Own Motion Data</h2>
+</a><a name="11752">
+After animating a skeleton, you can write out a new .asf (skeletal description) and .amc (motion capture) file based on that skeleton's motion.<p>
+</a><P><a name="11806">
+Then, you can make a simpler script that uses only the generated motion capture data to drive the skeleton, using a simple <strong>Read Acclaim Data</strong> and <strong>Update Skeleton</strong> combination.<p>
+</a><P><a name="11753">
+This operation might be used, for example, after you had used the <strong>IK Move along Wire</strong> operation to tweak a previously saved motion capture (.amc) file, or after you've used the difference posing technique described elsewhere in this chapter.<p>
+</a><P><a name="11820">
+To use this operation:<p>
+</a><P>
+<a name="11824">
+<STRONG>	 1.	 Insert a Write Acclaim Data channel at the bottom of your script.
+</STRONG>
+</a><P>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	This operation should come after the <strong>Update Skeleton</strong> operation.</font></dd></dt></dl><P>
+
+<a name="11830">
+<STRONG>	2.	 <strong>(CLICK-M)</strong> on the channel.
+</STRONG>
+</a><P><dl><a name="11831">
+<dt>In the dialog box that appears, specify the skeleton from which the .amc file is to be generated and where the file is to be saved. The parameters in this dialog box are described in the table below: 
+<P><Table Border="1">
+<dl>
+<a name="11757">
+<em>Table 10.1 <strong></strong><em> &#32; &#32;Write Acclaim Data parameters</em>
+</em></a></dl>
+<tr><th align="left"><a name="11763">
+Parameter
+</a><th align="left"><a name="11765">
+Dynamic?
+</a><th align="left"><a name="11767">
+Description
+</a>
+<tr><td valign="top"><a name="11769">
+ Skeleton<p>
+</a><td valign="top"><a name="11771">
+ No<p>
+</a><td valign="top"><a name="11773">
+ The skeleton being used to generate the Acclaim data.<p>
+</a>
+<tr><td valign="top"><a name="11775">
+ Skeleton Dir.<p>
+</a><td valign="top"><a name="11777">
+ No<p>
+</a><td valign="top"><a name="11779">
+ The .asf file with which the .amc file should be associated.<p>
+</a>
+<tr><td valign="top"><a name="11781">
+ .asf File Name<p>
+</a><td valign="top"><a name="11783">
+ No<p>
+</a><td valign="top"><a name="11785">
+ The name of the .asf file.<p>
+</a>
+<tr><td valign="top"><a name="11787">
+ Motion Dir.<p>
+</a><td valign="top"><a name="11789">
+ No<p>
+</a><td valign="top"><a name="11791">
+ The directory into which the motion capture file should be written.<p>
+</a>
+<tr><td valign="top"><a name="11793">
+ .amc File Name<p>
+</a><td valign="top"><a name="11795">
+ No<p>
+</a><td valign="top"><a name="11797">
+ The name of the motion capture file.<p>
+</a>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+</dt>
+</a><P></dl><a name="11829">
+<STRONG>	3.	 Animate the script.
+</STRONG>
+</a><P><dl><a name="11842">
+<dt>The .asf and .amc files are written out.</dt>
+</a><P></dl>
+<dl>
+<dt><dd><font color=dd000><strong>Note.</strong>	<em>If you write out data from a frame range in the middle of the script, written frames are numbered 1 &#32;through N, regardless of their frame number in the script.<br></em><br>This lets you write out portions of an animation to a new .amc file.</font></dd></dt></dl><P>
+<a name="11353">
+<h2><HR> Difference Posing</h2>
+</a><a name="11361">
+Difference posing lets you modify motion capture data at a selected frame by blending in a "difference pose." However, rather than building the pose from scratch, you animate a skeleton and modify the skeleton's pose at a given frame-creating a "difference pose" in the process. Finally, you blend that difference pose back into the script.<p>
+</a><P><a name="11579">
+You could use this option, for example, if you were animating a skeleton with motion capture data for a simple walk cycle, then decided you wanted the skeleton to lean forward under a door. You first animate the walk cycle to determine where the skeleton should "duck," then pose the skeleton to its desired position, then blend that difference pose back into the script.<p>
+</a><P><a name="11364">
+To create and use a difference pose, you'll usually start with a script that contains two channels:<p>
+</a><P><ul><a name="11365">
+<li>One channel with a <strong>Read Acclaim Data</strong> or <strong>Read BioVision Data</strong> operation.
+</a></li><P><a name="11366">
+<li>Another channel with an <strong>Update Skeleton</strong> channel, which applies the motion capture data to the skeleton.
+</a></li><P></ul><P><a name="11367">
+A sample script might look something like this:<p>
+</a><P><a name="11371">
+ <P><img src="10EditingMCData.anc30.gif"><p>
+</a><a name="11372">
+<em>Figure 10.30  &#32; &#32;Sample script
+</em></a><P><a name="11373">
+<strong>(CLICK-L)</strong> on the Animate button in N-Dynamics to animate the script. This will give you an idea of where you want to make the change. Suppose, for example, that your skeleton is upright at frame 50:<p>
+</a><P><a name="11377">
+ <P><img src="10EditingMCData.anc31.gif"><p>
+</a><a name="11378">
+<em>Figure 10.31  &#32; &#32;Skeleton upright at desired frame
+</em></a><P><a name="11379">
+Your animation calls for him to duck under a doorway at frame 50; with difference posing, you can make this change very quickly. You need to use one of three operations to use difference posing:<p>
+</a><P><ul><a name="11380">
+<li><strong>Animate Pose</strong>
+</a></li><P><a name="11381">
+<li><strong>Animate Multiple Poses</strong>
+</a></li><P><a name="11382">
+<li><strong>Animate Pose to Pose</strong>
+</a></li><P></ul><P><a name="11383">
+All three of these operations let you copy poses into cues; the first two are similar, and use difference posing in the same way; the third is slightly different and is described in a different section below.<p>
+</a><P><a name="11384">
+<h3> Difference Posing with Animate Pose (or Animate Multiple Poses)</h3>
+</a><a name="11385">
+The <strong>Animate Pose</strong> operation lets you specify a single pose to layer over motion capture data; <strong>Animate Multiple Poses</strong> provides several channels for layering more than one pose at a time; this section describes the use of <strong>Animate Pose</strong>, but the same concept can be used with <strong>Animate Multiple Poses</strong>.<p>
+</a><P>
+<a name="11386">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the Update Skeleton channel and make sure that the Save-Pose option is set to Yes.
+</STRONG>
+</a><P><a name="11390">
+ <P><img src="10EditingMCData.anc32.gif"><p>
+</a>
+<a name="11391">
+<em>Figure 10.32  &#32; &#32;Set Save-Pose to Yes
+</em></a><P><dl><dl><a name="11392">
+<dt>When <strong>Save-Pose</strong> is set to <strong>Yes</strong>, the skeleton's pose is temporarily saved at each frame. This temporary pose can then be referenced when creating a difference pose, and can be saved with the skeleton like any other pose.</dt>
+</a><P></dl></dl>
+<a name="11393">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the timeline to animate the skeleton at the desired frame.
+</STRONG>
+</a><P><dl><a name="11394">
+<dt>This creates a "temporary" pose that you'll base the difference pose on.</dt>
+</a><P></dl><a name="11395">
+<STRONG>	3.	 Add a channel to the script.
+</STRONG>
+</a><P><a name="11396">
+<STRONG>	4.	 Reorder the channels so that the new channel comes before the Update Skeleton operation.
+</STRONG>
+</a><P><dl><a name="11397">
+<dt>The channel can go anywhere before the Update Skeleton channel; however, it's probably most handy to put it under the channel whose motion you are trying to modify.</dt>
+</a><P></dl><a name="11398">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the new channel and set the operation type to Skeletal Animation&gt;Animate Pose.
+</STRONG>
+</a><P><a name="11399">
+<STRONG>	6.	 Specify the skeleton you want to pose.
+</STRONG>
+</a><P><a name="11400">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on Pose.
+</STRONG>
+</a><P><dl><a name="11401">
+<dt>The following menu appears:</dt>
+</a><P><a name="11405">
+ <P><img src="10EditingMCData.anc33.gif"><p>
+</a></dl>
+<a name="11406">
+<em>Figure 10.33  &#32; &#32;Selecting a pose
+</em></a><P><dl><dl><a name="11407">
+<dt>At this point, your skeleton should be animated at the frame where you want to modify it. <em>Don't click yet!</em></dt>
+</a><P></dl></dl>
+<a name="11408">
+<STRONG>	8.	 In the N-Geometry window, pose the skeleton as he <em>should</em> appear at that frame.
+</STRONG>
+</a><P><dl><a name="11409">
+<dt>Suppose, for example, we want him to duck beneath the doorway:</dt>
+</a><P><a name="11413">
+ <P><img src="10EditingMCData.anc34.gif"><p>
+</a></dl>
+<a name="11414">
+<em>Figure 10.34  &#32; &#32;Pose the skeleton at the selected frame
+</em></a><P>
+<a name="11415">
+<STRONG>	9.	 Now, <strong>(CLICK-L)</strong> on Copy and Save Difference Pose.
+</STRONG>
+</a><P><dl><a name="11416">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11420">
+ <P><img src="10EditingMCData.anc35.gif"><p>
+</a></dl>
+<a name="11421">
+<em>Figure 10.35  &#32; &#32;Use the Last Animated Pose
+</em></a><P>
+<a name="11422">
+<STRONG>	10.	 <strong>(CLICK-L)</strong> on Last Animated Pose.
+</STRONG>
+</a><P><dl><a name="12443">
+<dt>This lets you specify which pose this "difference pose" should be measured from.</dt>
+</a><P></dl><a name="11423">
+<STRONG>	11.	 In the dialog box that appears, specify a name for the pose or use the default:
+</STRONG>
+</a><P><a name="11427">
+ <P><img src="10EditingMCData.anc36.gif"><p>
+</a>
+<a name="11428">
+<em>Figure 10.36  &#32; &#32;Specify a name for the difference pose or use the default
+</em></a><P><dl><dl><a name="11429">
+<dt><strong>(CLICK-L)</strong> on <strong>Done</strong> after specifying the name, then <strong>(CLICK-L)</strong> on <strong>Do it</strong> to save the pose.</dt>
+</a><P></dl></dl>
+<a name="11430">
+<STRONG>	12.	 Insert a cue at the frame where you want to layer the "difference pose" and select the cue.
+</STRONG>
+</a><P><dl><a name="11431">
+<dt>Lets assume it's at frame 50; your script should look like this:</dt>
+</a><P><a name="11435">
+ <P><img src="10EditingMCData.anc37.gif"><p>
+</a></dl>
+<a name="11436">
+<em>Figure 10.37  &#32; &#32;Insert a cue at the desired frame
+</em></a><P>
+<a name="11437">
+<STRONG>	13.	 <strong>(CLICK-M)</strong> on the cue to edit its value.
+</STRONG>
+</a><P><dl><a name="11438">
+<dt>Specify a value of 1.0 if you want the skeleton to fully execute the pose.</dt>
+</a><P><a name="11442">
+ <P><img src="10EditingMCData.anc38.gif"><p>
+</a></dl>
+<a name="11443">
+<em>Figure 10.38  &#32; &#32;Edit the value for the cue
+</em></a><P><dl><dl><a name="11444">
+<dt>You can either <strong>(CLICK-L)</strong> on the value (to bring up the keypad) or use the slider to change the value of the cue.</dt>
+</a><P></dl></dl>
+<a name="11445">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics to reanimate the script.
+</STRONG>
+</a><P><dl><a name="11446">
+<dt>The difference pose is now incorporated into the animation.</dt>
+</a><P></dl>
+<a name="11447">
+<h4> Using a Different Curve Type</h4>
+</a><a name="11448">
+One of the advantages of using the Animate Pose operation type is that you have good control over the curve used to blend in the saved difference pose. To modify the curve type:<p>
+</a><P>
+<a name="11449">
+<STRONG>	15.	 <strong>(CLICK-M)</strong> on the curve channel under the <strong>Animate Pose</strong> channel, then <strong>(CLICK-L)</strong> on the Curve type text edit box.
+</STRONG>
+</a><P><dl><a name="11450">
+<dt>A list of curve types appears:</dt>
+</a><P><a name="11454">
+ <P><img src="10EditingMCData.anc39.gif"><p>
+</a></dl>
+<a name="11455">
+<em>Figure 10.39  &#32; &#32;Specifying a curve type
+</em></a><P><dl><dl><a name="11456">
+<dt>Choosing one of the other curve types changes how the pose is layered over the motion capture data; for example, a <strong>Slow-In/Out</strong> curve makes the transition more gradual than the default <strong>Linear</strong>. Try several different curve types, reanimating after each change, until you get the results you want.</dt>
+</a><P></dl></dl><a name="11457">
+<h3> Difference Posing with Animate Pose to Pose</h3>
+</a><dl><dl><a name="11458">
+<dt>The <strong>Animate Pose to Pose </strong>operation lets you specify several poses which can be layered over motion capture data.</dt>
+</a><P></dl></dl>
+<a name="11459">
+<STRONG>	 1.	 <strong>(CLICK-M)</strong> on the Update Skeleton channel and make sure that the Save-Pose option is set to Yes.
+</STRONG>
+</a><P><a name="11463">
+ <P><img src="10EditingMCData.anc40.gif"><p>
+</a>
+<a name="11464">
+<em>Figure 10.40  &#32; &#32;Set Save-Pose to Yes
+</em></a><P><dl><dl><a name="11465">
+<dt>When Save-Pose is set to Yes, a "temporary" pose is saved for the specified skeleton each time you animate a frame. This temporary pose can then be referenced when creating a difference pose. (Unlike the <strong>Animate Pose</strong> operation, this temporary pose is not saved.)</dt>
+</a><P></dl></dl>
+<a name="11466">
+<STRONG>	2.	 <strong>(CLICK-L)</strong> on the timeline to animate the skeleton at the desired frame.
+</STRONG>
+</a><P><dl><a name="11467">
+<dt>This creates a "temporary" pose that you'll base the difference pose on.</dt>
+</a><P></dl><a name="11468">
+<STRONG>	3.	 Add a channel to the script.
+</STRONG>
+</a><P><a name="11469">
+<STRONG>	4.	 Reorder the channels so that the new channel is after the channel that reads in themotion capture data.
+</STRONG>
+</a><P><dl><a name="11470">
+<dt>The channel can actually go anywhere before the Update Skeleton channel; however, it's probably most handy to put it under the channel whose motion you are trying to modify.</dt>
+</a><P></dl><a name="11471">
+<STRONG>	5.	 <strong>(CLICK-M)</strong> on the new channel and set the operation type to Skeletal Animation&gt;Animate Pose to Pose.
+</STRONG>
+</a><P><a name="11472">
+<STRONG>	6.	 <strong>(CLICK-L)</strong> on Skeleton and specify the skeleton you want to pose.
+</STRONG>
+</a><P><a name="11473">
+<STRONG>	7.	 <strong>(CLICK-L)</strong> on bones, make sure all the bones are selected, then <strong>(CLICK-L)</strong> on Do it.
+</STRONG>
+</a><P><dl><a name="11474">
+<dt>At this point, your skeleton should be animated at the frame where you want to modify it.</dt>
+</a><P></dl><a name="11475">
+<STRONG>	8.	 Insert a cue at the frame where you want to layer the "difference pose."
+</STRONG>
+</a><P><dl><a name="11476">
+<dt>Lets assume it's at frame 50; your script should look like this:</dt>
+</a><P><a name="11480">
+ <P><img src="10EditingMCData.anc41.gif"><p>
+</a></dl>
+<a name="11481">
+<em>Figure 10.41  &#32; &#32;Insert a cue at the desired frame
+</em></a><P>
+<a name="11482">
+<STRONG>	9.	 <strong>(CLICK-M)</strong> on the cue to edit its value.
+</STRONG>
+</a><P><dl><a name="11483">
+<dt>The following menu appears:</dt>
+</a><P><a name="11487">
+ <P><img src="10EditingMCData.anc42.gif"><p>
+</a></dl>
+<a name="11488">
+<em>Figure 10.42  &#32; &#32;Edit the value for the cue
+</em></a><P>
+<a name="11489">
+<STRONG>	10.	 In the N-Geometry window, pose the skeleton as he <em>should</em> appear at that frame.
+</STRONG>
+</a><P><dl><a name="11490">
+<dt>Suppose, for example, we want him to duck beneath the doorway:</dt>
+</a><P><a name="11494">
+ <P><img src="10EditingMCData.anc43.gif"><p>
+</a></dl>
+<a name="11495">
+<em>Figure 10.43  &#32; &#32;Pose the skeleton at the selected frame
+</em></a><P>
+<a name="11496">
+<STRONG>	11.	 Now, <strong>(CLICK-L)</strong> on Copy Difference Pose.
+</STRONG>
+</a><P><dl><a name="11497">
+<dt>The following dialog box appears:</dt>
+</a><P><a name="11501">
+ <P><img src="10EditingMCData.anc44.gif"><p>
+</a></dl>
+<a name="11502">
+<em>Figure 1.44  &#32; &#32;Use the Last Animated Pose
+</em></a><P>
+<a name="11503">
+<STRONG>	12.	 <strong>(CLICK-L)</strong> on Last Animated Pose.
+</STRONG>
+</a><P><dl><a name="11504">
+<dt>In the dialog box that appears, the default pose name <strong>temp</strong> appears.</dt>
+</a><P></dl><a name="11510">
+<STRONG>	13.	 <strong>(CLICK-L)</strong> on <strong>Done</strong>.
+</STRONG>
+</a><P><a name="11511">
+<STRONG>	14.	 <strong>(CLICK-L)</strong> on the Animate button in N-Dynamics to reanimate the script.
+</STRONG>
+</a><P><dl><a name="11512">
+<dt>The difference pose is now incorporated into the animation.</dt>
+</a><P></dl>
+<a name="11908">
+<h2><HR> Congratulations!</h2>
+</a><a name="11909">
+You've now learned some powerful techniques for editing motion capture data, layering artist motion, using IK, decomposing data, or even using difference posing.<p>
+</a><P>
+<hr><br>
+ 
+<a href="../N-World-Intro.html">[N-World Contents]</A> <a href="Book TOC.html">[Book Contents]</a> <a href="9CartoonEffects.html">[Prev]</a> <a href="11MotionBlending.html">[Next]</a> <a href="BookIX.doc.html">[Index]</a>
+<hr><br>
+ 
+
+
+<IMG SRC="small-logo.gif" align=right>Another fine product from Nichimen documentation!<P>
+<i>Copyright &#169; 1996, Nichimen Graphics Corporation.   All rights
+reserved.</i>
+
+<!-- This file was created with Quadralay WebWorks Publisher 3.0.4 -->
+<!-- -->
+<!-- For more information on how this document, and how the rest of -->
+<!-- this server was created, email doc@nichimen.com -->
+<!-- -->
+<!-- Last updated: 08/30/96 20:46:48 -->
+
+</body>
+</html>
